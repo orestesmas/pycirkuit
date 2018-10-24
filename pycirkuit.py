@@ -64,7 +64,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 g.write('\n')
                 g.close()
             retcode = subprocess.call("pdflatex tmp.tex", shell=True)
-            retcode = subprocess.call("convert -density 150 tmp.pdf tmp.png", shell=True)
+            retcode = subprocess.call("pdftoppm tmp.pdf -png > tmp.png", shell=True)
         imatge = QPixmap("tmp.png")
         self.ui.imatge.setPixmap(imatge)
 

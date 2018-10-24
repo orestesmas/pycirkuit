@@ -22,6 +22,8 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(1)
         sizePolicy.setHeightForWidth(self.imatge.sizePolicy().hasHeightForWidth())
         self.imatge.setSizePolicy(sizePolicy)
+        self.imatge.setAutoFillBackground(False)
+        self.imatge.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.imatge.setText("")
         self.imatge.setAlignment(QtCore.Qt.AlignCenter)
         self.imatge.setObjectName("imatge")
