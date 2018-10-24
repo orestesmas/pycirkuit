@@ -1,0 +1,36 @@
+%%backend=tikz%%
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[catalan]{babel}
+
+\usepackage{lmodern}
+
+\usepackage{tikz,amsmath}
+\usepackage{pgfplots}
+\usepackage[siunitx]{circuitikz}
+\sisetup{
+    output-decimal-marker = {,},
+    per-mode = symbol,
+    group-separator = {.},
+    output-complex-root = \ensuremath{\mathrm{j}},
+    binary-units
+}
+\DeclareSIUnit[number-unit-product = \,]\dBV{\deci\bel V}
+\DeclareSIUnit[number-unit-product = \,]\dBuV{\deci\bel\mu V}
+
+\usetikzlibrary{arrows,snakes,backgrounds,patterns,matrix,shapes,fit,calc,shadows,plotmarks}
+\usepackage[graphics,tightpage,active]{preview}
+\PreviewEnvironment{tikzpicture}
+\PreviewEnvironment{equation}
+\PreviewEnvironment{equation*}
+\newlength{\imagewidth}
+\newlength{\imagescale}
+\pagestyle{empty}
+
+\newcommand{\fasor}[1]{\ensuremath{\mathbf{\overline{#1}}}}
+
+\begin{document}
+\thispagestyle{empty}
+%%SOURCE%%
+\end{document}

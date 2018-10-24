@@ -1,0 +1,18 @@
+%%backend=gnuplot%%
+\documentclass{article}
+\usepackage[utf8x]{inputenc}
+\usepackage{tikz,amsmath,siunitx}
+\usepackage{gnuplot-lua-tikz}
+\usetikzlibrary{arrows,snakes,backgrounds,patterns,matrix,shapes,fit,calc,shadows,plotmarks}
+\usepackage[graphics,tightpage,active]{preview}
+\PreviewEnvironment{tikzpicture}
+\PreviewEnvironment{equation}
+\PreviewEnvironment{equation*}
+\newlength{\imagewidth}
+\newlength{\imagescale}
+\pagestyle{empty}
+
+\begin{document}
+\thispagestyle{empty}
+\input %%SOURCE%%
+\end{document}

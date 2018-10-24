@@ -1,0 +1,30 @@
+%%backend=circuitmacros%%
+\documentclass{article}
+\usepackage[utf8x]{inputenc}
+\usepackage{libertine}
+\usepackage{libertinust1math}
+\usepackage[T1]{fontenc}
+\usepackage{siunitx}
+\sisetup{
+    output-decimal-marker = {,},
+    per-mode = symbol,
+    group-separator = {.},
+    output-complex-root = \ensuremath{\mathrm{j}},
+    binary-units
+}
+
+\usepackage{tikz,amsmath}
+\usetikzlibrary{arrows,backgrounds,patterns,matrix,shapes,fit,calc,shadows,plotmarks}
+
+\usepackage[graphics,tightpage,active]{preview}
+\PreviewEnvironment{tikzpicture}
+\PreviewEnvironment{equation}
+\PreviewEnvironment{equation*}
+\newlength{\imagewidth}
+\newlength{\imagescale}
+\pagestyle{empty}
+
+\begin{document}
+\thispagestyle{empty}
+%%SOURCE%%
+\end{document}
