@@ -1,10 +1,11 @@
 # coding: utf-8
 import sys
+import os
+import subprocess
 from PyQt5 import QtWidgets
 from PyQt5.QtGui import QPixmap
+from PyQt5.QtCore import QTemporaryDir
 import mainwindow
-import subprocess
-import sys
 
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
@@ -14,15 +15,27 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.actionOpen.triggered.connect(self.obreFitxer)
         self.ui.pushButton.clicked.connect(self.processa)
         self.ui.textEdit.textChanged.connect(self.textCanviat)
+        # Last Working Directory (to be persistent)
+        #TODO: gestionar-ho via configuració, per fer-ho permanent. Inicialitzar-ho amb un String desat
+        self.lastWD = "."
+        self.lastFilename = ""
         self.plantilla = ""
         with open('/home/orestes/Devel/Software/pycirkuit/cm_tikz.ckt','r') as f:
             self.plantilla = f.read()
 
     def obreFitxer(self):
-        fitxer, _ = QtWidgets.QFileDialog.getOpenFileName(self,"Títol",".","*.ckt")
-        with open(fitxer,'r') as f:
+        # Presento el diàleg de càrrega de fitxer
+        fitxer, _ = QtWidgets.QFileDialog.getOpenFileName(self,"Títol",self.lastWD,"*.ckt")
+        # Ara que tinc la ruta al fitxer complet, n'extrec el directori i me'l deso
+        #TODO: Check for valid path (could be a broken link) os.path.exists(path)
+        fitxer = os.path.normpath(fitxer)
+        self.lastWD,self.lastFilename = os.path.split(fitxer)
+        # Change system working dir to target's dir
+        os.chdir(self.lastWD)
+        with open(self.lastFilename,'r') as f:
             txt = f.read()
             self.ui.textEdit.setPlainText(txt)
+            f.close()
 
     def textCanviat(self):
         if self.ui.textEdit.toPlainText() == "":
@@ -31,13 +44,25 @@ class MainWindow(QtWidgets.QMainWindow):
             self.ui.pushButton.setEnabled(True)
 
     def processa(self):
-        # Creo un fitxer temporal per desar això
-        tmpfile = open("tmp.ckt",'w')
-        tmpfile.write(self.ui.textEdit.toPlainText())
-        tmpfile.close()
+        # Primer deso la feina no desada
+        with open(self.lastFilename,'w') as f:
+            f.write(self.ui.textEdit.toPlainText())
+            f.close()
+        # Creo un directori temporal únic per desar fitxers temporals
+        # Si no puc (rar) utilitzo el directori del fitxer font
+        d = QTemporaryDir()
+        if d.isValid():
+            tmpDir = d.path()
+        else:
+            tmpDir = self.lastWD
+        # Sintetitzo un nom de fitxer temporal per desar els fitxers intermedis
+        tmpFileBaseName = tmpDir + "/cirkuit_tmp"
+        with open("{baseName}.ckt".format(baseName=tmpFileBaseName),'w') as tmpFile:
+            tmpFile.write(self.ui.textEdit.toPlainText())
+            tmpFile.close()
         # Li passo les M4 per convertir-ho a pic
         try:
-            command = "m4 -I /home/orestes/.local/share/cirkuit/circuit_macros pgf.m4 tmp.ckt > tmp.pic"
+            command = "m4 -I /home/orestes/.local/share/cirkuit/circuit_macros pgf.m4 {baseName}.ckt > {baseName}.pic".format(baseName=tmpFileBaseName)
             retcode = subprocess.call(command, shell=True)
             if retcode < 0:
                 print("Child was terminated by signal", -retcode)
@@ -45,9 +70,9 @@ class MainWindow(QtWidgets.QMainWindow):
                 print("Child returned", retcode)
         except OSError as e:
             print("Execution failed:", e)
-        # passar-li el dpic per conveertir-ho a tikzs
+        # passar-li el dpic per convertir-ho a tikzs
         try:
-            retcode = subprocess.call("dpic -g tmp.pic > tmp.tikz", shell=True)
+            retcode = subprocess.call("dpic -g {baseName}.pic > {baseName}.tikz".format(baseName=tmpFileBaseName), shell=True)
             if retcode < 0:
                 print("Child was terminated by signal", -retcode)
             else:
@@ -55,17 +80,17 @@ class MainWindow(QtWidgets.QMainWindow):
         except OSError as e:
             print("Execution failed:", e)
         # Ara genero la imatge passant pel LaTeX
-        with open("tmp.tikz",'r') as f:
+        with open("{baseName}.tikz".format(baseName=tmpFileBaseName),'r') as f:
             source = f.read()
             dest = self.plantilla.replace('%%SOURCE%%',source,1)
             print(dest)
-            with open('tmp.tex','w') as g:
+            with open('{baseName}.tex'.format(baseName=tmpFileBaseName),'w') as g:
                 g.write(dest)
                 g.write('\n')
                 g.close()
-            retcode = subprocess.call("pdflatex tmp.tex", shell=True)
-            retcode = subprocess.call("pdftoppm tmp.pdf -png > tmp.png", shell=True)
-        imatge = QPixmap("tmp.png")
+            retcode = subprocess.call("pdflatex --output-directory {tmpDir} {baseName}.tex".format(tmpDir=tmpDir, baseName=tmpFileBaseName), shell=True)
+            retcode = subprocess.call("pdftoppm {baseName}.pdf -png > {baseName}.png".format(baseName=tmpFileBaseName), shell=True)
+        imatge = QPixmap("{baseName}.png".format(baseName=tmpFileBaseName))
         self.ui.imatge.setPixmap(imatge)
 
 app = QtWidgets.QApplication(sys.argv)
