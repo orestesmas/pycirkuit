@@ -5,20 +5,27 @@ import subprocess
 from PyQt5 import QtWidgets
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import QTemporaryDir
+from PyQt5.QtCore import QStandardPaths
 import mainwindow
 
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
+        # Inicialització de la IGU
         self.ui = mainwindow.Ui_MainWindow()
         self.ui.setupUi(self)
         self.ui.actionOpen.triggered.connect(self.obreFitxer)
         self.ui.pushButton.clicked.connect(self.processa)
         self.ui.textEdit.textChanged.connect(self.textCanviat)
-        # Last Working Directory (to be persistent)
+        
         #TODO: gestionar-ho via configuració, per fer-ho permanent. Inicialitzar-ho amb un String desat
+        # Last Working Directory (to be persistent)
+        cfgPath = QStandardPaths.writableLocation(QStandardPaths.ConfigLocation)
+        self.cfgFile = cfgPath + "/pycirkuitrc"
         self.lastWD = "."
         self.lastFilename = ""
+        
+        #TODO: gestionar la ubicació de les plantilles via configuració
         self.plantilla = ""
         with open('/home/orestes/Devel/Software/pycirkuit/cm_tikz.ckt','r') as f:
             self.plantilla = f.read()
