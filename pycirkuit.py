@@ -3,9 +3,8 @@ import sys
 import os
 import subprocess
 from PyQt5 import QtWidgets
-from PyQt5.QtGui import QPixmap
-from PyQt5.QtCore import QTemporaryDir
-from PyQt5.QtCore import QStandardPaths
+from PyQt5.QtGui import QPixmap,QCursor
+from PyQt5.QtCore import QTemporaryDir,QStandardPaths,Qt
 import mainwindow
 
 class MainWindow(QtWidgets.QMainWindow):
@@ -72,6 +71,8 @@ class MainWindow(QtWidgets.QMainWindow):
             tmpFile.write(self.ui.textEdit.toPlainText())
         errMsg = ""
         try:
+            # PAS 0: Canvio el cursor momentàniament
+            app.setOverrideCursor(QCursor(Qt.WaitCursor))
             # PAS 1: Li passo les M4: .CKT -> .PIC
             command = "m4 -I /home/orestes/.local/share/cirkuit/circuit_macros pgf.m4 {baseName}.ckt > {baseName}.pic".format(baseName=tmpFileBaseName)
             retcode = subprocess.call(command, shell=True)
@@ -114,8 +115,7 @@ class MainWindow(QtWidgets.QMainWindow):
             imatge = QPixmap("{baseName}.png".format(baseName=tmpFileBaseName))
             self.ui.imatge.setPixmap(imatge)
         finally:
-            # TODO: Restaurar el cursor al mode normal
-            pass
+            app.restoreOverrideCursor()
 
 app = QtWidgets.QApplication(sys.argv)
 
