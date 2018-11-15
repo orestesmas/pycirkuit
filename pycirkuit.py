@@ -96,7 +96,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 # print(dest)
                 g.write(dest)
                 g.write('\n')
-            command = "pdflatex --output-directory {tmpDir} {baseName}.tex".format(tmpDir=tmpDir, baseName=tmpFileBaseName)
+            command = "pdflatex -interaction=batchmode -halt-on-error -file-line-error -output-directory {tmpDir} {baseName}.tex".format(tmpDir=tmpDir, baseName=tmpFileBaseName)
             retcode = subprocess.call(command, shell=True)
             if retcode != 0:
                 errMsg = "Error en PDFLaTeX: Conversió .TIKZ -> .PDF"
