@@ -42,7 +42,6 @@ class MainWindow(QtWidgets.QMainWindow):
         with open(self.lastFilename,'r') as f:
             txt = f.read()
             self.ui.textEdit.setPlainText(txt)
-            f.close()
 
     def textCanviat(self):
         if self.ui.textEdit.toPlainText() == "":
@@ -54,7 +53,6 @@ class MainWindow(QtWidgets.QMainWindow):
         # Primer deso la feina no desada
         with open(self.lastFilename,'w') as f:
             f.write(self.ui.textEdit.toPlainText())
-            f.close()
         # Creo un directori temporal únic per desar fitxers temporals
         # Si no puc (rar) utilitzo el directori del fitxer font
         d = QTemporaryDir()
@@ -66,7 +64,6 @@ class MainWindow(QtWidgets.QMainWindow):
         tmpFileBaseName = tmpDir + "/cirkuit_tmp"
         with open("{baseName}.ckt".format(baseName=tmpFileBaseName),'w') as tmpFile:
             tmpFile.write(self.ui.textEdit.toPlainText())
-            tmpFile.close()
         # Li passo les M4 per convertir-ho a pic
         try:
             command = "m4 -I /home/orestes/.local/share/cirkuit/circuit_macros pgf.m4 {baseName}.ckt > {baseName}.pic".format(baseName=tmpFileBaseName)
@@ -94,7 +91,6 @@ class MainWindow(QtWidgets.QMainWindow):
             with open('{baseName}.tex'.format(baseName=tmpFileBaseName),'w') as g:
                 g.write(dest)
                 g.write('\n')
-                g.close()
             retcode = subprocess.call("pdflatex --output-directory {tmpDir} {baseName}.tex".format(tmpDir=tmpDir, baseName=tmpFileBaseName), shell=True)
             retcode = subprocess.call("pdftoppm {baseName}.pdf -png > {baseName}.png".format(baseName=tmpFileBaseName), shell=True)
         imatge = QPixmap("{baseName}.png".format(baseName=tmpFileBaseName))
