@@ -23,11 +23,19 @@
         <verstretch>1</verstretch>
        </sizepolicy>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>18</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
       <property name="autoFillBackground">
        <bool>false</bool>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
+       <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(255, 0, 0);</string>
       </property>
       <property name="text">
        <string/>
@@ -65,7 +73,7 @@
      <x>0</x>
      <y>0</y>
      <width>716</width>
-     <height>36</height>
+     <height>34</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

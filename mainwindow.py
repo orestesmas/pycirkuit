@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'mainwindow.ui'
 #
-# Created by: PyQt5 UI code generator 5.7
+# Created by: PyQt5 UI code generator 5.10.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -22,8 +22,14 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(1)
         sizePolicy.setHeightForWidth(self.imatge.sizePolicy().hasHeightForWidth())
         self.imatge.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setPointSize(18)
+        font.setBold(True)
+        font.setWeight(75)
+        self.imatge.setFont(font)
         self.imatge.setAutoFillBackground(False)
-        self.imatge.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.imatge.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"color: rgb(255, 0, 0);")
         self.imatge.setText("")
         self.imatge.setAlignment(QtCore.Qt.AlignCenter)
         self.imatge.setObjectName("imatge")
@@ -42,7 +48,7 @@ class Ui_MainWindow(object):
         self.verticalLayout.addWidget(self.pushButton)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 716, 36))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 716, 34))
         self.menubar.setObjectName("menubar")
         self.menuFile = QtWidgets.QMenu(self.menubar)
         self.menuFile.setObjectName("menuFile")

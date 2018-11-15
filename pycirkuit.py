@@ -17,6 +17,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.actionOpen.triggered.connect(self.obreFitxer)
         self.ui.pushButton.clicked.connect(self.processa)
         self.ui.textEdit.textChanged.connect(self.textCanviat)
+        self.needSaving = False
         
         #TODO: gestionar-ho via configuració, per fer-ho permanent. Inicialitzar-ho amb un String desat
         # Last Working Directory (to be persistent)
@@ -48,11 +49,15 @@ class MainWindow(QtWidgets.QMainWindow):
             self.ui.pushButton.setEnabled(False)
         else:
             self.ui.pushButton.setEnabled(True)
+            self.needSaving = True
 
     def processa(self):
         # Primer deso la feina no desada
-        with open(self.lastFilename,'w') as f:
-            f.write(self.ui.textEdit.toPlainText())
+        if self.needSaving:
+            with open(self.lastFilename,'w') as f:
+                f.write(self.ui.textEdit.toPlainText())
+                #TODO: Podria haver-hi un eror en desar el fitxer, aleshores no s'hauria de posar needSaving a False...
+                self.needSaving = False
         # Creo un directori temporal únic per desar fitxers temporals
         # Si no puc (rar) utilitzo el directori del fitxer font
         d = QTemporaryDir()
@@ -64,37 +69,52 @@ class MainWindow(QtWidgets.QMainWindow):
         tmpFileBaseName = tmpDir + "/cirkuit_tmp"
         with open("{baseName}.ckt".format(baseName=tmpFileBaseName),'w') as tmpFile:
             tmpFile.write(self.ui.textEdit.toPlainText())
-        # Li passo les M4 per convertir-ho a pic
+        errMsg = ""
         try:
+            # PAS 1: Li passo les M4: .CKT -> .PIC
             command = "m4 -I /home/orestes/.local/share/cirkuit/circuit_macros pgf.m4 {baseName}.ckt > {baseName}.pic".format(baseName=tmpFileBaseName)
             retcode = subprocess.call(command, shell=True)
-            if retcode < 0:
-                print("Child was terminated by signal", -retcode)
-            else:
-                print("Child returned", retcode)
-        except OSError as e:
-            print("Execution failed:", e)
-        # passar-li el dpic per convertir-ho a tikzs
-        try:
-            retcode = subprocess.call("dpic -g {baseName}.pic > {baseName}.tikz".format(baseName=tmpFileBaseName), shell=True)
-            if retcode < 0:
-                print("Child was terminated by signal", -retcode)
-            else:
-                print("Child returned", retcode)
-        except OSError as e:
-            print("Execution failed:", e)
-        # Ara genero la imatge passant pel LaTeX
-        with open("{baseName}.tikz".format(baseName=tmpFileBaseName),'r') as f:
-            source = f.read()
-            dest = self.plantilla.replace('%%SOURCE%%',source,1)
-            print(dest)
-            with open('{baseName}.tex'.format(baseName=tmpFileBaseName),'w') as g:
+            if retcode != 0:
+                errMsg = "Error en M4: Conversió .CKT -> .PIC"
+                raise OSError(errMsg)
+            
+            # PAS 2: Li passo el dpic: .PIC -> .TIKZ
+            command = "dpic -g {baseName}.pic > {baseName}.tikz".format(baseName=tmpFileBaseName)
+            retcode = subprocess.call(command, shell=True)
+            if retcode != 0:
+                errMsg = "Error en DPIC: Conversió .PIC -> .TIKZ"
+                raise OSError(errMsg)
+            
+            # PAS 3: Li passo el PDFLaTeX: .TIKZ -> .PDF
+            # Primer haig d'incloure el codi .TIKZ en una plantilla adient
+            with open("{baseName}.tikz".format(baseName=tmpFileBaseName),'r') as f, \
+                 open('{baseName}.tex'.format(baseName=tmpFileBaseName),'w') as g:
+                source = f.read()
+                dest = self.plantilla.replace('%%SOURCE%%',source,1)
+                # print(dest)
                 g.write(dest)
                 g.write('\n')
-            retcode = subprocess.call("pdflatex --output-directory {tmpDir} {baseName}.tex".format(tmpDir=tmpDir, baseName=tmpFileBaseName), shell=True)
-            retcode = subprocess.call("pdftoppm {baseName}.pdf -png > {baseName}.png".format(baseName=tmpFileBaseName), shell=True)
-        imatge = QPixmap("{baseName}.png".format(baseName=tmpFileBaseName))
-        self.ui.imatge.setPixmap(imatge)
+            command = "pdflatex --output-directory {tmpDir} {baseName}.tex".format(tmpDir=tmpDir, baseName=tmpFileBaseName)
+            retcode = subprocess.call(command, shell=True)
+            if retcode != 0:
+                errMsg = "Error en PDFLaTeX: Conversió .TIKZ -> .PDF"
+                raise OSError(errMsg)
+            
+            # PAS 4: Converteixo el PDF a imatge bitmap per visualitzar-la: .PDF -> .PNG
+            command = "pdftoppm {baseName}.pdf -png > {baseName}.png".format(baseName=tmpFileBaseName)
+            retcode = subprocess.call(command, shell=True)
+            if retcode != 0:
+                errMsg = "Error en PDFTOPPM: Conversió .PDF -> .PNG"
+                raise OSError(errMsg)
+        except OSError as e:
+            print("Execution failed:", e)
+            self.ui.imatge.setText("Error!")
+        else:
+            imatge = QPixmap("{baseName}.png".format(baseName=tmpFileBaseName))
+            self.ui.imatge.setPixmap(imatge)
+        finally:
+            # TODO: Restaurar el cursor al mode normal
+            pass
 
 app = QtWidgets.QApplication(sys.argv)
 
