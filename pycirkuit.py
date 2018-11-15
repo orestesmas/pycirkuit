@@ -58,6 +58,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 f.write(self.ui.textEdit.toPlainText())
                 #TODO: Podria haver-hi un eror en desar el fitxer, aleshores no s'hauria de posar needSaving a False...
                 self.needSaving = False
+                self.ui.pushButton.setEnabled(False)
         # Creo un directori temporal únic per desar fitxers temporals
         # Si no puc (rar) utilitzo el directori del fitxer font
         d = QTemporaryDir()
