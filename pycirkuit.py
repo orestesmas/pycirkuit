@@ -74,6 +74,7 @@ class MainWindow(QtWidgets.QMainWindow):
             # PAS 0: Canvio el cursor momentàniament
             app.setOverrideCursor(QCursor(Qt.WaitCursor))
             # PAS 1: Li passo les M4: .CKT -> .PIC
+            # TODO: Cal que la ubicació de les Circuit_Macros no estigui "hard-coded"
             command = "m4 -I /home/orestes/.local/share/cirkuit/circuit_macros pgf.m4 {baseName}.ckt > {baseName}.pic".format(baseName=tmpFileBaseName)
             retcode = subprocess.call(command, shell=True)
             if retcode != 0:
@@ -111,6 +112,8 @@ class MainWindow(QtWidgets.QMainWindow):
         except OSError as e:
             print("Execution failed:", e)
             self.ui.imatge.setText("Error!")
+            # TODO: Si l'error és de LaTeX caldria accedir als LOGS i destriar info de l'error (línia, etc)
+            # Per l'M4 i el DPIC, potser també, tot i que el DPIC ja ho dóna força
         else:
             imatge = QPixmap("{baseName}.png".format(baseName=tmpFileBaseName))
             self.ui.imatge.setPixmap(imatge)
