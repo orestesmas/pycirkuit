@@ -32,18 +32,19 @@ class MainWindow(QtWidgets.QMainWindow):
     def obreFitxer(self):
         # Presento el diàleg de càrrega de fitxer
         fitxer, _ = QtWidgets.QFileDialog.getOpenFileName(self,"Títol",self.lastWD,"*.ckt")
-        # Ara que tinc la ruta al fitxer complet, n'extrec el directori i me'l deso
-        #TODO: Check for valid path (could be a broken link) os.path.exists(path)
-        fitxer = os.path.normpath(fitxer)
-        self.lastWD,self.lastFilename = os.path.split(fitxer)
-
-        # Change system working dir to target's dir
-        os.chdir(self.lastWD)       
-        self.settings.setValue("General/lastWD", self.lastWD)
-        self.settings.sync()
-        with open(self.lastFilename,'r') as f:
-            txt = f.read()
-            self.ui.textEdit.setPlainText(txt)
+        # Comprovo que no he premut 'Cancel' a la dialog box...
+        if fitxer != '':
+            # Comprovo que el fitxer no sigui un enllaç trencat
+            fitxer = os.path.normpath(fitxer)
+            if os.path.exists(fitxer):
+                self.lastWD,self.lastFilename = os.path.split(fitxer)
+                # Change system working dir to target's dir
+                os.chdir(self.lastWD)       
+                self.settings.setValue("General/lastWD", self.lastWD)
+                self.settings.sync()
+                with open(self.lastFilename,'r') as f:
+                    txt = f.read()
+                    self.ui.textEdit.setPlainText(txt)
 
     def textCanviat(self):
         if self.ui.textEdit.toPlainText() == "":
