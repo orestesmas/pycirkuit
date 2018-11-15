@@ -4,7 +4,7 @@ import os
 import subprocess
 from PyQt5 import QtWidgets
 from PyQt5.QtGui import QPixmap,QCursor
-from PyQt5.QtCore import QTemporaryDir,QStandardPaths,Qt
+from PyQt5.QtCore import QTemporaryDir,QStandardPaths,Qt,QSettings,QDir
 import mainwindow
 
 class MainWindow(QtWidgets.QMainWindow):
@@ -18,13 +18,12 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ui.textEdit.textChanged.connect(self.textCanviat)
         self.needSaving = False
         
-        #TODO: gestionar-ho via configuració, per fer-ho permanent. Inicialitzar-ho amb un String desat
-        # Last Working Directory (to be persistent)
-        cfgPath = QStandardPaths.writableLocation(QStandardPaths.ConfigLocation)
-        self.cfgFile = cfgPath + "/pycirkuitrc"
-        self.lastWD = "."
+        # Persistent settings
+        self.settings = QSettings("UPC","pycirkuit")
+        # Last Working Dir
+        d = QDir(self.settings.value("General/lastWD","."))
+        self.lastWD = d.absolutePath() if d.exists() else QDir.home().path()
         self.lastFilename = ""
-        
         #TODO: gestionar la ubicació de les plantilles via configuració
         self.plantilla = ""
         with open('/home/orestes/Devel/Software/pycirkuit/cm_tikz.ckt','r') as f:
@@ -37,8 +36,11 @@ class MainWindow(QtWidgets.QMainWindow):
         #TODO: Check for valid path (could be a broken link) os.path.exists(path)
         fitxer = os.path.normpath(fitxer)
         self.lastWD,self.lastFilename = os.path.split(fitxer)
+
         # Change system working dir to target's dir
-        os.chdir(self.lastWD)
+        os.chdir(self.lastWD)       
+        self.settings.setValue("General/lastWD", self.lastWD)
+        self.settings.sync()
         with open(self.lastFilename,'r') as f:
             txt = f.read()
             self.ui.textEdit.setPlainText(txt)
