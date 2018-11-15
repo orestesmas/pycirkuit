@@ -75,17 +75,23 @@ class MainWindow(QtWidgets.QMainWindow):
             app.setOverrideCursor(QCursor(Qt.WaitCursor))
             # PAS 1: Li passo les M4: .CKT -> .PIC
             # TODO: Cal que la ubicació de les Circuit_Macros no estigui "hard-coded"
+            #
+            # La crida subprocess.run() és molt interessant
+            # el 'check=False' fa que no salti una excepció si l'ordre falla, atès que ja la llanço jo després
+            # amb un missatge més personalitzat
             command = "m4 -I /home/orestes/.local/share/cirkuit/circuit_macros pgf.m4 {baseName}.ckt > {baseName}.pic".format(baseName=tmpFileBaseName)
-            retcode = subprocess.call(command, shell=True)
-            if retcode != 0:
-                errMsg = "Error en M4: Conversió .CKT -> .PIC"
+            result = subprocess.run(command, shell=True, check=False, stderr=subprocess.STDOUT, stdout=subprocess.PIPE)
+            if result.returncode != 0:
+                errMsg = "Error en M4: Conversió .CKT -> .PIC\n"
+                errMsg += result.stdout.decode()
                 raise OSError(errMsg)
             
             # PAS 2: Li passo el dpic: .PIC -> .TIKZ
             command = "dpic -g {baseName}.pic > {baseName}.tikz".format(baseName=tmpFileBaseName)
-            retcode = subprocess.call(command, shell=True)
-            if retcode != 0:
-                errMsg = "Error en DPIC: Conversió .PIC -> .TIKZ"
+            result = subprocess.run(command, shell=True, check=False, stderr=subprocess.STDOUT, stdout=subprocess.PIPE)
+            if result.returncode != 0:
+                errMsg = "Error en DPIC: Conversió .PIC -> .TIKZ\n"
+                errMsg += result.stdout.decode()
                 raise OSError(errMsg)
             
             # PAS 3: Li passo el PDFLaTeX: .TIKZ -> .PDF
@@ -94,20 +100,21 @@ class MainWindow(QtWidgets.QMainWindow):
                  open('{baseName}.tex'.format(baseName=tmpFileBaseName),'w') as g:
                 source = f.read()
                 dest = self.plantilla.replace('%%SOURCE%%',source,1)
-                # print(dest)
                 g.write(dest)
                 g.write('\n')
             command = "pdflatex -interaction=batchmode -halt-on-error -file-line-error -output-directory {tmpDir} {baseName}.tex".format(tmpDir=tmpDir, baseName=tmpFileBaseName)
-            retcode = subprocess.call(command, shell=True)
-            if retcode != 0:
-                errMsg = "Error en PDFLaTeX: Conversió .TIKZ -> .PDF"
+            result = subprocess.run(command, shell=True, check=False, stderr=subprocess.STDOUT, stdout=subprocess.PIPE)
+            if result.returncode != 0:
+                errMsg = "Error en PDFLaTeX: Conversió .TIKZ -> .PDF\n"
+                errMsg += result.stdout.decode()
                 raise OSError(errMsg)
             
             # PAS 4: Converteixo el PDF a imatge bitmap per visualitzar-la: .PDF -> .PNG
             command = "pdftoppm {baseName}.pdf -png > {baseName}.png".format(baseName=tmpFileBaseName)
-            retcode = subprocess.call(command, shell=True)
-            if retcode != 0:
-                errMsg = "Error en PDFTOPPM: Conversió .PDF -> .PNG"
+            result = subprocess.run(command, shell=True, check=False, stderr=subprocess.STDOUT, stdout=subprocess.PIPE)
+            if result.returncode != 0:
+                errMsg = "Error en PDFTOPPM: Conversió .PDF -> .PNG\n"
+                errMsg += result.stdout.decode()
                 raise OSError(errMsg)
         except OSError as e:
             print("Execution failed:", e)
