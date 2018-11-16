@@ -110,7 +110,23 @@ class MainWindow(QtWidgets.QMainWindow):
             result = subprocess.run(command, shell=True, check=False, stderr=subprocess.STDOUT, stdout=subprocess.PIPE)
             if result.returncode != 0:
                 errMsg = "Error en PDFLaTeX: Conversió .TIKZ -> .PDF\n"
-                errMsg += result.stdout.decode()
+                ###### TODO: NO-PORTABLE!! Només funciona en entorns on existeixi el GREP
+                ###### Es pot mirar d'usar el mòdul "re" (regular expressions) de python, però és complicadot
+                ###### El que he après fins ara és:
+                ###### 1) Cal passar -interaction=nonstopmode al pdflatex perquè tregui el log per STDOUT
+                ###### 2) Cal muntar-se una cadena que faci d'expressió regular quelcom del tipus "^{baseName}.tex:[0-9]+:"
+                ###### 3) Potser cal escapar caràcters d'aquesta cadena amb re.escape()
+                ###### 4) potser usar re.search(regexp.log) o re.match(regexp,log) per cercar. "log" és result.stdout.decode('UTF-8')
+                ###### 5) En acabat encara caldria recuperar 2 línies de context posterior per tal de saber l'error
+                # Explorem el LOG de LaTeX amb el GREP extern per saber l'error
+                # (amb l'opció -file-line-error el format del missatge és fitxer:línia:error)
+                # Opcions del grep-> -A 2: 2 línies de context posterior, -m 1: només 1 concordança, -a: ascii text (no binari)
+                command = 'grep -A 2 -m 1 -a --color=always "^{baseName}.tex:" {baseName}.log'.format(baseName=tmpFileBaseName)
+                result = subprocess.run(command, shell=True, check=False, stderr=subprocess.STDOUT, stdout=subprocess.PIPE)
+                if result.returncode == 0:
+                    errMsg += result.stdout.decode()
+                else:
+                    errMsg += "No s'ha pogut determinar l'error del LaTeX"
                 raise OSError(errMsg)
             
             # PAS 4: Converteixo el PDF a imatge bitmap per visualitzar-la: .PDF -> .PNG
