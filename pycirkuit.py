@@ -56,7 +56,7 @@ class MainWindow(QtWidgets.QMainWindow):
     def processa(self):
         # Primer deso la feina no desada
         if self.needSaving:
-            with open(self.lastFilename,'w') as f:
+            with open(self.lastFilename,'w',encoding='UTF-8') as f:
                 f.write(self.ui.textEdit.toPlainText())
                 #TODO: Podria haver-hi un eror en desar el fitxer, aleshores no s'hauria de posar needSaving a False...
                 self.needSaving = False
