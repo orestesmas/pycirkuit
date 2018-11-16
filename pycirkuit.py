@@ -4,7 +4,8 @@ import os
 import subprocess
 from PyQt5 import QtWidgets
 from PyQt5.QtGui import QPixmap,QCursor
-from PyQt5.QtCore import QTemporaryDir,QStandardPaths,Qt,QSettings,QDir
+from PyQt5.QtCore import Qt,QSettings
+from PyQt5.QtCore import QTemporaryDir,QDir
 import mainwindow
 
 class MainWindow(QtWidgets.QMainWindow):
