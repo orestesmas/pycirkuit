@@ -3,14 +3,18 @@ import sys
 import os
 import subprocess
 from PyQt5 import QtWidgets
-from PyQt5.QtGui import QPixmap,QCursor
+from PyQt5.QtGui import QPixmap,QCursor,QIcon
 from PyQt5.QtCore import Qt,QSettings
 from PyQt5.QtCore import QTemporaryDir,QDir
 import mainwindow
+from resources import resources
 
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
+        # La icona de l'aplicació és al fitxer de recursos
+        icon = QIcon(":/icons/AppIcon")
+        self.setWindowIcon(icon)
         # Inicialització de la IGU
         self.ui = mainwindow.Ui_MainWindow()
         self.ui.setupUi(self)
