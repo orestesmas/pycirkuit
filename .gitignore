@@ -1,6 +1,5 @@
 /.directory
 /.kdev4/pycirkuit.kdev4
-/__pycache__/mainwindow.cpython-35.pyc
 /divisor2.ckt
 /mainwindow.pyc
 /tmp.aux
@@ -11,6 +10,4 @@
 /tmp.png
 /tmp.tex
 /tmp.tikz
-/__pycache__/
-/resources/__pycache__/__init__.cpython-35.pyc
-/resources/__pycache__/resources.cpython-35.pyc
+**/__pycache__/*

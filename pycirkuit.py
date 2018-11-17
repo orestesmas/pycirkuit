@@ -6,7 +6,7 @@ from PyQt5 import QtWidgets
 from PyQt5.QtGui import QPixmap,QCursor,QIcon
 from PyQt5.QtCore import Qt,QSettings
 from PyQt5.QtCore import QTemporaryDir,QDir
-import mainwindow
+from ui import mainwindow
 from resources import resources
 
 class MainWindow(QtWidgets.QMainWindow):
