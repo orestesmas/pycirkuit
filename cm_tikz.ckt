@@ -24,6 +24,8 @@
 \newlength{\imagescale}
 \pagestyle{empty}
 
+\newcommand{\fasor}[1]{\ensuremath{\mathbf{\overline{#1}}}}
+
 \begin{document}
 \thispagestyle{empty}
 %%SOURCE%%

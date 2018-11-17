@@ -143,8 +143,7 @@ class MainWindow(QtWidgets.QMainWindow):
         except OSError as e:
             print("Execution failed:", e)
             self.ui.imatge.setText("Error!")
-            # TODO: Si l'error és de LaTeX caldria accedir als LOGS i destriar info de l'error (línia, etc)
-            # Per l'M4 i el DPIC, potser també, tot i que el DPIC ja ho dóna força
+            # TODO: Es podria posar el missatge d'error al mateix widget on surt la imatge...
         else:
             imatge = QPixmap("{baseName}.png".format(baseName=tmpFileBaseName))
             self.ui.imatge.setPixmap(imatge)
