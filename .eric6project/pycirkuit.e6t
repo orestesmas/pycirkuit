@@ -1,49 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Tasks SYSTEM "Tasks-6.0.dtd">
 <!-- eric6 tasks file for project pycirkuit -->
-<!-- Saved: 2018-11-17, 03:08:23 -->
+<!-- Saved: 2018-11-17, 14:26:43 -->
 <Tasks version="6.0">
   <ProjectScanFilter></ProjectScanFilter>
-  <Task priority="1" completed="False" type="1" uid="{997f976a-5676-461e-8568-70691504137e}">
+  <Task priority="1" completed="False" type="1" uid="{e27acb0c-f03e-462f-8a4d-4ee0cec437f2}">
     <Summary>TODO: gestionar la ubicació de les plantilles via configuració</Summary>
     <Description></Description>
-    <Created>2018-11-17, 02:40:32</Created>
+    <Created>2018-11-17, 14:26:39</Created>
     <Resource>
       <Filename>pycirkuit.py</Filename>
       <Linenumber>32</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{ec168937-19bb-4c9c-a571-a89db5992a1f}">
+  <Task priority="1" completed="False" type="1" uid="{25cfaf15-5d66-4143-b4fa-d8975b2b24a8}">
     <Summary>TODO: Podria haver-hi un eror en desar el fitxer, aleshores no s'hauria de posar needSaving a False...</Summary>
     <Description></Description>
-    <Created>2018-11-17, 02:40:32</Created>
+    <Created>2018-11-17, 14:26:39</Created>
     <Resource>
       <Filename>pycirkuit.py</Filename>
       <Linenumber>66</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{417570f4-590b-4c2a-9c9b-cd52347ddbe1}">
+  <Task priority="1" completed="False" type="1" uid="{c3d0a75d-2a8d-43a7-b81b-81be4a69e26d}">
     <Summary>TODO: Cal que la ubicació de les Circuit_Macros no estigui &quot;hard-coded&quot;</Summary>
     <Description></Description>
-    <Created>2018-11-17, 02:40:32</Created>
+    <Created>2018-11-17, 14:26:39</Created>
     <Resource>
       <Filename>pycirkuit.py</Filename>
       <Linenumber>85</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{9914df58-63f9-475d-813f-a5754a0619c5}">
+  <Task priority="1" completed="False" type="1" uid="{fb320b4c-84a6-4cd6-ac43-a37b055cae48}">
     <Summary>TODO: NO-PORTABLE!! Només funciona en entorns on existeixi el GREP</Summary>
     <Description></Description>
-    <Created>2018-11-17, 02:40:32</Created>
+    <Created>2018-11-17, 14:26:39</Created>
     <Resource>
       <Filename>pycirkuit.py</Filename>
       <Linenumber>117</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{802f8063-944b-43f0-9404-5287b4c82d4d}">
+  <Task priority="1" completed="False" type="1" uid="{1713e815-9432-4845-abb3-8812223f5245}">
     <Summary>TODO: Es podria posar el missatge d'error al mateix widget on surt la imatge...</Summary>
     <Description></Description>
-    <Created>2018-11-17, 02:40:32</Created>
+    <Created>2018-11-17, 14:26:39</Created>
+    <Resource>
+      <Filename>pycirkuit.py</Filename>
+      <Linenumber>146</Linenumber>
+    </Resource>
+  </Task>
+  <Task priority="1" completed="False" type="1" uid="{36446f24-9791-46fb-b922-0995b57392be}">
+    <Summary>TODO: gestionar la ubicació de les plantilles via configuració</Summary>
+    <Description></Description>
+    <Created>2018-11-17, 14:26:39</Created>
+    <Resource>
+      <Filename>pycirkuit.py</Filename>
+      <Linenumber>32</Linenumber>
+    </Resource>
+  </Task>
+  <Task priority="1" completed="False" type="1" uid="{7bfd6ec3-06e4-4d77-b8fc-7263caae529c}">
+    <Summary>TODO: Podria haver-hi un eror en desar el fitxer, aleshores no s'hauria de posar needSaving a False...</Summary>
+    <Description></Description>
+    <Created>2018-11-17, 14:26:39</Created>
+    <Resource>
+      <Filename>pycirkuit.py</Filename>
+      <Linenumber>66</Linenumber>
+    </Resource>
+  </Task>
+  <Task priority="1" completed="False" type="1" uid="{d4c045f1-c0aa-4579-9302-35bfdd77a505}">
+    <Summary>TODO: Cal que la ubicació de les Circuit_Macros no estigui &quot;hard-coded&quot;</Summary>
+    <Description></Description>
+    <Created>2018-11-17, 14:26:39</Created>
+    <Resource>
+      <Filename>pycirkuit.py</Filename>
+      <Linenumber>85</Linenumber>
+    </Resource>
+  </Task>
+  <Task priority="1" completed="False" type="1" uid="{cc340c43-9519-4a3d-a6c4-2511f01288e4}">
+    <Summary>TODO: NO-PORTABLE!! Només funciona en entorns on existeixi el GREP</Summary>
+    <Description></Description>
+    <Created>2018-11-17, 14:26:39</Created>
+    <Resource>
+      <Filename>pycirkuit.py</Filename>
+      <Linenumber>117</Linenumber>
+    </Resource>
+  </Task>
+  <Task priority="1" completed="False" type="1" uid="{527d9daa-6374-4fe1-a9af-b8a34383d4ad}">
+    <Summary>TODO: Es podria posar el missatge d'error al mateix widget on surt la imatge...</Summary>
+    <Description></Description>
+    <Created>2018-11-17, 14:26:39</Created>
     <Resource>
       <Filename>pycirkuit.py</Filename>
       <Linenumber>146</Linenumber>
