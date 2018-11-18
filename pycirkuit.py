@@ -1,13 +1,12 @@
 # coding: utf-8
-import sys
 import os
 import subprocess
 from PyQt5 import QtWidgets
 from PyQt5.QtGui import QPixmap,QCursor,QIcon
 from PyQt5.QtCore import Qt,QSettings
 from PyQt5.QtCore import QTemporaryDir,QDir
-from ui import mainwindow
-from resources import resources
+from ui import Ui_mainwindow
+import resources_rc
 
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
@@ -16,7 +15,7 @@ class MainWindow(QtWidgets.QMainWindow):
         icon = QIcon(":/icons/AppIcon")
         self.setWindowIcon(icon)
         # Inicialització de la IGU
-        self.ui = mainwindow.Ui_MainWindow()
+        self.ui = Ui_mainwindow.Ui_MainWindow()
         self.ui.setupUi(self)
         self.ui.actionOpen.triggered.connect(self.obreFitxer)
         self.ui.pushButton.clicked.connect(self.processa)
@@ -150,9 +149,9 @@ class MainWindow(QtWidgets.QMainWindow):
         finally:
             app.restoreOverrideCursor()
 
-app = QtWidgets.QApplication(sys.argv)
-
-my_mainWindow = MainWindow()
-my_mainWindow.show()
-
-sys.exit(app.exec_())
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    my_mainWindow = MainWindow()
+    my_mainWindow.show()
+    sys.exit(app.exec_())

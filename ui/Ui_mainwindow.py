@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'mainwindow.ui'
+# Form implementation generated from reading ui file '/home/orestes/Devel/Software/pycirkuit/ui/mainwindow.ui'
 #
 # Created by: PyQt5 UI code generator 5.7
 #
@@ -34,6 +34,7 @@ class Ui_MainWindow(object):
         self.imatge.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "color: rgb(255, 0, 0);")
         self.imatge.setText("")
+        self.imatge.setScaledContents(False)
         self.imatge.setAlignment(QtCore.Qt.AlignCenter)
         self.imatge.setObjectName("imatge")
         self.verticalLayout.addWidget(self.imatge)
@@ -57,6 +58,8 @@ class Ui_MainWindow(object):
         self.menuFile.setObjectName("menuFile")
         self.menuHelp = QtWidgets.QMenu(self.menubar)
         self.menuHelp.setObjectName("menuHelp")
+        self.menuSettings = QtWidgets.QMenu(self.menubar)
+        self.menuSettings.setObjectName("menuSettings")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -65,13 +68,17 @@ class Ui_MainWindow(object):
         self.actionQuit.setObjectName("actionQuit")
         self.actionOpen = QtWidgets.QAction(MainWindow)
         self.actionOpen.setObjectName("actionOpen")
-        self.actionAbout_PyCirkuit = QtWidgets.QAction(MainWindow)
-        self.actionAbout_PyCirkuit.setObjectName("actionAbout_PyCirkuit")
+        self.actionAbout = QtWidgets.QAction(MainWindow)
+        self.actionAbout.setObjectName("actionAbout")
+        self.actionPreferences = QtWidgets.QAction(MainWindow)
+        self.actionPreferences.setObjectName("actionPreferences")
         self.menuFile.addAction(self.actionOpen)
         self.menuFile.addAction(self.actionQuit)
         self.menuHelp.addSeparator()
-        self.menuHelp.addAction(self.actionAbout_PyCirkuit)
+        self.menuHelp.addAction(self.actionAbout)
+        self.menuSettings.addAction(self.actionPreferences)
         self.menubar.addAction(self.menuFile.menuAction())
+        self.menubar.addAction(self.menuSettings.menuAction())
         self.menubar.addAction(self.menuHelp.menuAction())
 
         self.retranslateUi(MainWindow)
@@ -84,8 +91,20 @@ class Ui_MainWindow(object):
         self.pushButton.setText(_translate("MainWindow", "Processa!"))
         self.menuFile.setTitle(_translate("MainWindow", "Fi&le"))
         self.menuHelp.setTitle(_translate("MainWindow", "Help"))
+        self.menuSettings.setTitle(_translate("MainWindow", "Setti&ngs"))
         self.actionQuit.setText(_translate("MainWindow", "&Quit"))
         self.actionOpen.setText(_translate("MainWindow", "&Open"))
-        self.actionAbout_PyCirkuit.setText(_translate("MainWindow", "&About PyCirkuit"))
+        self.actionAbout.setText(_translate("MainWindow", "&About PyCirkuit"))
+        self.actionPreferences.setText(_translate("MainWindow", "&Preferences..."))
 
-import resources
+import resources_rc
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec_())
+

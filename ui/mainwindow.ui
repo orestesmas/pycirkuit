@@ -44,6 +44,9 @@ color: rgb(255, 0, 0);</string>
       <property name="text">
        <string/>
       </property>
+      <property name="scaledContents">
+       <bool>false</bool>
+      </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
       </property>
@@ -92,9 +95,16 @@ color: rgb(255, 0, 0);</string>
      <string>Help</string>
     </property>
     <addaction name="separator"/>
-    <addaction name="actionAbout_PyCirkuit"/>
+    <addaction name="actionAbout"/>
+   </widget>
+   <widget class="QMenu" name="menuSettings">
+    <property name="title">
+     <string>Setti&amp;ngs</string>
+    </property>
+    <addaction name="actionPreferences"/>
    </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuSettings"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -108,9 +118,14 @@ color: rgb(255, 0, 0);</string>
     <string>&amp;Open</string>
    </property>
   </action>
-  <action name="actionAbout_PyCirkuit">
+  <action name="actionAbout">
    <property name="text">
     <string>&amp;About PyCirkuit</string>
+   </property>
+  </action>
+  <action name="actionPreferences">
+   <property name="text">
+    <string>&amp;Preferences...</string>
    </property>
   </action>
  </widget>

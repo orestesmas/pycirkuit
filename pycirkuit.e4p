@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric project file for project pycirkuit -->
-<!-- Saved: 2018-11-17, 02:10:36 -->
+<!-- Saved: 2018-11-18, 03:39:50 -->
 <!-- Copyright (C) 2018 Orestes Mas, orestes@tsc.upc.edu -->
 <Project version="5.1">
   <Language>en_US</Language>
@@ -17,10 +17,14 @@
     <Source>pycirkuit.py</Source>
     <Source>resources/__init__.py</Source>
     <Source>resources/resources.py</Source>
+    <Source>resources/resources_rc.py</Source>
+    <Source>ui/Ui_configdialog.py</Source>
+    <Source>ui/Ui_mainwindow.py</Source>
     <Source>ui/__init__.py</Source>
     <Source>ui/mainwindow.py</Source>
   </Sources>
   <Forms>
+    <Form>ui/configdialog.ui</Form>
     <Form>ui/mainwindow.ui</Form>
   </Forms>
   <Translations/>
