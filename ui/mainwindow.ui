@@ -110,7 +110,7 @@ color: rgb(255, 0, 0);</string>
   </action>
   <action name="actionAbout_PyCirkuit">
    <property name="text">
-    <string>About PyCirkuit</string>
+    <string>&amp;About PyCirkuit</string>
    </property>
   </action>
  </widget>
