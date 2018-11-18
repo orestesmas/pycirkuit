@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Dialog</class>
- <widget class="QDialog" name="Dialog">
+ <class>configDialog</class>
+ <widget class="QDialog" name="configDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -39,6 +39,20 @@
        <property name="viewMode">
         <enum>QListView::IconMode</enum>
        </property>
+       <item>
+        <property name="text">
+         <string>General</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../resources/resources.qrc">
+          <normaloff>:/icons/config.png</normaloff>:/icons/config.png</iconset>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Un altre</string>
+        </property>
+       </item>
       </widget>
      </item>
      <item>
@@ -118,12 +132,14 @@
   <tabstop>closeButton</tabstop>
   <tabstop>radioButton</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="../resources/resources.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>closeButton</sender>
    <signal>clicked()</signal>
-   <receiver>Dialog</receiver>
+   <receiver>configDialog</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -133,6 +149,22 @@
     <hint type="destinationlabel">
      <x>305</x>
      <y>460</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>listWidget</sender>
+   <signal>currentRowChanged(int)</signal>
+   <receiver>stackedWidget</receiver>
+   <slot>setCurrentIndex(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>94</x>
+     <y>64</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>238</x>
+     <y>63</y>
     </hint>
    </hints>
   </connection>

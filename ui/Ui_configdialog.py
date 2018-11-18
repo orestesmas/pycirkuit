@@ -8,22 +8,29 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-class Ui_Dialog(object):
-    def setupUi(self, Dialog):
-        Dialog.setObjectName("Dialog")
-        Dialog.resize(697, 490)
-        self.verticalLayout = QtWidgets.QVBoxLayout(Dialog)
+class Ui_configDialog(object):
+    def setupUi(self, configDialog):
+        configDialog.setObjectName("configDialog")
+        configDialog.resize(697, 490)
+        self.verticalLayout = QtWidgets.QVBoxLayout(configDialog)
         self.verticalLayout.setObjectName("verticalLayout")
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
-        self.listWidget = QtWidgets.QListWidget(Dialog)
+        self.listWidget = QtWidgets.QListWidget(configDialog)
         self.listWidget.setMaximumSize(QtCore.QSize(128, 16777215))
         self.listWidget.setIconSize(QtCore.QSize(96, 84))
         self.listWidget.setMovement(QtWidgets.QListView.Static)
         self.listWidget.setViewMode(QtWidgets.QListView.IconMode)
         self.listWidget.setObjectName("listWidget")
+        item = QtWidgets.QListWidgetItem()
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/icons/config.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        item.setIcon(icon)
+        self.listWidget.addItem(item)
+        item = QtWidgets.QListWidgetItem()
+        self.listWidget.addItem(item)
         self.horizontalLayout.addWidget(self.listWidget)
-        self.stackedWidget = QtWidgets.QStackedWidget(Dialog)
+        self.stackedWidget = QtWidgets.QStackedWidget(configDialog)
         self.stackedWidget.setFrameShape(QtWidgets.QFrame.Panel)
         self.stackedWidget.setFrameShadow(QtWidgets.QFrame.Raised)
         self.stackedWidget.setObjectName("stackedWidget")
@@ -45,33 +52,42 @@ class Ui_Dialog(object):
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_2.addItem(spacerItem)
-        self.closeButton = QtWidgets.QPushButton(Dialog)
+        self.closeButton = QtWidgets.QPushButton(configDialog)
         self.closeButton.setObjectName("closeButton")
         self.horizontalLayout_2.addWidget(self.closeButton)
         self.verticalLayout.addLayout(self.horizontalLayout_2)
 
-        self.retranslateUi(Dialog)
+        self.retranslateUi(configDialog)
         self.stackedWidget.setCurrentIndex(1)
-        self.closeButton.clicked.connect(Dialog.accept)
-        QtCore.QMetaObject.connectSlotsByName(Dialog)
-        Dialog.setTabOrder(self.listWidget, self.pushButton)
-        Dialog.setTabOrder(self.pushButton, self.closeButton)
-        Dialog.setTabOrder(self.closeButton, self.radioButton)
+        self.closeButton.clicked.connect(configDialog.accept)
+        self.listWidget.currentRowChanged['int'].connect(self.stackedWidget.setCurrentIndex)
+        QtCore.QMetaObject.connectSlotsByName(configDialog)
+        configDialog.setTabOrder(self.listWidget, self.pushButton)
+        configDialog.setTabOrder(self.pushButton, self.closeButton)
+        configDialog.setTabOrder(self.closeButton, self.radioButton)
 
-    def retranslateUi(self, Dialog):
+    def retranslateUi(self, configDialog):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Config Dialog"))
-        self.pushButton.setText(_translate("Dialog", "PushButton"))
-        self.radioButton.setText(_translate("Dialog", "RadioB&utton"))
-        self.closeButton.setText(_translate("Dialog", "Close"))
+        configDialog.setWindowTitle(_translate("configDialog", "Config Dialog"))
+        __sortingEnabled = self.listWidget.isSortingEnabled()
+        self.listWidget.setSortingEnabled(False)
+        item = self.listWidget.item(0)
+        item.setText(_translate("configDialog", "General"))
+        item = self.listWidget.item(1)
+        item.setText(_translate("configDialog", "Un altre"))
+        self.listWidget.setSortingEnabled(__sortingEnabled)
+        self.pushButton.setText(_translate("configDialog", "PushButton"))
+        self.radioButton.setText(_translate("configDialog", "RadioB&utton"))
+        self.closeButton.setText(_translate("configDialog", "Close"))
 
+import resources_rc
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    Dialog = QtWidgets.QDialog()
-    ui = Ui_Dialog()
-    ui.setupUi(Dialog)
-    Dialog.show()
+    configDialog = QtWidgets.QDialog()
+    ui = Ui_configDialog()
+    ui.setupUi(configDialog)
+    configDialog.show()
     sys.exit(app.exec_())
 

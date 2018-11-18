@@ -1,0 +1,198 @@
+# -*- coding: utf-8 -*-
+
+"""
+Module implementing MainWindow.
+"""
+
+import os
+import subprocess
+from PyQt5.QtCore import pyqtSlot,  Qt,  QDir,  QTemporaryDir,  QSettings
+from PyQt5.QtWidgets import QMainWindow, QFileDialog,  QApplication
+from PyQt5.QtGui import QPixmap,  QCursor,  QIcon
+from .Ui_mainwindow import Ui_MainWindow
+from .configdialog import configDialog
+
+
+class MainWindow(QMainWindow, Ui_MainWindow):
+    """
+    Class documentation goes here.
+    """
+    def __init__(self, parent=None):
+        """
+        Constructor
+
+        @param parent reference to the parent widget
+        @type QWidget
+        """
+        super(MainWindow, self).__init__(parent)
+        self.setupUi(self)
+
+        # La icona de l'aplicació és al fitxer de recursos
+        icon = QIcon(":/icons/AppIcon")
+        self.setWindowIcon(icon)
+
+        # Connect signals with slots
+        #NOTE: Is NOT necessary to MANUALLY connect most signals to slots, as 
+        # pyuic5 calls QtCore.QMetaObject.connectSlotsByName in Ui_configdialog.py
+        # do do such connections AUTOMATICALLY (so connecting them manually triggers slots twice)
+#        self.actionOpen.triggered.connect(self.on_actionOpen_triggered)
+#        self.actionPreferences.triggered.connect(self.on_actionPreferences_triggered)
+        self.pushButton.clicked.connect(self.process)
+        self.textEdit.textChanged.connect(self.on_source_changed)
+        self.needSaving = False
+
+        # Persistent settings
+        self.settings = QSettings("UPC", "pycirkuit")
+
+        # Last Working Dir
+        d = QDir(self.settings.value("General/lastWD", "."))
+        self.lastWD = d.absolutePath() if d.exists() else QDir.home().path()
+        self.lastFilename = ""
+
+        #TODO: gestionar la ubicació de les plantilles via configuració
+        self.plantilla = ""
+        with open('/home/orestes/Devel/Software/pycirkuit/cm_tikz.ckt', 'r') as f:
+            self.plantilla = f.read()
+
+
+    @pyqtSlot()
+    @pyqtSlot()
+    def process(self):
+        # Primer deso la feina no desada
+        if self.needSaving:
+            with open(self.lastFilename,'w', encoding='UTF-8') as f:
+                f.write(self.textEdit.toPlainText())
+                #TODO: Podria haver-hi un eror en desar el fitxer, aleshores no s'hauria de posar needSaving a False...
+                self.needSaving = False
+                self.pushButton.setEnabled(False)
+        # Creo un directori temporal únic per desar fitxers temporals
+        # Si no puc (rar) utilitzo el directori del fitxer font
+        d = QTemporaryDir()
+        if d.isValid():
+            tmpDir = d.path()
+        else:
+            tmpDir = self.lastWD
+        # Sintetitzo un nom de fitxer temporal per desar els fitxers intermedis
+        tmpFileBaseName = tmpDir + "/cirkuit_tmp"
+        with open("{baseName}.ckt".format(baseName=tmpFileBaseName), 'w') as tmpFile:
+            tmpFile.write(self.textEdit.toPlainText())
+        errMsg = ""
+        try:
+            # PAS 0: Canvio el cursor momentàniament
+            app = QApplication.instance()
+            app.setOverrideCursor(QCursor(Qt.WaitCursor))
+            # PAS 1: Li passo les M4: .CKT -> .PIC
+            # TODO: Cal que la ubicació de les Circuit_Macros no estigui "hard-coded"
+            #
+            # La crida subprocess.run() és molt interessant
+            # el 'check=False' fa que no salti una excepció si l'ordre falla, atès que ja la llanço jo després
+            # amb un missatge més personalitzat
+            command = "m4 -I /home/orestes/.local/share/cirkuit/circuit_macros pgf.m4 {baseName}.ckt > {baseName}.pic".format(baseName=tmpFileBaseName)
+            result = subprocess.run(command, shell=True, check=False, stderr=subprocess.STDOUT, stdout=subprocess.PIPE)
+            if result.returncode != 0:
+                errMsg = "Error en M4: Conversió .CKT -> .PIC\n"
+                errMsg += result.stdout.decode()
+                raise OSError(errMsg)
+
+            # PAS 2: Li passo el dpic: .PIC -> .TIKZ
+            command = "dpic -g {baseName}.pic > {baseName}.tikz".format(baseName=tmpFileBaseName)
+            result = subprocess.run(command, shell=True, check=False, stderr=subprocess.STDOUT, stdout=subprocess.PIPE)
+            if result.returncode != 0:
+                errMsg = "Error en DPIC: Conversió .PIC -> .TIKZ\n"
+                errMsg += result.stdout.decode()
+                raise OSError(errMsg)
+
+            # PAS 3: Li passo el PDFLaTeX: .TIKZ -> .PDF
+            # Primer haig d'incloure el codi .TIKZ en una plantilla adient
+            with open("{baseName}.tikz".format(baseName=tmpFileBaseName), 'r') as f, \
+                 open('{baseName}.tex'.format(baseName=tmpFileBaseName), 'w') as g:
+                source = f.read()
+                dest = self.plantilla.replace('%%SOURCE%%', source, 1)
+                g.write(dest)
+                g.write('\n')
+            command = "pdflatex -interaction=batchmode -halt-on-error -file-line-error -output-directory {tmpDir} {baseName}.tex".format(tmpDir=tmpDir, baseName=tmpFileBaseName)
+            result = subprocess.run(command, shell=True, check=False, stderr=subprocess.STDOUT, stdout=subprocess.PIPE)
+            if result.returncode != 0:
+                errMsg = "Error en PDFLaTeX: Conversió .TIKZ -> .PDF\n"
+                ###### TODO: NO-PORTABLE!! Només funciona en entorns on existeixi el GREP
+                ###### Es pot mirar d'usar el mòdul "re" (regular expressions) de python, però és complicadot
+                ###### El que he après fins ara és:
+                ###### 1) Cal passar -interaction=nonstopmode al pdflatex perquè tregui el log per STDOUT
+                ###### 2) Cal muntar-se una cadena que faci d'expressió regular quelcom del tipus "^{baseName}.tex:[0-9]+:"
+                ###### 3) Potser cal escapar caràcters d'aquesta cadena amb re.escape()
+                ###### 4) potser usar re.search(regexp.log) o re.match(regexp,log) per cercar. "log" és result.stdout.decode('UTF-8')
+                ###### 5) En acabat encara caldria recuperar 2 línies de context posterior per tal de saber l'error
+                # Explorem el LOG de LaTeX amb el GREP extern per saber l'error
+                # (amb l'opció -file-line-error el format del missatge és fitxer:línia:error)
+                # Opcions del grep-> -A 2: 2 línies de context posterior, -m 1: només 1 concordança, -a: ascii text (no binari)
+                command = 'grep -A 2 -m 1 -a --color=always "^{baseName}.tex:" {baseName}.log'.format(baseName=tmpFileBaseName)
+                result = subprocess.run(command, shell=True, check=False, stderr=subprocess.STDOUT, stdout=subprocess.PIPE)
+                if result.returncode == 0:
+                    errMsg += result.stdout.decode()
+                else:
+                    errMsg += "No s'ha pogut determinar l'error del LaTeX"
+                raise OSError(errMsg)
+
+            # PAS 4: Converteixo el PDF a imatge bitmap per visualitzar-la: .PDF -> .PNG
+            command = "pdftoppm {baseName}.pdf -png > {baseName}.png".format(baseName=tmpFileBaseName)
+            result = subprocess.run(command, shell=True, check=False, stderr=subprocess.STDOUT, stdout=subprocess.PIPE)
+            if result.returncode != 0:
+                errMsg = "Error en PDFTOPPM: Conversió .PDF -> .PNG\n"
+                errMsg += result.stdout.decode()
+                raise OSError(errMsg)
+        except OSError as e:
+            print("Execution failed:", e)
+            self.imatge.setText("Error!")
+            # TODO: Es podria posar el missatge d'error al mateix widget on surt la imatge...
+        else:
+            imatge = QPixmap("{baseName}.png".format(baseName=tmpFileBaseName))
+            self.imatge.setPixmap(imatge)
+        finally:
+            app.restoreOverrideCursor()
+
+  
+    def on_source_changed(self):
+        if self.textEdit.toPlainText() == "":
+            self.pushButton.setEnabled(False)
+        else:
+            self.pushButton.setEnabled(True)
+            self.needSaving = True
+
+
+    @pyqtSlot()
+    def on_actionOpen_triggered(self):
+        # Presento el diàleg de càrrega de fitxer
+        #dlg = QFileDialog(self,  "Open Source File", self.lastWD,  "*.ckt")
+        fitxer, _ = QFileDialog.getOpenFileName(self, "Open Source File", self.lastWD, "*.ckt")
+        # Comprovo que no he premut 'Cancel' a la dialog box...
+        if fitxer != '':
+            # Comprovo que el fitxer no sigui un enllaç trencat
+            fitxer = os.path.normpath(fitxer)
+            if os.path.exists(fitxer):
+                self.lastWD, self.lastFilename = os.path.split(fitxer)
+                # Change system working dir to target's dir
+                os.chdir(self.lastWD)
+                self.settings.setValue("General/lastWD", self.lastWD)
+                self.settings.sync()
+                with open(self.lastFilename, 'r') as f:
+                    txt = f.read()
+                    self.textEdit.setPlainText(txt)
+                    self.process()
+
+
+    @pyqtSlot()
+    def on_actionAbout_triggered(self):
+        """
+        Slot documentation goes here.
+        """
+        # TODO: not implemented yet
+        raise NotImplementedError
+
+    
+    @pyqtSlot()
+    def on_actionPreferences_triggered(self):
+        """
+        Slot documentation goes here.
+        """
+        cfgDlg = configDialog()
+        cfgDlg.exec()
