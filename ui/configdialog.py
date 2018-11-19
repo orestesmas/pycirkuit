@@ -4,7 +4,7 @@
 Module implementing configDialog.
 """
 
-from PyQt5.QtCore import pyqtSlot,  QDir,  QSettings
+from PyQt5.QtCore import pyqtSlot,  QDir,  QFile,  QSettings
 from PyQt5.QtWidgets import QDialog,  QFileDialog
 
 from .Ui_configdialog import Ui_configDialog
@@ -36,13 +36,13 @@ class configDialog(QDialog, Ui_configDialog):
         self.cmPath.setText(cmStoredPath.absolutePath())
 
         # Extract stored path to LaTeX template file
-        defaultPath = QDir.homePath() + "Plantilles/cm_tikz.ckt"
-        latexTemplateStoredPath = QDir(self.settings.value("General/latexTemplateFile", defaultPath))
-        if  not latexTemplateStoredPath.exists():
-            latexTemplateStoredPath = QDir.home()
-            self.settings.setValue("General/latexTemplateFile",  latexTemplateStoredPath.absolutePath())
+        defaultPath = QDir.homePath() + "/Plantilles/cm_tikz.ckt"
+        storedLatexTemplateFile = QFile(self.settings.value("General/latexTemplateFile", defaultPath))
+        if  not storedLatexTemplateFile.exists():
+            storedLatexTemplateFile = QDir.home()
+            self.settings.setValue("General/latexTemplateFile",  storedLatexTemplateFile.fileName())
             self.settings.sync()
-        self.templateFile.setText(latexTemplateStoredPath.absolutePath())
+        self.templateFile.setText(storedLatexTemplateFile.fileName())
         
     @pyqtSlot(int)
     def on_listWidget_currentRowChanged(self, currentRow):
