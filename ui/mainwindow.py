@@ -35,8 +35,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         #NOTE: Is NOT necessary to MANUALLY connect most signals to slots, as 
         # pyuic5 calls QtCore.QMetaObject.connectSlotsByName in Ui_configdialog.py
         # do do such connections AUTOMATICALLY (so connecting them manually triggers slots twice)
-#        self.actionOpen.triggered.connect(self.on_actionOpen_triggered)
-#        self.actionPreferences.triggered.connect(self.on_actionPreferences_triggered)
         self.pushButton.clicked.connect(self.process)
         self.textEdit.textChanged.connect(self.on_source_changed)
         self.needSaving = False
@@ -49,10 +47,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.lastWD = d.absolutePath() if d.exists() else QDir.home().path()
         self.lastFilename = ""
 
-        #TODO: gestionar la ubicació de les plantilles via configuració
-        self.plantilla = ""
-        with open('/home/orestes/Devel/Software/pycirkuit/cm_tikz.ckt', 'r') as f:
-            self.plantilla = f.read()
 
 
     @pyqtSlot()
@@ -65,6 +59,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 #TODO: Podria haver-hi un eror en desar el fitxer, aleshores no s'hauria de posar needSaving a False...
                 self.needSaving = False
                 self.pushButton.setEnabled(False)
+
+        #TODO: Comprovar si tenim les Circuit Macros a la carpeta especificada als Settings
+        # si no és així, mostrar una messageBox d'error i avortar
+        
+        # Carrego valors de la configuració
+        cmPath = self.settings.value("General/cmPath") 
+        latexTemplateFile = self.settings.value("General/latexTemplateFile")
+        #TODO: Comprovar que el fitxer de plantilla existeix. Altrament MessageBox d'Error
+        latexTemplate = ""
+        with open("{templateFile}".format(templateFile=latexTemplateFile), 'r') as template:
+            latexTemplate = template.read()        
         # Creo un directori temporal únic per desar fitxers temporals
         # Si no puc (rar) utilitzo el directori del fitxer font
         d = QTemporaryDir()
@@ -82,12 +87,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             app = QApplication.instance()
             app.setOverrideCursor(QCursor(Qt.WaitCursor))
             # PAS 1: Li passo les M4: .CKT -> .PIC
-            # TODO: Cal que la ubicació de les Circuit_Macros no estigui "hard-coded"
-            #
             # La crida subprocess.run() és molt interessant
             # el 'check=False' fa que no salti una excepció si l'ordre falla, atès que ja la llanço jo després
             # amb un missatge més personalitzat
-            command = "m4 -I /home/orestes/.local/share/cirkuit/circuit_macros pgf.m4 {baseName}.ckt > {baseName}.pic".format(baseName=tmpFileBaseName)
+            command = "m4 -I {cmPath} pgf.m4 {baseName}.ckt > {baseName}.pic".format(cmPath=cmPath,  baseName=tmpFileBaseName)
             result = subprocess.run(command, shell=True, check=False, stderr=subprocess.STDOUT, stdout=subprocess.PIPE)
             if result.returncode != 0:
                 errMsg = "Error en M4: Conversió .CKT -> .PIC\n"
@@ -107,7 +110,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             with open("{baseName}.tikz".format(baseName=tmpFileBaseName), 'r') as f, \
                  open('{baseName}.tex'.format(baseName=tmpFileBaseName), 'w') as g:
                 source = f.read()
-                dest = self.plantilla.replace('%%SOURCE%%', source, 1)
+                dest = latexTemplate.replace('%%SOURCE%%', source, 1)
                 g.write(dest)
                 g.write('\n')
             command = "pdflatex -interaction=batchmode -halt-on-error -file-line-error -output-directory {tmpDir} {baseName}.tex".format(tmpDir=tmpDir, baseName=tmpFileBaseName)
@@ -162,7 +165,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     @pyqtSlot()
     def on_actionOpen_triggered(self):
         # Presento el diàleg de càrrega de fitxer
-        #dlg = QFileDialog(self,  "Open Source File", self.lastWD,  "*.ckt")
         fitxer, _ = QFileDialog.getOpenFileName(self, "Open Source File", self.lastWD, "*.ckt")
         # Comprovo que no he premut 'Cancel' a la dialog box...
         if fitxer != '':

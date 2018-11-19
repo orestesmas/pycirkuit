@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>697</width>
-    <height>490</height>
+    <width>734</width>
+    <height>397</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -48,11 +48,6 @@
           <normaloff>:/icons/config.png</normaloff>:/icons/config.png</iconset>
         </property>
        </item>
-       <item>
-        <property name="text">
-         <string>Un altre</string>
-        </property>
-       </item>
       </widget>
      </item>
      <item>
@@ -64,22 +59,120 @@
         <enum>QFrame::Raised</enum>
        </property>
        <property name="currentIndex">
-        <number>1</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="page1">
-        <widget class="QPushButton" name="pushButton">
-         <property name="geometry">
-          <rect>
-           <x>140</x>
-           <y>190</y>
-           <width>99</width>
-           <height>40</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>PushButton</string>
-         </property>
-        </widget>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <item>
+          <widget class="QGroupBox" name="groupBox">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>100</height>
+            </size>
+           </property>
+           <property name="title">
+            <string>Circuit Macros Location</string>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_3">
+            <item>
+             <widget class="QLineEdit" name="cmPath">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="placeholderText">
+               <string>Enter Path Name</string>
+              </property>
+              <property name="clearButtonEnabled">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="toolButtonCMPath">
+              <property name="minimumSize">
+               <size>
+                <width>135</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Choose Dir</string>
+              </property>
+              <property name="icon">
+               <iconset resource="../resources/resources.qrc">
+                <normaloff>:/icons/FolderIcon</normaloff>:/icons/FolderIcon</iconset>
+              </property>
+              <property name="toolButtonStyle">
+               <enum>Qt::ToolButtonTextBesideIcon</enum>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="groupBox_2">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>100</height>
+            </size>
+           </property>
+           <property name="title">
+            <string>LaTeX Template File</string>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_4">
+            <item>
+             <widget class="QLineEdit" name="templateFile">
+              <property name="placeholderText">
+               <string>Enter Path Name</string>
+              </property>
+              <property name="clearButtonEnabled">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="toolButtonTemplatePath">
+              <property name="minimumSize">
+               <size>
+                <width>135</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Choose File</string>
+              </property>
+              <property name="icon">
+               <iconset resource="../resources/resources.qrc">
+                <normaloff>:/icons/FolderIcon</normaloff>:/icons/FolderIcon</iconset>
+              </property>
+              <property name="toolButtonStyle">
+               <enum>Qt::ToolButtonTextBesideIcon</enum>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
        </widget>
        <widget class="QWidget" name="page2">
         <widget class="QRadioButton" name="radioButton">
@@ -103,22 +196,12 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+      <widget class="QDialogButtonBox" name="buttonBox">
+       <property name="standardButtons">
+        <set>QDialogButtonBox::Close</set>
        </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="closeButton">
-       <property name="text">
-        <string>Close</string>
+       <property name="centerButtons">
+        <bool>false</bool>
        </property>
       </widget>
      </item>
@@ -128,30 +211,12 @@
  </widget>
  <tabstops>
   <tabstop>listWidget</tabstop>
-  <tabstop>pushButton</tabstop>
-  <tabstop>closeButton</tabstop>
   <tabstop>radioButton</tabstop>
  </tabstops>
  <resources>
   <include location="../resources/resources.qrc"/>
  </resources>
  <connections>
-  <connection>
-   <sender>closeButton</sender>
-   <signal>clicked()</signal>
-   <receiver>configDialog</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>636</x>
-     <y>477</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>305</x>
-     <y>460</y>
-    </hint>
-   </hints>
-  </connection>
   <connection>
    <sender>listWidget</sender>
    <signal>currentRowChanged(int)</signal>
@@ -165,6 +230,22 @@
     <hint type="destinationlabel">
      <x>238</x>
      <y>63</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>clicked(QAbstractButton*)</signal>
+   <receiver>configDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>348</x>
+     <y>462</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>348</x>
+     <y>244</y>
     </hint>
    </hints>
   </connection>

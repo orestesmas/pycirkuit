@@ -4,8 +4,8 @@
 Module implementing configDialog.
 """
 
-from PyQt5.QtCore import pyqtSlot
-from PyQt5.QtWidgets import QDialog
+from PyQt5.QtCore import pyqtSlot,  QDir,  QSettings
+from PyQt5.QtWidgets import QDialog,  QFileDialog
 
 from .Ui_configdialog import Ui_configDialog
 
@@ -23,7 +23,27 @@ class configDialog(QDialog, Ui_configDialog):
         """
         super(configDialog, self).__init__(parent)
         self.setupUi(self)
-    
+        
+        # Persistent settings
+        self.settings = QSettings("UPC", "pycirkuit") 
+        # Extract stored path to Circuit Macros
+        defaultPath = QDir.homePath() + "/.local/share/cirkuit/circuit_macros"
+        cmStoredPath = QDir(self.settings.value("General/cmPath", defaultPath))
+        if  not cmStoredPath.exists():
+            cmStoredPath = QDir.home()
+            self.settings.setValue("General/cmPath",  cmStoredPath.absolutePath())
+            self.settings.sync()
+        self.cmPath.setText(cmStoredPath.absolutePath())
+
+        # Extract stored path to LaTeX template file
+        defaultPath = QDir.homePath() + "Plantilles/cm_tikz.ckt"
+        latexTemplateStoredPath = QDir(self.settings.value("General/latexTemplateFile", defaultPath))
+        if  not latexTemplateStoredPath.exists():
+            latexTemplateStoredPath = QDir.home()
+            self.settings.setValue("General/latexTemplateFile",  latexTemplateStoredPath.absolutePath())
+            self.settings.sync()
+        self.templateFile.setText(latexTemplateStoredPath.absolutePath())
+        
     @pyqtSlot(int)
     def on_listWidget_currentRowChanged(self, currentRow):
         """
@@ -33,3 +53,43 @@ class configDialog(QDialog, Ui_configDialog):
         @type int
         """
         self.stackedWidget.setCurrentIndex(currentRow)
+    
+    @pyqtSlot()
+    def on_toolButtonCMPath_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+        fdlg = QFileDialog(self)
+        fdlg.setWindowTitle("Circuit Macros Location")
+        fdlg.setDirectory(self.cmPath.text())
+        fdlg.setFileMode(QFileDialog.Directory)
+        fdlg.setOptions(QFileDialog.ShowDirsOnly | QFileDialog.DontUseNativeDialog | QFileDialog.ReadOnly)
+        fdlg.setViewMode(QFileDialog.Detail)
+        fdlg.setFilter(QDir.Dirs | QDir.Hidden)
+        if fdlg.exec():
+            newPath = fdlg.selectedFiles()
+            self.cmPath.setText(newPath[0])
+            self.settings.setValue("General/cmPath", self.cmPath.text())
+            self.settings.sync()
+        fdlg.close()
+
+    
+    @pyqtSlot()
+    def on_toolButtonTemplatePath_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+        fdlg = QFileDialog(self)
+        fdlg.setWindowTitle("Latex Template Location")
+        fdlg.setDirectory(self.templateFile.text())
+        fdlg.setFileMode(QFileDialog.ExistingFile)
+        fdlg.setOptions(QFileDialog.DontUseNativeDialog | QFileDialog.ReadOnly)
+        fdlg.setViewMode(QFileDialog.Detail)
+        fdlg.setFilter(QDir.AllDirs | QDir.Files | QDir.NoDotAndDotDot | QDir.Hidden)
+        if fdlg.exec():
+            newPath = fdlg.selectedFiles()
+            self.templateFile.setText(newPath[0])
+            self.settings.setValue("General/latexTemplateFile", self.templateFile.text())
+            self.settings.sync()
+        fdlg.close()
+
