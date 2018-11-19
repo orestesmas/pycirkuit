@@ -6,6 +6,7 @@ Module implementing MainWindow.
 
 import os
 import subprocess
+from shutil import copyfile
 from PyQt5.QtCore import pyqtSlot,  Qt,  QDir,  QTemporaryDir,  QSettings
 from PyQt5.QtWidgets import QMainWindow, QFileDialog,  QApplication
 from PyQt5.QtGui import QPixmap,  QCursor,  QIcon
@@ -35,8 +36,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         #NOTE: Is NOT necessary to MANUALLY connect most signals to slots, as 
         # pyuic5 calls QtCore.QMetaObject.connectSlotsByName in Ui_configdialog.py
         # do do such connections AUTOMATICALLY (so connecting them manually triggers slots twice)
-        self.pushButton.clicked.connect(self.process)
-        self.textEdit.textChanged.connect(self.on_source_changed)
         self.needSaving = False
 
         # Persistent settings
@@ -46,19 +45,26 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         d = QDir(self.settings.value("General/lastWD", "."))
         self.lastWD = d.absolutePath() if d.exists() else QDir.home().path()
         self.lastFilename = ""
+        
+        # Creo un directori temporal únic per desar fitxers temporals
+        # Si no puc (rar) utilitzo el directori del fitxer font
+        self.tmpDir = QTemporaryDir()
 
+
+    def closeEvent(self,  event):
+        self.tmpDir.remove()
+        super(QMainWindow, self).closeEvent(event)
 
 
     @pyqtSlot()
-    @pyqtSlot()
-    def process(self):
+    def on_processButton_clicked(self):
         # Primer deso la feina no desada
         if self.needSaving:
             with open(self.lastFilename,'w', encoding='UTF-8') as f:
-                f.write(self.textEdit.toPlainText())
+                f.write(self.sourceText.toPlainText())
                 #TODO: Podria haver-hi un eror en desar el fitxer, aleshores no s'hauria de posar needSaving a False...
                 self.needSaving = False
-                self.pushButton.setEnabled(False)
+                self.processButton.setEnabled(False)
 
         #TODO: Comprovar si tenim les Circuit Macros a la carpeta especificada als Settings
         # si no és així, mostrar una messageBox d'error i avortar
@@ -70,17 +76,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         latexTemplate = ""
         with open("{templateFile}".format(templateFile=latexTemplateFile), 'r') as template:
             latexTemplate = template.read()        
-        # Creo un directori temporal únic per desar fitxers temporals
-        # Si no puc (rar) utilitzo el directori del fitxer font
-        d = QTemporaryDir()
-        if d.isValid():
-            tmpDir = d.path()
-        else:
-            tmpDir = self.lastWD
         # Sintetitzo un nom de fitxer temporal per desar els fitxers intermedis
-        tmpFileBaseName = tmpDir + "/cirkuit_tmp"
+        tmpFileBaseName = self.tmpDir .path()+ "/cirkuit_tmp"
         with open("{baseName}.ckt".format(baseName=tmpFileBaseName), 'w') as tmpFile:
-            tmpFile.write(self.textEdit.toPlainText())
+            tmpFile.write(self.sourceText.toPlainText())
         errMsg = ""
         try:
             # PAS 0: Canvio el cursor momentàniament
@@ -113,7 +112,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 dest = latexTemplate.replace('%%SOURCE%%', source, 1)
                 g.write(dest)
                 g.write('\n')
-            command = "pdflatex -interaction=batchmode -halt-on-error -file-line-error -output-directory {tmpDir} {baseName}.tex".format(tmpDir=tmpDir, baseName=tmpFileBaseName)
+            command = "pdflatex -interaction=batchmode -halt-on-error -file-line-error -output-directory {tmpDir} {baseName}.tex".format(tmpDir=self.tmpDir.path(), baseName=tmpFileBaseName)
             result = subprocess.run(command, shell=True, check=False, stderr=subprocess.STDOUT, stdout=subprocess.PIPE)
             if result.returncode != 0:
                 errMsg = "Error en PDFLaTeX: Conversió .TIKZ -> .PDF\n"
@@ -150,15 +149,29 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         else:
             imatge = QPixmap("{baseName}.png".format(baseName=tmpFileBaseName))
             self.imatge.setPixmap(imatge)
+            # If all went well and we have a generated image, we can 
+            self.exportButton.setEnabled(True)
         finally:
             app.restoreOverrideCursor()
 
   
-    def on_source_changed(self):
-        if self.textEdit.toPlainText() == "":
-            self.pushButton.setEnabled(False)
+    @pyqtSlot()
+    def on_exportButton_clicked(self):
+        try:
+            src = "{srcFile}".format(srcFile=self.tmpDir .path()+ "/cirkuit_tmp.tikz")
+            dst = "{dstFile}".format(dstFile=self.lastWD+'/'+self.lastFilename.partition('.')[0]+".tikz")
+            copyfile(src, dst)
+            self.exportButton.setEnabled(False)
+        except OSError as e:
+            print("Export failed:", e)
+    
+    
+    @pyqtSlot()
+    def on_sourceText_textChanged(self):
+        if self.sourceText.toPlainText() == "":
+            self.processButton.setEnabled(False)
         else:
-            self.pushButton.setEnabled(True)
+            self.processButton.setEnabled(True)
             self.needSaving = True
 
 
@@ -172,7 +185,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         fdlg.setFileMode(QFileDialog.ExistingFile)
         fdlg.setOptions(QFileDialog.DontUseNativeDialog | QFileDialog.ReadOnly)
         fdlg.setViewMode(QFileDialog.Detail)
-        fdlg.setFilter(QDir.Files | QDir.NoDotAndDotDot)
+        fdlg.setFilter(QDir.AllDirs | QDir.Files | QDir.NoDotAndDotDot)
         fitxer = ""
         if fdlg.exec():
             fitxer = fdlg.selectedFiles()[0]
@@ -190,8 +203,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.settings.sync()
                 with open(self.lastFilename, 'r') as f:
                     txt = f.read()
-                    self.textEdit.setPlainText(txt)
-                    self.process()
+                    self.sourceText.setPlainText(txt)
+                    self.on_processButton_clicked()
 
 
     @pyqtSlot()
