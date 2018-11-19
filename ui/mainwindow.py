@@ -165,9 +165,21 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     @pyqtSlot()
     def on_actionOpen_triggered(self):
         # Presento el diàleg de càrrega de fitxer
-        fitxer, _ = QFileDialog.getOpenFileName(self, "Open Source File", self.lastWD, "*.ckt")
+        fdlg = QFileDialog(self)
+        fdlg.setWindowTitle("Open Source File")
+        fdlg.setDirectory(self.lastWD)
+        fdlg.setNameFilters(["PyCirkuit files (*.ckt)",  "TeX files (*.tex)",  "Any files (*)"])
+        fdlg.setFileMode(QFileDialog.ExistingFile)
+        fdlg.setOptions(QFileDialog.DontUseNativeDialog | QFileDialog.ReadOnly)
+        fdlg.setViewMode(QFileDialog.Detail)
+        fdlg.setFilter(QDir.Files | QDir.NoDotAndDotDot)
+        fitxer = ""
+        if fdlg.exec():
+            fitxer = fdlg.selectedFiles()[0]
+        fdlg.close()
+        
         # Comprovo que no he premut 'Cancel' a la dialog box...
-        if fitxer != '':
+        if fitxer != "":
             # Comprovo que el fitxer no sigui un enllaç trencat
             fitxer = os.path.normpath(fitxer)
             if os.path.exists(fitxer):
