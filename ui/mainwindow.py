@@ -173,6 +173,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         else:
             self.processButton.setEnabled(True)
             self.needSaving = True
+        self.exportButton.setEnabled(False)
 
 
     @pyqtSlot()
