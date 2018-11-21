@@ -59,6 +59,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # Comprovo si tenim les Circuit Macros a la carpeta especificada als Settings
         if not self.check_circuit_macros():
             return
+        
+        # Comprovo si el fitxer de plantilla existeix i és vàlid
+        if not self.check_templates():
+            return
 
         # Començo: Primer deso la feina no desada
         if self.needSaving:
@@ -71,11 +75,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # Instantiate a settings object to load config values. At this point the config have valid entries, so don't test much
         settings = QSettings()
         cmPath = settings.value("General/cmPath") 
-        latexTemplateFile = settings.value("General/latexTemplateFile")
-        #FIXME: Comprovar que el fitxer de plantilla existeix. Altrament MessageBox d'Error
-        latexTemplate = ""
-        with open("{templateFile}".format(templateFile=latexTemplateFile), 'r') as template:
-            latexTemplate = template.read()        
         # Sintetitzo un nom de fitxer temporal per desar els fitxers intermedis
         tmpFileBaseName = self.tmpDir .path()+ "/cirkuit_tmp"
         with open("{baseName}.ckt".format(baseName=tmpFileBaseName), 'w') as tmpFile:
@@ -106,11 +105,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
             # PAS 3: Li passo el PDFLaTeX: .TIKZ -> .PDF
             # Primer haig d'incloure el codi .TIKZ en una plantilla adient
-            #FIXME: Peta si la plantilla no existeix (
+            latexTemplateFile = settings.value("General/latexTemplateFile")
+            templateCode = ""
+            with open("{templateFile}".format(templateFile=latexTemplateFile), 'r') as template:
+                templateCode = template.read()        
             with open("{baseName}.tikz".format(baseName=tmpFileBaseName), 'r') as f, \
-                 open('{baseName}.tex'.format(baseName=tmpFileBaseName), 'w') as g:
+                     open('{baseName}.tex'.format(baseName=tmpFileBaseName), 'w') as g:
                 source = f.read()
-                dest = latexTemplate.replace('%%SOURCE%%', source, 1)
+                dest = templateCode.replace('%%SOURCE%%', source, 1)
                 g.write(dest)
                 g.write('\n')
             command = "pdflatex -interaction=batchmode -halt-on-error -file-line-error -output-directory {tmpDir} {baseName}.tex".format(tmpDir=self.tmpDir.path(), baseName=tmpFileBaseName)
@@ -265,6 +267,21 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             #TODO: Demanar si es vol descarregar i instal·lar les CM automàticament.
             # defaultPath = QDir.homePath() + "/.local/share/<appname>/circuit_macros"
             txt  = "No s'han trobat les «Circuit Macros»!\n\n"
+            txt += "Si us plau, indiqueu-ne la ruta correcta als arranjaments.\n\n"
+            txt += "No es pot processar el circuit."
+            QMessageBox.critical(self, "Error crític",  txt)
+            return False
+
+    
+    def check_templates(self):
+        pass
+        settings = QSettings()
+        template = settings.value("General/latexTemplateFile",  "")
+        if os.path.exists(template):
+            #TODO: Estaria bé llegir la primera línia de la plantilla per veure si hi trobem una signatura específica
+            return True
+        else:
+            txt  = "No s'ha trobat la plantilla LaTeX!\n\n"
             txt += "Si us plau, indiqueu-ne la ruta correcta als arranjaments.\n\n"
             txt += "No es pot processar el circuit."
             QMessageBox.critical(self, "Error crític",  txt)
