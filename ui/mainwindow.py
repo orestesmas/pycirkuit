@@ -185,7 +185,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def on_actionOpen_triggered(self):
         # Instantiate a settings object
         settings = QSettings()
-
+        
         # Presento el diàleg de càrrega de fitxer
         fdlg = QFileDialog(self)
         fdlg.setWindowTitle("Open Source File")
@@ -278,8 +278,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         settings = QSettings()
         template = settings.value("General/latexTemplateFile",  "")
         if os.path.exists(template):
-            #TODO: Estaria bé llegir la primera línia de la plantilla per veure si hi trobem una signatura específica
-            return True
+            with open(template, 'r') as t:
+                templateCode = t.read()
+                if "%%SOURCE%%" in templateCode:
+                    return True
+                else:
+                    txt  = "La plantilla LaTeX especificada no sembla vàlida!\n\n"
+                    txt += "Si us plau, indiqueu-ne una de correcta als arranjaments.\n\n"
+                    txt += "No es pot processar el circuit."
+                    QMessageBox.critical(self, "Error crític",  txt)
+                    return False
         else:
             txt  = "No s'ha trobat la plantilla LaTeX!\n\n"
             txt += "Si us plau, indiqueu-ne la ruta correcta als arranjaments.\n\n"
