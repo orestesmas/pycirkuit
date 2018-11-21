@@ -31,9 +31,9 @@ class configDialog(QDialog, Ui_configDialog):
         self.setupUi(self)
         
         # Persistent settings
-        self.settings = QSettings() 
+        settings = QSettings() 
         # Extract stored path to Circuit Macros
-        cmStoredPath = self.settings.value("General/cmPath", "")
+        cmStoredPath = settings.value("General/cmPath", "")
         if cmStoredPath == "":
             # emit signal manually as setting an empty text doesn't really changes the text (it is already empty)
             self.cmPath.textChanged.emit("")
@@ -42,13 +42,14 @@ class configDialog(QDialog, Ui_configDialog):
 
         # Extract stored path to LaTeX template file
         # defaultPath = QDir.homePath() + "/Plantilles/cm_tikz.ckt"
-        storedLatexTemplateFile = self.settings.value("General/latexTemplateFile", "")
+        storedLatexTemplateFile = settings.value("General/latexTemplateFile", "")
         if storedLatexTemplateFile == "":
             # emit signal manually as setting an empty text doesn't really changes the text (it is already empty)
             self.templateFile.textChanged.emit("")
         else:
             self.templateFile.setText(storedLatexTemplateFile)
-        
+    
+    
     @pyqtSlot(int)
     def on_listWidget_currentRowChanged(self, currentRow):
         """
@@ -72,10 +73,11 @@ class configDialog(QDialog, Ui_configDialog):
         fdlg.setViewMode(QFileDialog.Detail)
         fdlg.setFilter(QDir.Dirs | QDir.Hidden)
         if fdlg.exec():
+            settings = QSettings()
             newPath = fdlg.selectedFiles()
             self.cmPath.setText(newPath[0])
-            self.settings.setValue("General/cmPath", self.cmPath.text())
-            self.settings.sync()
+            settings.setValue("General/cmPath", self.cmPath.text())
+            settings.sync()
         fdlg.close()
 
     
@@ -92,10 +94,11 @@ class configDialog(QDialog, Ui_configDialog):
         fdlg.setViewMode(QFileDialog.Detail)
         fdlg.setFilter(QDir.AllDirs | QDir.Files | QDir.NoDotAndDotDot | QDir.Hidden)
         if fdlg.exec():
+            settings = QSettings()
             newPath = fdlg.selectedFiles()
             self.templateFile.setText(newPath[0])
-            self.settings.setValue("General/latexTemplateFile", self.templateFile.text())
-            self.settings.sync()
+            settings.setValue("General/latexTemplateFile", self.templateFile.text())
+            settings.sync()
         fdlg.close()
 
 

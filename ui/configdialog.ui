@@ -30,14 +30,26 @@
          <height>84</height>
         </size>
        </property>
+       <property name="textElideMode">
+        <enum>Qt::ElideRight</enum>
+       </property>
        <property name="movement">
         <enum>QListView::Static</enum>
+       </property>
+       <property name="resizeMode">
+        <enum>QListView::Fixed</enum>
        </property>
        <property name="spacing">
         <number>12</number>
        </property>
        <property name="viewMode">
         <enum>QListView::IconMode</enum>
+       </property>
+       <property name="uniformItemSizes">
+        <bool>false</bool>
+       </property>
+       <property name="selectionRectVisible">
+        <bool>true</bool>
        </property>
        <item>
         <property name="text">
@@ -103,7 +115,7 @@
                <string>Choose Dir</string>
               </property>
               <property name="icon">
-               <iconset>
+               <iconset resource="../resources/resources.qrc">
                 <normaloff>:/icons/FolderIcon</normaloff>:/icons/FolderIcon</iconset>
               </property>
               <property name="toolButtonStyle">
@@ -148,7 +160,7 @@
                <string>Choose File</string>
               </property>
               <property name="icon">
-               <iconset>
+               <iconset resource="../resources/resources.qrc">
                 <normaloff>:/icons/FolderIcon</normaloff>:/icons/FolderIcon</iconset>
               </property>
               <property name="toolButtonStyle">

@@ -37,18 +37,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # pyuic5 calls QtCore.QMetaObject.connectSlotsByName in Ui_configdialog.py
         # do do such connections AUTOMATICALLY (so connecting them manually triggers slots twice)
 
-        self.needSaving = False
-
-        # Persistent settings
-        self.settings = QSettings()
-
-        # Last Working Dir
-        d = QDir(self.settings.value("General/lastWD", "."))
-        self.lastWD = d.absolutePath() if d.exists() else QDir.home().path()
+        # Properties regarding the present open file
         self.lastFilename = ""
-        
-        # Creo un directori temporal únic per desar fitxers temporals
-        # Si no puc (rar) utilitzo el directori del fitxer font
+        self.needSaving = False
+ 
+        # Set up a temporary directory to save intermediate files
         self.tmpDir = QTemporaryDir()
 
 
@@ -75,9 +68,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.needSaving = False
                 self.processButton.setEnabled(False)
 
-        # Carrego valors de la configuració
-        cmPath = self.settings.value("General/cmPath") 
-        latexTemplateFile = self.settings.value("General/latexTemplateFile")
+        # Instantiate a settings object to load config values. At this point the config have valid entries, so don't test much
+        settings = QSettings()
+        cmPath = settings.value("General/cmPath") 
+        latexTemplateFile = settings.value("General/latexTemplateFile")
         #FIXME: Comprovar que el fitxer de plantilla existeix. Altrament MessageBox d'Error
         latexTemplate = ""
         with open("{templateFile}".format(templateFile=latexTemplateFile), 'r') as template:
@@ -112,6 +106,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
             # PAS 3: Li passo el PDFLaTeX: .TIKZ -> .PDF
             # Primer haig d'incloure el codi .TIKZ en una plantilla adient
+            #FIXME: Peta si la plantilla no existeix (
             with open("{baseName}.tikz".format(baseName=tmpFileBaseName), 'r') as f, \
                  open('{baseName}.tex'.format(baseName=tmpFileBaseName), 'w') as g:
                 source = f.read()
@@ -163,9 +158,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
   
     @pyqtSlot()
     def on_exportButton_clicked(self):
+        settings = QSettings()
+        lastWD = settings.value("General/lastWD")
         try:
             src = "{srcFile}".format(srcFile=self.tmpDir .path()+ "/cirkuit_tmp.tikz")
-            dst = "{dstFile}".format(dstFile=self.lastWD+'/'+self.lastFilename.partition('.')[0]+".tikz")
+            dst = "{dstFile}".format(dstFile=lastWD+'/'+self.lastFilename.partition('.')[0]+".tikz")
             copyfile(src, dst)
             self.exportButton.setEnabled(False)
         except OSError as e:
@@ -184,10 +181,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     @pyqtSlot()
     def on_actionOpen_triggered(self):
+        # Instantiate a settings object
+        settings = QSettings()
+
         # Presento el diàleg de càrrega de fitxer
         fdlg = QFileDialog(self)
         fdlg.setWindowTitle("Open Source File")
-        fdlg.setDirectory(self.lastWD)
+        fdlg.setDirectory(settings.value("General/lastWD",  ""))
         fdlg.setNameFilters(["PyCirkuit files (*.ckt)",  "TeX files (*.tex)",  "Any files (*)"])
         fdlg.setFileMode(QFileDialog.ExistingFile)
         fdlg.setOptions(QFileDialog.DontUseNativeDialog | QFileDialog.ReadOnly)
@@ -203,15 +203,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             # Comprovo que el fitxer no sigui un enllaç trencat
             fitxer = os.path.normpath(fitxer)
             if os.path.exists(fitxer):
-                self.lastWD, self.lastFilename = os.path.split(fitxer)
+                lastWD, self.lastFilename = os.path.split(fitxer)
                 # Change system working dir to target's dir
-                os.chdir(self.lastWD)
-                self.settings.setValue("General/lastWD", self.lastWD)
-                self.settings.sync()
+                os.chdir(lastWD)
+                settings.setValue("General/lastWD", lastWD)
+                settings.sync()
                 with open(self.lastFilename, 'r') as f:
                     txt = f.read()
                     self.sourceText.setPlainText(txt)
                     self.on_processButton_clicked()
+                    self.setWindowTitle("PyCirkuit - {filename}".format(filename=self.lastFilename))
 
 
     @pyqtSlot()
@@ -264,7 +265,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             #TODO: Demanar si es vol descarregar i instal·lar les CM automàticament.
             # defaultPath = QDir.homePath() + "/.local/share/<appname>/circuit_macros"
             txt  = "No s'han trobat les «Circuit Macros»!\n\n"
-            txt += "Si us plau, indiqueu-ne la ruta correcta als arranjaments."
+            txt += "Si us plau, indiqueu-ne la ruta correcta als arranjaments.\n\n"
             txt += "No es pot processar el circuit."
             QMessageBox.critical(self, "Error crític",  txt)
             return False
