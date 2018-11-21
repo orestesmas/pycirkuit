@@ -103,7 +103,7 @@
                <string>Choose Dir</string>
               </property>
               <property name="icon">
-               <iconset resource="../resources/resources.qrc">
+               <iconset>
                 <normaloff>:/icons/FolderIcon</normaloff>:/icons/FolderIcon</iconset>
               </property>
               <property name="toolButtonStyle">
@@ -148,7 +148,7 @@
                <string>Choose File</string>
               </property>
               <property name="icon">
-               <iconset resource="../resources/resources.qrc">
+               <iconset>
                 <normaloff>:/icons/FolderIcon</normaloff>:/icons/FolderIcon</iconset>
               </property>
               <property name="toolButtonStyle">

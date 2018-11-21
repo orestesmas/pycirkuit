@@ -63,8 +63,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if not self.check_programs():
             return
         
-        #FIXME: Comprovar si tenim les Circuit Macros a la carpeta especificada als Settings
-        # si no és així, mostrar una messageBox d'error i avortar
+        # Comprovo si tenim les Circuit Macros a la carpeta especificada als Settings
         if not self.check_circuit_macros():
             return
 
@@ -72,7 +71,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if self.needSaving:
             with open(self.lastFilename,'w', encoding='UTF-8') as f:
                 f.write(self.sourceText.toPlainText())
-                #TODO: Podria haver-hi un eror en desar el fitxer, aleshores no s'hauria de posar needSaving a False...
+                #TODO: Podria haver-hi un error en desar el fitxer, aleshores no s'hauria de posar needSaving a False...
                 self.needSaving = False
                 self.processButton.setEnabled(False)
 
@@ -263,6 +262,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             return True
         else:
             #TODO: Demanar si es vol descarregar i instal·lar les CM automàticament.
+            # defaultPath = QDir.homePath() + "/.local/share/<appname>/circuit_macros"
             txt  = "No s'han trobat les «Circuit Macros»!\n\n"
             txt += "Si us plau, indiqueu-ne la ruta correcta als arranjaments."
             txt += "No es pot processar el circuit."

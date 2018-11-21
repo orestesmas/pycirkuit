@@ -4,12 +4,18 @@
 Module implementing configDialog.
 """
 
-from PyQt5.QtCore import pyqtSlot,  QDir,  QFile,  QSettings
-from PyQt5.QtWidgets import QDialog,  QFileDialog
-
+import os
+from PyQt5.QtCore import pyqtSlot,\
+                         QDir,\
+                         QSettings
+from PyQt5.QtWidgets import QDialog,\
+                            QFileDialog
 from .Ui_configdialog import Ui_configDialog
 
-
+#FIXME: El diàleg encara deixa introduir (manualment) paths inexistents, i només desa els paths a la configuració si els escollim via botó
+# - Una solució és no deixar editar manualment els paths, però és poc elegant/intuïtiu
+# - Una altra via seria convertir la QLineEdit en un QComboBox. Potser funciona.
+#WARNING: - Els botons potser s'haurien de dir "Navega" (Browse)...
 class configDialog(QDialog, Ui_configDialog):
     """
     Class documentation goes here.
@@ -27,22 +33,21 @@ class configDialog(QDialog, Ui_configDialog):
         # Persistent settings
         self.settings = QSettings() 
         # Extract stored path to Circuit Macros
-        defaultPath = QDir.homePath() + "/.local/share/cirkuit/circuit_macros"
-        cmStoredPath = QDir(self.settings.value("General/cmPath", defaultPath))
-        if  not cmStoredPath.exists():
-            cmStoredPath = QDir.home()
-            self.settings.setValue("General/cmPath",  cmStoredPath.absolutePath())
-            self.settings.sync()
-        self.cmPath.setText(cmStoredPath.absolutePath())
+        cmStoredPath = self.settings.value("General/cmPath", "")
+        if cmStoredPath == "":
+            # emit signal manually as setting an empty text doesn't really changes the text (it is already empty)
+            self.cmPath.textChanged.emit("")
+        else:
+            self.cmPath.setText(cmStoredPath)
 
         # Extract stored path to LaTeX template file
-        defaultPath = QDir.homePath() + "/Plantilles/cm_tikz.ckt"
-        storedLatexTemplateFile = QFile(self.settings.value("General/latexTemplateFile", defaultPath))
-        if  not storedLatexTemplateFile.exists():
-            storedLatexTemplateFile = QDir.home()
-            self.settings.setValue("General/latexTemplateFile",  storedLatexTemplateFile.fileName())
-            self.settings.sync()
-        self.templateFile.setText(storedLatexTemplateFile.fileName())
+        # defaultPath = QDir.homePath() + "/Plantilles/cm_tikz.ckt"
+        storedLatexTemplateFile = self.settings.value("General/latexTemplateFile", "")
+        if storedLatexTemplateFile == "":
+            # emit signal manually as setting an empty text doesn't really changes the text (it is already empty)
+            self.templateFile.textChanged.emit("")
+        else:
+            self.templateFile.setText(storedLatexTemplateFile)
         
     @pyqtSlot(int)
     def on_listWidget_currentRowChanged(self, currentRow):
@@ -93,3 +98,18 @@ class configDialog(QDialog, Ui_configDialog):
             self.settings.sync()
         fdlg.close()
 
+
+    @pyqtSlot(str)
+    def on_cmPath_textChanged(self, newText):
+        if  os.path.exists(newText):
+            self.cmPath.setStyleSheet("background-color: {blanc};".format(blanc = "rgb(255, 255, 255)"))
+        else:
+            self.cmPath.setStyleSheet("background-color: {vermell};".format(vermell = "rgb(255, 230, 230)"))
+
+
+    @pyqtSlot(str)
+    def on_templateFile_textChanged(self, newText):
+        if  os.path.exists(newText):
+            self.templateFile.setStyleSheet("background-color: {blanc};".format(blanc = "rgb(255, 255, 255)"))   # verd = rgb(230, 255, 230)
+        else:
+            self.templateFile.setStyleSheet("background-color: {vermell};".format(vermell = "rgb(255, 230, 230)"))
