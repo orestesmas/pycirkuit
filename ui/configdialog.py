@@ -25,7 +25,7 @@ class configDialog(QDialog, Ui_configDialog):
         self.setupUi(self)
         
         # Persistent settings
-        self.settings = QSettings("UPC", "pycirkuit") 
+        self.settings = QSettings() 
         # Extract stored path to Circuit Macros
         defaultPath = QDir.homePath() + "/.local/share/cirkuit/circuit_macros"
         cmStoredPath = QDir(self.settings.value("General/cmPath", defaultPath))

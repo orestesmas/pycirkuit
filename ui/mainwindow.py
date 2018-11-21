@@ -36,10 +36,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         #NOTE: Is NOT necessary to MANUALLY connect most signals to slots, as 
         # pyuic5 calls QtCore.QMetaObject.connectSlotsByName in Ui_configdialog.py
         # do do such connections AUTOMATICALLY (so connecting them manually triggers slots twice)
+        
+        self.check_programs()
         self.needSaving = False
 
         # Persistent settings
-        self.settings = QSettings("UPC", "pycirkuit")
+        self.settings = QSettings()
 
         # Last Working Dir
         d = QDir(self.settings.value("General/lastWD", "."))
