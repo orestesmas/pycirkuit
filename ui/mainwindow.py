@@ -4,11 +4,12 @@
 Module implementing MainWindow.
 """
 
+import sys
 import os
 import subprocess
 from shutil import copyfile
 from PyQt5.QtCore import pyqtSlot,  Qt,  QDir,  QTemporaryDir,  QSettings
-from PyQt5.QtWidgets import QMainWindow, QFileDialog,  QApplication
+from PyQt5.QtWidgets import QMainWindow, QFileDialog,  QApplication,  QMessageBox
 from PyQt5.QtGui import QPixmap,  QCursor,  QIcon
 from .Ui_mainwindow import Ui_MainWindow
 from .configdialog import configDialog
@@ -68,13 +69,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.needSaving = False
                 self.processButton.setEnabled(False)
 
-        #TODO: Comprovar si tenim les Circuit Macros a la carpeta especificada als Settings
+        #FIXME: Comprovar si tenim les Circuit Macros a la carpeta especificada als Settings
         # si no és així, mostrar una messageBox d'error i avortar
         
         # Carrego valors de la configuració
         cmPath = self.settings.value("General/cmPath") 
         latexTemplateFile = self.settings.value("General/latexTemplateFile")
-        #TODO: Comprovar que el fitxer de plantilla existeix. Altrament MessageBox d'Error
+        #FIXME: Comprovar que el fitxer de plantilla existeix. Altrament MessageBox d'Error
         latexTemplate = ""
         with open("{templateFile}".format(templateFile=latexTemplateFile), 'r') as template:
             latexTemplate = template.read()        
@@ -226,3 +227,22 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         cfgDlg = configDialog()
         cfgDlg.exec()
+
+
+    def check_programs(self):
+        programs = (
+            {"progName": "m4",  "errMsg": "processador de macros «M4»"},
+            {"progName": "dpic",  "errMsg": "compilador de llenguatge «PIC»"},
+            {"progName": "pdflatex",  "errMsg": "programa pdfLaTeX"},
+            {"progName": "pdftoppm",  "errMsg": "conversor d'imatges PDF a PNG"},
+        )
+        execPath = os.get_exec_path()
+        for p in programs:
+            for testPath in execPath:
+                if os.path.exists(testPath + "/{progName}".format(progName=p["progName"])):
+                    print("Found: {prg}\n".format(prg=p["progName"]))
+                    break
+            else:
+                txt = "NO s'ha trobat l'executable corresponent al {msg}! L'aplicació es tancarà. Assegureu-vos de tenir l'executable «{execName}» al PATH\n".format(msg=p["errMsg"],  execName=p["progName"])
+                QMessageBox.critical(self, "Error crític",  txt)
+                sys.exit(1)
