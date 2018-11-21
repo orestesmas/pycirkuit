@@ -65,6 +65,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         
         #FIXME: Comprovar si tenim les Circuit Macros a la carpeta especificada als Settings
         # si no és així, mostrar una messageBox d'error i avortar
+        if not self.check_circuit_macros():
+            return
 
         # Començo: Primer deso la feina no desada
         if self.needSaving:
@@ -252,3 +254,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 QMessageBox.critical(self, "Error crític",  txt)
                 return False
         return True
+
+
+    def check_circuit_macros(self):
+        settings = QSettings()
+        cmPath = settings.value("General/cmPath",  "")
+        if os.path.exists(cmPath + "/libcct.m4"):
+            return True
+        else:
+            #TODO: Demanar si es vol descarregar i instal·lar les CM automàticament.
+            txt  = "No s'han trobat les «Circuit Macros»!\n\n"
+            txt += "Si us plau, indiqueu-ne la ruta correcta als arranjaments."
+            txt += "No es pot processar el circuit."
+            QMessageBox.critical(self, "Error crític",  txt)
+            return False
