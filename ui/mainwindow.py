@@ -4,7 +4,6 @@
 Module implementing MainWindow.
 """
 
-import sys
 import os
 import subprocess
 from shutil import copyfile
@@ -37,8 +36,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         #NOTE: Is NOT necessary to MANUALLY connect most signals to slots, as 
         # pyuic5 calls QtCore.QMetaObject.connectSlotsByName in Ui_configdialog.py
         # do do such connections AUTOMATICALLY (so connecting them manually triggers slots twice)
-        
-        self.check_programs()
+
         self.needSaving = False
 
         # Persistent settings
@@ -61,7 +59,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     @pyqtSlot()
     def on_processButton_clicked(self):
-        # Primer deso la feina no desada
+        # Comprovo si tinc totes les aplicacions necessàries correctament instal·lades
+        if not self.check_programs():
+            return
+        
+        #FIXME: Comprovar si tenim les Circuit Macros a la carpeta especificada als Settings
+        # si no és així, mostrar una messageBox d'error i avortar
+
+        # Començo: Primer deso la feina no desada
         if self.needSaving:
             with open(self.lastFilename,'w', encoding='UTF-8') as f:
                 f.write(self.sourceText.toPlainText())
@@ -69,9 +74,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.needSaving = False
                 self.processButton.setEnabled(False)
 
-        #FIXME: Comprovar si tenim les Circuit Macros a la carpeta especificada als Settings
-        # si no és així, mostrar una messageBox d'error i avortar
-        
         # Carrego valors de la configuració
         cmPath = self.settings.value("General/cmPath") 
         latexTemplateFile = self.settings.value("General/latexTemplateFile")
@@ -243,6 +245,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     print("Found: {prg}\n".format(prg=p["progName"]))
                     break
             else:
-                txt = "NO s'ha trobat l'executable corresponent al {msg}! L'aplicació es tancarà. Assegureu-vos de tenir l'executable «{execName}» al PATH\n".format(msg=p["errMsg"],  execName=p["progName"])
+                txt  = "No s'ha trobat el {msg}!\n\n"
+                txt += "Assegureu-vos de tenir aquesta aplicació correctament instal·lada i l'executable «{execName}» al PATH.\n\n"
+                txt += "No es pot processar el circuit."
+                txt  = txt.format(msg=p["errMsg"],  execName=p["progName"])
                 QMessageBox.critical(self, "Error crític",  txt)
-                sys.exit(1)
+                return False
+        return True
