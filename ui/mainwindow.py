@@ -4,17 +4,26 @@
 Module implementing MainWindow.
 """
 
+# Standard library imports
+import sys
 import os
 import subprocess
 from shutil import copyfile
-from PyQt5.QtCore import pyqtSlot,  Qt,  QDir,  QTemporaryDir,  QSettings
-from PyQt5.QtWidgets import QMainWindow, QFileDialog,  QApplication,  QMessageBox
-from PyQt5.QtGui import QPixmap,  QCursor,  QIcon
+
+# Third-party imports
+from PyQt5.QtCore import pyqtSlot
+from PyQt5 import QtCore, QtWidgets, QtGui
+
+# Local application imports
 from .Ui_mainwindow import Ui_MainWindow
 from .configdialog import configDialog
+#FIXME: Els imports relatius no són bons.
+# Cal mirar-se la resposta de l'usuari np8 a https://stackoverflow.com/questions/714063/importing-modules-from-parent-folder
+sys.path.append("..")
+from circuitmacrosmanager import CircuitMacrosManager
 
 
-class MainWindow(QMainWindow, Ui_MainWindow):
+class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     """
     Class documentation goes here.
     """
@@ -29,7 +38,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.setupUi(self)
 
         # La icona de l'aplicació és al fitxer de recursos
-        icon = QIcon(":/icons/AppIcon")
+        icon = QtGui.QIcon(":/icons/AppIcon")
         self.setWindowIcon(icon)
 
         # Connect signals with slots
@@ -42,12 +51,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.needSaving = False
  
         # Set up a temporary directory to save intermediate files
-        self.tmpDir = QTemporaryDir()
+        self.tmpDir = QtCore.QTemporaryDir()
 
 
     def closeEvent(self,  event):
         self.tmpDir.remove()
-        super(QMainWindow, self).closeEvent(event)
+        super(QtWidgets.QMainWindow, self).closeEvent(event)
 
 
     @pyqtSlot()
@@ -72,7 +81,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             except OSError as e:
                 errMsg = "S'ha produït un error en desar el fitxer font: " + e.strerror + ".\n\n"
                 errMsg += "No es pot processar el circuit."
-                QMessageBox.critical(self, "Error crític",  errMsg)
+                QtWidgets.QMessageBox.critical(self, "Error crític",  errMsg)
                 return
             else:
                 self.needSaving = False
@@ -81,7 +90,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 f.close()
 
         # Instantiate a settings object to load config values. At this point the config have valid entries, so don't test much
-        settings = QSettings()
+        settings = QtCore.QSettings()
         cmPath = settings.value("General/cmPath") 
         # Sintetitzo un nom de fitxer temporal per desar els fitxers intermedis
         tmpFileBaseName = self.tmpDir .path()+ "/cirkuit_tmp"
@@ -90,8 +99,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         errMsg = ""
         try:
             # PAS 0: Canvio el cursor momentàniament
-            app = QApplication.instance()
-            app.setOverrideCursor(QCursor(Qt.WaitCursor))
+            app = QtWidgets.QApplication.instance()
+            app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
             # PAS 1: Li passo les M4: .CKT -> .PIC
             # La crida subprocess.run() és molt interessant
             # el 'check=False' fa que no salti una excepció si l'ordre falla, atès que ja la llanço jo després
@@ -158,7 +167,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.imatge.setText("Error!")
             # TODO: Es podria posar el missatge d'error al mateix widget on surt la imatge...
         else:
-            imatge = QPixmap("{baseName}.png".format(baseName=tmpFileBaseName))
+            imatge = QtGui.QPixmap("{baseName}.png".format(baseName=tmpFileBaseName))
             self.imatge.setPixmap(imatge)
             # If all went well and we have a generated image, we can 
             self.exportButton.setEnabled(True)
@@ -168,7 +177,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
   
     @pyqtSlot()
     def on_exportButton_clicked(self):
-        settings = QSettings()
+        settings = QtCore.QSettings()
         lastWD = settings.value("General/lastWD")
         try:
             src = "{srcFile}".format(srcFile=self.tmpDir .path()+ "/cirkuit_tmp.tikz")
@@ -192,17 +201,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     @pyqtSlot()
     def on_actionOpen_triggered(self):
         # Instantiate a settings object
-        settings = QSettings()
+        settings = QtCore.QSettings()
         
         # Presento el diàleg de càrrega de fitxer
-        fdlg = QFileDialog(self)
+        fdlg = QtWidgets.QFileDialog(self)
         fdlg.setWindowTitle("Open Source File")
         fdlg.setDirectory(settings.value("General/lastWD",  ""))
         fdlg.setNameFilters(["PyCirkuit files (*.ckt)",  "TeX files (*.tex)",  "Any files (*)"])
-        fdlg.setFileMode(QFileDialog.ExistingFile)
-        fdlg.setOptions(QFileDialog.DontUseNativeDialog | QFileDialog.ReadOnly)
-        fdlg.setViewMode(QFileDialog.Detail)
-        fdlg.setFilter(QDir.AllDirs | QDir.Files | QDir.NoDotAndDotDot)
+        fdlg.setFileMode(QtWidgets.QFileDialog.ExistingFile)
+        fdlg.setOptions(QtWidgets.QFileDialog.DontUseNativeDialog | QtWidgets.QFileDialog.ReadOnly)
+        fdlg.setViewMode(QtWidgets.QFileDialog.Detail)
+        fdlg.setFilter(QtCore.QDir.AllDirs | QtCore.QDir.Files | QtCore.QDir.NoDotAndDotDot)
         fitxer = ""
         if fdlg.exec():
             fitxer = fdlg.selectedFiles()[0]
@@ -233,7 +242,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         txt = "Copyright (c) 2018 Orestes Mas\n\n"\
                  "PyCirkuit is a compiler/renderer of circuit diagrams written using the Dwight Aplevich's 'Circuit Macros'.\n"\
                  "Being written in python, the code and ideas are largely based on 'cirkuit' C++ program, by Matteo Agostinelli.\n"
-        QMessageBox.about(self,  "About PyCirkuit",  txt)
+        QtWidgets.QMessageBox.about(self,  "About PyCirkuit",  txt)
 
     
     @pyqtSlot()
@@ -263,13 +272,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 txt += "Assegureu-vos de tenir aquesta aplicació correctament instal·lada i l'executable «{execName}» al PATH.\n\n"
                 txt += "No es pot processar el circuit."
                 txt  = txt.format(msg=p["errMsg"],  execName=p["progName"])
-                QMessageBox.critical(self, "Error crític",  txt)
+                QtWidgets.QMessageBox.critical(self, "Error crític",  txt)
                 return False
         return True
 
 
     def check_circuit_macros(self):
-        settings = QSettings()
+        settings = QtCore.QSettings()
         cmPath = settings.value("General/cmPath",  "")
         if os.path.exists(cmPath + "/libcct.m4"):
             return True
@@ -277,15 +286,30 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             #TODO: Demanar si es vol descarregar i instal·lar les CM automàticament.
             # defaultPath = QDir.homePath() + "/.local/share/<appname>/circuit_macros"
             txt  = "No s'han trobat les «Circuit Macros»!\n\n"
-            txt += "Si us plau, indiqueu-ne la ruta correcta als arranjaments.\n\n"
-            txt += "No es pot processar el circuit."
-            QMessageBox.critical(self, "Error crític",  txt)
-            return False
+            txt += "Voleu provar de cercar-les i instal·lar-les automàticament?"
+            response = QtWidgets.QMessageBox.question(self, "Error",  txt,  defaultButton = QtWidgets.QMessageBox.Yes)
+            if response == QtWidgets.QMessageBox.Yes:
+                try:
+                    app = QtWidgets.QApplication.instance()
+                    app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
+                    cmMgr = CircuitMacrosManager(self)
+                    cmMgr.download_latest()
+                    cmMgr.unpack_circuit_macros()
+                except:
+                    pass
+                finally:
+                    app.restoreOverrideCursor()
+            else:
+                txt  = "No s'han trobat les «Circuit Macros»!\n\n"
+                txt += "Si us plau, indiqueu-ne la ruta correcta als arranjaments.\n\n"
+                txt += "No es pot processar el circuit."
+                QtWidgets.QMessageBox.critical(self, "Error crític",  txt)
+                return False
 
     
     def check_templates(self):
         pass
-        settings = QSettings()
+        settings = QtCore.QSettings()
         template = settings.value("General/latexTemplateFile",  "")
         if os.path.exists(template):
             with open(template, 'r') as t:
@@ -296,11 +320,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     txt  = "La plantilla LaTeX especificada no sembla vàlida!\n\n"
                     txt += "Si us plau, indiqueu-ne una de correcta als arranjaments.\n\n"
                     txt += "No es pot processar el circuit."
-                    QMessageBox.critical(self, "Error crític",  txt)
+                    QtWidgets.QMessageBox.critical(self, "Error crític",  txt)
                     return False
         else:
             txt  = "No s'ha trobat la plantilla LaTeX!\n\n"
             txt += "Si us plau, indiqueu-ne la ruta correcta als arranjaments.\n\n"
             txt += "No es pot processar el circuit."
-            QMessageBox.critical(self, "Error crític",  txt)
+            QtWidgets.QMessageBox.critical(self, "Error crític",  txt)
             return False
+
