@@ -213,8 +213,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 with open(self.lastFilename, 'r') as f:
                     txt = f.read()
                     self.sourceText.setPlainText(txt)
-                    self.on_processButton_clicked()
                     self.setWindowTitle("PyCirkuit - {filename}".format(filename=self.lastFilename))
+                    self.on_processButton_clicked()
 
 
     @pyqtSlot()
@@ -222,8 +222,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         Slot documentation goes here.
         """
-        # TODO: not implemented yet
-        raise NotImplementedError
+        txt = "Copyright (c) 2018 Orestes Mas\n\n"\
+                 "PyCirkuit is a compiler/renderer of circuit diagrams written using the Dwight Aplevich's 'Circuit Macros'.\n"\
+                 "Being written in python, the code and ideas are largely based on 'cirkuit' C++ program, by Matteo Agostinelli.\n"
+        QMessageBox.about(self,  "About PyCirkuit",  txt)
 
     
     @pyqtSlot()
