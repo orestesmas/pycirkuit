@@ -77,6 +77,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             else:
                 self.needSaving = False
                 self.processButton.setEnabled(False)
+            finally:
+                f.close()
 
         # Instantiate a settings object to load config values. At this point the config have valid entries, so don't test much
         settings = QSettings()
