@@ -66,9 +66,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         # Començo: Primer deso la feina no desada
         if self.needSaving:
-            with open(self.lastFilename,'w', encoding='UTF-8') as f:
+            try:
+                f = open(self.lastFilename,'w', encoding='UTF-8')
                 f.write(self.sourceText.toPlainText())
-                #TODO: Podria haver-hi un error en desar el fitxer, aleshores no s'hauria de posar needSaving a False...
+            except OSError as e:
+                errMsg = "S'ha produït un error en desar el fitxer font: " + e.strerror + ".\n\n"
+                errMsg += "No es pot processar el circuit."
+                QMessageBox.critical(self, "Error crític",  errMsg)
+                return
+            else:
                 self.needSaving = False
                 self.processButton.setEnabled(False)
 
