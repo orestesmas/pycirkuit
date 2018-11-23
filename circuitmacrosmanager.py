@@ -37,20 +37,24 @@ class CircuitMacrosManager(QtCore.QObject):
             print("Network error: ", e)
 
 
-
     def unpack_circuit_macros(self):
         try:
-            sourcePath = QtCore.QStandardPaths.writableLocation(QtCore.QStandardPaths.AppDataLocation)
-            with tarfile.open(sourcePath + '/Circuit_macros.tar.gz', 'r:gz') as tarFile:
-                tarFile.extractall(path=sourcePath)
-                # Millor:
-                # for fitxer in tarFile.getMembers():
-                #   nom = fitxer.name
-                #   <Eliminar/canviar (regexp) el primer element del nom>
-                #   fitxer.name = nouNom
-                # Fet això, ja podem fer un extractall al directori actual
+            dataPath = QtCore.QStandardPaths.writableLocation(QtCore.QStandardPaths.AppDataLocation)
+            with tarfile.open(dataPath + '/Circuit_macros.tar.gz', 'r:gz') as tarFile:
+                # Circuit Macros is distributed in a tree structure. 
+                # We want the top dir of this structure to be 'circuit_macros', whichever it is now
+                # The following algorithm assumes that all circuit macros's files are in a subdir.
+                entry = tarFile.next()
+                storedDir, foo, bar = entry.name.partition('/')  # Got stored top dir name in 'storedDir'
+                # Now iterate and replace top directory name in all entries
+                for entry in tarFile.getmembers():
+                    filename = entry.name
+                    entry.name = filename.replace(storedDir, 'circuit_macros', 1)
+                tarFile.extractall(path=dataPath)
+            os.remove(dataPath +'/Circuit_macros.tar.gz')
             settings = QtCore.QSettings()
-            settings.setValue("General/cmPath", sourcePath)
+            settings.setValue("General/cmPath", dataPath + '/circuit_macros')
+            settings.sync()
         except tarfile.TarError as e:
             print("Error uncompressing the Circuit Macros: ", e)
-            shutil.rmtree(sourcePath+"/.")
+            shutil.rmtree(dataPath+"/.")
