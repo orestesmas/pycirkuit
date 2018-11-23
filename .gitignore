@@ -1,3 +1,4 @@
 *.pyc
 /.directory
-/.eric6project/*
+.eric6project/
+/pycirkuit.egg-info

@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language SYSTEM "language.dtd">
+<!-- M4 Circuit Macro 6.42 syntax highlightning, see: <ANY CTAN MIRROR SITE>/CTAN/graphics/circuit_macros or get the bleeding edge version directly from: http://www.ece.uwaterloo.ca/~aplevich/Circuit_macros/-->
+  <language name="m4 circuit macros" version="1.0" section="Sources" kateversion="2.5" extensions="*.cir; *.m4" mimetype="application/x-cirkuit" author="Peter-Jan Randewijk (pjrandew@...)" license="LGPL">
+  <highlighting>
+    <list name="prep">
+      <item> &per;PS </item>
+      <item> &per;PE </item>
+    </list>
+    <!-- The M4 keywords -->
+    <list name="builtinfuncs">
+      <item> changequote </item>
+      <item> define </item>
+      <item> divert </item>
+      <item> divnum </item>
+      <item> dnl </item>
+      <item> dumpdef </item>
+      <item> errprint </item>
+      <item> eval </item>
+      <item> ifdef </item>
+      <item> ifelse </item>
+      <item> include </item>
+      <item> incr </item>
+      <item> index </item>
+      <item> len </item>
+      <item> maketemp </item>
+      <item> sinclude </item>
+      <item> substr </item>
+      <item> syscmd </item>
+      <item> translit </item>
+      <item> undefine </item>
+      <item> undivert </item>
+     </list>
+     <!-- The (d/g)pic keywords -->
+    <list name="keywords">
+      <item> 1st </item>
+      <item> 2nd </item>
+      <item> 3rd </item>
+      <item> 4th </item>
+      <item> 5th </item>
+      <item> 6th </item>
+      <item> 7th </item>
+      <item> 8th </item>
+      <item> 9th </item>
+      <item> Here </item>
+      <item> above </item>
+      <item> and </item>
+      <item> arc </item>
+      <item> arrow </item>
+      <item> arrowhead </item>
+      <item> arrowht </item>
+      <item> arrowwid </item>
+      <item> at </item>
+      <item> atan2 </item>
+      <item> below </item>
+      <item> between </item>
+      <item> box </item>
+      <item> by </item>
+      <item> ccw </item>
+      <item> chop </item>
+      <item> circle </item>
+      <item> color </item>
+      <item> colour </item>
+      <item> colored </item>
+      <item> coloured </item>
+      <item> command </item>
+      <item> cos </item>
+      <item> cw </item>
+      <item> dashed </item>
+      <item> diam </item>
+      <item> do </item>
+      <item> dotted </item>
+      <item> down </item>
+      <item> ellipse </item>
+      <item> else </item>
+      <item> end </item>
+      <item> exp </item>
+      <item> fill </item>
+      <item> for </item>
+      <item> from </item>
+      <item> height </item>
+      <item> ht </item>
+      <item> if </item>
+      <item> invis </item>
+      <item> last </item>
+      <item> left </item>
+      <item> line </item>
+      <item> ljust </item>
+      <item> max </item>
+      <item> min </item>
+      <item> move </item>
+      <item> outline </item>
+      <item> outlined </item>
+      <item> rad </item>
+      <item> reset </item>
+      <item> right </item>
+      <item> rjust </item>
+      <item> scale </item>
+      <item> shaded </item>
+      <item> sin </item>
+      <item> spline </item>
+      <item> sprintf </item>
+      <item> sqrt </item>
+      <item> start </item>
+      <item> tan </item>
+      <item> then </item>
+      <item> thick </item>
+      <item> to </item>
+      <item> up </item>
+      <item> wid </item>
+      <item> width </item>
+      <item> with </item>
+    </list>
+    <!-- The M4 Circuit Macros 6.42 -->
+    <list name="specialvars">
+      <item> AND_gate </item>
+      <item> AND_gen </item>
+      <item> AND_ht </item>
+      <item> AND_wd </item>
+      <item> BOX_gate </item>
+      <item> BUFFER_gate </item>
+      <item> BUFFER_gen </item>
+      <item> BUF_ht </item>
+      <item> BUF_wd </item>
+      <item> Cos </item>
+      <item> Cosine </item>
+      <item> Darlington </item>
+      <item> E_ </item>
+      <item> Equidist3 </item>
+      <item> FF_ht </item>
+      <item> FF_wid </item>
+      <item> Fector </item>
+      <item> FlipFlop </item>
+      <item> FlipFlop6 </item>
+      <item> FlipFlopJK </item>
+      <item> G_hht_ </item>
+      <item> HOMELIB_ </item>
+      <item> H_ht </item>
+      <item> Int_ </item>
+      <item> IOdefs </item>
+      <item> Intersect_ </item>
+      <item> LH_symbol </item>
+      <item> Loopover_ </item>
+      <item> LT_symbol </item>
+      <item> L_unit </item>
+      <item> Max </item>
+      <item> Min </item>
+      <item> Mux </item>
+      <item> Mux_ht </item>
+      <item> Mux_wid </item>
+      <item> Mx_pins </item>
+      <item> NAND_gate </item>
+      <item> NOR_gate </item>
+      <item> NOT_circle </item>
+      <item> NOT_gate </item>
+      <item> NOT_rad </item>
+      <item> NXOR_gate </item>
+      <item> N_diam </item>
+      <item> N_rad </item>
+      <item> OR_gate </item>
+      <item> OR_gen </item>
+      <item> OR_rad </item>
+      <item> Point_ </item>
+      <item> Rect_ </item>
+      <item> Sin </item>
+      <item> View3D </item>
+      <item> Vperp </item>
+      <item> XOR_gate </item>
+      <item> XOR_off </item>
+      <item> above_ </item>
+      <item> abs_ </item>
+      <item> adc </item>
+      <item> amp </item>
+      <item> along_ </item>
+      <item> antenna </item>
+      <item> arca </item>
+      <item> arcd </item>
+      <item> arcr </item>
+      <item> arcto </item>
+      <item> arrowline </item>
+      <item> b_ </item>
+      <item> b_current </item>
+      <item> battery </item>
+      <item> beginshade </item>
+      <item> bell </item>
+      <item> below_ </item>
+      <item> bi_tr </item>
+      <item> bi_trans </item>
+      <item> boxcoord </item>
+      <item> boxdim </item>
+      <item> bp__ </item>
+      <item> bswitch </item>
+      <item> buzzer </item>
+      <item> c_fet </item>
+      <item> capacitor </item>
+      <item> cbreaker </item>
+      <item> cct_init </item>
+      <item> cintersect </item>
+      <item> clabel </item>
+      <item> consource </item>
+      <item> contact </item>
+      <item> contline </item>
+      <item> cosd </item>
+      <item> cross </item>
+      <item> cross3D </item>
+      <item> crossover </item>
+      <item> crosswd_ </item>
+      <item> csdim_ </item>
+      <item> dac </item>
+      <item> d_fet </item>
+      <item> dabove </item>
+      <item> darrow </item>
+      <item> darrow_init </item>
+      <item> dashline </item>
+      <item> dbelow </item>
+      <item> dcosine3D </item>
+      <item> def_bisect </item>
+      <item> delay </item>
+      <item> delay_rad_ </item>
+      <item> deleminit_ </item>
+      <item> dend </item>
+      <item> diff3D </item>
+      <item> diff_ </item>
+      <item> dimen_ </item>
+      <item> dimension_ </item>
+      <item> diode </item>
+      <item> dir_ </item>
+      <item> distance </item>
+      <item> direction_ </item>
+      <item> distance </item>
+      <item> dlabel </item>
+      <item> dleft </item>
+      <item> dline </item>
+      <item> dlinewid </item>
+      <item> dn_ </item>
+      <item> dljust </item>
+      <item> dn_ </item>
+      <item> dna_ </item>
+      <item> dnm_ </item>
+      <item> dot </item>
+      <item> dot3D </item>
+      <item> dotrad_ </item>
+      <item> down_ </item>
+      <item> dright </item>
+      <item> drjust </item>
+      <item> dswitch </item>
+      <item> dtee </item>
+      <item> dtor_ </item>
+      <item> dturn </item>
+      <item> e_ </item>
+      <item> e_fet </item>
+      <item> earphone </item>
+      <item> ebox </item>
+      <item> elchop </item>
+      <item> eleminit_ </item>
+      <item> elen_ </item>
+      <item> em_arrows </item>
+      <item> endshade </item>
+      <item> expe </item>
+      <item> f_box </item>
+      <item> fill_ </item>
+      <item> fitcurve </item>
+      <item> for_ </item>
+      <item> fuse </item>
+      <item> g_ </item>
+      <item> gap </item>
+      <item> gen_init </item>
+      <item> glabel_ </item>
+      <item> gpar_ </item>
+      <item> gpolyline_ </item>
+      <item> grid_ </item>
+      <item> ground </item>
+      <item> gshade </item>
+      <item> hoprad_ </item>
+      <item> ht_ </item>
+      <item> ifdpic </item>
+      <item> ifgpic </item>
+      <item> ifinstr </item>
+      <item> ifmfpic </item>
+      <item> ifmpost </item>
+      <item> ifpgf </item>
+      <item> ifpostscript </item>
+      <item> ifpstricks </item>
+      <item> ifroff </item>
+      <item> ifxfig </item>
+      <item> igbt </item>
+      <item> in__ </item>
+      <item> inductor </item>
+      <item> inner_prod </item>
+      <item> integrator </item>
+      <item> intersect_ </item>
+      <item> j_fet </item>
+      <item> larrow </item>
+      <item> lbox </item>
+      <item> left_ </item>
+      <item> length3D </item>
+      <item> lg_bartxt </item>
+      <item> lg_pin </item>
+      <item> lg_pintxt </item>
+      <item> lg_plen </item>
+      <item> lin_leng </item>
+      <item> linethick_ </item>
+      <item> ljust_ </item>
+      <item> llabel </item>
+      <item> loc_ </item>
+      <item> log10E_ </item>
+      <item> log_init </item>
+      <item> loge </item>
+      <item> lp_xy </item>
+      <item> lpop </item>
+      <item> lswitch </item>
+      <item> lt_ </item>
+      <item> manhattan </item>
+      <item> microphone </item>
+      <item> mm__ </item>
+      <item> mosfet </item>
+      <item> m4xpand </item>
+      <item> m4lstring </item>
+      <item> m4_arrow </item>
+      <item> m4xtract </item>
+      <item> n_ </item>
+      <item> ne_ </item>
+      <item> neg_ </item>
+      <item> nport </item>
+      <item> nw_ </item>
+      <item> opamp </item>
+      <item> open_arrow </item>
+      <item> par_ </item>
+      <item> pc__ </item>
+      <item> pi_ </item>
+      <item> pmod </item>
+      <item> point_ </item>
+      <item> polar_ </item>
+      <item> potentiometer </item>
+      <item> print3D </item>
+      <item> prod_ </item>
+      <item> project </item>
+      <item> psset_ </item>
+      <item> pt__ </item>
+      <item> r_ </item>
+      <item> rarrow </item>
+      <item> rect_ </item>
+      <item> relay </item>
+      <item> resetrgb </item>
+      <item> resistor </item>
+      <item> reversed </item>
+      <item> rgbdraw </item>
+      <item> rgbfill </item>
+      <item> right_ </item>
+      <item> rjust_ </item>
+      <item> rlabel </item>
+      <item> rot3Dx </item>
+      <item> rot3Dy </item>
+      <item> rot3Dz </item>
+      <item> rpoint_ </item>
+      <item> rpos_ </item>
+      <item> rrot_ </item>
+      <item> rs_box </item>
+      <item> rsvec_ </item>
+      <item> rt_ </item>
+      <item> rtod_ </item>
+      <item> rtod__ </item>
+      <item> rvec_ </item>
+      <item> s_ </item>
+      <item> s_box </item>
+      <item> s_dp </item>
+      <item> s_ht </item>
+      <item> s_init </item>
+      <item> s_name </item>
+      <item> s_wd </item>
+      <item> sc_draw </item>
+      <item> se_ </item>
+      <item> setrgb </item>
+      <item> setview </item>
+      <item> sfg_init </item>
+      <item> sfgabove </item>
+      <item> sfgarc </item>
+      <item> sfgbelow </item>
+      <item> sfgline </item>
+      <item> sfgnode </item>
+      <item> sfgself </item>
+      <item> shade </item>
+      <item> shadebox </item>
+      <item> sign_ </item>
+      <item> sinc </item>
+      <item> sind </item>
+      <item> sinusoid </item>
+      <item> source </item>
+      <item> sourcerad_ </item>
+      <item> sp_ </item>
+      <item> speaker </item>
+      <item> sprod3D </item>
+      <item> sum3D </item>
+      <item> sum_ </item>
+      <item> svec_ </item>
+      <item> sw_ </item>
+      <item> switch </item>
+      <item> ta_xy </item>
+      <item> thicklines_ </item>
+      <item> thinlines_ </item>
+      <item> thyristor </item>
+      <item> tline </item>
+      <item> tr_xy </item>
+      <item> tr_xy_init </item>
+      <item> transformer </item>
+      <item> ttmotor </item>
+      <item> twopi_ </item>
+      <item> ujt </item>
+      <item> unit3D </item>
+      <item> up_ </item>
+      <item> up__ </item>
+      <item> variable </item>
+      <item> vec_ </item>
+      <item> vlength </item>
+      <item> vperp </item>
+      <item> vrot_ </item>
+      <item> vscal_ </item>
+      <item> w_ </item>
+      <item> wid_ </item>
+      <item> winding </item>
+      <item> xtal </item>
+      <item> xtract </item>
+    </list>
+    <contexts>
+      <context attribute="Normal Text" lineEndContext="#pop" name="Normal Text">
+        <keyword attribute="Preprocessor" String="prep" context="#stay"/>
+        <keyword attribute="Builtin Function" String="builtinfuncs" context="#stay"/>
+        <keyword attribute="Keyword" context="#stay" String="keywords" />
+        <keyword attribute="Special Variable" String="specialvars" context="#stay"/>
+        <RegExpr attribute="Node" String="[a-zA-Z0-9_]+:" context="#stay"/>
+        <RegExpr attribute="TeX" String="\\.+" context="#stay"/>
+        <RegExpr attribute="Normal Text" String="[a-zA-Z_]\w+" context="#stay"/>
+        <RegExpr attribute="Float" String="(\d+\.\d*|\.\d+)([eE]\d+)?" context="#stay"/>
+        <RegExpr attribute="Int" String="([1-9]\d*([eE]\d+)?|0)" context="#stay"/>
+        <DetectChar attribute="String" context="string" char='"' />
+        <DetectChar attribute="Operator" char="(" context="parenthesised" beginRegion="parenthesis"/>
+        <DetectChar attribute="Operator" char=")" context="#pop" endRegion="parenthesis"/>
+<!--        <RegExpr attribute="Operator" String="[+*/\(\)%\|\[\]\{\}:=;\!^&]" context="#stay"/>  -->
+        <RegExpr attribute="Comment" String="#.*$" context="#stay"/>
+      </context>
+     
+      <context name="parenthesised" attribute="Normal Text" lineEndContext="#stay" noIndentationBasedFolding="True">
+        <IncludeRules context="Normal Text" />
+      </context>
+     
+      <context attribute="String" lineEndContext="#stay" name="string">
+        <DetectChar attribute="String" context="#pop" char='"'/>
+      </context>
+    </contexts>
+    <itemDatas>
+      <itemData name="Builtin Function" defStyleNum="dsDataType"/>
+      <itemData name="Comment" defStyleNum="dsComment"/>
+      <itemData name="Float" defStyleNum="dsFloat"/>
+      <itemData name="Int" defStyleNum="dsDecVal"/>
+      <itemData name="Keyword" defStyleNum="dsKeyword"/>
+      <itemData name="Node" defStyleNum="dsChar"/>
+      <itemData name="Normal Text" defStyleNum="dsNormal"/>
+      <itemData name="Operator" defStyleNum="dsChar"/>
+      <itemData name="Preprocessor" defStyleNum="dsChar"/>
+      <itemData name="Special Variable" defStyleNum="dsOthers"/>
+      <itemData name="String" defStyleNum="dsString"/>
+      <itemData name="TeX" defStyleNum="dsString"/>
+    </itemDatas>
+  </highlighting>
+  <general>
+    <folding indentationsensitive="1" />
+    <comments>
+      <comment name="singleLine" start="#" position="afterwhitespace"/>
+    </comments>
+  </general>
+</language> 
