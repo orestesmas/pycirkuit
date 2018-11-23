@@ -182,8 +182,33 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         try:
             src = "{srcFile}".format(srcFile=self.tmpDir .path()+ "/cirkuit_tmp.tikz")
             dst = "{dstFile}".format(dstFile=lastWD+'/'+self.lastFilename.partition('.')[0]+".tikz")
-            copyfile(src, dst)
-            self.exportButton.setEnabled(False)
+            msgBox = QtWidgets.QMessageBox(self)
+            msgBox.setWindowTitle("Avís")
+            msgBox.setIcon(QtWidgets.QMessageBox.Warning)
+            msgBox.setText("Ja existeix un fitxer de nom «{filename}» al directori de treball.".format(filename=self.lastFilename.partition('.')[0]+".tikz"))
+            msgBox.setInformativeText("Voleu sobreescriure'l?")
+            msgBox.setStandardButtons(QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
+            saveAsButton = msgBox.addButton("Desa com a...",  QtWidgets.QMessageBox.AcceptRole)
+            msgBox.setDefaultButton(QtWidgets.QMessageBox.No)
+            response = msgBox.exec()
+            print(response)
+            print(msgBox.clickedButton())
+            if response == QtWidgets.QMessageBox.Yes:
+                copyfile(src, dst)
+                self.exportButton.setEnabled(False)
+            if (response == QtWidgets.QMessageBox.NoButton) and (msgBox.clickedButton() == saveAsButton):
+                fdlg = QtWidgets.QFileDialog(self)
+                fdlg.setWindowTitle("Enter a file to save into")
+                fdlg.setDirectory(dst)
+                fdlg.setFileMode(QtWidgets.QFileDialog.AnyFile)
+                fdlg.setOptions(QtWidgets.QFileDialog.DontUseNativeDialog)
+                fdlg.setViewMode(QtWidgets.QFileDialog.Detail)
+                fdlg.setFilter(QtCore.QDir.AllDirs | QtCore.QDir.Files )
+                if fdlg.exec():
+                    dst = fdlg.selectedFiles()[0]
+                fdlg.close()
+                copyfile(src, dst)
+                self.exportButton.setEnabled(False)
         except OSError as e:
             print("Export failed:", e)
     
@@ -283,11 +308,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         if os.path.exists(cmPath + "/libcct.m4"):
             return True
         else:
-            #TODO: Demanar si es vol descarregar i instal·lar les CM automàticament.
-            # defaultPath = QDir.homePath() + "/.local/share/<appname>/circuit_macros"
             txt  = "No s'han trobat les «Circuit Macros»!\n\n"
             txt += "Voleu provar de cercar-les i instal·lar-les automàticament?"
             response = QtWidgets.QMessageBox.question(self, "Error",  txt,  defaultButton = QtWidgets.QMessageBox.Yes)
+            result = False
             if response == QtWidgets.QMessageBox.Yes:
                 try:
                     app = QtWidgets.QApplication.instance()
@@ -295,6 +319,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     cmMgr = CircuitMacrosManager(self)
                     cmMgr.download_latest()
                     cmMgr.unpack_circuit_macros()
+                    result = True
                 except:
                     pass
                 finally:
@@ -304,7 +329,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 txt += "Si us plau, indiqueu-ne la ruta correcta als arranjaments.\n\n"
                 txt += "No es pot processar el circuit."
                 QtWidgets.QMessageBox.critical(self, "Error crític",  txt)
-                return False
+            return result
 
     
     def check_templates(self):
