@@ -5,17 +5,16 @@ Module implementing configDialog.
 """
 
 import os
-from PyQt5.QtCore import pyqtSlot,\
-                         QDir,\
-                         QSettings
-from PyQt5.QtWidgets import QDialog,\
-                            QFileDialog
+from PyQt5.QtCore import\
+        pyqtSlot,\
+        QDir,\
+        QSettings
+from PyQt5.QtWidgets import\
+        QDialog,\
+        QFileDialog
 from .Ui_configdialog import Ui_configDialog
 
-#FIXME: El diàleg encara deixa introduir (manualment) paths inexistents, i només desa els paths a la configuració si els escollim via botó
-# - Una solució és no deixar editar manualment els paths, però és poc elegant/intuïtiu
-# - Una altra via seria convertir la QLineEdit en un QComboBox. Potser funciona.
-#WARNING: - Els botons potser s'haurien de dir "Navega" (Browse)...
+
 class configDialog(QDialog, Ui_configDialog):
     """
     Class documentation goes here.
@@ -50,6 +49,15 @@ class configDialog(QDialog, Ui_configDialog):
             self.templateFile.setText(storedLatexTemplateFile)
     
     
+    @pyqtSlot()
+    def accept(self):
+        settings = QSettings()
+        settings.setValue("General/latexTemplateFile", self.cmPath.text())
+        settings.setValue("General/latexTemplateFile", self.templateFile.text())
+        settings.sync()
+        QDialog.accept(self)
+        
+        
     @pyqtSlot(int)
     def on_listWidget_currentRowChanged(self, currentRow):
         """
@@ -73,11 +81,8 @@ class configDialog(QDialog, Ui_configDialog):
         fdlg.setViewMode(QFileDialog.Detail)
         fdlg.setFilter(QDir.Dirs | QDir.Hidden)
         if fdlg.exec():
-            settings = QSettings()
             newPath = fdlg.selectedFiles()
             self.cmPath.setText(newPath[0])
-            settings.setValue("General/cmPath", self.cmPath.text())
-            settings.sync()
         fdlg.close()
 
     
@@ -94,11 +99,8 @@ class configDialog(QDialog, Ui_configDialog):
         fdlg.setViewMode(QFileDialog.Detail)
         fdlg.setFilter(QDir.AllDirs | QDir.Files | QDir.NoDotAndDotDot | QDir.Hidden)
         if fdlg.exec():
-            settings = QSettings()
             newPath = fdlg.selectedFiles()
             self.templateFile.setText(newPath[0])
-            settings.setValue("General/latexTemplateFile", self.templateFile.text())
-            settings.sync()
         fdlg.close()
 
 
