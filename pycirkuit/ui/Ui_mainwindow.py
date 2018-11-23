@@ -85,7 +85,7 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(1)
         sizePolicy.setHeightForWidth(self.imatge.sizePolicy().hasHeightForWidth())
         self.imatge.setSizePolicy(sizePolicy)
-        self.imatge.setMinimumSize(QtCore.QSize(20, 20))
+        self.imatge.setMinimumSize(QtCore.QSize(20, 100))
         font = QtGui.QFont()
         font.setPointSize(18)
         font.setBold(True)
