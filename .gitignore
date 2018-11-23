@@ -1,14 +1,3 @@
+*.pyc
 /.directory
-/.kdev4/pycirkuit.kdev4
-/divisor2.ckt
-/mainwindow.pyc
-/tmp.aux
-/tmp.ckt
-/tmp.log
-/tmp.pdf
-/tmp.pic
-/tmp.png
-/tmp.tex
-/tmp.tikz
-**/__pycache__/*
 /.eric6project/*
