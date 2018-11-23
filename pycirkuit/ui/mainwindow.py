@@ -120,6 +120,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             # La crida subprocess.run() és molt interessant
             # el 'check=False' fa que no salti una excepció si l'ordre falla, atès que ja la llanço jo després
             # amb un missatge més personalitzat
+            self.statusBar.showMessage("Converting: Circuit Macros -> PIC")
             command = "m4 -I {cmPath} pgf.m4 {baseName}.ckt > {baseName}.pic".format(cmPath=cmPath,  baseName=tmpFileBaseName)
             result = subprocess.run(command, shell=True, check=False, stderr=subprocess.STDOUT, stdout=subprocess.PIPE)
             if result.returncode != 0:
@@ -128,6 +129,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 raise OSError(errMsg)
 
             # PAS 2: Li passo el dpic: .PIC -> .TIKZ
+            self.statusBar.showMessage("Converting: PIC -> TIKZ")
             command = "dpic -g {baseName}.pic > {baseName}.tikz".format(baseName=tmpFileBaseName)
             result = subprocess.run(command, shell=True, check=False, stderr=subprocess.STDOUT, stdout=subprocess.PIPE)
             if result.returncode != 0:
@@ -137,6 +139,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
             # PAS 3: Li passo el PDFLaTeX: .TIKZ -> .PDF
             # Primer haig d'incloure el codi .TIKZ en una plantilla adient
+            self.statusBar.showMessage("Converting: TIKZ -> PDF")
             latexTemplateFile = settings.value("General/latexTemplateFile")
             templateCode = ""
             with open("{templateFile}".format(templateFile=latexTemplateFile), 'r') as template:
@@ -171,6 +174,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 raise OSError(errMsg)
 
             # PAS 4: Converteixo el PDF a imatge bitmap per visualitzar-la: .PDF -> .PNG
+            self.statusBar.showMessage("Converting: PDF -> PNG")
             command = "pdftoppm {baseName}.pdf -png > {baseName}.png".format(baseName=tmpFileBaseName)
             result = subprocess.run(command, shell=True, check=False, stderr=subprocess.STDOUT, stdout=subprocess.PIPE)
             if result.returncode != 0:
@@ -187,6 +191,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             # If all went well and we have a generated image, we can 
             self.exportButton.setEnabled(True)
         finally:
+            self.statusBar.clearMessage()
             app.restoreOverrideCursor()
 
   
