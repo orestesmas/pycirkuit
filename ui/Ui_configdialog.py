@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/orestes/Devel/Software/pycirkuit/ui/configdialog.ui'
 #
-# Created by: PyQt5 UI code generator 5.10.1
+# Created by: PyQt5 UI code generator 5.7
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -11,7 +11,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_configDialog(object):
     def setupUi(self, configDialog):
         configDialog.setObjectName("configDialog")
-        configDialog.resize(734, 397)
+        configDialog.resize(800, 400)
+        configDialog.setMinimumSize(QtCore.QSize(800, 0))
         self.verticalLayout = QtWidgets.QVBoxLayout(configDialog)
         self.verticalLayout.setObjectName("verticalLayout")
         self.horizontalLayout = QtWidgets.QHBoxLayout()
@@ -19,8 +20,12 @@ class Ui_configDialog(object):
         self.listWidget = QtWidgets.QListWidget(configDialog)
         self.listWidget.setMaximumSize(QtCore.QSize(128, 16777215))
         self.listWidget.setIconSize(QtCore.QSize(96, 84))
+        self.listWidget.setTextElideMode(QtCore.Qt.ElideRight)
         self.listWidget.setMovement(QtWidgets.QListView.Static)
+        self.listWidget.setResizeMode(QtWidgets.QListView.Fixed)
         self.listWidget.setViewMode(QtWidgets.QListView.IconMode)
+        self.listWidget.setUniformItemSizes(False)
+        self.listWidget.setSelectionRectVisible(True)
         self.listWidget.setObjectName("listWidget")
         item = QtWidgets.QListWidgetItem()
         icon = QtGui.QIcon()
@@ -35,6 +40,7 @@ class Ui_configDialog(object):
         self.page1 = QtWidgets.QWidget()
         self.page1.setObjectName("page1")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.page1)
+        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.groupBox = QtWidgets.QGroupBox(self.page1)
         self.groupBox.setMinimumSize(QtCore.QSize(0, 100))
@@ -112,10 +118,10 @@ class Ui_configDialog(object):
         self.listWidget.setSortingEnabled(__sortingEnabled)
         self.groupBox.setTitle(_translate("configDialog", "Circuit Macros Location"))
         self.cmPath.setPlaceholderText(_translate("configDialog", "Enter Path Name"))
-        self.toolButtonCMPath.setText(_translate("configDialog", "Choose Dir"))
+        self.toolButtonCMPath.setText(_translate("configDialog", "Choose Dir..."))
         self.groupBox_2.setTitle(_translate("configDialog", "LaTeX Template File"))
         self.templateFile.setPlaceholderText(_translate("configDialog", "Enter Path Name"))
-        self.toolButtonTemplatePath.setText(_translate("configDialog", "Choose File"))
+        self.toolButtonTemplatePath.setText(_translate("configDialog", "Choose File..."))
         self.radioButton.setText(_translate("configDialog", "RadioB&utton"))
 
 import resources_rc
