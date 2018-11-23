@@ -179,34 +179,39 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def on_exportButton_clicked(self):
         settings = QtCore.QSettings()
         lastWD = settings.value("General/lastWD")
-        try:
-            src = "{srcFile}".format(srcFile=self.tmpDir .path()+ "/cirkuit_tmp.tikz")
-            dst = "{dstFile}".format(dstFile=lastWD+'/'+self.lastFilename.partition('.')[0]+".tikz")
-            msgBox = QtWidgets.QMessageBox(self)
-            msgBox.setWindowTitle("Avís")
-            msgBox.setIcon(QtWidgets.QMessageBox.Warning)
-            msgBox.setText("Ja existeix un fitxer de nom «{filename}» al directori de treball.".format(filename=self.lastFilename.partition('.')[0]+".tikz"))
-            msgBox.setInformativeText("Voleu sobreescriure'l?")
-            msgBox.setStandardButtons(QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
-            saveAsButton = msgBox.addButton("Desa com a...",  QtWidgets.QMessageBox.AcceptRole)
-            msgBox.setDefaultButton(QtWidgets.QMessageBox.No)
-            response = msgBox.exec()
-            print(response)
-            print(msgBox.clickedButton())
-            if response == QtWidgets.QMessageBox.Yes:
-                copyfile(src, dst)
-                self.exportButton.setEnabled(False)
-            if (response == QtWidgets.QMessageBox.NoButton) and (msgBox.clickedButton() == saveAsButton):
-                fdlg = QtWidgets.QFileDialog(self)
-                fdlg.setWindowTitle("Enter a file to save into")
-                fdlg.setDirectory(dst)
-                fdlg.setFileMode(QtWidgets.QFileDialog.AnyFile)
-                fdlg.setOptions(QtWidgets.QFileDialog.DontUseNativeDialog)
-                fdlg.setViewMode(QtWidgets.QFileDialog.Detail)
-                fdlg.setFilter(QtCore.QDir.AllDirs | QtCore.QDir.Files )
-                if fdlg.exec():
-                    dst = fdlg.selectedFiles()[0]
-                fdlg.close()
+        src = "{srcFile}".format(srcFile=self.tmpDir .path()+ "/cirkuit_tmp.tikz")
+        dst = "{dstFile}".format(dstFile=lastWD+'/'+self.lastFilename.partition('.')[0]+".tikz")
+        try:    
+            if os.path.exists(dst):
+                msgBox = QtWidgets.QMessageBox(self)
+                msgBox.setWindowTitle("Avís")
+                msgBox.setIcon(QtWidgets.QMessageBox.Warning)
+                msgBox.setText("Ja existeix un fitxer de nom «{filename}» al directori de treball.".format(filename=self.lastFilename.partition('.')[0]+".tikz"))
+                msgBox.setInformativeText("Voleu sobreescriure'l?")
+                msgBox.setStandardButtons(QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
+                saveAsButton = msgBox.addButton("Desa com a...",  QtWidgets.QMessageBox.AcceptRole)
+                msgBox.setDefaultButton(QtWidgets.QMessageBox.No)
+                response = msgBox.exec()
+                # Overwrite
+                if response == QtWidgets.QMessageBox.Yes:
+                    copyfile(src, dst)
+                    self.exportButton.setEnabled(False)
+                # Save with another name (and ask for it first)
+                if (response == QtWidgets.QMessageBox.NoButton) and (msgBox.clickedButton() == saveAsButton):
+                    fdlg = QtWidgets.QFileDialog(self)
+                    fdlg.setWindowTitle("Enter a file to save into")
+                    fdlg.setDirectory(dst)
+                    fdlg.setFileMode(QtWidgets.QFileDialog.AnyFile)
+                    fdlg.setOptions(QtWidgets.QFileDialog.DontUseNativeDialog)
+                    fdlg.setViewMode(QtWidgets.QFileDialog.Detail)
+                    fdlg.setFilter(QtCore.QDir.AllDirs | QtCore.QDir.Files )
+                    if fdlg.exec():
+                        dst = fdlg.selectedFiles()[0]
+                    fdlg.close()
+                    copyfile(src, dst)
+                    self.exportButton.setEnabled(False)
+                # Any other option means user doesn't want to overwrite the file -> Exit
+            else:
                 copyfile(src, dst)
                 self.exportButton.setEnabled(False)
         except OSError as e:
