@@ -1,9 +1,15 @@
-<!DOCTYPE RCC>
 <RCC>
   <qresource prefix="/icons">
+    <file>help.png</file>
+    <file>helpAbout.png</file>
+    <file>resources.qrc</file>
+    <file>fileSave.png</file>
+    <file>config.png</file>
+    <file>close.png</file>
+    <file>new.png</file>
     <file alias="FolderIcon">open.png</file>
     <file alias="AppIcon">hi32-app-cirkuit.png</file>
-    <file>config.png</file>
+    <file>toolsConfigure.png</file>
   </qresource>
   <qresource prefix="/backgrounds">
     <file>circuit-bg.jpg</file>

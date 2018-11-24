@@ -60,7 +60,7 @@ class CircuitMacrosManager(QtCore.QObject):
         try:
             dataPath = QtCore.QStandardPaths.writableLocation(QtCore.QStandardPaths.AppDataLocation)
             with tarfile.open(dataPath + '/Circuit_macros.tar.gz', 'r:gz') as tarFile:
-                # Circuit Macros is distributed in a tree structure. 
+                # Circuit Macros is distributed in a tree structure.
                 # We want the top dir of this structure to be 'circuit_macros', whichever it is now
                 # The following algorithm assumes that all circuit macros's files are in a subdir.
                 entry = tarFile.next()
@@ -70,7 +70,7 @@ class CircuitMacrosManager(QtCore.QObject):
                     filename = entry.name
                     entry.name = filename.replace(storedDir, 'circuit_macros', 1)
                 tarFile.extractall(path=dataPath)
-            os.remove(dataPath +'/Circuit_macros.tar.gz')
+            os.remove(dataPath + '/Circuit_macros.tar.gz')
             settings = QtCore.QSettings()
             settings.setValue("General/cmPath", dataPath + '/circuit_macros')
             settings.sync()

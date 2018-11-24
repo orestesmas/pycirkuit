@@ -224,7 +224,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     fdlg.setFileMode(QtWidgets.QFileDialog.AnyFile)
                     fdlg.setOptions(QtWidgets.QFileDialog.DontUseNativeDialog)
                     fdlg.setViewMode(QtWidgets.QFileDialog.Detail)
-                    fdlg.setFilter(QtCore.QDir.AllDirs | QtCore.QDir.Files )
+                    fdlg.setFilter(QtCore.QDir.AllDirs | QtCore.QDir.Files)
                     if fdlg.exec():
                         dst = fdlg.selectedFiles()[0]
                     fdlg.close()
@@ -247,6 +247,21 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.needSaving = True
         self.exportButton.setEnabled(False)
 
+
+    @pyqtSlot()
+    def on_actionAbout_triggered(self):
+        """
+        Slot documentation goes here.
+        """
+        txt = "Copyright (c) 2018 Orestes Mas\n\n"\
+                 "PyCirkuit is a compiler/renderer of circuit diagrams written using the Dwight Aplevich's 'Circuit Macros'.\n"\
+                 "Being written in python, the code and ideas are largely based on 'cirkuit' C++ program, by Matteo Agostinelli.\n"
+        QtWidgets.QMessageBox.about(self,  "About PyCirkuit",  txt)
+
+
+    @pyqtSlot()
+    def on_actionNew_triggered(self):
+        raise NotImplementedError
 
     @pyqtSlot()
     def on_actionOpen_triggered(self):
@@ -283,17 +298,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     self.setWindowTitle("PyCirkuit - {filename}".format(filename=self.lastFilename))
                     self.on_processButton_clicked()
 
-
-    @pyqtSlot()
-    def on_actionAbout_triggered(self):
-        """
-        Slot documentation goes here.
-        """
-        txt = "Copyright (c) 2018 Orestes Mas\n\n"\
-                 "PyCirkuit is a compiler/renderer of circuit diagrams written using the Dwight Aplevich's 'Circuit Macros'.\n"\
-                 "Being written in python, the code and ideas are largely based on 'cirkuit' C++ program, by Matteo Agostinelli.\n"
-        QtWidgets.QMessageBox.about(self,  "About PyCirkuit",  txt)
-
     
     @pyqtSlot()
     def on_actionPreferences_triggered(self):
@@ -318,10 +322,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     print("Found: {prg}\n".format(prg=p["progName"]))
                     break
             else:
-                txt  = "No s'ha trobat el {msg}!\n\n"
+                txt = "No s'ha trobat el {msg}!\n\n"
                 txt += "Assegureu-vos de tenir aquesta aplicació correctament instal·lada i l'executable «{execName}» al PATH.\n\n"
                 txt += "No es pot processar el circuit."
-                txt  = txt.format(msg=p["errMsg"],  execName=p["progName"])
+                txt = txt.format(msg=p["errMsg"],  execName=p["progName"])
                 QtWidgets.QMessageBox.critical(self, "Error crític",  txt)
                 return False
         return True
@@ -335,7 +339,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         else:
             txt  = "No s'han trobat les «Circuit Macros»!\n\n"
             txt += "Voleu provar de cercar-les i instal·lar-les automàticament?"
-            response = QtWidgets.QMessageBox.question(self, "Error",  txt,  defaultButton = QtWidgets.QMessageBox.Yes)
+            response = QtWidgets.QMessageBox.question(self, "Error",  txt,  defaultButton=QtWidgets.QMessageBox.Yes)
             result = False
             if response == QtWidgets.QMessageBox.Yes:
                 try:

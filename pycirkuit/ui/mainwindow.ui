@@ -69,6 +69,10 @@
         <property name="text">
          <string>Export to TIkZ</string>
         </property>
+        <property name="icon">
+         <iconset resource="../resources/resources.qrc">
+          <normaloff>:/icons/fileSave.png</normaloff>:/icons/fileSave.png</iconset>
+        </property>
        </widget>
       </item>
      </layout>
@@ -88,6 +92,7 @@
     <property name="title">
      <string>Fi&amp;le</string>
     </property>
+    <addaction name="actionNew"/>
     <addaction name="actionOpen"/>
     <addaction name="actionQuit"/>
    </widget>
@@ -173,23 +178,66 @@ color: rgb(255, 0, 0);</string>
    </widget>
   </widget>
   <action name="actionQuit">
+   <property name="icon">
+    <iconset resource="../resources/resources.qrc">
+     <normaloff>:/icons/close.png</normaloff>:/icons/close.png</iconset>
+   </property>
    <property name="text">
     <string>&amp;Quit</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
   </action>
   <action name="actionOpen">
+   <property name="icon">
+    <iconset resource="../resources/resources.qrc">
+     <normaloff>:/icons/FolderIcon</normaloff>:/icons/FolderIcon</iconset>
+   </property>
    <property name="text">
     <string>&amp;Open</string>
    </property>
+   <property name="toolTip">
+    <string>Open Drawing</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
   </action>
   <action name="actionAbout">
+   <property name="icon">
+    <iconset resource="../resources/resources.qrc">
+     <normaloff>:/icons/helpAbout.png</normaloff>:/icons/helpAbout.png</iconset>
+   </property>
    <property name="text">
     <string>&amp;About PyCirkuit</string>
    </property>
   </action>
   <action name="actionPreferences">
+   <property name="icon">
+    <iconset resource="../resources/resources.qrc">
+     <normaloff>:/icons/toolsConfigure.png</normaloff>:/icons/toolsConfigure.png</iconset>
+   </property>
    <property name="text">
     <string>&amp;Preferences...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+A</string>
+   </property>
+  </action>
+  <action name="actionNew">
+   <property name="icon">
+    <iconset resource="../resources/resources.qrc">
+     <normaloff>:/icons/new.png</normaloff>:/icons/new.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;New</string>
+   </property>
+   <property name="toolTip">
+    <string>New Drawing</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
    </property>
   </action>
  </widget>
