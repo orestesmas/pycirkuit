@@ -22,7 +22,7 @@ from PyQt5.QtWidgets import QApplication
 from PyQt5.QtCore import QCoreApplication
 
 # Local application imports
-from ui.mainwindow import MainWindow
+from pycirkuit.mainwindow import MainWindow
 
 
 if __name__ == "__main__":

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric project file for project pycirkuit -->
-<!-- Saved: 2018-11-22, 14:16:21 -->
+<!-- Saved: 2018-11-24, 17:56:23 -->
 <!-- Copyright (C) 2018 Orestes Mas, orestes@tsc.upc.edu -->
 <Project version="5.1">
   <Language>en_US</Language>
@@ -14,11 +14,11 @@
   <Eol index="0"/>
   <Sources>
     <Source>circuitmacrosmanager.py</Source>
-    <Source>pycirkuit.py</Source>
+    <Source>configdialog.py</Source>
+    <Source>main.py</Source>
+    <Source>mainwindow.py</Source>
     <Source>ui/Ui_configdialog.py</Source>
     <Source>ui/Ui_mainwindow.py</Source>
-    <Source>ui/configdialog.py</Source>
-    <Source>ui/mainwindow.py</Source>
   </Sources>
   <Forms>
     <Form>ui/configdialog.ui</Form>
@@ -29,8 +29,16 @@
     <Resource>resources/resources.qrc</Resource>
   </Resources>
   <Interfaces/>
-  <Others/>
-  <MainScript>pycirkuit.py</MainScript>
+  <Others>
+    <Other>resources/application-x-cirkuit.svgz</Other>
+    <Other>resources/circuit-bg.jpg</Other>
+    <Other>resources/config.png</Other>
+    <Other>resources/hi32-app-cirkuit.png</Other>
+    <Other>resources/hi48-app-cirkuit.png</Other>
+    <Other>resources/hi64-app-cirkuit.png</Other>
+    <Other>templates</Other>
+  </Others>
+  <MainScript>main.py</MainScript>
   <Vcs>
     <VcsType>None</VcsType>
   </Vcs>

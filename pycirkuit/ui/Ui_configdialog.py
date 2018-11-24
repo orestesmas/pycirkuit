@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/orestes/Devel/Software/pycirkuit/ui/configdialog.ui'
+# Form implementation generated from reading ui file 'configdialog.ui'
 #
-# Created by: PyQt5 UI code generator 5.7
+# Created by: PyQt5 UI code generator 5.11.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -40,7 +40,6 @@ class Ui_configDialog(object):
         self.page1 = QtWidgets.QWidget()
         self.page1.setObjectName("page1")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.page1)
-        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.groupBox = QtWidgets.QGroupBox(self.page1)
         self.groupBox.setMinimumSize(QtCore.QSize(0, 100))
@@ -124,14 +123,4 @@ class Ui_configDialog(object):
         self.toolButtonTemplatePath.setText(_translate("configDialog", "Choose File..."))
         self.radioButton.setText(_translate("configDialog", "RadioB&utton"))
 
-import resources_rc
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    configDialog = QtWidgets.QDialog()
-    ui = Ui_configDialog()
-    ui.setupUi(configDialog)
-    configDialog.show()
-    sys.exit(app.exec_())
-
+from pycirkuit import resources_rc
