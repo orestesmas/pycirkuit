@@ -94,6 +94,8 @@
     </property>
     <addaction name="actionNew"/>
     <addaction name="actionOpen"/>
+    <addaction name="actionSave"/>
+    <addaction name="actionSaveAs"/>
     <addaction name="actionQuit"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
@@ -195,7 +197,7 @@ color: rgb(255, 0, 0);</string>
      <normaloff>:/icons/FolderIcon</normaloff>:/icons/FolderIcon</iconset>
    </property>
    <property name="text">
-    <string>&amp;Open</string>
+    <string>&amp;Open...</string>
    </property>
    <property name="toolTip">
     <string>Open Drawing</string>
@@ -222,7 +224,7 @@ color: rgb(255, 0, 0);</string>
     <string>&amp;Preferences...</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+A</string>
+    <string>Ctrl+P</string>
    </property>
   </action>
   <action name="actionNew">
@@ -238,6 +240,30 @@ color: rgb(255, 0, 0);</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="icon">
+    <iconset resource="../resources/resources.qrc">
+     <normaloff>:/icons/fileSave.png</normaloff>:/icons/fileSave.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Save</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionSaveAs">
+   <property name="icon">
+    <iconset resource="../resources/resources.qrc">
+     <normaloff>:/icons/fileSaveAs.png</normaloff>:/icons/fileSaveAs.png</iconset>
+   </property>
+   <property name="text">
+    <string>Sa&amp;ve As...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+S</string>
    </property>
   </action>
  </widget>

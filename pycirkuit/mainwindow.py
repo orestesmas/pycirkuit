@@ -32,9 +32,6 @@ from PyQt5 import QtCore, QtWidgets, QtGui
 # Local application imports
 from pycirkuit.configdialog import configDialog
 from pycirkuit.ui.Ui_mainwindow import Ui_MainWindow
-#FIXME: Els imports relatius no són bons.
-# Cal mirar-se la resposta de l'usuari np8 a https://stackoverflow.com/questions/714063/importing-modules-from-parent-folder
-#sys.path.append("..")
 from pycirkuit.circuitmacrosmanager import CircuitMacrosManager
 
 
@@ -90,19 +87,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         # Començo: Primer deso la feina no desada
         if self.needSaving:
-            try:
-                f = open(self.lastFilename,'w', encoding='UTF-8')
-                f.write(self.sourceText.toPlainText())
-            except OSError as e:
-                errMsg = "S'ha produït un error en desar el fitxer font: " + e.strerror + ".\n\n"
-                errMsg += "No es pot processar el circuit."
-                QtWidgets.QMessageBox.critical(self, "Error crític",  errMsg)
-                return
-            else:
-                self.needSaving = False
-                self.processButton.setEnabled(False)
-            finally:
-                f.close()
+            self.actionSave.trigger()
 
         # Instantiate a settings object to load config values. At this point the config have valid entries, so don't test much
         settings = QtCore.QSettings()
@@ -189,10 +174,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             imatge = QtGui.QPixmap("{baseName}.png".format(baseName=tmpFileBaseName))
             self.imatge.setPixmap(imatge)
             # If all went well and we have a generated image, we can 
+            self.processButton.setEnabled(False)
             self.exportButton.setEnabled(True)
         finally:
             self.statusBar.clearMessage()
             app.restoreOverrideCursor()
+
 
   
     @pyqtSlot()
@@ -240,11 +227,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     
     @pyqtSlot()
     def on_sourceText_textChanged(self):
-        if self.sourceText.toPlainText() == "":
-            self.processButton.setEnabled(False)
-        else:
-            self.processButton.setEnabled(True)
-            self.needSaving = True
+        self.needSaving = True
+        self.actionSave.setEnabled(True)
+        self.processButton.setEnabled(True)
         self.exportButton.setEnabled(False)
 
 
@@ -261,7 +246,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     @pyqtSlot()
     def on_actionNew_triggered(self):
-        raise NotImplementedError
+        txt = ".PS\nscale=2.54\ncct_init\n\nl=elen_\n<enter your drawing here>\n.PE\n"
+        self.sourceText.setText(txt)
+        self.lastFileName = ""
 
     @pyqtSlot()
     def on_actionOpen_triggered(self):
@@ -298,6 +285,56 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     self.setWindowTitle("PyCirkuit - {filename}".format(filename=self.lastFilename))
                     self.on_processButton_clicked()
 
+    def saveBuffer(self,  dst):
+        try:
+            f = open(dst,'w', encoding='UTF-8')
+            f.write(self.sourceText.toPlainText())
+        except OSError as e:
+            errMsg = "S'ha produït un error en desar el fitxer font: " + e.strerror + ".\n\n"
+            errMsg += "No es pot executar l'ordre."
+            QtWidgets.QMessageBox.critical(self, "Error crític",  errMsg)
+            return
+        else:
+            settings = QtCore.QSettings()
+            lastWD, self.lastFilename = os.path.split(dst)
+            os.chdir(lastWD)
+            settings.setValue("General/lastWD", lastWD)
+            self.setWindowTitle("PyCirkuit - {filename}".format(filename=self.lastFilename))
+            self.needSaving = False
+            self.actionSave.setEnabled(False)
+        finally:
+            f.close()
+
+
+    @pyqtSlot()
+    def on_actionSave_triggered(self):
+        settings = QtCore.QSettings()
+        lastWD = settings.value("General/lastWD", "")
+        filePath = lastWD + "/" + self.lastFilename
+        if os.path.isfile(filePath):
+            self.saveBuffer(filePath)
+        else:
+            self.actionSaveAs.trigger()
+
+
+    @pyqtSlot()
+    def on_actionSaveAs_triggered(self):
+        settings = QtCore.QSettings()
+        lastWD = settings.value("General/lastWD", QtCore.QStandardPaths.displayName(QtCore.QStandardPaths.HomeLocation))
+        fdlg = QtWidgets.QFileDialog(self)
+        fdlg.setWindowTitle("Enter a file to save into")
+        fdlg.setDirectory(lastWD)
+        fdlg.setFilter(QtCore.QDir.AllDirs | QtCore.QDir.Files)
+        fdlg.setNameFilters(["PyCirkuit files (*.ckt)",  "Any files (*)"])
+        fdlg.setOptions(QtWidgets.QFileDialog.DontUseNativeDialog)
+        fdlg.setFileMode(QtWidgets.QFileDialog.AnyFile)
+        fdlg.setViewMode(QtWidgets.QFileDialog.Detail)
+        fdlg.setAcceptMode(QtWidgets.QFileDialog.AcceptSave)
+        if fdlg.exec():
+            dst = fdlg.selectedFiles()[0]
+        fdlg.close()
+        self.saveBuffer(dst)
+    
     
     @pyqtSlot()
     def on_actionPreferences_triggered(self):

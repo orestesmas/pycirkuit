@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="/icons">
+    <file>fileSave.png</file>
+    <file>fileSaveAs.png</file>
     <file>help.png</file>
     <file>helpAbout.png</file>
     <file>resources.qrc</file>
