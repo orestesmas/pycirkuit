@@ -1,17 +1,21 @@
 <RCC>
   <qresource prefix="/icons">
-    <file>fileSave.png</file>
-    <file>fileSaveAs.png</file>
-    <file>help.png</file>
-    <file>helpAbout.png</file>
-    <file>resources.qrc</file>
-    <file>fileSave.png</file>
-    <file>config.png</file>
-    <file>close.png</file>
-    <file>new.png</file>
-    <file alias="FolderIcon">open.png</file>
+    <file alias="Exit">application-exit.png</file>
+    <file alias="New">document-new.png</file>
+    <file alias="Open">document-open.png</file>
+    <file alias="Close">document-close.png</file>
+    <file alias="Export">document-export.png</file>
+    <file alias="Save">fileSave.png</file>
+    <file alias="SaveAs">fileSaveAs.png</file>
+    <file alias="Run">run-build.png</file>
     <file alias="AppIcon">hi32-app-cirkuit.png</file>
-    <file>toolsConfigure.png</file>
+    <file alias="Settings">preferences-system.png</file>
+    <file alias="About">help-about.png</file>
+    <file alias="Text">draw-text.png</file>
+    <file>view-preview.png</file>
+  </qresource>
+  <qresource prefix="/pixmaps">
+    <file>config.png</file>
   </qresource>
   <qresource prefix="/backgrounds">
     <file>circuit-bg.jpg</file>

@@ -31,6 +31,10 @@
        <number>0</number>
       </property>
       <widget class="QWidget" name="tab">
+       <attribute name="icon">
+        <iconset resource="../resources/resources.qrc">
+         <normaloff>:/icons/Text</normaloff>:/icons/Text</iconset>
+       </attribute>
        <attribute name="title">
         <string>Source Editor</string>
        </attribute>
@@ -59,6 +63,10 @@
         <property name="text">
          <string>Process and display</string>
         </property>
+        <property name="icon">
+         <iconset resource="../resources/resources.qrc">
+          <normaloff>:/icons/Run</normaloff>:/icons/Run</iconset>
+        </property>
        </widget>
       </item>
       <item>
@@ -71,7 +79,7 @@
         </property>
         <property name="icon">
          <iconset resource="../resources/resources.qrc">
-          <normaloff>:/icons/fileSave.png</normaloff>:/icons/fileSave.png</iconset>
+          <normaloff>:/icons/Export</normaloff>:/icons/Export</iconset>
         </property>
        </widget>
       </item>
@@ -122,6 +130,10 @@
      <horstretch>1</horstretch>
      <verstretch>1</verstretch>
     </sizepolicy>
+   </property>
+   <property name="windowIcon">
+    <iconset resource="../resources/resources.qrc">
+     <normaloff>:/icons/view-preview.png</normaloff>:/icons/view-preview.png</iconset>
    </property>
    <property name="windowTitle">
     <string>&amp;Preview</string>
@@ -182,7 +194,7 @@ color: rgb(255, 0, 0);</string>
   <action name="actionQuit">
    <property name="icon">
     <iconset resource="../resources/resources.qrc">
-     <normaloff>:/icons/close.png</normaloff>:/icons/close.png</iconset>
+     <normaloff>:/icons/Exit</normaloff>:/icons/Exit</iconset>
    </property>
    <property name="text">
     <string>&amp;Quit</string>
@@ -194,7 +206,7 @@ color: rgb(255, 0, 0);</string>
   <action name="actionOpen">
    <property name="icon">
     <iconset resource="../resources/resources.qrc">
-     <normaloff>:/icons/FolderIcon</normaloff>:/icons/FolderIcon</iconset>
+     <normaloff>:/icons/Open</normaloff>:/icons/Open</iconset>
    </property>
    <property name="text">
     <string>&amp;Open...</string>
@@ -209,7 +221,7 @@ color: rgb(255, 0, 0);</string>
   <action name="actionAbout">
    <property name="icon">
     <iconset resource="../resources/resources.qrc">
-     <normaloff>:/icons/helpAbout.png</normaloff>:/icons/helpAbout.png</iconset>
+     <normaloff>:/icons/About</normaloff>:/icons/About</iconset>
    </property>
    <property name="text">
     <string>&amp;About PyCirkuit</string>
@@ -218,7 +230,7 @@ color: rgb(255, 0, 0);</string>
   <action name="actionPreferences">
    <property name="icon">
     <iconset resource="../resources/resources.qrc">
-     <normaloff>:/icons/toolsConfigure.png</normaloff>:/icons/toolsConfigure.png</iconset>
+     <normaloff>:/icons/Settings</normaloff>:/icons/Settings</iconset>
    </property>
    <property name="text">
     <string>&amp;Preferences...</string>
@@ -230,7 +242,7 @@ color: rgb(255, 0, 0);</string>
   <action name="actionNew">
    <property name="icon">
     <iconset resource="../resources/resources.qrc">
-     <normaloff>:/icons/new.png</normaloff>:/icons/new.png</iconset>
+     <normaloff>:/icons/New</normaloff>:/icons/New</iconset>
    </property>
    <property name="text">
     <string>&amp;New</string>
@@ -245,7 +257,7 @@ color: rgb(255, 0, 0);</string>
   <action name="actionSave">
    <property name="icon">
     <iconset resource="../resources/resources.qrc">
-     <normaloff>:/icons/fileSave.png</normaloff>:/icons/fileSave.png</iconset>
+     <normaloff>:/icons/Save</normaloff>:/icons/Save</iconset>
    </property>
    <property name="text">
     <string>&amp;Save</string>
@@ -257,7 +269,7 @@ color: rgb(255, 0, 0);</string>
   <action name="actionSaveAs">
    <property name="icon">
     <iconset resource="../resources/resources.qrc">
-     <normaloff>:/icons/fileSaveAs.png</normaloff>:/icons/fileSaveAs.png</iconset>
+     <normaloff>:/icons/SaveAs</normaloff>:/icons/SaveAs</iconset>
    </property>
    <property name="text">
     <string>Sa&amp;ve As...</string>

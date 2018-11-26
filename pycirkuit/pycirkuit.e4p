@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric project file for project pycirkuit -->
-<!-- Saved: 2018-11-24, 17:56:23 -->
+<!-- Saved: 2018-11-25, 03:15:30 -->
 <!-- Copyright (C) 2018 Orestes Mas, orestes@tsc.upc.edu -->
 <Project version="5.1">
   <Language>en_US</Language>
@@ -17,6 +17,7 @@
     <Source>configdialog.py</Source>
     <Source>main.py</Source>
     <Source>mainwindow.py</Source>
+    <Source>resources_rc.py</Source>
     <Source>ui/Ui_configdialog.py</Source>
     <Source>ui/Ui_mainwindow.py</Source>
   </Sources>
@@ -24,18 +25,10 @@
     <Form>ui/configdialog.ui</Form>
     <Form>ui/mainwindow.ui</Form>
   </Forms>
-  <Translations/>
   <Resources>
     <Resource>resources/resources.qrc</Resource>
   </Resources>
-  <Interfaces/>
   <Others>
-    <Other>resources/application-x-cirkuit.svgz</Other>
-    <Other>resources/circuit-bg.jpg</Other>
-    <Other>resources/config.png</Other>
-    <Other>resources/hi32-app-cirkuit.png</Other>
-    <Other>resources/hi48-app-cirkuit.png</Other>
-    <Other>resources/hi64-app-cirkuit.png</Other>
     <Other>templates</Other>
   </Others>
   <MainScript>main.py</MainScript>
