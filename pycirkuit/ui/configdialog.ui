@@ -22,7 +22,7 @@
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
+     <item alignment="Qt::AlignHCenter">
       <widget class="QListWidget" name="listWidget">
        <property name="maximumSize">
         <size>
@@ -61,9 +61,15 @@
         <property name="text">
          <string>General</string>
         </property>
+        <property name="textAlignment">
+         <set>AlignCenter</set>
+        </property>
         <property name="icon">
          <iconset resource="../resources/resources.qrc">
-          <normaloff>:/icons/config.png</normaloff>:/icons/config.png</iconset>
+          <normaloff>:/pixmaps/config.png</normaloff>:/pixmaps/config.png</iconset>
+        </property>
+        <property name="flags">
+         <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
         </property>
        </item>
       </widget>
@@ -122,7 +128,7 @@
               </property>
               <property name="icon">
                <iconset resource="../resources/resources.qrc">
-                <normaloff>:/icons/FolderIcon</normaloff>:/icons/FolderIcon</iconset>
+                <normaloff>:/icons/Open</normaloff>:/icons/Open</iconset>
               </property>
               <property name="toolButtonStyle">
                <enum>Qt::ToolButtonTextBesideIcon</enum>
@@ -167,7 +173,7 @@
               </property>
               <property name="icon">
                <iconset resource="../resources/resources.qrc">
-                <normaloff>:/icons/FolderIcon</normaloff>:/icons/FolderIcon</iconset>
+                <normaloff>:/icons/Open</normaloff>:/icons/Open</iconset>
               </property>
               <property name="toolButtonStyle">
                <enum>Qt::ToolButtonTextBesideIcon</enum>
