@@ -12,47 +12,47 @@
     <message>
         <location filename="../ui/Ui_mainwindow.py" line="169"/>
         <source>PyCirkuit - by Orestes Mas</source>
-        <translation type="unfinished"></translation>
+        <translation>PyCircuit - per Orestes Mas</translation>
     </message>
     <message>
         <location filename="../ui/Ui_mainwindow.py" line="170"/>
         <source>Source Editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Editor de la font</translation>
     </message>
     <message>
         <location filename="../ui/Ui_mainwindow.py" line="171"/>
         <source>Process and display</source>
-        <translation type="unfinished"></translation>
+        <translation>Processa i mostra</translation>
     </message>
     <message>
         <location filename="../ui/Ui_mainwindow.py" line="172"/>
         <source>Export to TIkZ</source>
-        <translation type="unfinished"></translation>
+        <translation>Exporta a TIkZ</translation>
     </message>
     <message>
         <location filename="../ui/Ui_mainwindow.py" line="173"/>
         <source>Fi&amp;le</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Fitxer</translation>
     </message>
     <message>
         <location filename="../ui/Ui_mainwindow.py" line="174"/>
         <source>Help</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajuda</translation>
     </message>
     <message>
         <location filename="../ui/Ui_mainwindow.py" line="175"/>
         <source>Setti&amp;ngs</source>
-        <translation type="unfinished"></translation>
+        <translation>Arra&amp;njaments</translation>
     </message>
     <message>
         <location filename="../ui/Ui_mainwindow.py" line="176"/>
         <source>&amp;Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Previsualització</translation>
     </message>
     <message>
         <location filename="../ui/Ui_mainwindow.py" line="177"/>
         <source>&amp;Quit</source>
-        <translation type="unfinished"></translation>
+        <translation>S&amp;urt</translation>
     </message>
     <message>
         <location filename="../ui/Ui_mainwindow.py" line="178"/>
@@ -92,37 +92,37 @@
     <message>
         <location filename="../ui/Ui_mainwindow.py" line="185"/>
         <source>&amp;New</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Nou</translation>
     </message>
     <message>
         <location filename="../ui/Ui_mainwindow.py" line="186"/>
         <source>New Drawing</source>
-        <translation type="unfinished"></translation>
+        <translation>Nou dibuix</translation>
     </message>
     <message>
         <location filename="../ui/Ui_mainwindow.py" line="187"/>
         <source>Ctrl+N</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+N</translation>
     </message>
     <message>
         <location filename="../ui/Ui_mainwindow.py" line="188"/>
         <source>&amp;Save</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Desa</translation>
     </message>
     <message>
         <location filename="../ui/Ui_mainwindow.py" line="189"/>
         <source>Ctrl+S</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+S</translation>
     </message>
     <message>
         <location filename="../ui/Ui_mainwindow.py" line="190"/>
         <source>Sa&amp;ve As...</source>
-        <translation type="unfinished"></translation>
+        <translation>Desa &amp;com a...</translation>
     </message>
     <message>
         <location filename="../ui/Ui_mainwindow.py" line="191"/>
         <source>Ctrl+Shift+S</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Shift+S</translation>
     </message>
 </context>
 <context>
@@ -132,7 +132,9 @@
         <source>Cannot find the {toolLongName}!
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation>No s&apos;ha trobat el {toolLongName}!
+
+</translation>
     </message>
     <message>
         <location filename="../mainwindow.py" line="371"/>
@@ -144,7 +146,7 @@
     <message>
         <location filename="../mainwindow.py" line="372"/>
         <source>Cannot generate the preview.</source>
-        <translation type="unfinished"></translation>
+        <translation>No s&apos;ha pogut generar la previsualització.</translation>
     </message>
     <message>
         <location filename="../mainwindow.py" line="385"/>
@@ -161,7 +163,7 @@
     <message>
         <location filename="../mainwindow.py" line="387"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Error</translation>
     </message>
     <message>
         <location filename="../mainwindow.py" line="402"/>
@@ -191,7 +193,7 @@ El PyCirkuit és un compilador/visualitzador de diagrames circuitals descrits em
     <message>
         <location filename="../mainwindow.py" line="250"/>
         <source>About PyCirkuit</source>
-        <translation type="unfinished"></translation>
+        <translation>Sobre el PyCirkuit</translation>
     </message>
 </context>
 <context>
@@ -199,7 +201,7 @@ El PyCirkuit és un compilador/visualitzador de diagrames circuitals descrits em
     <message>
         <location filename="../mainwindow.py" line="113"/>
         <source>Converting: Circuit Macros -&gt; PIC</source>
-        <translation type="unfinished"></translation>
+        <translation>Conversió: Circuit Macros -&gt; PIC</translation>
     </message>
 </context>
 <context>
@@ -230,42 +232,42 @@ El PyCirkuit és un compilador/visualitzador de diagrames circuitals descrits em
     <message>
         <location filename="../ui/Ui_configdialog.py" line="114"/>
         <source>Config Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Diàleg de configuració</translation>
     </message>
     <message>
         <location filename="../ui/Ui_configdialog.py" line="118"/>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>General</translation>
     </message>
     <message>
         <location filename="../ui/Ui_configdialog.py" line="120"/>
         <source>Circuit Macros Location</source>
-        <translation type="unfinished"></translation>
+        <translation>Ubicació de les Circuit Macros</translation>
     </message>
     <message>
         <location filename="../ui/Ui_configdialog.py" line="124"/>
         <source>Enter Path Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Introduïu la ruta</translation>
     </message>
     <message>
         <location filename="../ui/Ui_configdialog.py" line="122"/>
         <source>Choose Dir...</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolliu directori...</translation>
     </message>
     <message>
         <location filename="../ui/Ui_configdialog.py" line="123"/>
         <source>LaTeX Template File</source>
-        <translation type="unfinished"></translation>
+        <translation>Fitxer de plantilla LaTeX</translation>
     </message>
     <message>
         <location filename="../ui/Ui_configdialog.py" line="125"/>
         <source>Choose File...</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolliu...</translation>
     </message>
     <message>
         <location filename="../ui/Ui_configdialog.py" line="126"/>
         <source>RadioB&amp;utton</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;dummy--</translation>
     </message>
 </context>
 </TS>
