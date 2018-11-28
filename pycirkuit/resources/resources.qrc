@@ -5,8 +5,8 @@
     <file alias="Open">document-open.png</file>
     <file alias="Close">document-close.png</file>
     <file alias="Export">document-export.png</file>
-    <file alias="Save">fileSave.png</file>
-    <file alias="SaveAs">fileSaveAs.png</file>
+    <file alias="Save">document-save.png</file>
+    <file alias="SaveAs">document-save-as.png</file>
     <file alias="Run">run-build.png</file>
     <file alias="AppIcon">hi32-app-cirkuit.png</file>
     <file alias="Settings">preferences-system.png</file>
@@ -19,5 +19,8 @@
   </qresource>
   <qresource prefix="/backgrounds">
     <file>circuit-bg.jpg</file>
+  </qresource>
+  <qresource prefix="/translations">
+    <file alias="Translations">../L10n/pycirkuit.ca.qm</file>
   </qresource>
 </RCC>
