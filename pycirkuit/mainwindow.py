@@ -241,10 +241,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         """
         Slot documentation goes here.
         """
-        txt = "Copyright (c) 2018 Orestes Mas\n\n"\
+        txt = _translate("MessageBox", "Copyright (c) 2018 Orestes Mas\n\n"\
                  "PyCirkuit is a compiler/renderer of circuit diagrams written using the Dwight Aplevich's 'Circuit Macros'.\n"\
-                 "Being written in python, the code and ideas are largely based on 'cirkuit' C++ program, by Matteo Agostinelli.\n"
-        QtWidgets.QMessageBox.about(self,  "About PyCirkuit",  txt)
+                 "Being written in python, the code and ideas are largely based on 'cirkuit' C++ program, by Matteo Agostinelli.\n")
+        QtWidgets.QMessageBox.about(self,  _translate("MessageBox", "About PyCirkuit"),  txt)
 
 
     @pyqtSlot()
@@ -377,8 +377,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         if os.path.exists(cmPath + "/libcct.m4"):
             return True
         else:
-            _cmNotFound  = _translate("MessageBox", "No s'han trobat les «Circuit Macros»!\n\n")
-            txt = _cmNotFound + _translate("MessageBox", "Voleu provar de cercar-les i instal·lar-les automàticament?")
+            _cmNotFound  = _translate("MessageBox", "Cannot find the 'Circuit Macros'!\n\n")
+            txt = _cmNotFound + _translate("MessageBox", "Do you want to try to search and install them automatically?")
             response = QtWidgets.QMessageBox.question(self, _translate("MessageBox", "Error"),  txt,  defaultButton=QtWidgets.QMessageBox.Yes)
             result = False
             if response == QtWidgets.QMessageBox.Yes:
