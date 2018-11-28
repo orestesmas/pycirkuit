@@ -32,7 +32,7 @@ if __name__ == "__main__":
 
     # Install the translator
     translator = QTranslator()
-    if translator.load(QLocale(), "/home/orestes/Devel/Software/pycirkuit/pycirkuit/L10n"):
+    if translator.load(QLocale(), "pycirkuit", "/home/orestes/Devel/Software/pycirkuit/pycirkuit/L10n"):
         app.installTranslator(translator)
         
     # These two next values are passed to every instance of QSettings everywhere in the app

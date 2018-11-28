@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE Project SYSTEM "Project-5.1.dtd">
+<!DOCTYPE Project SYSTEM "Project-6.3.dtd">
 <!-- eric project file for project pycirkuit -->
-<!-- Saved: 2018-11-25, 03:15:30 -->
+<!-- Saved: 2018-11-28, 17:47:37 -->
 <!-- Copyright (C) 2018 Orestes Mas, orestes@tsc.upc.edu -->
-<Project version="5.1">
+<Project version="6.3">
   <Language>en_US</Language>
   <Hash>64db83c4bf9c09d559b81ce72e1ee7897cee2a80</Hash>
   <ProgLanguage mixed="0">Python3</ProgLanguage>
@@ -17,6 +17,7 @@
     <Source>configdialog.py</Source>
     <Source>main.py</Source>
     <Source>mainwindow.py</Source>
+    <Source>resources/resources_rc.py</Source>
     <Source>resources_rc.py</Source>
     <Source>ui/Ui_configdialog.py</Source>
     <Source>ui/Ui_mainwindow.py</Source>
@@ -25,6 +26,12 @@
     <Form>ui/configdialog.ui</Form>
     <Form>ui/mainwindow.ui</Form>
   </Forms>
+  <Translations>
+    <Translation>L10n/pycirkuit.ca_ES.qm</Translation>
+    <Translation>L10n/pycirkuit.ca_ES.ts</Translation>
+    <Translation>L10n/pycirkuit_empty.qm</Translation>
+    <Translation>L10n/pycirkuit_empty.ts</Translation>
+  </Translations>
   <Resources>
     <Resource>resources/resources.qrc</Resource>
   </Resources>
@@ -46,6 +53,24 @@
     <FiletypeAssociation pattern="*.ts" type="TRANSLATIONS"/>
     <FiletypeAssociation pattern="*.ui" type="FORMS"/>
   </FiletypeAssociations>
+  <UicCompiler>
+    <UicCompilerParameters>
+      <dict>
+        <key>
+          <string>Package</string>
+        </key>
+        <value>
+          <string>pycirkuit</string>
+        </value>
+        <key>
+          <string>RcSuffix</string>
+        </key>
+        <value>
+          <string></string>
+        </value>
+      </dict>
+    </UicCompilerParameters>
+  </UicCompiler>
   <Checkers>
     <CheckersParams>
       <dict>
