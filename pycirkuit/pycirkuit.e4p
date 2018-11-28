@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-6.3.dtd">
 <!-- eric project file for project pycirkuit -->
-<!-- Saved: 2018-11-28, 17:47:37 -->
+<!-- Saved: 2018-11-29, 00:41:17 -->
 <!-- Copyright (C) 2018 Orestes Mas, orestes@tsc.upc.edu -->
 <Project version="6.3">
   <Language>en_US</Language>
@@ -27,8 +27,8 @@
     <Form>ui/mainwindow.ui</Form>
   </Forms>
   <Translations>
-    <Translation>L10n/pycirkuit.ca_ES.qm</Translation>
-    <Translation>L10n/pycirkuit.ca_ES.ts</Translation>
+    <Translation>L10n/pycirkuit.ca.qm</Translation>
+    <Translation>L10n/pycirkuit.ca.ts</Translation>
     <Translation>L10n/pycirkuit_empty.qm</Translation>
     <Translation>L10n/pycirkuit_empty.ts</Translation>
   </Translations>

@@ -25,6 +25,9 @@ from PyQt5.QtCore import QCoreApplication, QTranslator, QLocale
 # Local application imports
 from pycirkuit.mainwindow import MainWindow
 
+# Resources for translation
+from pycirkuit import resources_rc
+
 
 if __name__ == "__main__":
     import sys
@@ -32,7 +35,7 @@ if __name__ == "__main__":
 
     # Install the translator
     translator = QTranslator()
-    if translator.load(QLocale(), "pycirkuit", "/home/orestes/Devel/Software/pycirkuit/pycirkuit/L10n"):
+    if translator.load(QLocale(), "pycirkuit", ":/translations/pycirkuit.ca.qm"):
         app.installTranslator(translator)
         
     # These two next values are passed to every instance of QSettings everywhere in the app
