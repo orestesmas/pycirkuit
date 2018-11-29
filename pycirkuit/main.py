@@ -20,15 +20,24 @@
 
 # Third-party imports
 from PyQt5.QtWidgets import QApplication
-from PyQt5.QtCore import QCoreApplication
+from PyQt5.QtCore import QCoreApplication, QTranslator, QLocale
 
 # Local application imports
 from pycirkuit.mainwindow import MainWindow
+
+# Resources for translation
+from pycirkuit import resources_rc
 
 
 if __name__ == "__main__":
     import sys
     app = QApplication(sys.argv)
+
+    # Install the translator
+    translator = QTranslator()
+    if translator.load(QLocale(), "pycirkuit", ":/translations/pycirkuit.ca.qm"):
+        app.installTranslator(translator)
+        
     # These two next values are passed to every instance of QSettings everywhere in the app
     QCoreApplication.setOrganizationName("UPC")
     QCoreApplication.setApplicationName("pycirkuit")

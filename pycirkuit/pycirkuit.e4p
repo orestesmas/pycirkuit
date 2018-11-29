@@ -26,6 +26,12 @@
     <Form>ui/configdialog.ui</Form>
     <Form>ui/mainwindow.ui</Form>
   </Forms>
+  <Translations>
+    <Translation>L10n/pycirkuit.ca.qm</Translation>
+    <Translation>L10n/pycirkuit.ca.ts</Translation>
+    <Translation>L10n/pycirkuit_empty.qm</Translation>
+    <Translation>L10n/pycirkuit_empty.ts</Translation>
+  </Translations>
   <Resources>
     <Resource>resources/resources.qrc</Resource>
   </Resources>

@@ -26,7 +26,7 @@ import subprocess
 from shutil import copyfile
 
 # Third-party imports
-from PyQt5.QtCore import pyqtSlot
+from PyQt5.QtCore import pyqtSlot,  QCoreApplication
 from PyQt5 import QtCore, QtWidgets, QtGui
 
 # Local application imports
@@ -34,6 +34,8 @@ from pycirkuit.configdialog import configDialog
 from pycirkuit.ui.Ui_mainwindow import Ui_MainWindow
 from pycirkuit.circuitmacrosmanager import CircuitMacrosManager
 
+# Translation function
+_translate = QCoreApplication.translate
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     """
@@ -74,15 +76,15 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     @pyqtSlot()
     def on_processButton_clicked(self):
         # Comprovo si tinc totes les aplicacions necessàries correctament instal·lades
-        if not self.check_programs():
+        if not self.__check_programs():
             return
         
         # Comprovo si tenim les Circuit Macros a la carpeta especificada als Settings
-        if not self.check_circuit_macros():
+        if not self.__check_circuit_macros():
             return
         
         # Comprovo si el fitxer de plantilla existeix i és vàlid
-        if not self.check_templates():
+        if not self.__check_templates():
             return
 
         # Començo: Primer deso la feina no desada
@@ -101,15 +103,16 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             # PAS 0: Canvio el cursor momentàniament
             app = QtWidgets.QApplication.instance()
             app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
+            
             # PAS 1: Li passo les M4: .CKT -> .PIC
             # La crida subprocess.run() és molt interessant
             # el 'check=False' fa que no salti una excepció si l'ordre falla, atès que ja la llanço jo després
             # amb un missatge més personalitzat
-            self.statusBar.showMessage("Converting: Circuit Macros -> PIC")
+            self.statusBar.showMessage(_translate("StatusBar","Converting: Circuit Macros -> PIC"))
             command = "m4 -I {cmPath} pgf.m4 {baseName}.ckt > {baseName}.pic".format(cmPath=cmPath,  baseName=tmpFileBaseName)
             result = subprocess.run(command, shell=True, check=False, stderr=subprocess.STDOUT, stdout=subprocess.PIPE)
             if result.returncode != 0:
-                errMsg = "Error en M4: Conversió .CKT -> .PIC\n"
+                errMsg = _translate("MainWindow", "Error executing M4: Conversion .CKT -> .PIC\n")
                 errMsg += result.stdout.decode()
                 raise OSError(errMsg)
 
@@ -238,10 +241,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         """
         Slot documentation goes here.
         """
-        txt = "Copyright (c) 2018 Orestes Mas\n\n"\
+        txt = _translate("MessageBox", "Copyright (c) 2018 Orestes Mas\n\n"\
                  "PyCirkuit is a compiler/renderer of circuit diagrams written using the Dwight Aplevich's 'Circuit Macros'.\n"\
-                 "Being written in python, the code and ideas are largely based on 'cirkuit' C++ program, by Matteo Agostinelli.\n"
-        QtWidgets.QMessageBox.about(self,  "About PyCirkuit",  txt)
+                 "Being written in python, the code and ideas are largely based on 'cirkuit' C++ program, by Matteo Agostinelli.\n")
+        QtWidgets.QMessageBox.about(self,  _translate("MessageBox", "About PyCirkuit"),  txt)
 
 
     @pyqtSlot()
@@ -285,7 +288,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     self.setWindowTitle("PyCirkuit - {filename}".format(filename=self.lastFilename))
                     self.on_processButton_clicked()
 
-    def saveBuffer(self,  dst):
+    def __saveBuffer(self,  dst):
         try:
             f = open(dst,'w', encoding='UTF-8')
             f.write(self.sourceText.toPlainText())
@@ -312,7 +315,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         lastWD = settings.value("General/lastWD", "")
         filePath = lastWD + "/" + self.lastFilename
         if os.path.isfile(filePath):
-            self.saveBuffer(filePath)
+            self.__saveBuffer(filePath)
         else:
             self.actionSaveAs.trigger()
 
@@ -333,7 +336,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         if fdlg.exec():
             dst = fdlg.selectedFiles()[0]
         fdlg.close()
-        self.saveBuffer(dst)
+        self.__saveBuffer(dst)
     
     
     @pyqtSlot()
@@ -345,38 +348,38 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         cfgDlg.exec()
 
 
-    def check_programs(self):
+    def __check_programs(self):
         programs = (
-            {"progName": "m4",  "errMsg": "processador de macros «M4»"},
-            {"progName": "dpic",  "errMsg": "compilador de llenguatge «PIC»"},
-            {"progName": "pdflatex",  "errMsg": "programa pdfLaTeX"},
-            {"progName": "pdftoppm",  "errMsg": "conversor d'imatges PDF a PNG"},
+            {"execName": "m4",  "toolLongName": _translate("Tool Long Name", "'M4' Macro Processor")},
+            {"execName": "dpic",  "toolLongName": _translate("Tool Long Name",  "'PIC' language compiler")}, 
+            {"execName": "pdflatex",  "toolLongName": _translate("Tool Long Name", "pdfLaTeX program")},
+            {"execName": "pdftoppm",  "toolLongName": _translate("Tool Long Name", "PDF to PNG image converter")},
         )
         execPath = os.get_exec_path()
         for p in programs:
             for testPath in execPath:
-                if os.path.exists(testPath + "/{progName}".format(progName=p["progName"])):
-                    print("Found: {prg}\n".format(prg=p["progName"]))
+                if os.path.exists(testPath + "/{execName}".format(execName=p["execName"])):
+                    print("Found: {execName}\n".format(execName=p["execName"]))
                     break
             else:
-                txt = "No s'ha trobat el {msg}!\n\n"
-                txt += "Assegureu-vos de tenir aquesta aplicació correctament instal·lada i l'executable «{execName}» al PATH.\n\n"
-                txt += "No es pot processar el circuit."
-                txt = txt.format(msg=p["errMsg"],  execName=p["progName"])
-                QtWidgets.QMessageBox.critical(self, "Error crític",  txt)
+                txt = _translate("MessageBox", "Cannot find the {toolLongName}!\n\n")
+                txt += _translate("MessageBox", "Please ensure that you have this application properly installed and the executable «{execName}» is in the PATH.\n\n")
+                txt += _translate("MessageBox", "Cannot generate the preview.")
+                txt = txt.format(toolLongName=p["toolLongName"],  execName=p["execName"])
+                QtWidgets.QMessageBox.critical(self, _translate("MessageBox", "Critical Error",  txt))
                 return False
         return True
 
 
-    def check_circuit_macros(self):
+    def __check_circuit_macros(self):
         settings = QtCore.QSettings()
         cmPath = settings.value("General/cmPath",  "")
         if os.path.exists(cmPath + "/libcct.m4"):
             return True
         else:
-            txt  = "No s'han trobat les «Circuit Macros»!\n\n"
-            txt += "Voleu provar de cercar-les i instal·lar-les automàticament?"
-            response = QtWidgets.QMessageBox.question(self, "Error",  txt,  defaultButton=QtWidgets.QMessageBox.Yes)
+            _cmNotFound  = _translate("MessageBox", "Cannot find the 'Circuit Macros'!\n\n")
+            txt = _cmNotFound + _translate("MessageBox", "Do you want to try to search and install them automatically?")
+            response = QtWidgets.QMessageBox.question(self, _translate("MessageBox", "Error"),  txt,  defaultButton=QtWidgets.QMessageBox.Yes)
             result = False
             if response == QtWidgets.QMessageBox.Yes:
                 try:
@@ -391,14 +394,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 finally:
                     app.restoreOverrideCursor()
             else:
-                txt  = "No s'han trobat les «Circuit Macros»!\n\n"
-                txt += "Si us plau, indiqueu-ne la ruta correcta als arranjaments.\n\n"
-                txt += "No es pot processar el circuit."
+                txt = _cmNotFound + _translate("MessageBox", "Si us plau, indiqueu-ne la ruta correcta als arranjaments.\n\n")
+                txt += _translate("MessageBox", "No es pot processar el circuit.")
                 QtWidgets.QMessageBox.critical(self, "Error crític",  txt)
             return result
 
     
-    def check_templates(self):
+    def __check_templates(self):
         pass
         settings = QtCore.QSettings()
         template = settings.value("General/latexTemplateFile",  "")
