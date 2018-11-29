@@ -426,7 +426,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     @pyqtSlot()
     def on_actionCMMan_triggered(self):
         # Search for Circuit Macros PDF manual
-        if self.check_circuit_macros():
+        if self.__check_circuit_macros():
             settings = QtCore.QSettings()
             cmPath = settings.value("General/cmPath",  "")
             try:
