@@ -93,7 +93,7 @@
      <x>0</x>
      <y>0</y>
      <width>728</width>
-     <height>36</height>
+     <height>34</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -110,6 +110,8 @@
     <property name="title">
      <string>Help</string>
     </property>
+    <addaction name="separator"/>
+    <addaction name="actionCMMan"/>
     <addaction name="separator"/>
     <addaction name="actionAbout"/>
    </widget>
@@ -257,7 +259,7 @@ color: rgb(255, 0, 0);</string>
   <action name="actionSave">
    <property name="icon">
     <iconset resource="../resources/resources.qrc">
-     <normaloff>:/icons/Save</normaloff>:/icons/Save</iconset>
+     <normaloff>:/icons/document-save.png</normaloff>:/icons/document-save.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Save</string>
@@ -269,13 +271,25 @@ color: rgb(255, 0, 0);</string>
   <action name="actionSaveAs">
    <property name="icon">
     <iconset resource="../resources/resources.qrc">
-     <normaloff>:/icons/SaveAs</normaloff>:/icons/SaveAs</iconset>
+     <normaloff>:/icons/document-save-as.png</normaloff>:/icons/document-save-as.png</iconset>
    </property>
    <property name="text">
     <string>Sa&amp;ve As...</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+S</string>
+   </property>
+  </action>
+  <action name="actionCMMan">
+   <property name="icon">
+    <iconset resource="../resources/resources.qrc">
+     <normaloff>:/icons/CMman</normaloff>:/icons/CMman</iconset>
+   </property>
+   <property name="text">
+    <string>Circuit Macros manual</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+M</string>
    </property>
   </action>
  </widget>

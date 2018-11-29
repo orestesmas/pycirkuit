@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'mainwindow.ui'
+# Form implementation generated from reading ui file '/home/orestes/Devel/Software/pycirkuit/pycirkuit/ui/mainwindow.ui'
 #
 # Created by: PyQt5 UI code generator 5.11.3
 #
@@ -57,7 +57,7 @@ class Ui_MainWindow(object):
         self.verticalLayout.addLayout(self.horizontalLayout)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menuBar = QtWidgets.QMenuBar(MainWindow)
-        self.menuBar.setGeometry(QtCore.QRect(0, 0, 728, 36))
+        self.menuBar.setGeometry(QtCore.QRect(0, 0, 728, 34))
         self.menuBar.setObjectName("menuBar")
         self.menuFile = QtWidgets.QMenu(self.menuBar)
         self.menuFile.setObjectName("menuFile")
@@ -137,19 +137,26 @@ class Ui_MainWindow(object):
         self.actionNew.setObjectName("actionNew")
         self.actionSave = QtWidgets.QAction(MainWindow)
         icon10 = QtGui.QIcon()
-        icon10.addPixmap(QtGui.QPixmap(":/icons/Save"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon10.addPixmap(QtGui.QPixmap(":/icons/document-save.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.actionSave.setIcon(icon10)
         self.actionSave.setObjectName("actionSave")
         self.actionSaveAs = QtWidgets.QAction(MainWindow)
         icon11 = QtGui.QIcon()
-        icon11.addPixmap(QtGui.QPixmap(":/icons/SaveAs"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon11.addPixmap(QtGui.QPixmap(":/icons/document-save-as.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.actionSaveAs.setIcon(icon11)
         self.actionSaveAs.setObjectName("actionSaveAs")
+        self.actionCMMan = QtWidgets.QAction(MainWindow)
+        icon12 = QtGui.QIcon()
+        icon12.addPixmap(QtGui.QPixmap(":/icons/CMman"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionCMMan.setIcon(icon12)
+        self.actionCMMan.setObjectName("actionCMMan")
         self.menuFile.addAction(self.actionNew)
         self.menuFile.addAction(self.actionOpen)
         self.menuFile.addAction(self.actionSave)
         self.menuFile.addAction(self.actionSaveAs)
         self.menuFile.addAction(self.actionQuit)
+        self.menuHelp.addSeparator()
+        self.menuHelp.addAction(self.actionCMMan)
         self.menuHelp.addSeparator()
         self.menuHelp.addAction(self.actionAbout)
         self.menuSettings.addAction(self.actionPreferences)
@@ -189,5 +196,17 @@ class Ui_MainWindow(object):
         self.actionSave.setShortcut(_translate("MainWindow", "Ctrl+S"))
         self.actionSaveAs.setText(_translate("MainWindow", "Sa&ve As..."))
         self.actionSaveAs.setShortcut(_translate("MainWindow", "Ctrl+Shift+S"))
+        self.actionCMMan.setText(_translate("MainWindow", "Circuit Macros manual"))
+        self.actionCMMan.setShortcut(_translate("MainWindow", "Ctrl+M"))
 
 from pycirkuit import resources_rc
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec_())
+

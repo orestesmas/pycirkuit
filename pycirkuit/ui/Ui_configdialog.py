@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'configdialog.ui'
+# Form implementation generated from reading ui file '/home/orestes/Devel/Software/pycirkuit/pycirkuit/ui/configdialog.ui'
 #
 # Created by: PyQt5 UI code generator 5.11.3
 #
@@ -126,3 +126,13 @@ class Ui_configDialog(object):
         self.radioButton.setText(_translate("configDialog", "RadioB&utton"))
 
 from pycirkuit import resources_rc
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    configDialog = QtWidgets.QDialog()
+    ui = Ui_configDialog()
+    ui.setupUi(configDialog)
+    configDialog.show()
+    sys.exit(app.exec_())
+

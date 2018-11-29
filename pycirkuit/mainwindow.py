@@ -420,3 +420,23 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             QtWidgets.QMessageBox.critical(self, "Error crític",  txt)
             return False
 
+
+    @pyqtSlot()
+    def on_actionCMMan_triggered(self):
+        # Search for Circuit Macros PDF manual
+        if self.check_circuit_macros():
+            settings = QtCore.QSettings()
+            cmPath = settings.value("General/cmPath",  "")
+            try:
+                import glob
+                candidates = glob.glob(cmPath + "/doc/*.[pP][dD][fF]")
+                if (len(candidates) == 1) and (os.path.isfile(candidates[0])):
+                    # Open it with the default app. We can do that using Qt or in a mode pythonic way (os.system...)
+                    # I choose the former because I want Qt to deal with the differences between OSes
+                    QtGui.QDesktopServices.openUrl(QtCore.QUrl("file://" + candidates[0], QtCore.QUrl.TolerantMode))
+                else:
+                    txt  = "No s'ha pogut localitzar la documentació de les «Circuit Macros»\n\n"
+                    txt += "L'haureu de cercar manualment. Hauria de ser un fitxer PDF ubicat a la carpeta {cmPath} o en una de les seves subcarpetes.".format(cmPath=cmPath)
+                    QtWidgets.QMessageBox.warning(self, "Error",  txt)
+            except:
+                pass
