@@ -137,12 +137,12 @@ class Ui_MainWindow(object):
         self.actionNew.setObjectName("actionNew")
         self.actionSave = QtWidgets.QAction(MainWindow)
         icon10 = QtGui.QIcon()
-        icon10.addPixmap(QtGui.QPixmap(":/icons/document-save.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon10.addPixmap(QtGui.QPixmap(":/icons/Save"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.actionSave.setIcon(icon10)
         self.actionSave.setObjectName("actionSave")
         self.actionSaveAs = QtWidgets.QAction(MainWindow)
         icon11 = QtGui.QIcon()
-        icon11.addPixmap(QtGui.QPixmap(":/icons/document-save-as.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon11.addPixmap(QtGui.QPixmap(":/icons/SaveAs"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.actionSaveAs.setIcon(icon11)
         self.actionSaveAs.setObjectName("actionSaveAs")
         self.actionCMMan = QtWidgets.QAction(MainWindow)
@@ -196,7 +196,7 @@ class Ui_MainWindow(object):
         self.actionSave.setShortcut(_translate("MainWindow", "Ctrl+S"))
         self.actionSaveAs.setText(_translate("MainWindow", "Sa&ve As..."))
         self.actionSaveAs.setShortcut(_translate("MainWindow", "Ctrl+Shift+S"))
-        self.actionCMMan.setText(_translate("MainWindow", "Circuit Macros manual"))
+        self.actionCMMan.setText(_translate("MainWindow", "&Circuit Macros manual"))
         self.actionCMMan.setShortcut(_translate("MainWindow", "Ctrl+M"))
 
 from pycirkuit import resources_rc
