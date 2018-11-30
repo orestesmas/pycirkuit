@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/orestes/Devel/Software/pycirkuit/pycirkuit/ui/mainwindow.ui'
+# Form implementation generated from reading ui file 'mainwindow.ui'
 #
 # Created by: PyQt5 UI code generator 5.11.3
 #
@@ -182,31 +182,21 @@ class Ui_MainWindow(object):
         self.menuSettings.setTitle(_translate("MainWindow", "Setti&ngs"))
         self.dockWidget.setWindowTitle(_translate("MainWindow", "&Preview", "Dock window title"))
         self.actionQuit.setText(_translate("MainWindow", "&Quit", "Menu item"))
-        self.actionQuit.setShortcut(_translate("MainWindow", "Ctrl+Q"))
+        self.actionQuit.setShortcut(_translate("MainWindow", "Ctrl+Q", "Keyboard Shortcut"))
         self.actionOpen.setText(_translate("MainWindow", "&Open...", "Menu item"))
         self.actionOpen.setToolTip(_translate("MainWindow", "Open Drawing"))
-        self.actionOpen.setShortcut(_translate("MainWindow", "Ctrl+O"))
-        self.actionAbout.setText(_translate("MainWindow", "&About PyCirkuit", "Menu item"))
-        self.actionPreferences.setText(_translate("MainWindow", "&Preferences...", "Menu item"))
-        self.actionPreferences.setShortcut(_translate("MainWindow", "Ctrl+P"))
+        self.actionOpen.setShortcut(_translate("MainWindow", "Ctrl+O", "Keyboard Shortcut"))
+        self.actionAbout.setText(_translate("MainWindow", "About PyCirkuit", "Menu item"))
+        self.actionPreferences.setText(_translate("MainWindow", "Configure &PyCirkuit...", "Menu item"))
+        self.actionPreferences.setShortcut(_translate("MainWindow", "Ctrl+P", "Keyboard Shortcut"))
         self.actionNew.setText(_translate("MainWindow", "&New", "Menu item"))
         self.actionNew.setToolTip(_translate("MainWindow", "New Drawing"))
-        self.actionNew.setShortcut(_translate("MainWindow", "Ctrl+N"))
+        self.actionNew.setShortcut(_translate("MainWindow", "Ctrl+N", "Keyboard Shortcut"))
         self.actionSave.setText(_translate("MainWindow", "&Save", "Menu item"))
-        self.actionSave.setShortcut(_translate("MainWindow", "Ctrl+S"))
+        self.actionSave.setShortcut(_translate("MainWindow", "Ctrl+S", "Keyboard Shortcut"))
         self.actionSaveAs.setText(_translate("MainWindow", "Sa&ve As...", "Menu item"))
-        self.actionSaveAs.setShortcut(_translate("MainWindow", "Ctrl+Shift+S"))
+        self.actionSaveAs.setShortcut(_translate("MainWindow", "Ctrl+Shift+S", "Keyboard Shortcut"))
         self.actionCMMan.setText(_translate("MainWindow", "&Circuit Macros manual", "Menu item"))
         self.actionCMMan.setShortcut(_translate("MainWindow", "Ctrl+M"))
 
 from pycirkuit import resources_rc
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-    sys.exit(app.exec_())
-

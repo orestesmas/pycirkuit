@@ -336,6 +336,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         if fdlg.exec():
             dst = fdlg.selectedFiles()[0]
         fdlg.close()
+        #FIXME: Peta si faig un CRTL+S seguit d'un ESCAPE
+        # (local variable 'dst' referenced before assignment)
         self.__saveBuffer(dst)
     
     

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-6.3.dtd">
 <!-- eric project file for project pycirkuit -->
-<!-- Saved: 2018-11-30, 12:58:42 -->
+<!-- Saved: 2018-11-30, 19:39:46 -->
 <!-- Copyright (C) 2018 Orestes Mas, orestes@tsc.upc.edu -->
 <Project version="6.3">
   <Language>en_US</Language>
@@ -25,6 +25,12 @@
     <Form>ui/configdialog.ui</Form>
     <Form>ui/mainwindow.ui</Form>
   </Forms>
+  <Translations>
+    <Translation>L10n/pycirkuit.ca.qm</Translation>
+    <Translation>L10n/pycirkuit.ca.ts</Translation>
+    <Translation>L10n/pycirkuit_empty.qm</Translation>
+    <Translation>L10n/pycirkuit_empty.ts</Translation>
+  </Translations>
   <Resources>
     <Resource>resources/resources.qrc</Resource>
   </Resources>
@@ -73,6 +79,38 @@
         <value>
           <dict>
             <key>
+              <string>BlankLines</string>
+            </key>
+            <value>
+              <tuple>
+                <int>2</int>
+                <int>1</int>
+              </tuple>
+            </value>
+            <key>
+              <string>BuiltinsChecker</string>
+            </key>
+            <value>
+              <dict>
+                <key>
+                  <string>chr</string>
+                </key>
+                <value>
+                  <list>
+                    <string>unichr</string>
+                  </list>
+                </value>
+                <key>
+                  <string>str</string>
+                </key>
+                <value>
+                  <list>
+                    <string>unicode</string>
+                  </list>
+                </value>
+              </dict>
+            </value>
+            <key>
               <string>CopyrightAuthor</string>
             </key>
             <value>
@@ -100,7 +138,7 @@
               <string>ExcludeMessages</string>
             </key>
             <value>
-              <string>E121,E123,E126,E226,E24,E704,W503</string>
+              <string>E121,E123,E126,E226,E24,E704,W503,M513</string>
             </value>
             <key>
               <string>FixCodes</string>
@@ -131,6 +169,18 @@
             </key>
             <value>
               <string></string>
+            </value>
+            <key>
+              <string>LineComplexity</string>
+            </key>
+            <value>
+              <int>15</int>
+            </value>
+            <key>
+              <string>LineComplexityScore</string>
+            </key>
+            <value>
+              <int>10</int>
             </value>
             <key>
               <string>MaxCodeComplexity</string>

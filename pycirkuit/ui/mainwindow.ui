@@ -226,7 +226,7 @@ color: rgb(255, 0, 0);</string>
      <normaloff>:/icons/About</normaloff>:/icons/About</iconset>
    </property>
    <property name="text">
-    <string comment="Menu item">&amp;About PyCirkuit</string>
+    <string comment="Menu item">About PyCirkuit</string>
    </property>
   </action>
   <action name="actionPreferences">

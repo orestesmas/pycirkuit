@@ -29,43 +29,13 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="185"/>
-        <source>Ctrl+Q</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../ui/Ui_mainwindow.py" line="187"/>
         <source>Open Drawing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="188"/>
-        <source>Ctrl+O</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/Ui_mainwindow.py" line="191"/>
-        <source>Ctrl+P</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../ui/Ui_mainwindow.py" line="193"/>
         <source>New Drawing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/Ui_mainwindow.py" line="194"/>
-        <source>Ctrl+N</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/Ui_mainwindow.py" line="196"/>
-        <source>Ctrl+S</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/Ui_mainwindow.py" line="198"/>
-        <source>Ctrl+Shift+S</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -105,18 +75,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="189"/>
-        <source>&amp;About PyCirkuit</source>
-        <comment>Menu item</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/Ui_mainwindow.py" line="190"/>
-        <source>&amp;Preferences...</source>
-        <comment>Menu item</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../ui/Ui_mainwindow.py" line="192"/>
         <source>&amp;New</source>
         <comment>Menu item</comment>
@@ -145,25 +103,59 @@
         <source>Ctrl+M</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="185"/>
+        <source>Ctrl+Q</source>
+        <comment>Keyboard Shortcut</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="188"/>
+        <source>Ctrl+O</source>
+        <comment>Keyboard Shortcut</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="190"/>
+        <source>Configure &amp;PyCirkuit...</source>
+        <comment>Menu item</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="191"/>
+        <source>Ctrl+P</source>
+        <comment>Keyboard Shortcut</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="194"/>
+        <source>Ctrl+N</source>
+        <comment>Keyboard Shortcut</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="196"/>
+        <source>Ctrl+S</source>
+        <comment>Keyboard Shortcut</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="198"/>
+        <source>Ctrl+Shift+S</source>
+        <comment>Keyboard Shortcut</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="189"/>
+        <source>About PyCirkuit</source>
+        <comment>Menu item</comment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MessageBox</name>
     <message>
-        <location filename="../mainwindow.py" line="370"/>
-        <source>Cannot find the {toolLongName}!
-
-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.py" line="371"/>
-        <source>Please ensure that you have this application properly installed and the executable &#xc2;&#xab;{execName}&#xc2;&#xbb; is in the PATH.
-
-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.py" line="372"/>
+        <location filename="../mainwindow.py" line="425"/>
         <source>Cannot generate the preview.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -185,18 +177,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="402"/>
-        <source>Si us plau, indiqueu-ne la ruta correcta als arranjaments.
-
-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.py" line="403"/>
-        <source>No es pot processar el circuit.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../mainwindow.py" line="247"/>
         <source>Copyright (c) 2018 Orestes Mas
 
@@ -208,6 +188,60 @@ Being written in python, the code and ideas are largely based on &apos;cirkuit&a
     <message>
         <location filename="../mainwindow.py" line="250"/>
         <source>About PyCirkuit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.py" line="370"/>
+        <source>Cannot find the {toolLongName}!
+
+</source>
+        <comment>Leave untranslated the variable name inside curly braces (included)</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="../mainwindow.py" line="371"/>
+        <source>Please ensure that you have this application properly installed and the executable «{execName}» is in the PATH.
+
+</source>
+        <comment>Leave untranslated the variable name inside curly braces (included)</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.py" line="402"/>
+        <source>Please indicate the correct path to them in the settings dialog.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.py" line="426"/>
+        <source>Critical Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.py" line="417"/>
+        <source>The specified LaTeX template seems invalid!
+
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.py" line="418"/>
+        <source>Please indicate a correct one in the Settings.
+
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.py" line="423"/>
+        <source>The LaTeX template has not been found!
+
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.py" line="424"/>
+        <source>Please indicate its correct PATH in the Settings.
+
+</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -224,21 +258,25 @@ Being written in python, the code and ideas are largely based on &apos;cirkuit&a
     <message>
         <location filename="../mainwindow.py" line="357"/>
         <source>&apos;M4&apos; Macro Processor</source>
+        <comment>Tool Long Name</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.py" line="357"/>
         <source>&apos;PIC&apos; language compiler</source>
+        <comment>Tool Long Name</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.py" line="357"/>
         <source>pdfLaTeX program</source>
+        <comment>Tool Long Name</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.py" line="357"/>
         <source>PDF to PNG image converter</source>
+        <comment>Tool Long Name</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
