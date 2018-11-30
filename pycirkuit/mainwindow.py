@@ -350,10 +350,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def __check_programs(self):
         programs = (
-            {"execName": "m4",  "toolLongName": _translate("Tool Long Name", "'M4' Macro Processor")},
-            {"execName": "dpic",  "toolLongName": _translate("Tool Long Name",  "'PIC' language compiler")}, 
-            {"execName": "pdflatex",  "toolLongName": _translate("Tool Long Name", "pdfLaTeX program")},
-            {"execName": "pdftoppm",  "toolLongName": _translate("Tool Long Name", "PDF to PNG image converter")},
+            {"execName": "m4",  "toolLongName": _translate("Tool Long Name", "'M4' Macro Processor", "Tool Long Name")},
+            {"execName": "dpic",  "toolLongName": _translate("Tool Long Name",  "'PIC' language compiler", "Tool Long Name")}, 
+            {"execName": "pdflatex",  "toolLongName": _translate("Tool Long Name", "pdfLaTeX program", "Tool Long Name")},
+            {"execName": "pdftoppm",  "toolLongName": _translate("Tool Long Name", "PDF to PNG image converter", "Tool Long Name")},
         )
         execPath = os.get_exec_path()
         for p in programs:
@@ -362,8 +362,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     print("Found: {execName}\n".format(execName=p["execName"]))
                     break
             else:
-                txt = _translate("MessageBox", "Cannot find the {toolLongName}!\n\n")
-                txt += _translate("MessageBox", "Please ensure that you have this application properly installed and the executable «{execName}» is in the PATH.\n\n")
+                txt = _translate("MessageBox", "Cannot find the {toolLongName}!\n\n", "Leave untranslated the variable name inside curly braces (included)")
+                txt += _translate("MessageBox", "Please ensure that you have this application properly installed and the executable «{execName}» is in the PATH.\n\n", "Leave untranslated the variable name inside curly braces (included)")
                 txt += _translate("MessageBox", "Cannot generate the preview.")
                 txt = txt.format(toolLongName=p["toolLongName"],  execName=p["execName"])
                 QtWidgets.QMessageBox.critical(self, _translate("MessageBox", "Critical Error",  txt))
@@ -394,9 +394,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 finally:
                     app.restoreOverrideCursor()
             else:
-                txt = _cmNotFound + _translate("MessageBox", "Si us plau, indiqueu-ne la ruta correcta als arranjaments.\n\n")
-                txt += _translate("MessageBox", "No es pot processar el circuit.")
-                QtWidgets.QMessageBox.critical(self, "Error crític",  txt)
+                txt = _cmNotFound + _translate("MessageBox", "Please indicate the correct path to them in the settings dialog.")
+                QtWidgets.QMessageBox.critical(self, _translate("MessageBox", "Critical Error"),  txt)
             return result
 
     
@@ -410,16 +409,16 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 if "%%SOURCE%%" in templateCode:
                     return True
                 else:
-                    txt  = "La plantilla LaTeX especificada no sembla vàlida!\n\n"
-                    txt += "Si us plau, indiqueu-ne una de correcta als arranjaments.\n\n"
-                    txt += "No es pot processar el circuit."
-                    QtWidgets.QMessageBox.critical(self, "Error crític",  txt)
+                    txt  = _translate("MessageBox", "The specified LaTeX template seems invalid!\n\n")
+                    txt += _translate("MessageBox", "Please indicate a correct one in the Settings.\n\n")
+                    txt += _translate("MessageBox", "Cannot generate the preview.")
+                    QtWidgets.QMessageBox.critical(self, _translate("MessageBox", "Critical Error"),  txt)
                     return False
         else:
-            txt  = "No s'ha trobat la plantilla LaTeX!\n\n"
-            txt += "Si us plau, indiqueu-ne la ruta correcta als arranjaments.\n\n"
-            txt += "No es pot processar el circuit."
-            QtWidgets.QMessageBox.critical(self, "Error crític",  txt)
+            txt  = _translate("MessageBox", "The LaTeX template has not been found!\n\n")
+            txt += _translate("MessageBox", "Please indicate its correct PATH in the Settings.\n\n")
+            txt += _translate("MessageBox", "Cannot generate the preview.")
+            QtWidgets.QMessageBox.critical(self, _translate("MessageBox", "Critical Error"),  txt)
             return False
 
 
