@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>840</width>
     <height>400</height>
    </rect>
   </property>
@@ -98,6 +98,9 @@
            <property name="title">
             <string comment="Group box title">Circuit Macros Location</string>
            </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
            <layout class="QHBoxLayout" name="horizontalLayout_3">
             <item>
              <widget class="QLineEdit" name="cmPath">
@@ -119,12 +122,12 @@
              <widget class="QToolButton" name="toolButtonCMPath">
               <property name="minimumSize">
                <size>
-                <width>135</width>
+                <width>120</width>
                 <height>0</height>
                </size>
               </property>
               <property name="text">
-               <string comment="Button text">Choose Dir...</string>
+               <string comment="Button text">Choose...</string>
               </property>
               <property name="icon">
                <iconset resource="../resources/resources.qrc">
@@ -149,6 +152,9 @@
            <property name="title">
             <string comment="Group box title">LaTeX Template File</string>
            </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
            <layout class="QHBoxLayout" name="horizontalLayout_4">
             <item>
              <widget class="QLineEdit" name="templateFile">
@@ -164,12 +170,12 @@
              <widget class="QToolButton" name="toolButtonTemplatePath">
               <property name="minimumSize">
                <size>
-                <width>135</width>
+                <width>120</width>
                 <height>0</height>
                </size>
               </property>
               <property name="text">
-               <string comment="Button text">Choose File...</string>
+               <string comment="Button text">Choose...</string>
               </property>
               <property name="icon">
                <iconset resource="../resources/resources.qrc">
@@ -235,6 +241,10 @@
  </widget>
  <tabstops>
   <tabstop>listWidget</tabstop>
+  <tabstop>cmPath</tabstop>
+  <tabstop>toolButtonCMPath</tabstop>
+  <tabstop>templateFile</tabstop>
+  <tabstop>toolButtonTemplatePath</tabstop>
   <tabstop>radioButton</tabstop>
  </tabstops>
  <resources>

@@ -155,24 +155,24 @@
 <context>
     <name>MessageBox</name>
     <message>
-        <location filename="../mainwindow.py" line="425"/>
+        <location filename="../mainwindow.py" line="427"/>
         <source>Cannot generate the preview.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="385"/>
+        <location filename="../mainwindow.py" line="387"/>
         <source>Cannot find the &apos;Circuit Macros&apos;!
 
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="386"/>
+        <location filename="../mainwindow.py" line="388"/>
         <source>Do you want to try to search and install them automatically?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="387"/>
+        <location filename="../mainwindow.py" line="389"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
@@ -191,7 +191,7 @@ Being written in python, the code and ideas are largely based on &apos;cirkuit&a
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="370"/>
+        <location filename="../mainwindow.py" line="372"/>
         <source>Cannot find the {toolLongName}!
 
 </source>
@@ -199,7 +199,7 @@ Being written in python, the code and ideas are largely based on &apos;cirkuit&a
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="../mainwindow.py" line="371"/>
+        <location filename="../mainwindow.py" line="373"/>
         <source>Please ensure that you have this application properly installed and the executable «{execName}» is in the PATH.
 
 </source>
@@ -207,38 +207,38 @@ Being written in python, the code and ideas are largely based on &apos;cirkuit&a
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="402"/>
+        <location filename="../mainwindow.py" line="404"/>
         <source>Please indicate the correct path to them in the settings dialog.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="426"/>
+        <location filename="../mainwindow.py" line="428"/>
         <source>Critical Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="417"/>
+        <location filename="../mainwindow.py" line="419"/>
         <source>The specified LaTeX template seems invalid!
 
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="418"/>
+        <location filename="../mainwindow.py" line="420"/>
         <source>Please indicate a correct one in the Settings.
 
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="423"/>
+        <location filename="../mainwindow.py" line="425"/>
         <source>The LaTeX template has not been found!
 
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="424"/>
+        <location filename="../mainwindow.py" line="426"/>
         <source>Please indicate its correct PATH in the Settings.
 
 </source>
@@ -256,25 +256,25 @@ Being written in python, the code and ideas are largely based on &apos;cirkuit&a
 <context>
     <name>Tool Long Name</name>
     <message>
-        <location filename="../mainwindow.py" line="357"/>
+        <location filename="../mainwindow.py" line="359"/>
         <source>&apos;M4&apos; Macro Processor</source>
         <comment>Tool Long Name</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="357"/>
+        <location filename="../mainwindow.py" line="359"/>
         <source>&apos;PIC&apos; language compiler</source>
         <comment>Tool Long Name</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="357"/>
+        <location filename="../mainwindow.py" line="359"/>
         <source>pdfLaTeX program</source>
         <comment>Tool Long Name</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="357"/>
+        <location filename="../mainwindow.py" line="359"/>
         <source>PDF to PNG image converter</source>
         <comment>Tool Long Name</comment>
         <translation type="unfinished"></translation>
@@ -283,46 +283,40 @@ Being written in python, the code and ideas are largely based on &apos;cirkuit&a
 <context>
     <name>configDialog</name>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="114"/>
+        <location filename="../ui/Ui_configdialog.py" line="116"/>
         <source>Config Dialog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="118"/>
+        <location filename="../ui/Ui_configdialog.py" line="120"/>
         <source>General</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="124"/>
+        <location filename="../ui/Ui_configdialog.py" line="126"/>
         <source>Enter Path Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="126"/>
+        <location filename="../ui/Ui_configdialog.py" line="128"/>
         <source>RadioB&amp;utton</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="120"/>
+        <location filename="../ui/Ui_configdialog.py" line="122"/>
         <source>Circuit Macros Location</source>
         <comment>Group box title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="122"/>
-        <source>Choose Dir...</source>
-        <comment>Button text</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/Ui_configdialog.py" line="123"/>
+        <location filename="../ui/Ui_configdialog.py" line="125"/>
         <source>LaTeX Template File</source>
         <comment>Group box title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="125"/>
-        <source>Choose File...</source>
+        <location filename="../ui/Ui_configdialog.py" line="127"/>
+        <source>Choose...</source>
         <comment>Button text</comment>
         <translation type="unfinished"></translation>
     </message>

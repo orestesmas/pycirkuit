@@ -11,7 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_configDialog(object):
     def setupUi(self, configDialog):
         configDialog.setObjectName("configDialog")
-        configDialog.resize(800, 400)
+        configDialog.resize(840, 400)
         configDialog.setMinimumSize(QtCore.QSize(800, 0))
         self.verticalLayout = QtWidgets.QVBoxLayout(configDialog)
         self.verticalLayout.setObjectName("verticalLayout")
@@ -45,6 +45,7 @@ class Ui_configDialog(object):
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.groupBox = QtWidgets.QGroupBox(self.page1)
         self.groupBox.setMinimumSize(QtCore.QSize(0, 100))
+        self.groupBox.setAlignment(QtCore.Qt.AlignCenter)
         self.groupBox.setObjectName("groupBox")
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.groupBox)
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
@@ -58,7 +59,7 @@ class Ui_configDialog(object):
         self.cmPath.setObjectName("cmPath")
         self.horizontalLayout_3.addWidget(self.cmPath)
         self.toolButtonCMPath = QtWidgets.QToolButton(self.groupBox)
-        self.toolButtonCMPath.setMinimumSize(QtCore.QSize(135, 0))
+        self.toolButtonCMPath.setMinimumSize(QtCore.QSize(120, 0))
         icon1 = QtGui.QIcon()
         icon1.addPixmap(QtGui.QPixmap(":/icons/Open"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.toolButtonCMPath.setIcon(icon1)
@@ -68,6 +69,7 @@ class Ui_configDialog(object):
         self.verticalLayout_2.addWidget(self.groupBox)
         self.groupBox_2 = QtWidgets.QGroupBox(self.page1)
         self.groupBox_2.setMinimumSize(QtCore.QSize(0, 100))
+        self.groupBox_2.setAlignment(QtCore.Qt.AlignCenter)
         self.groupBox_2.setObjectName("groupBox_2")
         self.horizontalLayout_4 = QtWidgets.QHBoxLayout(self.groupBox_2)
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
@@ -76,7 +78,7 @@ class Ui_configDialog(object):
         self.templateFile.setObjectName("templateFile")
         self.horizontalLayout_4.addWidget(self.templateFile)
         self.toolButtonTemplatePath = QtWidgets.QToolButton(self.groupBox_2)
-        self.toolButtonTemplatePath.setMinimumSize(QtCore.QSize(135, 0))
+        self.toolButtonTemplatePath.setMinimumSize(QtCore.QSize(120, 0))
         self.toolButtonTemplatePath.setIcon(icon1)
         self.toolButtonTemplatePath.setToolButtonStyle(QtCore.Qt.ToolButtonTextBesideIcon)
         self.toolButtonTemplatePath.setObjectName("toolButtonTemplatePath")
@@ -107,7 +109,11 @@ class Ui_configDialog(object):
         self.listWidget.currentRowChanged['int'].connect(self.stackedWidget.setCurrentIndex)
         self.buttonBox.clicked['QAbstractButton*'].connect(configDialog.accept)
         QtCore.QMetaObject.connectSlotsByName(configDialog)
-        configDialog.setTabOrder(self.listWidget, self.radioButton)
+        configDialog.setTabOrder(self.listWidget, self.cmPath)
+        configDialog.setTabOrder(self.cmPath, self.toolButtonCMPath)
+        configDialog.setTabOrder(self.toolButtonCMPath, self.templateFile)
+        configDialog.setTabOrder(self.templateFile, self.toolButtonTemplatePath)
+        configDialog.setTabOrder(self.toolButtonTemplatePath, self.radioButton)
 
     def retranslateUi(self, configDialog):
         _translate = QtCore.QCoreApplication.translate
@@ -119,10 +125,10 @@ class Ui_configDialog(object):
         self.listWidget.setSortingEnabled(__sortingEnabled)
         self.groupBox.setTitle(_translate("configDialog", "Circuit Macros Location", "Group box title"))
         self.cmPath.setPlaceholderText(_translate("configDialog", "Enter Path Name"))
-        self.toolButtonCMPath.setText(_translate("configDialog", "Choose Dir...", "Button text"))
+        self.toolButtonCMPath.setText(_translate("configDialog", "Choose...", "Button text"))
         self.groupBox_2.setTitle(_translate("configDialog", "LaTeX Template File", "Group box title"))
         self.templateFile.setPlaceholderText(_translate("configDialog", "Enter Path Name"))
-        self.toolButtonTemplatePath.setText(_translate("configDialog", "Choose File...", "Button text"))
+        self.toolButtonTemplatePath.setText(_translate("configDialog", "Choose...", "Button text"))
         self.radioButton.setText(_translate("configDialog", "RadioB&utton"))
 
 from pycirkuit import resources_rc

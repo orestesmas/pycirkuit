@@ -157,12 +157,12 @@
 <context>
     <name>MessageBox</name>
     <message>
-        <location filename="../mainwindow.py" line="425"/>
+        <location filename="../mainwindow.py" line="427"/>
         <source>Cannot generate the preview.</source>
         <translation>No s&apos;ha pogut generar la previsualització.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="385"/>
+        <location filename="../mainwindow.py" line="387"/>
         <source>Cannot find the &apos;Circuit Macros&apos;!
 
 </source>
@@ -171,12 +171,12 @@
 </translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="386"/>
+        <location filename="../mainwindow.py" line="388"/>
         <source>Do you want to try to search and install them automatically?</source>
         <translation>Voleu provar de cercar-les i instal·lar-les automàticament?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="387"/>
+        <location filename="../mainwindow.py" line="389"/>
         <source>Error</source>
         <translation>Error</translation>
     </message>
@@ -199,7 +199,7 @@ El PyCirkuit és un compilador/visualitzador de diagrames circuitals descrits em
         <translation>Sobre el PyCirkuit</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="370"/>
+        <location filename="../mainwindow.py" line="372"/>
         <source>Cannot find the {toolLongName}!
 
 </source>
@@ -209,17 +209,17 @@ El PyCirkuit és un compilador/visualitzador de diagrames circuitals descrits em
 </translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="402"/>
+        <location filename="../mainwindow.py" line="404"/>
         <source>Please indicate the correct path to them in the settings dialog.</source>
         <translation>Si us plau indiqueu-ne la ruta correcta al diàleg de l&apos;arranjament.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="426"/>
+        <location filename="../mainwindow.py" line="428"/>
         <source>Critical Error</source>
         <translation>Error crític</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="417"/>
+        <location filename="../mainwindow.py" line="419"/>
         <source>The specified LaTeX template seems invalid!
 
 </source>
@@ -228,7 +228,7 @@ El PyCirkuit és un compilador/visualitzador de diagrames circuitals descrits em
 </translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="418"/>
+        <location filename="../mainwindow.py" line="420"/>
         <source>Please indicate a correct one in the Settings.
 
 </source>
@@ -237,7 +237,7 @@ El PyCirkuit és un compilador/visualitzador de diagrames circuitals descrits em
 </translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="423"/>
+        <location filename="../mainwindow.py" line="425"/>
         <source>The LaTeX template has not been found!
 
 </source>
@@ -246,7 +246,7 @@ El PyCirkuit és un compilador/visualitzador de diagrames circuitals descrits em
 </translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="424"/>
+        <location filename="../mainwindow.py" line="426"/>
         <source>Please indicate its correct PATH in the Settings.
 
 </source>
@@ -255,12 +255,12 @@ El PyCirkuit és un compilador/visualitzador de diagrames circuitals descrits em
 </translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="371"/>
+        <location filename="../mainwindow.py" line="373"/>
         <source>Please ensure that you have this application properly installed and the executable «{execName}» is in the PATH.
 
 </source>
         <comment>Leave untranslated the variable name inside curly braces (included)</comment>
-        <translation>Si us plau, assegureu-vos de tenir aquesta aplicació correctament instal·lada i que l&apos;executable «{execName}» sigui al PATH.
+        <translation>Si us plau, assegureu-vos de tenir aquesta aplicació instal·lada correctament i que l&apos;executable «{execName}» estigui al PATH.
 
 </translation>
     </message>
@@ -276,25 +276,25 @@ El PyCirkuit és un compilador/visualitzador de diagrames circuitals descrits em
 <context>
     <name>Tool Long Name</name>
     <message>
-        <location filename="../mainwindow.py" line="357"/>
+        <location filename="../mainwindow.py" line="359"/>
         <source>&apos;M4&apos; Macro Processor</source>
         <comment>Tool Long Name</comment>
         <translation>Processador de Macros «M4»</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="357"/>
+        <location filename="../mainwindow.py" line="359"/>
         <source>&apos;PIC&apos; language compiler</source>
         <comment>Tool Long Name</comment>
         <translation>Compilador de llenguatge «PIC»</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="357"/>
+        <location filename="../mainwindow.py" line="359"/>
         <source>pdfLaTeX program</source>
         <comment>Tool Long Name</comment>
         <translation>Programa pdfLaTeX</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="357"/>
+        <location filename="../mainwindow.py" line="359"/>
         <source>PDF to PNG image converter</source>
         <comment>Tool Long Name</comment>
         <translation>Convertidor d&apos;imatge PDF a PNG</translation>
@@ -303,48 +303,42 @@ El PyCirkuit és un compilador/visualitzador de diagrames circuitals descrits em
 <context>
     <name>configDialog</name>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="114"/>
+        <location filename="../ui/Ui_configdialog.py" line="116"/>
         <source>Config Dialog</source>
         <translation>Diàleg de configuració</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="118"/>
+        <location filename="../ui/Ui_configdialog.py" line="120"/>
         <source>General</source>
         <translation>General</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="124"/>
+        <location filename="../ui/Ui_configdialog.py" line="126"/>
         <source>Enter Path Name</source>
         <translation>Introduïu la ruta</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="126"/>
+        <location filename="../ui/Ui_configdialog.py" line="128"/>
         <source>RadioB&amp;utton</source>
         <translation>&amp;dummy--</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="120"/>
+        <location filename="../ui/Ui_configdialog.py" line="122"/>
         <source>Circuit Macros Location</source>
         <comment>Group box title</comment>
         <translation>Ubicació de les Circuit Macros</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="122"/>
-        <source>Choose Dir...</source>
-        <comment>Button text</comment>
-        <translation>Escolliu directori...</translation>
-    </message>
-    <message>
-        <location filename="../ui/Ui_configdialog.py" line="123"/>
+        <location filename="../ui/Ui_configdialog.py" line="125"/>
         <source>LaTeX Template File</source>
         <comment>Group box title</comment>
         <translation>Fitxer de plantilla LaTeX</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="125"/>
-        <source>Choose File...</source>
+        <location filename="../ui/Ui_configdialog.py" line="127"/>
+        <source>Choose...</source>
         <comment>Button text</comment>
-        <translation>Escolliu...</translation>
+        <translation>Escull...</translation>
     </message>
 </context>
 </TS>
