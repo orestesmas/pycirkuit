@@ -96,7 +96,7 @@
             </size>
            </property>
            <property name="title">
-            <string>Circuit Macros Location</string>
+            <string comment="Group box title">Circuit Macros Location</string>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_3">
             <item>
@@ -124,7 +124,7 @@
                </size>
               </property>
               <property name="text">
-               <string>Choose Dir...</string>
+               <string comment="Button text">Choose Dir...</string>
               </property>
               <property name="icon">
                <iconset resource="../resources/resources.qrc">
@@ -147,7 +147,7 @@
             </size>
            </property>
            <property name="title">
-            <string>LaTeX Template File</string>
+            <string comment="Group box title">LaTeX Template File</string>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_4">
             <item>
@@ -169,7 +169,7 @@
                </size>
               </property>
               <property name="text">
-               <string>Choose File...</string>
+               <string comment="Button text">Choose File...</string>
               </property>
               <property name="icon">
                <iconset resource="../resources/resources.qrc">

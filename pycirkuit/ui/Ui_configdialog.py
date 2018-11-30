@@ -117,12 +117,12 @@ class Ui_configDialog(object):
         item = self.listWidget.item(0)
         item.setText(_translate("configDialog", "General"))
         self.listWidget.setSortingEnabled(__sortingEnabled)
-        self.groupBox.setTitle(_translate("configDialog", "Circuit Macros Location"))
+        self.groupBox.setTitle(_translate("configDialog", "Circuit Macros Location", "Group box title"))
         self.cmPath.setPlaceholderText(_translate("configDialog", "Enter Path Name"))
-        self.toolButtonCMPath.setText(_translate("configDialog", "Choose Dir..."))
-        self.groupBox_2.setTitle(_translate("configDialog", "LaTeX Template File"))
+        self.toolButtonCMPath.setText(_translate("configDialog", "Choose Dir...", "Button text"))
+        self.groupBox_2.setTitle(_translate("configDialog", "LaTeX Template File", "Group box title"))
         self.templateFile.setPlaceholderText(_translate("configDialog", "Enter Path Name"))
-        self.toolButtonTemplatePath.setText(_translate("configDialog", "Choose File..."))
+        self.toolButtonTemplatePath.setText(_translate("configDialog", "Choose File...", "Button text"))
         self.radioButton.setText(_translate("configDialog", "RadioB&utton"))
 
 from pycirkuit import resources_rc

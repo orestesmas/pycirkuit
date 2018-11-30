@@ -22,6 +22,6 @@
     <file>circuit-bg.jpg</file>
   </qresource>
   <qresource prefix="/translations">
-    <file alias="pycirkuit_l10n_ca">../L10n/pycirkuit.ca.qm</file>
+    <file alias="pycirkuit.ca.qm">../L10n/pycirkuit.ca.qm</file>
   </qresource>
 </RCC>

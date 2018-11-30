@@ -36,7 +36,7 @@
          <normaloff>:/icons/Text</normaloff>:/icons/Text</iconset>
        </attribute>
        <attribute name="title">
-        <string>Source Editor</string>
+        <string comment="Tab title">Source Editor</string>
        </attribute>
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
@@ -61,7 +61,7 @@
          <bool>false</bool>
         </property>
         <property name="text">
-         <string>Process and display</string>
+         <string comment="Button text">Process and display</string>
         </property>
         <property name="icon">
          <iconset resource="../resources/resources.qrc">
@@ -75,7 +75,7 @@
          <bool>false</bool>
         </property>
         <property name="text">
-         <string>Export to TIkZ</string>
+         <string comment="Button text">Export to TIkZ</string>
         </property>
         <property name="icon">
          <iconset resource="../resources/resources.qrc">
@@ -138,7 +138,7 @@
      <normaloff>:/icons/view-preview.png</normaloff>:/icons/view-preview.png</iconset>
    </property>
    <property name="windowTitle">
-    <string>&amp;Preview</string>
+    <string comment="Dock window title">&amp;Preview</string>
    </property>
    <attribute name="dockWidgetArea">
     <number>4</number>
@@ -199,10 +199,10 @@ color: rgb(255, 0, 0);</string>
      <normaloff>:/icons/Exit</normaloff>:/icons/Exit</iconset>
    </property>
    <property name="text">
-    <string>&amp;Quit</string>
+    <string comment="Menu item">&amp;Quit</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Q</string>
+    <string comment="Keyboard Shortcut">Ctrl+Q</string>
    </property>
   </action>
   <action name="actionOpen">
@@ -211,13 +211,13 @@ color: rgb(255, 0, 0);</string>
      <normaloff>:/icons/Open</normaloff>:/icons/Open</iconset>
    </property>
    <property name="text">
-    <string>&amp;Open...</string>
+    <string comment="Menu item">&amp;Open...</string>
    </property>
    <property name="toolTip">
     <string>Open Drawing</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+O</string>
+    <string comment="Keyboard Shortcut">Ctrl+O</string>
    </property>
   </action>
   <action name="actionAbout">
@@ -226,7 +226,7 @@ color: rgb(255, 0, 0);</string>
      <normaloff>:/icons/About</normaloff>:/icons/About</iconset>
    </property>
    <property name="text">
-    <string>&amp;About PyCirkuit</string>
+    <string comment="Menu item">&amp;About PyCirkuit</string>
    </property>
   </action>
   <action name="actionPreferences">
@@ -235,10 +235,10 @@ color: rgb(255, 0, 0);</string>
      <normaloff>:/icons/Settings</normaloff>:/icons/Settings</iconset>
    </property>
    <property name="text">
-    <string>&amp;Preferences...</string>
+    <string comment="Menu item">Configure &amp;PyCirkuit...</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+P</string>
+    <string comment="Keyboard Shortcut">Ctrl+P</string>
    </property>
   </action>
   <action name="actionNew">
@@ -247,13 +247,13 @@ color: rgb(255, 0, 0);</string>
      <normaloff>:/icons/New</normaloff>:/icons/New</iconset>
    </property>
    <property name="text">
-    <string>&amp;New</string>
+    <string comment="Menu item">&amp;New</string>
    </property>
    <property name="toolTip">
     <string>New Drawing</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+N</string>
+    <string comment="Keyboard Shortcut">Ctrl+N</string>
    </property>
   </action>
   <action name="actionSave">
@@ -262,10 +262,10 @@ color: rgb(255, 0, 0);</string>
      <normaloff>:/icons/Save</normaloff>:/icons/Save</iconset>
    </property>
    <property name="text">
-    <string>&amp;Save</string>
+    <string comment="Menu item">&amp;Save</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+S</string>
+    <string comment="Keyboard Shortcut">Ctrl+S</string>
    </property>
   </action>
   <action name="actionSaveAs">
@@ -274,10 +274,10 @@ color: rgb(255, 0, 0);</string>
      <normaloff>:/icons/SaveAs</normaloff>:/icons/SaveAs</iconset>
    </property>
    <property name="text">
-    <string>Sa&amp;ve As...</string>
+    <string comment="Menu item">Sa&amp;ve As...</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Shift+S</string>
+    <string comment="Keyboard Shortcut">Ctrl+Shift+S</string>
    </property>
   </action>
   <action name="actionCMMan">
@@ -286,7 +286,7 @@ color: rgb(255, 0, 0);</string>
      <normaloff>:/icons/CMman</normaloff>:/icons/CMman</iconset>
    </property>
    <property name="text">
-    <string>&amp;Circuit Macros manual</string>
+    <string comment="Menu item">&amp;Circuit Macros manual</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+M</string>
