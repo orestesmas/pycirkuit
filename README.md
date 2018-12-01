@@ -24,10 +24,11 @@ PyCirkuit source code is now hosted on gitlab.upc.edu. The project homepage is [
 
 # Requirements #
 
-As PyCirkuit is written in python 3 and uses multiplatform GUI libraries, it loads without problems on Windows (macOS not tested). However, at present does not work correctly 
+As PyCirkuit is written in python 3 and uses multiplatform GUI libraries, it loads without problems on Windows (macOS not tested). However, its execution relies on using some helper applications thar aren't readily available on non-GNU systems. For that reason, at present PyCirkuit does not work correctly (or has not been tested) on systems other than GNU/Linux.
+
 To run this application you need to have the following applications/libraries installed:
 
-  * Qt libraries
+  * Qt5 libraries
   * Python 3, with virtual environment support
   * PyQt5 python bindings to Qt libraries (*see note below*)
   * (pdf)latex
