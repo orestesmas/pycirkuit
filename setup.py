@@ -1,4 +1,6 @@
 """
+Copyright (c) 2018 Orestes Mas
+
 This file is part of PyCirkuit.
 
 PyCirkuit is free software: you can redistribute it and/or modify
@@ -28,10 +30,10 @@ setup(name='pycirkuit',
       url='https://gitlab.upc.edu/CSL/Programari/pycirkuit.git',
       author='Orestes Mas',
       author_email='orestes@tsc.upc.edu',
-      license='GPL',
+      license='GPLv3',
       packages=find_packages(),
       classifiers=[
           "Programming Language :: Python ::3",
-          "Operating Syste :: OS Independent",
+          "Operating System :: OS Independent",
       ],
       zip_safe=False)
