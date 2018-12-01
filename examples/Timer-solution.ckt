@@ -1,0 +1,42 @@
+.PS
+scale=2.54
+cct_init
+
+l=elen_
+
+Inici: Here
+dot(,,1)
+line down_ l/4
+corner
+line right_ l/6
+Int: bswitch(right_ 2*l/3);llabel(,\text{S}_1)
+{
+  dot(at Inici,,1)
+  "\SI[retain-explicit-plus]{+9}{\volt}" above
+}
+line right_ l/6
+{
+  dot
+  resistor(down_ l);rlabel(,R_2)
+  ground(,T,E)
+}
+R1: resistor(right_ l);llabel(,R_1)
+{
+C:  capacitor(down_ l);llabel(,C)
+  ground(,T,E)
+}
+dot
+line right_ l/2
+dot(,,1)
+"$v_c(t)$" ljust
+
+#spline -> from Int.center+(0,-0.3) right l then right 0.5 down 0.5
+setrgb(0,0.5,0)
+spline -> from Int.center+(0,-0.3) right 1.5*l then to C.center+(-0.35,0) then down_ l/3
+"\scriptsize{charge}" at last spline.start rjust
+setrgb(0.9,0,0)
+arcd((R1.c.x-0.1,C.c.y-0.1),1.2*l/4,-45,235) -> "\scriptsize{dischar-}" "\scriptsize{-ge}"
+
+setrgb(0,0,0)
+
+.PE

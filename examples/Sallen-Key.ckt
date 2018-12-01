@@ -1,0 +1,38 @@
+.PS
+scale=2.54
+cct_init
+l=elen_
+
+In: Here
+resistor(right_ 3*l/4);llabel(,R_1)
+Mid: dot
+resistor(right_ 3*l/4);llabel(,R_2)
+dot
+{
+  capacitor(down_ 3*l/2);rlabel(,C_1)
+  GND: ground(,T,E)
+}
+line right_ 2*l/3
+AO: opamp(right_ 5*l/6,,,,R) with .In1 at Here
+line left_ l/6 from AO.In2 then down elen_/3 
+dot
+{
+  resistor(down_ to (Here,GND));rlabel(,R_3)
+  ground(,T,E)
+}
+resistor(right_ elen_);rlabel(,R_4)
+corner
+line up to AO.Out
+dot
+line right_ elen_/4
+dot(,,1)
+#"$\,v_o(t)$" ljust
+line up_ 3*l/4 from AO.Out
+corner
+capacitor(left_ Here.x-Mid.x);rlabel(,C_2)
+corner
+line to Mid
+dot(at In,,1)
+#"$v_g(t)$" rjust
+
+.PE 

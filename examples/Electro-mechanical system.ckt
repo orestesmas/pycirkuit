@@ -1,0 +1,46 @@
+.PS
+cct_init
+scale=2.54
+l=elen_
+
+Inici:Here
+resistor(right_);llabel(,R)
+inductor(right_,L);llabel(,L)
+line right_ l/2
+corner
+M: ttmotor(down_ l);setrgb(1,0.6,0.1);dlabel(l/3,-0.4*l,+,v_e(t),-);resetrgb
+corner
+line to Inici-(0,l)
+G1:gap(up_ l);clabel(-,v_g(t),+)
+{
+  Eix: box wid 0.75*l ht 0.05*l with .w at M fill(0.7)
+  El1: ellipse wid l/5 ht l/2 with .c at Eix.e fill(0.7)
+  box wid l/2 ht l/2 with .sw at El1.s fill(0.7) invis
+  "$J$" at last box.c rjust
+  El2: ellipse wid l/5 ht l/2 with .c at last box.e fill(0.7)
+  line from El1.n to El2.n
+  line from El1.s to El2.s
+  box wid 0.5*l ht 0.05*l with .w at El2.c fill(0.7)
+  B: ellipse wid l/20 ht l/8 with .c at last box.e fill(0)
+  "$b$" above
+  setrgb(0.2,0.5,1)
+  arcd(Eix.c,l/8,50,-100) <-
+  "$\omega(t)$" at last arc.n+(0,l/8)
+  resetrgb
+}
+setrgb(0,0.5,0)
+arcr((G1.c+M.c)/2-(0.2*l,0),0.3*l,-pi_/2,pi_) <- "$i(t)$"
+resetrgb
+setrgb(0.9,0,0)
+arrow right_ l/2 up_ l/4 with .start at El2.n "$\gamma_m(t)\quad$" above
+arrow left_ l/2 down_ l/4 with .start at El2.s
+resetrgb
+setrgb(0.9,0.3,1)
+arrow right_ l/4 up_ l/8 with .start at B.s "$\gamma_b(t)\quad$" below
+arrow left_ l/4 down_ l/8 with .start at B.n
+resetrgb
+setrgb(0,0,1)
+line <- left l/4 from M.end+(-0.4*l,0.1*l) then down_ l/4
+"$Z(s)\, , Y(s)$" below
+resetrgb
+.PE

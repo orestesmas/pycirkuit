@@ -1,0 +1,60 @@
+.PS
+scale=2.54
+cct_init
+l=elen_
+setrgb(0,0.5,0)
+Inici: Here
+capacitor(right_ l);llabel(,C_i)
+resetrgb
+dot
+{
+  setrgb(0.8,0,0)
+  resistor(down_ l);rlabel(,R_B)
+  GND:ground(,T,E)
+  resetrgb
+}
+setrgb(0,0,1)
+resistor(right_ l);llabel(,{r}_{bb})
+corner
+A:Here
+dot
+resistor(down_ l);rlabel(,{r}_\pi);llabel(+,v_\pi,-)
+ground(,T,E)
+line right_ l*2/3 from A
+dot
+B:Here
+capacitor(down_ l);llabel(,C_\pi)
+ground(,T,E)
+capacitor(right_ l from B);llabel(,C_\mu)
+dot
+ground(at (A.x+5/3*l,A.y-l),T,E) 
+consource(up_ l ,I,R);rlabel(,g_mv_{\pi})
+line right_ l
+dot
+{
+  resistor(down_ l);llabel(,r_o)
+  GND:ground(,T,E)
+}
+line right_ l*2/3
+resetrgb
+dot
+{
+  setrgb(0.8,0,0)
+  resistor(down_ l);llabel(,R_C)
+  GND:ground(,T,E)
+  resetrgb
+}
+line right_ l/2
+dot(,,1);
+"$v_o(t)$" ljust
+setrgb(0,0.5,0)
+resistor(left_ l from Inici);rlabel(,R_g)
+corner
+source(down_ to (Here.x,GND.y),S);rlabel(+,v_g(t))
+ground(,T,E)
+dot(at Inici,,1)
+resetrgb
+setrgb(0,0,1)
+box dashed ht 2.8 wid 7.4 at (Inici.x+l*3.15,Inici.y-elen_/3)
+"BJT" below
+.PE

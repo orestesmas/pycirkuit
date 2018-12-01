@@ -1,0 +1,15 @@
+.PS
+cct_init
+
+ground(,T,E)
+source(up_ elen_,S);llabel(,v_g(t),+)
+resistor(right_ elen_);llabel(,R_g=10\Omega)
+#line right_ elen_/2
+TR: transformer(down_ elen_,R,4,W) with .S1 at Here
+ground(at TR.S2,T,E)
+ground(at TR.P2,T,E)
+line from TR.P1 right_ elen_/2
+resistor(down_ elen_);llabel(,\begin{array}{l}R_L=\\160\Omega\end{array})
+ground(,T,E)
+"1:\textit{n}" at (TR.x,TR.y+0.4)
+.PE

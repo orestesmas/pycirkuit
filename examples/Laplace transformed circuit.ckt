@@ -1,0 +1,41 @@
+.PS
+scale=2.54
+cct_init
+l=elen_
+
+setrgb(0,0.5,0)
+Inici: capacitor(right_ );llabel(,\frac{1}{sC_1})
+"\textcircled{A}" below
+P1: dot
+resistor(right_ l);llabel(,R)
+P2: dot
+"\textcircled{B}" below
+line right_ l/4
+AO: opamp(right_) with .In1 at Here
+line right_ l/4 from AO.Out
+dot
+{
+  line right_ l/4
+  dot(,,1)
+  "$\,V_o(s)$" ljust
+}
+line up_ l/2
+dot
+{
+  capacitor(left_ Here.x-P2.x);rlabel(,\frac{1}{sC_2})
+  corner
+  line to P2
+}
+line up_ .6*l
+corner
+resistor(left_ Here.x-P1.x);rlabel(,R)
+corner
+line to P1
+line left_ l/4 from AO.In2
+corner
+line down_ l/2
+ground(,T,E)
+dot(at Inici.start,,1)
+"$V_i(s)\,$" rjust
+
+.PE

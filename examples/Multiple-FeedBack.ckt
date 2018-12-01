@@ -1,0 +1,38 @@
+.PS
+scale=2.54
+cct_init
+l=0.9*elen_
+
+Terra: ground(,T,E)
+capacitor(up_ l);rlabel(,C_2)
+A: dot
+{
+  resistor(left_ l);rlabel(,R_1)
+  dot(,,1)
+  #"$V_g(t)$" rjust
+}
+resistor(right_ l);llabel(,R_3)
+dot
+{
+  line right_ l/4
+  AO:opamp() with .In1 at Here
+  #dot(at AO.V2,,1)
+  #"\scriptsize$-V_{cc}$" at Here-(0,0.3)
+  #dot(at AO.V1,,1)
+  #"\scriptsize$+V_{cc}$" at Here+(0,0.3)
+  dot(at AO.Out)
+  line right_ l/4
+  dot(,,1)
+  #"$v_o(t)$" ljust
+  line left_ l/4 from AO.In2
+  corner
+  line down_ (Here.y-Terra.y)
+  ground(,T,E)
+}
+capacitor(up_ l);rlabel(,C_1)
+dot
+resistor(up_ l from A);rlabel(,R_2)
+corner
+line right_ (AO.Out.x-Here.x) then to AO.Out
+
+.PE
