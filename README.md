@@ -29,7 +29,7 @@ To run this application you need to have the following applications/libraries in
 
   * Qt libraries
   * Python 3, with virtual environment support
-  * PyQt5 python bindings to Qt libraries 
+  * PyQt5 python bindings to Qt libraries (*see note below*)
   * (pdf)latex
   * m4
   * dpic
@@ -41,10 +41,12 @@ On Debian-based systems (e.g. Ubuntu/Kubuntu) type the following command to inst
 ```shell
   sudo apt-get install texlive-latex-base texlive-latex-recommended \
   texlive-base-bin texlive-extra-utils texlive-pictures preview-latex-style \
-  m4 dpic poppler-utils python3-venv python3-pyqt5
+  m4 dpic poppler-utils python3-venv qtcreator
 ```
 
 There's no Debian package for the Circuit Macros, but if PyCirkuit doesn't find them at startup, it will offer the user to download and install them automatically.
+
+(**Note:** I prefer to install PyQt5 in a sandbox Virtual Environment only for PyCirkuit. See the **Installation** section.)
 
 
 # Installation #
