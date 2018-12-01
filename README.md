@@ -22,7 +22,7 @@ PyCirkuit is written in Python 3 using the PyQt5 libraries, but is largely inspi
 PyCirkuit source code is now hosted on gitlab.upc.edu. The project homepage is [https://gitlab.upc.edu/CSL/Programari/pycirkuit.git](https://gitlab.upc.edu/CSL/Programari/pycirkuit.git).
 
 
-# Requirements #
+# <a name="requirements"></a>Requirements #
 
 As PyCirkuit is written in python 3 and uses multiplatform GUI libraries, it loads without problems on Windows (macOS not tested). However, at present does not work correctly 
 To run this application you need to have the following applications installed:
@@ -45,4 +45,8 @@ There's no Debian package for the Circuit Macros, but if PyCirkuit doesn't find 
 # Installation #
 
 To be written. This is still a pre-release.
+
+To install PyCirkuit in you computer, please follow this steps:
+
+  1. Install the auxiliary apps as explained in the [Requirements] (#requirements)
 
