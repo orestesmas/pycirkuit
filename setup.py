@@ -17,12 +17,12 @@ You should have received a copy of the GNU General Public License
 along with PyCirkuit.  If not, see <https://www.gnu.org/licenses/>.
 """
 
-import setuptools
+from setuptools import setup
 
 with open("README.md", "r") as fh:
-        long_description = fh.read()
+    long_description = fh.read()
 
-setuptools.setup(name='pycirkuit',
+setup(name='pycirkuit',
     version='0.1',
     description='A front-end for Circuit Macros',
     long_description=long_description,
@@ -30,8 +30,8 @@ setuptools.setup(name='pycirkuit',
     url='https://gitlab.upc.edu/CSL/Programari/pycirkuit.git',
     author='Orestes Mas',
     author_email='orestes@tsc.upc.edu',
-    license='GPLv3',
-    packages=setuptools.find_packages(),
+    license='GPLv3+',
+    packages=['pycirkuit'],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
