@@ -65,7 +65,7 @@ To install PyCirkuit in you computer, please follow this steps:
   
 ```shell
    cd pycirkuit
-   pyvenv --system-site-packages venv
+   python3 -m venv venv
 ```
 
   4. Activate the environment and install PyQt5 and PyCirkuit itself inside:
@@ -75,6 +75,8 @@ To install PyCirkuit in you computer, please follow this steps:
    pip3 install PyQt5
    python3 setup.py install
 ```
+
+  (**NOTE:** Apparently, the PyQt5 libraries must be installed by hand. A bug (perhaps in setuptools?) prevents them from being configured correctly when installed from setup.py)
 
   5. If all went well, you can execute PyCirkuit. A little script is included to do so:
 
