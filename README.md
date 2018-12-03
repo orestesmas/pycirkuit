@@ -85,7 +85,7 @@ To install PyCirkuit in you computer, please follow this steps:
 Have fun!
 
 
-# Running #
+# Usage #
 
 To execute PyCirkuit open a terminal window, navigate into the directory where PyCirkuit is installed and activate the virtual environment:
 
