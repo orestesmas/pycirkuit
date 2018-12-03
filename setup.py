@@ -17,7 +17,7 @@ You should have received a copy of the GNU General Public License
 along with PyCirkuit.  If not, see <https://www.gnu.org/licenses/>.
 """
 
-from setuptools import setup, find_packages
+import setuptools
 
 with open("README.md", "r") as fh:
         long_description = fh.read()
@@ -31,9 +31,20 @@ setup(name='pycirkuit',
       author='Orestes Mas',
       author_email='orestes@tsc.upc.edu',
       license='GPLv3',
-      packages=find_packages(),
+      packages=setuptools.find_packages(),
       classifiers=[
-          "Programming Language :: Python ::3",
+          "Programming Language :: Python :: 3",
+          "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
           "Operating System :: OS Independent",
+          "Topic :: Multimedia :: Graphics :: Editors",
+          "Topic :: Scientific/Engineering",
+          "Intended Audience :: Education",
+          "Intended Audience :: Science/Research",
+          "Intended Audience :: End Users/Desktop",
+      ],
+      install_requires=[
+          'PyQt5'
       ],
       zip_safe=False)
+
+
