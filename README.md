@@ -66,6 +66,8 @@ To install PyCirkuit in you computer, please follow this steps:
 
   3. Install PyCirkuit using PIP. It will download and install alongside the required dependencies (PyQt5):
 
+    (NOTE: If you prefer to have en installation in source form -also known as 'editable mode'-,  add the '-e' option after 'install'. Sources will be installed by default at ./venv/src/pycirkuit)
+
 ```shell
    pip3 install git+https://gitlab.upc.edu/CSL/Programari/pycirkuit.git#egg=pycirkuit
 ```
