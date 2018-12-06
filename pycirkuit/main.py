@@ -18,18 +18,18 @@
 # along with PyCirkuit.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-# Third-party imports
-from PyQt5.QtWidgets import QApplication
-from PyQt5.QtCore import QCoreApplication, QTranslator, QLocale
+# Main entry point
+def main():
+    # Third-party imports
+    from PyQt5.QtWidgets import QApplication
+    from PyQt5.QtCore import QCoreApplication, QTranslator, QLocale
+    
+    # Local application imports
+    from pycirkuit.mainwindow import MainWindow
+    
+    # Resources for translation
+    from pycirkuit import resources_rc
 
-# Local application imports
-from pycirkuit.mainwindow import MainWindow
-
-# Resources for translation
-from pycirkuit import resources_rc
-
-
-if __name__ == "__main__":
     import sys
     app = QApplication(sys.argv)
 
@@ -44,3 +44,7 @@ if __name__ == "__main__":
     my_mainWindow = MainWindow()
     my_mainWindow.show()
     sys.exit(app.exec_())
+    
+    
+if __name__ == "__main__":
+    main()

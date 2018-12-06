@@ -32,6 +32,14 @@ setup(name='pycirkuit',
     author_email='orestes@tsc.upc.edu',
     license='GPLv3+',
     packages=find_packages(),
+    entry_points = {
+#    'console_scripts': [
+#        'pycirkuit=pycirkuit.main:main',
+#        ],
+    'gui_scripts': [
+        'pycirkuit=pycirkuit.main:main',
+        ],
+    },
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
