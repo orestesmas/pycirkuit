@@ -72,7 +72,7 @@ class configDialog(QDialog, Ui_configDialog):
     @pyqtSlot()
     def accept(self):
         settings = QSettings()
-        settings.setValue("General/latexTemplateFile", self.cmPath.text())
+        settings.setValue("General/cmPath", self.cmPath.text())
         settings.setValue("General/latexTemplateFile", self.templateFile.text())
         settings.sync()
         QDialog.accept(self)
