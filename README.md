@@ -56,9 +56,10 @@ To install PyCirkuit in you computer, please follow this steps:
 
   1. Install the auxiliary apps as explained in the Requirements section.
 
-  2. Create a Python Virtual Environment into the newly created directory and activate it:
+  2. Create a directory somewhere, create a Python Virtual Environment inside and activate it:
   
 ```shell
+   mkdir pycirkuit
    cd pycirkuit
    python3 -m venv venv
    source venv/bin/activate
@@ -77,26 +78,26 @@ To install PyCirkuit in you computer, please follow this steps:
    pycirkuit
 ```
 
-Have fun!
-
 
 # Usage #
 
 To execute PyCirkuit open a terminal window, navigate into the directory where PyCirkuit is installed and activate the virtual environment:
 
 ```shell
-   cd <path-to-PyCirkuit>
+   cd <path-to-Virtual-Environment>
    source venv/bin/activate
 ```
 
 Then execute the program as above:
 
 ```shell
-   bin/pycirkuit
+   pycirkuit
 ```
 
-Upon finished executing PyCirkuit, you can deactivate the virtual environment:
+Upon finished executing PyCirkuit, you should deactivate the virtual environment:
 
 ```shell
    deactivate
 ```
+
+Have fun!
