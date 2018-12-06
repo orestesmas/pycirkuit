@@ -113,7 +113,7 @@ class configDialog(QDialog, Ui_configDialog):
         """
         fdlg = QFileDialog(self)
         fdlg.setWindowTitle("Latex Template Location")
-        fdlg.setDirectory(self.templateFile.text())
+        fdlg.setDirectory(os.path.dirname(self.templateFile.text()))
         fdlg.setFileMode(QFileDialog.ExistingFile)
         fdlg.setOptions(QFileDialog.DontUseNativeDialog | QFileDialog.ReadOnly)
         fdlg.setViewMode(QFileDialog.Detail)
