@@ -57,32 +57,29 @@ To install PyCirkuit in you computer, please follow this steps:
   1. Install the auxiliary apps as explained in the Requirements section.
   2. Clone (or download & unpack) PyCirkuit in some directory on your disk:
 
-```shell
+    ```shell
    git clone https://gitlab.upc.edu/CSL/Programari/pycirkuit.git
-```
+    ```
 
-  3. Create a Python Virtual Environment into the newly created directory:
+  3. Create a Python Virtual Environment into the newly created directory and activate it:
   
-```shell
-   cd pycirkuit
-   python3 -m venv venv
-```
+    ```shell
+       cd pycirkuit
+       python3 -m venv venv
+       source venv/bin/activate
+    ```
 
-  4. Activate the environment and install PyQt5 and PyCirkuit itself inside:
+  4. Install PyCirkuit using PIP. It will download and install alongside the required dependencies:
 
-```shell
-   source venv/bin/activate
-   pip3 install PyQt5
-   python3 setup.py install
-```
+    ```shell
+       pip3 install 
+    ```
 
-  (**NOTE:** Apparently, the PyQt5 libraries must be installed by hand. A bug (perhaps in setuptools?) prevents them from being configured correctly when installed from setup.py)
+  5. If all went well, you can execute PyCirkuit:
 
-  5. If all went well, you can execute PyCirkuit. A little script is included to do so:
-
-```shell
-   bin/pycirkuit
-```
+    ```shell
+       pycirkuit
+    ```
 
 Have fun!
 
