@@ -72,7 +72,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         font = QtGui.QFont()
         font.setFamily('Courier')
         font.setFixedPitch(True)
-        font.setPointSize(10)
+        font.setPointSize(12)
         self.sourceText.setFont(font)
         self.highlighter = PyCirkuitHighlighter(self.sourceText.document())
 

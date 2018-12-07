@@ -40,109 +40,140 @@
 #############################################################################
 
 
-from PyQt5.QtCore import QRegExp, Qt
-from PyQt5.QtGui import QFont, QSyntaxHighlighter, QTextCharFormat
+from PyQt5.QtCore import QRegExp
+from PyQt5.QtGui import QFont, QSyntaxHighlighter, QTextCharFormat,  QColor
 
 
 class PyCirkuitHighlighter(QSyntaxHighlighter):
     def __init__(self, parent=None):
         super(PyCirkuitHighlighter, self).__init__(parent)
 
-        #FIXME: Change all the rules
+        # Variable to hold the formatting rules for each category
+        self.highlightingRules = []
 
-        # Keyword formatting rules: DarkBlue Bold
-        keywordFormat = QTextCharFormat()
-        keywordFormat.setForeground(Qt.darkBlue)
-        keywordFormat.setFontWeight(QFont.Bold)
-        # These are the keywords
-        keywordPatterns = ["\\bPS","\\bPE","\\bchangequote","\\bdefine","\\bdivert","\\bdivnum",
-        "\\bdnl","\\bdumpdef","\\berrprint","\\beval","\\bifdef","\\bifelse","\\binclude",
-        "\\bincr","\\bindex","\\blen","\\bmaketemp","\\bsinclude","\\bsubstr","\\bsyscmd",
-        "\\btranslit","\\bundefine","\\bundivert","\\b1st","\\b2nd","\\b3rd","\\b4th","\\b5th",
-        "\\b6th","\\b7th","\\b8th","\\b9th","\\bHere","\\babove","\\band","\\barc","\\barrow",
-        "\\barrowhead","\\barrowht","\\barrowwid","\\bat","\\batan2","\\bbelow","\\bbetween",
-        "\\bbox","\\bby","\\bccw","\\bchop","\\bcircle","\\bcolor","\\bcolour","\\bcolored",
-        "\\bcoloured","\\bcommand","\\bcos","\\bcw","\\bdashed","\\bdiam","\\bdo","\\bdotted",
-        "\\bdown","\\bellipse","\\belse","\\bend","\\bexp","\\bfill","\\bfor","\\bfrom","\\bheight",
-        "\\bht","\\bif","\\binvis","\\blast","\\bleft","\\bline","\\bljust","\\bmax","\\bmin",
-        "\\bmove","\\boutline","\\boutlined","\\brad","\\breset","\\bright","\\brjust","\\bscale",
-        "\\bshaded","\\bsin","\\bspline","\\bsprintf","\\bsqrt","\\bstart","\\btan","\\bthen",
-        "\\bthick","\\bto","\\bup","\\bwid","\\bwidth","\\bwith","\\bAND_gate","\\bAND_gen",
-        "\\bAND_ht","\\bAND_wd","\\bBOX_gate","\\bBUFFER_gate","\\bBUFFER_gen","\\bBUF_ht",
-        "\\bBUF_wd","\\bCos","\\bCosine","\\bDarlington","\\bE_","\\bEquidist3","\\bFF_ht",
-        "\\bFF_wid","\\bFector","\\bFlipFlop","\\bFlipFlop6","\\bFlipFlopJK","\\bG_hht_",
-        "\\bHOMELIB_","\\bH_ht","\\bInt_","\\bIOdefs","\\bIntersect_","\\bLH_symbol","\\bLoopover_",
-        "\\bLT_symbol","\\bL_unit","\\bMax","\\bMin","\\bMux","\\bMux_ht","\\bMux_wid","\\bMx_pins",
-        "\\bNAND_gate","\\bNOR_gate","\\bNOT_circle","\\bNOT_gate","\\bNOT_rad","\\bNXOR_gate",
-        "\\bN_diam","\\bN_rad","\\bOR_gate","\\bOR_gen","\\bOR_rad","\\bPoint_","\\bRect_","\\bSin",
-        "\\bView3D","\\bVperp","\\bXOR_gate","\\bXOR_off","\\babove_","\\babs_","\\badc","\\bamp",
-        "\\balong_","\\bantenna","\\barca","\\barcd","\\barcr","\\barcto","\\barrowline","\\bb_",
-        "\\bb_current","\\bbattery","\\bbeginshade","\\bbell","\\bbelow_","\\bbi_tr","\\bbi_trans",
-        "\\bboxcoord","\\bboxdim","\\bbp__","\\bbswitch","\\bbuzzer","\\bc_fet","\\bcapacitor",
-        "\\bcbreaker","\\bcct_init","\\bcintersect","\\bclabel","\\bconsource","\\bcontact",
-        "\\bcontline","\\bcosd","\\bcross","\\bcross3D","\\bcrossover","\\bcrosswd_","\\bcsdim_",
-        "\\bdac","\\bd_fet","\\bdabove","\\bdarrow","\\bdarrow_init","\\bdashline","\\bdbelow",
-        "\\bdcosine3D","\\bdef_bisect","\\bdelay","\\bdelay_rad_","\\bdeleminit_","\\bdend",
-        "\\bdiff3D","\\bdiff_","\\bdimen_","\\bdimension_","\\bdiode","\\bdir_","\\bdistance",
-        "\\bdirection_","\\bdistance","\\bdlabel","\\bdleft","\\bdline","\\bdlinewid","\\bdn_",
-        "\\bdljust","\\bdn_","\\bdna_","\\bdnm_","\\bdot","\\bdot3D","\\bdotrad_","\\bdown_",
-        "\\bdright","\\bdrjust","\\bdswitch","\\bdtee","\\bdtor_","\\bdturn","\\be_","\\be_fet",
-        "\\bearphone","\\bebox","\\belchop","\\beleminit_","\\belen_","\\bem_arrows","\\bendshade",
-        "\\bexpe","\\bf_box","\\bfill_","\\bfitcurve","\\bfor_","\\bfuse","\\bg_","\\bgap",
-        "\\bgen_init","\\bglabel_","\\bgpar_","\\bgpolyline_","\\bgrid_","\\bground","\\bgshade",
-        "\\bhoprad_","\\bht_","\\bifdpic","\\bifgpic","\\bifinstr","\\bifmfpic","\\bifmpost",
-        "\\bifpgf","\\bifpostscript","\\bifpstricks","\\bifroff","\\bifxfig","\\bigbt","\\bin__",
-        "\\binductor","\\binner_prod","\\bintegrator","\\bintersect_","\\bj_fet","\\blarrow",
-        "\\blbox","\\bleft_","\\blength3D","\\blg_bartxt","\\blg_pin","\\blg_pintxt","\\blg_plen",
-        "\\blin_leng","\\blinethick_","\\bljust_","\\bllabel","\\bloc_","\\blog10E_","\\blog_init",
-        "\\bloge","\\blp_xy","\\blpop","\\blswitch","\\blt_","\\bmanhattan","\\bmicrophone","\\bmm__",
-        "\\bmosfet","\\bm4xpand","\\bm4lstring","\\bm4_arrow","\\bm4xtract","\\bn_","\\bne_","\\bneg_",
-        "\\bnport","\\bnw_","\\bopamp","\\bopen_arrow","\\bpar_","\\bpc__","\\bpi_","\\bpmod","\\bpoint_",
-        "\\bpolar_","\\bpotentiometer","\\bprint3D","\\bprod_","\\bproject","\\bpsset_","\\bpt__","\\br_",
-        "\\brarrow","\\brect_","\\brelay","\\bresetrgb","\\bresistor","\\breversed","\\brgbdraw",
-        "\\brgbfill","\\bright_","\\brjust_","\\brlabel","\\brot3Dx","\\brot3Dy","\\brot3Dz",
-        "\\brpoint_","\\brpos_","\\brrot_","\\brs_box","\\brsvec_","\\brt_","\\brtod_","\\brtod__",
-        "\\brvec_","\\bs_","\\bs_box","\\bs_dp","\\bs_ht","\\bs_init","\\bs_name","\\bs_wd","\\bsc_draw",
-        "\\bse_","\\bsetrgb","\\bsetview","\\bsfg_init","\\bsfgabove","\\bsfgarc","\\bsfgbelow",
-        "\\bsfgline","\\bsfgnode","\\bsfgself","\\bshade","\\bshadebox","\\bsign_","\\bsinc","\\bsind",
-        "\\bsinusoid","\\bsource","\\bsourcerad_","\\bsp_","\\bspeaker","\\bsprod3D","\\bsum3D","\\bsum_",
-        "\\bsvec_","\\bsw_","\\bswitch","\\bta_xy","\\bthicklines_","\\bthinlines_","\\bthyristor",
-        "\\btline","\\btr_xy","\\btr_xy_init","\\btransformer","\\bttmotor","\\btwopi_","\\bujt",
-        "\\bunit3D","\\bup_","\\bup__","\\bvariable","\\bvec_","\\bvlength","\\bvperp","\\bvrot_",
-        "\\bvscal_","\\bw_","\\bwid_","\\bwinding","\\bxtal","\\bxtract"]
-        
-        # Create a list structure containing the highlighting rules.
-        self.highlightingRules = [(QRegExp(pattern), keywordFormat)
-                for pattern in keywordPatterns]
-
-        # Now the begining and ending PIC commands
-        picBoundaryFormat = QTextCharFormat()
-        picBoundaryFormat.setForeground(Qt.red)
-        self.highlightingRules.append((QRegExp("^\.P[SE]{1,1}\\b"),
-                picBoundaryFormat))
-
-        # Now the formatting rules for the classes
-        classFormat = QTextCharFormat()
-        classFormat.setFontWeight(QFont.Bold)
-        classFormat.setForeground(Qt.darkMagenta)
-        self.highlightingRules.append((QRegExp("\\bQ[A-Za-z]+\\b"),
-                classFormat))
+        # These are the keywords and patterns to be highlighted, categorized.
 
         # Comments are displayed in gray
         singleLineCommentFormat = QTextCharFormat()
-        singleLineCommentFormat.setForeground(Qt.gray)
-        self.highlightingRules.append((QRegExp("#[^\n]*"),
-                singleLineCommentFormat))
+        singleLineCommentFormat.setForeground(QColor('darkgray'))
+        self.highlightingRules.append((QRegExp("#[^\n]*"), singleLineCommentFormat))
 
-#        # Format for functions: Italic Blue
-#        functionFormat = QTextCharFormat()
-#        functionFormat.setFontItalic(True)
-#        functionFormat.setForeground(Qt.blue)
-#        self.highlightingRules.append((QRegExp("\\b[A-Za-z0-9_]+(?=\\()"),
-#                functionFormat))
+        # Formatting rules for punctuation signs
+        punctuationFormat = QTextCharFormat()
+        punctuationFormat.setForeground(QColor('sienna'))
+        self.highlightingRules.append((QRegExp("[(),;]"), punctuationFormat))
+ 
+        # Formatting rules for operators
+        operatorFormat = QTextCharFormat()
+        operatorFormat.setFontWeight(QFont.Bold)
+        operatorFormat.setForeground(QColor('navy'))
+        self.highlightingRules.append((QRegExp("[+-*/\.]"), operatorFormat))
+        
+        # Label displaying rules
+        labelFormat = QTextCharFormat()
+        labelFormat.setFontWeight(QFont.Bold)
+        labelFormat.setForeground(QColor('deeppink'))
+        self.highlightingRules.append((QRegExp("[A-Z]+[A-Za-z0-9]*:"), labelFormat))
 
-#        self.commentStartExpression = QRegExp("/\\*")
-#        self.commentEndExpression = QRegExp("\\*/")
+        # String displaying rules
+        stringFormat = QTextCharFormat()
+        stringFormat.setFontWeight(QFont.Bold)
+        stringFormat.setForeground(QColor('firebrick'))
+        self.highlightingRules.append((QRegExp('\".*\"'), stringFormat))
+
+        # Now the beggining and ending PIC commands in red
+        picBoundaryPatterns = ["^\.P[SE]{1,1}\\b"]
+        picBoundaryFormat = QTextCharFormat()
+        picBoundaryFormat.setForeground(QColor('darkred'))
+        self.highlightingRules.extend([(QRegExp(pattern), picBoundaryFormat)
+                for pattern in picBoundaryPatterns])
+    
+        # Format for PIC commands: Italic Blue
+        picPatterns = ["\\b1st\\b","\\b2nd\\b","\\b3rd\\b","\\b4th\\b","\\b5th\\b","\\b6th\\b",
+        "\\b7th\\b","\\b8th\\b","\\b9th\\b","\\bHere\\b","\\babove\\b","\\band\\b",
+        "\\barc\\b","\\barrow\\b","\\barrowhead\\b","\\barrowht\\b","\\barrowwid\\b","\\bat\\b",
+        "\\batan2\\b","\\bbelow\\b","\\bbetween\\b","\\bbox\\b","\\bby\\b","\\bccw\\b",
+        "\\bchop\\b","\\bcircle\\b","\\bcolor\\b","\\bcolour\\b","\\bcolored\\b","\\bcoloured\\b",
+        "\\bcommand\\b","\\bcos\\b","\\bcw\\b","\\bdashed\\b","\\bdiam\\b","\\bdo\\b",
+        "\\bdotted\\b","\\bdown\\b","\\bellipse\\b","\\belse\\b","\\bend\\b","\\bexp\\b",
+        "\\bfill\\b","\\bfor\\b","\\bfrom\\b","\\bheight\\b","\\bht\\b","\\bif\\b",
+        "\\binvis\\b","\\blast\\b","\\bleft\\b","\\bline\\b","\\bljust\\b","\\bmax\\b",
+        "\\bmin\\b","\\bmove\\b","\\boutline\\b","\\boutlined\\b","\\brad\\b","\\breset\\b",
+        "\\bright\\b","\\brjust\\b","\\bscale\\b","\\bshaded\\b","\\bsin\\b","\\bspline\\b",
+        "\\bsprintf\\b","\\bsqrt\\b","\\bstart\\b","\\btan\\b","\\bthen\\b","\\bthick\\b",
+        "\\bto\\b","\\bup\\b","\\bwid\\b","\\bwidth\\b","\\bwith\\b",]
+        picFormat = QTextCharFormat()
+        picFormat.setFontItalic(True)
+        picFormat.setForeground(QColor('blue'))
+        self.highlightingRules.extend([(QRegExp(pattern), picFormat) for pattern in picPatterns])
+
+        # Commands and format for M4 primitives
+        m4Patterns = ["\\bchangequote","\\bdefine","\\bdivert","\\bdivnum","\\bdnl","\\bdumpdef",
+        "\\berrprint","\\beval","\\bifdef","\\bifelse","\\binclude","\\bincr",
+        "\\bindex","\\blen","\\bmaketemp","\\bsinclude","\\bsubstr","\\bsyscmd",
+        "\\btranslit","\\bundefine","\\bundivert",]
+        m4Format = QTextCharFormat()
+        m4Format.setFontItalic(True)
+        m4Format.setForeground(QColor('darkmagenta'))
+        self.highlightingRules.extend([(QRegExp(pattern), picFormat) for pattern in m4Patterns])
+        
+        cmPatterns = ["\\bAND_gate","\\bAND_gen","\\bAND_ht","\\bAND_wd","\\bBOX_gate","\\bBUFFER_gate",
+        "\\bBUFFER_gen","\\bBUF_ht","\\bBUF_wd","\\bCos","\\bCosine","\\bDarlington",
+        "\\bE_","\\bEquidist3","\\bFF_ht","\\bFF_wid","\\bFector","\\bFlipFlop",
+        "\\bFlipFlop6","\\bFlipFlopJK","\\bG_hht_","\\bHOMELIB_","\\bH_ht","\\bInt_",
+        "\\bIOdefs","\\bIntersect_","\\bLH_symbol","\\bLoopover_","\\bLT_symbol","\\bL_unit",
+        "\\bMax","\\bMin","\\bMux","\\bMux_ht","\\bMux_wid","\\bMx_pins",
+        "\\bNAND_gate","\\bNOR_gate","\\bNOT_circle","\\bNOT_gate","\\bNOT_rad","\\bNXOR_gate",
+        "\\bN_diam","\\bN_rad","\\bOR_gate","\\bOR_gen","\\bOR_rad","\\bPoint_",
+        "\\bRect_","\\bSin","\\bView3D","\\bVperp","\\bXOR_gate","\\bXOR_off",
+        "\\babove_","\\babs_","\\badc","\\bamp","\\balong_","\\bantenna",
+        "\\barca","\\barcd","\\barcr","\\barcto","\\barrowline","\\bb_",
+        "\\bb_current","\\bbattery","\\bbeginshade","\\bbell","\\bbelow_","\\bbi_tr",
+        "\\bbi_trans","\\bboxcoord","\\bboxdim","\\bbp__","\\bbswitch","\\bbuzzer",
+        "\\bc_fet","\\bcapacitor","\\bcbreaker","\\bcct_init","\\bcintersect","\\bclabel",
+        "\\bconsource","\\bcontact","\\bcontline","\\bcorner","\\bcosd","\\bcross","\\bcross3D",
+        "\\bcrossover","\\bcrosswd_","\\bcsdim_","\\bdac","\\bd_fet","\\bdabove",
+        "\\bdarrow","\\bdarrow_init","\\bdashline","\\bdbelow","\\bdcosine3D","\\bdef_bisect",
+        "\\bdelay","\\bdelay_rad_","\\bdeleminit_","\\bdend","\\bdiff3D","\\bdiff_",
+        "\\bdimen_","\\bdimension_","\\bdiode","\\bdir_","\\bdistance","\\bdirection_",
+        "\\bdistance","\\bdlabel","\\bdleft","\\bdline","\\bdlinewid","\\bdn_",
+        "\\bdljust","\\bdn_","\\bdna_","\\bdnm_","\\bdot","\\bdot3D",
+        "\\bdotrad_","\\bdown_","\\bdright","\\bdrjust","\\bdswitch","\\bdtee",
+        "\\bdtor_","\\bdturn","\\be_","\\be_fet","\\bearphone","\\bebox",
+        "\\belchop","\\beleminit_","\\belen_","\\bem_arrows","\\bendshade","\\bexpe",
+        "\\bf_box","\\bfill_","\\bfitcurve","\\bfor_","\\bfuse","\\bg_",
+        "\\bgap","\\bgen_init","\\bglabel_","\\bgpar_","\\bgpolyline_","\\bgrid_",
+        "\\bground","\\bgshade","\\bhoprad_","\\bht_","\\bifdpic","\\bifgpic",
+        "\\bifinstr","\\bifmfpic","\\bifmpost","\\bifpgf","\\bifpostscript","\\bifpstricks",
+        "\\bifroff","\\bifxfig","\\bigbt","\\bin__","\\binductor","\\binner_prod",
+        "\\bintegrator","\\bintersect_","\\bj_fet","\\blarrow","\\blbox","\\bleft_",
+        "\\blength3D","\\blg_bartxt","\\blg_pin","\\blg_pintxt","\\blg_plen","\\blin_leng",
+        "\\blinethick_","\\bljust_","\\bllabel","\\bloc_","\\blog10E_","\\blog_init",
+        "\\bloge","\\blp_xy","\\blpop","\\blswitch","\\blt_","\\bmanhattan",
+        "\\bmicrophone","\\bmm__","\\bmosfet","\\bm4xpand","\\bm4lstring","\\bm4_arrow",
+        "\\bm4xtract","\\bn_","\\bne_","\\bneg_","\\bnport","\\bnw_",
+        "\\bopamp","\\bopen_arrow","\\bpar_","\\bpc__","\\bpi_","\\bpmod",
+        "\\bpoint_","\\bpolar_","\\bpotentiometer","\\bprint3D","\\bprod_","\\bproject",
+        "\\bpsset_","\\bpt__","\\br_","\\brarrow","\\brect_","\\brelay",
+        "\\bresetrgb","\\bresistor","\\breversed","\\brgbdraw","\\brgbfill","\\bright_",
+        "\\brjust_","\\brlabel","\\brot3Dx","\\brot3Dy","\\brot3Dz","\\brpoint_",
+        "\\brpos_","\\brrot_","\\brs_box","\\brsvec_","\\brt_","\\brtod_",
+        "\\brtod__","\\brvec_","\\bs_","\\bs_box","\\bs_dp","\\bs_ht",
+        "\\bs_init","\\bs_name","\\bs_wd","\\bsc_draw","\\bse_","\\bsetrgb",
+        "\\bsetview","\\bsfg_init","\\bsfgabove","\\bsfgarc","\\bsfgbelow","\\bsfgline",
+        "\\bsfgnode","\\bsfgself","\\bshade","\\bshadebox","\\bsign_","\\bsinc",
+        "\\bsind","\\bsinusoid","\\bsource","\\bsourcerad_","\\bsp_","\\bspeaker",
+        "\\bsprod3D","\\bsum3D","\\bsum_","\\bsvec_","\\bsw_","\\bswitch",
+        "\\bta_xy","\\bthicklines_","\\bthinlines_","\\bthyristor","\\btline","\\btr_xy",
+        "\\btr_xy_init","\\btransformer","\\bttmotor","\\btwopi_","\\bujt","\\bunit3D",
+        "\\bup_","\\bup__","\\bvariable","\\bvec_","\\bvlength","\\bvperp",
+        "\\bvrot_","\\bvscal_","\\bw_","\\bwid_","\\bwinding","\\bxtal",
+        "\\bxtract",]
+        cmFormat = QTextCharFormat()
+        cmFormat.setFontWeight(QFont.Bold)
+        cmFormat.setForeground(QColor('darkgreen'))
+        self.highlightingRules.extend([(QRegExp(pattern), cmFormat) for pattern in cmPatterns])
+
 
     def highlightBlock(self, text):
         for pattern, format in self.highlightingRules:
