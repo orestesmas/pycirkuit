@@ -50,6 +50,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         @type QWidget
         """
         super(MainWindow, self).__init__(parent)
+        # This is to avoid starting the app with buffer marked as "dirty", and hence needing saving
+        # This occurs because the "setupUI" method modifies text and hence triggers a textChanged signal
+        self.inConstructor = True
         self.setupUi(self)
 
         # La icona de l'aplicació és al fitxer de recursos
@@ -59,7 +62,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # Connect signals with slots
         #NOTE: Is NOT necessary to MANUALLY connect most signals to slots, as 
         # pyuic5 calls QtCore.QMetaObject.connectSlotsByName in Ui_configdialog.py
-        # do do such connections AUTOMATICALLY (so connecting them manually triggers slots twice)
+        # do such connections AUTOMATICALLY (so connecting them manually triggers slots twice)
 
         # Properties regarding the present open file
         self.lastFilename = ""
@@ -75,9 +78,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         font.setPointSize(12)
         self.sourceText.setFont(font)
         self.highlighter = PyCirkuitHighlighter(self.sourceText.document())
+  
 
 
     def closeEvent(self,  event):
+        if self.needSaving:
+            self.actionSave.trigger()
         self.tmpDir.remove()
         super(QtWidgets.QMainWindow, self).closeEvent(event)
 
@@ -239,10 +245,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     
     @pyqtSlot()
     def on_sourceText_textChanged(self):
-        self.needSaving = True
-        self.actionSave.setEnabled(True)
-        self.processButton.setEnabled(True)
-        self.exportButton.setEnabled(False)
+        if self.inConstructor:
+            self.inConstructor = False
+        else:
+            self.needSaving = True
+            self.actionSave.setEnabled(True)
+            self.processButton.setEnabled(True)
+            self.exportButton.setEnabled(False)
 
 
     @pyqtSlot()
