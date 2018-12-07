@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'mainwindow.ui'
+# Form implementation generated from reading ui file '/home/orestes/Devel/Software/pycirkuit/pycirkuit/ui/mainwindow.ui'
 #
 # Created by: PyQt5 UI code generator 5.11.3
 #
@@ -26,7 +26,7 @@ class Ui_MainWindow(object):
         self.tab.setObjectName("tab")
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.tab)
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
-        self.sourceText = QtWidgets.QTextEdit(self.tab)
+        self.sourceText = pycktTextEditor(self.tab)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -57,7 +57,7 @@ class Ui_MainWindow(object):
         self.verticalLayout.addLayout(self.horizontalLayout)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menuBar = QtWidgets.QMenuBar(MainWindow)
-        self.menuBar.setGeometry(QtCore.QRect(0, 0, 728, 34))
+        self.menuBar.setGeometry(QtCore.QRect(0, 0, 728, 36))
         self.menuBar.setObjectName("menuBar")
         self.menuFile = QtWidgets.QMenu(self.menuBar)
         self.menuFile.setObjectName("menuFile")
@@ -186,7 +186,7 @@ class Ui_MainWindow(object):
         self.actionOpen.setText(_translate("MainWindow", "&Open...", "Menu item"))
         self.actionOpen.setToolTip(_translate("MainWindow", "Open Drawing"))
         self.actionOpen.setShortcut(_translate("MainWindow", "Ctrl+O", "Keyboard Shortcut"))
-        self.actionAbout.setText(_translate("MainWindow", "About PyCirkuit", "Menu item"))
+        self.actionAbout.setText(_translate("MainWindow", "&About PyCirkuit", "Menu item"))
         self.actionPreferences.setText(_translate("MainWindow", "Configure &PyCirkuit...", "Menu item"))
         self.actionPreferences.setShortcut(_translate("MainWindow", "Ctrl+P", "Keyboard Shortcut"))
         self.actionNew.setText(_translate("MainWindow", "&New", "Menu item"))
@@ -199,4 +199,15 @@ class Ui_MainWindow(object):
         self.actionCMMan.setText(_translate("MainWindow", "&Circuit Macros manual", "Menu item"))
         self.actionCMMan.setShortcut(_translate("MainWindow", "Ctrl+M"))
 
+from pycirkuit.texteditor import pycktTextEditor
 from pycirkuit import resources_rc
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec_())
+
