@@ -344,10 +344,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         fdlg.setAcceptMode(QtWidgets.QFileDialog.AcceptSave)
         if fdlg.exec():
             dst = fdlg.selectedFiles()[0]
+            self.__saveBuffer(dst)
         fdlg.close()
-        #FIXME: Peta si faig un CRTL+S seguit d'un ESCAPE
-        # (local variable 'dst' referenced before assignment)
-        self.__saveBuffer(dst)
     
     
     @pyqtSlot()
