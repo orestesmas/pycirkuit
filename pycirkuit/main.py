@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 # coding: utf-8
-
+"""
+Main program entry point/function
+"""
 # Copyright (C) 2018 Orestes Mas
 # This file is part of PyCirkuit.
 #
