@@ -33,6 +33,7 @@ from PyQt5 import QtCore, QtWidgets, QtGui
 from pycirkuit.configdialog import configDialog
 from pycirkuit.ui.Ui_mainwindow import Ui_MainWindow
 from pycirkuit.circuitmacrosmanager import CircuitMacrosManager
+from pycirkuit.highlighter import PyCirkuitHighlighter
 
 # Translation function
 _translate = QCoreApplication.translate
@@ -66,6 +67,14 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
  
         # Set up a temporary directory to save intermediate files
         self.tmpDir = QtCore.QTemporaryDir()
+        
+        # Set up the editor
+        font = QtGui.QFont()
+        font.setFamily('Courier')
+        font.setFixedPitch(True)
+        font.setPointSize(10)
+        self.sourceText.setFont(font)
+        self.highlighter = PyCirkuitHighlighter(self.sourceText.document())
 
 
     def closeEvent(self,  event):
