@@ -53,6 +53,8 @@ class pycktTextEditor(QTextEdit):
             event.accept()
             numSteps = event.angleDelta() / 120
             self._change_font_size(numSteps.y())
+        else:
+            super().wheelEvent(event)
         
     def _change_font_size(self, steps):
         editorFont = self.font()
