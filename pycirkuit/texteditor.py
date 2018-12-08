@@ -20,7 +20,7 @@ Module implementing a customized TextEditor
 #
 
 # Third-party imports
-from PyQt5.QtCore import QCoreApplication
+from PyQt5.QtCore import QCoreApplication, Qt
 from PyQt5.QtWidgets import QTextEdit
 from PyQt5.QtGui import QWheelEvent,  QKeyEvent,  QKeySequence
 
@@ -49,9 +49,12 @@ class pycktTextEditor(QTextEdit):
             super().keyPressEvent(event)
     
     def wheelEvent(self, event):
-        event.accept()
-        numSteps = event.angleDelta() / 120
-        self._change_font_size(numSteps.y())
+        if (event.modifiers()==Qt.ControlModifier):
+            event.accept()
+            numSteps = event.angleDelta() / 120
+            self._change_font_size(numSteps.y())
+        else:
+            super().wheelEvent(event)
         
     def _change_font_size(self, steps):
         editorFont = self.font()
