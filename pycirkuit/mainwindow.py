@@ -123,7 +123,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     break
             else:
                 errMsg = _translate("MessageBox", "Cannot find the {toolLongName}!\n\n", "Leave untranslated the variable name inside curly braces (included)")
-                errMsg += _translate("MessageBox", "Please ensure that you have this application properly installed and the executable «{execName}» is in the PATH.\n\n", "Leave untranslated the variable name inside curly braces (included)")
+                errMsg += _translate("MessageBox", "Please ensure that you have this application properly installed and the executable \"{execName}\" is in the PATH.\n\n", "Leave untranslated the variable name inside curly braces (included)")
                 errMsg += _translate("MessageBox", "Cannot generate the preview.")
                 errMsg = errMsg.format(toolLongName=p["toolLongName"],  execName=p["execName"])
                 QtWidgets.QMessageBox.critical(self, _translate("MessageBox", "Critical Error", "Message Box title"),  errMsg)
@@ -225,7 +225,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     # I choose the former because I want Qt to deal with the differences between OSes
                     QtGui.QDesktopServices.openUrl(QtCore.QUrl("file://" + candidates[0], QtCore.QUrl.TolerantMode))
                 else:
-                    errMsg  = _translate("MessageBox", 'Cannot find the "Circuit Macros"» documentation.\n\n', "Warning message")
+                    errMsg  = _translate("MessageBox", 'Cannot find the "Circuit Macros" documentation.\n\n', "Warning message")
                     errMsg += _translate("MessageBox", "You will have to search it manually. It should be a PDF file located into {cmPath} folder or one of its subfolders.", "Message Box text. DO NOT translate '{cmPath}' variable.").format(cmPath=cmPath)
                     QtWidgets.QMessageBox.warning(self, _translate("MessageBox", "Error", "Message Box title"),  errMsg)
             except:
@@ -333,7 +333,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 msgBox = QtWidgets.QMessageBox(self)
                 msgBox.setWindowTitle(_translate("MessageBox", "Warning",  "Message Box title"))
                 msgBox.setIcon(QtWidgets.QMessageBox.Warning)
-                msgBox.setText(_translate("MessageBox", "There's already a file named «{filename}» at working directory.", "Message box text. Don't translate '{filename}'").format(filename=self.openedFilename.partition('.')[0]+".tikz"))
+                msgBox.setText(_translate("MessageBox", "There's already a file named \"{filename}\" at working directory.", "Message box text. Don't translate '{filename}'").format(filename=self.openedFilename.partition('.')[0]+".tikz"))
                 msgBox.setInformativeText(_translate("MessageBox", "Do you want to overwrite it?",  "Message Box text"))
                 msgBox.setStandardButtons(QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
                 saveAsButton = msgBox.addButton(_translate("MessageBox", "Save As...",  "Button text"),  QtWidgets.QMessageBox.AcceptRole)

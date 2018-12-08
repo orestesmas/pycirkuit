@@ -9,14 +9,14 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../circuitmacrosmanager.py" line="59"/>
-        <source>Network error: </source>
-        <comment>Error massage</comment>
+        <location filename="../circuitmacrosmanager.py" line="81"/>
+        <source>Error uncompressing the Circuit Macros: </source>
+        <comment>Error message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../circuitmacrosmanager.py" line="81"/>
-        <source>Error uncompressing the Circuit Macros: </source>
+        <location filename="../circuitmacrosmanager.py" line="59"/>
+        <source>Network error: </source>
         <comment>Error message</comment>
         <translation type="unfinished"></translation>
     </message>
@@ -214,64 +214,64 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="137"/>
+        <location filename="../mainwindow.py" line="415"/>
         <source>Converting: PIC -&gt; TIKZ</source>
         <comment>Status Bar message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="141"/>
+        <location filename="../mainwindow.py" line="419"/>
         <source>DPIC error converting .PIC -&gt; .TIkZ
 </source>
         <comment>Error message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="147"/>
+        <location filename="../mainwindow.py" line="425"/>
         <source>Converting: TIKZ -&gt; PDF</source>
         <comment>Status Bar message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="162"/>
+        <location filename="../mainwindow.py" line="440"/>
         <source>PDFLaTeX error converting .TIkZ -&gt; .PDF
 </source>
         <comment>Error message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="179"/>
+        <location filename="../mainwindow.py" line="457"/>
         <source>Cannot determine the LaTeX error</source>
         <comment>Error message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="183"/>
+        <location filename="../mainwindow.py" line="461"/>
         <source>Converting: PDF -&gt; PNG</source>
         <comment>Status Bar message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="187"/>
+        <location filename="../mainwindow.py" line="465"/>
         <source>PDFTOPPM error converting .PDF -&gt; .PNG
 </source>
         <comment>Error message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="230"/>
+        <location filename="../mainwindow.py" line="351"/>
         <source>Enter a file to save into</source>
         <comment>Window Title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="246"/>
+        <location filename="../mainwindow.py" line="367"/>
         <source>Export failed:</source>
         <comment>Error message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="273"/>
+        <location filename="../mainwindow.py" line="238"/>
         <source>.PS
 scale=2.54
 cct_init
@@ -284,37 +284,37 @@ l=elen_
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="287"/>
+        <location filename="../mainwindow.py" line="254"/>
         <source>PyCirkuit files (*.ckt)</source>
         <comment>File filter text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="287"/>
+        <location filename="../mainwindow.py" line="254"/>
         <source>TeX files (*.tex)</source>
         <comment>File filter text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="287"/>
+        <location filename="../mainwindow.py" line="254"/>
         <source>Any files (*)</source>
         <comment>File filter text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="354"/>
+        <location filename="../mainwindow.py" line="300"/>
         <source>Enter a file to save into</source>
         <comment>File Dialog title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="357"/>
+        <location filename="../mainwindow.py" line="303"/>
         <source>PyCirkuit files (*.ckt)</source>
         <comment>File filter</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="357"/>
+        <location filename="../mainwindow.py" line="303"/>
         <source>Any files (*)</source>
         <comment>File filter</comment>
         <translation type="unfinished"></translation>
@@ -326,45 +326,51 @@ l=elen_
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="132"/>
+        <location filename="../mainwindow.py" line="410"/>
         <source>M4 error converting .CKT -&gt; .PIC
 </source>
         <comment>Error message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="285"/>
+        <location filename="../mainwindow.py" line="252"/>
         <source>Source File Selection</source>
         <comment>File Dialog title</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.py" line="240"/>
+        <source>unnamed</source>
+        <comment>Initial name of a new empty file</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>MessageBox</name>
     <message>
-        <location filename="../mainwindow.py" line="395"/>
+        <location filename="../mainwindow.py" line="128"/>
         <source>Cannot generate the preview.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="408"/>
+        <location filename="../mainwindow.py" line="90"/>
         <source>Cannot find the &apos;Circuit Macros&apos;!
 
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="409"/>
+        <location filename="../mainwindow.py" line="91"/>
         <source>Do you want to try to search and install them automatically?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="410"/>
+        <location filename="../mainwindow.py" line="92"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="265"/>
+        <location filename="../mainwindow.py" line="209"/>
         <source>Copyright (c) 2018 Orestes Mas
 
 PyCirkuit is a compiler/renderer of circuit diagrams written using the Dwight Aplevich&apos;s &apos;Circuit Macros&apos;.
@@ -373,81 +379,67 @@ Being written in python, the code and ideas are largely based on &apos;cirkuit&a
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="393"/>
+        <location filename="../mainwindow.py" line="126"/>
         <source>Cannot find the {toolLongName}!
 
 </source>
         <comment>Leave untranslated the variable name inside curly braces (included)</comment>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
-        <location filename="../mainwindow.py" line="394"/>
-        <source>Please ensure that you have this application properly installed and the executable «{execName}» is in the PATH.
-
-</source>
-        <comment>Leave untranslated the variable name inside curly braces (included)</comment>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
-        <location filename="../mainwindow.py" line="425"/>
+        <location filename="../mainwindow.py" line="107"/>
         <source>Please indicate the correct path to them in the settings dialog.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="426"/>
+        <location filename="../mainwindow.py" line="108"/>
         <source>Critical Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="215"/>
+        <location filename="../mainwindow.py" line="336"/>
         <source>Warning</source>
         <comment>Message Box title</comment>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
-        <location filename="../mainwindow.py" line="217"/>
-        <source>There&apos;s already a file named «{filename}» at working directory.</source>
-        <comment>Message box text. Don&apos;t translate &apos;{filename}&apos;</comment>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
-        <location filename="../mainwindow.py" line="218"/>
+        <location filename="../mainwindow.py" line="339"/>
         <source>Do you want to overwrite it?</source>
         <comment>Message Box text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="220"/>
+        <location filename="../mainwindow.py" line="341"/>
         <source>Save As...</source>
         <comment>Button text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="268"/>
+        <location filename="../mainwindow.py" line="212"/>
         <source>About PyCirkuit</source>
         <comment>About Box title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="322"/>
+        <location filename="../mainwindow.py" line="171"/>
         <source>Error saving source file: </source>
         <comment>Error message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="323"/>
+        <location filename="../mainwindow.py" line="172"/>
         <source>Cannot execute command.</source>
         <comment>Error message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="449"/>
+        <location filename="../mainwindow.py" line="173"/>
         <source>Critical Error</source>
         <comment>Message Box title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="440"/>
+        <location filename="../mainwindow.py" line="145"/>
         <source>The specified LaTeX template seems invalid!
 
 </source>
@@ -455,7 +447,7 @@ Being written in python, the code and ideas are largely based on &apos;cirkuit&a
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="441"/>
+        <location filename="../mainwindow.py" line="146"/>
         <source>Please indicate a correct one in the Settings.
 
 </source>
@@ -463,13 +455,13 @@ Being written in python, the code and ideas are largely based on &apos;cirkuit&a
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="448"/>
+        <location filename="../mainwindow.py" line="153"/>
         <source>Cannot generate the preview.</source>
         <comment>Error message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="446"/>
+        <location filename="../mainwindow.py" line="151"/>
         <source>The LaTeX template has not been found!
 
 </source>
@@ -477,38 +469,64 @@ Being written in python, the code and ideas are largely based on &apos;cirkuit&a
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="447"/>
+        <location filename="../mainwindow.py" line="152"/>
         <source>Please indicate its correct PATH in the Settings.
 
 </source>
         <comment>Error message</comment>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
-        <location filename="../mainwindow.py" line="467"/>
-        <source>Cannot find the &quot;Circuit Macros&quot;» documentation.
+    <message>
+        <location filename="../mainwindow.py" line="230"/>
+        <source>You will have to search it manually. It should be a PDF file located into {cmPath} folder or one of its subfolders.</source>
+        <comment>Message Box text. DO NOT translate &apos;{cmPath}&apos; variable.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.py" line="231"/>
+        <source>Error</source>
+        <comment>Message Box title</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.py" line="193"/>
+        <source>Source file have unsaved changes.</source>
+        <comment>Message box text</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.py" line="194"/>
+        <source>Do you want to save them before closing?</source>
+        <comment>Message Box text</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.py" line="229"/>
+        <source>Cannot find the &quot;Circuit Macros&quot; documentation.
 
 </source>
         <comment>Warning message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="468"/>
-        <source>You will have to search it manually. It should be a PDF file located into {cmPath} folder or one of its subfolders.</source>
-        <comment>Message Box text. DO NOT translate &apos;{cmPath}&apos; variable.</comment>
+        <location filename="../mainwindow.py" line="338"/>
+        <source>There&apos;s already a file named &quot;{filename}&quot; at working directory.</source>
+        <comment>Message box text. Don&apos;t translate &apos;{filename}&apos;</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="469"/>
-        <source>Error</source>
-        <comment>Message Box title</comment>
+        <location filename="../mainwindow.py" line="127"/>
+        <source>Please ensure that you have this application properly installed and the executable &quot;{execName}&quot; is in the PATH.
+
+</source>
+        <comment>Leave untranslated the variable name inside curly braces (included)</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>StatusBar</name>
     <message>
-        <location filename="../mainwindow.py" line="128"/>
+        <location filename="../mainwindow.py" line="406"/>
         <source>Converting: Circuit Macros -&gt; PIC</source>
         <comment>Status Bar message</comment>
         <translation type="unfinished"></translation>
@@ -517,25 +535,25 @@ Being written in python, the code and ideas are largely based on &apos;cirkuit&a
 <context>
     <name>Tool Long Name</name>
     <message>
-        <location filename="../mainwindow.py" line="380"/>
+        <location filename="../mainwindow.py" line="113"/>
         <source>&apos;M4&apos; Macro Processor</source>
         <comment>Tool Long Name</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="380"/>
+        <location filename="../mainwindow.py" line="113"/>
         <source>&apos;PIC&apos; language compiler</source>
         <comment>Tool Long Name</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="380"/>
+        <location filename="../mainwindow.py" line="113"/>
         <source>pdfLaTeX program</source>
         <comment>Tool Long Name</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="380"/>
+        <location filename="../mainwindow.py" line="113"/>
         <source>PDF to PNG image converter</source>
         <comment>Tool Long Name</comment>
         <translation type="unfinished"></translation>
