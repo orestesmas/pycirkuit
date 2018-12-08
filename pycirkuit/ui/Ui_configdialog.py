@@ -8,16 +8,16 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-class Ui_configDialog(object):
-    def setupUi(self, configDialog):
-        configDialog.setObjectName("configDialog")
-        configDialog.resize(840, 400)
-        configDialog.setMinimumSize(QtCore.QSize(800, 0))
-        self.verticalLayout = QtWidgets.QVBoxLayout(configDialog)
+class Ui_ConfigDialog(object):
+    def setupUi(self, ConfigDialog):
+        ConfigDialog.setObjectName("ConfigDialog")
+        ConfigDialog.resize(840, 400)
+        ConfigDialog.setMinimumSize(QtCore.QSize(800, 0))
+        self.verticalLayout = QtWidgets.QVBoxLayout(ConfigDialog)
         self.verticalLayout.setObjectName("verticalLayout")
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
-        self.listWidget = QtWidgets.QListWidget(configDialog)
+        self.listWidget = QtWidgets.QListWidget(ConfigDialog)
         self.listWidget.setMaximumSize(QtCore.QSize(128, 16777215))
         self.listWidget.setIconSize(QtCore.QSize(96, 84))
         self.listWidget.setTextElideMode(QtCore.Qt.ElideRight)
@@ -35,7 +35,7 @@ class Ui_configDialog(object):
         item.setFlags(QtCore.Qt.ItemIsSelectable|QtCore.Qt.ItemIsUserCheckable|QtCore.Qt.ItemIsEnabled)
         self.listWidget.addItem(item)
         self.horizontalLayout.addWidget(self.listWidget, 0, QtCore.Qt.AlignHCenter)
-        self.stackedWidget = QtWidgets.QStackedWidget(configDialog)
+        self.stackedWidget = QtWidgets.QStackedWidget(ConfigDialog)
         self.stackedWidget.setFrameShape(QtWidgets.QFrame.Panel)
         self.stackedWidget.setFrameShadow(QtWidgets.QFrame.Raised)
         self.stackedWidget.setObjectName("stackedWidget")
@@ -97,48 +97,48 @@ class Ui_configDialog(object):
         self.verticalLayout.addLayout(self.horizontalLayout)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.buttonBox = QtWidgets.QDialogButtonBox(configDialog)
+        self.buttonBox = QtWidgets.QDialogButtonBox(ConfigDialog)
         self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Close)
         self.buttonBox.setCenterButtons(False)
         self.buttonBox.setObjectName("buttonBox")
         self.horizontalLayout_2.addWidget(self.buttonBox)
         self.verticalLayout.addLayout(self.horizontalLayout_2)
 
-        self.retranslateUi(configDialog)
+        self.retranslateUi(ConfigDialog)
         self.stackedWidget.setCurrentIndex(0)
         self.listWidget.currentRowChanged['int'].connect(self.stackedWidget.setCurrentIndex)
-        self.buttonBox.clicked['QAbstractButton*'].connect(configDialog.accept)
-        QtCore.QMetaObject.connectSlotsByName(configDialog)
-        configDialog.setTabOrder(self.listWidget, self.cmPath)
-        configDialog.setTabOrder(self.cmPath, self.toolButtonCMPath)
-        configDialog.setTabOrder(self.toolButtonCMPath, self.templateFile)
-        configDialog.setTabOrder(self.templateFile, self.toolButtonTemplatePath)
-        configDialog.setTabOrder(self.toolButtonTemplatePath, self.radioButton)
+        self.buttonBox.clicked['QAbstractButton*'].connect(ConfigDialog.accept)
+        QtCore.QMetaObject.connectSlotsByName(ConfigDialog)
+        ConfigDialog.setTabOrder(self.listWidget, self.cmPath)
+        ConfigDialog.setTabOrder(self.cmPath, self.toolButtonCMPath)
+        ConfigDialog.setTabOrder(self.toolButtonCMPath, self.templateFile)
+        ConfigDialog.setTabOrder(self.templateFile, self.toolButtonTemplatePath)
+        ConfigDialog.setTabOrder(self.toolButtonTemplatePath, self.radioButton)
 
-    def retranslateUi(self, configDialog):
+    def retranslateUi(self, ConfigDialog):
         _translate = QtCore.QCoreApplication.translate
-        configDialog.setWindowTitle(_translate("configDialog", "Config Dialog"))
+        ConfigDialog.setWindowTitle(_translate("ConfigDialog", "Config Dialog"))
         __sortingEnabled = self.listWidget.isSortingEnabled()
         self.listWidget.setSortingEnabled(False)
         item = self.listWidget.item(0)
-        item.setText(_translate("configDialog", "General"))
+        item.setText(_translate("ConfigDialog", "General"))
         self.listWidget.setSortingEnabled(__sortingEnabled)
-        self.groupBox.setTitle(_translate("configDialog", "Circuit Macros Location", "Group box title"))
-        self.cmPath.setPlaceholderText(_translate("configDialog", "Enter Path Name"))
-        self.toolButtonCMPath.setText(_translate("configDialog", "Choose...", "Button text"))
-        self.groupBox_2.setTitle(_translate("configDialog", "LaTeX Template File", "Group box title"))
-        self.templateFile.setPlaceholderText(_translate("configDialog", "Enter Path Name"))
-        self.toolButtonTemplatePath.setText(_translate("configDialog", "Choose...", "Button text"))
-        self.radioButton.setText(_translate("configDialog", "RadioB&utton"))
+        self.groupBox.setTitle(_translate("ConfigDialog", "Circuit Macros Location", "Group box title"))
+        self.cmPath.setPlaceholderText(_translate("ConfigDialog", "Enter Path Name"))
+        self.toolButtonCMPath.setText(_translate("ConfigDialog", "Choose...", "Button text"))
+        self.groupBox_2.setTitle(_translate("ConfigDialog", "LaTeX Template File", "Group box title"))
+        self.templateFile.setPlaceholderText(_translate("ConfigDialog", "Enter Path Name"))
+        self.toolButtonTemplatePath.setText(_translate("ConfigDialog", "Choose...", "Button text"))
+        self.radioButton.setText(_translate("ConfigDialog", "RadioB&utton"))
 
 from pycirkuit import resources_rc
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    configDialog = QtWidgets.QDialog()
-    ui = Ui_configDialog()
-    ui.setupUi(configDialog)
-    configDialog.show()
+    ConfigDialog = QtWidgets.QDialog()
+    ui = Ui_ConfigDialog()
+    ui.setupUi(ConfigDialog)
+    ConfigDialog.show()
     sys.exit(app.exec_())
 

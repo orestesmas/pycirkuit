@@ -30,7 +30,7 @@ from PyQt5.QtCore import pyqtSlot,  QCoreApplication
 from PyQt5 import QtCore, QtWidgets, QtGui
 
 # Local application imports
-from pycirkuit.configdialog import configDialog
+from pycirkuit.configdialog import ConfigDialog
 from pycirkuit.ui.Ui_mainwindow import Ui_MainWindow
 from pycirkuit.circuitmacrosmanager import CircuitMacrosManager
 from pycirkuit.highlighter import PyCirkuitHighlighter
@@ -123,26 +123,26 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             # La crida subprocess.run() és molt interessant
             # el 'check=False' fa que no salti una excepció si l'ordre falla, atès que ja la llanço jo després
             # amb un missatge més personalitzat
-            self.statusBar.showMessage(_translate("StatusBar","Converting: Circuit Macros -> PIC"))
+            self.statusBar.showMessage(_translate("StatusBar","Converting: Circuit Macros -> PIC",  "Status Bar message"))
             command = "m4 -I {cmPath} pgf.m4 {baseName}.ckt > {baseName}.pic".format(cmPath=cmPath,  baseName=tmpFileBaseName)
             result = subprocess.run(command, shell=True, check=False, stderr=subprocess.STDOUT, stdout=subprocess.PIPE)
             if result.returncode != 0:
-                errMsg = _translate("MainWindow", "Error executing M4: Conversion .CKT -> .PIC\n")
+                errMsg = _translate("MainWindow", "M4 error converting .CKT -> .PIC\n",  "Error message")
                 errMsg += result.stdout.decode()
                 raise OSError(errMsg)
 
             # PAS 2: Li passo el dpic: .PIC -> .TIKZ
-            self.statusBar.showMessage("Converting: PIC -> TIKZ")
+            self.statusBar.showMessage(_translate("MainWindow", "Converting: PIC -> TIKZ", "Status Bar message"))
             command = "dpic -g {baseName}.pic > {baseName}.tikz".format(baseName=tmpFileBaseName)
             result = subprocess.run(command, shell=True, check=False, stderr=subprocess.STDOUT, stdout=subprocess.PIPE)
             if result.returncode != 0:
-                errMsg = "Error en DPIC: Conversió .PIC -> .TIKZ\n"
+                errMsg = _translate("MainWindow", "DPIC error converting .PIC -> .TIkZ\n", "Error message")
                 errMsg += result.stdout.decode()
                 raise OSError(errMsg)
 
             # PAS 3: Li passo el PDFLaTeX: .TIKZ -> .PDF
             # Primer haig d'incloure el codi .TIKZ en una plantilla adient
-            self.statusBar.showMessage("Converting: TIKZ -> PDF")
+            self.statusBar.showMessage(_translate("MainWindow", "Converting: TIKZ -> PDF", "Status Bar message"))
             latexTemplateFile = settings.value("General/latexTemplateFile")
             templateCode = ""
             with open("{templateFile}".format(templateFile=latexTemplateFile), 'r') as template:
@@ -156,7 +156,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             command = "pdflatex -interaction=batchmode -halt-on-error -file-line-error -output-directory {tmpDir} {baseName}.tex".format(tmpDir=self.tmpDir.path(), baseName=tmpFileBaseName)
             result = subprocess.run(command, shell=True, check=False, stderr=subprocess.STDOUT, stdout=subprocess.PIPE)
             if result.returncode != 0:
-                errMsg = "Error en PDFLaTeX: Conversió .TIKZ -> .PDF\n"
+                errMsg = _translate("MainWindow", "PDFLaTeX error converting .TIkZ -> .PDF\n", "Error message")
                 ###### TODO: NO-PORTABLE!! Només funciona en entorns on existeixi el GREP
                 ###### Es pot mirar d'usar el mòdul "re" (regular expressions) de python, però és complicadot
                 ###### El que he après fins ara és:
@@ -173,15 +173,15 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 if result.returncode == 0:
                     errMsg += result.stdout.decode()
                 else:
-                    errMsg += "No s'ha pogut determinar l'error del LaTeX"
+                    errMsg += _translate("MainWindow", "Cannot determine the LaTeX error",  "Error message")
                 raise OSError(errMsg)
 
             # PAS 4: Converteixo el PDF a imatge bitmap per visualitzar-la: .PDF -> .PNG
-            self.statusBar.showMessage("Converting: PDF -> PNG")
+            self.statusBar.showMessage(_translate("MainWindow","Converting: PDF -> PNG", "Status Bar message"))
             command = "pdftoppm {baseName}.pdf -png > {baseName}.png".format(baseName=tmpFileBaseName)
             result = subprocess.run(command, shell=True, check=False, stderr=subprocess.STDOUT, stdout=subprocess.PIPE)
             if result.returncode != 0:
-                errMsg = "Error en PDFTOPPM: Conversió .PDF -> .PNG\n"
+                errMsg = _translate("MainWindow", "PDFTOPPM error converting .PDF -> .PNG\n", "Error message")
                 errMsg += result.stdout.decode()
                 raise OSError(errMsg)
         except OSError as e:
@@ -209,12 +209,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         try:    
             if os.path.exists(dst):
                 msgBox = QtWidgets.QMessageBox(self)
-                msgBox.setWindowTitle("Avís")
+                msgBox.setWindowTitle(_translate("MessageBox", "Warning",  "Message Box title"))
                 msgBox.setIcon(QtWidgets.QMessageBox.Warning)
-                msgBox.setText("Ja existeix un fitxer de nom «{filename}» al directori de treball.".format(filename=self.lastFilename.partition('.')[0]+".tikz"))
-                msgBox.setInformativeText("Voleu sobreescriure'l?")
+                msgBox.setText(_translate("MessageBox", "There's already a file named «{filename}» at working directory.", "Message box text. Don't translate '{filename}'").format(filename=self.lastFilename.partition('.')[0]+".tikz"))
+                msgBox.setInformativeText(_translate("MessageBox", "Do you want to overwrite it?",  "Message Box text"))
                 msgBox.setStandardButtons(QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
-                saveAsButton = msgBox.addButton("Desa com a...",  QtWidgets.QMessageBox.AcceptRole)
+                saveAsButton = msgBox.addButton(_translate("MessageBox", "Save As...",  "Button text"),  QtWidgets.QMessageBox.AcceptRole)
                 msgBox.setDefaultButton(QtWidgets.QMessageBox.No)
                 response = msgBox.exec()
                 # Overwrite
@@ -224,7 +224,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 # Save with another name (and ask for it first)
                 if (response == QtWidgets.QMessageBox.NoButton) and (msgBox.clickedButton() == saveAsButton):
                     fdlg = QtWidgets.QFileDialog(self)
-                    fdlg.setWindowTitle("Enter a file to save into")
+                    fdlg.setWindowTitle(_translate("MainWindow", "Enter a file to save into",  "Window Title"))
                     fdlg.setDirectory(dst)
                     fdlg.setFileMode(QtWidgets.QFileDialog.AnyFile)
                     fdlg.setOptions(QtWidgets.QFileDialog.DontUseNativeDialog)
@@ -240,7 +240,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 copyfile(src, dst)
                 self.exportButton.setEnabled(False)
         except OSError as e:
-            print("Export failed:", e)
+            print(_translate("MainWindow", "Export failed:",  "Error message"), e)
     
     
     @pyqtSlot()
@@ -262,12 +262,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         txt = _translate("MessageBox", "Copyright (c) 2018 Orestes Mas\n\n"\
                  "PyCirkuit is a compiler/renderer of circuit diagrams written using the Dwight Aplevich's 'Circuit Macros'.\n"\
                  "Being written in python, the code and ideas are largely based on 'cirkuit' C++ program, by Matteo Agostinelli.\n")
-        QtWidgets.QMessageBox.about(self,  _translate("MessageBox", "About PyCirkuit"),  txt)
+        QtWidgets.QMessageBox.about(self,  _translate("MessageBox", "About PyCirkuit",  "About Box title"),  txt)
 
 
     @pyqtSlot()
     def on_actionNew_triggered(self):
-        txt = ".PS\nscale=2.54\ncct_init\n\nl=elen_\n<enter your drawing here>\n.PE\n"
+        txt = _translate("MainWindow", ".PS\nscale=2.54\ncct_init\n\nl=elen_\n<Enter your drawing here>\n.PE\n",  "Template text. Translate ONLY the text between angle braces <...>")
         self.sourceText.setText(txt)
         self.lastFileName = ""
 
@@ -278,9 +278,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         
         # Presento el diàleg de càrrega de fitxer
         fdlg = QtWidgets.QFileDialog(self)
-        fdlg.setWindowTitle("Open Source File")
+        fdlg.setWindowTitle(_translate("MainWindow", "Source File Selection", "File Dialog title"))
         fdlg.setDirectory(settings.value("General/lastWD",  ""))
-        fdlg.setNameFilters(["PyCirkuit files (*.ckt)",  "TeX files (*.tex)",  "Any files (*)"])
+        fdlg.setNameFilters([
+            _translate("MainWindow", "PyCirkuit files (*.ckt)", "File filter text"), 
+            _translate("MainWindow", "TeX files (*.tex)", "File filter text"),
+            _translate("MainWindow", "Any files (*)", "File filter text")])
         fdlg.setFileMode(QtWidgets.QFileDialog.ExistingFile)
         fdlg.setOptions(QtWidgets.QFileDialog.DontUseNativeDialog | QtWidgets.QFileDialog.ReadOnly)
         fdlg.setViewMode(QtWidgets.QFileDialog.Detail)
@@ -311,9 +314,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             f = open(dst,'w', encoding='UTF-8')
             f.write(self.sourceText.toPlainText())
         except OSError as e:
-            errMsg = "S'ha produït un error en desar el fitxer font: " + e.strerror + ".\n\n"
-            errMsg += "No es pot executar l'ordre."
-            QtWidgets.QMessageBox.critical(self, "Error crític",  errMsg)
+            errMsg = _translate("MessageBox", "Error saving source file: ", "Error message") + e.strerror + ".\n\n"
+            errMsg += _translate("MessageBox", "Cannot execute command.", "Error message")
+            QtWidgets.QMessageBox.critical(self, _translate("MessageBox", "Critical Error", "Message Box title"),  errMsg)
             return
         else:
             settings = QtCore.QSettings()
@@ -343,10 +346,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         settings = QtCore.QSettings()
         lastWD = settings.value("General/lastWD", QtCore.QStandardPaths.displayName(QtCore.QStandardPaths.HomeLocation))
         fdlg = QtWidgets.QFileDialog(self)
-        fdlg.setWindowTitle("Enter a file to save into")
+        fdlg.setWindowTitle(_translate("MainWindow", "Enter a file to save into", "File Dialog title"))
         fdlg.setDirectory(lastWD)
         fdlg.setFilter(QtCore.QDir.AllDirs | QtCore.QDir.Files)
-        fdlg.setNameFilters(["PyCirkuit files (*.ckt)",  "Any files (*)"])
+        fdlg.setNameFilters([
+            _translate("MainWindow", "PyCirkuit files (*.ckt)", "File filter"),
+            _translate("MainWindow", "Any files (*)", "File filter")])
         fdlg.setOptions(QtWidgets.QFileDialog.DontUseNativeDialog)
         fdlg.setFileMode(QtWidgets.QFileDialog.AnyFile)
         fdlg.setViewMode(QtWidgets.QFileDialog.Detail)
@@ -362,7 +367,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         """
         Slot documentation goes here.
         """
-        cfgDlg = configDialog()
+        cfgDlg = ConfigDialog()
         cfgDlg.exec()
 
 
@@ -380,11 +385,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     print("Found: {execName}\n".format(execName=p["execName"]))
                     break
             else:
-                txt = _translate("MessageBox", "Cannot find the {toolLongName}!\n\n", "Leave untranslated the variable name inside curly braces (included)")
-                txt += _translate("MessageBox", "Please ensure that you have this application properly installed and the executable «{execName}» is in the PATH.\n\n", "Leave untranslated the variable name inside curly braces (included)")
-                txt += _translate("MessageBox", "Cannot generate the preview.")
-                txt = txt.format(toolLongName=p["toolLongName"],  execName=p["execName"])
-                QtWidgets.QMessageBox.critical(self, _translate("MessageBox", "Critical Error",  txt))
+                errMsg = _translate("MessageBox", "Cannot find the {toolLongName}!\n\n", "Leave untranslated the variable name inside curly braces (included)")
+                errMsg += _translate("MessageBox", "Please ensure that you have this application properly installed and the executable «{execName}» is in the PATH.\n\n", "Leave untranslated the variable name inside curly braces (included)")
+                errMsg += _translate("MessageBox", "Cannot generate the preview.")
+                errMsg = errMsg.format(toolLongName=p["toolLongName"],  execName=p["execName"])
+                QtWidgets.QMessageBox.critical(self, _translate("MessageBox", "Critical Error", "Message Box title"),  errMsg)
                 return False
         return True
 
@@ -427,16 +432,16 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 if "%%SOURCE%%" in templateCode:
                     return True
                 else:
-                    txt  = _translate("MessageBox", "The specified LaTeX template seems invalid!\n\n")
-                    txt += _translate("MessageBox", "Please indicate a correct one in the Settings.\n\n")
-                    txt += _translate("MessageBox", "Cannot generate the preview.")
-                    QtWidgets.QMessageBox.critical(self, _translate("MessageBox", "Critical Error"),  txt)
+                    errMsg  = _translate("MessageBox", "The specified LaTeX template seems invalid!\n\n", "Error message")
+                    errMsg += _translate("MessageBox", "Please indicate a correct one in the Settings.\n\n", "Error message")
+                    errMsg += _translate("MessageBox", "Cannot generate the preview.", "Error message")
+                    QtWidgets.QMessageBox.critical(self, _translate("MessageBox", "Critical Error", "Message Box title"),  errMsg)
                     return False
         else:
-            txt  = _translate("MessageBox", "The LaTeX template has not been found!\n\n")
-            txt += _translate("MessageBox", "Please indicate its correct PATH in the Settings.\n\n")
-            txt += _translate("MessageBox", "Cannot generate the preview.")
-            QtWidgets.QMessageBox.critical(self, _translate("MessageBox", "Critical Error"),  txt)
+            errMsg  = _translate("MessageBox", "The LaTeX template has not been found!\n\n", "Error message")
+            errMsg += _translate("MessageBox", "Please indicate its correct PATH in the Settings.\n\n", "Error message")
+            errMsg += _translate("MessageBox", "Cannot generate the preview.", "Error message")
+            QtWidgets.QMessageBox.critical(self, _translate("MessageBox", "Critical Error", "Message Box title"),  errMsg)
             return False
 
 
@@ -454,8 +459,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     # I choose the former because I want Qt to deal with the differences between OSes
                     QtGui.QDesktopServices.openUrl(QtCore.QUrl("file://" + candidates[0], QtCore.QUrl.TolerantMode))
                 else:
-                    txt  = "No s'ha pogut localitzar la documentació de les «Circuit Macros»\n\n"
-                    txt += "L'haureu de cercar manualment. Hauria de ser un fitxer PDF ubicat a la carpeta {cmPath} o en una de les seves subcarpetes.".format(cmPath=cmPath)
-                    QtWidgets.QMessageBox.warning(self, "Error",  txt)
+                    errMsg  = _translate("MessageBox", 'Cannot find the "Circuit Macros"» documentation.\n\n', "Warning message")
+                    errMsg += _translate("MessageBox", "You will have to search it manually. It should be a PDF file located into {cmPath} folder or one of its subfolders.", "Message Box text. DO NOT translate '{cmPath}' variable.").format(cmPath=cmPath)
+                    QtWidgets.QMessageBox.warning(self, _translate("MessageBox", "Error", "Message Box title"),  errMsg)
             except:
                 pass

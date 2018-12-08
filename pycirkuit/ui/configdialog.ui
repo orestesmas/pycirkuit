@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>configDialog</class>
- <widget class="QDialog" name="configDialog">
+ <class>ConfigDialog</class>
+ <widget class="QDialog" name="ConfigDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -270,7 +270,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>clicked(QAbstractButton*)</signal>
-   <receiver>configDialog</receiver>
+   <receiver>ConfigDialog</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
