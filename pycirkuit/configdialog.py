@@ -26,16 +26,19 @@ import os
 from PyQt5.QtCore import\
         pyqtSlot,\
         QDir,\
-        QSettings
+        QSettings, \
+        QCoreApplication
 from PyQt5.QtWidgets import\
         QDialog,\
         QFileDialog
 
 # Local application imports
-from pycirkuit.ui.Ui_configdialog import Ui_configDialog
+from pycirkuit.ui.Ui_configdialog import Ui_ConfigDialog
 
+# Translation function
+_translate = QCoreApplication.translate
 
-class configDialog(QDialog, Ui_configDialog):
+class ConfigDialog(QDialog, Ui_ConfigDialog):
     """
     Class documentation goes here.
     """
@@ -46,7 +49,7 @@ class configDialog(QDialog, Ui_configDialog):
         @param parent reference to the parent widget
         @type QWidget
         """
-        super(configDialog, self).__init__(parent)
+        super().__init__(parent)
         self.setupUi(self)
         
         # Persistent settings
@@ -94,7 +97,7 @@ class configDialog(QDialog, Ui_configDialog):
         Slot documentation goes here.
         """
         fdlg = QFileDialog(self)
-        fdlg.setWindowTitle("Circuit Macros Location")
+        fdlg.setWindowTitle(_translate("ConfigDialog", "Circuit Macros Location", "File Dialog Title"))
         fdlg.setDirectory(self.cmPath.text())
         fdlg.setFileMode(QFileDialog.Directory)
         fdlg.setOptions(QFileDialog.ShowDirsOnly | QFileDialog.DontUseNativeDialog | QFileDialog.ReadOnly)
@@ -112,7 +115,7 @@ class configDialog(QDialog, Ui_configDialog):
         Slot documentation goes here.
         """
         fdlg = QFileDialog(self)
-        fdlg.setWindowTitle("Latex Template Location")
+        fdlg.setWindowTitle(_translate("ConfigDialog", "Latex Template Location", "File Dialog Title"))
         fdlg.setDirectory(os.path.dirname(self.templateFile.text()))
         fdlg.setFileMode(QFileDialog.ExistingFile)
         fdlg.setOptions(QFileDialog.DontUseNativeDialog | QFileDialog.ReadOnly)
@@ -127,14 +130,14 @@ class configDialog(QDialog, Ui_configDialog):
     @pyqtSlot(str)
     def on_cmPath_textChanged(self, newText):
         if  os.path.exists(newText):
-            self.cmPath.setStyleSheet("background-color: {blanc};".format(blanc = "rgb(255, 255, 255)"))
+            self.cmPath.setStyleSheet("background-color: {white};".format(white = "rgb(255, 255, 255)"))
         else:
-            self.cmPath.setStyleSheet("background-color: {vermell};".format(vermell = "rgb(255, 230, 230)"))
+            self.cmPath.setStyleSheet("background-color: {reddish};".format(reddish = "rgb(255, 230, 230)"))
 
 
     @pyqtSlot(str)
     def on_templateFile_textChanged(self, newText):
         if  os.path.exists(newText):
-            self.templateFile.setStyleSheet("background-color: {blanc};".format(blanc = "rgb(255, 255, 255)"))   # verd = rgb(230, 255, 230)
+            self.templateFile.setStyleSheet("background-color: {white};".format(white = "rgb(255, 255, 255)"))
         else:
-            self.templateFile.setStyleSheet("background-color: {vermell};".format(vermell = "rgb(255, 230, 230)"))
+            self.templateFile.setStyleSheet("background-color: {reddish};".format(reddish = "rgb(255, 230, 230)"))
