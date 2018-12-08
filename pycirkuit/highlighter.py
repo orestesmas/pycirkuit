@@ -26,7 +26,7 @@ from PyQt5.QtGui import QFont, QSyntaxHighlighter, QTextCharFormat,  QColor
 
 class PyCirkuitHighlighter(QSyntaxHighlighter):
     def __init__(self, parent=None):
-        super(PyCirkuitHighlighter, self).__init__(parent)
+        super().__init__(parent)
 
         # Variable to hold the formatting rules for each category
         self.highlightingRules = []
