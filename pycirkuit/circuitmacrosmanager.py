@@ -56,7 +56,7 @@ class CircuitMacrosManager(QtCore.QObject):
                 shutil.copyfileobj(source, dest)
         except NetError.URLError as e:
             #FIXME: Better handler
-            print(_translate("CircuitMacrosManager", "Network error: ",  "Error massage"), e)
+            print(_translate("CircuitMacrosManager", "Network error: ",  "Error message"), e)
 
 
     def unpack_circuit_macros(self):
