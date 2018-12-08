@@ -88,67 +88,67 @@ class PyCirkuitHighlighter(QSyntaxHighlighter):
         self.highlightingRules.extend([(QRegExp(pattern), picFormat) for pattern in picPatterns])
 
         # Commands and format for M4 primitives
-        m4Patterns = ["\\bchangequote","\\bdefine","\\bdivert","\\bdivnum","\\bdnl","\\bdumpdef",
-        "\\berrprint","\\beval","\\bifdef","\\bifelse","\\binclude","\\bincr",
-        "\\bindex","\\blen","\\bmaketemp","\\bsinclude","\\bsubstr","\\bsyscmd",
-        "\\btranslit","\\bundefine","\\bundivert",]
+        m4Patterns = ["\\bchangequote\\b","\\bdefine\\b","\\bdivert\\b","\\bdivnum\\b","\\bdnl\\b","\\bdumpdef\\b",
+        "\\berrprint\\b","\\beval\\b","\\bifdef\\b","\\bifelse\\b","\\binclude\\b","\\bincr\\b",
+        "\\bindex\\b","\\blen\\b","\\bmaketemp\\b","\\bsinclude\\b","\\bsubstr\\b","\\bsyscmd\\b",
+        "\\btranslit\\b","\\bundefine\\b","\\bundivert\\b",]
         m4Format = QTextCharFormat()
         m4Format.setFontItalic(True)
         m4Format.setForeground(QColor('darkmagenta'))
         self.highlightingRules.extend([(QRegExp(pattern), picFormat) for pattern in m4Patterns])
         
-        cmPatterns = ["\\bAND_gate","\\bAND_gen","\\bAND_ht","\\bAND_wd","\\bBOX_gate","\\bBUFFER_gate",
-        "\\bBUFFER_gen","\\bBUF_ht","\\bBUF_wd","\\bCos","\\bCosine","\\bDarlington",
-        "\\bE_","\\bEquidist3","\\bFF_ht","\\bFF_wid","\\bFector","\\bFlipFlop",
-        "\\bFlipFlop6","\\bFlipFlopJK","\\bG_hht_","\\bHOMELIB_","\\bH_ht","\\bInt_",
-        "\\bIOdefs","\\bIntersect_","\\bLH_symbol","\\bLoopover_","\\bLT_symbol","\\bL_unit",
-        "\\bMax","\\bMin","\\bMux","\\bMux_ht","\\bMux_wid","\\bMx_pins",
-        "\\bNAND_gate","\\bNOR_gate","\\bNOT_circle","\\bNOT_gate","\\bNOT_rad","\\bNXOR_gate",
-        "\\bN_diam","\\bN_rad","\\bOR_gate","\\bOR_gen","\\bOR_rad","\\bPoint_",
-        "\\bRect_","\\bSin","\\bView3D","\\bVperp","\\bXOR_gate","\\bXOR_off",
-        "\\babove_","\\babs_","\\badc","\\bamp","\\balong_","\\bantenna",
-        "\\barca","\\barcd","\\barcr","\\barcto","\\barrowline","\\bb_",
-        "\\bb_current","\\bbattery","\\bbeginshade","\\bbell","\\bbelow_","\\bbi_tr",
-        "\\bbi_trans","\\bboxcoord","\\bboxdim","\\bbp__","\\bbswitch","\\bbuzzer",
-        "\\bc_fet","\\bcapacitor","\\bcbreaker","\\bcct_init","\\bcintersect","\\bclabel",
-        "\\bconsource","\\bcontact","\\bcontline","\\bcorner","\\bcosd","\\bcross","\\bcross3D",
-        "\\bcrossover","\\bcrosswd_","\\bcsdim_","\\bdac","\\bd_fet","\\bdabove",
-        "\\bdarrow","\\bdarrow_init","\\bdashline","\\bdbelow","\\bdcosine3D","\\bdef_bisect",
-        "\\bdelay","\\bdelay_rad_","\\bdeleminit_","\\bdend","\\bdiff3D","\\bdiff_",
-        "\\bdimen_","\\bdimension_","\\bdiode","\\bdir_","\\bdistance","\\bdirection_",
-        "\\bdistance","\\bdlabel","\\bdleft","\\bdline","\\bdlinewid","\\bdn_",
-        "\\bdljust","\\bdn_","\\bdna_","\\bdnm_","\\bdot","\\bdot3D",
-        "\\bdotrad_","\\bdown_","\\bdright","\\bdrjust","\\bdswitch","\\bdtee",
-        "\\bdtor_","\\bdturn","\\be_","\\be_fet","\\bearphone","\\bebox",
-        "\\belchop","\\beleminit_","\\belen_","\\bem_arrows","\\bendshade","\\bexpe",
-        "\\bf_box","\\bfill_","\\bfitcurve","\\bfor_","\\bfuse","\\bg_",
-        "\\bgap","\\bgen_init","\\bglabel_","\\bgpar_","\\bgpolyline_","\\bgrid_",
-        "\\bground","\\bgshade","\\bhoprad_","\\bht_","\\bifdpic","\\bifgpic",
-        "\\bifinstr","\\bifmfpic","\\bifmpost","\\bifpgf","\\bifpostscript","\\bifpstricks",
-        "\\bifroff","\\bifxfig","\\bigbt","\\bin__","\\binductor","\\binner_prod",
-        "\\bintegrator","\\bintersect_","\\bj_fet","\\blarrow","\\blbox","\\bleft_",
-        "\\blength3D","\\blg_bartxt","\\blg_pin","\\blg_pintxt","\\blg_plen","\\blin_leng",
-        "\\blinethick_","\\bljust_","\\bllabel","\\bloc_","\\blog10E_","\\blog_init",
-        "\\bloge","\\blp_xy","\\blpop","\\blswitch","\\blt_","\\bmanhattan",
-        "\\bmicrophone","\\bmm__","\\bmosfet","\\bm4xpand","\\bm4lstring","\\bm4_arrow",
-        "\\bm4xtract","\\bn_","\\bne_","\\bneg_","\\bnport","\\bnw_",
-        "\\bopamp","\\bopen_arrow","\\bpar_","\\bpc__","\\bpi_","\\bpmod",
-        "\\bpoint_","\\bpolar_","\\bpotentiometer","\\bprint3D","\\bprod_","\\bproject",
-        "\\bpsset_","\\bpt__","\\br_","\\brarrow","\\brect_","\\brelay",
-        "\\bresetrgb","\\bresistor","\\breversed","\\brgbdraw","\\brgbfill","\\bright_",
-        "\\brjust_","\\brlabel","\\brot3Dx","\\brot3Dy","\\brot3Dz","\\brpoint_",
-        "\\brpos_","\\brrot_","\\brs_box","\\brsvec_","\\brt_","\\brtod_",
-        "\\brtod__","\\brvec_","\\bs_","\\bs_box","\\bs_dp","\\bs_ht",
-        "\\bs_init","\\bs_name","\\bs_wd","\\bsc_draw","\\bse_","\\bsetrgb",
-        "\\bsetview","\\bsfg_init","\\bsfgabove","\\bsfgarc","\\bsfgbelow","\\bsfgline",
-        "\\bsfgnode","\\bsfgself","\\bshade","\\bshadebox","\\bsign_","\\bsinc",
-        "\\bsind","\\bsinusoid","\\bsource","\\bsourcerad_","\\bsp_","\\bspeaker",
-        "\\bsprod3D","\\bsum3D","\\bsum_","\\bsvec_","\\bsw_","\\bswitch",
-        "\\bta_xy","\\bthicklines_","\\bthinlines_","\\bthyristor","\\btline","\\btr_xy",
-        "\\btr_xy_init","\\btransformer","\\bttmotor","\\btwopi_","\\bujt","\\bunit3D",
-        "\\bup_","\\bup__","\\bvariable","\\bvec_","\\bvlength","\\bvperp",
-        "\\bvrot_","\\bvscal_","\\bw_","\\bwid_","\\bwinding","\\bxtal",
-        "\\bxtract",]
+        cmPatterns = ["\\bAND_gate\\b","\\bAND_gen\\b","\\bAND_ht\\b","\\bAND_wd\\b","\\bBOX_gate\\b","\\bBUFFER_gate\\b",
+        "\\bBUFFER_gen\\b","\\bBUF_ht\\b","\\bBUF_wd\\b","\\bCos\\b","\\bCosine\\b","\\bDarlington\\b",
+        "\\bE_\\b","\\bEquidist3\\b","\\bFF_ht\\b","\\bFF_wid\\b","\\bFector\\b","\\bFlipFlop\\b",
+        "\\bFlipFlop6\\b","\\bFlipFlopJK\\b","\\bG_hht_\\b","\\bHOMELIB_\\b","\\bH_ht\\b","\\bInt_\\b",
+        "\\bIOdefs\\b","\\bIntersect_\\b","\\bLH_symbol\\b","\\bLoopover_\\b","\\bLT_symbol\\b","\\bL_unit\\b",
+        "\\bMax\\b","\\bMin\\b","\\bMux\\b","\\bMux_ht\\b","\\bMux_wid\\b","\\bMx_pins\\b",
+        "\\bNAND_gate\\b","\\bNOR_gate\\b","\\bNOT_circle\\b","\\bNOT_gate\\b","\\bNOT_rad\\b","\\bNXOR_gate\\b",
+        "\\bN_diam\\b","\\bN_rad\\b","\\bOR_gate\\b","\\bOR_gen\\b","\\bOR_rad\\b","\\bPoint_\\b",
+        "\\bRect_\\b","\\bSin\\b","\\bView3D\\b","\\bVperp\\b","\\bXOR_gate\\b","\\bXOR_off\\b",
+        "\\babove_\\b","\\babs_\\b","\\badc\\b","\\bamp\\b","\\balong_\\b","\\bantenna\\b",
+        "\\barca\\b","\\barcd\\b","\\barcr\\b","\\barcto\\b","\\barrowline\\b","\\bb_\\b",
+        "\\bb_current\\b","\\bbattery\\b","\\bbeginshade\\b","\\bbell\\b","\\bbelow_\\b","\\bbi_tr\\b",
+        "\\bbi_trans\\b","\\bboxcoord\\b","\\bboxdim\\b","\\bbp__\\b","\\bbswitch\\b","\\bbuzzer\\b",
+        "\\bc_fet\\b","\\bcapacitor\\b","\\bcbreaker\\b","\\bcct_init\\b","\\bcintersect\\b","\\bclabel\\b",
+        "\\bconsource\\b","\\bcontact\\b","\\bcontline\\b","\\bcorner\\b","\\bcosd\\b","\\bcross\\b","\\bcross3D\\b",
+        "\\bcrossover\\b","\\bcrosswd_\\b","\\bcsdim_\\b","\\bdac\\b","\\bd_fet\\b","\\bdabove\\b",
+        "\\bdarrow\\b","\\bdarrow_init\\b","\\bdashline\\b","\\bdbelow\\b","\\bdcosine3D\\b","\\bdef_bisect\\b",
+        "\\bdelay\\b","\\bdelay_rad_\\b","\\bdeleminit_\\b","\\bdend\\b","\\bdiff3D\\b","\\bdiff_\\b",
+        "\\bdimen_\\b","\\bdimension_\\b","\\bdiode\\b","\\bdir_\\b","\\bdistance\\b","\\bdirection_\\b",
+        "\\bdistance\\b","\\bdlabel\\b","\\bdleft\\b","\\bdline\\b","\\bdlinewid\\b","\\bdn_\\b",
+        "\\bdljust\\b","\\bdn_\\b","\\bdna_\\b","\\bdnm_\\b","\\bdot\\b","\\bdot3D\\b",
+        "\\bdotrad_\\b","\\bdown_\\b","\\bdright\\b","\\bdrjust\\b","\\bdswitch\\b","\\bdtee\\b",
+        "\\bdtor_\\b","\\bdturn\\b","\\be_\\b","\\be_fet\\b","\\bearphone\\b","\\bebox\\b",
+        "\\belchop\\b","\\beleminit_\\b","\\belen_\\b","\\bem_arrows\\b","\\bendshade\\b","\\bexpe\\b",
+        "\\bf_box\\b","\\bfill_\\b","\\bfitcurve\\b","\\bfor_\\b","\\bfuse\\b","\\bg_\\b",
+        "\\bgap\\b","\\bgen_init\\b","\\bglabel_\\b","\\bgpar_\\b","\\bgpolyline_\\b","\\bgrid_\\b",
+        "\\bground\\b","\\bgshade\\b","\\bhoprad_\\b","\\bht_\\b","\\bifdpic\\b","\\bifgpic\\b",
+        "\\bifinstr\\b","\\bifmfpic\\b","\\bifmpost\\b","\\bifpgf\\b","\\bifpostscript\\b","\\bifpstricks\\b",
+        "\\bifroff\\b","\\bifxfig\\b","\\bigbt\\b","\\bin__\\b","\\binductor\\b","\\binner_prod\\b",
+        "\\bintegrator\\b","\\bintersect_\\b","\\bj_fet\\b","\\blarrow\\b","\\blbox\\b","\\bleft_\\b",
+        "\\blength3D\\b","\\blg_bartxt\\b","\\blg_pin\\b","\\blg_pintxt\\b","\\blg_plen\\b","\\blin_leng\\b",
+        "\\blinethick_\\b","\\bljust_\\b","\\bllabel\\b","\\bloc_\\b","\\blog10E_\\b","\\blog_init\\b",
+        "\\bloge\\b","\\blp_xy\\b","\\blpop\\b","\\blswitch\\b","\\blt_\\b","\\bmanhattan\\b",
+        "\\bmicrophone\\b","\\bmm__\\b","\\bmosfet\\b","\\bm4xpand\\b","\\bm4lstring\\b","\\bm4_arrow\\b",
+        "\\bm4xtract\\b","\\bn_\\b","\\bne_\\b","\\bneg_\\b","\\bnport\\b","\\bnw_\\b",
+        "\\bopamp\\b","\\bopen_arrow\\b","\\bpar_\\b","\\bpc__\\b","\\bpi_\\b","\\bpmod\\b",
+        "\\bpoint_\\b","\\bpolar_\\b","\\bpotentiometer\\b","\\bprint3D\\b","\\bprod_\\b","\\bproject\\b",
+        "\\bpsset_\\b","\\bpt__\\b","\\br_\\b","\\brarrow\\b","\\brect_\\b","\\brelay\\b",
+        "\\bresetrgb\\b","\\bresistor\\b","\\breversed\\b","\\brgbdraw\\b","\\brgbfill\\b","\\bright_\\b",
+        "\\brjust_\\b","\\brlabel\\b","\\brot3Dx\\b","\\brot3Dy\\b","\\brot3Dz\\b","\\brpoint_\\b",
+        "\\brpos_\\b","\\brrot_\\b","\\brs_box\\b","\\brsvec_\\b","\\brt_\\b","\\brtod_\\b",
+        "\\brtod__\\b","\\brvec_\\b","\\bs_\\b","\\bs_box\\b","\\bs_dp\\b","\\bs_ht\\b",
+        "\\bs_init\\b","\\bs_name\\b","\\bs_wd\\b","\\bsc_draw\\b","\\bse_\\b","\\bsetrgb\\b",
+        "\\bsetview\\b","\\bsfg_init\\b","\\bsfgabove\\b","\\bsfgarc\\b","\\bsfgbelow\\b","\\bsfgline\\b",
+        "\\bsfgnode\\b","\\bsfgself\\b","\\bshade\\b","\\bshadebox\\b","\\bsign_\\b","\\bsinc\\b",
+        "\\bsind\\b","\\bsinusoid\\b","\\bsource\\b","\\bsourcerad_\\b","\\bsp_\\b","\\bspeaker\\b",
+        "\\bsprod3D\\b","\\bsum3D\\b","\\bsum_\\b","\\bsvec_\\b","\\bsw_\\b","\\bswitch\\b",
+        "\\bta_xy\\b","\\bthicklines_\\b","\\bthinlines_\\b","\\bthyristor\\b","\\btline\\b","\\btr_xy\\b",
+        "\\btr_xy_init\\b","\\btransformer\\b","\\bttmotor\\b","\\btwopi_\\b","\\bujt\\b","\\bunit3D\\b",
+        "\\bup_\\b","\\bup__\\b","\\bvariable\\b","\\bvec_\\b","\\bvlength\\b","\\bvperp\\b",
+        "\\bvrot_\\b","\\bvscal_\\b","\\bw_\\b","\\bwid_\\b","\\bwinding\\b","\\bxtal\\b",
+        "\\bxtract\\b",]
         cmFormat = QTextCharFormat()
         cmFormat.setFontWeight(QFont.Bold)
         cmFormat.setForeground(QColor('darkgreen'))
@@ -163,24 +163,5 @@ class PyCirkuitHighlighter(QSyntaxHighlighter):
                 length = expression.matchedLength()
                 self.setFormat(index, length, format)
                 index = expression.indexIn(text, index + length)
-#
-#        self.setCurrentBlockState(0)
-#
-#        startIndex = 0
-#        if self.previousBlockState() != 1:
-#            startIndex = self.commentStartExpression.indexIn(text)
-#
-#        while startIndex >= 0:
-#            endIndex = self.commentEndExpression.indexIn(text, startIndex)
-#
-#            if endIndex == -1:
-#                self.setCurrentBlockState(1)
-#                commentLength = len(text) - startIndex
-#            else:
-#                commentLength = endIndex - startIndex + self.commentEndExpression.matchedLength()
-#
-#            self.setFormat(startIndex, commentLength,
-#                    self.multiLineCommentFormat)
-#            startIndex = self.commentStartExpression.indexIn(text,
-#                    startIndex + commentLength);
+
 
