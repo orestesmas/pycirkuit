@@ -22,7 +22,7 @@ Module implementing a customized TextEditor
 # Third-party imports
 from PyQt5.QtCore import QCoreApplication, Qt
 from PyQt5.QtWidgets import QTextEdit
-from PyQt5.QtGui import QWheelEvent,  QKeyEvent,  QKeySequence
+from PyQt5.QtGui import QKeySequence
 
 # Translation function
 _translate = QCoreApplication.translate
