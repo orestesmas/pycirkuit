@@ -22,25 +22,25 @@ from setuptools import setup, find_packages
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
-setup(name='pycirkuit',
-    version='0.1',
-    description='A front-end for Circuit Macros',
-    long_description=long_description,
-    long_description_content_type="text/markdown",
-    url='https://gitlab.upc.edu/CSL/Programari/pycirkuit.git',
-    author='Orestes Mas',
-    author_email='orestes@tsc.upc.edu',
-    license='GPLv3+',
-    packages=find_packages(),
+setup(name = 'pycirkuit',
+    version = '0.1',
+    description = 'A front-end for Circuit Macros',
+    long_description = long_description,
+    long_description_content_type = "text/markdown",
+    url = 'https://gitlab.upc.edu/CSL/Programari/pycirkuit.git',
+    author = 'Orestes Mas',
+    author_email = 'orestes@tsc.upc.edu',
+    license = 'GPLv3+',
+    packages = find_packages(),
+    package_data = {
+        'pycirkuit': ['doc/*','resources/*','L10n/*.ts',],
+    },
     entry_points = {
-#    'console_scripts': [
-#        'pycirkuit=pycirkuit.main:main',
-#        ],
-    'gui_scripts': [
-        'pycirkuit=pycirkuit.main:main',
+        'gui_scripts': [
+            'pycirkuit = pycirkuit.main:main',
         ],
     },
-    classifiers=[
+    classifiers = [
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
         "Operating System :: OS Independent",
@@ -50,7 +50,7 @@ setup(name='pycirkuit',
         "Intended Audience :: Science/Research",
         "Intended Audience :: End Users/Desktop",
     ],
-    install_requires=[
+    install_requires = [
         'PyQt5'
     ],
-    zip_safe=False)
+    zip_safe = True)
