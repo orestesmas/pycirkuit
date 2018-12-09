@@ -33,11 +33,6 @@ class PyCirkuitHighlighter(QSyntaxHighlighter):
 
         # These are the keywords and patterns to be highlighted, categorized.
 
-        # Comments are displayed in gray
-        singleLineCommentFormat = QTextCharFormat()
-        singleLineCommentFormat.setForeground(QColor('darkgray'))
-        self.highlightingRules.append((QRegExp("#[^\n]*"), singleLineCommentFormat))
-
         # Formatting rules for punctuation signs
         punctuationFormat = QTextCharFormat()
         punctuationFormat.setForeground(QColor('sienna'))
@@ -153,6 +148,11 @@ class PyCirkuitHighlighter(QSyntaxHighlighter):
         cmFormat.setFontWeight(QFont.Bold)
         cmFormat.setForeground(QColor('darkgreen'))
         self.highlightingRules.extend([(QRegExp(pattern), cmFormat) for pattern in cmPatterns])
+
+        # Comments are displayed in gray
+        singleLineCommentFormat = QTextCharFormat()
+        singleLineCommentFormat.setForeground(QColor('darkgray'))
+        self.highlightingRules.append((QRegExp("#[^\n]*"), singleLineCommentFormat))
 
 
     def highlightBlock(self, text):
