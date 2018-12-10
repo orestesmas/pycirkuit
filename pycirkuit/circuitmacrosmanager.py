@@ -20,7 +20,9 @@ Module implementing a CircuitMacros Manager class.
 #
 
 # Standard library imports
-import os, shutil, tarfile
+import os
+import shutil
+import tarfile
 import urllib.request as Net
 import urllib.error as NetError
 
@@ -41,7 +43,7 @@ class CircuitMacrosManager(QtCore.QObject):
         @param parent reference to the parent widget
         @type QWidget
         """
-
+        pass
 
     def download_latest(self):
         origin = "http://www.ece.uwaterloo.ca/~aplevich/Circuit_macros/Circuit_macros.tar.gz"
@@ -57,7 +59,6 @@ class CircuitMacrosManager(QtCore.QObject):
         except NetError.URLError as e:
             #FIXME: Better handler
             print(_translate("CircuitMacrosManager", "Network error: ",  "Error message"), e)
-
 
     def unpack_circuit_macros(self):
         try:

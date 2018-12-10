@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-6.3.dtd">
 <!-- eric project file for project pycirkuit -->
-<!-- Saved: 2018-12-08, 01:38:47 -->
+<!-- Saved: 2018-12-10, 03:18:57 -->
 <!-- Copyright (C) 2018 Orestes Mas, orestes@tsc.upc.edu -->
 <Project version="6.3">
   <Language>en_US</Language>
@@ -15,11 +15,14 @@
   <Sources>
     <Source>circuitmacrosmanager.py</Source>
     <Source>configdialog.py</Source>
+    <Source>exceptions.py</Source>
     <Source>highlighter.py</Source>
     <Source>main.py</Source>
     <Source>mainwindow.py</Source>
     <Source>resources_rc.py</Source>
     <Source>texteditor.py</Source>
+    <Source>tools/m4.py</Source>
+    <Source>tools/tool_base.py</Source>
     <Source>ui/Ui_configdialog.py</Source>
     <Source>ui/Ui_mainwindow.py</Source>
   </Sources>
