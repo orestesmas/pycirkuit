@@ -28,30 +28,49 @@ import subprocess
 from PyQt5.QtCore import QCoreApplication
 
 # Local application imports
-from pycirkuit.exceptions import PyCktToolNotFoundError,  PyCktToolExecutionError
+from pycirkuit.exceptions import PyCirkuitError
 
 # Translation function
 _translate = QCoreApplication.translate
 
+# Own exceptions
+class PyCktToolExecutionError(PyCirkuitError):
+    def __init__(self, message):
+        super().__init__(message)
+        self.title=_translate("ExternalTool", "Tool Execution Error", "Exception title")
 
+
+class PyCktToolNotFoundError(PyCirkuitError):
+    def __init__(self, executableName, longName):
+        errMsg = _translate("ExternalTool", "Cannot find the {toolLongName}!\n\n", "Leave untranslated the variable name inside curly braces (included)")
+        errMsg += _translate("ExternalTool", "Please ensure that you have this application properly installed and the executable \"{toolExecutableName}\" is in the PATH.\n\n", "Leave untranslated the variable name inside curly braces (included)")
+        errMsg += _translate("ExternalTool", "Cannot generate the preview.")
+        errMsg = errMsg.format(toolLongName=longName,  toolExecutableName=executableName)
+        super().__init__(errMsg)
+        self.title=_translate("ExternalTool", "Tool Not Found Error", "Exception title")
+
+
+# Base class for external tools
 class ExternalTool(abc.ABC):
-    def __init__(self, execName, longName):
-        self.execName = execName
+    def __init__(self, executableName, longName):
+        self.executableName = executableName
         self.longName = longName
         self.check_tool()
    
     def check_tool(self):
         execPath = os.get_exec_path()
         for testPath in execPath:
-            if os.path.exists(testPath + "/{execName}".format(execName=self.execName)):
-                print("Found: {execName}\n".format(execName=self.ExecName))
+            if os.path.exists(testPath + "/{executableName}".format(executableName=self.executableName)):
+                print("Found: {executableName}\n".format(executableName=self.executableName))
                 break
         else:
-            raise PyCktToolNotFoundError(self.execName, self.longName)
-#            QtWidgets.QMessageBox.critical(self, _translate("MessageBox", "Critical Error", "Message Box title"),  errMsg)
+            raise PyCktToolNotFoundError(self.executableName, self.longName)
 
     @abc.abstractmethod
     def execute(self, cmd, errMsg):
+        # La crida subprocess.run() és molt interessant
+        # el 'check=False' fa que no salti una excepció si l'ordre falla, atès que ja la llanço jo després
+        # amb un missatge més personalitzat
         result = subprocess.run(cmd, shell=True, check=False, stderr=subprocess.STDOUT, stdout=subprocess.PIPE)
         if result.returncode != 0:
             errMsg += result.stdout.decode()

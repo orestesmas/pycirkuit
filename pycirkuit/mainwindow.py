@@ -22,7 +22,6 @@ Module implementing MainWindow.
 # Standard library imports
 #import sys
 import os
-import subprocess
 from shutil import copyfile
 
 # Third-party imports
@@ -34,6 +33,11 @@ from pycirkuit.configdialog import ConfigDialog
 from pycirkuit.ui.Ui_mainwindow import Ui_MainWindow
 from pycirkuit.circuitmacrosmanager import CircuitMacrosManager
 from pycirkuit.highlighter import PyCirkuitHighlighter
+from pycirkuit.tools.tool_base import PyCktToolNotFoundError, PyCktToolExecutionError
+from pycirkuit.tools.m4 import ToolM4
+from pycirkuit.tools.dpic import ToolDpic
+from pycirkuit.tools.pdflatex import ToolPdfLaTeX
+from pycirkuit.tools.pdftopng import ToolPdfToPng
 
 # Translation function
 _translate = QCoreApplication.translate
@@ -109,25 +113,23 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
 
     def _check_programs(self):
-        programs = (
-            {"execName": "m4",  "toolLongName": _translate("Tool Long Name", "'M4' Macro Processor", "Tool Long Name")},
-            {"execName": "dpic",  "toolLongName": _translate("Tool Long Name",  "'PIC' language compiler", "Tool Long Name")}, 
-            {"execName": "pdflatex",  "toolLongName": _translate("Tool Long Name", "pdfLaTeX program", "Tool Long Name")},
-            {"execName": "pdftoppm",  "toolLongName": _translate("Tool Long Name", "PDF to PNG image converter", "Tool Long Name")},
-        )
-        execPath = os.get_exec_path()
-        for p in programs:
-            for testPath in execPath:
-                if os.path.exists(testPath + "/{execName}".format(execName=p["execName"])):
-                    print("Found: {execName}\n".format(execName=p["execName"]))
-                    break
-            else:
-                errMsg = _translate("MessageBox", "Cannot find the {toolLongName}!\n\n", "Leave untranslated the variable name inside curly braces (included)")
-                errMsg += _translate("MessageBox", "Please ensure that you have this application properly installed and the executable \"{execName}\" is in the PATH.\n\n", "Leave untranslated the variable name inside curly braces (included)")
-                errMsg += _translate("MessageBox", "Cannot generate the preview.")
-                errMsg = errMsg.format(toolLongName=p["toolLongName"],  execName=p["execName"])
-                QtWidgets.QMessageBox.critical(self, _translate("MessageBox", "Critical Error", "Message Box title"),  errMsg)
-                return False
+        try:
+            self.extTools = {
+                'm4': ToolM4(),
+                'dpic': ToolDpic(), 
+                'pdflatex': ToolPdfLaTeX(), 
+                'pdftopng': ToolPdfToPng()
+            }
+        except PyCktToolNotFoundError as err:
+            # Open MessageBox and inform user
+            msgBox = QtWidgets.QMessageBox(self)
+            msgBox.setWindowTitle(err.title)
+            msgBox.setIcon(QtWidgets.QMessageBox.Critical)
+            msgBox.setText(str(err))
+            msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
+            msgBox.setDefaultButton(QtWidgets.QMessageBox.Ok)
+            msgBox.exec()
+            return False
         return True
 
     
@@ -383,88 +385,42 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         if self.needSaving:
             self.actionSave.trigger()
 
-        # Instantiate a settings object to load config values. At this point the config have valid entries, so don't test much
-        settings = QtCore.QSettings()
-        cmPath = settings.value("General/cmPath") 
         # Sintetitzo un nom de fitxer temporal per desar els fitxers intermedis
-        tmpFileBaseName = self.tmpDir .path()+ "/cirkuit_tmp"
+        tmpFileBaseName = self.tmpDir.path() + "/cirkuit_tmp"
         with open("{baseName}.ckt".format(baseName=tmpFileBaseName), 'w') as tmpFile:
             tmpFile.write(self.sourceText.toPlainText())
-        errMsg = ""
         try:
             # PAS 0: Canvio el cursor momentàniament
             app = QtWidgets.QApplication.instance()
             app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
             
-            # PAS 1: Li passo les M4: .CKT -> .PIC
-            # La crida subprocess.run() és molt interessant
-            # el 'check=False' fa que no salti una excepció si l'ordre falla, atès que ja la llanço jo després
-            # amb un missatge més personalitzat
-            self.statusBar.showMessage(_translate("StatusBar","Converting: Circuit Macros -> PIC",  "Status Bar message"))
-            command = "m4 -I {cmPath} pgf.m4 {baseName}.ckt > {baseName}.pic".format(cmPath=cmPath,  baseName=tmpFileBaseName)
-            result = subprocess.run(command, shell=True, check=False, stderr=subprocess.STDOUT, stdout=subprocess.PIPE)
-            if result.returncode != 0:
-                errMsg = _translate("MainWindow", "M4 error converting .CKT -> .PIC\n",  "Error message")
-                errMsg += result.stdout.decode()
-                raise OSError(errMsg)
+            # STEP 1: Call M4: .CKT -> .PIC
+            self.statusBar.showMessage(_translate("StatusBar", "Converting: Circuit Macros -> PIC", "Status Bar message"))
+            self.extTools['m4'].execute(tmpFileBaseName)
 
-            # PAS 2: Li passo el dpic: .PIC -> .TIKZ
-            self.statusBar.showMessage(_translate("MainWindow", "Converting: PIC -> TIKZ", "Status Bar message"))
-            command = "dpic -g {baseName}.pic > {baseName}.tikz".format(baseName=tmpFileBaseName)
-            result = subprocess.run(command, shell=True, check=False, stderr=subprocess.STDOUT, stdout=subprocess.PIPE)
-            if result.returncode != 0:
-                errMsg = _translate("MainWindow", "DPIC error converting .PIC -> .TIkZ\n", "Error message")
-                errMsg += result.stdout.decode()
-                raise OSError(errMsg)
+            # STEP 2: Call dpic: .PIC -> .TIKZ
+            self.statusBar.showMessage(_translate("StatusBar", "Converting: PIC -> TIKZ", "Status Bar message"))
+            self.extTools['dpic'].execute(tmpFileBaseName)
 
-            # PAS 3: Li passo el PDFLaTeX: .TIKZ -> .PDF
+            # PAS 3: Call PDFLaTeX: .TIKZ -> .PDF
             # Primer haig d'incloure el codi .TIKZ en una plantilla adient
-            self.statusBar.showMessage(_translate("MainWindow", "Converting: TIKZ -> PDF", "Status Bar message"))
-            latexTemplateFile = settings.value("General/latexTemplateFile")
-            templateCode = ""
-            with open("{templateFile}".format(templateFile=latexTemplateFile), 'r') as template:
-                templateCode = template.read()        
-            with open("{baseName}.tikz".format(baseName=tmpFileBaseName), 'r') as f, \
-                     open('{baseName}.tex'.format(baseName=tmpFileBaseName), 'w') as g:
-                source = f.read()
-                dest = templateCode.replace('%%SOURCE%%', source, 1)
-                g.write(dest)
-                g.write('\n')
-            command = "pdflatex -interaction=batchmode -halt-on-error -file-line-error -output-directory {tmpDir} {baseName}.tex".format(tmpDir=self.tmpDir.path(), baseName=tmpFileBaseName)
-            result = subprocess.run(command, shell=True, check=False, stderr=subprocess.STDOUT, stdout=subprocess.PIPE)
-            if result.returncode != 0:
-                errMsg = _translate("MainWindow", "PDFLaTeX error converting .TIkZ -> .PDF\n", "Error message")
-                ###### TODO: NO-PORTABLE!! Només funciona en entorns on existeixi el GREP
-                ###### Es pot mirar d'usar el mòdul "re" (regular expressions) de python, però és complicadot
-                ###### El que he après fins ara és:
-                ###### 1) Cal passar -interaction=nonstopmode al pdflatex perquè tregui el log per STDOUT
-                ###### 2) Cal muntar-se una cadena que faci d'expressió regular quelcom del tipus "^{baseName}.tex:[0-9]+:"
-                ###### 3) Potser cal escapar caràcters d'aquesta cadena amb re.escape()
-                ###### 4) potser usar re.search(regexp.log) o re.match(regexp,log) per cercar. "log" és result.stdout.decode('UTF-8')
-                ###### 5) En acabat encara caldria recuperar 2 línies de context posterior per tal de saber l'error
-                # Explorem el LOG de LaTeX amb el GREP extern per saber l'error
-                # (amb l'opció -file-line-error el format del missatge és fitxer:línia:error)
-                # Opcions del grep-> -A 2: 2 línies de context posterior, -m 1: només 1 concordança, -a: ascii text (no binari)
-                command = 'grep -A 2 -m 1 -a --color=always "^{baseName}.tex:" {baseName}.log'.format(baseName=tmpFileBaseName)
-                result = subprocess.run(command, shell=True, check=False, stderr=subprocess.STDOUT, stdout=subprocess.PIPE)
-                if result.returncode == 0:
-                    errMsg += result.stdout.decode()
-                else:
-                    errMsg += _translate("MainWindow", "Cannot determine the LaTeX error",  "Error message")
-                raise OSError(errMsg)
+            self.statusBar.showMessage(_translate("StatusBar", "Converting: TIKZ -> PDF", "Status Bar message"))
+            self.extTools['pdflatex'].execute(tmpFileBaseName)
 
-            # PAS 4: Converteixo el PDF a imatge bitmap per visualitzar-la: .PDF -> .PNG
-            self.statusBar.showMessage(_translate("MainWindow","Converting: PDF -> PNG", "Status Bar message"))
-            command = "pdftoppm {baseName}.pdf -png > {baseName}.png".format(baseName=tmpFileBaseName)
-            result = subprocess.run(command, shell=True, check=False, stderr=subprocess.STDOUT, stdout=subprocess.PIPE)
-            if result.returncode != 0:
-                errMsg = _translate("MainWindow", "PDFTOPPM error converting .PDF -> .PNG\n", "Error message")
-                errMsg += result.stdout.decode()
-                raise OSError(errMsg)
-        except OSError as e:
-            print("Execution failed:", e)
+            # STEP 4: Call pdftoppm to convert the PDF into a bitmap image to visualize it: .PDF -> .PNG
+            self.statusBar.showMessage(_translate("StatusBar", "Converting: PDF -> PNG", "Status Bar message"))
+            self.extTools['pdftopng'].execute(tmpFileBaseName)
+            
+        except PyCktToolExecutionError as err:
             self.imatge.setText("Error!")
-            # TODO: Es podria posar el missatge d'error al mateix widget on surt la imatge...
+            # Open MessageBox and inform user
+            msgBox = QtWidgets.QMessageBox(self)
+            msgBox.setWindowTitle(err.title)
+            msgBox.setIcon(QtWidgets.QMessageBox.Critical)
+            msgBox.setText(str(err))
+            msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
+            msgBox.setDefaultButton(QtWidgets.QMessageBox.Ok)
+            msgBox.exec()
         else:
             imatge = QtGui.QPixmap("{baseName}.png".format(baseName=tmpFileBaseName))
             self.imatge.setPixmap(imatge)

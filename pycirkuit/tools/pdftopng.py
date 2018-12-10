@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Module implementing a class to handle the M4 external tool
+Module implementing a class to handle the pdftoppm external tool
 """
 # Copyright (C) 2018 Orestes Mas
 # This file is part of PyCirkuit.
@@ -21,7 +21,7 @@ Module implementing a class to handle the M4 external tool
 
 
 # Third-party imports
-from PyQt5.QtCore import QCoreApplication, QSettings
+from PyQt5.QtCore import QCoreApplication
 
 # Local application imports
 from pycirkuit.tools.tool_base import ExternalTool
@@ -29,17 +29,15 @@ from pycirkuit.tools.tool_base import ExternalTool
 # Translation function
 _translate = QCoreApplication.translate
 
-class ToolM4(ExternalTool):
+class ToolPdfToPng(ExternalTool):
     def __init__(self):
-        super().__init__("m4", _translate("ExternalTool", "'M4' Macro Processor", "Tool Long Name"))
+        super().__init__("pdftoppm", _translate("ExternalTool", "PDF to PNG image converter", "Tool Long Name"))
         
     def execute(self, baseName):
         # Calculate src and dst names
-        src = baseName + '.ckt'
-        dst = baseName + '.pic'
+        src = baseName + '.pdf'
+        dst = baseName + '.png'
         # Instantiate a settings object to load config values. At this point the config have valid entries, so don't test much
-        settings = QSettings()
-        cmPath = settings.value("General/cmPath") 
-        command = self.executableName + " -I {cmPath} pgf.m4 {source} > {destination}".format(cmPath=cmPath, source=src, destination=dst)
-        errMsg = _translate("ExternalTool", "M4 error converting .CKT -> .PIC:\n\n",  "Error message")
+        command = self.executableName + " -png {source} > {destination}".format(source=src, destination=dst)
+        errMsg = _translate("ExternalTool", "PDFTOPPM error converting .PDF -> .PNG\n\n", "Error message")
         super().execute(command, errMsg)
