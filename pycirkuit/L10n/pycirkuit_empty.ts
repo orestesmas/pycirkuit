@@ -36,40 +36,40 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="120"/>
+        <location filename="../ui/configdialog.ui" line="20"/>
         <source>Config Dialog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="124"/>
+        <location filename="../ui/configdialog.ui" line="62"/>
         <source>General</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="126"/>
+        <location filename="../ui/configdialog.ui" line="99"/>
         <source>Circuit Macros Location</source>
         <comment>Group box title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="130"/>
+        <location filename="../ui/configdialog.ui" line="162"/>
         <source>Enter Path Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="131"/>
+        <location filename="../ui/configdialog.ui" line="178"/>
         <source>Choose...</source>
         <comment>Button text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="129"/>
+        <location filename="../ui/configdialog.ui" line="153"/>
         <source>LaTeX Template File</source>
         <comment>Group box title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="132"/>
+        <location filename="../ui/configdialog.ui" line="218"/>
         <source>RadioB&amp;utton</source>
         <translation type="unfinished"></translation>
     </message>
@@ -129,7 +129,7 @@
     </message>
     <message>
         <location filename="../tools/dpic.py" line="42"/>
-        <source>DPIC: Error converting .PIC -&gt; .TIkZ
+        <source>DPIC: Error converting PIC -&gt; TIKZ
 
 </source>
         <comment>Error message</comment>
@@ -137,7 +137,7 @@
     </message>
     <message>
         <location filename="../tools/m4.py" line="44"/>
-        <source>M4: Error converting .CKT -&gt; .PIC
+        <source>M4: Error converting CKT -&gt; PIC
 
 </source>
         <comment>Error message</comment>
@@ -145,7 +145,7 @@
     </message>
     <message>
         <location filename="../tools/pdflatex.py" line="59"/>
-        <source>PDFLaTeX: Error converting .TIkZ -&gt; .PDF
+        <source>PDFLaTeX: Error converting TIKZ -&gt; PDF
 
 </source>
         <comment>Error message</comment>
@@ -153,7 +153,7 @@
     </message>
     <message>
         <location filename="../tools/pdftopng.py" line="42"/>
-        <source>PDFTOPPM: Error converting .PDF -&gt; .PNG
+        <source>PDFTOPPM: Error converting PDF -&gt; PNG
 
 </source>
         <comment>Error message</comment>
@@ -169,138 +169,138 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="176"/>
+        <location filename="../ui/mainwindow.ui" line="20"/>
         <source>PyCirkuit - by Orestes Mas</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="180"/>
+        <location filename="../ui/mainwindow.ui" line="101"/>
         <source>Fi&amp;le</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="181"/>
+        <location filename="../ui/mainwindow.ui" line="111"/>
         <source>Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="182"/>
+        <location filename="../ui/mainwindow.ui" line="120"/>
         <source>Setti&amp;ngs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="187"/>
+        <location filename="../ui/mainwindow.ui" line="217"/>
         <source>Open Drawing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="193"/>
+        <location filename="../ui/mainwindow.ui" line="253"/>
         <source>New Drawing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="177"/>
+        <location filename="../ui/mainwindow.ui" line="39"/>
         <source>Source Editor</source>
         <comment>Tab title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="178"/>
+        <location filename="../ui/mainwindow.ui" line="64"/>
         <source>Process and display</source>
         <comment>Button text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="179"/>
+        <location filename="../ui/mainwindow.ui" line="78"/>
         <source>Export to TIkZ</source>
         <comment>Button text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="183"/>
+        <location filename="../ui/mainwindow.ui" line="141"/>
         <source>&amp;Preview</source>
         <comment>Dock window title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="184"/>
+        <location filename="../ui/mainwindow.ui" line="202"/>
         <source>&amp;Quit</source>
         <comment>Menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="186"/>
+        <location filename="../ui/mainwindow.ui" line="214"/>
         <source>&amp;Open...</source>
         <comment>Menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="192"/>
+        <location filename="../ui/mainwindow.ui" line="250"/>
         <source>&amp;New</source>
         <comment>Menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="195"/>
+        <location filename="../ui/mainwindow.ui" line="265"/>
         <source>&amp;Save</source>
         <comment>Menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="197"/>
+        <location filename="../ui/mainwindow.ui" line="277"/>
         <source>Sa&amp;ve As...</source>
         <comment>Menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="199"/>
+        <location filename="../ui/mainwindow.ui" line="289"/>
         <source>&amp;Circuit Macros manual</source>
         <comment>Menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="200"/>
+        <location filename="../ui/mainwindow.ui" line="292"/>
         <source>Ctrl+M</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="185"/>
+        <location filename="../ui/mainwindow.ui" line="205"/>
         <source>Ctrl+Q</source>
         <comment>Keyboard Shortcut</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="188"/>
+        <location filename="../ui/mainwindow.ui" line="220"/>
         <source>Ctrl+O</source>
         <comment>Keyboard Shortcut</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="190"/>
+        <location filename="../ui/mainwindow.ui" line="238"/>
         <source>Configure &amp;PyCirkuit...</source>
         <comment>Menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="191"/>
+        <location filename="../ui/mainwindow.ui" line="241"/>
         <source>Ctrl+P</source>
         <comment>Keyboard Shortcut</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="194"/>
+        <location filename="../ui/mainwindow.ui" line="256"/>
         <source>Ctrl+N</source>
         <comment>Keyboard Shortcut</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="196"/>
+        <location filename="../ui/mainwindow.ui" line="268"/>
         <source>Ctrl+S</source>
         <comment>Keyboard Shortcut</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="198"/>
+        <location filename="../ui/mainwindow.ui" line="280"/>
         <source>Ctrl+Shift+S</source>
         <comment>Keyboard Shortcut</comment>
         <translation type="unfinished"></translation>
@@ -367,7 +367,7 @@ l=elen_
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="189"/>
+        <location filename="../ui/mainwindow.ui" line="229"/>
         <source>&amp;About PyCirkuit</source>
         <comment>Menu item</comment>
         <translation type="unfinished"></translation>

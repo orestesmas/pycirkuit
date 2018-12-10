@@ -55,7 +55,7 @@ class ToolPdfLaTeX(ExternalTool):
             g.write('\n')
         # Execution of pdfLaTeX creates a PDF file
         command = self.executableName + " -interaction=batchmode -halt-on-error -output-directory {tmpDir} {texFile}".format(tmpDir=os.path.dirname(tex), texFile=tex)
-        errMsg = _translate("ExternalTool", "PDFLaTeX: Error converting .TIkZ -> .PDF\n\n", "Error message")
+        errMsg = _translate("ExternalTool", "PDFLaTeX: Error converting TIKZ -> PDF\n\n", "Error message")
         try:
             super().execute(command, errMsg)
         except PyCktToolExecutionError:
