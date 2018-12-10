@@ -47,7 +47,7 @@ class PyCktToolNotFoundError(PyCirkuitError):
         errMsg += _translate("ExternalTool", "Cannot generate the preview.")
         errMsg = errMsg.format(toolLongName=longName,  toolExecutableName=executableName)
         super().__init__(errMsg)
-        self.title=_translate("ExternalTool", "Tool Not Found Error", "Exception title")
+        self.title=_translate("ExternalTool", "Tool Not Found", "Exception title")
 
 
 # Base class for external tools
