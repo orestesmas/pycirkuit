@@ -41,5 +41,5 @@ class ToolM4(ExternalTool):
         settings = QSettings()
         cmPath = settings.value("General/cmPath") 
         command = self.executableName + " -I {cmPath} pgf.m4 {source} > {destination}".format(cmPath=cmPath, source=src, destination=dst)
-        errMsg = _translate("ExternalTool", "M4: Error converting .CKT -> .PIC\n\n",  "Error message")
+        errMsg = _translate("ExternalTool", "M4: Error converting CKT -> PIC\n\n",  "Error message")
         super().execute(command, errMsg)
