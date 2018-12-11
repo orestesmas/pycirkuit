@@ -39,5 +39,5 @@ class ToolPdfToPng(ExternalTool):
         dst = baseName + '.png'
         # Instantiate a settings object to load config values. At this point the config have valid entries, so don't test much
         command = self.executableName + " -png {source} > {destination}".format(source=src, destination=dst)
-        errMsg = _translate("ExternalTool", "PDFTOPPM: Error converting PDF -> PNG\n\n", "Error message")
+        errMsg = _translate("ExternalTool", "PDFTOPPM: Error converting PDF -> PNG", "Error message")
         super().execute(command, errMsg)
