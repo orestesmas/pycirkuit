@@ -71,10 +71,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # Properties regarding the present open file
         self.openedFilename = ""
         self.needSaving = False
- 
+
         # Set up a temporary directory to save intermediate files
         self.tmpDir = QtCore.QTemporaryDir()
-        
+
         # Set up the editor
         font = QtGui.QFont()
         font.setFamily('Courier')
@@ -82,34 +82,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         font.setPointSize(12)
         self.sourceText.setFont(font)
         self.highlighter = PyCirkuitHighlighter(self.sourceText.document())
-
-
-    def _check_circuit_macros(self):
-        settings = QtCore.QSettings()
-        cmPath = settings.value("General/cmPath",  "")
-        if os.path.exists(cmPath + "/libcct.m4"):
-            return True
-        else:
-            _cmNotFound  = _translate("MessageBox", "Cannot find the 'Circuit Macros'!\n\n")
-            txt = _cmNotFound + _translate("MessageBox", "Do you want to try to search and install them automatically?")
-            response = QtWidgets.QMessageBox.question(self, _translate("MessageBox", "Error"),  txt,  defaultButton=QtWidgets.QMessageBox.Yes)
-            result = False
-            if response == QtWidgets.QMessageBox.Yes:
-                try:
-                    app = QtWidgets.QApplication.instance()
-                    app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
-                    cmMgr = CircuitMacrosManager(self)
-                    cmMgr.download_latest()
-                    cmMgr.unpack_circuit_macros()
-                    result = True
-                except:
-                    pass
-                finally:
-                    app.restoreOverrideCursor()
-            else:
-                txt = _cmNotFound + _translate("MessageBox", "Please indicate the correct path to them in the settings dialog.")
-                QtWidgets.QMessageBox.critical(self, _translate("MessageBox", "Critical Error"),  txt)
-            return result
 
 
     def _check_programs(self):
@@ -126,13 +98,14 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             msgBox.setWindowTitle(err.title)
             msgBox.setIcon(QtWidgets.QMessageBox.Critical)
             msgBox.setText(str(err))
+            msgBox.setInformativeText(err.moreInfo)
             msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
             msgBox.setDefaultButton(QtWidgets.QMessageBox.Ok)
             msgBox.exec()
             return False
         return True
 
-    
+
     def _check_templates(self):
         pass
         settings = QtCore.QSettings()
@@ -143,19 +116,49 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 if "%%SOURCE%%" in templateCode:
                     return True
                 else:
+                    #TODO: Recode using dynamic methods and "InformativeText"
                     errMsg  = _translate("MessageBox", "The specified LaTeX template seems invalid!\n\n", "Error message")
                     errMsg += _translate("MessageBox", "Please indicate a correct one in the Settings.\n\n", "Error message")
                     errMsg += _translate("MessageBox", "Cannot generate the preview.", "Error message")
                     QtWidgets.QMessageBox.critical(self, _translate("MessageBox", "Critical Error", "Message Box title"),  errMsg)
                     return False
         else:
+            #TODO: Recode using dynamic methods and "InformativeText"
             errMsg  = _translate("MessageBox", "The LaTeX template has not been found!\n\n", "Error message")
             errMsg += _translate("MessageBox", "Please indicate its correct PATH in the Settings.\n\n", "Error message")
             errMsg += _translate("MessageBox", "Cannot generate the preview.", "Error message")
             QtWidgets.QMessageBox.critical(self, _translate("MessageBox", "Critical Error", "Message Box title"),  errMsg)
             return False
- 
- 
+
+
+    def _enforce_circuit_macros(self):
+        cmMgr = CircuitMacrosManager(self)
+        if cmMgr.check_installed():
+            return True
+        else:
+            _cmNotFound  = _translate("MessageBox", "Cannot find the 'Circuit Macros'!\n\n")
+            txt = _cmNotFound + _translate("MessageBox", "Do you want to try to search and install them automatically?")
+            response = QtWidgets.QMessageBox.question(self, _translate("MessageBox", "Warning"),  txt,  defaultButton=QtWidgets.QMessageBox.Yes)
+            result = False
+            if response == QtWidgets.QMessageBox.Yes:
+                try:
+                    self.statusBar.showMessage(_translate("StatusBar", "Downloading and unpacking Circuit Macros", "Status Bar message"))
+                    app = QtWidgets.QApplication.instance()
+                    app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
+                    cmMgr.download_latest()
+                    cmMgr.unpack_circuit_macros()
+                    result = True
+                except:
+                    pass
+                finally:
+                    app.restoreOverrideCursor()
+                    self.statusBar.clearMessage()
+            else:
+                txt = _cmNotFound + _translate("MessageBox", "Please indicate the correct path to them in the settings dialog.")
+                QtWidgets.QMessageBox.critical(self, _translate("MessageBox", "Critical Error"),  txt)
+            return result
+
+
     def _modify_title(self):
         if self.needSaving:
             title = "PyCirkuit - {filename}*".format(filename=self.openedFilename)
@@ -164,7 +167,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.setWindowTitle(title)
 
 
-    def _saveBuffer(self,  dst):
+    def _save_buffer(self,  dst):
         try:
             f = open(dst,'w', encoding='UTF-8')
             f.write(self.sourceText.toPlainText())
@@ -183,7 +186,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.actionSave.setEnabled(False)
         finally:
             f.close()
- 
+
 
     def closeEvent(self,  event):
         if self.needSaving:
@@ -216,7 +219,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     @pyqtSlot()
     def on_actionCMMan_triggered(self):
         # Search for Circuit Macros PDF manual
-        if self._check_circuit_macros():
+        if self._enforce_circuit_macros():
             settings = QtCore.QSettings()
             cmPath = settings.value("General/cmPath",  "")
             try:
@@ -247,7 +250,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def on_actionOpen_triggered(self):
         # Instantiate a settings object
         settings = QtCore.QSettings()
-        
+
         # Presento el diàleg de càrrega de fitxer
         fdlg = QtWidgets.QFileDialog(self)
         fdlg.setWindowTitle(_translate("MainWindow", "Source File Selection", "File Dialog title"))
@@ -264,7 +267,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         if fdlg.exec():
             fitxer = fdlg.selectedFiles()[0]
         fdlg.close()
-        
+
         # Comprovo que no he premut 'Cancel' a la dialog box...
         if fitxer != "":
             # Comprovo que el fitxer no sigui un enllaç trencat
@@ -281,8 +284,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     self.openedFilename = filename
                     self._modify_title()
                     self.on_processButton_clicked()
-    
-    
+
+
     @pyqtSlot()
     def on_actionPreferences_triggered(self):
         """
@@ -309,9 +312,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         fdlg.setAcceptMode(QtWidgets.QFileDialog.AcceptSave)
         if fdlg.exec():
             dst = fdlg.selectedFiles()[0]
-            self._saveBuffer(dst)
+            self._save_buffer(dst)
         fdlg.close()
- 
+
 
     @pyqtSlot()
     def on_actionSave_triggered(self):
@@ -319,11 +322,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         lastWD = settings.value("General/lastWD", "")
         filePath = lastWD + "/" + self.openedFilename
         if os.path.isfile(filePath):
-            self._saveBuffer(filePath)
+            self._save_buffer(filePath)
         else:
             self.actionSaveAs.trigger()
 
-  
+
     @pyqtSlot()
     def on_exportButton_clicked(self):
         settings = QtCore.QSettings()
@@ -372,11 +375,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # Comprovo si tinc totes les aplicacions necessàries correctament instal·lades
         if not self._check_programs():
             return
-        
+
         # Comprovo si tenim les Circuit Macros a la carpeta especificada als Settings
-        if not self._check_circuit_macros():
+        if not self._enforce_circuit_macros():
             return
-        
+
         # Comprovo si el fitxer de plantilla existeix i és vàlid
         if not self._check_templates():
             return
@@ -393,7 +396,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             # PAS 0: Canvio el cursor momentàniament
             app = QtWidgets.QApplication.instance()
             app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
-            
+
             # STEP 1: Call M4: .CKT -> .PIC
             self.statusBar.showMessage(_translate("StatusBar", "Converting: Circuit Macros -> PIC", "Status Bar message"))
             self.extTools['m4'].execute(tmpFileBaseName)
@@ -410,7 +413,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             # STEP 4: Call pdftoppm to convert the PDF into a bitmap image to visualize it: .PDF -> .PNG
             self.statusBar.showMessage(_translate("StatusBar", "Converting: PDF -> PNG", "Status Bar message"))
             self.extTools['pdftopng'].execute(tmpFileBaseName)
-            
+
         except PyCktToolExecutionError as err:
             self.imatge.setText("Error!")
             # Open MessageBox and inform user
@@ -418,6 +421,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             msgBox.setWindowTitle(err.title)
             msgBox.setIcon(QtWidgets.QMessageBox.Critical)
             msgBox.setText(str(err))
+            msgBox.setInformativeText(err.moreInfo)
             msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
             msgBox.setDefaultButton(QtWidgets.QMessageBox.Ok)
             msgBox.exec()
@@ -430,8 +434,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         finally:
             self.statusBar.clearMessage()
             app.restoreOverrideCursor()
-   
-    
+
+
     @pyqtSlot()
     def on_sourceText_textChanged(self):
         if self.inConstructor:

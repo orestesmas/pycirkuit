@@ -35,19 +35,18 @@ _translate = QCoreApplication.translate
 
 # Own exceptions
 class PyCktToolExecutionError(PyCirkuitError):
-    def __init__(self, message):
-        super().__init__(message)
-        self.title=_translate("ExternalTool", "Tool Execution Error", "Exception title")
+    def __init__(self, message, moreInfo=""):
+        super().__init__(message, title=_translate("ExternalTool", "Tool Execution Error", "Exception title"), moreInfo=moreInfo)
 
 
 class PyCktToolNotFoundError(PyCirkuitError):
     def __init__(self, executableName, longName):
         errMsg = _translate("ExternalTool", "Cannot find the {toolLongName}!\n\n", "Leave untranslated the variable name inside curly braces (included)")
-        errMsg += _translate("ExternalTool", "Please ensure that you have this application properly installed and the executable \"{toolExecutableName}\" is in the PATH.\n\n", "Leave untranslated the variable name inside curly braces (included)")
-        errMsg += _translate("ExternalTool", "Cannot generate the preview.")
-        errMsg = errMsg.format(toolLongName=longName,  toolExecutableName=executableName)
-        super().__init__(errMsg)
-        self.title=_translate("ExternalTool", "Tool Not Found", "Exception title")
+        errMsg = errMsg.format(toolLongName=longName)
+        info = _translate("ExternalTool", "Please ensure that you have this application properly installed and the executable \"{toolExecutableName}\" is in the PATH.\n\n", "Leave untranslated the variable name inside curly braces (included)")
+        info += _translate("ExternalTool", "Cannot generate the preview.")
+        info = info.format(toolExecutableName=executableName)
+        super().__init__(errMsg, title=_translate("ExternalTool", "Tool Not Found", "Exception title"), moreInfo=info)
 
 
 # Base class for external tools
@@ -73,5 +72,5 @@ class ExternalTool(abc.ABC):
         # amb un missatge més personalitzat
         result = subprocess.run(cmd, shell=True, check=False, stderr=subprocess.STDOUT, stdout=subprocess.PIPE)
         if result.returncode != 0:
-            errMsg += result.stdout.decode()
-            raise PyCktToolExecutionError(errMsg)
+            info = result.stdout.decode()
+            raise PyCktToolExecutionError(errMsg, moreInfo=info)

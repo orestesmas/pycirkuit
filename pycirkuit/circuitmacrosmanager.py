@@ -29,8 +29,27 @@ import urllib.error as NetError
 # Third-party imports
 from PyQt5 import QtCore
 
+# Local application imports
+from pycirkuit.exceptions import PyCirkuitError
+
 # Translation function
 _translate = QtCore.QCoreApplication.translate
+
+# Own exceptions
+class PyCktCMNotFoundError(PyCirkuitError):
+    def __init__(self, message):
+        super().__init__(message, title=_translate("CircuitMacrosManager", "Circuit Macros not found", "Exception title"))
+
+
+class PyCktCMNewVersionAvailable(PyCirkuitError):
+    def __init__(self, message):
+        super().__init__(message, title=_translate("CircuitMacrosManager", "New Circuit Macros version available!", "Exception title"))
+
+
+class PyCktCMFetchError(PyCirkuitError):
+    def __init__(self, message):
+        super().__init__(message, title=_translate("CircuitMacrosManager", "Circuit Macros not found", "Exception title"))
+
 
 class CircuitMacrosManager(QtCore.QObject):
     """
@@ -45,11 +64,16 @@ class CircuitMacrosManager(QtCore.QObject):
         """
         pass
 
+    def check_installed(self):
+        settings = QtCore.QSettings()
+        cmPath = settings.value("General/cmPath",  "")
+        return os.path.exists(cmPath + "/libcct.m4")
+        
     def download_latest(self):
         origin = "http://www.ece.uwaterloo.ca/~aplevich/Circuit_macros/Circuit_macros.tar.gz"
         destination = QtCore.QStandardPaths.writableLocation(QtCore.QStandardPaths.AppDataLocation)
         if destination == "":
-            raise RuntimeError(_translate("CircuitMacrosManager", "Cannot determine the standard writable location for PyCirkuit",  "Error message"))
+            raise PyCirkuitError(_translate("CircuitMacrosManager", "Cannot determine the standard writable location for PyCirkuit",  "Error message"))
         if not os.path.exists(destination):
             os.makedirs(destination)
         destination += "/Circuit_macros.tar.gz"
@@ -57,7 +81,7 @@ class CircuitMacrosManager(QtCore.QObject):
             with Net.urlopen(origin) as source,  open(destination, 'wb') as dest:
                 shutil.copyfileobj(source, dest)
         except NetError.URLError as e:
-            #FIXME: Better handler
+            #FIXME: Convert to MessageBox by reraising as PyCktCMFetchError
             print(_translate("CircuitMacrosManager", "Network error: ",  "Error message"), e)
 
     def unpack_circuit_macros(self):
@@ -79,5 +103,7 @@ class CircuitMacrosManager(QtCore.QObject):
             settings.setValue("General/cmPath", dataPath + '/circuit_macros')
             settings.sync()
         except tarfile.TarError as e:
+            if os.path.exists(dataPath):
+                shutil.rmtree(dataPath + "/.")
+            #FIXME: Convert to MessageBox by reraising as PyCktCMFetchError
             print(_translate("CircuitMacrosManager", "Error uncompressing the Circuit Macros: ",  "Error message"), e)
-            shutil.rmtree(dataPath+"/.")

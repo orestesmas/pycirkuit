@@ -55,12 +55,13 @@ class ToolPdfLaTeX(ExternalTool):
             g.write('\n')
         # Execution of pdfLaTeX creates a PDF file
         command = self.executableName + " -interaction=batchmode -halt-on-error -output-directory {tmpDir} {texFile}".format(tmpDir=os.path.dirname(tex), texFile=tex)
-        errMsg = _translate("ExternalTool", "PDFLaTeX: Error converting TIKZ -> PDF\n\n", "Error message")
+        errMsg = _translate("ExternalTool", "PDFLaTeX: Error converting TIKZ -> PDF", "Error message")
         try:
             super().execute(command, errMsg)
-        except PyCktToolExecutionError:
+        except PyCktToolExecutionError as err:
             # If a LaTeX error has been triggered, try to obtain a meaningful error message
             # Very useful: https://regex101.com/#python
+            info = ""
             with open("{basename}.log".format(basename=baseName),'r') as log:
                 expr = "! (\S.*$)|l\.([0-9]+) (.*$)"
                 prog = re.compile(expr)
@@ -70,8 +71,9 @@ class ToolPdfLaTeX(ExternalTool):
                     if match:
                         if match.group(0)[0] == 'l':
                             #TODO: Perhaps we can return some info (error string?) to allow spotting the error at the source file
-                            errMsg += _translate("ExternalTool", "Error at TeX file line number {N}".format(N=match.group(2)), "Error message. Don't translate '{N}'") + '\n'
-                            errMsg += match.group(3) + '\n'
+                            info = _translate("ExternalTool", "Error at TeX file line number {N}".format(N=match.group(2)), "Error message. Don't translate '{N}'") + '\n'
+                            info += match.group(3) + '\n'
                         else:
-                            errMsg += match.group(1) + '\n'
-            raise PyCktToolExecutionError(errMsg)
+                            info += match.group(1) + '\n'
+            err.moreInfo = info
+            raise err

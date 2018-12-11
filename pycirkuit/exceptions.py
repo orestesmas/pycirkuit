@@ -25,7 +25,13 @@ from PyQt5.QtCore import QCoreApplication
 # Translation function
 _translate = QCoreApplication.translate
 
+# Exceptions in pycirkuit are used mainly to display info to the user via MessageBoxes
+# Thus, an exception must convey 3 infos:
+# 1) The MessageBox Title, different for each kind of error
+# 2) The main message, perhaps as short as possible
+# 3) Additional info
 class PyCirkuitError(Exception):
-    def __init__(self, message):
+    def __init__(self, message, title=_translate("PyCirkuitError", "PyCirkuit Error",  "Exception title"), moreInfo=""):
         super().__init__(message)
-        self.title=_translate("PyCirkuitError", "PyCirkuit Error",  "Exception title")
+        self.title=title
+        self.moreInfo=moreInfo
