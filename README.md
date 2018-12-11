@@ -19,7 +19,7 @@ PyCirkuit is written in Python 3 using the PyQt5 libraries, but is largely inspi
 
 # Source code #
 
-PyCirkuit source code is now hosted on gitlab.upc.edu. The project homepage is [https://gitlab.upc.edu/CSL/Programari/pycirkuit.git](https://gitlab.upc.edu/CSL/Programari/pycirkuit.git).
+PyCirkuit source code is now hosted on github.com. The project homepage is [https://github.com/orestesmas/pycirkuit.git](https://github.com/orestesmas/pycirkuit.git).
 
 
 # Requirements #
