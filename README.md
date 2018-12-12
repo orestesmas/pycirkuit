@@ -69,7 +69,7 @@ To install PyCirkuit in you computer, please follow this steps:
     (NOTE: If you prefer to have en installation in source form -also known as 'editable mode'-,  add the '-e' option after 'install'. Sources will be installed by default at ./venv/src/pycirkuit)
 
 ```shell
-   pip3 install git+https://gitlab.upc.edu/CSL/Programari/pycirkuit.git#egg=pycirkuit
+   pip3 install git+https://github.com/orestesmas/pycirkuit.git#egg=pycirkuit
 ```
 
   4. If all went well, you can execute PyCirkuit by means of an executable script created under ./venv/bin:
