@@ -10,7 +10,7 @@ You are here to help on PyCirkuit? Awesome! PyCirkuit is still at its infancy an
 
 ## Contributing guidelines
 
-At present, PyCirkuit is a small project with little infrastructure around. For now it's hosted at my university's git infrastructure ([https://gitlab.upc.edu](https://gitlab.upc.edu)) but, as this gitlab is relatively closed to non-university members, I'm planning to host it somewhere else in the future.
+At present, PyCirkuit is a small project with little infrastructure around. ~~For now it's hosted at my university's git infrastructure ([https://gitlab.upc.edu](https://gitlab.upc.edu)) but, as this gitlab is relatively closed to non-university members, I'm planning to host it somewhere else in the future.~~ **Update:** It's on [GitHub](https://github.com/orestesmas/pycirkuit) now
 
 Meanwhile, you can ask questions or send contributions directly to me at [mailto:orestes@tsc.upc.edu](mailto:orestes@tsc.upc.edu).
 
