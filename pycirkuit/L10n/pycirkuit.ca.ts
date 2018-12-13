@@ -2,6 +2,93 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="ca_ES">
 <context>
+    <name>AboutDialog</name>
+    <message>
+        <location filename="../ui/Ui_aboutdialog.py" line="241"/>
+        <source>About PyCirkuit</source>
+        <comment>Dialog Title</comment>
+        <translation>Sobre el PyCirkuit</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_aboutdialog.py" line="242"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;TeX Gyre Heros&apos;; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;PyCirkuit is a GUI front-end for &lt;a href=&quot;https://ece.uwaterloo.ca/~aplevich/Circuit_macros/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;Circuit Macros&lt;/span&gt;&lt;/a&gt; by Dwight Aplevich, which is a set of macros for drawing high-quality line diagrams to include in TeX, LaTeX, web or similar documents. PyCirkuit is written in Python 3 using the PyQt5 libraries, but is largely inspired (in both ideas and code snippets) on &lt;a href=&quot;https://wwwu.uni-klu.ac.at/magostin/cirkuit.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;Cirkuit&lt;/span&gt;&lt;/a&gt;, a C++ application written by Matteo Agostinelli using KDE4 libraries.&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;PyCirkuit compiles the source code on demand to generate a live preview, and can export the resulting image in TikZ code to be included directly in any LaTeX document. Other input and export formats are also planned.&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You can send bug reports via the &lt;a href=&quot;https://github.com/orestesmas/pycirkuit&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;project repository on GitHub&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;If you are willing to contribute, please read &lt;a href=&quot;https://github.com/orestesmas/pycirkuit/blob/master/CONTRIBUTING.md&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;these guidelines&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;PyCirkuit uses icons from KDE&apos;s &amp;quot;Oxygen&amp;quot; set, which are under the LGPL license. See &lt;a href=&quot;https://techbase.kde.org/Projects/Oxygen/Licensing&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;https://techbase.kde.org/Projects/Oxygen/Licensing&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;TeX Gyre Heros&apos;; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;PyCirkuit és una interfície gràfica (IGU) per a les &lt;a href=&quot;https://ece.uwaterloo.ca/~aplevich/Circuit_macros/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;Circuit Macros&lt;/span&gt;&lt;/a&gt; de Dwight Aplevich, que són un conjunt de macros per dibuixar diagrames d&apos;alta qualitat i incloure&apos;ls en documents TeX, LaTeX, Web o similars. El PyCirkuit està escrit en Python 3 emprant les biblioteques PyQt5, però s&apos;inspira en gran mesura (tant en codi com en idees) en el &lt;a href=&quot;https://wwwu.uni-klu.ac.at/magostin/cirkuit.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;Cirkuit&lt;/span&gt;&lt;/a&gt;, una aplicació C++ escrita per Matteo Agostinelli emprant les biblioteques del KDE4.&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;El PyCirkuit compila a petició de l&apos;usuari el codi font per tal de generar una previsualització, i pot exportar la imatge resultant en format TikZ per tal de poder incloure-la directament en qualsevol document LaTeX. També estan previstos altres formats d&apos;importació i exportació.&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Podeu enviar informes d&apos;error via el &lt;a href=&quot;https://github.com/orestesmas/pycirkuit&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;repository del projecte a GitHub&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Si desitgeu contribuir al projecte, llegiu &lt;a href=&quot;https://github.com/orestesmas/pycirkuit/blob/master/CONTRIBUTING.md&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;aquests consells&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;El PyCirkuit empra icones del conjunt «Oxygen» del KDE, que estan sota la llicència LGPL. Llegiu &lt;a href=&quot;https://techbase.kde.org/Projects/Oxygen/Licensing&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;https://techbase.kde.org/Projects/Oxygen/Licensing&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_aboutdialog.py" line="255"/>
+        <source>&amp;About</source>
+        <comment>Tab text</comment>
+        <translation>&amp;Quant a</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_aboutdialog.py" line="256"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Version 0.1&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Using:&lt;/p&gt;&lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://www.riverbankcomputing.com/software/pyqt/intro&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;PyQt5&lt;/span&gt;&lt;/a&gt; Python bindings to Qt5 by Riverbank Computing.&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://ece.uwaterloo.ca/~aplevich/Circuit_macros/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;Circuit Macros&lt;/span&gt;&lt;/a&gt;, by Dwight Aplevich.&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://www.gnu.org/software/m4/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;GNU M4&lt;/span&gt;&lt;/a&gt; Macro Processor, from the GNU project.&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://ece.uwaterloo.ca/~aplevich/dpic&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;Dpic&lt;/span&gt;&lt;/a&gt;, by Dwight Aplevich.&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://ctan.org/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;LaTeX + TIkZ&lt;/span&gt;&lt;/a&gt;, by Donald Knuth, Leslie Lamport Till Tantau and many more contributors.&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://linux.die.net/man/1/pdftoppm&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;PdfToPpm&lt;/span&gt;&lt;/a&gt;, a software by Glyph &amp;amp; Cog, LLC.
+</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Versió 0.1&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Emprant:&lt;/p&gt;&lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://www.riverbankcomputing.com/software/pyqt/intro&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;PyQt5&lt;/span&gt;&lt;/a&gt;, enllaços Python a les biblioteques Qt5, de Riverbank Computing.&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://ece.uwaterloo.ca/~aplevich/Circuit_macros/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;Circuit Macros&lt;/span&gt;&lt;/a&gt;, de Dwight Aplevich.&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Processador de macros &lt;a href=&quot;https://www.gnu.org/software/m4/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;GNU M4&lt;/span&gt;&lt;/a&gt;, del projecte GNU.&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://ece.uwaterloo.ca/~aplevich/dpic&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;Dpic&lt;/span&gt;&lt;/a&gt;, de Dwight Aplevich.&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://ctan.org/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;LaTeX + TIkZ&lt;/span&gt;&lt;/a&gt;, de Donald Knuth, Leslie Lamport Till Tantau i molts altres contribuents.&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://linux.die.net/man/1/pdftoppm&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;PdfToPpm&lt;/span&gt;&lt;/a&gt;, un programari de Glyph &amp;amp; Cog, LLC.
+</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_aboutdialog.py" line="258"/>
+        <source>&amp;Version</source>
+        <comment>Tab text</comment>
+        <translation>&amp;Versió</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_aboutdialog.py" line="259"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;TeX Gyre Heros&apos;; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt; Orestes Mas&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-style:italic;&quot;&gt; Original Author, Maintainer and Translator to Catalan&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-style:italic;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;TeX Gyre Heros&apos;; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt; Orestes Mas&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-style:italic;&quot;&gt; Autor original, mantenidor i traductor al català&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-style:italic;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_aboutdialog.py" line="267"/>
+        <source>A&amp;uthors</source>
+        <comment>Tab text</comment>
+        <translation>A&amp;utors</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_aboutdialog.py" line="268"/>
+        <source>&amp;License Agreement</source>
+        <translation>Acord de &amp;Llicència</translation>
+    </message>
+</context>
+<context>
     <name>CircuitMacrosManager</name>
     <message>
         <location filename="../circuitmacrosmanager.py" line="76"/>
@@ -13,13 +100,13 @@
         <location filename="../circuitmacrosmanager.py" line="109"/>
         <source>Error uncompressing the Circuit Macros: </source>
         <comment>Error message</comment>
-        <translation>S&apos;ha produït un error al descomprimir les Circuit Macros:</translation>
+        <translation>S&apos;ha produït un error al descomprimir les Circuit Macros: </translation>
     </message>
     <message>
         <location filename="../circuitmacrosmanager.py" line="85"/>
         <source>Network error: </source>
         <comment>Error message</comment>
-        <translation>Error de xarxa:</translation>
+        <translation>Error de xarxa: </translation>
     </message>
     <message>
         <location filename="../circuitmacrosmanager.py" line="51"/>
@@ -315,19 +402,19 @@
         <translation>Ctrl+Shift+S</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="356"/>
+        <location filename="../mainwindow.py" line="355"/>
         <source>Enter a file to save into</source>
         <comment>Window Title</comment>
         <translation>Introduïu un fitxer on desar-ho</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="372"/>
+        <location filename="../mainwindow.py" line="371"/>
         <source>Export failed:</source>
         <comment>Error message</comment>
         <translation>L&apos;exportació ha fallat:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="243"/>
+        <location filename="../mainwindow.py" line="242"/>
         <source>.PS
 scale=2.54
 cct_init
@@ -347,37 +434,37 @@ l=elen_
 </translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="259"/>
+        <location filename="../mainwindow.py" line="258"/>
         <source>PyCirkuit files (*.ckt)</source>
         <comment>File filter text</comment>
         <translation>Fitxers PyCirkuit (*.ckt)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="259"/>
+        <location filename="../mainwindow.py" line="258"/>
         <source>TeX files (*.tex)</source>
         <comment>File filter text</comment>
         <translation>Fitxers TeX (*.tex)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="259"/>
+        <location filename="../mainwindow.py" line="258"/>
         <source>Any files (*)</source>
         <comment>File filter text</comment>
         <translation>Qualsevol fitxer (*)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="305"/>
+        <location filename="../mainwindow.py" line="304"/>
         <source>Enter a file to save into</source>
         <comment>File Dialog title</comment>
         <translation>Introduïu un fitxer on desar-ho</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="308"/>
+        <location filename="../mainwindow.py" line="307"/>
         <source>PyCirkuit files (*.ckt)</source>
         <comment>File filter</comment>
         <translation>Fitxers PyCirkuit (*.ckt)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="308"/>
+        <location filename="../mainwindow.py" line="307"/>
         <source>Any files (*)</source>
         <comment>File filter</comment>
         <translation>Qualsevol fitxer (*)</translation>
@@ -389,13 +476,13 @@ l=elen_
         <translation>&amp;Sobre el PyCirkuit</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="257"/>
+        <location filename="../mainwindow.py" line="256"/>
         <source>Source File Selection</source>
         <comment>File Dialog title</comment>
         <translation>Selecció de fitxer font</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="245"/>
+        <location filename="../mainwindow.py" line="244"/>
         <source>unnamed</source>
         <comment>Initial name of a new empty file</comment>
         <translation>sense nom</translation>
@@ -404,7 +491,7 @@ l=elen_
 <context>
     <name>MessageBox</name>
     <message>
-        <location filename="../mainwindow.py" line="140"/>
+        <location filename="../mainwindow.py" line="141"/>
         <source>Cannot find the &apos;Circuit Macros&apos;!
 
 </source>
@@ -413,77 +500,58 @@ l=elen_
 </translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="141"/>
+        <location filename="../mainwindow.py" line="142"/>
         <source>Do you want to try to search and install them automatically?</source>
         <translation>Voleu provar de cercar-les i instal·lar-les automàticament?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="214"/>
-        <source>Copyright (c) 2018 Orestes Mas
-
-PyCirkuit is a compiler/renderer of circuit diagrams written using the Dwight Aplevich&apos;s &apos;Circuit Macros&apos;.
-Being written in python, the code and ideas are largely based on &apos;cirkuit&apos; C++ program, by Matteo Agostinelli.
-</source>
-        <translation>Copyright (c) 2018 Orestes Mas
-
-El PyCirkuit és un compilador/visualitzador de diagrames circuitals descrits emprant l&apos;eina «Circuit Macros» de Dwight Aplevich.
-És escrit en llenguatge python, però el disseny i les idees es basen en gran mesura en l&apos;aplicació «cirkuit», escrita en C++ per Matteo Agostinelli.
-</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.py" line="158"/>
+        <location filename="../mainwindow.py" line="159"/>
         <source>Please indicate the correct path to them in the settings dialog.</source>
         <translation>Si us plau indiqueu-ne la ruta correcta al diàleg de l&apos;arranjament.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="159"/>
+        <location filename="../mainwindow.py" line="160"/>
         <source>Critical Error</source>
         <translation>Error crític</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="341"/>
+        <location filename="../mainwindow.py" line="340"/>
         <source>Warning</source>
         <comment>Message Box title</comment>
         <translation>Avís</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="344"/>
+        <location filename="../mainwindow.py" line="343"/>
         <source>Do you want to overwrite it?</source>
         <comment>Message Box text</comment>
         <translation>Voleu sobreescriure&apos;l?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="346"/>
+        <location filename="../mainwindow.py" line="345"/>
         <source>Save As...</source>
         <comment>Button text</comment>
         <translation>Desa com a...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="217"/>
-        <source>About PyCirkuit</source>
-        <comment>About Box title</comment>
-        <translation>Sobre el PyCirkuit</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.py" line="176"/>
+        <location filename="../mainwindow.py" line="177"/>
         <source>Error saving source file: </source>
         <comment>Error message</comment>
         <translation>S&apos;ha produït un error en desar el fitxer font: </translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="177"/>
+        <location filename="../mainwindow.py" line="178"/>
         <source>Cannot execute command.</source>
         <comment>Error message</comment>
         <translation>No es pot executar l&apos;ordre.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="178"/>
+        <location filename="../mainwindow.py" line="179"/>
         <source>Critical Error</source>
         <comment>Message Box title</comment>
         <translation>Error crític</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="121"/>
+        <location filename="../mainwindow.py" line="122"/>
         <source>The specified LaTeX template seems invalid!
 
 </source>
@@ -493,7 +561,7 @@ El PyCirkuit és un compilador/visualitzador de diagrames circuitals descrits em
 </translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="122"/>
+        <location filename="../mainwindow.py" line="123"/>
         <source>Please indicate a correct one in the Settings.
 
 </source>
@@ -503,13 +571,13 @@ El PyCirkuit és un compilador/visualitzador de diagrames circuitals descrits em
 </translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="130"/>
+        <location filename="../mainwindow.py" line="131"/>
         <source>Cannot generate the preview.</source>
         <comment>Error message</comment>
         <translation>No s&apos;ha pogut generar la previsualització.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="128"/>
+        <location filename="../mainwindow.py" line="129"/>
         <source>The LaTeX template has not been found!
 
 </source>
@@ -519,7 +587,7 @@ El PyCirkuit és un compilador/visualitzador de diagrames circuitals descrits em
 </translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="129"/>
+        <location filename="../mainwindow.py" line="130"/>
         <source>Please indicate its correct PATH in the Settings.
 
 </source>
@@ -529,45 +597,47 @@ El PyCirkuit és un compilador/visualitzador de diagrames circuitals descrits em
 </translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="235"/>
+        <location filename="../mainwindow.py" line="234"/>
         <source>You will have to search it manually. It should be a PDF file located into {cmPath} folder or one of its subfolders.</source>
         <comment>Message Box text. DO NOT translate &apos;{cmPath}&apos; variable.</comment>
         <translation>L&apos;haureu de cercar manualment. Hauria de ser un fitxer PDF ubicat a la carpeta {cmPath} o en una de les seves subcarpetes.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="236"/>
+        <location filename="../mainwindow.py" line="235"/>
         <source>Error</source>
         <comment>Message Box title</comment>
         <translation>Error</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="198"/>
+        <location filename="../mainwindow.py" line="199"/>
         <source>Source file have unsaved changes.</source>
         <comment>Message box text</comment>
         <translation>El fitxer font té canvis sense desar.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="199"/>
+        <location filename="../mainwindow.py" line="200"/>
         <source>Do you want to save them before closing?</source>
         <comment>Message Box text</comment>
         <translation>Voleu desar-los abans de tancar?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="234"/>
+        <location filename="../mainwindow.py" line="233"/>
         <source>Cannot find the &quot;Circuit Macros&quot; documentation.
 
 </source>
         <comment>Warning message</comment>
-        <translation>No s&apos;ha pogut trobar la documentació de les «Circuit Macros».</translation>
+        <translation>No s&apos;ha pogut trobar la documentació de les «Circuit Macros».
+
+</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="343"/>
+        <location filename="../mainwindow.py" line="342"/>
         <source>There&apos;s already a file named &quot;{filename}&quot; at working directory.</source>
         <comment>Message box text. Don&apos;t translate &apos;{filename}&apos;</comment>
         <translation>Ja hi ha un fitxer anomenat «{filename}» al directori de treball.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="142"/>
+        <location filename="../mainwindow.py" line="143"/>
         <source>Warning</source>
         <translation>Avís</translation>
     </message>
@@ -584,31 +654,31 @@ El PyCirkuit és un compilador/visualitzador de diagrames circuitals descrits em
 <context>
     <name>StatusBar</name>
     <message>
-        <location filename="../mainwindow.py" line="403"/>
+        <location filename="../mainwindow.py" line="402"/>
         <source>Converting: Circuit Macros -&gt; PIC</source>
         <comment>Status Bar message</comment>
         <translation>Conversió: Circuit Macros -&gt; PIC</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="407"/>
+        <location filename="../mainwindow.py" line="406"/>
         <source>Converting: PIC -&gt; TIKZ</source>
         <comment>Status Bar message</comment>
         <translation>S&apos;està convertint: PIC -&gt; TIKZ</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="412"/>
+        <location filename="../mainwindow.py" line="411"/>
         <source>Converting: TIKZ -&gt; PDF</source>
         <comment>Status Bar message</comment>
         <translation>S&apos;està convertint: TIKZ -&gt; PDF</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="416"/>
+        <location filename="../mainwindow.py" line="415"/>
         <source>Converting: PDF -&gt; PNG</source>
         <comment>Status Bar message</comment>
         <translation>S&apos;està convertint: PDF -&gt; PNG</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="146"/>
+        <location filename="../mainwindow.py" line="147"/>
         <source>Downloading and unpacking Circuit Macros</source>
         <comment>Status Bar message</comment>
         <translation>S&apos;estan baixant i desempaquetant les «Circuit Macros»</translation>
