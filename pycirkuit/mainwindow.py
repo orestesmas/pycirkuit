@@ -29,8 +29,9 @@ from PyQt5.QtCore import pyqtSlot,  QCoreApplication
 from PyQt5 import QtCore, QtWidgets, QtGui
 
 # Local application imports
-from pycirkuit.configdialog import ConfigDialog
 from pycirkuit.ui.Ui_mainwindow import Ui_MainWindow
+from pycirkuit.configdialog import ConfigDialog
+from pycirkuit.ui.aboutdialog import AboutDialog
 from pycirkuit.circuitmacrosmanager import CircuitMacrosManager
 from pycirkuit.highlighter import PyCirkuitHighlighter
 from pycirkuit.tools.tool_base import PyCktToolNotFoundError, PyCktToolExecutionError
@@ -210,10 +211,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         """
         Slot documentation goes here.
         """
-        txt = _translate("MessageBox", "Copyright (c) 2018 Orestes Mas\n\n"\
-                 "PyCirkuit is a compiler/renderer of circuit diagrams written using the Dwight Aplevich's 'Circuit Macros'.\n"\
-                 "Being written in python, the code and ideas are largely based on 'cirkuit' C++ program, by Matteo Agostinelli.\n")
-        QtWidgets.QMessageBox.about(self,  _translate("MessageBox", "About PyCirkuit",  "About Box title"),  txt)
+        dlg = AboutDialog()
+        dlg.exec()
 
 
     @pyqtSlot()
