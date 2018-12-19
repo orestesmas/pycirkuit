@@ -67,20 +67,31 @@ class PyCirkuitHighlighter(QSyntaxHighlighter):
         picPatterns = ["\\b1st\\b","\\b2nd\\b","\\b3rd\\b","\\b4th\\b","\\b5th\\b","\\b6th\\b",
         "\\b7th\\b","\\b8th\\b","\\b9th\\b","\\bHere\\b","\\babove\\b","\\band\\b",
         "\\barc\\b","\\barrow\\b","\\barrowhead\\b","\\barrowht\\b","\\barrowwid\\b","\\bat\\b",
-        "\\batan2\\b","\\bbelow\\b","\\bbetween\\b","\\bbox\\b","\\bby\\b","\\bccw\\b",
+        "\\batan2\\b","\\bbelow\\b","\\bbetween\\b","\\bbox\\b","\\bby\\b","\\bccw\\b","\\.center\\b", 
         "\\bchop\\b","\\bcircle\\b","\\bcolor\\b","\\bcolour\\b","\\bcolored\\b","\\bcoloured\\b",
         "\\bcommand\\b","\\bcos\\b","\\bcw\\b","\\bdashed\\b","\\bdiam\\b","\\bdo\\b",
-        "\\bdotted\\b","\\bdown\\b","\\bellipse\\b","\\belse\\b","\\bend\\b","\\bexp\\b",
+        "\\bdotted\\b","\\bdown\\b","\\bellipse\\b","\\belse\\b","\\.end\\b","\\bexp\\b",
         "\\bfill\\b","\\bfor\\b","\\bfrom\\b","\\bheight\\b","\\bht\\b","\\bif\\b",
         "\\binvis\\b","\\blast\\b","\\bleft\\b","\\bline\\b","\\bljust\\b","\\bmax\\b",
-        "\\bmin\\b","\\bmove\\b","\\boutline\\b","\\boutlined\\b","\\brad\\b","\\breset\\b",
-        "\\bright\\b","\\brjust\\b","\\bscale\\b","\\bshaded\\b","\\bsin\\b","\\bspline\\b",
-        "\\bsprintf\\b","\\bsqrt\\b","\\bstart\\b","\\btan\\b","\\bthen\\b","\\bthick\\b",
-        "\\bto\\b","\\bup\\b","\\bwid\\b","\\bwidth\\b","\\bwith\\b",]
+        "\\bmin\\b","\\bmove\\b","\\bof the way between\\b","\\boutline\\b","\\boutlined\\b",
+        "\\brad\\b","\\breset\\b","\\bright\\b","\\brjust\\b","\\bshaded\\b","\\bsin\\b",
+        "\\bspline\\b","\\bsprintf\\b","\\bsqrt\\b","\\.start\\b","\\btan\\b","\\bthen\\b","\\bthick\\b",
+        "\\bto\\b","\\bup\\b","\\bwid\\b","\\bwidth\\b","\\bwith\\b","\\.n\\b","\\.s\\b",
+        "\\.e\\b","\\.w\\b","\\.ne\\b","\\.nw\\b","\\.se\\b","\\.sw\\b"]
         picFormat = QTextCharFormat()
         picFormat.setFontItalic(True)
         picFormat.setForeground(QColor('blue'))
         self.highlightingRules.extend([(QRegExp(pattern), picFormat) for pattern in picPatterns])
+
+        # Format for PIC variables: Italic Red
+        picVariables = ["\\blinewid\\b","\\blinethick\\b","\\barcrad\\b","\\bcirclerad\\b","\\bellipseht\\b",
+        "\\bellipsewid\\b","\\bmoveht\\b","\\bmovewid\\b","\\btextht\\b","\\btextwid\\b","\\barrowht\\b",
+        "\\barrowwid\\b","\\barrowhead\\b","\\bdashwid\\b","\\bmaxpswid\\b","\\bmaxpsht\\b","\\bscale\\b",
+        "\\bfillval\\b"]
+        picFormat = QTextCharFormat()
+        picFormat.setFontItalic(True)
+        picFormat.setForeground(QColor('red'))
+        self.highlightingRules.extend([(QRegExp(pattern), picFormat) for pattern in picVariables])
 
         # Commands and format for M4 primitives
         m4Patterns = ["\\bchangequote\\b","\\bdefine\\b","\\bdivert\\b","\\bdivnum\\b","\\bdnl\\b","\\bdumpdef\\b",
