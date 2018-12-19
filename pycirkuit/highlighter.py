@@ -35,14 +35,15 @@ class PyCirkuitHighlighter(QSyntaxHighlighter):
 
         # Formatting rules for punctuation signs
         punctuationFormat = QTextCharFormat()
+        punctuationFormat.setFontWeight(QFont.Bold)
         punctuationFormat.setForeground(QColor('sienna'))
         self.highlightingRules.append((QRegExp("[()\{\},;]"), punctuationFormat))
  
         # Formatting rules for operators
         operatorFormat = QTextCharFormat()
-        operatorFormat.setFontWeight(QFont.Bold)
-        operatorFormat.setForeground(QColor('navy'))
-        self.highlightingRules.append((QRegExp("[+-*/\.]"), operatorFormat))
+        operatorFormat.setFontItalic(True)
+        operatorFormat.setForeground(QColor('teal'))
+        self.highlightingRules.append((QRegExp("(\+|\-|\*|/|\.|=|<-|->|<->){1,1}"), operatorFormat))
         
         # Label displaying rules
         labelFormat = QTextCharFormat()
@@ -72,7 +73,7 @@ class PyCirkuitHighlighter(QSyntaxHighlighter):
         "\\bcommand\\b","\\bcos\\b","\\bcw\\b","\\bdashed\\b","\\bdiam\\b","\\bdo\\b",
         "\\bdotted\\b","\\bdown\\b","\\bellipse\\b","\\belse\\b","\\.end\\b","\\bexp\\b",
         "\\bfill\\b","\\bfor\\b","\\bfrom\\b","\\bheight\\b","\\bht\\b","\\bif\\b",
-        "\\binvis\\b","\\blast\\b","\\bleft\\b","\\bline\\b","\\bljust\\b","\\bmax\\b",
+        "\\binvis(?:ible)?\\b","\\blast\\b","\\bleft\\b","\\bline\\b","\\bljust\\b","\\bmax\\b",
         "\\bmin\\b","\\bmove\\b","\\bof the way between\\b","\\boutline\\b","\\boutlined\\b",
         "\\brad\\b","\\breset\\b","\\bright\\b","\\brjust\\b","\\bshaded\\b","\\bsin\\b",
         "\\bspline\\b","\\bsprintf\\b","\\bsqrt\\b","\\.start\\b","\\btan\\b","\\bthen\\b","\\bthick\\b",
@@ -99,9 +100,9 @@ class PyCirkuitHighlighter(QSyntaxHighlighter):
         "\\bindex\\b","\\blen\\b","\\bmaketemp\\b","\\bsinclude\\b","\\bsubstr\\b","\\bsyscmd\\b",
         "\\btranslit\\b","\\bundefine\\b","\\bundivert\\b",]
         m4Format = QTextCharFormat()
-        m4Format.setFontItalic(True)
-        m4Format.setForeground(QColor('darkmagenta'))
-        self.highlightingRules.extend([(QRegExp(pattern), picFormat) for pattern in m4Patterns])
+        m4Format.setFontWeight(QFont.Bold)
+        m4Format.setForeground(QColor('DarkOrchid'))
+        self.highlightingRules.extend([(QRegExp(pattern), m4Format) for pattern in m4Patterns])
         
         cmPatterns = ["\\bAND_gate\\b","\\bAND_gen\\b","\\bAND_ht\\b","\\bAND_wd\\b","\\bBOX_gate\\b","\\bBUFFER_gate\\b",
         "\\bBUFFER_gen\\b","\\bBUF_ht\\b","\\bBUF_wd\\b","\\bCos\\b","\\bCosine\\b","\\bDarlington\\b",
@@ -157,12 +158,12 @@ class PyCirkuitHighlighter(QSyntaxHighlighter):
         "\\bxtract\\b",]
         cmFormat = QTextCharFormat()
         cmFormat.setFontWeight(QFont.Bold)
-        cmFormat.setForeground(QColor('darkgreen'))
+        cmFormat.setForeground(QColor('DarkGreen'))
         self.highlightingRules.extend([(QRegExp(pattern), cmFormat) for pattern in cmPatterns])
 
         # Comments are displayed in gray
         singleLineCommentFormat = QTextCharFormat()
-        singleLineCommentFormat.setForeground(QColor('darkgray'))
+        singleLineCommentFormat.setForeground(QColor('DarkGray'))
         self.highlightingRules.append((QRegExp("#[^\n]*"), singleLineCommentFormat))
 
 
