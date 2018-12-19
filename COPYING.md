@@ -1,3 +1,10 @@
+PyCirkuit is Copyright (c) 2018 Orestes Mas <orestes@tsc.upc.edu>
+
+You may use, distribute and copy PyCirkuit under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, which is shown below, or (at your option) any later version.
+
+PyCirkuit uses also some icons and other artwork from «Oxygen» set, from the KDE project. These icons are under the GNU LGPL v3 license. See https://techbase.kde.org/Projects/Oxygen/Licensing and http://www.gnu.org/copyleft/lesser.html
+
+----------
 ### GNU GENERAL PUBLIC LICENSE
 
 Version 3, 29 June 2007
