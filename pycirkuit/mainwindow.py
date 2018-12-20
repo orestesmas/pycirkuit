@@ -55,6 +55,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         @type QWidget
         """
         super().__init__(parent)
+        # This is the translated name for unnamed files
+        self._translatedUnnamed = _translate("MainWindow", "unnamed", "Initial name of a new empty file")
+        
         # This is to avoid starting the app with buffer marked as "dirty", and hence needing saving
         # This occurs because the "setupUI" method modifies text and hence triggers a textChanged signal
         self.inConstructor = True
@@ -69,9 +72,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # pyuic5 calls QtCore.QMetaObject.connectSlotsByName in Ui_configdialog.py
         # do such connections AUTOMATICALLY (so connecting them manually triggers slots twice)
 
-        # Properties regarding the present open file
-        self.openedFilename = ""
+        # Initialize with a blank template
         self.needSaving = False
+        self.on_actionNew_triggered()
 
         # Set up a temporary directory to save intermediate files
         self.tmpDir = QtCore.QTemporaryDir()
@@ -83,6 +86,20 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         font.setPointSize(12)
         self.sourceText.setFont(font)
         self.highlighter = PyCirkuitHighlighter(self.sourceText.document())
+
+
+    def _ask_saving(self):
+        # Open MessageBox and inform user
+        msgBox = QtWidgets.QMessageBox(self)
+        msgBox.setWindowTitle(_translate("MessageBox", "Warning",  "Message Box title"))
+        msgBox.setIcon(QtWidgets.QMessageBox.Warning)
+        msgBox.setText(_translate("MessageBox", "Source file have unsaved changes.", "Message box text"))
+        msgBox.setInformativeText(_translate("MessageBox", "Do you want to save them before proceeding?",  "Message Box text"))
+        msgBox.setStandardButtons(QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
+        msgBox.setDefaultButton(QtWidgets.QMessageBox.Yes)
+        response = msgBox.exec()
+        if response == QtWidgets.QMessageBox.Yes:
+            self.actionSave.trigger()
 
 
     def _check_programs(self):
@@ -191,17 +208,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def closeEvent(self,  event):
         if self.needSaving:
-            # Open MessageBox and inform user
-            msgBox = QtWidgets.QMessageBox(self)
-            msgBox.setWindowTitle(_translate("MessageBox", "Warning",  "Message Box title"))
-            msgBox.setIcon(QtWidgets.QMessageBox.Warning)
-            msgBox.setText(_translate("MessageBox", "Source file have unsaved changes.", "Message box text"))
-            msgBox.setInformativeText(_translate("MessageBox", "Do you want to save them before closing?",  "Message Box text"))
-            msgBox.setStandardButtons(QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
-            msgBox.setDefaultButton(QtWidgets.QMessageBox.Yes)
-            response = msgBox.exec()
-            if response == QtWidgets.QMessageBox.Yes:
-                self.actionSave.trigger()
+            self._ask_saving()
         self.tmpDir.remove()
         super().closeEvent(event)
 
@@ -238,15 +245,20 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     @pyqtSlot()
     def on_actionNew_triggered(self):
-        txt = _translate("MainWindow", ".PS\nscale=2.54\ncct_init\n\nl=elen_\n<Enter your drawing here>\n.PE\n",  "Template text. Translate ONLY the text between angle braces <...>")
+        if self.needSaving:
+            self._ask_saving()
+        txt = _translate("MainWindow", ".PS\nscale=2.54\ncct_init\n\nl=elen_\n# Enter your drawing code here\n.PE\n",  "Template text. Translate ONLY the text between angle braces <...>")
         self.sourceText.setText(txt)
-        self.openedFilename = _translate("MainWindow", "unnamed", "Initial name of a new empty file")
+        self.openedFilename = self._translatedUnnamed
         self.needSaving = True
         self._modify_title()
 
 
     @pyqtSlot()
     def on_actionOpen_triggered(self):
+        if self.needSaving:
+            self._ask_saving()
+    
         # Instantiate a settings object
         settings = QtCore.QSettings()
 
