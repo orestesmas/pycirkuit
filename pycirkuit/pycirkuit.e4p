@@ -16,6 +16,7 @@
     <Source>__init__.py</Source>
     <Source>exceptions.py</Source>
     <Source>highlighter.py</Source>
+    <Source>imageviewer.py</Source>
     <Source>main.py</Source>
     <Source>resources/resources_rc.py</Source>
     <Source>texteditor.py</Source>
