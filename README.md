@@ -37,15 +37,16 @@ To run this application you need to have the following applications/libraries in
   * pdftoppm
   * Circuit Macros
 
-On Debian-based systems (e.g. Ubuntu/Kubuntu) type the following command to install the required apps and dependencies (tested on Debian Stretch):
+On Debian-based systems<sup>1</sup> (e.g. Ubuntu/Kubuntu) type the following command to install the required apps and dependencies (tested on Ubuntu 18.04 LTS):
 
 ```shell
   sudo apt-get install texlive-latex-base texlive-latex-recommended \
   texlive-base-bin texlive-extra-utils texlive-pictures preview-latex-style \
   m4 dpic poppler-utils python3-venv qtcreator
 ```
+<sup>1</sup> Apparently, Debian does not have ```dpic``` packaged, but Ubuntu has (in the *universe* repository). So I don't really know where the latter is coming from. If you are trying PyCirkuit in a Debian system, you'll have to compile and install it yourself. Luckily, this is very easy because it's a little program with few/no dependencies. Download it from [https://ece.uwaterloo.ca/~aplevich/dpic/](https://ece.uwaterloo.ca/~aplevich/dpic/) and follow the instructions in the README file.
 
-There's no Debian package for the Circuit Macros, but if PyCirkuit doesn't find them at startup, it will offer the user to download and install them automatically.
+There's no Debian package for the Circuit Macros, but if PyCirkuit doesn't find them at startup, it will offer the user to download and install them automatically. They don't require building.
 
 (**Note:** I prefer to install PyQt5 in a sandbox Virtual Environment only for PyCirkuit. See the **Installation** section.)
 
