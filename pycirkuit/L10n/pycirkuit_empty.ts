@@ -159,90 +159,6 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>ExternalTool</name>
-    <message>
-        <location filename="../tools/dpic.py" line="34"/>
-        <source>&apos;PIC&apos; language compiler</source>
-        <comment>Tool Long Name</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../tools/m4.py" line="34"/>
-        <source>&apos;M4&apos; Macro Processor</source>
-        <comment>Tool Long Name</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../tools/pdflatex.py" line="37"/>
-        <source>pdfLaTeX program</source>
-        <comment>Tool Long Name</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../tools/pdftopng.py" line="34"/>
-        <source>PDF to PNG image converter</source>
-        <comment>Tool Long Name</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../tools/tool_base.py" line="39"/>
-        <source>Tool Execution Error</source>
-        <comment>Exception title</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../tools/tool_base.py" line="44"/>
-        <source>Cannot find the {toolLongName}!
-
-</source>
-        <comment>Leave untranslated the variable name inside curly braces (included)</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../tools/tool_base.py" line="46"/>
-        <source>Please ensure that you have this application properly installed and the executable &quot;{toolExecutableName}&quot; is in the PATH.
-
-</source>
-        <comment>Leave untranslated the variable name inside curly braces (included)</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../tools/tool_base.py" line="47"/>
-        <source>Cannot generate the preview.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../tools/dpic.py" line="42"/>
-        <source>DPIC: Error converting PIC -&gt; TIKZ</source>
-        <comment>Error message</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../tools/m4.py" line="44"/>
-        <source>M4: Error converting CKT -&gt; PIC</source>
-        <comment>Error message</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../tools/pdflatex.py" line="59"/>
-        <source>PDFLaTeX: Error converting TIKZ -&gt; PDF</source>
-        <comment>Error message</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../tools/pdftopng.py" line="42"/>
-        <source>PDFTOPPM: Error converting PDF -&gt; PNG</source>
-        <comment>Error message</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../tools/tool_base.py" line="49"/>
-        <source>Tool Not Found</source>
-        <comment>Exception title</comment>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>MainWindow</name>
     <message>
         <location filename="../ui/Ui_mainwindow.py" line="176"/>
@@ -382,62 +298,49 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="355"/>
+        <location filename="../mainwindow.py" line="366"/>
         <source>Enter a file to save into</source>
         <comment>Window Title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="371"/>
+        <location filename="../mainwindow.py" line="382"/>
         <source>Export failed:</source>
         <comment>Error message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="242"/>
-        <source>.PS
-scale=2.54
-cct_init
-
-l=elen_
-&lt;Enter your drawing here&gt;
-.PE
-</source>
-        <comment>Template text. Translate ONLY the text between angle braces &lt;...&gt;</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.py" line="258"/>
+        <location filename="../mainwindow.py" line="269"/>
         <source>PyCirkuit files (*.ckt)</source>
         <comment>File filter text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="258"/>
+        <location filename="../mainwindow.py" line="269"/>
         <source>TeX files (*.tex)</source>
         <comment>File filter text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="258"/>
+        <location filename="../mainwindow.py" line="269"/>
         <source>Any files (*)</source>
         <comment>File filter text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="304"/>
+        <location filename="../mainwindow.py" line="315"/>
         <source>Enter a file to save into</source>
         <comment>File Dialog title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="307"/>
+        <location filename="../mainwindow.py" line="318"/>
         <source>PyCirkuit files (*.ckt)</source>
         <comment>File filter</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="307"/>
+        <location filename="../mainwindow.py" line="318"/>
         <source>Any files (*)</source>
         <comment>File filter</comment>
         <translation type="unfinished"></translation>
@@ -449,80 +352,93 @@ l=elen_
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="256"/>
+        <location filename="../mainwindow.py" line="267"/>
         <source>Source File Selection</source>
         <comment>File Dialog title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="244"/>
+        <location filename="../mainwindow.py" line="59"/>
         <source>unnamed</source>
         <comment>Initial name of a new empty file</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.py" line="250"/>
+        <source>.PS
+scale=2.54
+cct_init
+
+l=elen_
+# Enter your drawing code here
+.PE
+</source>
+        <comment>Template text. Translate ONLY the text between angle braces &lt;...&gt;</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>MessageBox</name>
     <message>
-        <location filename="../mainwindow.py" line="141"/>
+        <location filename="../mainwindow.py" line="157"/>
         <source>Cannot find the &apos;Circuit Macros&apos;!
 
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="142"/>
+        <location filename="../mainwindow.py" line="158"/>
         <source>Do you want to try to search and install them automatically?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="159"/>
+        <location filename="../mainwindow.py" line="175"/>
         <source>Please indicate the correct path to them in the settings dialog.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="160"/>
+        <location filename="../mainwindow.py" line="176"/>
         <source>Critical Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="340"/>
+        <location filename="../mainwindow.py" line="351"/>
         <source>Warning</source>
         <comment>Message Box title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="343"/>
+        <location filename="../mainwindow.py" line="354"/>
         <source>Do you want to overwrite it?</source>
         <comment>Message Box text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="345"/>
+        <location filename="../mainwindow.py" line="356"/>
         <source>Save As...</source>
         <comment>Button text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="177"/>
+        <location filename="../mainwindow.py" line="193"/>
         <source>Error saving source file: </source>
         <comment>Error message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="178"/>
+        <location filename="../mainwindow.py" line="194"/>
         <source>Cannot execute command.</source>
         <comment>Error message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="179"/>
+        <location filename="../mainwindow.py" line="195"/>
         <source>Critical Error</source>
         <comment>Message Box title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="122"/>
+        <location filename="../mainwindow.py" line="138"/>
         <source>The specified LaTeX template seems invalid!
 
 </source>
@@ -530,7 +446,7 @@ l=elen_
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="123"/>
+        <location filename="../mainwindow.py" line="139"/>
         <source>Please indicate a correct one in the Settings.
 
 </source>
@@ -538,13 +454,13 @@ l=elen_
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="131"/>
+        <location filename="../mainwindow.py" line="147"/>
         <source>Cannot generate the preview.</source>
         <comment>Error message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="129"/>
+        <location filename="../mainwindow.py" line="145"/>
         <source>The LaTeX template has not been found!
 
 </source>
@@ -552,7 +468,7 @@ l=elen_
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="130"/>
+        <location filename="../mainwindow.py" line="146"/>
         <source>Please indicate its correct PATH in the Settings.
 
 </source>
@@ -560,31 +476,25 @@ l=elen_
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="234"/>
+        <location filename="../mainwindow.py" line="240"/>
         <source>You will have to search it manually. It should be a PDF file located into {cmPath} folder or one of its subfolders.</source>
         <comment>Message Box text. DO NOT translate &apos;{cmPath}&apos; variable.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="235"/>
+        <location filename="../mainwindow.py" line="241"/>
         <source>Error</source>
         <comment>Message Box title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="199"/>
+        <location filename="../mainwindow.py" line="96"/>
         <source>Source file have unsaved changes.</source>
         <comment>Message box text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="200"/>
-        <source>Do you want to save them before closing?</source>
-        <comment>Message Box text</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.py" line="233"/>
+        <location filename="../mainwindow.py" line="239"/>
         <source>Cannot find the &quot;Circuit Macros&quot; documentation.
 
 </source>
@@ -592,14 +502,20 @@ l=elen_
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="342"/>
+        <location filename="../mainwindow.py" line="353"/>
         <source>There&apos;s already a file named &quot;{filename}&quot; at working directory.</source>
         <comment>Message box text. Don&apos;t translate &apos;{filename}&apos;</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="143"/>
+        <location filename="../mainwindow.py" line="159"/>
         <source>Warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.py" line="97"/>
+        <source>Do you want to save them before proceeding?</source>
+        <comment>Message Box text</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -615,31 +531,31 @@ l=elen_
 <context>
     <name>StatusBar</name>
     <message>
-        <location filename="../mainwindow.py" line="402"/>
+        <location filename="../mainwindow.py" line="413"/>
         <source>Converting: Circuit Macros -&gt; PIC</source>
         <comment>Status Bar message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="406"/>
+        <location filename="../mainwindow.py" line="417"/>
         <source>Converting: PIC -&gt; TIKZ</source>
         <comment>Status Bar message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="411"/>
+        <location filename="../mainwindow.py" line="422"/>
         <source>Converting: TIKZ -&gt; PDF</source>
         <comment>Status Bar message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="415"/>
+        <location filename="../mainwindow.py" line="426"/>
         <source>Converting: PDF -&gt; PNG</source>
         <comment>Status Bar message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="147"/>
+        <location filename="../mainwindow.py" line="163"/>
         <source>Downloading and unpacking Circuit Macros</source>
         <comment>Status Bar message</comment>
         <translation type="unfinished"></translation>
