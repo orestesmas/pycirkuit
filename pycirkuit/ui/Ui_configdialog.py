@@ -132,7 +132,7 @@ class Ui_ConfigDialog(object):
         self.toolButtonTemplatePath.setText(_translate("ConfigDialog", "Choose...", "Button text"))
         self.radioButton.setText(_translate("ConfigDialog", "RadioB&utton"))
 
-from pycirkuit import resources_rc
+from pycirkuit.resources import resources_rc
 
 if __name__ == "__main__":
     import sys

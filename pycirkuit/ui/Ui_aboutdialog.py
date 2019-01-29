@@ -227,7 +227,7 @@ class Ui_AboutDialog(object):
         self.verticalLayout.addWidget(self.buttonBox)
 
         self.retranslateUi(AboutDialog)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(3)
         self.buttonBox.accepted.connect(AboutDialog.accept)
         self.buttonBox.rejected.connect(AboutDialog.reject)
         QtCore.QMetaObject.connectSlotsByName(AboutDialog)
@@ -264,7 +264,7 @@ class Ui_AboutDialog(object):
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">PyCirkuit uses also some icons and other artwork from «Oxygen» set, from the KDE project. These icons are under the GNU LGPL v3 license. See <a href=\"https://techbase.kde.org/Projects/Oxygen/Licensing\"><span style=\" text-decoration: underline; color:#2980b9;\">https://techbase.kde.org/Projects/Oxygen/Licensing</span></a> and <a href=\"http://www.gnu.org/copyleft/lesser.html\"><span style=\" text-decoration: underline; color:#2980b9;\">http://www.gnu.org/copyleft/lesser.html</span></a></p></body></html>"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tabGPL), _translate("AboutDialog", "&License Agreement"))
 
-from pycirkuit import resources_rc
+from pycirkuit.resources import resources_rc
 
 if __name__ == "__main__":
     import sys

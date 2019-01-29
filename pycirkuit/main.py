@@ -30,7 +30,7 @@ def main():
     from pycirkuit.mainwindow import MainWindow
     
     # Resources for translation
-    from pycirkuit import resources_rc
+    from pycirkuit.resources import resources_rc
 
     import sys
     app = QApplication(sys.argv)

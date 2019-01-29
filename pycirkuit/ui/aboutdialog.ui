@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
+ <author>Orestes Mas</author>
  <class>AboutDialog</class>
  <widget class="QDialog" name="AboutDialog">
   <property name="geometry">
@@ -109,7 +110,7 @@
       <enum>QTabWidget::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="tabAbout">
       <attribute name="title">

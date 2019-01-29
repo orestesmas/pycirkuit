@@ -202,7 +202,7 @@ class Ui_MainWindow(object):
         self.actionCMMan.setShortcut(_translate("MainWindow", "Ctrl+M"))
 
 from pycirkuit.texteditor import pycktTextEditor
-from pycirkuit import resources_rc
+from pycirkuit.resources import resources_rc
 
 if __name__ == "__main__":
     import sys
