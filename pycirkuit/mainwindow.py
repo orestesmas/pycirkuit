@@ -249,7 +249,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def on_actionNew_triggered(self):
         if self.needSaving:
             self._ask_saving()
-        txt = _translate("MainWindow", ".PS\nscale=2.54\ncct_init\n\nl=elen_\n# Enter your drawing code here\n.PE\n",  "Template text. Translate ONLY the text between angle braces <...>")
+        txt = _translate("MainWindow", ".PS\nscale=2.54\ncct_init\n\nl=elen_\n# Enter your drawing code here\n.PE\n",  "Template text. Translate ONLY the commented out text (line starting with '#')")
         self.sourceText.setText(txt)
         self.openedFilename = self._translatedUnnamed
         self.needSaving = False
