@@ -239,10 +239,23 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     QtGui.QDesktopServices.openUrl(QtCore.QUrl("file://" + candidates[0], QtCore.QUrl.TolerantMode))
                 else:
                     errMsg  = _translate("MessageBox", 'Cannot find the "Circuit Macros" documentation.\n\n', "Warning message")
-                    errMsg += _translate("MessageBox", "You will have to search it manually. It should be a PDF file located into {cmPath} folder or one of its subfolders.", "Message Box text. DO NOT translate '{cmPath}' variable.").format(cmPath=cmPath)
+                    errMsg += _translate("MessageBox", "You will have to search for it manually. It should be a PDF file located into {cmPath} folder or one of its subfolders.", "Message Box text. DO NOT translate '{cmPath}' variable.").format(cmPath=cmPath)
                     QtWidgets.QMessageBox.warning(self, _translate("MessageBox", "Error", "Message Box title"),  errMsg)
             except:
                 pass
+
+
+    @pyqtSlot()
+    def on_actionDpicMan_triggered(self):
+        dpic = ToolDpic();
+        try:
+            path = dpic.getManUrl()
+            QtGui.QDesktopServices.openUrl(QtCore.QUrl("file://" + path, QtCore.QUrl.TolerantMode))
+        except:
+            errMsg  = _translate("MessageBox", 'Cannot find the "Dpic" documentation.\n\n', "Warning message")
+            errMsg += _translate("MessageBox", "You will have to search for it manually.")
+            QtWidgets.QMessageBox.warning(self, _translate("MessageBox", "Error", "Message Box title"),  errMsg)
+
 
 
     @pyqtSlot()

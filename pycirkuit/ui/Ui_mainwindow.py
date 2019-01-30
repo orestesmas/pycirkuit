@@ -152,6 +152,9 @@ class Ui_MainWindow(object):
         icon12.addPixmap(QtGui.QPixmap(":/icons/CMman"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.actionCMMan.setIcon(icon12)
         self.actionCMMan.setObjectName("actionCMMan")
+        self.actionDpicMan = QtWidgets.QAction(MainWindow)
+        self.actionDpicMan.setIcon(icon12)
+        self.actionDpicMan.setObjectName("actionDpicMan")
         self.menuFile.addAction(self.actionNew)
         self.menuFile.addAction(self.actionOpen)
         self.menuFile.addAction(self.actionSave)
@@ -159,6 +162,7 @@ class Ui_MainWindow(object):
         self.menuFile.addAction(self.actionQuit)
         self.menuHelp.addSeparator()
         self.menuHelp.addAction(self.actionCMMan)
+        self.menuHelp.addAction(self.actionDpicMan)
         self.menuHelp.addSeparator()
         self.menuHelp.addAction(self.actionAbout)
         self.menuSettings.addAction(self.actionPreferences)
@@ -198,8 +202,10 @@ class Ui_MainWindow(object):
         self.actionSave.setShortcut(_translate("MainWindow", "Ctrl+S", "Keyboard Shortcut"))
         self.actionSaveAs.setText(_translate("MainWindow", "Sa&ve As...", "Menu item"))
         self.actionSaveAs.setShortcut(_translate("MainWindow", "Ctrl+Shift+S", "Keyboard Shortcut"))
-        self.actionCMMan.setText(_translate("MainWindow", "&Circuit Macros manual", "Menu item"))
+        self.actionCMMan.setText(_translate("MainWindow", "&Circuit Macros manual"))
         self.actionCMMan.setShortcut(_translate("MainWindow", "Ctrl+M"))
+        self.actionDpicMan.setText(_translate("MainWindow", "&Dpic manual"))
+        self.actionDpicMan.setShortcut(_translate("MainWindow", "Ctrl+D"))
 
 from pycirkuit.texteditor import pycktTextEditor
 from pycirkuit.resources import resources_rc
