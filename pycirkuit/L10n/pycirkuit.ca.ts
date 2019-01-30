@@ -99,13 +99,13 @@ p, li { white-space: pre-wrap; }
         <location filename="../circuitmacrosmanager.py" line="76"/>
         <source>Cannot determine the standard writable location for PyCirkuit</source>
         <comment>Error message</comment>
-        <translation>No s&apos;ha pogut determinar l&apos;ubicació estàndard amb permís d&apos;escriptura per al PyCirkuit</translation>
+        <translation>No s&apos;ha pogut determinar la ubicació estàndard amb permís d&apos;escriptura per al PyCirkuit</translation>
     </message>
     <message>
         <location filename="../circuitmacrosmanager.py" line="109"/>
         <source>Error uncompressing the Circuit Macros: </source>
         <comment>Error message</comment>
-        <translation>S&apos;ha produït un error al descomprimir les Circuit Macros: </translation>
+        <translation>S&apos;ha produït un error en descomprimir les Circuit Macros: </translation>
     </message>
     <message>
         <location filename="../circuitmacrosmanager.py" line="85"/>
@@ -711,7 +711,7 @@ l=elen_
         <location filename="../mainwindow.py" line="425"/>
         <source>Converting: Circuit Macros -&gt; PIC</source>
         <comment>Status Bar message</comment>
-        <translation>Conversió: Circuit Macros -&gt; PIC</translation>
+        <translation>S&apos;està convertint: Circuit Macros -&gt; PIC</translation>
     </message>
     <message>
         <location filename="../mainwindow.py" line="429"/>
