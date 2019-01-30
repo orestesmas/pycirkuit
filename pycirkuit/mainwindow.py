@@ -60,7 +60,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         
         # This is to avoid starting the app with buffer marked as "dirty", and hence needing saving
         # This occurs because the "setupUI" method modifies text and hence triggers a textChanged signal
-        self.inConstructor = True
+        self.insideConstructor = True
         self.setupUi(self)
 
         # La icona de l'aplicació és al fitxer de recursos
@@ -71,10 +71,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         #NOTE: Is NOT necessary to MANUALLY connect most signals to slots, as 
         # pyuic5 calls QtCore.QMetaObject.connectSlotsByName in Ui_configdialog.py
         # do such connections AUTOMATICALLY (so connecting them manually triggers slots twice)
-
-        # Initialize with a blank template
-        self.needSaving = False
-        self.on_actionNew_triggered()
 
         # Set up a temporary directory to save intermediate files
         self.tmpDir = QtCore.QTemporaryDir()
@@ -87,6 +83,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.sourceText.setFont(font)
         self.highlighter = PyCirkuitHighlighter(self.sourceText.document())
 
+        # Initialize with a blank template
+        self.needSaving = False
+        self.on_actionNew_triggered()
+        
+        # We're quitting constructor
+        self.insideConstructor = False
 
     def _ask_saving(self):
         # Open MessageBox and inform user
@@ -237,20 +239,33 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     QtGui.QDesktopServices.openUrl(QtCore.QUrl("file://" + candidates[0], QtCore.QUrl.TolerantMode))
                 else:
                     errMsg  = _translate("MessageBox", 'Cannot find the "Circuit Macros" documentation.\n\n', "Warning message")
-                    errMsg += _translate("MessageBox", "You will have to search it manually. It should be a PDF file located into {cmPath} folder or one of its subfolders.", "Message Box text. DO NOT translate '{cmPath}' variable.").format(cmPath=cmPath)
+                    errMsg += _translate("MessageBox", "You will have to search for it manually. It should be a PDF file located into {cmPath} folder or one of its subfolders.", "Message Box text. DO NOT translate '{cmPath}' variable.").format(cmPath=cmPath)
                     QtWidgets.QMessageBox.warning(self, _translate("MessageBox", "Error", "Message Box title"),  errMsg)
             except:
                 pass
 
 
     @pyqtSlot()
+    def on_actionDpicMan_triggered(self):
+        dpic = ToolDpic();
+        try:
+            path = dpic.getManUrl()
+            QtGui.QDesktopServices.openUrl(QtCore.QUrl("file://" + path, QtCore.QUrl.TolerantMode))
+        except:
+            errMsg  = _translate("MessageBox", 'Cannot find the "Dpic" documentation.\n\n', "Warning message")
+            errMsg += _translate("MessageBox", "You will have to search for it manually.")
+            QtWidgets.QMessageBox.warning(self, _translate("MessageBox", "Error", "Message Box title"),  errMsg)
+
+
+
+    @pyqtSlot()
     def on_actionNew_triggered(self):
         if self.needSaving:
             self._ask_saving()
-        txt = _translate("MainWindow", ".PS\nscale=2.54\ncct_init\n\nl=elen_\n# Enter your drawing code here\n.PE\n",  "Template text. Translate ONLY the text between angle braces <...>")
+        txt = _translate("MainWindow", ".PS\nscale=2.54\ncct_init\n\nl=elen_\n# Enter your drawing code here\n.PE\n",  "Template text. Translate ONLY the commented out text (line starting with '#')")
         self.sourceText.setText(txt)
         self.openedFilename = self._translatedUnnamed
-        self.needSaving = True
+        self.needSaving = False
         self._modify_title()
 
 
@@ -293,6 +308,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     txt = f.read()
                     self.sourceText.setPlainText(txt)
                     self.openedFilename = filename
+                    self.needSaving = False
                     self._modify_title()
                     self.on_processButton_clicked()
 
@@ -395,10 +411,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         if not self._check_templates():
             return
 
-        # Començo: Primer deso la feina no desada
-        if self.needSaving:
-            self.actionSave.trigger()
-
         # Sintetitzo un nom de fitxer temporal per desar els fitxers intermedis
         tmpFileBaseName = self.tmpDir.path() + "/cirkuit_tmp"
         with open("{baseName}.ckt".format(baseName=tmpFileBaseName), 'w') as tmpFile:
@@ -449,8 +461,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     @pyqtSlot()
     def on_sourceText_textChanged(self):
-        if self.inConstructor:
-            self.inConstructor = False
+        if self.insideConstructor:
+            return
         else:
             self.needSaving = True
             self._modify_title()

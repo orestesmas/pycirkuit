@@ -19,12 +19,14 @@ Module implementing a class to handle the dpic external tool
 # along with PyCirkuit.  If not, see <https://www.gnu.org/licenses/>.
 #
 
+# Standard library imports
+import os
 
 # Third-party imports
-from PyQt5.QtCore import QCoreApplication
+from PyQt5.QtCore import QCoreApplication, QStandardPaths
 
 # Local application imports
-from pycirkuit.tools.tool_base import ExternalTool
+from pycirkuit.tools.tool_base import ExternalTool, PyCktDocNotFoundError
 
 # Translation function
 _translate = QCoreApplication.translate
@@ -41,3 +43,13 @@ class ToolDpic(ExternalTool):
         command = self.executableName + " -g {source} > {destination}".format(source=src, destination=dst)
         errMsg = _translate("ExternalTool", "DPIC: Error converting PIC -> TIKZ", "Error message")
         super().execute(command, errMsg)
+        
+    def getManUrl(self):
+        dirList = QStandardPaths.standardLocations(QStandardPaths.GenericDataLocation)
+        for dir in dirList:
+            testPath = dir + "/doc/dpic/dpic-doc.pdf"
+            if os.path.exists(testPath):
+                return(testPath)
+        else:
+            raise PyCktDocNotFoundError("dpic")
+

@@ -49,21 +49,26 @@ class PyCktToolNotFoundError(PyCirkuitError):
         super().__init__(errMsg, title=_translate("ExternalTool", "Tool Not Found", "Exception title"), moreInfo=info)
 
 
+class PyCktDocNotFoundError(PyCirkuitError):
+    def __init__(self, toolName):
+        errMsg = _translate("ExternalTool", "Cannot find the {toolName} manual!\n\n", "Leave untranslated the variable name inside curly braces (included)")
+        errMsg = errMsg.format(toolName=toolName)
+        info = _translate("ExternalTool", "Please ensure that you have this application properly installed, including the documentation, in a standard location.\n\n")
+        super().__init__(errMsg, title=_translate("ExternalTool", "File Not Found", "Exception title"), moreInfo=info)
+
 # Base class for external tools
 class ExternalTool(abc.ABC):
     def __init__(self, executableName, longName):
-        self.executableName = executableName
         self.longName = longName
-        self.check_tool()
-   
-    def check_tool(self):
         execPath = os.get_exec_path()
         for testPath in execPath:
-            if os.path.exists(testPath + "/{executableName}".format(executableName=self.executableName)):
-                print("Found: {executableName}\n".format(executableName=self.executableName))
-                break
+            if os.path.exists(testPath + "/{execName}".format(execName=executableName)):
+                print("Found: {execName}".format(execName=executableName))
+                self.execPath = testPath
+                self.executableName = testPath + "/" + executableName
+                return
         else:
-            raise PyCktToolNotFoundError(self.executableName, self.longName)
+            raise PyCktToolNotFoundError(executableName, self.longName)
 
     @abc.abstractmethod
     def execute(self, cmd, errMsg):

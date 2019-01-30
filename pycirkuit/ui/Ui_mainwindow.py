@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/orestes/Devel/Software/pycirkuit/pycirkuit/ui/mainwindow.ui'
 #
-# Created by: PyQt5 UI code generator 5.11.3
+# Created by: PyQt5 UI code generator 5.7
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -25,6 +25,7 @@ class Ui_MainWindow(object):
         self.tab = QtWidgets.QWidget()
         self.tab.setObjectName("tab")
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.tab)
+        self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.sourceText = pycktTextEditor(self.tab)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
@@ -87,6 +88,7 @@ class Ui_MainWindow(object):
         self.dockWidgetContents.setSizePolicy(sizePolicy)
         self.dockWidgetContents.setObjectName("dockWidgetContents")
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.dockWidgetContents)
+        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.imatge = QtWidgets.QLabel(self.dockWidgetContents)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
@@ -150,6 +152,9 @@ class Ui_MainWindow(object):
         icon12.addPixmap(QtGui.QPixmap(":/icons/CMman"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.actionCMMan.setIcon(icon12)
         self.actionCMMan.setObjectName("actionCMMan")
+        self.actionDpicMan = QtWidgets.QAction(MainWindow)
+        self.actionDpicMan.setIcon(icon12)
+        self.actionDpicMan.setObjectName("actionDpicMan")
         self.menuFile.addAction(self.actionNew)
         self.menuFile.addAction(self.actionOpen)
         self.menuFile.addAction(self.actionSave)
@@ -157,6 +162,7 @@ class Ui_MainWindow(object):
         self.menuFile.addAction(self.actionQuit)
         self.menuHelp.addSeparator()
         self.menuHelp.addAction(self.actionCMMan)
+        self.menuHelp.addAction(self.actionDpicMan)
         self.menuHelp.addSeparator()
         self.menuHelp.addAction(self.actionAbout)
         self.menuSettings.addAction(self.actionPreferences)
@@ -196,11 +202,13 @@ class Ui_MainWindow(object):
         self.actionSave.setShortcut(_translate("MainWindow", "Ctrl+S", "Keyboard Shortcut"))
         self.actionSaveAs.setText(_translate("MainWindow", "Sa&ve As...", "Menu item"))
         self.actionSaveAs.setShortcut(_translate("MainWindow", "Ctrl+Shift+S", "Keyboard Shortcut"))
-        self.actionCMMan.setText(_translate("MainWindow", "&Circuit Macros manual", "Menu item"))
+        self.actionCMMan.setText(_translate("MainWindow", "&Circuit Macros manual"))
         self.actionCMMan.setShortcut(_translate("MainWindow", "Ctrl+M"))
+        self.actionDpicMan.setText(_translate("MainWindow", "&Dpic manual"))
+        self.actionDpicMan.setShortcut(_translate("MainWindow", "Ctrl+D"))
 
 from pycirkuit.texteditor import pycktTextEditor
-from pycirkuit import resources_rc
+from pycirkuit.resources import resources_rc
 
 if __name__ == "__main__":
     import sys
