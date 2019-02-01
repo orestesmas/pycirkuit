@@ -59,13 +59,17 @@ class PyCktDocNotFoundError(PyCirkuitError):
 # Base class for external tools
 class ExternalTool(abc.ABC):
     def __init__(self, executableName, longName):
+        import platform
+        if platform.system() == 'Windows':
+            executableName = executableName + '.exe'
         self.longName = longName
         execPath = os.get_exec_path()
         for testPath in execPath:
-            if os.path.exists(testPath + "/{execName}".format(execName=executableName)):
+            p = os.path.join(testPath, "{execName}".format(execName=executableName))
+            if os.path.exists(p):
                 print("Found: {execName}".format(execName=executableName))
                 self.execPath = testPath
-                self.executableName = testPath + "/" + executableName
+                self.executableName = os.path.join(testPath,  executableName)
                 return
         else:
             raise PyCktToolNotFoundError(executableName, self.longName)
