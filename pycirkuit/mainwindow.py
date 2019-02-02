@@ -229,10 +229,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # Search for Circuit Macros PDF manual
         if self._enforce_circuit_macros():
             settings = QtCore.QSettings()
-            cmPath = settings.value("General/cmPath",  "")
+            cmPath = os.path.normpath(settings.value("General/cmPath",  ""))
             try:
                 import glob
-                candidates = glob.glob(cmPath + "/doc/*.[pP][dD][fF]")
+                cmPath = os.path.join(cmPath, "doc")
+                candidates = glob.glob(cmPath + os.sep + "*.[pP][dD][fF]")
                 if (len(candidates) == 1) and (os.path.isfile(candidates[0])):
                     # Open it with the default app. We can do that using Qt or in a mode pythonic way (os.system...)
                     # I choose the former because I want Qt to deal with the differences between OSes
