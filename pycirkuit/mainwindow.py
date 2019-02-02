@@ -411,29 +411,34 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         if not self._check_templates():
             return
 
-        # Sintetitzo un nom de fitxer temporal per desar els fitxers intermedis
-        tmpFileBaseName = self.tmpDir.path() + "/cirkuit_tmp"
-        with open("{baseName}.ckt".format(baseName=tmpFileBaseName), 'w') as tmpFile:
-            tmpFile.write(self.sourceText.toPlainText())
         try:
-            # PAS 0: Canvio el cursor momentàniament
+            # STEP1 : Save current WD and set a new one
+            savedWD = os.getcwd()
+            os.chdir(self.tmpDir.path())
+            
+            # STEP 2: Establish a temporary file base name to store intermediate results
+            tmpFileBaseName = "cirkuit_tmp"
+            with open("{baseName}.ckt".format(baseName=tmpFileBaseName), 'w') as tmpFile:
+                tmpFile.write(self.sourceText.toPlainText())
+            
+            # STEP 3: Change cursor shape temporarily
             app = QtWidgets.QApplication.instance()
             app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
 
-            # STEP 1: Call M4: .CKT -> .PIC
+            # STEP 4 Call M4: .CKT -> .PIC
             self.statusBar.showMessage(_translate("StatusBar", "Converting: Circuit Macros -> PIC", "Status Bar message"))
             self.extTools['m4'].execute(tmpFileBaseName)
 
-            # STEP 2: Call dpic: .PIC -> .TIKZ
+            # STEP 5: Call dpic: .PIC -> .TIKZ
             self.statusBar.showMessage(_translate("StatusBar", "Converting: PIC -> TIKZ", "Status Bar message"))
             self.extTools['dpic'].execute(tmpFileBaseName)
 
-            # PAS 3: Call PDFLaTeX: .TIKZ -> .PDF
-            # Primer haig d'incloure el codi .TIKZ en una plantilla adient
+            # STEP 6: Call PDFLaTeX: .TIKZ -> .PDF
+            # First we have to embed the .TIKZ code inside a suitable template
             self.statusBar.showMessage(_translate("StatusBar", "Converting: TIKZ -> PDF", "Status Bar message"))
             self.extTools['pdflatex'].execute(tmpFileBaseName)
 
-            # STEP 4: Call pdftoppm to convert the PDF into a bitmap image to visualize it: .PDF -> .PNG
+            # STEP 7: Call pdftoppm to convert the PDF into a bitmap image to visualize it: .PDF -> .PNG
             self.statusBar.showMessage(_translate("StatusBar", "Converting: PDF -> PNG", "Status Bar message"))
             self.extTools['pdftopng'].execute(tmpFileBaseName)
 
@@ -455,6 +460,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.processButton.setEnabled(False)
             self.exportButton.setEnabled(True)
         finally:
+            os.chdir(savedWD)
             self.statusBar.clearMessage()
             app.restoreOverrideCursor()
 
