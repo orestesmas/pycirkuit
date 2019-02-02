@@ -77,7 +77,6 @@ class ExternalTool(abc.ABC):
         for testPath in execPath:
             p = os.path.join(testPath, "{execName}".format(execName=executableName))
             if os.path.exists(p):
-                print("Found: {execName}".format(execName=executableName))
                 self.execPath = testPath
                 self.executableName = os.path.join(testPath,  executableName)
                 return
@@ -86,11 +85,9 @@ class ExternalTool(abc.ABC):
 
     @abc.abstractmethod
     def execute(self, cmd, errMsg, destination=None):
-        # La crida subprocess.run() és molt interessant
-        # el 'check=False' fa que no salti una excepció si l'ordre falla, atès que ja la llanço jo després
-        # amb un missatge més personalitzat
         try:
             # Invoke external tool to do the job
+            # For tools that give their output to STDOUT, we capture it and write contents to a file later
             result = subprocess.run(cmd, shell=False, check=False, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
             if result.returncode != 0:
                 info = result.stderr.decode()
