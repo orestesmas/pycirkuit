@@ -1,9 +1,12 @@
 %%backend=circuitmacros%%
 \documentclass{article}
 \usepackage[utf8x]{inputenc}
+\usepackage[catalan]{babel}
+
+\usepackage[T1]{fontenc}
 \usepackage{libertine}
 \usepackage{libertinust1math}
-\usepackage[T1]{fontenc}
+
 \usepackage{siunitx}
 \sisetup{
     output-decimal-marker = {,},
@@ -12,14 +15,14 @@
     output-complex-root = \ensuremath{\mathrm{j}},
     binary-units
 }
+\DeclareSIUnit[number-unit-product = \,]\dBV{\deci\bel V}
+\DeclareSIUnit[number-unit-product = \,]\dBuV{\deci\bel\mu V}
 
 \usepackage{tikz,amsmath}
-\usetikzlibrary{arrows,backgrounds,patterns,matrix,shapes,fit,calc,shadows,plotmarks}
+\usetikzlibrary{arrows,snakes,backgrounds,patterns,matrix,shapes,fit,calc,shadows,plotmarks}
 
-\usepackage[graphics,tightpage,active]{preview}
+\usepackage[tightpage,active,pdftex]{preview}
 \PreviewEnvironment{tikzpicture}
-\PreviewEnvironment{equation}
-\PreviewEnvironment{equation*}
 \newlength{\imagewidth}
 \newlength{\imagescale}
 \pagestyle{empty}

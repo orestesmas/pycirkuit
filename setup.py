@@ -33,7 +33,7 @@ setup(name = 'pycirkuit',
     license = 'GPLv3+',
     packages = find_packages(),
     package_data = {
-        'pycirkuit': ['doc/*','resources/*','L10n/*.ts',],
+        'pycirkuit': ['lib/*', 'templates/*', 'examples/*'],
     },
     entry_points = {
         'gui_scripts': [
