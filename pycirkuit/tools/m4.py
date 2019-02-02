@@ -40,6 +40,7 @@ class ToolM4(ExternalTool):
         # Instantiate a settings object to load config values. At this point the config have valid entries, so don't test much
         settings = QSettings()
         cmPath = settings.value("General/cmPath") 
-        command = self.executableName + " -I {cmPath} pgf.m4 {source} > {destination}".format(cmPath=cmPath, source=src, destination=dst)
+        #command = self.executableName + " -I {cmPath} pgf.m4 {source} > {destination}".format(cmPath=cmPath, source=src, destination=dst)
+        command = [self.executableName , "-I", "{cmPath}".format(cmPath=cmPath),  "pgf.m4",  "{source}".format(source=src),  ">",  "{destination}".format(destination=dst)]
         errMsg = _translate("ExternalTool", "M4: Error converting CKT -> PIC",  "Error message")
         super().execute(command, errMsg)
