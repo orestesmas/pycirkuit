@@ -4,8 +4,7 @@
 \usepackage[catalan]{babel}
 
 \usepackage[T1]{fontenc}
-\usepackage{libertine}
-\usepackage{libertinust1math}
+\usepackage{lmodern}
 
 \usepackage{siunitx}
 \sisetup{
