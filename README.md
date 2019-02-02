@@ -24,7 +24,7 @@ PyCirkuit source code is now hosted on github.com. The project homepage is [http
 
 # Requirements #
 
-As PyCirkuit is written in python 3 and uses multiplatform GUI libraries, it loads without problems on Windows (macOS not tested). However, its execution relies on using some helper applications thar aren't readily available on non-GNU systems. For that reason, at present PyCirkuit does not work correctly (or has not been tested) on systems other than GNU/Linux.
+As PyCirkuit is written in python 3 and uses multiplatform GUI libraries, it loads without problems on Windows (macOS not tested). However, its execution relies on using some helper applications whose availability on non-GNU systems is irregular. Version 0.1 has been reported to work on MacOS using external tools provided by [MacPorts](https://www.macports.org/). Windows support is coming and planned for version 0.2.
 
 To run this application you need to have the following applications/libraries installed:
 
@@ -34,51 +34,62 @@ To run this application you need to have the following applications/libraries in
   * (pdf)latex
   * m4
   * dpic
-  * pdftoppm
+  * pdftoppm (from poppler project)
   * Circuit Macros
 
-On Debian-based systems<sup>1</sup> (e.g. Ubuntu/Kubuntu) type the following command to install the required apps and dependencies (tested on Ubuntu 18.04 LTS):
 
-```shell
-  sudo apt-get install texlive-latex-base texlive-latex-recommended \
-  texlive-base-bin texlive-extra-utils texlive-pictures preview-latex-style \
-  m4 dpic poppler-utils python3-venv qtcreator
-```
-<sup>1</sup> Apparently, Debian does not have ```dpic``` packaged, but Ubuntu has (in the *universe* repository). So I don't really know where the latter is coming from. If you are trying PyCirkuit in a Debian system, you'll have to compile and install it yourself. Luckily, this is very easy because it's a little program with few/no dependencies. Download it from [https://ece.uwaterloo.ca/~aplevich/dpic/](https://ece.uwaterloo.ca/~aplevich/dpic/) and follow the instructions in the README file.
+# Installation #
+## Installing on GNU/Linux systems ##
 
-There's no Debian package for the Circuit Macros, but if PyCirkuit doesn't find them at startup, it will offer the user to download and install them automatically. They don't require building.
 
 (**Note:** I prefer to install PyQt5 in a sandbox Virtual Environment only for PyCirkuit. See the **Installation** section.)
 
 
-# Installation #
-
 To install PyCirkuit in you computer, please follow this steps:
 
-  1. Install the auxiliary apps as explained in the Requirements section.
+  1. Install the auxiliary apps: On Debian-based systems<sup>1</sup> (e.g. Ubuntu/Kubuntu)
+  type the following command to install the required apps and dependencies (tested on Ubuntu
+  18.04 LTS): 
 
-  2. Create a directory somewhere, create a Python Virtual Environment inside and activate it:
-  
-```shell
-   mkdir pycirkuit
-   cd pycirkuit
-   python3 -m venv venv
-   source venv/bin/activate
-```
+        sudo apt-get install texlive-latex-base texlive-latex-recommended \
+        texlive-base-bin texlive-extra-utils texlive-pictures preview-latex-style \
+        m4 dpic poppler-utils python3-venv qtcreator
 
-  3. Install PyCirkuit using PIP. It will download and install alongside the required dependencies (PyQt5):\
-    (NOTE: If you prefer to have en installation in source form -also known as 'editable mode'-,  add the '-e' option after 'install'. Sources will be installed by default at ./venv/src/pycirkuit)
+    <sup>1</sup> Apparently, Debian does not have ```dpic``` packaged, but Ubuntu has (in
+    the *universe* repository). If you are trying PyCirkuit in a Debian system, you'll
+    have to compile and install it yourself. Luckily, this is very easy because it's a
+    little program with few/no dependencies. Download ```dpic``` from
+    [https://ece.uwaterloo.ca/~aplevich/dpic/](https://ece.uwaterloo.ca/~aplevich/dpic/)
+    and follow the instructions in the README file.
 
-```shell
-   pip3 install git+https://github.com/orestesmas/pycirkuit.git#egg=pycirkuit
-```
+    There's no Debian package for the Circuit Macros, but if PyCirkuit doesn't find them at
+    startup, it will offer the user to download and install them automatically. They don't
+    require building.
 
-  4. If all went well, you can execute PyCirkuit by means of an executable script created under ./venv/bin:
+  2. Choose or create a directory somewhere and __change into it__. Create a Python Virtual
+  Environment inside and activate it:
 
-```shell
-   pycirkuit
-```
+        python3 -m venv PyCirkuit
+        source PyCirkuit/bin/activate
 
+  3. Install PyCirkuit using PIP. It will download and install alongside the required
+  dependencies (PyQt5). After installation, PyCirkuit code and files will be under
+  ```PyCirkuit/lib/python3.X/site-packages/pycirkuit```
+
+        pip install git+https://github.com/orestesmas/pycirkuit.git#egg=pycirkuit
+
+    (NOTE: If you prefer to have an installation __in source form__ -also known as 'editable
+    mode'-, __add the '-e' option after 'install'__. In this case PyCirkuit files will be
+    installed by default at ```PyCirkuit/src/pycirkuit```)
+
+  4. If all went well, you can execute PyCirkuit by means of an executable script
+  created under ```PyCirkuit/bin```:
+
+        pycirkuit
+
+## Installing on MacOS ##
+
+## Installing on MS Windows ##
 
 # Usage #
 
@@ -86,7 +97,7 @@ To execute PyCirkuit open a terminal window, navigate into the directory where P
 
 ```shell
    cd <path-to-Virtual-Environment>
-   source venv/bin/activate
+   source PyCirkuit/bin/activate
 ```
 
 Then execute the program as above:
