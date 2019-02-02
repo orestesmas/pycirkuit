@@ -23,11 +23,14 @@ Module implementing an abstract class to handle external tools
 import abc
 import os
 import subprocess
+import inspect
+import platform
 
 # Third-party imports
 from PyQt5.QtCore import QCoreApplication
 
 # Local application imports
+import pycirkuit
 from pycirkuit.exceptions import PyCirkuitError
 
 # Translation function
@@ -61,21 +64,40 @@ class ExternalTool(abc.ABC):
     def __init__(self, executableName, longName):
         self.longName = longName
         execPath = os.get_exec_path()
+
+        # Windows-specific
+        if platform.system() == 'Windows':
+            # Append '.exe' to the executable name we're searching
+            executableName = executableName + '.exe'
+            # Also, we add an entry to the executable search path poynting to our "lib" dir
+            libDir = os.path.dirname(inspect.getfile(pycirkuit))
+            libDir = os.path.join(libDir, 'lib')
+            execPath.append(libDir)
+
         for testPath in execPath:
-            if os.path.exists(testPath + "/{execName}".format(execName=executableName)):
+            p = os.path.join(testPath, "{execName}".format(execName=executableName))
+            if os.path.exists(p):
                 print("Found: {execName}".format(execName=executableName))
                 self.execPath = testPath
-                self.executableName = testPath + "/" + executableName
+                self.executableName = os.path.join(testPath,  executableName)
                 return
         else:
             raise PyCktToolNotFoundError(executableName, self.longName)
 
     @abc.abstractmethod
-    def execute(self, cmd, errMsg):
+    def execute(self, cmd, errMsg, destination=None):
         # La crida subprocess.run() és molt interessant
         # el 'check=False' fa que no salti una excepció si l'ordre falla, atès que ja la llanço jo després
         # amb un missatge més personalitzat
-        result = subprocess.run(cmd, shell=True, check=False, stderr=subprocess.STDOUT, stdout=subprocess.PIPE)
-        if result.returncode != 0:
-            info = result.stdout.decode()
-            raise PyCktToolExecutionError(errMsg, moreInfo=info)
+        try:
+            # Invoke external tool to do the job
+            result = subprocess.run(cmd, shell=False, check=False, stderr=subprocess.PIPE, stdout=subprocess.PIPE, timeout=15)
+            if result.returncode != 0:
+                info = result.stderr.decode()
+                raise PyCktToolExecutionError(errMsg, moreInfo=info)
+            else:
+                if destination != None:
+                    with open(destination, 'wb') as tmpFile:
+                        tmpFile.write(result.stdout)
+        except PyCktToolExecutionError as err:
+            raise err
