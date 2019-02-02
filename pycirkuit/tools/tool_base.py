@@ -91,7 +91,7 @@ class ExternalTool(abc.ABC):
         # amb un missatge més personalitzat
         try:
             # Invoke external tool to do the job
-            result = subprocess.run(cmd, shell=False, check=False, stderr=subprocess.PIPE, stdout=subprocess.PIPE, timeout=15)
+            result = subprocess.run(cmd, shell=False, check=False, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
             if result.returncode != 0:
                 info = result.stderr.decode()
                 raise PyCktToolExecutionError(errMsg, moreInfo=info)
