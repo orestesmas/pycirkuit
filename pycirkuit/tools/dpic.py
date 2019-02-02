@@ -40,10 +40,9 @@ class ToolDpic(ExternalTool):
         src = baseName + '.pic'
         dst = baseName + '.tikz'
         # Instantiate a settings object to load config values. At this point the config have valid entries, so don't test much
-        #command = self.executableName + " -g {source} > {destination}".format(source=src, destination=dst)
-        command = [self.executableName, "-g", "{source}".format(source=src), ">", "{destination}".format(destination=dst)]
+        command = [self.executableName, "-g", "{source}".format(source=src)]
         errMsg = _translate("ExternalTool", "DPIC: Error converting PIC -> TIKZ", "Error message")
-        super().execute(command, errMsg)
+        super().execute(command, errMsg, destination=dst)
         
     def getManUrl(self):
         dirList = QStandardPaths.standardLocations(QStandardPaths.GenericDataLocation)

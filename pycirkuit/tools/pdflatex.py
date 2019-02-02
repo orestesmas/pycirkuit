@@ -20,7 +20,6 @@ Module implementing a class to handle the pdflatex external tool
 #
 
 # Standard library imports
-import os.path
 import re
 
 # Third-party imports
@@ -54,8 +53,7 @@ class ToolPdfLaTeX(ExternalTool):
             g.write(dest)
             g.write('\n')
         # Execution of pdfLaTeX creates a PDF file
-        #command = self.executableName + " -interaction=batchmode -halt-on-error -output-directory {tmpDir} {texFile}".format(tmpDir=os.path.dirname(tex), texFile=tex)
-        command = [self.executableName, "-interaction=batchmode", "-halt-on-error", "-output-directory", "{tmpDir}".format(tmpDir=os.path.dirname(tex)), "{texFile}".format(texFile=tex)]
+        command = [self.executableName, "-interaction=batchmode", "-halt-on-error", "{texFile}".format(texFile=tex)]
         errMsg = _translate("ExternalTool", "PDFLaTeX: Error converting TIKZ -> PDF", "Error message")
         try:
             super().execute(command, errMsg)

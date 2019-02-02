@@ -85,11 +85,19 @@ class ExternalTool(abc.ABC):
             raise PyCktToolNotFoundError(executableName, self.longName)
 
     @abc.abstractmethod
-    def execute(self, cmd, errMsg):
+    def execute(self, cmd, errMsg, destination=None):
         # La crida subprocess.run() és molt interessant
         # el 'check=False' fa que no salti una excepció si l'ordre falla, atès que ja la llanço jo després
         # amb un missatge més personalitzat
-        result = subprocess.run(cmd, shell=True, check=False, stderr=subprocess.STDOUT, stdout=subprocess.PIPE)
-        if result.returncode != 0:
-            info = result.stdout.decode()
-            raise PyCktToolExecutionError(errMsg, moreInfo=info)
+        try:
+            # Invoke external tool to do the job
+            result = subprocess.run(cmd, shell=False, check=False, stderr=subprocess.PIPE, stdout=subprocess.PIPE, timeout=15)
+            if result.returncode != 0:
+                info = result.stderr.decode()
+                raise PyCktToolExecutionError(errMsg, moreInfo=info)
+            else:
+                if destination != None:
+                    with open(destination, 'wb') as tmpFile:
+                        tmpFile.write(result.stdout)
+        except PyCktToolExecutionError as err:
+            raise err
