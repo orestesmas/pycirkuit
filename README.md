@@ -37,10 +37,6 @@ To run this application you need to have the following applications/libraries in
 # Installation #
 ## Installing on GNU/Linux systems ##
 
-
-(**Note:** I prefer to install PyQt5 in a sandbox Virtual Environment only for PyCirkuit. See the **Installation** section.)
-
-
 To install PyCirkuit in you computer, please follow this steps:
 
   1. Install the auxiliary apps: On Debian-based systems<sup>1</sup> (e.g. Ubuntu/Kubuntu)
