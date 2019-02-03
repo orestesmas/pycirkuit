@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-6.3.dtd">
 <!-- eric project file for project pycirkuit -->
-<!-- Saved: 2019-01-30, 00:06:12 -->
+<!-- Saved: 2019-02-03, 01:27:13 -->
 <!-- Copyright (C) 2019 Orestes Mas, orestes@tsc.upc.edu -->
 <Project version="6.3">
   <Language>en_US</Language>
@@ -30,6 +30,7 @@
     <Source>ui/Ui_aboutdialog.py</Source>
     <Source>ui/Ui_configdialog.py</Source>
     <Source>ui/Ui_mainwindow.py</Source>
+    <Source>version.py</Source>
   </Sources>
   <Forms>
     <Form>ui/aboutdialog.ui</Form>
