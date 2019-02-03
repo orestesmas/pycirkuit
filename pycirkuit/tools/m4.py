@@ -2,7 +2,7 @@
 """
 Module implementing a class to handle the M4 external tool
 """
-# Copyright (C) 2018 Orestes Mas
+# Copyright (C) 2018-2019 Orestes Mas
 # This file is part of PyCirkuit.
 #
 # PyCirkuit is free software: you can redistribute it and/or modify
