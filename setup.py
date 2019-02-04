@@ -18,23 +18,20 @@ along with PyCirkuit.  If not, see <https://www.gnu.org/licenses/>.
 """
 
 from setuptools import setup, find_packages
+import pycirkuit
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
     
-ver = {}
-with open("pycirkuit/version.py") as fp:
-    exec(fp.read(),  ver)
-
 setup(name = 'pycirkuit',
-    version = ver['__version__'],
-    description = 'A front-end for Circuit Macros',
+    version = pycirkuit.__version__,
+    description = pycirkuit.__description__, 
     long_description = long_description,
     long_description_content_type = "text/markdown",
-    url = 'https://gitlab.upc.edu/CSL/Programari/pycirkuit.git',
-    author = 'Orestes Mas',
-    author_email = 'orestes@tsc.upc.edu',
-    license = 'GPLv3+',
+    url = pycirkuit.__homepage__,
+    author = pycirkuit.__author__,
+    author_email = pycirkuit.__author_email__,
+    license = pycirkuit.__license_short__,
     packages = find_packages(),
     package_data = {
         'pycirkuit': ['lib/*', 'templates/*', 'examples/*'],
