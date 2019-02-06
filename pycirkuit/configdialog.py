@@ -35,7 +35,7 @@ from PyQt5.QtWidgets import\
 
 # Local application imports
 from pycirkuit.ui.Ui_configdialog import Ui_ConfigDialog
-from exceptions import PyCirkuitError
+from pycirkuit.exceptions import PyCirkuitError
 # Translation function
 _translate = QCoreApplication.translate
 
