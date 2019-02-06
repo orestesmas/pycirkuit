@@ -80,8 +80,10 @@ To install PyCirkuit in you computer, please follow this steps:
          pycirkuit
 
 ## Installing on MacOS ##
+To be written
 
 ## Installing on MS Windows ##
+To be written
 
 # Usage #
 
