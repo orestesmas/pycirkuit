@@ -129,13 +129,13 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>ConfigDialog</name>
     <message>
-        <location filename="../configdialog.py" line="100"/>
+        <location filename="../configdialog.py" line="117"/>
         <source>Circuit Macros Location</source>
         <comment>File Dialog Title</comment>
         <translation>Ubicació de les Circuit Macros</translation>
     </message>
     <message>
-        <location filename="../configdialog.py" line="118"/>
+        <location filename="../configdialog.py" line="135"/>
         <source>Latex Template Location</source>
         <comment>File Dialog Title</comment>
         <translation>Ubicació de la plantilla LaTeX</translation>
@@ -206,13 +206,13 @@ p, li { white-space: pre-wrap; }
         <translation>M4: Error en la conversió CKT -&gt; PIC</translation>
     </message>
     <message>
-        <location filename="../tools/pdflatex.py" line="37"/>
+        <location filename="../tools/pdflatex.py" line="36"/>
         <source>pdfLaTeX program</source>
         <comment>Tool Long Name</comment>
         <translation>Programa pdfLaTeX</translation>
     </message>
     <message>
-        <location filename="../tools/pdflatex.py" line="59"/>
+        <location filename="../tools/pdflatex.py" line="58"/>
         <source>PDFLaTeX: Error converting TIKZ -&gt; PDF</source>
         <comment>Error message</comment>
         <translation>PDFLaTeX: Error en la conversió TIKZ -&gt; PDF</translation>
@@ -230,13 +230,13 @@ p, li { white-space: pre-wrap; }
         <translation>PDFTOPPM: Error en la conversió PDF -&gt; PNG</translation>
     </message>
     <message>
-        <location filename="../tools/tool_base.py" line="39"/>
+        <location filename="../tools/tool_base.py" line="42"/>
         <source>Tool Execution Error</source>
         <comment>Exception title</comment>
         <translation>Error d&apos;execució de l&apos;eina</translation>
     </message>
     <message>
-        <location filename="../tools/tool_base.py" line="44"/>
+        <location filename="../tools/tool_base.py" line="47"/>
         <source>Cannot find the {toolLongName}!
 
 </source>
@@ -246,7 +246,7 @@ p, li { white-space: pre-wrap; }
 </translation>
     </message>
     <message>
-        <location filename="../tools/tool_base.py" line="46"/>
+        <location filename="../tools/tool_base.py" line="49"/>
         <source>Please ensure that you have this application properly installed and the executable &quot;{toolExecutableName}&quot; is in the PATH.
 
 </source>
@@ -256,18 +256,18 @@ p, li { white-space: pre-wrap; }
 </translation>
     </message>
     <message>
-        <location filename="../tools/tool_base.py" line="47"/>
+        <location filename="../tools/tool_base.py" line="50"/>
         <source>Cannot generate the preview.</source>
         <translation>No s&apos;ha pogut generar la previsualització.</translation>
     </message>
     <message>
-        <location filename="../tools/tool_base.py" line="49"/>
+        <location filename="../tools/tool_base.py" line="52"/>
         <source>Tool Not Found</source>
         <comment>Exception title</comment>
         <translation>No s&apos;ha trobat l&apos;eina</translation>
     </message>
     <message>
-        <location filename="../tools/tool_base.py" line="54"/>
+        <location filename="../tools/tool_base.py" line="57"/>
         <source>Cannot find the {toolName} manual!
 
 </source>
@@ -277,7 +277,7 @@ p, li { white-space: pre-wrap; }
 </translation>
     </message>
     <message>
-        <location filename="../tools/tool_base.py" line="56"/>
+        <location filename="../tools/tool_base.py" line="59"/>
         <source>Please ensure that you have this application properly installed, including the documentation, in a standard location.
 
 </source>
@@ -286,7 +286,7 @@ p, li { white-space: pre-wrap; }
 </translation>
     </message>
     <message>
-        <location filename="../tools/tool_base.py" line="57"/>
+        <location filename="../tools/tool_base.py" line="60"/>
         <source>File Not Found</source>
         <comment>Exception title</comment>
         <translation>No s&apos;ha trobat el fitxer</translation>
@@ -426,49 +426,49 @@ p, li { white-space: pre-wrap; }
         <translation>Ctrl+Shift+S</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="382"/>
+        <location filename="../mainwindow.py" line="383"/>
         <source>Enter a file to save into</source>
         <comment>Window Title</comment>
         <translation>Introduïu un fitxer on desar-ho</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="398"/>
+        <location filename="../mainwindow.py" line="399"/>
         <source>Export failed:</source>
         <comment>Error message</comment>
         <translation>L&apos;exportació ha fallat:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="284"/>
+        <location filename="../mainwindow.py" line="285"/>
         <source>PyCirkuit files (*.ckt)</source>
         <comment>File filter text</comment>
         <translation>Fitxers PyCirkuit (*.ckt)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="284"/>
+        <location filename="../mainwindow.py" line="285"/>
         <source>TeX files (*.tex)</source>
         <comment>File filter text</comment>
         <translation>Fitxers TeX (*.tex)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="284"/>
+        <location filename="../mainwindow.py" line="285"/>
         <source>Any files (*)</source>
         <comment>File filter text</comment>
         <translation>Qualsevol fitxer (*)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="331"/>
+        <location filename="../mainwindow.py" line="332"/>
         <source>Enter a file to save into</source>
         <comment>File Dialog title</comment>
         <translation>Introduïu un fitxer on desar-ho</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="334"/>
+        <location filename="../mainwindow.py" line="335"/>
         <source>PyCirkuit files (*.ckt)</source>
         <comment>File filter</comment>
         <translation>Fitxers PyCirkuit (*.ckt)</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="334"/>
+        <location filename="../mainwindow.py" line="335"/>
         <source>Any files (*)</source>
         <comment>File filter</comment>
         <translation>Qualsevol fitxer (*)</translation>
@@ -480,7 +480,7 @@ p, li { white-space: pre-wrap; }
         <translation>&amp;Quant al PyCirkuit</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="282"/>
+        <location filename="../mainwindow.py" line="283"/>
         <source>Source File Selection</source>
         <comment>File Dialog title</comment>
         <translation>Selecció de fitxer font</translation>
@@ -492,7 +492,7 @@ p, li { white-space: pre-wrap; }
         <translation>sense nom</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="265"/>
+        <location filename="../mainwindow.py" line="266"/>
         <source>.PS
 scale=2.54
 cct_init
@@ -554,19 +554,19 @@ l=elen_
         <translation>Error crític</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="367"/>
+        <location filename="../mainwindow.py" line="368"/>
         <source>Warning</source>
         <comment>Message Box title</comment>
         <translation>Avís</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="370"/>
+        <location filename="../mainwindow.py" line="371"/>
         <source>Do you want to overwrite it?</source>
         <comment>Message Box text</comment>
         <translation>Voleu sobreescriure&apos;l?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="372"/>
+        <location filename="../mainwindow.py" line="373"/>
         <source>Save As...</source>
         <comment>Button text</comment>
         <translation>Desa com a...</translation>
@@ -636,13 +636,13 @@ l=elen_
 </translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="242"/>
+        <location filename="../mainwindow.py" line="243"/>
         <source>You will have to search for it manually. It should be a PDF file located into {cmPath} folder or one of its subfolders.</source>
         <comment>Message Box text. DO NOT translate &apos;{cmPath}&apos; variable.</comment>
         <translation>L&apos;haureu de cercar manualment. Hauria de ser un fitxer PDF ubicat a la carpeta {cmPath} o en una de les seves subcarpetes.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="257"/>
+        <location filename="../mainwindow.py" line="258"/>
         <source>Error</source>
         <comment>Message Box title</comment>
         <translation>Error</translation>
@@ -654,7 +654,7 @@ l=elen_
         <translation>El fitxer font té canvis sense desar.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="241"/>
+        <location filename="../mainwindow.py" line="242"/>
         <source>Cannot find the &quot;Circuit Macros&quot; documentation.
 
 </source>
@@ -664,7 +664,7 @@ l=elen_
 </translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="369"/>
+        <location filename="../mainwindow.py" line="370"/>
         <source>There&apos;s already a file named &quot;{filename}&quot; at working directory.</source>
         <comment>Message box text. Don&apos;t translate &apos;{filename}&apos;</comment>
         <translation>Ja hi ha un fitxer anomenat «{filename}» al directori de treball.</translation>
@@ -681,7 +681,7 @@ l=elen_
         <translation>Voleu desar-los abans de continuar?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="255"/>
+        <location filename="../mainwindow.py" line="256"/>
         <source>Cannot find the &quot;Dpic&quot; documentation.
 
 </source>
@@ -691,9 +691,19 @@ l=elen_
 </translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="256"/>
+        <location filename="../mainwindow.py" line="257"/>
         <source>You will have to search for it manually.</source>
         <translation>L&apos;haureu de cercar manualment.</translation>
+    </message>
+    <message>
+        <location filename="../configdialog.py" line="81"/>
+        <source>The path to the Circuit Macros location is not valid. Please enter a valid one.</source>
+        <translation>El camí a la ubicació de les Circuit Macros no és correcte. Introduïu-ne un de vàlid.</translation>
+    </message>
+    <message>
+        <location filename="../configdialog.py" line="83"/>
+        <source>The path to the LaTeX template does not point to a valid file. Please enter a correct one.</source>
+        <translation>El camí a la plantilla de LaTeX no apunta a un fitxer vàlid. Introduïu-ne un de correcte.</translation>
     </message>
 </context>
 <context>
@@ -708,25 +718,25 @@ l=elen_
 <context>
     <name>StatusBar</name>
     <message>
-        <location filename="../mainwindow.py" line="425"/>
+        <location filename="../mainwindow.py" line="431"/>
         <source>Converting: Circuit Macros -&gt; PIC</source>
         <comment>Status Bar message</comment>
         <translation>S&apos;està convertint: Circuit Macros -&gt; PIC</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="429"/>
+        <location filename="../mainwindow.py" line="435"/>
         <source>Converting: PIC -&gt; TIKZ</source>
         <comment>Status Bar message</comment>
         <translation>S&apos;està convertint: PIC -&gt; TIKZ</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="434"/>
+        <location filename="../mainwindow.py" line="440"/>
         <source>Converting: TIKZ -&gt; PDF</source>
         <comment>Status Bar message</comment>
         <translation>S&apos;està convertint: TIKZ -&gt; PDF</translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="438"/>
+        <location filename="../mainwindow.py" line="444"/>
         <source>Converting: PDF -&gt; PNG</source>
         <comment>Status Bar message</comment>
         <translation>S&apos;està convertint: PDF -&gt; PNG</translation>
