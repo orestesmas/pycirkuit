@@ -30,11 +30,12 @@ from PyQt5.QtCore import\
         QCoreApplication
 from PyQt5.QtWidgets import\
         QDialog,\
-        QFileDialog
+        QFileDialog, \
+        QMessageBox
 
 # Local application imports
 from pycirkuit.ui.Ui_configdialog import Ui_ConfigDialog
-
+from exceptions import PyCirkuitError
 # Translation function
 _translate = QCoreApplication.translate
 
@@ -75,6 +76,22 @@ class ConfigDialog(QDialog, Ui_ConfigDialog):
     @pyqtSlot()
     def accept(self):
         settings = QSettings()
+        try:
+            if not os.path.isdir(self.cmPath.text()):
+                raise PyCirkuitError(_translate("MessageBox", "The path to the Circuit Macros location is not valid. Please enter a valid one.", ""))
+            if not os.path.isfile(self.templateFile.text()):
+                raise PyCirkuitError(_translate("MessageBox", "The path to the LaTeX template does not point to a valid file. Please enter a correct one.", ""))
+        except PyCirkuitError as err:
+            # Open MessageBox and inform user
+            msgBox = QMessageBox(self)
+            msgBox.setWindowTitle(err.title)
+            msgBox.setIcon(QMessageBox.Critical)
+            msgBox.setText(str(err))
+            msgBox.setInformativeText(err.moreInfo)
+            msgBox.setStandardButtons(QMessageBox.Ok)
+            msgBox.setDefaultButton(QMessageBox.Ok)
+            msgBox.exec()
+            return
         settings.setValue("General/cmPath", self.cmPath.text())
         settings.setValue("General/latexTemplateFile", self.templateFile.text())
         settings.sync()
@@ -129,7 +146,7 @@ class ConfigDialog(QDialog, Ui_ConfigDialog):
 
     @pyqtSlot(str)
     def on_cmPath_textChanged(self, newText):
-        if  os.path.exists(newText):
+        if  os.path.isdir(newText):
             self.cmPath.setStyleSheet("background-color: {white};".format(white = "rgb(255, 255, 255)"))
         else:
             self.cmPath.setStyleSheet("background-color: {reddish};".format(reddish = "rgb(255, 230, 230)"))
@@ -137,7 +154,7 @@ class ConfigDialog(QDialog, Ui_ConfigDialog):
 
     @pyqtSlot(str)
     def on_templateFile_textChanged(self, newText):
-        if  os.path.exists(newText):
+        if  os.path.isfile(newText):
             self.templateFile.setStyleSheet("background-color: {white};".format(white = "rgb(255, 255, 255)"))
         else:
             self.templateFile.setStyleSheet("background-color: {reddish};".format(reddish = "rgb(255, 230, 230)"))
