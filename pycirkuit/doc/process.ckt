@@ -1,0 +1,23 @@
+.PS
+scale=2.54
+cct_init
+
+l=elen_
+ellipse wid l ht 0.75*l ".ckt" "diagram"
+arrow right_ l/2
+M4: box wid l ht 0.75*l "\textbf{m4}" "processor"
+arrow right_ l/2
+ellipse wid l ht 0.75*l ".pic file"
+arrow right_ l/2
+DPIC: box wid l ht 0.75*l "\textbf{dpic}" "interpreter"
+arrow right_ l/2
+ellipse wid l ht 0.75*l ".tikz file"
+arrow right_ l/2
+ellipse wid l ht 0.2*l fill 0.85 "\small{tikz}"
+ellipse wid l ht 0.75*l at last ellipse
+"\small{\LaTeX}" at last ellipse + (0,0.2*l)
+"\small{template}" at last ellipse - (0,0.2*l)
+arrow right_ l/2 with .s at last ellipse.e
+Latex: box wid l ht 0.75*l "Pdf\LaTeX" "processor"
+
+.PE

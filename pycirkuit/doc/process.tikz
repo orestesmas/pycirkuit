@@ -1,0 +1,59 @@
+\begin{tikzpicture}[scale=2.54]
+% dpic version 2018.08.15 option -g for TikZ and PGF 1.01
+\ifx\dpiclw\undefined\newdimen\dpiclw\fi
+\global\def\dpicdraw{\draw[line width=\dpiclw]}
+\global\def\dpicstop{;}
+\dpiclw=0.8bp
+\dpiclw=0.8bp
+\dpicdraw (0.375,0) ellipse (0.147638in and 0.110728in)\dpicstop
+\draw (0.375,0) node{\shortstack{.ckt\\%
+diagram}};
+\filldraw[line width=0bp](1.025,-0.025)
+ --(1.125,0)
+ --(1.025,0.025) --cycle\dpicstop
+\dpicdraw (0.75,0)
+ --(1.102094,0)\dpicstop
+\dpicdraw (1.125,-0.28125) rectangle (1.875,0.28125)\dpicstop
+\draw (1.5,0) node{\shortstack{\textbf{m4}\\%
+processor}};
+\filldraw[line width=0bp](2.15,-0.025)
+ --(2.25,0)
+ --(2.15,0.025) --cycle\dpicstop
+\dpicdraw (1.875,0)
+ --(2.227094,0)\dpicstop
+\dpicdraw (2.625,0) ellipse (0.147638in and 0.110728in)\dpicstop
+\draw (2.625,0) node{.pic file};
+\filldraw[line width=0bp](3.275,-0.025)
+ --(3.375,0)
+ --(3.275,0.025) --cycle\dpicstop
+\dpicdraw (3,0)
+ --(3.352094,0)\dpicstop
+\dpicdraw (3.375,-0.28125) rectangle (4.125,0.28125)\dpicstop
+\draw (3.75,0) node{\shortstack{\textbf{dpic}\\%
+interpreter}};
+\filldraw[line width=0bp](4.4,-0.025)
+ --(4.5,0)
+ --(4.4,0.025) --cycle\dpicstop
+\dpicdraw (4.125,0)
+ --(4.477094,0)\dpicstop
+\dpicdraw (4.875,0) ellipse (0.147638in and 0.110728in)\dpicstop
+\draw (4.875,0) node{.tikz file};
+\filldraw[line width=0bp](5.525,-0.025)
+ --(5.625,0)
+ --(5.525,0.025) --cycle\dpicstop
+\dpicdraw (5.25,0)
+ --(5.602094,0)\dpicstop
+\dpicdraw[fill=white!85!black](6,0) ellipse (0.147638in and 0.029528in)\dpicstop
+\draw (6,0) node{\small{tikz}};
+\dpicdraw (6,0) ellipse (0.147638in and 0.110728in)\dpicstop
+\draw (6,0.15) node{\small{\LaTeX}};
+\draw (6,-0.15) node{\small{template}};
+\filldraw[line width=0bp](6.65,-0.025)
+ --(6.75,0)
+ --(6.65,0.025) --cycle\dpicstop
+\dpicdraw (6.375,0)
+ --(6.727094,0)\dpicstop
+\dpicdraw (6.75,-0.28125) rectangle (7.5,0.28125)\dpicstop
+\draw (7.125,0) node{\shortstack{Pdf\LaTeX\\%
+processor}};
+\end{tikzpicture}
