@@ -1,0 +1,7 @@
+This empty directory is automatically added to Windows PATH variable, so it's a convenient place to put all the auxiliary programs PyCirkuit needs to compile its documents, namely:
+
+ * m4.exe
+ * dpic.exe
+ * pdftoppm.exe
+
+(At present, these programs have to be manually downloaded and installed by the user)
