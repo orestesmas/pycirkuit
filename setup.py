@@ -34,7 +34,7 @@ setup(name = 'pycirkuit',
     license = pycirkuit.__license_short__,
     packages = find_packages(),
     package_data = {
-        'pycirkuit': ['lib/*', 'templates/*', 'examples/*'],
+        'pycirkuit': ['templates/*', 'examples/*'],
     },
     entry_points = {
         'gui_scripts': [

@@ -69,10 +69,6 @@ class ExternalTool(abc.ABC):
         if platform.system() == 'Windows':
             # Append '.exe' to the executable name we're searching
             executableName = executableName + '.exe'
-            # Also, we add an entry to the executable search path poynting to our "lib" dir
-            libDir = os.path.dirname(inspect.getfile(pycirkuit))
-            libDir = os.path.join(libDir, 'lib')
-            execPath.append(libDir)
 
         for testPath in execPath:
             p = os.path.join(testPath, "{execName}".format(execName=executableName))
