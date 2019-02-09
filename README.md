@@ -64,11 +64,16 @@ To install PyCirkuit in you computer, please follow this steps:
          python3 -m venv PyCirkuit
          source PyCirkuit/bin/activate
 
-  3. Install PyCirkuit using PIP. It will download and install alongside the required
-  dependencies (PyQt5). After installation, PyCirkuit code and files will be under
+  3. Install PyCirkuit. You have several ways to do so: choose one of the following:
+  
+     3.1 PyCirkuit is available at the [Python Package Index (PyPI)](https://pypi.org/), so you can install it using PIP. It will download and install alongside the required dependencies (PyQt5). After installation, PyCirkuit code and files will be under
   ```PyCirkuit/lib/python3.X/site-packages/pycirkuit```
 
-          pip install git+https://github.com/orestesmas/pycirkuit.git#egg=pycirkuit
+          pip install pycirkuit
+
+     3.2 The former will install the lastest stable version on PyPI. If you prefer to install the latest development version, [download it grom GitHub as a .ZIP file](https://github.com/orestesmas/pycirkuit/archive/master.zip) and install from it:
+     
+          pip install <path_to_the_downloaded_ZIP_file>
 
      (NOTE: If you prefer to have an installation __in source form__ -also known as 'editable
      mode'-, __add the '-e' option after 'install'__. In this case PyCirkuit files will be
