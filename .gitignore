@@ -1,6 +1,9 @@
 *.pyc
-/.directory
 .eric6project/
+.directory
+/.directory
 /pycirkuit.egg-info
 /venv
-.directory
+/dist
+/build
+
