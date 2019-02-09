@@ -63,7 +63,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.insideConstructor = True
         self.setupUi(self)
 
-        # La icona de l'aplicació és al fitxer de recursos
+        # The app icon is located inside the resource file
         icon = QtGui.QIcon(":/icons/AppIcon")
         self.setWindowIcon(icon)
 
@@ -278,7 +278,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # Instantiate a settings object
         settings = QtCore.QSettings()
 
-        # Presento el diàleg de càrrega de fitxer
+        # Show the 'load file' Dialog
         fdlg = QtWidgets.QFileDialog(self)
         fdlg.setWindowTitle(_translate("MainWindow", "Source File Selection", "File Dialog title"))
         fdlg.setDirectory(settings.value("General/lastWD",  ""))
@@ -295,9 +295,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             fitxer = fdlg.selectedFiles()[0]
         fdlg.close()
 
-        # Comprovo que no he premut 'Cancel' a la dialog box...
+        # Check that user didn't press 'Cancel' on the Dialog Box...
         if fitxer != "":
-            # Comprovo que el fitxer no sigui un enllaç trencat
+            # Check that file is not a broken link
             fitxer = os.path.normpath(fitxer)
             if os.path.exists(fitxer):
                 lastWD, filename = os.path.split(fitxer)
@@ -400,15 +400,15 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     @pyqtSlot()
     def on_processButton_clicked(self):
-        # Comprovo si tinc totes les aplicacions necessàries correctament instal·lades
+        # Check if we have all the auxiliary apps correctly installed
         if not self._check_programs():
             return
 
-        # Comprovo si tenim les Circuit Macros a la carpeta especificada als Settings
+        # Check if we have the Circuit Macros at the folder specified into the Settings
         if not self._enforce_circuit_macros():
             return
 
-        # Comprovo si el fitxer de plantilla existeix i és vàlid
+        # Check if the template file exists and is valid
         if not self._check_templates():
             return
 
