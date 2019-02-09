@@ -58,29 +58,25 @@ To install PyCirkuit in you computer, please follow this steps:
      startup, it will offer the user to download and install them automatically. They don't
      require building.
 
-  2. Choose or create a directory somewhere and __change into it__. Create a Python Virtual
-  Environment inside and activate it:
+  2. In order to isolate PyCirkuit and its dependencies from other python packages on your system, it's advisable to install it into a Python's Virtual Environment. To do so, choose or create a directory somewhere and __change into it__. Do the following to create the Virtual Environment inside and activate it:
 
          python3 -m venv PyCirkuit
          source PyCirkuit/bin/activate
 
-  3. Install PyCirkuit. You have several ways to do so: choose one of the following:
+  3. Install PyCirkuit. You have several ways to do so. Choose one of the following:
   
      3.1 PyCirkuit is available at the [Python Package Index (PyPI)](https://pypi.org/), so you can install it using PIP. It will download and install alongside the required dependencies (PyQt5). After installation, PyCirkuit code and files will be under
   ```PyCirkuit/lib/python3.X/site-packages/pycirkuit```
 
-          pip install pycirkuit
+         pip install pycirkuit
 
      3.2 The former will install the lastest stable version on PyPI. If you prefer to install the latest development version, [download it grom GitHub as a .ZIP file](https://github.com/orestesmas/pycirkuit/archive/master.zip) and install from it:
      
-          pip install <path_to_the_downloaded_ZIP_file>
+         pip install <path_to_the_downloaded_ZIP_file>
 
-     (NOTE: If you prefer to have an installation __in source form__ -also known as 'editable
-     mode'-, __add the '-e' option after 'install'__. In this case PyCirkuit files will be
-     installed by default at ```PyCirkuit/src/pycirkuit```)
+   (NOTE: If you prefer to have an installation __in source form__ -also known as 'editable mode'-, __add the '-e' option after 'install'__. In this case PyCirkuit files will be installed by default at ```PyCirkuit/src/pycirkuit```)
 
-  4. If all went well, you can execute PyCirkuit by means of an executable script
-  created under ```PyCirkuit/bin```:
+  4. If all went well, you can execute PyCirkuit by means of an executable script created under ```PyCirkuit/bin```. Test it with:
 
          pycirkuit
 
@@ -88,15 +84,52 @@ To install PyCirkuit in you computer, please follow this steps:
 To be written
 
 ## Installing on MS Windows ##
-To be written
+  1. Install the dependencies and auxiliary programs:
+
+     1.1 Choose a LaTeX distribution for windows. I tested PyCirkuit with MikTeX. Download it from https://miktex.org/ and follow the instructions to install it.
+
+     1.2 Download and install a python 3 interpreter for windows from https://www.python.org/downloads/windows/.
+
+     1.3 Download and install the M4 macro processor and the DPIC executables for windows from https://ece.uwaterloo.ca/~aplevich/dpic/Windows/index.html
+
+     1.4 Finally, obtain and install a copy of the "pdftoppm" utility. It usually comes bundled along with other utilities from the "Poppler" library, although it can be found alone on some webs. For instance from http://blog.alivate.com.au/poppler-windows/.
+
+  You have to put this utilities somewhere on your PATH, but alternatively you can put them inside PyCirkuit code. See #4 below.
+
+  2. Prepare a location where to install PyCircuit. It's advisable to install it inside a so-called python environment to isolate it from other python installations and libraries you may have on your system. To do so, choose a directory where to install PyCirkuit. Open a command line (I assume you have how to do it) and navigate to the chosen location. Then ceate the Python virtual environment and activate it using the commands below:
+
+         python -m venv PyCirkuit
+         PyCirkuit\Scripts\activate
+
+        The console "prompt" should change and show "(PyCirkuit)" at the beginning indicating the environment is active.
+
+  3. To install PyCirkuit, proceed like Step 3 in the "Linux Installation" section
+     
+  4. For convenience you can put the m4.exe, dpic.exe and pdftoppm.exe executables downloaded before inside the pycirkuit package you've just installed. Copy them to "PyCirkuit\Lib\site-packages\pycirkuit\lib\". PyCirkuit will add this directory to the executable's PATH when running.
+
+  5. Test the executable:
+
+         PyCirkuit
+
+     You will find some examples inside "PyCirkuit\Lib\site-packages\pycirkuit\examples\"
+
+  6. When you're done you can deactivate the virtual environment:
+
+         deactivate
+
+     or simply close the command line console.
+
+
+
 
 # Usage #
 
-To execute PyCirkuit open a terminal window, navigate into the directory where PyCirkuit is installed and activate the virtual environment:
+To execute PyCirkuit open a console/terminal window, navigate into the directory where PyCirkuit is installed and activate the virtual environment as in 2:
 
 ```shell
    cd <path-to-Virtual-Environment>
-   source PyCirkuit/bin/activate
+   source PyCirkuit/bin/activate         (for GNU/Linux systems)
+   PyCirkuit\Scripts\activate            (for Windows systems)
 ```
 
 Then execute the program as above:
@@ -105,7 +138,7 @@ Then execute the program as above:
    pycirkuit
 ```
 
-Upon finished executing PyCirkuit, you should deactivate the virtual environment:
+Upon finished executing PyCirkuit, you should deactivate the virtual environment (and/or close the terminal window):
 
 ```shell
    deactivate
