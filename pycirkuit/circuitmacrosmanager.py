@@ -68,10 +68,13 @@ class CircuitMacrosManager(QtCore.QObject):
         settings = QtCore.QSettings()
         cmPath = settings.value("General/cmPath",  "")
         return os.path.exists(cmPath + "/libcct.m4")
+
+    def default_CMPath(self):
+        return os.path.join(QtCore.QStandardPaths.writableLocation(QtCore.QStandardPaths.AppDataLocation), "circuit_macros")
         
     def download_latest(self):
         origin = "http://www.ece.uwaterloo.ca/~aplevich/Circuit_macros/Circuit_macros.tar.gz"
-        destination = QtCore.QStandardPaths.writableLocation(QtCore.QStandardPaths.AppDataLocation)
+        destination = os.path.dirname(self.default_CMPath())
         if destination == "":
             raise PyCirkuitError(_translate("CircuitMacrosManager", "Cannot determine the standard writable location for PyCirkuit",  "Error message"))
         if not os.path.exists(destination):

@@ -23,6 +23,7 @@ Module implementing MainWindow.
 #import sys
 import os
 from shutil import copyfile
+import inspect
 
 # Third-party imports
 from PyQt5.QtCore import pyqtSlot,  QCoreApplication
@@ -67,6 +68,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         icon = QtGui.QIcon(":/icons/AppIcon")
         self.setWindowIcon(icon)
 
+        # Ensure meaningful default settings
+        self._check_settings()
+        
         # Connect signals with slots
         #NOTE: Is NOT necessary to MANUALLY connect most signals to slots, as 
         # pyuic5 calls QtCore.QMetaObject.connectSlotsByName in Ui_configdialog.py
@@ -82,13 +86,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         font.setPointSize(12)
         self.sourceText.setFont(font)
         self.highlighter = PyCirkuitHighlighter(self.sourceText.document())
-
-        # Initialize with a blank template
+        # Initialize editor contents with a default drawing template
         self.needSaving = False
         self.on_actionNew_triggered()
         
         # We're quitting constructor
         self.insideConstructor = False
+
 
     def _ask_saving(self):
         # Open MessageBox and inform user
@@ -124,6 +128,26 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             msgBox.exec()
             return False
         return True
+
+
+    def _check_settings(self):
+        """
+        Check if config file is empty (deleted, first run, etc.) and if so, set reasonable default values
+        """
+        settings = QtCore.QSettings()
+        # Check LaTeX template
+        if (settings.value("General/latexTemplateFile",  "") == ""):
+            # Import ourselves
+            import pycirkuit
+            # Find absolute application's path
+            templatePath = os.path.dirname(inspect.getfile(pycirkuit))
+            # Add the relative path where the default template is located
+            templatePath = os.path.join(templatePath, 'templates/cm_tikz.tpl')
+            settings.setValue("General/latexTemplateFile", templatePath)
+        # Check Circuit Macros path
+        if (settings.value("General/cmPath",  "") == ""):
+            CM = CircuitMacrosManager()
+            settings.setValue("General/cmPath", CM.default_CMPath())
 
 
     def _check_templates(self):
