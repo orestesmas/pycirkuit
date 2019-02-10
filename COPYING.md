@@ -1,4 +1,4 @@
-PyCirkuit is Copyright (c) 2018 Orestes Mas <orestes@tsc.upc.edu>
+PyCirkuit is Copyright (c) 2018-2019 Orestes Mas <orestes@tsc.upc.edu>
 
 You may use, distribute and copy PyCirkuit under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, which is shown below, or (at your option) any later version.
 
