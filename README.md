@@ -74,8 +74,6 @@ To install PyCirkuit in you computer, please follow this steps:
      
          pip install <path_to_the_downloaded_ZIP_file>
 
-   (NOTE: If you prefer to have an installation __in source form__ -also known as 'editable mode'-, __add the '-e' option after 'install'__. In this case PyCirkuit files will be installed by default at ```PyCirkuit/src/pycirkuit```)
-
   4. If all went well, you can execute PyCirkuit by means of an executable script created under ```PyCirkuit/bin```. Test it with:
 
          pycirkuit
@@ -94,7 +92,7 @@ To be written
 
      1.4 Finally, obtain and install a copy of the "pdftoppm" utility. It usually comes bundled along with other utilities from the "Poppler" library, although it can be found alone on some webs. For instance from http://blog.alivate.com.au/poppler-windows/.
 
-  You have to put this utilities somewhere on your PATH, but alternatively you can put them inside PyCirkuit code. See #4 below.
+     You have to put this utilities somewhere on your PATH, but alternatively you can put them inside PyCirkuit code. See #4 below.
 
   2. Prepare a location where to install PyCircuit. It's advisable to install it inside a so-called python environment to isolate it from other python installations and libraries you may have on your system. To do so, choose a directory where to install PyCirkuit. Open a command line (I assume you have how to do it) and navigate to the chosen location. Then create the Python virtual environment and activate it using the commands below:
 
