@@ -23,7 +23,7 @@ Will be the first usable public release.
 
 ### Changed
 - Better and simplified installation procedure
-- Better "About" dialog
+- Better "About" dialog, with automatically updated version and copyright information.
 - Improved README
 - Improved 
 - Code refactoring, cleaning and polishing
