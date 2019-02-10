@@ -33,7 +33,7 @@
     </message>
     <message>
         <location filename="../ui/Ui_aboutdialog.py" line="248"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Version 0.1&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Using:&lt;/p&gt;&lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://www.riverbankcomputing.com/software/pyqt/intro&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;PyQt5&lt;/span&gt;&lt;/a&gt; Python bindings to Qt5 by Riverbank Computing.&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://ece.uwaterloo.ca/~aplevich/Circuit_macros/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;Circuit Macros&lt;/span&gt;&lt;/a&gt;, by Dwight Aplevich.&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://www.gnu.org/software/m4/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;GNU M4&lt;/span&gt;&lt;/a&gt; Macro Processor, from the GNU project.&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://ece.uwaterloo.ca/~aplevich/dpic&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;Dpic&lt;/span&gt;&lt;/a&gt;, by Dwight Aplevich.&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://ctan.org/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;LaTeX + TIkZ&lt;/span&gt;&lt;/a&gt;, by Donald Knuth, Leslie Lamport Till Tantau and many more contributors.&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://linux.die.net/man/1/pdftoppm&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;PdfToPpm&lt;/span&gt;&lt;/a&gt;, a software by Glyph &amp;amp; Cog, LLC. &lt;/li&gt;&lt;/ul&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Version {versionNumber}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Using:&lt;/p&gt;&lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://www.riverbankcomputing.com/software/pyqt/intro&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;PyQt5&lt;/span&gt;&lt;/a&gt; Python bindings to Qt5 by Riverbank Computing.&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://ece.uwaterloo.ca/~aplevich/Circuit_macros/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;Circuit Macros&lt;/span&gt;&lt;/a&gt;, by Dwight Aplevich.&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://www.gnu.org/software/m4/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;GNU M4&lt;/span&gt;&lt;/a&gt; Macro Processor, from the GNU project.&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://ece.uwaterloo.ca/~aplevich/dpic&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;Dpic&lt;/span&gt;&lt;/a&gt;, by Dwight Aplevich.&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://ctan.org/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;LaTeX + TIkZ&lt;/span&gt;&lt;/a&gt;, by Donald Knuth, Leslie Lamport Till Tantau and many more contributors.&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://linux.die.net/man/1/pdftoppm&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;PdfToPpm&lt;/span&gt;&lt;/a&gt;, a software by Glyph &amp;amp; Cog, LLC. &lt;/li&gt;&lt;/ul&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -66,7 +66,7 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;PyCirkuit&lt;/span&gt; is Copyright (c) 2018 Orestes Mas &amp;lt;orestes@tsc.upc.edu&amp;gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;PyCirkuit&lt;/span&gt; is {copyrightInfo} &amp;lt;orestes@tsc.upc.edu&amp;gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You may use, distribute and copy PyCirkuit under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, which is shown below, or (at your option) any later version.&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;PyCirkuit uses also some icons and other artwork from &amp;quot;Oxygen&amp;quot; set, from the KDE project. These icons are under the GNU LGPL v3 license. See &lt;a href=&quot;https://techbase.kde.org/Projects/Oxygen/Licensing&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;https://techbase.kde.org/Projects/Oxygen/Licensing&lt;/span&gt;&lt;/a&gt; and &lt;a href=&quot;http://www.gnu.org/copyleft/lesser.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;http://www.gnu.org/copyleft/lesser.html&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
@@ -75,19 +75,19 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>CircuitMacrosManager</name>
     <message>
-        <location filename="../circuitmacrosmanager.py" line="76"/>
+        <location filename="../circuitmacrosmanager.py" line="79"/>
         <source>Cannot determine the standard writable location for PyCirkuit</source>
         <comment>Error message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../circuitmacrosmanager.py" line="109"/>
+        <location filename="../circuitmacrosmanager.py" line="112"/>
         <source>Error uncompressing the Circuit Macros: </source>
         <comment>Error message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../circuitmacrosmanager.py" line="85"/>
+        <location filename="../circuitmacrosmanager.py" line="88"/>
         <source>Network error: </source>
         <comment>Error message</comment>
         <translation type="unfinished"></translation>
@@ -397,49 +397,49 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="383"/>
+        <location filename="../mainwindow.py" line="408"/>
         <source>Enter a file to save into</source>
         <comment>Window Title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="399"/>
+        <location filename="../mainwindow.py" line="424"/>
         <source>Export failed:</source>
         <comment>Error message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="285"/>
+        <location filename="../mainwindow.py" line="309"/>
         <source>PyCirkuit files (*.ckt)</source>
         <comment>File filter text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="285"/>
+        <location filename="../mainwindow.py" line="309"/>
         <source>TeX files (*.tex)</source>
         <comment>File filter text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="285"/>
+        <location filename="../mainwindow.py" line="309"/>
         <source>Any files (*)</source>
         <comment>File filter text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="332"/>
+        <location filename="../mainwindow.py" line="356"/>
         <source>Enter a file to save into</source>
         <comment>File Dialog title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="335"/>
+        <location filename="../mainwindow.py" line="359"/>
         <source>PyCirkuit files (*.ckt)</source>
         <comment>File filter</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="335"/>
+        <location filename="../mainwindow.py" line="359"/>
         <source>Any files (*)</source>
         <comment>File filter</comment>
         <translation type="unfinished"></translation>
@@ -451,19 +451,19 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="283"/>
+        <location filename="../mainwindow.py" line="307"/>
         <source>Source File Selection</source>
         <comment>File Dialog title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="59"/>
+        <location filename="../mainwindow.py" line="60"/>
         <source>unnamed</source>
         <comment>Initial name of a new empty file</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="266"/>
+        <location filename="../mainwindow.py" line="290"/>
         <source>.PS
 scale=2.54
 cct_init
@@ -494,65 +494,65 @@ l=elen_
 <context>
     <name>MessageBox</name>
     <message>
-        <location filename="../mainwindow.py" line="159"/>
+        <location filename="../mainwindow.py" line="183"/>
         <source>Cannot find the &apos;Circuit Macros&apos;!
 
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="160"/>
+        <location filename="../mainwindow.py" line="184"/>
         <source>Do you want to try to search and install them automatically?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="177"/>
+        <location filename="../mainwindow.py" line="201"/>
         <source>Please indicate the correct path to them in the settings dialog.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="178"/>
+        <location filename="../mainwindow.py" line="202"/>
         <source>Critical Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="368"/>
+        <location filename="../mainwindow.py" line="393"/>
         <source>Warning</source>
         <comment>Message Box title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="371"/>
+        <location filename="../mainwindow.py" line="396"/>
         <source>Do you want to overwrite it?</source>
         <comment>Message Box text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="373"/>
+        <location filename="../mainwindow.py" line="398"/>
         <source>Save As...</source>
         <comment>Button text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="195"/>
+        <location filename="../mainwindow.py" line="219"/>
         <source>Error saving source file: </source>
         <comment>Error message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="196"/>
+        <location filename="../mainwindow.py" line="220"/>
         <source>Cannot execute command.</source>
         <comment>Error message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="197"/>
+        <location filename="../mainwindow.py" line="221"/>
         <source>Critical Error</source>
         <comment>Message Box title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="140"/>
+        <location filename="../mainwindow.py" line="164"/>
         <source>The specified LaTeX template seems invalid!
 
 </source>
@@ -560,7 +560,7 @@ l=elen_
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="141"/>
+        <location filename="../mainwindow.py" line="165"/>
         <source>Please indicate a correct one in the Settings.
 
 </source>
@@ -568,13 +568,13 @@ l=elen_
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="149"/>
+        <location filename="../mainwindow.py" line="173"/>
         <source>Cannot generate the preview.</source>
         <comment>Error message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="147"/>
+        <location filename="../mainwindow.py" line="171"/>
         <source>The LaTeX template has not been found!
 
 </source>
@@ -582,7 +582,7 @@ l=elen_
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="148"/>
+        <location filename="../mainwindow.py" line="172"/>
         <source>Please indicate its correct PATH in the Settings.
 
 </source>
@@ -590,25 +590,25 @@ l=elen_
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="243"/>
+        <location filename="../mainwindow.py" line="267"/>
         <source>You will have to search for it manually. It should be a PDF file located into {cmPath} folder or one of its subfolders.</source>
         <comment>Message Box text. DO NOT translate &apos;{cmPath}&apos; variable.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="258"/>
+        <location filename="../mainwindow.py" line="282"/>
         <source>Error</source>
         <comment>Message Box title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="98"/>
+        <location filename="../mainwindow.py" line="102"/>
         <source>Source file have unsaved changes.</source>
         <comment>Message box text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="242"/>
+        <location filename="../mainwindow.py" line="266"/>
         <source>Cannot find the &quot;Circuit Macros&quot; documentation.
 
 </source>
@@ -616,24 +616,24 @@ l=elen_
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="370"/>
+        <location filename="../mainwindow.py" line="395"/>
         <source>There&apos;s already a file named &quot;{filename}&quot; at working directory.</source>
         <comment>Message box text. Don&apos;t translate &apos;{filename}&apos;</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="161"/>
+        <location filename="../mainwindow.py" line="185"/>
         <source>Warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="99"/>
+        <location filename="../mainwindow.py" line="103"/>
         <source>Do you want to save them before proceeding?</source>
         <comment>Message Box text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="256"/>
+        <location filename="../mainwindow.py" line="280"/>
         <source>Cannot find the &quot;Dpic&quot; documentation.
 
 </source>
@@ -641,7 +641,7 @@ l=elen_
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="257"/>
+        <location filename="../mainwindow.py" line="281"/>
         <source>You will have to search for it manually.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -668,31 +668,31 @@ l=elen_
 <context>
     <name>StatusBar</name>
     <message>
-        <location filename="../mainwindow.py" line="431"/>
+        <location filename="../mainwindow.py" line="456"/>
         <source>Converting: Circuit Macros -&gt; PIC</source>
         <comment>Status Bar message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="435"/>
+        <location filename="../mainwindow.py" line="460"/>
         <source>Converting: PIC -&gt; TIKZ</source>
         <comment>Status Bar message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="440"/>
+        <location filename="../mainwindow.py" line="465"/>
         <source>Converting: TIKZ -&gt; PDF</source>
         <comment>Status Bar message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="444"/>
+        <location filename="../mainwindow.py" line="469"/>
         <source>Converting: PDF -&gt; PNG</source>
         <comment>Status Bar message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="165"/>
+        <location filename="../mainwindow.py" line="189"/>
         <source>Downloading and unpacking Circuit Macros</source>
         <comment>Status Bar message</comment>
         <translation type="unfinished"></translation>

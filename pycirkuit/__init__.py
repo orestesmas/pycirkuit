@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Module storing the application version number in a single place
+Module storing the application version number and other metadata in a single place
 """
 # Copyright (C) 2018-2019 Orestes Mas
 # This file is part of PyCirkuit.
@@ -23,7 +23,7 @@ __all__ = ["mainwindow"]
 
 __productname__   = "PyCirkuit"
 # Expecting trailing "-rcN" or "" for stable releases.
-__version__       = "0.2b1"
+__version__       = "0.2.0-beta2"
 __description__   = "A front-end for Circuit Macros"
 __author__        = "Orestes Mas"
 __author_email__  = "orestes@tsc.upc.edu"
