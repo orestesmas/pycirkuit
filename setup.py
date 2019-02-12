@@ -51,7 +51,4 @@ setup(name = 'pycirkuit',
         "Intended Audience :: Science/Research",
         "Intended Audience :: End Users/Desktop",
     ],
-    install_requires = [
-        'PyQt5'
-    ],
     zip_safe = True)

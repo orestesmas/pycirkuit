@@ -45,7 +45,7 @@ To install PyCirkuit in you computer, please follow this steps:
 
          sudo apt-get install texlive-latex-base texlive-latex-recommended \
          texlive-base-bin texlive-extra-utils texlive-pictures preview-latex-style \
-         m4 dpic poppler-utils python3-venv qtcreator
+         m4 dpic poppler-utils python3-venv qtcreator python3-pyqt5
 
      <sup>1</sup> Apparently, Debian does not have ```dpic``` packaged, but Ubuntu has (in
      the *universe* repository). If you are trying PyCirkuit in a Debian system, you'll
