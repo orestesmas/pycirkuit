@@ -26,7 +26,7 @@ To run this application you need to have the following applications/libraries in
 
   * Qt5 libraries
   * Python 3, with virtual environment support
-  * PyQt5 python bindings to Qt libraries (*see note below*)
+  * PyQt5 python bindings to Qt libraries
   * (pdf)latex
   * m4
   * dpic
@@ -65,7 +65,7 @@ To install PyCirkuit in you computer, please follow this steps:
 
   3. Install PyCirkuit. You have several ways to do so. Choose one of the following:
   
-     3.1 PyCirkuit is available at the [Python Package Index (PyPI)](https://pypi.org/), so you can install it using PIP. It will download and install alongside the required dependencies (PyQt5). After installation, PyCirkuit code and files will be under
+     3.1 PyCirkuit is available at the [Python Package Index (PyPI)](https://pypi.org/), so you can install it using PIP. After installation, PyCirkuit code and files will be under
   ```PyCirkuit/lib/python3.X/site-packages/pycirkuit```
 
          pip install pycirkuit
