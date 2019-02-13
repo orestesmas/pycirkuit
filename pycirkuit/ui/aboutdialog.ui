@@ -103,8 +103,16 @@
        <verstretch>5</verstretch>
       </sizepolicy>
      </property>
+     <property name="font">
+      <font>
+       <family>Sans Serif</family>
+      </font>
+     </property>
      <property name="autoFillBackground">
       <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">padding-left:5; padding-top:10; padding-bottom:10; padding-right:5; background-color: rgb(255, 255, 255);</string>
      </property>
      <property name="tabShape">
       <enum>QTabWidget::Rounded</enum>
@@ -119,16 +127,30 @@
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
         <widget class="QTextBrowser" name="textAbout">
+         <property name="font">
+          <font>
+           <family>Sans Serif</family>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">padding-left:5; padding-top:10; padding-bottom:10; padding-right:5; background-color: rgb(255, 255, 255);</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
          <property name="html">
           <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;PyCirkuit is a GUI front-end for &lt;a href=&quot;https://ece.uwaterloo.ca/~aplevich/Circuit_macros/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;Circuit Macros&lt;/span&gt;&lt;/a&gt; by Dwight Aplevich, which is a set of macros for drawing high-quality line diagrams to include in TeX, LaTeX, web or similar documents. PyCirkuit is written in Python 3 using the PyQt5 libraries, but is largely inspired (in both ideas and code snippets) on &lt;a href=&quot;https://wwwu.uni-klu.ac.at/magostin/cirkuit.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;Cirkuit&lt;/span&gt;&lt;/a&gt;, a C++ application written by Matteo Agostinelli using KDE4 libraries.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;PyCirkuit&lt;/span&gt; is a GUI front-end for &lt;a href=&quot;https://ece.uwaterloo.ca/~aplevich/Circuit_macros/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;Circuit Macros&lt;/span&gt;&lt;/a&gt; by Dwight Aplevich, which is a set of macros for drawing high-quality line diagrams to include in TeX, LaTeX, web or similar documents. PyCirkuit is written in Python 3 using the PyQt5 libraries, but is largely inspired (in both ideas and code snippets) on &lt;a href=&quot;https://wwwu.uni-klu.ac.at/magostin/cirkuit.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;Cirkuit&lt;/span&gt;&lt;/a&gt;, a C++ application written by Matteo Agostinelli using KDE4 libraries.&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;PyCirkuit compiles the source code on demand to generate a live preview, and can export the resulting image in TikZ code to be included directly in any LaTeX document. Other input and export formats are also planned.&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You can send bug reports via the &lt;a href=&quot;https://github.com/orestesmas/pycirkuit&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;project repository on GitHub&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;If you are willing to contribute, please read &lt;a href=&quot;https://github.com/orestesmas/pycirkuit/blob/master/CONTRIBUTING.md&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;these guidelines&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;PyCirkuit uses icons from KDE's &amp;quot;Oxygen&amp;quot; set, which are under the LGPL license. See &lt;a href=&quot;https://techbase.kde.org/Projects/Oxygen/Licensing&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;https://techbase.kde.org/Projects/Oxygen/Licensing&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="openExternalLinks">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -141,8 +163,11 @@ p, li { white-space: pre-wrap; }
       <layout class="QHBoxLayout" name="horizontalLayout_4">
        <item>
         <widget class="QLabel" name="textVersion">
+         <property name="styleSheet">
+          <string notr="true">padding-left:5; padding-top:10; padding-bottom:10; padding-right:5; background-color: rgb(255, 255, 255);</string>
+         </property>
          <property name="text">
-          <string extracomment="Don't translate the variable {versionNumber} (brackets included)">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Version {versionNumber}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Using:&lt;/p&gt;&lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://www.riverbankcomputing.com/software/pyqt/intro&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;PyQt5&lt;/span&gt;&lt;/a&gt; Python bindings to Qt5 by Riverbank Computing.&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://ece.uwaterloo.ca/~aplevich/Circuit_macros/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;Circuit Macros&lt;/span&gt;&lt;/a&gt;, by Dwight Aplevich.&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://www.gnu.org/software/m4/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;GNU M4&lt;/span&gt;&lt;/a&gt; Macro Processor, from the GNU project.&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://ece.uwaterloo.ca/~aplevich/dpic&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;Dpic&lt;/span&gt;&lt;/a&gt;, by Dwight Aplevich.&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://ctan.org/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;LaTeX + TIkZ&lt;/span&gt;&lt;/a&gt;, by Donald Knuth, Leslie Lamport Till Tantau and many more contributors.&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://linux.die.net/man/1/pdftoppm&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;PdfToPpm&lt;/span&gt;&lt;/a&gt;, a software by Glyph &amp;amp; Cog, LLC. &lt;/li&gt;&lt;/ul&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string extracomment="Don't translate the variable {versionNumber} (brackets included)">&lt;html&gt;&lt;head/&gt;&lt;body style=&quot; font-family:'Sans Serif';&quot;&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Version {versionNumber}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Using:&lt;/p&gt;&lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://www.riverbankcomputing.com/software/pyqt/intro&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;PyQt5&lt;/span&gt;&lt;/a&gt; Python bindings to Qt5 by Riverbank Computing.&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://ece.uwaterloo.ca/~aplevich/Circuit_macros/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;Circuit Macros&lt;/span&gt;&lt;/a&gt;, by Dwight Aplevich.&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://www.gnu.org/software/m4/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;GNU M4&lt;/span&gt;&lt;/a&gt; Macro Processor, from the GNU project.&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://ece.uwaterloo.ca/~aplevich/dpic&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;Dpic&lt;/span&gt;&lt;/a&gt;, by Dwight Aplevich.&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://ctan.org/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;LaTeX + TIkZ&lt;/span&gt;&lt;/a&gt;, by Donald Knuth, Leslie Lamport Till Tantau and many more contributors.&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://linux.die.net/man/1/pdftoppm&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;PdfToPpm&lt;/span&gt;&lt;/a&gt;, a software by Glyph &amp;amp; Cog, LLC. &lt;/li&gt;&lt;/ul&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
        </item>
@@ -155,6 +180,14 @@ p, li { white-space: pre-wrap; }
       <layout class="QHBoxLayout" name="horizontalLayout_3">
        <item>
         <widget class="QTextBrowser" name="textAuthor">
+         <property name="font">
+          <font>
+           <family>Sans Serif</family>
+          </font>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
          <property name="autoFormatting">
           <set>QTextEdit::AutoNone</set>
          </property>
@@ -168,6 +201,9 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;Original Author, Maintainer and Translator to Catalan&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="acceptRichText">
+          <bool>true</bool>
+         </property>
+         <property name="openExternalLinks">
           <bool>true</bool>
          </property>
         </widget>
@@ -193,6 +229,20 @@ p, li { white-space: pre-wrap; }
            <height>220</height>
           </size>
          </property>
+         <property name="font">
+          <font>
+           <family>Sans Serif</family>
+          </font>
+         </property>
+         <property name="autoFillBackground">
+          <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">padding-left:5; padding-top:10; padding-bottom:10; padding-right:5; background-color: rgb(255, 255, 255);</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
          <property name="horizontalScrollBarPolicy">
           <enum>Qt::ScrollBarAlwaysOff</enum>
          </property>
@@ -205,12 +255,36 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You may use, distribute and copy PyCirkuit under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, which is shown below, or (at your option) any later version.&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;PyCirkuit uses also some icons and other artwork from &amp;quot;Oxygen&amp;quot; set, from the KDE project. These icons are under the GNU LGPL v3 license. See &lt;a href=&quot;https://techbase.kde.org/Projects/Oxygen/Licensing&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;https://techbase.kde.org/Projects/Oxygen/Licensing&lt;/span&gt;&lt;/a&gt; and &lt;a href=&quot;http://www.gnu.org/copyleft/lesser.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;http://www.gnu.org/copyleft/lesser.html&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
+         <property name="openExternalLinks">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="Line" name="line">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>1</height>
+          </size>
+         </property>
+         <property name="lineWidth">
+          <number>2</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
         </widget>
        </item>
        <item>
         <widget class="QTextBrowser" name="textGPL">
+         <property name="font">
+          <font>
+           <family>Sans Serif</family>
+          </font>
+         </property>
          <property name="styleSheet">
-          <string notr="true"/>
+          <string notr="true">padding-left:5; padding-top:10; padding-bottom:10; padding-right:5; background-color: rgb(255, 255, 255);</string>
          </property>
          <property name="frameShape">
           <enum>QFrame::NoFrame</enum>
@@ -232,7 +306,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Noto Sans'; font-size:large; font-weight:600;&quot;&gt;GNU GENERAL PUBLIC LICENSE&lt;/span&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Noto Sans';&quot;&gt;Version 3, 29 June 2007&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Noto Sans';&quot;&gt;Copyright © 2007 Free Software Foundation, Inc. &amp;lt;&lt;/span&gt;&lt;a href=&quot;https://fsf.org/&quot;&gt;&lt;span style=&quot; font-family:'Noto Sans'; text-decoration: underline; color:#2980b9;&quot;&gt;https://fsf.org/&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'Noto Sans';&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Noto Sans';&quot;&gt; Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Noto Sans';&quot;&gt;Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a name=&quot;preamble&quot;&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'Noto Sans'; font-size:large; font-weight:600;&quot;&gt;P&lt;/span&gt;&lt;span style=&quot; font-family:'Noto Sans'; font-size:large; font-weight:600;&quot;&gt;reamble&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Noto Sans';&quot;&gt;The GNU General Public License is a free, copyleft license forsoftware and other kinds of works.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Noto Sans';&quot;&gt;The licenses for most software and other practical works are designedto take away your freedom to share and change the works.  By contrast,the GNU General Public License is intended to guarantee your freedom toshare and change all versions of a program--to make sure it remains freesoftware for all its users.  We, the Free Software Foundation, use theGNU General Public License for most of our software; it applies also toany other work released this way by its authors.  You can apply it toyour programs, too.&lt;/span&gt;&lt;/p&gt;
@@ -341,6 +415,9 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Noto Sans';&quot;&gt;If the disclaimer of warranty and limitation of liability providedabove cannot be given local legal effect according to their terms,reviewing courts shall apply local law that most closely approximatesan absolute waiver of all civil liability in connection with theProgram, unless a warranty or assumption of liability accompanies acopy of the Program in return for a fee.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Noto Sans';&quot;&gt;END OF TERMS AND CONDITIONS&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Noto Sans'; font-size:large; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="openExternalLinks">
+          <bool>true</bool>
          </property>
         </widget>
        </item>

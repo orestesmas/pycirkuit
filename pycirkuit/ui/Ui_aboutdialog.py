@@ -47,7 +47,11 @@ class Ui_AboutDialog(object):
         sizePolicy.setVerticalStretch(5)
         sizePolicy.setHeightForWidth(self.tabWidget.sizePolicy().hasHeightForWidth())
         self.tabWidget.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setFamily("Sans Serif")
+        self.tabWidget.setFont(font)
         self.tabWidget.setAutoFillBackground(False)
+        self.tabWidget.setStyleSheet("padding-left:5; padding-top:10; padding-bottom:10; padding-right:5; background-color: rgb(255, 255, 255);")
         self.tabWidget.setTabShape(QtWidgets.QTabWidget.Rounded)
         self.tabWidget.setObjectName("tabWidget")
         self.tabAbout = QtWidgets.QWidget()
@@ -56,6 +60,12 @@ class Ui_AboutDialog(object):
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.textAbout = QtWidgets.QTextBrowser(self.tabAbout)
+        font = QtGui.QFont()
+        font.setFamily("Sans Serif")
+        self.textAbout.setFont(font)
+        self.textAbout.setStyleSheet("padding-left:5; padding-top:10; padding-bottom:10; padding-right:5; background-color: rgb(255, 255, 255);")
+        self.textAbout.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.textAbout.setOpenExternalLinks(True)
         self.textAbout.setObjectName("textAbout")
         self.horizontalLayout.addWidget(self.textAbout)
         self.tabWidget.addTab(self.tabAbout, "")
@@ -65,6 +75,7 @@ class Ui_AboutDialog(object):
         self.horizontalLayout_4.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
         self.textVersion = QtWidgets.QLabel(self.tabVersion)
+        self.textVersion.setStyleSheet("padding-left:5; padding-top:10; padding-bottom:10; padding-right:5; background-color: rgb(255, 255, 255);")
         self.textVersion.setObjectName("textVersion")
         self.horizontalLayout_4.addWidget(self.textVersion)
         self.tabWidget.addTab(self.tabVersion, "")
@@ -74,8 +85,13 @@ class Ui_AboutDialog(object):
         self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.textAuthor = QtWidgets.QTextBrowser(self.tabAuthor)
+        font = QtGui.QFont()
+        font.setFamily("Sans Serif")
+        self.textAuthor.setFont(font)
+        self.textAuthor.setFrameShape(QtWidgets.QFrame.NoFrame)
         self.textAuthor.setAutoFormatting(QtWidgets.QTextEdit.AutoNone)
         self.textAuthor.setAcceptRichText(True)
+        self.textAuthor.setOpenExternalLinks(True)
         self.textAuthor.setObjectName("textAuthor")
         self.horizontalLayout_3.addWidget(self.textAuthor)
         self.tabWidget.addTab(self.tabAuthor, "")
@@ -91,11 +107,28 @@ class Ui_AboutDialog(object):
         sizePolicy.setHeightForWidth(self.textLicense.sizePolicy().hasHeightForWidth())
         self.textLicense.setSizePolicy(sizePolicy)
         self.textLicense.setMinimumSize(QtCore.QSize(0, 220))
+        font = QtGui.QFont()
+        font.setFamily("Sans Serif")
+        self.textLicense.setFont(font)
+        self.textLicense.setAutoFillBackground(False)
+        self.textLicense.setStyleSheet("padding-left:5; padding-top:10; padding-bottom:10; padding-right:5; background-color: rgb(255, 255, 255);")
+        self.textLicense.setFrameShape(QtWidgets.QFrame.NoFrame)
         self.textLicense.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.textLicense.setOpenExternalLinks(True)
         self.textLicense.setObjectName("textLicense")
         self.verticalLayout_2.addWidget(self.textLicense)
+        self.line = QtWidgets.QFrame(self.tabGPL)
+        self.line.setMinimumSize(QtCore.QSize(0, 1))
+        self.line.setLineWidth(2)
+        self.line.setFrameShape(QtWidgets.QFrame.HLine)
+        self.line.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.line.setObjectName("line")
+        self.verticalLayout_2.addWidget(self.line)
         self.textGPL = QtWidgets.QTextBrowser(self.tabGPL)
-        self.textGPL.setStyleSheet("")
+        font = QtGui.QFont()
+        font.setFamily("Sans Serif")
+        self.textGPL.setFont(font)
+        self.textGPL.setStyleSheet("padding-left:5; padding-top:10; padding-bottom:10; padding-right:5; background-color: rgb(255, 255, 255);")
         self.textGPL.setFrameShape(QtWidgets.QFrame.NoFrame)
         self.textGPL.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
         self.textGPL.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
@@ -107,7 +140,7 @@ class Ui_AboutDialog(object):
 "<p align=\"center\" style=\" margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Noto Sans\'; font-size:large; font-weight:600;\">GNU GENERAL PUBLIC LICENSE</span></p>\n"
 "<p align=\"center\" style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Noto Sans\';\">Version 3, 29 June 2007</span></p>\n"
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Noto Sans\';\">Copyright © 2007 Free Software Foundation, Inc. &lt;</span><a href=\"https://fsf.org/\"><span style=\" font-family:\'Noto Sans\'; text-decoration: underline; color:#2980b9;\">https://fsf.org/</span></a><span style=\" font-family:\'Noto Sans\';\">&gt;</span></p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Noto Sans\';\"> Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed.</span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Noto Sans\';\">Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed.</span></p>\n"
 "<p style=\" margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a name=\"preamble\"></a><span style=\" font-family:\'Noto Sans\'; font-size:large; font-weight:600;\">P</span><span style=\" font-family:\'Noto Sans\'; font-size:large; font-weight:600;\">reamble</span></p>\n"
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Noto Sans\';\">The GNU General Public License is a free, copyleft license forsoftware and other kinds of works.</span></p>\n"
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Noto Sans\';\">The licenses for most software and other practical works are designedto take away your freedom to share and change the works.  By contrast,the GNU General Public License is intended to guarantee your freedom toshare and change all versions of a program--to make sure it remains freesoftware for all its users.  We, the Free Software Foundation, use theGNU General Public License for most of our software; it applies also toany other work released this way by its authors.  You can apply it toyour programs, too.</span></p>\n"
@@ -216,6 +249,7 @@ class Ui_AboutDialog(object):
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Noto Sans\';\">If the disclaimer of warranty and limitation of liability providedabove cannot be given local legal effect according to their terms,reviewing courts shall apply local law that most closely approximatesan absolute waiver of all civil liability in connection with theProgram, unless a warranty or assumption of liability accompanies acopy of the Program in return for a fee.</span></p>\n"
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Noto Sans\';\">END OF TERMS AND CONDITIONS</span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'Noto Sans\'; font-size:large; font-weight:600;\"><br /></p></body></html>")
+        self.textGPL.setOpenExternalLinks(True)
         self.textGPL.setObjectName("textGPL")
         self.verticalLayout_2.addWidget(self.textGPL)
         self.tabWidget.addTab(self.tabGPL, "")
@@ -239,13 +273,13 @@ class Ui_AboutDialog(object):
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Sans Serif\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">PyCirkuit is a GUI front-end for <a href=\"https://ece.uwaterloo.ca/~aplevich/Circuit_macros/\"><span style=\" text-decoration: underline; color:#2980b9;\">Circuit Macros</span></a> by Dwight Aplevich, which is a set of macros for drawing high-quality line diagrams to include in TeX, LaTeX, web or similar documents. PyCirkuit is written in Python 3 using the PyQt5 libraries, but is largely inspired (in both ideas and code snippets) on <a href=\"https://wwwu.uni-klu.ac.at/magostin/cirkuit.html\"><span style=\" text-decoration: underline; color:#2980b9;\">Cirkuit</span></a>, a C++ application written by Matteo Agostinelli using KDE4 libraries.</p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">PyCirkuit</span> is a GUI front-end for <a href=\"https://ece.uwaterloo.ca/~aplevich/Circuit_macros/\"><span style=\" text-decoration: underline; color:#2980b9;\">Circuit Macros</span></a> by Dwight Aplevich, which is a set of macros for drawing high-quality line diagrams to include in TeX, LaTeX, web or similar documents. PyCirkuit is written in Python 3 using the PyQt5 libraries, but is largely inspired (in both ideas and code snippets) on <a href=\"https://wwwu.uni-klu.ac.at/magostin/cirkuit.html\"><span style=\" text-decoration: underline; color:#2980b9;\">Cirkuit</span></a>, a C++ application written by Matteo Agostinelli using KDE4 libraries.</p>\n"
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">PyCirkuit compiles the source code on demand to generate a live preview, and can export the resulting image in TikZ code to be included directly in any LaTeX document. Other input and export formats are also planned.</p>\n"
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">You can send bug reports via the <a href=\"https://github.com/orestesmas/pycirkuit\"><span style=\" text-decoration: underline; color:#2980b9;\">project repository on GitHub</span></a>.</p>\n"
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">If you are willing to contribute, please read <a href=\"https://github.com/orestesmas/pycirkuit/blob/master/CONTRIBUTING.md\"><span style=\" text-decoration: underline; color:#2980b9;\">these guidelines</span></a>.</p>\n"
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">PyCirkuit uses icons from KDE\'s &quot;Oxygen&quot; set, which are under the LGPL license. See <a href=\"https://techbase.kde.org/Projects/Oxygen/Licensing\"><span style=\" text-decoration: underline; color:#2980b9;\">https://techbase.kde.org/Projects/Oxygen/Licensing</span></a>.</p></body></html>"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tabAbout), _translate("AboutDialog", "&About", "Tab text"))
-        self.textVersion.setText(_translate("AboutDialog", "<html><head/><body><p><span style=\" font-weight:600;\">Version {versionNumber}</span></p><p>Using:</p><ul style=\"margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;\"><li style=\" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a href=\"https://www.riverbankcomputing.com/software/pyqt/intro\"><span style=\" text-decoration: underline; color:#2980b9;\">PyQt5</span></a> Python bindings to Qt5 by Riverbank Computing.</li><li style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a href=\"https://ece.uwaterloo.ca/~aplevich/Circuit_macros/\"><span style=\" text-decoration: underline; color:#2980b9;\">Circuit Macros</span></a>, by Dwight Aplevich.</li><li style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a href=\"https://www.gnu.org/software/m4/\"><span style=\" text-decoration: underline; color:#2980b9;\">GNU M4</span></a> Macro Processor, from the GNU project.</li><li style=\" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a href=\"https://ece.uwaterloo.ca/~aplevich/dpic\"><span style=\" text-decoration: underline; color:#2980b9;\">Dpic</span></a>, by Dwight Aplevich.</li><li style=\" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a href=\"https://ctan.org/\"><span style=\" text-decoration: underline; color:#2980b9;\">LaTeX + TIkZ</span></a>, by Donald Knuth, Leslie Lamport Till Tantau and many more contributors.</li><li style=\" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a href=\"https://linux.die.net/man/1/pdftoppm\"><span style=\" text-decoration: underline; color:#2980b9;\">PdfToPpm</span></a>, a software by Glyph &amp; Cog, LLC. </li></ul></body></html>"))
+        self.textVersion.setText(_translate("AboutDialog", "<html><head/><body style=\" font-family:\'Sans Serif\';\"><p><span style=\" font-weight:600;\">Version {versionNumber}</span></p><p>Using:</p><ul style=\"margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;\"><li style=\" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a href=\"https://www.riverbankcomputing.com/software/pyqt/intro\"><span style=\" text-decoration: underline; color:#2980b9;\">PyQt5</span></a> Python bindings to Qt5 by Riverbank Computing.</li><li style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a href=\"https://ece.uwaterloo.ca/~aplevich/Circuit_macros/\"><span style=\" text-decoration: underline; color:#2980b9;\">Circuit Macros</span></a>, by Dwight Aplevich.</li><li style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a href=\"https://www.gnu.org/software/m4/\"><span style=\" text-decoration: underline; color:#2980b9;\">GNU M4</span></a> Macro Processor, from the GNU project.</li><li style=\" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a href=\"https://ece.uwaterloo.ca/~aplevich/dpic\"><span style=\" text-decoration: underline; color:#2980b9;\">Dpic</span></a>, by Dwight Aplevich.</li><li style=\" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a href=\"https://ctan.org/\"><span style=\" text-decoration: underline; color:#2980b9;\">LaTeX + TIkZ</span></a>, by Donald Knuth, Leslie Lamport Till Tantau and many more contributors.</li><li style=\" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a href=\"https://linux.die.net/man/1/pdftoppm\"><span style=\" text-decoration: underline; color:#2980b9;\">PdfToPpm</span></a>, a software by Glyph &amp; Cog, LLC. </li></ul></body></html>"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tabVersion), _translate("AboutDialog", "&Version", "Tab text"))
         self.textAuthor.setHtml(_translate("AboutDialog", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
