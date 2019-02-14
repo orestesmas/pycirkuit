@@ -67,10 +67,10 @@ class CircuitMacrosManager(QtCore.QObject):
     def check_installed(self):
         settings = QtCore.QSettings()
         cmPath = settings.value("General/cmPath",  "")
-        return os.path.exists(cmPath + "/libcct.m4")
+        return os.path.exists(os.path.join(cmPath , "libcct.m4"))
 
     def default_CMPath(self):
-        return os.path.join(QtCore.QStandardPaths.writableLocation(QtCore.QStandardPaths.AppDataLocation), "circuit_macros")
+        return os.path.normpath(os.path.join(QtCore.QStandardPaths.writableLocation(QtCore.QStandardPaths.AppDataLocation), "circuit_macros"))
         
     def download_latest(self):
         origin = "http://www.ece.uwaterloo.ca/~aplevich/Circuit_macros/Circuit_macros.tar.gz"
@@ -79,7 +79,7 @@ class CircuitMacrosManager(QtCore.QObject):
             raise PyCirkuitError(_translate("CircuitMacrosManager", "Cannot determine the standard writable location for PyCirkuit",  "Error message"))
         if not os.path.exists(destination):
             os.makedirs(destination)
-        destination += "/Circuit_macros.tar.gz"
+        destination = os.path.join(destination,"Circuit_macros.tar.gz")
         try:
             with Net.urlopen(origin) as source,  open(destination, 'wb') as dest:
                 shutil.copyfileobj(source, dest)
@@ -90,7 +90,8 @@ class CircuitMacrosManager(QtCore.QObject):
     def unpack_circuit_macros(self):
         try:
             dataPath = QtCore.QStandardPaths.writableLocation(QtCore.QStandardPaths.AppDataLocation)
-            with tarfile.open(dataPath + '/Circuit_macros.tar.gz', 'r:gz') as tarFile:
+            tarName = os.path.abspath(os.path.join(dataPath,  'Circuit_macros.tar.gz'))
+            with tarfile.open(tarName, 'r:gz') as tarFile:
                 # Circuit Macros is distributed in a tree structure.
                 # We want the top dir of this structure to be 'circuit_macros', whichever it is now
                 # The following algorithm assumes that all circuit macros's files are in a subdir.
@@ -101,12 +102,12 @@ class CircuitMacrosManager(QtCore.QObject):
                     filename = entry.name
                     entry.name = filename.replace(storedDir, 'circuit_macros', 1)
                 tarFile.extractall(path=dataPath)
-            os.remove(dataPath + '/Circuit_macros.tar.gz')
+            os.remove(tarName)
             settings = QtCore.QSettings()
-            settings.setValue("General/cmPath", dataPath + '/circuit_macros')
+            settings.setValue("General/cmPath", os.path.join(dataPath , 'circuit_macros'))
             settings.sync()
         except tarfile.TarError as e:
             if os.path.exists(dataPath):
-                shutil.rmtree(dataPath + "/.")
+                shutil.rmtree(os.path.join(dataPath , "/."))
             #FIXME: Convert to MessageBox by reraising as PyCktCMFetchError
             print(_translate("CircuitMacrosManager", "Error uncompressing the Circuit Macros: ",  "Error message"), e)
