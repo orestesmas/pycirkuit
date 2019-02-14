@@ -26,8 +26,9 @@ from shutil import copyfile
 import inspect
 
 # Third-party imports
-from PyQt5.QtCore import pyqtSlot,  QCoreApplication
+from PyQt5.QtCore import pyqtSlot,  QCoreApplication, Qt
 from PyQt5 import QtCore, QtWidgets, QtGui
+from PyQt5.QtWidgets import QProgressBar
 
 # Local application imports
 from pycirkuit.ui.Ui_mainwindow import Ui_MainWindow
@@ -191,8 +192,14 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     self.statusBar.showMessage(_translate("StatusBar", "Downloading and unpacking Circuit Macros", "Status Bar message"))
                     app = QtWidgets.QApplication.instance()
                     app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
-                    cmMgr.download_latest()
+                    percent = QProgressBar(self.statusBar)
+                    percent.setOrientation(Qt.Horizontal)
+                    percent.setRange(0, 100)
+                    percent.setValue(28)   #TODO: For testing purposes
+                    self.statusBar.addWidget(percent, stretch=1)
+                    cmMgr.download_latest(percent)
                     cmMgr.unpack_circuit_macros()
+                    self.statusBar.removeWidget(percent)
                     result = True
                 except:
                     pass

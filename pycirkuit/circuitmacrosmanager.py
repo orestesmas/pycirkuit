@@ -28,6 +28,7 @@ import urllib.error as NetError
 
 # Third-party imports
 from PyQt5 import QtCore
+from PyQt5.QtWidgets import QProgressBar
 
 # Local application imports
 from pycirkuit.exceptions import PyCirkuitError
@@ -72,7 +73,7 @@ class CircuitMacrosManager(QtCore.QObject):
     def default_CMPath(self):
         return os.path.normpath(os.path.join(QtCore.QStandardPaths.writableLocation(QtCore.QStandardPaths.AppDataLocation), "circuit_macros"))
         
-    def download_latest(self):
+    def download_latest(self, percent):
         origin = "http://www.ece.uwaterloo.ca/~aplevich/Circuit_macros/Circuit_macros.tar.gz"
         destination = os.path.dirname(self.default_CMPath())
         if destination == "":
