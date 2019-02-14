@@ -94,6 +94,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.insideConstructor = False
 
 
+
+
     def _ask_saving(self):
         # Open MessageBox and inform user
         msgBox = QtWidgets.QMessageBox(self)
@@ -261,7 +263,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 if (len(candidates) == 1) and (os.path.isfile(candidates[0])):
                     # Open it with the default app. We can do that using Qt or in a mode pythonic way (os.system...)
                     # I choose the former because I want Qt to deal with the differences between OSes
-                    QtGui.QDesktopServices.openUrl(QtCore.QUrl("file://" + candidates[0], QtCore.QUrl.TolerantMode))
+                    QtGui.QDesktopServices.openUrl(QtCore.QUrl.fromLocalFile(candidates[0]))
                 else:
                     errMsg  = _translate("MessageBox", 'Cannot find the "Circuit Macros" documentation.\n\n', "Warning message")
                     errMsg += _translate("MessageBox", "You will have to search for it manually. It should be a PDF file located into {cmPath} folder or one of its subfolders.", "Message Box text. DO NOT translate '{cmPath}' variable.").format(cmPath=cmPath)
