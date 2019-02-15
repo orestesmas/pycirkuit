@@ -137,25 +137,58 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         Check if config file is empty (deleted, first run, etc.) and if so, set reasonable default values
         """
         settings = QtCore.QSettings()
-        # Check LaTeX template
-        if (settings.value("General/latexTemplateFile",  "") == ""):
-            # Import ourselves
-            import pycirkuit
-            # Find absolute application's path
-            templatePath = os.path.dirname(inspect.getfile(pycirkuit))
+        # Import ourselves
+        import pycirkuit
+        # Find absolute application's path
+        applicationPath = os.path.dirname(inspect.getfile(pycirkuit))
+
+        # Check app version
+        storedVersion = settings.value("General/Version", "")
+        if (storedVersion == ""):
+            settings.setValue("General/Version", pycirkuit.__version__)
+        elif (storedVersion < pycirkuit.__version__):
+            #TODO: If upgrading we can remove the unnecessary entries, rename others, etc.
+            pass
+        elif (storedVersion > pycirkuit.__version__):
+            #TODO: Handle downgrading, perhaps raising an exception, showing warning, etc.
+            pass
+
+        # Check the stored path to LaTeX templates
+        if (settings.value("General/templatePath",  "") == ""):
             # Add the relative path where the default template is located
-            templatePath = os.path.join(templatePath, 'templates/cm_tikz.tpl')
-            settings.setValue("General/latexTemplateFile", templatePath)
+            templatePath = os.path.normpath(os.path.join(applicationPath, 'templates/cm_tikz.tpl'))
+            settings.setValue("General/templatePath", templatePath)
+            
         # Check Circuit Macros path
         if (settings.value("General/cmPath",  "") == ""):
             CM = CircuitMacrosManager()
             settings.setValue("General/cmPath", CM.default_CMPath())
+            
+        # Check the stored path to the built-in examples
+        if (settings.value("General/examplesPath",  "") == ""):
+            # Add the relative path where the examples are located
+            examplesPath = os.path.normpath(os.path.join(applicationPath, 'examples'))
+            settings.setValue("General/examplesPath", examplesPath)
+            
+        # Check last working dir (from where the files to be opened are taken)
+        # This one will be initially the same as the examples path. Later on, the user actions will change it.
+        if (settings.value("General/lastWD",  "") == ""):
+            # Add the relative path where the examples are located
+            examplesPath = os.path.normpath(os.path.join(applicationPath, 'examples'))
+            settings.setValue("General/lastWD", examplesPath)
+            
+        # Check the stored path to built-in documentation
+        if (settings.value("General/docPath",  "") == ""):
+            # Add the relative path where the examples are located
+            docPath = os.path.normpath(os.path.join(applicationPath, 'doc'))
+            settings.setValue("General/docPath", docPath)
+            
 
 
     def _check_templates(self):
         pass
         settings = QtCore.QSettings()
-        template = settings.value("General/latexTemplateFile",  "")
+        template = settings.value("General/templatePath",  "")
         if os.path.exists(template):
             with open(template, 'r') as t:
                 templateCode = t.read()

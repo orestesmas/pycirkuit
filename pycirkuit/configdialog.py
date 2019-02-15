@@ -65,7 +65,7 @@ class ConfigDialog(QDialog, Ui_ConfigDialog):
 
         # Extract stored path to LaTeX template file
         # defaultPath = QDir.homePath() + "/Plantilles/cm_tikz.ckt"
-        storedLatexTemplateFile = settings.value("General/latexTemplateFile", "")
+        storedLatexTemplateFile = settings.value("General/templatePath", "")
         if storedLatexTemplateFile == "":
             # emit signal manually as setting an empty text doesn't really changes the text (it is already empty)
             self.templateFile.textChanged.emit("")
@@ -93,7 +93,7 @@ class ConfigDialog(QDialog, Ui_ConfigDialog):
             msgBox.exec()
             return
         settings.setValue("General/cmPath", self.cmPath.text())
-        settings.setValue("General/latexTemplateFile", self.templateFile.text())
+        settings.setValue("General/templatePath", self.templateFile.text())
         settings.sync()
         QDialog.accept(self)
         
