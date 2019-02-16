@@ -90,6 +90,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.needSaving = False
         self.on_actionNew_triggered()
         
+        # Center the window on screen
+        self._center()
+        
         # We're quitting constructor
         self.insideConstructor = False
 
@@ -108,6 +111,19 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         response = msgBox.exec()
         if response == QtWidgets.QMessageBox.Yes:
             self.actionSave.trigger()
+
+
+    def _center(self):
+        # Get desktop's geometry
+        app = QtWidgets.QApplication.instance()
+        desktop = app.desktop()
+        deskRect = desktop.screenGeometry(-1)
+        # Now get MainWindow's geometry
+        winRect = self.frameGeometry()
+        # Now translate the window's rectangle so its center coincides with the desktop's one
+        winRect.moveCenter(deskRect.center())
+        # Finally, move the physical window using the top-left corner coords:
+        self.move(winRect.x(), winRect.y())
 
 
     def _check_programs(self):
