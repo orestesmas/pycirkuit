@@ -447,6 +447,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             return
 
         try:
+            # STEP0: Prepare the Progress Bar
+            pb = QProgressBar()
+            pb.setRange(0, 4)
+            pb.setValue(0)
+            self.statusBar.addPermanentWidget(pb, 1)
             # STEP1 : Save current WD and set a new one
             savedWD = os.getcwd()
             os.chdir(self.tmpDir.path())
@@ -463,19 +468,23 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             # STEP 4 Call M4: .CKT -> .PIC
             self.statusBar.showMessage(_translate("StatusBar", "Converting: Circuit Macros -> PIC", "Status Bar message"))
             self.extTools['m4'].execute(tmpFileBaseName)
+            pb.setValue(1)
 
             # STEP 5: Call dpic: .PIC -> .TIKZ
             self.statusBar.showMessage(_translate("StatusBar", "Converting: PIC -> TIKZ", "Status Bar message"))
             self.extTools['dpic'].execute(tmpFileBaseName)
+            pb.setValue(2)
 
             # STEP 6: Call PDFLaTeX: .TIKZ -> .PDF
             # First we have to embed the .TIKZ code inside a suitable template
             self.statusBar.showMessage(_translate("StatusBar", "Converting: TIKZ -> PDF", "Status Bar message"))
             self.extTools['pdflatex'].execute(tmpFileBaseName)
+            pb.setValue(3)
 
             # STEP 7: Call pdftoppm to convert the PDF into a bitmap image to visualize it: .PDF -> .PNG
             self.statusBar.showMessage(_translate("StatusBar", "Converting: PDF -> PNG", "Status Bar message"))
             self.extTools['pdftopng'].execute(tmpFileBaseName)
+            pb.setValue(4)
 
         except PyCktToolExecutionError as err:
             self.imatge.setText("Error!")
@@ -497,6 +506,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         finally:
             os.chdir(savedWD)
             self.statusBar.clearMessage()
+            self.statusBar.removeWidget(pb)
             app.restoreOverrideCursor()
 
 
