@@ -32,7 +32,7 @@ from PyQt5.QtWidgets import QProgressBar
 
 # Local application imports
 from pycirkuit.ui.Ui_mainwindow import Ui_MainWindow
-from pycirkuit.configdialog import ConfigDialog
+from pycirkuit.ui.configdialog import ConfigDialog
 from pycirkuit.ui.aboutdialog import AboutDialog
 from pycirkuit.circuitmacrosmanager import CircuitMacrosManager
 from pycirkuit.highlighter import PyCirkuitHighlighter
