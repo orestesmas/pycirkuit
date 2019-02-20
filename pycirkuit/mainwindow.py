@@ -76,7 +76,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         #NOTE: Is NOT necessary to MANUALLY connect most signals to slots, as 
         # pyuic5 calls QtCore.QMetaObject.connectSlotsByName in Ui_configdialog.py
         # do such connections AUTOMATICALLY (so connecting them manually triggers slots twice)
-        self.statusBar.messageChanged.connect(self.on_messageChanged)
 
         # Set up a temporary directory to save intermediate files
         self.tmpDir = QtCore.QTemporaryDir()
@@ -96,7 +95,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self._center()
 
         # Set up the permanent widgets in status bar
-        self.statusBar.showMessage("Idle")
         self.sbProgressBar = QProgressBar()
         self.sbProgressBar.setRange(0, 100)
         self.sbProgressBar.setMaximumHeight(10)
@@ -489,12 +487,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             print(_translate("MainWindow", "Export failed:",  "Error message"), e)
 
 
-    @pyqtSlot(str)
-    def on_messageChanged(self, message):
-        if message == "":
-            self.statusBar.showMessage("Idle")
-
-
     @pyqtSlot()
     def on_processButton_clicked(self):
         # Check if we have all the auxiliary apps correctly installed
@@ -568,7 +560,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.exportButton.setEnabled(True)
         finally:
             os.chdir(savedWD)
-            self.statusBar.showMessage("Idle")
+            self.statusBar.showMessage("")
             self.sbProgressBar.setVisible(False)
             app.restoreOverrideCursor()
 
