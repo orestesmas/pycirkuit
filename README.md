@@ -79,7 +79,16 @@ To install PyCirkuit in you computer, please follow this steps:
          pycirkuit
 
 ## Installing on MacOS ##
-To be written
+(These explanations were provided by some user. I cannot test them personally)
+  1. Prerequisites and dependencies:
+  
+     1.1 You need to have installed Xcode and Xcode command tools. Of course, you will need also Python 3. To install it you can follow [https://www.python.org/downloads/release/python-372/](https://www.python.org/downloads/release/python-372/) or [https://docs.python-guide.org/starting/install3/osx/](https://docs.python-guide.org/starting/install3/osx/).
+     
+     1.2 Then you have to install LaTeX using MacPorts: [https://docs.typo3.org/typo3cms/extensions/sphinx/AdministratorManual/RenderingPdf/InstallingLaTeXLinux.html](https://docs.typo3.org/typo3cms/extensions/sphinx/AdministratorManual/RenderingPdf/InstallingLaTeXLinux.html).
+     
+     1.3 The M4 and DPIC are UNIX apps, so they run without much trouble on macOS. Similar with poppler. Some useful links are [https://ece.uwaterloo.ca/~aplevich/Circuit_macros/](https://ece.uwaterloo.ca/~aplevich/Circuit_macros/) and [https://www.google.es/amp/macappstore.org/poppler/amp/](https://www.google.es/amp/macappstore.org/poppler/amp/).
+     
+  2. Finally, proceed as explained on the steps #2 and #3 of the previous section to create a Python virtual environment and to install PyCirkuit from PyPI there.
 
 ## Installing on MS Windows ##
   1. Install the dependencies and auxiliary programs:
