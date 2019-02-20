@@ -76,6 +76,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         #NOTE: Is NOT necessary to MANUALLY connect most signals to slots, as 
         # pyuic5 calls QtCore.QMetaObject.connectSlotsByName in Ui_configdialog.py
         # do such connections AUTOMATICALLY (so connecting them manually triggers slots twice)
+        self.statusBar.messageChanged.connect(self.on_messageChanged)
 
         # Set up a temporary directory to save intermediate files
         self.tmpDir = QtCore.QTemporaryDir()
@@ -90,6 +91,18 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # Initialize editor contents with a default drawing template
         self.needSaving = False
         self.on_actionNew_triggered()
+        
+        # Set up the permanent widgets in status bar
+#        self.sbMessage = QLabel()
+#        self.statusBar.addWidget(self.sbMessage)
+#        self.sbMessage.setText("Idle")
+        self.statusBar.showMessage("Idle")
+        self.sbProgressBar = QProgressBar()
+        self.sbProgressBar.setRange(0, 100)
+        self.sbProgressBar.setMaximumHeight(10)
+        self.sbProgressBar.setTextVisible(False)
+        self.sbProgressBar.setVisible(False)
+        self.statusBar.addPermanentWidget(self.sbProgressBar)
         
         # We're quitting constructor
         self.insideConstructor = False
@@ -196,7 +209,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     percent.setOrientation(Qt.Horizontal)
                     percent.setRange(0, 100)
                     percent.setValue(28)   #TODO: For testing purposes
-                    self.statusBar.addWidget(percent, stretch=1)
+                    self.statusBar.addPermanentWidget(percent, stretch=1)
                     cmMgr.download_latest(percent)
                     cmMgr.unpack_circuit_macros()
                     self.statusBar.removeWidget(percent)
@@ -432,6 +445,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             print(_translate("MainWindow", "Export failed:",  "Error message"), e)
 
 
+    @pyqtSlot(str)
+    def on_messageChanged(self, message):
+        if message == "":
+            self.statusBar.showMessage("Idle")
+
+
     @pyqtSlot()
     def on_processButton_clicked(self):
         # Check if we have all the auxiliary apps correctly installed
@@ -448,10 +467,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         try:
             # STEP0: Prepare the Progress Bar
-            pb = QProgressBar()
-            pb.setRange(0, 4)
-            pb.setValue(0)
-            self.statusBar.addPermanentWidget(pb, 1)
+            self.sbProgressBar.setRange(0, 4)
+            self.sbProgressBar.setValue(0)
+            self.sbProgressBar.setVisible(True)
+
             # STEP1 : Save current WD and set a new one
             savedWD = os.getcwd()
             os.chdir(self.tmpDir.path())
@@ -468,23 +487,23 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             # STEP 4 Call M4: .CKT -> .PIC
             self.statusBar.showMessage(_translate("StatusBar", "Converting: Circuit Macros -> PIC", "Status Bar message"))
             self.extTools['m4'].execute(tmpFileBaseName)
-            pb.setValue(1)
+            self.sbProgressBar.setValue(1)
 
             # STEP 5: Call dpic: .PIC -> .TIKZ
             self.statusBar.showMessage(_translate("StatusBar", "Converting: PIC -> TIKZ", "Status Bar message"))
             self.extTools['dpic'].execute(tmpFileBaseName)
-            pb.setValue(2)
+            self.sbProgressBar.setValue(2)
 
             # STEP 6: Call PDFLaTeX: .TIKZ -> .PDF
             # First we have to embed the .TIKZ code inside a suitable template
             self.statusBar.showMessage(_translate("StatusBar", "Converting: TIKZ -> PDF", "Status Bar message"))
             self.extTools['pdflatex'].execute(tmpFileBaseName)
-            pb.setValue(3)
+            self.sbProgressBar.setValue(3)
 
             # STEP 7: Call pdftoppm to convert the PDF into a bitmap image to visualize it: .PDF -> .PNG
             self.statusBar.showMessage(_translate("StatusBar", "Converting: PDF -> PNG", "Status Bar message"))
             self.extTools['pdftopng'].execute(tmpFileBaseName)
-            pb.setValue(4)
+            self.sbProgressBar.setValue(4)
 
         except PyCktToolExecutionError as err:
             self.imatge.setText("Error!")
@@ -505,8 +524,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.exportButton.setEnabled(True)
         finally:
             os.chdir(savedWD)
-            self.statusBar.clearMessage()
-            self.statusBar.removeWidget(pb)
+            self.statusBar.showMessage("Idle")
+            self.sbProgressBar.setVisible(False)
             app.restoreOverrideCursor()
 
 

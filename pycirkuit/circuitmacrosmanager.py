@@ -82,6 +82,7 @@ class CircuitMacrosManager(QtCore.QObject):
             os.makedirs(destination)
         destination = os.path.join(destination,"Circuit_macros.tar.gz")
         try:
+            percent.setValue(50)
             with Net.urlopen(origin) as source,  open(destination, 'wb') as dest:
                 shutil.copyfileobj(source, dest)
         except NetError.URLError as e:
