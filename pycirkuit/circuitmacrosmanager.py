@@ -21,6 +21,7 @@ Module implementing a CircuitMacros Manager class.
 
 # Standard library imports
 import os
+import io
 import shutil
 import tarfile
 import urllib.request as Net
@@ -28,7 +29,6 @@ import urllib.error as NetError
 
 # Third-party imports
 from PyQt5 import QtCore
-from PyQt5.QtWidgets import QProgressBar
 
 # Local application imports
 from pycirkuit.exceptions import PyCirkuitError
@@ -82,9 +82,23 @@ class CircuitMacrosManager(QtCore.QObject):
             os.makedirs(destination)
         destination = os.path.join(destination,"Circuit_macros.tar.gz")
         try:
-            percent.setValue(50)
             with Net.urlopen(origin) as source,  open(destination, 'wb') as dest:
-                shutil.copyfileobj(source, dest)
+                length = source.getheader('content-length')
+                if length:
+                    length = int(length)
+                    percent.setRange(0, length)
+                    percent.setValue(0)
+                    blocksize = max(4096, length//100)
+                else:
+                    blocksize = 1000000 # just made something up
+                size = 0
+                while True:
+                    buf1 = source.read(blocksize)
+                    if not buf1:
+                        break
+                    dest.write(buf1)
+                    size += len(buf1)
+                    percent.setValue(size)
         except NetError.URLError as e:
             #FIXME: Convert to MessageBox by reraising as PyCktCMFetchError
             print(_translate("CircuitMacrosManager", "Network error: ",  "Error message"), e)

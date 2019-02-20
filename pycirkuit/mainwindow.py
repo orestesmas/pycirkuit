@@ -205,20 +205,18 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     self.statusBar.showMessage(_translate("StatusBar", "Downloading and unpacking Circuit Macros", "Status Bar message"))
                     app = QtWidgets.QApplication.instance()
                     app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
-                    percent = QProgressBar(self.statusBar)
-                    percent.setOrientation(Qt.Horizontal)
-                    percent.setRange(0, 100)
-                    percent.setValue(28)   #TODO: For testing purposes
-                    self.statusBar.addPermanentWidget(percent, stretch=1)
-                    cmMgr.download_latest(percent)
+                    self.sbProgressBar.setRange(0, 100)
+                    self.sbProgressBar.setValue(0)
+                    self.sbProgressBar.setVisible(True)
+                    cmMgr.download_latest(self.sbProgressBar)
                     cmMgr.unpack_circuit_macros()
-                    self.statusBar.removeWidget(percent)
                     result = True
                 except:
                     pass
                 finally:
                     app.restoreOverrideCursor()
                     self.statusBar.clearMessage()
+                    self.sbProgressBar.setVisible(False)
             else:
                 txt = _cmNotFound + _translate("MessageBox", "Please indicate the correct path to them in the settings dialog.")
                 QtWidgets.QMessageBox.critical(self, _translate("MessageBox", "Critical Error"),  txt)
