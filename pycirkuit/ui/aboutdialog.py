@@ -41,15 +41,11 @@ class AboutDialog(QDialog, Ui_AboutDialog):
         super(AboutDialog, self).__init__(parent)
         self.setupUi(self)
         # Now change the placeholders in dialog
-        s = self.textVersion.text()
+        # Cannot use str.format() here because the HTML string does contain other items between curly brackets
         # Try to change the variable in the text for the version number
-        # This operation is fragile: will fail if a translator has changed something in the variable name, so protect the code
-        try:
-            self.textVersion.setText(s.format(versionNumber=__version__))
-        except:
-            pass
+        s = self.textVersion.toHtml()
+        self.textVersion.setHtml(s.replace('{versionNumber}', __version__, 1))
             
         # Try to change the variable in the text for the copyright
-        # Cannot use str.format() here because the HTML string does contain other items between curly brackets
         s = self.textLicense.toHtml()
         self.textLicense.setHtml(s.replace('{copyrightInfo}', __copyright__, 1))

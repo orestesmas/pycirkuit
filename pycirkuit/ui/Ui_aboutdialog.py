@@ -74,8 +74,13 @@ class Ui_AboutDialog(object):
         self.horizontalLayout_4 = QtWidgets.QHBoxLayout(self.tabVersion)
         self.horizontalLayout_4.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
-        self.textVersion = QtWidgets.QLabel(self.tabVersion)
+        self.textVersion = QtWidgets.QTextBrowser(self.tabVersion)
+        font = QtGui.QFont()
+        font.setFamily("Sans Serif")
+        self.textVersion.setFont(font)
         self.textVersion.setStyleSheet("padding-left:5; padding-top:10; padding-bottom:10; padding-right:5; background-color: rgb(255, 255, 255);")
+        self.textVersion.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.textVersion.setOpenExternalLinks(True)
         self.textVersion.setObjectName("textVersion")
         self.horizontalLayout_4.addWidget(self.textVersion)
         self.tabWidget.addTab(self.tabVersion, "")
@@ -261,7 +266,7 @@ class Ui_AboutDialog(object):
         self.verticalLayout.addWidget(self.buttonBox)
 
         self.retranslateUi(AboutDialog)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(2)
         self.buttonBox.accepted.connect(AboutDialog.accept)
         self.buttonBox.rejected.connect(AboutDialog.reject)
         QtCore.QMetaObject.connectSlotsByName(AboutDialog)
@@ -279,15 +284,28 @@ class Ui_AboutDialog(object):
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">If you are willing to contribute, please read <a href=\"https://github.com/orestesmas/pycirkuit/blob/master/CONTRIBUTING.md\"><span style=\" text-decoration: underline; color:#2980b9;\">these guidelines</span></a>.</p>\n"
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">PyCirkuit uses icons from KDE\'s &quot;Oxygen&quot; set, which are under the LGPL license. See <a href=\"https://techbase.kde.org/Projects/Oxygen/Licensing\"><span style=\" text-decoration: underline; color:#2980b9;\">https://techbase.kde.org/Projects/Oxygen/Licensing</span></a>.</p></body></html>"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tabAbout), _translate("AboutDialog", "&About", "Tab text"))
-        self.textVersion.setText(_translate("AboutDialog", "<html><head/><body style=\" font-family:\'Sans Serif\';\"><p><span style=\" font-weight:600;\">Version {versionNumber}</span></p><p>Using:</p><ul style=\"margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;\"><li style=\" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a href=\"https://www.riverbankcomputing.com/software/pyqt/intro\"><span style=\" text-decoration: underline; color:#2980b9;\">PyQt5</span></a> Python bindings to Qt5 by Riverbank Computing.</li><li style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a href=\"https://ece.uwaterloo.ca/~aplevich/Circuit_macros/\"><span style=\" text-decoration: underline; color:#2980b9;\">Circuit Macros</span></a>, by Dwight Aplevich.</li><li style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a href=\"https://www.gnu.org/software/m4/\"><span style=\" text-decoration: underline; color:#2980b9;\">GNU M4</span></a> Macro Processor, from the GNU project.</li><li style=\" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a href=\"https://ece.uwaterloo.ca/~aplevich/dpic\"><span style=\" text-decoration: underline; color:#2980b9;\">Dpic</span></a>, by Dwight Aplevich.</li><li style=\" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a href=\"https://ctan.org/\"><span style=\" text-decoration: underline; color:#2980b9;\">LaTeX + TIkZ</span></a>, by Donald Knuth, Leslie Lamport Till Tantau and many more contributors.</li><li style=\" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a href=\"https://linux.die.net/man/1/pdftoppm\"><span style=\" text-decoration: underline; color:#2980b9;\">PdfToPpm</span></a>, a software by Glyph &amp; Cog, LLC. </li></ul></body></html>"))
+        self.textVersion.setHtml(_translate("AboutDialog", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'Sans Serif\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Version {versionNumber}</span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Using:</p>\n"
+"<ul style=\"margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;\"><li style=\" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a href=\"https://www.riverbankcomputing.com/software/pyqt/intro\"><span style=\" text-decoration: underline; color:#2980b9;\">PyQt5</span></a> Python bindings to Qt5 by Riverbank Computing.</li>\n"
+"<li style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a href=\"https://ece.uwaterloo.ca/~aplevich/Circuit_macros/\"><span style=\" text-decoration: underline; color:#2980b9;\">Circuit Macros</span></a>, by Dwight Aplevich.</li>\n"
+"<li style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a href=\"https://www.gnu.org/software/m4/\"><span style=\" text-decoration: underline; color:#2980b9;\">GNU M4</span></a> Macro Processor, from the GNU project.</li>\n"
+"<li style=\" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a href=\"https://ece.uwaterloo.ca/~aplevich/dpic\"><span style=\" text-decoration: underline; color:#2980b9;\">Dpic</span></a>, by Dwight Aplevich.</li>\n"
+"<li style=\" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a href=\"https://ctan.org/\"><span style=\" text-decoration: underline; color:#2980b9;\">LaTeX + TIkZ</span></a>, by Donald Knuth, Leslie Lamport Till Tantau and many more contributors.</li>\n"
+"<li style=\" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><a href=\"https://linux.die.net/man/1/pdftoppm\"><span style=\" text-decoration: underline; color:#2980b9;\">PdfToPpm</span></a>, a software by Glyph &amp; Cog, LLC. </li></ul></body></html>"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tabVersion), _translate("AboutDialog", "&Version", "Tab text"))
         self.textAuthor.setHtml(_translate("AboutDialog", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Sans Serif\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Orestes Mas</span></p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-style:italic;\">Original Author, Maintainer and Translator to Catalan</span></p></body></html>"))
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-style:italic;\">Original Author, Maintainer and Translator to Catalan</span></p>\n"
+"<hr />\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Aniol Marti</span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-style:italic;\">Debian packages for PyCirkuit and Dpic</span></p></body></html>"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tabAuthor), _translate("AboutDialog", "A&uthors", "Tab text"))
         self.textLicense.setHtml(_translate("AboutDialog", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
