@@ -27,7 +27,7 @@ def main():
     from PyQt5.QtCore import QCoreApplication, QTranslator, QLocale
     
     # Local application imports
-    from pycirkuit.mainwindow import MainWindow
+    from pycirkuit.ui.mainwindow import MainWindow
     
     # Resources for translation
     from pycirkuit.resources import resources_rc
