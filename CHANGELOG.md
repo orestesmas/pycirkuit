@@ -10,11 +10,14 @@ Will be the first usable public release.
 - Changes in the editor widget:
     - Zoomable text
     - Syntax highlighting
+- Progress bar for potentially lenghty operations
 - Added example source files
-- Added menu option for fast access to dpic documentation
+- Make main window appear centered on screen at startup
+- Added menu option for fast access to Circuit Macros/dpic documentation
 - Windows and MacOS support
 - CHANGELOG file
 - Contributing guide
+- Added contributors list into the "about" dialog
 - Full internationalization (i18n)
 - Catalan translation
 - Code published on [GitHub](https://github.com/orestesmas/pycirkuit)
