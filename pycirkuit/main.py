@@ -24,7 +24,7 @@ Main program entry point/function
 def main():
     # Third-party imports
     from PyQt5.QtWidgets import QApplication
-    from PyQt5.QtCore import QCoreApplication, QTranslator, QLocale
+    from PyQt5.QtCore import QCoreApplication, QTranslator, QLocale,  QLibraryInfo
     
     # Local application imports
     from pycirkuit.ui.mainwindow import MainWindow
@@ -35,10 +35,15 @@ def main():
     import sys
     app = QApplication(sys.argv)
 
-    # Install the translator
-    translator = QTranslator()
-    if translator.load(QLocale(), "pycirkuit", ".", ":/translations", ".qm"):
-        app.installTranslator(translator)
+    # First try to load the Qt-provided translations (used in some standard dialog strings)
+    qtTranslator = QTranslator()
+    filename = "qtbase_" + QLocale.system().name().split("_")[0]
+    if qtTranslator.load(filename, QLibraryInfo.location(QLibraryInfo.TranslationsPath), suffix=".qm"):
+        app.installTranslator(qtTranslator)
+    # Then load PyCirkuit translations
+    pycirkuitTranslator = QTranslator()
+    if pycirkuitTranslator.load(QLocale(), "pycirkuit", ".", ":/translations", ".qm"):
+        app.installTranslator(pycirkuitTranslator)
         
     # These two next values are passed to every instance of QSettings everywhere in the app
     QCoreApplication.setOrganizationName("PyCirkuit")
