@@ -228,7 +228,7 @@
      <item>
       <widget class="QDialogButtonBox" name="buttonBox">
        <property name="standardButtons">
-        <set>QDialogButtonBox::Close</set>
+        <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
        </property>
        <property name="centerButtons">
         <bool>false</bool>
@@ -269,7 +269,7 @@
   </connection>
   <connection>
    <sender>buttonBox</sender>
-   <signal>clicked(QAbstractButton*)</signal>
+   <signal>accepted()</signal>
    <receiver>ConfigDialog</receiver>
    <slot>accept()</slot>
    <hints>
@@ -280,6 +280,22 @@
     <hint type="destinationlabel">
      <x>348</x>
      <y>244</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>ConfigDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>419</x>
+     <y>375</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>419</x>
+     <y>199</y>
     </hint>
    </hints>
   </connection>

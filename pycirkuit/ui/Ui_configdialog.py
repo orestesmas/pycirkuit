@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/orestes/Devel/Software/pycirkuit/pycirkuit/ui/configdialog.ui'
 #
-# Created by: PyQt5 UI code generator 5.7
+# Created by: PyQt5 UI code generator 5.11.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -42,7 +42,6 @@ class Ui_ConfigDialog(object):
         self.page1 = QtWidgets.QWidget()
         self.page1.setObjectName("page1")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.page1)
-        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.groupBox = QtWidgets.QGroupBox(self.page1)
         self.groupBox.setMinimumSize(QtCore.QSize(0, 100))
@@ -99,7 +98,7 @@ class Ui_ConfigDialog(object):
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.buttonBox = QtWidgets.QDialogButtonBox(ConfigDialog)
-        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Close)
+        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
         self.buttonBox.setCenterButtons(False)
         self.buttonBox.setObjectName("buttonBox")
         self.horizontalLayout_2.addWidget(self.buttonBox)
@@ -108,7 +107,8 @@ class Ui_ConfigDialog(object):
         self.retranslateUi(ConfigDialog)
         self.stackedWidget.setCurrentIndex(0)
         self.listWidget.currentRowChanged['int'].connect(self.stackedWidget.setCurrentIndex)
-        self.buttonBox.clicked['QAbstractButton*'].connect(ConfigDialog.accept)
+        self.buttonBox.accepted.connect(ConfigDialog.accept)
+        self.buttonBox.rejected.connect(ConfigDialog.reject)
         QtCore.QMetaObject.connectSlotsByName(ConfigDialog)
         ConfigDialog.setTabOrder(self.listWidget, self.cmPath)
         ConfigDialog.setTabOrder(self.cmPath, self.toolButtonCMPath)

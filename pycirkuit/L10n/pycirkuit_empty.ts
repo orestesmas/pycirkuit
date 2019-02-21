@@ -41,7 +41,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;Original Author, Maintainer and Translator to Catalan&lt;/span&gt;&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Aniol Marti&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;Debian packages for PyCirkuit and Dpic&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;Debian packages for PyCirkuit and Dpic, beta-testing and bug reporting&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -84,6 +84,25 @@ p, li { white-space: pre-wrap; }
 &lt;li style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://linux.die.net/man/1/pdftoppm&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;PdfToPpm&lt;/span&gt;&lt;/a&gt;, a software by Glyph &amp;amp; Cog, LLC. &lt;/li&gt;&lt;/ul&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../ui/aboutdialog.ui" line="217"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Orestes Mas&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;Original Author, Maintainer and Translator to Catalan&lt;/span&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Aniol Marti&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;Debian packages for PyCirkuit and Dpic, beta-testing and bug reporting&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-style:italic;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Guillem Casadesus&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;Beta-testing and bug reporting on macOS&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-style:italic;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Billy Andriamahazomandimby&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;Beta-testing and bug reporting on Windows&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CircuitMacrosManager</name>
@@ -121,13 +140,13 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>ConfigDialog</name>
     <message>
-        <location filename="../configdialog.py" line="117"/>
+        <location filename="../ui/configdialog.py" line="123"/>
         <source>Circuit Macros Location</source>
         <comment>File Dialog Title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../configdialog.py" line="135"/>
+        <location filename="../ui/configdialog.py" line="141"/>
         <source>Latex Template Location</source>
         <comment>File Dialog Title</comment>
         <translation type="unfinished"></translation>
@@ -410,49 +429,49 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="472"/>
+        <location filename="../ui/mainwindow.py" line="472"/>
         <source>Enter a file to save into</source>
         <comment>Window Title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="488"/>
+        <location filename="../ui/mainwindow.py" line="488"/>
         <source>Export failed:</source>
         <comment>Error message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="373"/>
+        <location filename="../ui/mainwindow.py" line="373"/>
         <source>PyCirkuit files (*.ckt)</source>
         <comment>File filter text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="373"/>
+        <location filename="../ui/mainwindow.py" line="373"/>
         <source>TeX files (*.tex)</source>
         <comment>File filter text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="373"/>
+        <location filename="../ui/mainwindow.py" line="373"/>
         <source>Any files (*)</source>
         <comment>File filter text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="420"/>
+        <location filename="../ui/mainwindow.py" line="420"/>
         <source>Enter a file to save into</source>
         <comment>File Dialog title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="423"/>
+        <location filename="../ui/mainwindow.py" line="423"/>
         <source>PyCirkuit files (*.ckt)</source>
         <comment>File filter</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="423"/>
+        <location filename="../ui/mainwindow.py" line="423"/>
         <source>Any files (*)</source>
         <comment>File filter</comment>
         <translation type="unfinished"></translation>
@@ -464,19 +483,19 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="371"/>
+        <location filename="../ui/mainwindow.py" line="371"/>
         <source>Source File Selection</source>
         <comment>File Dialog title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="61"/>
+        <location filename="../ui/mainwindow.py" line="61"/>
         <source>unnamed</source>
         <comment>Initial name of a new empty file</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="354"/>
+        <location filename="../ui/mainwindow.py" line="354"/>
         <source>.PS
 scale=2.54
 cct_init
@@ -561,65 +580,65 @@ l=elen_
 <context>
     <name>MessageBox</name>
     <message>
-        <location filename="../mainwindow.py" line="243"/>
+        <location filename="../ui/mainwindow.py" line="243"/>
         <source>Cannot find the &apos;Circuit Macros&apos;!
 
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="244"/>
+        <location filename="../ui/mainwindow.py" line="244"/>
         <source>Do you want to try to search and install them automatically?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="265"/>
+        <location filename="../ui/mainwindow.py" line="265"/>
         <source>Please indicate the correct path to them in the settings dialog.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="266"/>
+        <location filename="../ui/mainwindow.py" line="266"/>
         <source>Critical Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="457"/>
+        <location filename="../ui/mainwindow.py" line="457"/>
         <source>Warning</source>
         <comment>Message Box title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="460"/>
+        <location filename="../ui/mainwindow.py" line="460"/>
         <source>Do you want to overwrite it?</source>
         <comment>Message Box text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="462"/>
+        <location filename="../ui/mainwindow.py" line="462"/>
         <source>Save As...</source>
         <comment>Button text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="283"/>
+        <location filename="../ui/mainwindow.py" line="283"/>
         <source>Error saving source file: </source>
         <comment>Error message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="284"/>
+        <location filename="../ui/mainwindow.py" line="284"/>
         <source>Cannot execute command.</source>
         <comment>Error message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="285"/>
+        <location filename="../ui/mainwindow.py" line="285"/>
         <source>Critical Error</source>
         <comment>Message Box title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="224"/>
+        <location filename="../ui/mainwindow.py" line="224"/>
         <source>The specified LaTeX template seems invalid!
 
 </source>
@@ -627,7 +646,7 @@ l=elen_
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="225"/>
+        <location filename="../ui/mainwindow.py" line="225"/>
         <source>Please indicate a correct one in the Settings.
 
 </source>
@@ -635,13 +654,13 @@ l=elen_
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="233"/>
+        <location filename="../ui/mainwindow.py" line="233"/>
         <source>Cannot generate the preview.</source>
         <comment>Error message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="231"/>
+        <location filename="../ui/mainwindow.py" line="231"/>
         <source>The LaTeX template has not been found!
 
 </source>
@@ -649,7 +668,7 @@ l=elen_
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="232"/>
+        <location filename="../ui/mainwindow.py" line="232"/>
         <source>Please indicate its correct PATH in the Settings.
 
 </source>
@@ -657,25 +676,25 @@ l=elen_
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="331"/>
+        <location filename="../ui/mainwindow.py" line="331"/>
         <source>You will have to search for it manually. It should be a PDF file located into {cmPath} folder or one of its subfolders.</source>
         <comment>Message Box text. DO NOT translate &apos;{cmPath}&apos; variable.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="346"/>
+        <location filename="../ui/mainwindow.py" line="346"/>
         <source>Error</source>
         <comment>Message Box title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="116"/>
+        <location filename="../ui/mainwindow.py" line="116"/>
         <source>Source file have unsaved changes.</source>
         <comment>Message box text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="330"/>
+        <location filename="../ui/mainwindow.py" line="330"/>
         <source>Cannot find the &quot;Circuit Macros&quot; documentation.
 
 </source>
@@ -683,24 +702,24 @@ l=elen_
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="459"/>
+        <location filename="../ui/mainwindow.py" line="459"/>
         <source>There&apos;s already a file named &quot;{filename}&quot; at working directory.</source>
         <comment>Message box text. Don&apos;t translate &apos;{filename}&apos;</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="245"/>
+        <location filename="../ui/mainwindow.py" line="245"/>
         <source>Warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="117"/>
+        <location filename="../ui/mainwindow.py" line="117"/>
         <source>Do you want to save them before proceeding?</source>
         <comment>Message Box text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="344"/>
+        <location filename="../ui/mainwindow.py" line="344"/>
         <source>Cannot find the &quot;Dpic&quot; documentation.
 
 </source>
@@ -708,18 +727,23 @@ l=elen_
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="345"/>
+        <location filename="../ui/mainwindow.py" line="345"/>
         <source>You will have to search for it manually.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../configdialog.py" line="81"/>
+        <location filename="../ui/configdialog.py" line="81"/>
         <source>The path to the Circuit Macros location is not valid. Please enter a valid one.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../configdialog.py" line="83"/>
+        <location filename="../ui/configdialog.py" line="85"/>
         <source>The path to the LaTeX template does not point to a valid file. Please enter a correct one.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/configdialog.py" line="82"/>
+        <source>Or, cancel the settings dialog and PyCirkuit will download and install the Circuit Macros when needed.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -735,31 +759,31 @@ l=elen_
 <context>
     <name>StatusBar</name>
     <message>
-        <location filename="../mainwindow.py" line="525"/>
+        <location filename="../ui/mainwindow.py" line="525"/>
         <source>Converting: Circuit Macros -&gt; PIC</source>
         <comment>Status Bar message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="530"/>
+        <location filename="../ui/mainwindow.py" line="530"/>
         <source>Converting: PIC -&gt; TIKZ</source>
         <comment>Status Bar message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="536"/>
+        <location filename="../ui/mainwindow.py" line="536"/>
         <source>Converting: TIKZ -&gt; PDF</source>
         <comment>Status Bar message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="541"/>
+        <location filename="../ui/mainwindow.py" line="541"/>
         <source>Converting: PDF -&gt; PNG</source>
         <comment>Status Bar message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.py" line="249"/>
+        <location filename="../ui/mainwindow.py" line="249"/>
         <source>Downloading and unpacking Circuit Macros</source>
         <comment>Status Bar message</comment>
         <translation type="unfinished"></translation>

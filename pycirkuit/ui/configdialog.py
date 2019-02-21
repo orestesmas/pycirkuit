@@ -78,7 +78,9 @@ class ConfigDialog(QDialog, Ui_ConfigDialog):
         settings = QSettings()
         try:
             if not os.path.isdir(self.cmPath.text()):
-                raise PyCirkuitError(_translate("MessageBox", "The path to the Circuit Macros location is not valid. Please enter a valid one.", ""))
+                message =_translate("MessageBox", "The path to the Circuit Macros location is not valid. Please enter a valid one.", "")
+                extraInfo = _translate("MessageBox", "Or, cancel the settings dialog and PyCirkuit will download and install the Circuit Macros when needed.", "")
+                raise PyCirkuitError(message, moreInfo=extraInfo)
             if not os.path.isfile(self.templateFile.text()):
                 raise PyCirkuitError(_translate("MessageBox", "The path to the LaTeX template does not point to a valid file. Please enter a correct one.", ""))
         except PyCirkuitError as err:
@@ -96,6 +98,10 @@ class ConfigDialog(QDialog, Ui_ConfigDialog):
         settings.setValue("General/templatePath", self.templateFile.text())
         settings.sync()
         QDialog.accept(self)
+        
+    @pyqtSlot()
+    def reject(self):
+        QDialog.reject(self)
         
         
     @pyqtSlot(int)

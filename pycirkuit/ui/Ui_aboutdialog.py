@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/orestes/Devel/Software/pycirkuit/pycirkuit/ui/aboutdialog.ui'
 #
-# Created by: PyQt5 UI code generator 5.7
+# Created by: PyQt5 UI code generator 5.11.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -57,7 +57,6 @@ class Ui_AboutDialog(object):
         self.tabAbout = QtWidgets.QWidget()
         self.tabAbout.setObjectName("tabAbout")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.tabAbout)
-        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.textAbout = QtWidgets.QTextBrowser(self.tabAbout)
         font = QtGui.QFont()
@@ -72,7 +71,6 @@ class Ui_AboutDialog(object):
         self.tabVersion = QtWidgets.QWidget()
         self.tabVersion.setObjectName("tabVersion")
         self.horizontalLayout_4 = QtWidgets.QHBoxLayout(self.tabVersion)
-        self.horizontalLayout_4.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
         self.textVersion = QtWidgets.QTextBrowser(self.tabVersion)
         font = QtGui.QFont()
@@ -87,7 +85,6 @@ class Ui_AboutDialog(object):
         self.tabAuthor = QtWidgets.QWidget()
         self.tabAuthor.setObjectName("tabAuthor")
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.tabAuthor)
-        self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.textAuthor = QtWidgets.QTextBrowser(self.tabAuthor)
         font = QtGui.QFont()
@@ -103,7 +100,6 @@ class Ui_AboutDialog(object):
         self.tabGPL = QtWidgets.QWidget()
         self.tabGPL.setObjectName("tabGPL")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.tabGPL)
-        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.textLicense = QtWidgets.QTextBrowser(self.tabGPL)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
@@ -305,7 +301,13 @@ class Ui_AboutDialog(object):
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-style:italic;\">Original Author, Maintainer and Translator to Catalan</span></p>\n"
 "<hr />\n"
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Aniol Marti</span></p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-style:italic;\">Debian packages for PyCirkuit and Dpic, beta-testing and bug reporting</span></p></body></html>"))
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-style:italic;\">Debian packages for PyCirkuit and Dpic, beta-testing and bug reporting</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-style:italic;\"><br /></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Guillem Casadesus</span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-style:italic;\">Beta-testing and bug reporting on macOS</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-style:italic;\"><br /></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Billy Andriamahazomandimby</span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-style:italic;\">Beta-testing and bug reporting on Windows</span></p></body></html>"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tabAuthor), _translate("AboutDialog", "A&uthors", "Tab text"))
         self.textLicense.setHtml(_translate("AboutDialog", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
