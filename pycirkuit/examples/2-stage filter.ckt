@@ -3,6 +3,9 @@ scale=2.54
 cct_init
 l=elen_
 
+# This drawing is interesting as it shows how to reuse drawing code
+# This is the first stage of the filter
+# Starting from left to right
 In: Here
 resistor(right_ 3*l/4);llabel(,R_1)
 Mid: dot
@@ -16,20 +19,22 @@ line right_ l/2
 AO: opamp(right_ 5*l/6,,,,R) with .In1 at Here
 line left_ l/6 from AO.In2 then down elen_/3 then right_ elen_ then up to AO.Out
 dot
-#"$\,v_o(t)$" ljust
 line up_ 3*l/4 from AO.Out
 corner
 capacitor(left_ Here.x-Mid.x);rlabel(,C_2)
 corner
 line to Mid
-dot(at In,,1)
 
-# Segona part
+# From AO's output, move slightly up and right to start the second stage
+# aligned with the first
 move to AO.Out
 line right_ elen_/4
 corner
 line up_ In.y-Here.y
 corner
+
+# This is the second stage of the filter
+# The code is copypasted from first stage, changing only the labels
 In2: Here
 resistor(right_ 3*l/4);llabel(,R_3)
 Mid2: dot
@@ -49,7 +54,7 @@ capacitor(left_ Here.x-Mid2.x);rlabel(,C_4)
 corner
 line to Mid2
 
-# Tercera etapa
+# The third stage is a voltage divider
 move to AO2.Out
 line right_ elen_/4
 corner
@@ -62,6 +67,9 @@ dot
   ground(,T,E)
 }
 line right_ l/3
+# Output port
 dot(,,1)
+# Input port (drawing it at the end avoids being overwritten by the lines starting on it)
+dot(at In,,1)
 
 .PE 
