@@ -41,7 +41,7 @@ class ToolPdfLaTeX(ExternalTool):
         tex = baseName + '.tex'
         # Instantiate a settings object to load config values. At this point the config have valid entries, so don't test much
         settings = QSettings()
-        latexTemplateFile = settings.value("General/latexTemplateFile")
+        latexTemplateFile = settings.value("General/templatePath")
         # Now we read a LaTeX template and wrap the tikz code inside
         templateCode = ""
         with open("{templateFile}".format(templateFile=latexTemplateFile), 'r') as template:
