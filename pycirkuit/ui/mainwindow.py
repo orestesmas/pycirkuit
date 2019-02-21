@@ -372,6 +372,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         fdlg.setDirectory(settings.value("General/lastWD",  ""))
         fdlg.setNameFilters([
             _translate("MainWindow", "PyCirkuit files (*.ckt)", "File filter text"), 
+            _translate("MainWindow", "M4 macro files (*.m4)", "File filter text"),
             _translate("MainWindow", "TeX files (*.tex)", "File filter text"),
             _translate("MainWindow", "Any files (*)", "File filter text")])
         fdlg.setFileMode(QtWidgets.QFileDialog.ExistingFile)
