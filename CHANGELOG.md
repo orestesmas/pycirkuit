@@ -28,7 +28,7 @@ Will be the first usable public release.
 - Better and simplified installation procedure
 - Better "About" dialog, with automatically updated version and copyright information.
 - Improved README
-- Improved 
+- Improved configuration file/parameters. Added version number into configuration.
 - Code refactoring, cleaning and polishing
 
 ### Fixed
