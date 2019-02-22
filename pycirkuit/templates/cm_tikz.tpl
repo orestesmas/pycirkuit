@@ -1,7 +1,8 @@
 %%backend=circuitmacros%%
 \documentclass{article}
 \usepackage[utf8x]{inputenc}
-\usepackage[catalan]{babel}
+% Choose your own language if you are using localized strings.
+%\usepackage[catalan]{babel}
 
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
