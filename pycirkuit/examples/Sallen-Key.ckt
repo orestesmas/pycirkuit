@@ -26,13 +26,13 @@ line up to AO.Out
 dot
 line right_ elen_/4
 dot(,,1)
-#"$\,v_o(t)$" ljust
+"$\,v_o(t)$" ljust
 line up_ 3*l/4 from AO.Out
 corner
 capacitor(left_ Here.x-Mid.x);rlabel(,C_2)
 corner
 line to Mid
 dot(at In,,1)
-#"$v_g(t)$" rjust
+"$v_g(t)$" rjust
 
 .PE 
