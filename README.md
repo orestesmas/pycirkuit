@@ -70,7 +70,7 @@ To install PyCirkuit in you computer, please follow this steps:
 
          pip install pycirkuit
 
-     3.2 The former will install the lastest stable version on PyPI. If you prefer to install the latest development version, [download it grom GitHub as a .ZIP file](https://github.com/orestesmas/pycirkuit/archive/master.zip) and install from it:
+     3.2 The former will install the lastest stable version on PyPI. If you prefer to install the latest development version, [download it from GitHub as a .ZIP file](https://github.com/orestesmas/pycirkuit/archive/master.zip) and install from it:
      
          pip install <path_to_the_downloaded_ZIP_file>
 

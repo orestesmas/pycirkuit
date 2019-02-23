@@ -9,21 +9,21 @@ A: dot
 {
   resistor(left_ l);rlabel(,R_1)
   dot(,,1)
-  #"$V_g(t)$" rjust
+  "$v_g(t)$" rjust
 }
 resistor(right_ l);llabel(,R_3)
 dot
 {
   line right_ l/4
-  AO:opamp() with .In1 at Here
-  #dot(at AO.V2,,1)
-  #"\scriptsize$-V_{cc}$" at Here-(0,0.3)
-  #dot(at AO.V1,,1)
-  #"\scriptsize$+V_{cc}$" at Here+(0,0.3)
+  AO: opamp(,,,,PR) with .In1 at Here
+  dot(at AO.V2,,1)
+  "\scriptsize$-V_{cc}$" at Here-(0,0.3)
+  dot(at AO.V1,,1)
+  "\scriptsize$+V_{cc}$" at Here+(0,0.3)
   dot(at AO.Out)
   line right_ l/4
   dot(,,1)
-  #"$v_o(t)$" ljust
+  "$v_o(t)$" ljust
   line left_ l/4 from AO.In2
   corner
   line down_ (Here.y-Terra.y)
