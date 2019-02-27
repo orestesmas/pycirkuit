@@ -464,49 +464,43 @@ p, li { white-space: pre-wrap; }
         <translation>Ctrl+Shift+S</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="473"/>
+        <location filename="../ui/mainwindow.py" line="472"/>
         <source>Enter a file to save into</source>
         <comment>Window Title</comment>
         <translation>Introduïu un fitxer on desar-ho</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="489"/>
-        <source>Export failed:</source>
-        <comment>Error message</comment>
-        <translation>L&apos;exportació ha fallat:</translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.py" line="373"/>
+        <location filename="../ui/mainwindow.py" line="372"/>
         <source>PyCirkuit files (*.ckt)</source>
         <comment>File filter text</comment>
         <translation>Fitxers PyCirkuit (*.ckt)</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="373"/>
+        <location filename="../ui/mainwindow.py" line="372"/>
         <source>TeX files (*.tex)</source>
         <comment>File filter text</comment>
         <translation>Fitxers TeX (*.tex)</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="373"/>
+        <location filename="../ui/mainwindow.py" line="372"/>
         <source>Any files (*)</source>
         <comment>File filter text</comment>
         <translation>Qualsevol fitxer (*)</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="421"/>
+        <location filename="../ui/mainwindow.py" line="420"/>
         <source>Enter a file to save into</source>
         <comment>File Dialog title</comment>
         <translation>Introduïu un fitxer on desar-ho</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="424"/>
+        <location filename="../ui/mainwindow.py" line="423"/>
         <source>PyCirkuit files (*.ckt)</source>
         <comment>File filter</comment>
         <translation>Fitxers PyCirkuit (*.ckt)</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="424"/>
+        <location filename="../ui/mainwindow.py" line="478"/>
         <source>Any files (*)</source>
         <comment>File filter</comment>
         <translation>Qualsevol fitxer (*)</translation>
@@ -518,7 +512,7 @@ p, li { white-space: pre-wrap; }
         <translation>&amp;Quant al PyCirkuit</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="371"/>
+        <location filename="../ui/mainwindow.py" line="370"/>
         <source>Source File Selection</source>
         <comment>File Dialog title</comment>
         <translation>Selecció de fitxer font</translation>
@@ -530,7 +524,7 @@ p, li { white-space: pre-wrap; }
         <translation>sense nom</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="354"/>
+        <location filename="../ui/mainwindow.py" line="353"/>
         <source>.PS
 scale=2.54
 cct_init
@@ -619,10 +613,22 @@ l=elen_
         <translation>Desa el dibuix amb un nom nou</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="373"/>
+        <location filename="../ui/mainwindow.py" line="372"/>
         <source>M4 macro files (*.m4)</source>
         <comment>File filter text</comment>
         <translation>Fitxers de macros M4 (*.m4)</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.py" line="478"/>
+        <source>TikZ files (*.tikz)</source>
+        <comment>File filter</comment>
+        <translation>Fitxers TikZ (*.tikz)</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.py" line="478"/>
+        <source>TeX files (*.tex)</source>
+        <comment>File filter</comment>
+        <translation>Fitxers TeX (*.tex)</translation>
     </message>
 </context>
 <context>
@@ -652,19 +658,19 @@ l=elen_
         <translation>Error crític</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="458"/>
+        <location filename="../ui/mainwindow.py" line="457"/>
         <source>Warning</source>
         <comment>Message Box title</comment>
         <translation>Avís</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="461"/>
+        <location filename="../ui/mainwindow.py" line="460"/>
         <source>Do you want to overwrite it?</source>
         <comment>Message Box text</comment>
         <translation>Voleu sobreescriure&apos;l?</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="463"/>
+        <location filename="../ui/mainwindow.py" line="462"/>
         <source>Save As...</source>
         <comment>Button text</comment>
         <translation>Desa com a...</translation>
@@ -762,7 +768,7 @@ l=elen_
 </translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="460"/>
+        <location filename="../ui/mainwindow.py" line="459"/>
         <source>There&apos;s already a file named &quot;{filename}&quot; at working directory.</source>
         <comment>Message box text. Don&apos;t translate &apos;{filename}&apos;</comment>
         <translation>Ja hi ha un fitxer anomenat «{filename}» al directori de treball.</translation>
@@ -808,6 +814,30 @@ l=elen_
         <source>Or, cancel the settings dialog and PyCirkuit will download and install the Circuit Macros when needed.</source>
         <translation>O bé cancel·leu el diàleg d&apos;arranjaments i el PyCirkuit descarregarà i instal·larà les Circuit Macros quan calgui.</translation>
     </message>
+    <message>
+        <location filename="../ui/mainwindow.py" line="501"/>
+        <source>PyCirkuit - Error</source>
+        <comment>Message Box title</comment>
+        <translation>PyCirkuit - Error</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.py" line="495"/>
+        <source>Permission denied writing the file {filename}.</source>
+        <comment>Message box text. Don&apos;t translate &apos;{filename}&apos;</comment>
+        <translation>S&apos;ha denegat el permís mentre s&apos;escrivia el fitxer {filename}.</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.py" line="496"/>
+        <source>Please try to export again with another name and/or location.</source>
+        <comment>Message Box text</comment>
+        <translation>Proveu de tornar-lo a exportar amb un altre nom i/o ubicació.</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.py" line="500"/>
+        <source>An error has occurred trying to export the file. Please try again, perhaps with another name or location.</source>
+        <comment>Message Box text</comment>
+        <translation>S&apos;ha produït un error mentre s&apos;exportava el fitxer. Torneu-ho a provar, potser amb un altre nom o ubicació.</translation>
+    </message>
 </context>
 <context>
     <name>PyCirkuitError</name>
@@ -821,25 +851,25 @@ l=elen_
 <context>
     <name>StatusBar</name>
     <message>
-        <location filename="../ui/mainwindow.py" line="526"/>
+        <location filename="../ui/mainwindow.py" line="538"/>
         <source>Converting: Circuit Macros -&gt; PIC</source>
         <comment>Status Bar message</comment>
         <translation>S&apos;està convertint: Circuit Macros -&gt; PIC</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="531"/>
+        <location filename="../ui/mainwindow.py" line="543"/>
         <source>Converting: PIC -&gt; TIKZ</source>
         <comment>Status Bar message</comment>
         <translation>S&apos;està convertint: PIC -&gt; TIKZ</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="537"/>
+        <location filename="../ui/mainwindow.py" line="549"/>
         <source>Converting: TIKZ -&gt; PDF</source>
         <comment>Status Bar message</comment>
         <translation>S&apos;està convertint: TIKZ -&gt; PDF</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="542"/>
+        <location filename="../ui/mainwindow.py" line="554"/>
         <source>Converting: PDF -&gt; PNG</source>
         <comment>Status Bar message</comment>
         <translation>S&apos;està convertint: PDF -&gt; PNG</translation>
