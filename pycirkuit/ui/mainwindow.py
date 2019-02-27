@@ -356,6 +356,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.openedFilename = self._translatedUnnamed
         self.needSaving = False
         self._modify_title()
+        settings = QtCore.QSettings()
+        
 
 
     @pyqtSlot()
@@ -437,7 +439,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def on_actionSave_triggered(self):
         settings = QtCore.QSettings()
         lastWD = settings.value("General/lastWD", "")
-        filePath = lastWD + "/" + self.openedFilename
+        filePath = os.path.join(lastWD , self.openedFilename)
         if os.path.isfile(filePath):
             self._save_buffer(filePath)
         else:
@@ -449,8 +451,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         #TODO: Delegate the export itself to the ToolDpic class. Pass it only the path where the source file is
         settings = QtCore.QSettings()
         lastWD = settings.value("General/lastWD")
-        src = "{srcFile}".format(srcFile=self.tmpDir .path()+ "/cirkuit_tmp.tikz")
-        dst = "{dstFile}".format(dstFile=lastWD+'/'+self.openedFilename.rpartition('.')[0]+".tikz")
+        src = "{srcFile}".format(srcFile=os.path.join(self.tmpDir .path(), "cirkuit_tmp.tikz"))
+        dst = "{dstFile}".format(dstFile=os.path.join(lastWD, self.openedFilename.rpartition('.')[0]) +".tikz")
         try:    
             if os.path.exists(dst):
                 msgBox = QtWidgets.QMessageBox(self)
