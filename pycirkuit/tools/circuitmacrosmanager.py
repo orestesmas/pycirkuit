@@ -28,6 +28,7 @@ import urllib.error as NetError
 
 # Third-party imports
 from PyQt5 import QtCore
+from PyQt5.QtCore import QStandardPaths
 
 # Local application imports
 from pycirkuit.exceptions import *
@@ -50,6 +51,13 @@ class CircuitMacrosManager(QtCore.QObject):
         pass
 
     def check_installed(self):
+        #TODO: Should:
+        #  1) Test several places, starting with the one set up in config, but then test also standard locations
+        #  2) Two possibilities can arise:
+        #     a) There's only one place where CM are
+        #     b) They are found in two or more places
+        #  3) We can do many things: Ask user which ones to use, use the newest ones, pick up the first found...
+        #  4) Finally, as a SIDE EFFECT we can update config automatically or not.
         settings = QtCore.QSettings()
         cmPath = settings.value("General/cmPath",  "")
         return os.path.exists(os.path.join(cmPath , "libcct.m4"))
@@ -86,6 +94,25 @@ class CircuitMacrosManager(QtCore.QObject):
         except NetError.URLError as e:
             #FIXME: Convert to MessageBox by reraising as PyCktCMFetchError
             print(_translate("ExternalTool", "Network error: ",  "Error message"), e)
+
+    def getManUrl(self):
+        # Get standard locations for documentation in a platform-independent way
+        dirList = QStandardPaths.standardLocations(QStandardPaths.GenericDataLocation)
+        # Append specific location
+        dirList = [os.path.join(dir, "doc", "circuit_macros") for dir in dirList]
+        # Add the config-stored Circuit Macros Location to this list
+        settings = QtCore.QSettings()
+        dirList.append(os.path.normpath(settings.value("General/cmPath",  "")))
+        # Add the default Circuit Macros location to this list (can be the same as above)
+        dirList.append(self.default_CMPath())
+        for testPath in dirList:
+            import glob
+            testPath = os.path.join(testPath, "doc", "Circuit_macros")
+            candidates = glob.glob(testPath + ".[pP][dD][fF]")
+            if (len(candidates) == 1) and (os.path.isfile(candidates[0])):
+                return(candidates[0])
+        else:
+            raise PyCktCMManNotFoundError(os.path.normpath(settings.value("General/cmPath",  "")))
 
     def unpack_circuit_macros(self):
         try:

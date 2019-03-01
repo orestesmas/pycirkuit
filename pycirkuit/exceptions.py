@@ -46,6 +46,13 @@ class PyCktDocNotFoundError(PyCirkuitError):
         super().__init__(errMsg, title=_translate("ExternalTool", "File Not Found", "Exception title"), moreInfo=info)
 
 
+class PyCktCMManNotFoundError(PyCirkuitError):
+    def __init__(self, cmPath):
+        errMsg  = _translate("ExternalTool", 'Cannot find the "Circuit Macros" documentation.\n\n', "Warning message")
+        errMsg += _translate("ExternalTool", "You will have to search for it manually. It should be a PDF file located into {cmPath} folder or one of its subfolders.", "Message Box text. DO NOT translate '{cmPath}' variable.").format(cmPath=cmPath)
+        super().__init__(errMsg, title=_translate("ExternalTool", "File Not Found", "Exception title"), moreInfo="")
+
+
 class PyCktToolExecutionError(PyCirkuitError):
     def __init__(self, message, moreInfo=""):
         super().__init__(message, title=_translate("ExternalTool", "Tool Execution Error", "Exception title"), moreInfo=moreInfo)
