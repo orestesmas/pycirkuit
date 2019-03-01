@@ -47,7 +47,7 @@ class ToolDpic(ExternalTool):
     def getManUrl(self):
         dirList = QStandardPaths.standardLocations(QStandardPaths.GenericDataLocation)
         for dir in dirList:
-            testPath = dir + "/doc/dpic/dpic-doc.pdf"
+            testPath = os.path.join(dir, "doc/dpic/dpic-doc.pdf")
             if os.path.exists(testPath):
                 return(testPath)
         else:
