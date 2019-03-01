@@ -46,10 +46,15 @@ class ToolDpic(ExternalTool):
         
     def getManUrl(self):
         dirList = QStandardPaths.standardLocations(QStandardPaths.GenericDataLocation)
+        import glob
+        import magic
+        mime = magic.Magic(mime=True)
         for dir in dirList:
-            testPath = os.path.join(dir, "doc/dpic/dpic-doc.pdf")
-            if os.path.exists(testPath):
-                return(testPath)
+            testPath = os.path.join(dir, "doc", "dpic", "dpic-doc")
+            candidates = glob.glob(testPath + ".[pP][dD][fF]")
+            for candidate in candidates:
+                if (mime.from_file(candidate) == "application/pdf"):
+                    return(candidate)
         else:
             raise PyCktDocNotFoundError("dpic")
 

@@ -105,12 +105,15 @@ class CircuitMacrosManager(QtCore.QObject):
         dirList.append(os.path.normpath(settings.value("General/cmPath",  "")))
         # Add the default Circuit Macros location to this list (can be the same as above)
         dirList.append(self.default_CMPath())
+        import glob
+        import magic
+        mime = magic.Magic(mime=True)
         for testPath in dirList:
-            import glob
             testPath = os.path.join(testPath, "doc", "Circuit_macros")
             candidates = glob.glob(testPath + ".[pP][dD][fF]")
-            if (len(candidates) == 1) and (os.path.isfile(candidates[0])):
-                return(candidates[0])
+            for candidate in candidates:
+                if (mime.from_file(candidate) == "application/pdf"):
+                    return(candidate)
         else:
             raise PyCktCMManNotFoundError(os.path.normpath(settings.value("General/cmPath",  "")))
 
