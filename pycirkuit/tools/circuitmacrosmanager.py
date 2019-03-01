@@ -77,7 +77,7 @@ class CircuitMacrosManager(QtCore.QObject):
         origin = "http://www.ece.uwaterloo.ca/~aplevich/Circuit_macros/Circuit_macros.tar.gz"
         destination = os.path.dirname(self.default_CMPath())
         if destination == "":
-            raise PyCirkuitError(_translate("CircuitMacrosManager", "Cannot determine the standard writable location for PyCirkuit",  "Error message"))
+            raise PyCirkuitError(_translate("ExternalTool", "Cannot determine the standard writable location for PyCirkuit",  "Error message"))
         if not os.path.exists(destination):
             os.makedirs(destination)
         destination = os.path.join(destination,"Circuit_macros.tar.gz")
@@ -101,7 +101,7 @@ class CircuitMacrosManager(QtCore.QObject):
                     percent.setValue(size)
         except NetError.URLError as e:
             #FIXME: Convert to MessageBox by reraising as PyCktCMFetchError
-            print(_translate("CircuitMacrosManager", "Network error: ",  "Error message"), e)
+            print(_translate("ExternalTool", "Network error: ",  "Error message"), e)
 
     def unpack_circuit_macros(self):
         try:
@@ -126,4 +126,4 @@ class CircuitMacrosManager(QtCore.QObject):
             if os.path.exists(dataPath):
                 shutil.rmtree(os.path.join(dataPath , "/."))
             #FIXME: Convert to MessageBox by reraising as PyCktCMFetchError
-            print(_translate("CircuitMacrosManager", "Error uncompressing the Circuit Macros: ",  "Error message"), e)
+            print(_translate("ExternalTool", "Error uncompressing the Circuit Macros: ",  "Error message"), e)

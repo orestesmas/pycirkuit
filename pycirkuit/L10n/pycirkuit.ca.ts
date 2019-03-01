@@ -132,39 +132,6 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>CircuitMacrosManager</name>
-    <message>
-        <location filename="../circuitmacrosmanager.py" line="80"/>
-        <source>Cannot determine the standard writable location for PyCirkuit</source>
-        <comment>Error message</comment>
-        <translation>No s&apos;ha pogut determinar la ubicació estàndard amb permís d&apos;escriptura per al PyCirkuit</translation>
-    </message>
-    <message>
-        <location filename="../circuitmacrosmanager.py" line="129"/>
-        <source>Error uncompressing the Circuit Macros: </source>
-        <comment>Error message</comment>
-        <translation>S&apos;ha produït un error en descomprimir les Circuit Macros: </translation>
-    </message>
-    <message>
-        <location filename="../circuitmacrosmanager.py" line="104"/>
-        <source>Network error: </source>
-        <comment>Error message</comment>
-        <translation>Error de xarxa: </translation>
-    </message>
-    <message>
-        <location filename="../circuitmacrosmanager.py" line="52"/>
-        <source>Circuit Macros not found</source>
-        <comment>Exception title</comment>
-        <translation>No s&apos;han trobat les «Circuit Macros»</translation>
-    </message>
-    <message>
-        <location filename="../circuitmacrosmanager.py" line="47"/>
-        <source>New Circuit Macros version available!</source>
-        <comment>Exception title</comment>
-        <translation>Hi ha disponible una nova versió de les «Circuit Macros»!</translation>
-    </message>
-</context>
-<context>
     <name>ConfigDialog</name>
     <message>
         <location filename="../ui/configdialog.py" line="123"/>
@@ -268,13 +235,13 @@ p, li { white-space: pre-wrap; }
         <translation>PDFTOPPM: Error en la conversió PDF -&gt; PNG</translation>
     </message>
     <message>
-        <location filename="../tools/tool_base.py" line="42"/>
+        <location filename="../exceptions.py" line="51"/>
         <source>Tool Execution Error</source>
         <comment>Exception title</comment>
         <translation>Error d&apos;execució de l&apos;eina</translation>
     </message>
     <message>
-        <location filename="../tools/tool_base.py" line="47"/>
+        <location filename="../exceptions.py" line="56"/>
         <source>Cannot find the {toolLongName}!
 
 </source>
@@ -284,7 +251,7 @@ p, li { white-space: pre-wrap; }
 </translation>
     </message>
     <message>
-        <location filename="../tools/tool_base.py" line="49"/>
+        <location filename="../exceptions.py" line="58"/>
         <source>Please ensure that you have this application properly installed and the executable &quot;{toolExecutableName}&quot; is in the PATH.
 
 </source>
@@ -294,18 +261,18 @@ p, li { white-space: pre-wrap; }
 </translation>
     </message>
     <message>
-        <location filename="../tools/tool_base.py" line="50"/>
+        <location filename="../exceptions.py" line="59"/>
         <source>Cannot generate the preview.</source>
         <translation>No s&apos;ha pogut generar la previsualització.</translation>
     </message>
     <message>
-        <location filename="../tools/tool_base.py" line="52"/>
+        <location filename="../exceptions.py" line="61"/>
         <source>Tool Not Found</source>
         <comment>Exception title</comment>
         <translation>No s&apos;ha trobat l&apos;eina</translation>
     </message>
     <message>
-        <location filename="../tools/tool_base.py" line="57"/>
+        <location filename="../exceptions.py" line="43"/>
         <source>Cannot find the {toolName} manual!
 
 </source>
@@ -315,7 +282,7 @@ p, li { white-space: pre-wrap; }
 </translation>
     </message>
     <message>
-        <location filename="../tools/tool_base.py" line="59"/>
+        <location filename="../exceptions.py" line="45"/>
         <source>Please ensure that you have this application properly installed, including the documentation, in a standard location.
 
 </source>
@@ -324,10 +291,40 @@ p, li { white-space: pre-wrap; }
 </translation>
     </message>
     <message>
-        <location filename="../tools/tool_base.py" line="60"/>
+        <location filename="../exceptions.py" line="46"/>
         <source>File Not Found</source>
         <comment>Exception title</comment>
         <translation>No s&apos;ha trobat el fitxer</translation>
+    </message>
+    <message>
+        <location filename="../exceptions.py" line="77"/>
+        <source>Circuit Macros not found</source>
+        <comment>Exception title</comment>
+        <translation>No s&apos;han trobat les «Circuit Macros»</translation>
+    </message>
+    <message>
+        <location filename="../exceptions.py" line="72"/>
+        <source>New Circuit Macros version available!</source>
+        <comment>Exception title</comment>
+        <translation>Hi ha disponible una nova versió de les «Circuit Macros»!</translation>
+    </message>
+    <message>
+        <location filename="../tools/circuitmacrosmanager.py" line="64"/>
+        <source>Cannot determine the standard writable location for PyCirkuit</source>
+        <comment>Error message</comment>
+        <translation>No s&apos;ha pogut determinar la ubicació estàndard amb permís d&apos;escriptura per al PyCirkuit</translation>
+    </message>
+    <message>
+        <location filename="../tools/circuitmacrosmanager.py" line="88"/>
+        <source>Network error: </source>
+        <comment>Error message</comment>
+        <translation>Error de xarxa: </translation>
+    </message>
+    <message>
+        <location filename="../tools/circuitmacrosmanager.py" line="113"/>
+        <source>Error uncompressing the Circuit Macros: </source>
+        <comment>Error message</comment>
+        <translation>S&apos;ha produït un error en descomprimir les Circuit Macros: </translation>
     </message>
 </context>
 <context>

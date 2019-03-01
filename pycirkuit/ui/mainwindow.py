@@ -34,7 +34,7 @@ from PyQt5.QtWidgets import QProgressBar
 from pycirkuit.ui.Ui_mainwindow import Ui_MainWindow
 from pycirkuit.ui.configdialog import ConfigDialog
 from pycirkuit.ui.aboutdialog import AboutDialog
-from pycirkuit.circuitmacrosmanager import CircuitMacrosManager
+from pycirkuit.tools.circuitmacrosmanager import CircuitMacrosManager
 from pycirkuit.highlighter import PyCirkuitHighlighter
 from pycirkuit.tools.tool_base import PyCktToolNotFoundError, PyCktToolExecutionError
 from pycirkuit.tools.m4 import ToolM4
