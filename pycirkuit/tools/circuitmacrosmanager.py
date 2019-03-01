@@ -21,7 +21,6 @@ Module implementing a CircuitMacros Manager class.
 
 # Standard library imports
 import os
-import io
 import shutil
 import tarfile
 import urllib.request as Net
@@ -31,25 +30,10 @@ import urllib.error as NetError
 from PyQt5 import QtCore
 
 # Local application imports
-from pycirkuit.exceptions import PyCirkuitError
+from pycirkuit.exceptions import *
 
 # Translation function
 _translate = QtCore.QCoreApplication.translate
-
-# Own exceptions
-class PyCktCMNotFoundError(PyCirkuitError):
-    def __init__(self, message):
-        super().__init__(message, title=_translate("CircuitMacrosManager", "Circuit Macros not found", "Exception title"))
-
-
-class PyCktCMNewVersionAvailable(PyCirkuitError):
-    def __init__(self, message):
-        super().__init__(message, title=_translate("CircuitMacrosManager", "New Circuit Macros version available!", "Exception title"))
-
-
-class PyCktCMFetchError(PyCirkuitError):
-    def __init__(self, message):
-        super().__init__(message, title=_translate("CircuitMacrosManager", "Circuit Macros not found", "Exception title"))
 
 
 class CircuitMacrosManager(QtCore.QObject):
