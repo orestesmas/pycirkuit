@@ -21,7 +21,6 @@ Module implementing a CircuitMacros Manager class.
 
 # Standard library imports
 import os
-import re
 import shutil
 import tarfile
 import urllib.request as Net
@@ -97,9 +96,12 @@ class CircuitMacrosManager(QtCore.QObject):
             print(_translate("ExternalTool", "Network error: ",  "Error message"), e)
 
     def getManUrl(self):
+        import glob
+        import magic
+        mime = magic.Magic(mime=True)   # Prepare to detect a file's mimetype based on its contents
         # Get standard locations for documentation in a platform-independent way
         dirList = QStandardPaths.standardLocations(QStandardPaths.GenericDataLocation)
-        # Append specific location
+        # Append specific app subdir to each possible location
         dirList = [os.path.join(dir, "doc", "circuit_macros") for dir in dirList]
         # Add the config-stored Circuit Macros Location to this list
         settings = QtCore.QSettings()
@@ -108,11 +110,9 @@ class CircuitMacrosManager(QtCore.QObject):
         dirList.append(extraPath)
         # Add the default Circuit Macros location to this list (can be the same as above)
         dirList.append(os.path.join(self.default_CMPath(), "doc"))
-        import glob
-        import magic
-        mime = magic.Magic(mime=True)
+        # Explore the generated list searching for pdf or compressed pdf
         for testPath in dirList:
-            # Obtain
+            # Perhaps we should search for *.pdf* or, at least, for *.pdf AND *.pdf.gz
             candidates = glob.glob(os.path.join(testPath, "Circuit_macros.pdf"))
             candidates.extend(glob.glob(os.path.join(testPath, "Circuit_macros.pdf.gz")))
             for candidate in candidates:

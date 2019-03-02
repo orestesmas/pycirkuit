@@ -45,15 +45,21 @@ class ToolDpic(ExternalTool):
         super().execute(command, errMsg, destination=dst)
         
     def getManUrl(self):
-        dirList = QStandardPaths.standardLocations(QStandardPaths.GenericDataLocation)
         import glob
         import magic
-        mime = magic.Magic(mime=True)
-        for dir in dirList:
-            testPath = os.path.join(dir, "doc", "dpic", "dpic-doc")
-            candidates = glob.glob(testPath + ".[pP][dD][fF]")
+        mime = magic.Magic(mime=True)   # Prepare to detect a file's mimetype based on its contents
+        # Get standard locations for documentation in a platform-independent way
+        dirList = QStandardPaths.standardLocations(QStandardPaths.GenericDataLocation)
+        # Append specific app subdir to each possible location
+        dirList = [os.path.join(dir, "doc", "dpic") for dir in dirList]
+        # Explore the generated list searching for pdf or compressed pdf
+        for testPath in dirList:
+            # Perhaps we should search for *.pdf* or, at least, for *.pdf AND *.pdf.gz
+            candidates = glob.glob(os.path.join(testPath, "dpic-doc.pdf"))
+            candidates.extend(glob.glob(os.path.join(testPath, "dpic-doc.pdf.gz")))
             for candidate in candidates:
-                if (mime.from_file(candidate) == "application/pdf"):
+                mimeType = mime.from_file(candidate)
+                if (mimeType == "application/pdf") or (mimeType == "application/gzip"):
                     return(candidate)
         else:
             raise PyCktDocNotFoundError("dpic")
