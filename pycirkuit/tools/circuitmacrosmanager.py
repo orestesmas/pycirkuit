@@ -21,6 +21,7 @@ Module implementing a CircuitMacros Manager class.
 
 # Standard library imports
 import os
+import re
 import shutil
 import tarfile
 import urllib.request as Net
@@ -102,17 +103,21 @@ class CircuitMacrosManager(QtCore.QObject):
         dirList = [os.path.join(dir, "doc", "circuit_macros") for dir in dirList]
         # Add the config-stored Circuit Macros Location to this list
         settings = QtCore.QSettings()
-        dirList.append(os.path.normpath(settings.value("General/cmPath",  "")))
+        extraPath = os.path.normpath(settings.value("General/cmPath",  ""))
+        extraPath = os.path.join(extraPath, "doc")
+        dirList.append(extraPath)
         # Add the default Circuit Macros location to this list (can be the same as above)
-        dirList.append(self.default_CMPath())
+        dirList.append(os.path.join(self.default_CMPath(), "doc"))
         import glob
         import magic
         mime = magic.Magic(mime=True)
         for testPath in dirList:
-            testPath = os.path.join(testPath, "doc", "Circuit_macros")
-            candidates = glob.glob(testPath + ".[pP][dD][fF]")
+            # Obtain
+            candidates = glob.glob(os.path.join(testPath, "Circuit_macros.pdf"))
+            candidates.extend(glob.glob(os.path.join(testPath, "Circuit_macros.pdf.gz")))
             for candidate in candidates:
-                if (mime.from_file(candidate) == "application/pdf"):
+                mimeType = mime.from_file(candidate)
+                if (mimeType == "application/pdf") or (mimeType == "application/gzip"):
                     return(candidate)
         else:
             raise PyCktCMManNotFoundError(os.path.normpath(settings.value("General/cmPath",  "")))
