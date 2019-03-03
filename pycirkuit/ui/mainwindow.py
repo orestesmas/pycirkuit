@@ -137,11 +137,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def _check_programs(self):
         try:
+            # Dictionary using a class as index and a class instance as value
             self.extTools = {
-                'm4': ToolM4(),
-                'dpic': ToolDpic(), 
-                'pdflatex': ToolPdfLaTeX(), 
-                'pdftopng': ToolPdfToPng()
+                ToolM4: ToolM4(),
+                ToolDpic: ToolDpic(), 
+                ToolPdfLaTeX: ToolPdfLaTeX(), 
+                ToolPdfToPng: ToolPdfToPng()
             }
         except PyCktToolNotFoundError as err:
             # Open MessageBox and inform user
@@ -524,30 +525,55 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             # STEP 3: Change cursor shape temporarily
             app = QtWidgets.QApplication.instance()
             app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
-
+            
+            # STEP 4: Clear log text
+            self.outputText.clear()
+            self.outputText.setPlainText(_translate("OutputLog", ">>>>> Start processing", "Output log info"))
+            header = _translate("OutputLog", "Output of {toolLongName}:", "Output log info. Do NOT modify/translate the '{toolLongName}' variable")
+            def writeHeader(tool):
+                aux = header.format(toolLongName=self.extTools[tool].longName)
+                self.outputText.appendPlainText('\n' + aux)
+                self.outputText.appendPlainText("="*len(aux))
+                
+            def writeOk():
+                self.outputText.appendPlainText(_translate("OutputLog", " + No execution errors", "Output log info"))
+ 
             # STEP 4 Call M4: .CKT -> .PIC
             self.statusBar.showMessage(_translate("StatusBar", "Converting: Circuit Macros -> PIC", "Status Bar message"))
-            self.extTools['m4'].execute(tmpFileBaseName)
+            writeHeader(ToolM4)
+            self.extTools[ToolM4].execute(tmpFileBaseName)
+            writeOk()
             self.sbProgressBar.setValue(1)
 
             # STEP 5: Call dpic: .PIC -> .TIKZ
             self.statusBar.showMessage(_translate("StatusBar", "Converting: PIC -> TIKZ", "Status Bar message"))
-            self.extTools['dpic'].execute(tmpFileBaseName)
+            writeHeader(ToolDpic)
+            self.extTools[ToolDpic].execute(tmpFileBaseName)
+            writeOk()
             self.sbProgressBar.setValue(2)
 
             # STEP 6: Call PDFLaTeX: .TIKZ -> .PDF
             # First we have to embed the .TIKZ code inside a suitable template
             self.statusBar.showMessage(_translate("StatusBar", "Converting: TIKZ -> PDF", "Status Bar message"))
-            self.extTools['pdflatex'].execute(tmpFileBaseName)
+            writeHeader(ToolPdfLaTeX)
+            self.extTools[ToolPdfLaTeX].execute(tmpFileBaseName)
+            writeOk()
             self.sbProgressBar.setValue(3)
 
             # STEP 7: Call pdftoppm to convert the PDF into a bitmap image to visualize it: .PDF -> .PNG
             self.statusBar.showMessage(_translate("StatusBar", "Converting: PDF -> PNG", "Status Bar message"))
-            self.extTools['pdftopng'].execute(tmpFileBaseName)
+            writeHeader(ToolPdfToPng)
+            self.extTools[ToolPdfToPng].execute(tmpFileBaseName)
+            writeOk()
             self.sbProgressBar.setValue(4)
 
         except PyCktToolExecutionError as err:
-            self.imatge.setText("Error!")
+            self.imatge.setText(_translate("MainWindow", "Error!", "Fallback text to be displayed when the image cannot be generated"))
+            self.outputText.appendPlainText(err.moreInfo)
+            if err.tool == ToolPdfLaTeX:
+                with open(tmpFileBaseName+'.log', 'rt') as f:
+                    for line in f.readlines():
+                        self.outputText.appendPlainText(line)
             # Open MessageBox and inform user
             msgBox = QtWidgets.QMessageBox(self)
             msgBox.setWindowTitle(err.title)
@@ -572,6 +598,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     @pyqtSlot()
     def on_sourceText_textChanged(self):
+        self.outputText.clear()
         if self.insideConstructor:
             return
         else:

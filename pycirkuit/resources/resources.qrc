@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="/icons">
+    <file alias="Output">run-build-file.png</file>
     <file alias="GPLv3">gplv3-88x31.png</file>
     <file alias="Exit">application-exit.png</file>
     <file alias="CMman">application-pdf.png</file>

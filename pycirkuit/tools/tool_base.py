@@ -38,6 +38,8 @@ _translate = QCoreApplication.translate
 
 # Base class for external tools
 class ExternalTool(abc.ABC):
+    # Class variable
+    ID = ""
     def __init__(self, executableName, longName):
         self.longName = longName
         execPath = os.get_exec_path()
@@ -68,7 +70,8 @@ class ExternalTool(abc.ABC):
             result = subprocess.run(cmd, shell=False, check=False, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
             if result.returncode != 0:
                 info = result.stderr.decode()
-                raise PyCktToolExecutionError(errMsg, moreInfo=info)
+                # By calling self.ID we use polymorphism here
+                raise PyCktToolExecutionError(errMsg, moreInfo=info, tool=self.__class__)
             else:
                 if destination != None:
                     with open(destination, 'wb') as tmpFile:

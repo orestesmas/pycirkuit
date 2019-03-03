@@ -54,8 +54,9 @@ class PyCktCMManNotFoundError(PyCirkuitError):
 
 
 class PyCktToolExecutionError(PyCirkuitError):
-    def __init__(self, message, moreInfo=""):
+    def __init__(self, message, moreInfo="", tool=""):
         super().__init__(message, title=_translate("ExternalTool", "Tool Execution Error", "Exception title"), moreInfo=moreInfo)
+        self.tool = tool
 
 
 class PyCktToolNotFoundError(PyCirkuitError):

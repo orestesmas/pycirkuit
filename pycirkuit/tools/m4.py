@@ -30,6 +30,8 @@ from pycirkuit.tools.tool_base import ExternalTool
 _translate = QCoreApplication.translate
 
 class ToolM4(ExternalTool):
+    # Class variable
+    ID = 'M4'
     def __init__(self):
         super().__init__("m4", _translate("ExternalTool", "'M4' Macro Processor", "Tool Long Name"))
         
