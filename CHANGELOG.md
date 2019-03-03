@@ -5,8 +5,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## 0.3 series
+#### Added
+- Log output tab ([4251c0f](https://github.comhttps://github.com/orestesmas/pycirkuit/commit/b5aa03b/orestesmas/pycirkuit/commit/4251c0f))
 #### Changed
-- Better searching for dpic and CM manuals
+- Better searching for Dpic and Circuit Macros manuals
 - Code refactoring, cleaning and polishing
 
 ## 0.2 series
