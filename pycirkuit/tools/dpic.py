@@ -20,7 +20,7 @@ Module implementing a class to handle the dpic external tool
 #
 
 # Standard library imports
-import os
+from os.path import *
 
 # Third-party imports
 from PyQt5.QtCore import QCoreApplication, QStandardPaths
@@ -51,12 +51,12 @@ class ToolDpic(ExternalTool):
         # Get standard locations for documentation in a platform-independent way
         dirList = QStandardPaths.standardLocations(QStandardPaths.GenericDataLocation)
         # Append specific app subdir to each possible location
-        dirList = [os.path.join(dir, "doc", "dpic") for dir in dirList]
+        dirList = [normpath(join(dir, "doc", "dpic")) for dir in dirList]
         # Explore the generated list searching for pdf or compressed pdf
         for testPath in dirList:
             # Perhaps we should search for *.pdf* or, at least, for *.pdf AND *.pdf.gz
-            candidates = glob.glob(os.path.join(testPath, "dpic-doc.pdf"))
-            candidates.extend(glob.glob(os.path.join(testPath, "dpic-doc.pdf.gz")))
+            candidates = glob.glob(join(testPath, "dpic-doc.pdf"))
+            candidates.extend(glob.glob(join(testPath, "dpic-doc.pdf.gz")))
             for candidate in candidates:
                 mimeType = mime.from_file(candidate)
                 if (mimeType == "application/pdf") or (mimeType == "application/gzip"):
