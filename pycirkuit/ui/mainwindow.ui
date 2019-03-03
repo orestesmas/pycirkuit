@@ -219,8 +219,14 @@
        <property name="lineWidth">
         <number>0</number>
        </property>
+       <property name="sizeAdjustPolicy">
+        <enum>QAbstractScrollArea::AdjustToContents</enum>
+       </property>
        <property name="widgetResizable">
         <bool>true</bool>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
        <widget class="QWidget" name="scrollAreaWidgetContents">
         <property name="geometry">
@@ -228,7 +234,7 @@
           <x>0</x>
           <y>0</y>
           <width>724</width>
-          <height>114</height>
+          <height>165</height>
          </rect>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_2">
