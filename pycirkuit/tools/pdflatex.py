@@ -32,6 +32,8 @@ from pycirkuit.tools.tool_base import ExternalTool, PyCktToolExecutionError
 _translate = QCoreApplication.translate
 
 class ToolPdfLaTeX(ExternalTool):
+    # Class variable
+    ID = 'PDFLATEX'
     def __init__(self):
         super().__init__("pdflatex", _translate("ExternalTool", "pdfLaTeX program", "Tool Long Name"))
         

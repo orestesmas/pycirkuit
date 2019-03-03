@@ -30,6 +30,8 @@ from pycirkuit.tools.tool_base import ExternalTool
 _translate = QCoreApplication.translate
 
 class ToolPdfToPng(ExternalTool):
+    # Class variable
+    ID = 'PDFTOPNG'
     def __init__(self):
         super().__init__("pdftoppm", _translate("ExternalTool", "PDF to PNG image converter", "Tool Long Name"))
         

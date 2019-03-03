@@ -46,21 +46,14 @@ class Ui_MainWindow(object):
         self.horizontalLayout_4 = QtWidgets.QHBoxLayout(self.tab_log)
         self.horizontalLayout_4.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
-        self.outputText = QtWidgets.QTextBrowser(self.tab_log)
+        self.outputText = QtWidgets.QPlainTextEdit(self.tab_log)
         font = QtGui.QFont()
         font.setFamily("Monospace")
         font.setPointSize(11)
         self.outputText.setFont(font)
-        self.outputText.setDocumentTitle("")
-        self.outputText.setHtml("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Monospace\'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'TeX Gyre Heros\'; font-size:12pt;\"><br /></p></body></html>")
-        self.outputText.setAcceptRichText(False)
+        self.outputText.setReadOnly(True)
+        self.outputText.setPlainText("")
         self.outputText.setTextInteractionFlags(QtCore.Qt.TextSelectableByKeyboard|QtCore.Qt.TextSelectableByMouse)
-        self.outputText.setSearchPaths([])
-        self.outputText.setOpenLinks(False)
         self.outputText.setObjectName("outputText")
         self.horizontalLayout_4.addWidget(self.outputText)
         icon2 = QtGui.QIcon()
@@ -209,7 +202,7 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "PyCirkuit - by Orestes Mas"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_source), _translate("MainWindow", "Source Editor", "Tab title"))
-        self.outputText.setPlaceholderText(_translate("MainWindow", "<Empty output>", "Placeholder text for empty text browser"))
+        self.outputText.setPlaceholderText(_translate("MainWindow", "<Empty output>", "Placeholder text"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_log), _translate("MainWindow", "Output Log", "Tab title"))
         self.processButton.setText(_translate("MainWindow", "Process and display", "Button text"))
         self.exportButton.setText(_translate("MainWindow", "Export to TIkZ", "Button text"))

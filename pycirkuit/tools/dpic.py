@@ -32,6 +32,8 @@ from pycirkuit.tools.tool_base import ExternalTool, PyCktDocNotFoundError
 _translate = QCoreApplication.translate
 
 class ToolDpic(ExternalTool):
+    # Class variable
+    ID = 'DPIC'
     def __init__(self):
         super().__init__("dpic", _translate("ExternalTool", "'PIC' language compiler", "Tool Long Name"))
         
