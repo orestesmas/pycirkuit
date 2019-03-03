@@ -329,10 +329,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     @pyqtSlot()
     def on_actionDpicMan_triggered(self):
-        dpic = ToolDpic();
         try:
+            dpic = ToolDpic();
             path = dpic.getManUrl()
-            QtGui.QDesktopServices.openUrl(QtCore.QUrl("file://" + path, QtCore.QUrl.TolerantMode))
+            QtGui.QDesktopServices.openUrl(QtCore.QUrl.fromLocalFile(path))
         except:
             errMsg  = _translate("MessageBox", 'Cannot find the "Dpic" documentation.\n\n', "Warning message")
             errMsg += _translate("MessageBox", "You will have to search for it manually.")
