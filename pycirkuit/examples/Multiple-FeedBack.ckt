@@ -15,7 +15,7 @@ resistor(right_ l);llabel(,R_3)
 dot
 {
   line right_ l/4
-  AO: opamp(,,,,PR) with .In1 at Here
+  AO: opamp(,,,,P) with .In1 at Here
   dot(at AO.V2,,1)
   "\scriptsize$-V_{cc}$" at Here-(0,0.3)
   dot(at AO.V1,,1)
