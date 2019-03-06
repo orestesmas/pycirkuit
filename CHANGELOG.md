@@ -4,45 +4,45 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 0.3 series
+## 0.3 series [Work in progress]
 #### Changed
-- Better searching for dpic and CM manuals
-- Code refactoring, cleaning and polishing
+- Code refactoring, cleaning and polishing.
 
 ## 0.2 series
 <a name="0.2.1"></a>
-### 0.2.1 [unreleased]
+### [0.2.1](https://github.com/orestesmas/pycirkuit/compare/v0.2.0..v0.2.1) : (2019-03-07) [Bugfix release]
 #### Bug Fixes 
-- Fix potential bugs on windows due to path separator ([9192eae](https://github.com/orestesmas/pycirkuit/commit/9192eae)), ([b5aa03b](https://github.com/orestesmas/pycirkuit/commit/b5aa03b))
-- Don't be silent when trying to export into a write-protected location ([6f0f891](https://github.com/orestesmas/pycirkuit/commit/6f0f891)). Closes [#26](https://github.com/orestesmas/pycirkuit/issues/26)
-- Fix erroneous polarity in one example circuit ([0b2db1fa](https://github.com/orestesmas/pycirkuit/commit/0b2db1fa))
+- Fix searching for dpic and CM manuals, and for CM themselves into locations specified by Debian package ([725f9fce](https://github.com/orestesmas/pycirkuit/commit/725f9fce)). Closes [#27](https://github.com/orestesmas/pycirkuit/issues/27).
+- Fix potential bugs on windows due to path separator ([9192eae](https://github.com/orestesmas/pycirkuit/commit/9192eae)), ([b5aa03b](https://github.com/orestesmas/pycirkuit/commit/b5aa03b)).
+- Don't be silent when trying to export into a write-protected location ([6f0f891](https://github.com/orestesmas/pycirkuit/commit/6f0f891)). Closes [#26](https://github.com/orestesmas/pycirkuit/issues/26).
+- Fix erroneous polarity in one example circuit ([0b2db1fa](https://github.com/orestesmas/pycirkuit/commit/0b2db1fa)).
 
 <a name="0.2.0"></a>
 ### [0.2.0](https://github.com/orestesmas/pycirkuit/compare/v0.1..v0.2.0) : (2019-02-24)
 #### Added
 - Changes in the editor widget:
-    - Zoomable text
-    - Syntax highlighting
-- Progress bar for potentially lenghty operations
-- Added example source files
-- Make main window appear centered on screen at startup
-- Added menu option for fast access to Circuit Macros/dpic documentation
-- Windows and MacOS support
-- CHANGELOG file
-- Contributing guide
-- Added contributors list into the "about" dialog
-- Full internationalization (i18n)
-- Catalan translation
-- Code published on [GitHub](https://github.com/orestesmas/pycirkuit)
-- Package added to [PyPI](https://pypi.org/project/pycirkuit/)
-- GitHub issue template
+    - Zoomable text.
+    - Syntax highlighting.
+- Progress bar for potentially lenghty operations.
+- Added example source files.
+- Make main window appear centered on screen at startup.
+- Added menu option for fast access to Circuit Macros/dpic documentation.
+- Windows and MacOS support.
+- CHANGELOG file.
+- Contributing guide.
+- Added contributors list into the "about" dialog.
+- Full internationalization (i18n).
+- Catalan translation.
+- Code published on [GitHub](https://github.com/orestesmas/pycirkuit).
+- Package added to [PyPI](https://pypi.org/project/pycirkuit/).
+- GitHub issue template.
 
 #### Changed
-- Better and simplified installation procedure
+- Better and simplified installation procedure.
 - Better "About" dialog, with automatically updated version and copyright information.
-- Improved README
+- Improved README.
 - Improved configuration file/parameters. Added version number into configuration.
-- Code refactoring, cleaning and polishing
+- Code refactoring, cleaning and polishing.
 
 #### Bug Fixes
 - Some bugs detected by early adopters. See GitHub for details.
