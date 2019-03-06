@@ -57,14 +57,24 @@ class CircuitMacrosManager(QtCore.QObject):
         #  2) Two possibilities can arise:
         #     a) There's only one place where CM are
         #     b) They are found in two or more places
-        #  3) We can do many things: Ask user which ones to use, use the newest ones, pick up the first found...
-        #  4) Finally, as a SIDE EFFECT we can update config automatically or not.
+        dirList =  QStandardPaths.standardLocations(QStandardPaths.GenericDataLocation)
+        # Append specific app subdir to each possible location
+        dirList = [normpath(join(dir, "circuit-macros")) for dir in dirList]
         settings = QtCore.QSettings()
-        cmPath = settings.value("General/cmPath",  "")
-        return exists(join(cmPath , "libcct.m4"))
+        extraPath = normpath(settings.value("General/cmPath", ""))
+        if extraPath != "":
+            dirList.insert(0, extraPath)
+        for testPath in dirList:
+            if exists(join(testPath , "libcct.m4")):
+                #  3) We pick up the first found. Perhaps we might consider other possibilities
+                #  4) Finally, as a SIDE EFFECT we can update config automatically or not.
+                settings.setValue("General/cmPath", testPath)
+                return True
+        else:
+            return False
 
     def default_CMPath(self):
-        return normpath(join(QtCore.QStandardPaths.writableLocation(QtCore.QStandardPaths.AppDataLocation), "circuit_macros"))
+        return normpath(join(QtCore.QStandardPaths.writableLocation(QtCore.QStandardPaths.AppDataLocation), "circuit-macros"))
         
     def download_latest(self, percent):
         origin = "http://www.ece.uwaterloo.ca/~aplevich/Circuit_macros/Circuit_macros.tar.gz"
@@ -103,12 +113,12 @@ class CircuitMacrosManager(QtCore.QObject):
         # Get standard locations for documentation in a platform-independent way
         dirList = QStandardPaths.standardLocations(QStandardPaths.GenericDataLocation)
         # Append specific app subdir to each possible location
-        dirList = [normpath(join(dir, "doc", "circuit_macros")) for dir in dirList]
+        dirList = [normpath(join(dir, "doc", "circuit-macros")) for dir in dirList]
         # Add the config-stored Circuit Macros Location to this list
         settings = QtCore.QSettings()
         extraPath = normpath(settings.value("General/cmPath",  ""))
         extraPath = join(extraPath, "doc")
-        dirList.append(extraPath)
+        dirList.insert(0, extraPath)
         # Add the default Circuit Macros location to this list (can be the same as above)
         dirList.append(join(self.default_CMPath(), "doc"))
         # Explore the generated list searching for pdf or compressed pdf
@@ -129,14 +139,14 @@ class CircuitMacrosManager(QtCore.QObject):
             tarName = abspath(join(dataPath,  'Circuit_macros.tar.gz'))
             with tarfile.open(tarName, 'r:gz') as tarFile:
                 # Circuit Macros is distributed in a tree structure.
-                # We want the top dir of this structure to be 'circuit_macros', whichever it is now
+                # We want the top dir of this structure to be 'circuit-macros', whichever it is now
                 # The following algorithm assumes that all circuit macros's files are in a subdir.
                 entry = tarFile.next()
                 storedDir, foo, bar = entry.name.partition('/')  # Got stored top dir name in 'storedDir'
                 # Now iterate and replace top directory name in all entries
                 for entry in tarFile.getmembers():
                     filename = entry.name
-                    entry.name = filename.replace(storedDir, 'circuit_macros', 1)
+                    entry.name = filename.replace(storedDir, 'circuit-macros', 1)
                 tarFile.extractall(path=dataPath)
             os.remove(tarName)
             settings = QtCore.QSettings()
