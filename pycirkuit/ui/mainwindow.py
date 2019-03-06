@@ -34,9 +34,9 @@ from PyQt5.QtWidgets import QProgressBar
 from pycirkuit.ui.Ui_mainwindow import Ui_MainWindow
 from pycirkuit.ui.configdialog import ConfigDialog
 from pycirkuit.ui.aboutdialog import AboutDialog
-from pycirkuit.circuitmacrosmanager import CircuitMacrosManager
+from pycirkuit.tools.circuitmacrosmanager import CircuitMacrosManager
 from pycirkuit.highlighter import PyCirkuitHighlighter
-from pycirkuit.tools.tool_base import PyCktToolNotFoundError, PyCktToolExecutionError
+from pycirkuit.exceptions import *
 from pycirkuit.tools.m4 import ToolM4
 from pycirkuit.tools.dpic import ToolDpic
 from pycirkuit.tools.pdflatex import ToolPdfLaTeX
@@ -316,22 +316,14 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def on_actionCMMan_triggered(self):
         # Search for Circuit Macros PDF manual
         if self._enforce_circuit_macros():
-            settings = QtCore.QSettings()
-            cmPath = os.path.normpath(settings.value("General/cmPath",  ""))
             try:
-                import glob
-                cmPath = os.path.join(cmPath, "doc")
-                candidates = glob.glob(cmPath + os.sep + "*.[pP][dD][fF]")
-                if (len(candidates) == 1) and (os.path.isfile(candidates[0])):
-                    # Open it with the default app. We can do that using Qt or in a mode pythonic way (os.system...)
-                    # I choose the former because I want Qt to deal with the differences between OSes
-                    QtGui.QDesktopServices.openUrl(QtCore.QUrl.fromLocalFile(candidates[0]))
-                else:
-                    errMsg  = _translate("MessageBox", 'Cannot find the "Circuit Macros" documentation.\n\n', "Warning message")
-                    errMsg += _translate("MessageBox", "You will have to search for it manually. It should be a PDF file located into {cmPath} folder or one of its subfolders.", "Message Box text. DO NOT translate '{cmPath}' variable.").format(cmPath=cmPath)
-                    QtWidgets.QMessageBox.warning(self, _translate("MessageBox", "Error", "Message Box title"),  errMsg)
-            except:
-                pass
+                cmMgr = CircuitMacrosManager(self)
+                cmPath = cmMgr.getManUrl()
+                # Open it with the default app. We can do that using Qt or in a mode pythonic way (os.system...)
+                # I choose the former because I want Qt to deal with the differences between OSes
+                QtGui.QDesktopServices.openUrl(QtCore.QUrl.fromLocalFile(cmPath))
+            except PyCktCMManNotFoundError as error:
+                QtWidgets.QMessageBox.warning(self, error.title,  str(error))
 
 
     @pyqtSlot()

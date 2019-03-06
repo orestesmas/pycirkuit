@@ -3,36 +3,36 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <location filename="../ui/aboutdialog.ui" line="32"/>
+        <location filename="../ui/Ui_aboutdialog.py" line="272"/>
         <source>About PyCirkuit</source>
         <comment>Dialog Title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/aboutdialog.ui" line="125"/>
+        <location filename="../ui/Ui_aboutdialog.py" line="282"/>
         <source>&amp;About</source>
         <comment>Tab text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/aboutdialog.ui" line="161"/>
+        <location filename="../ui/Ui_aboutdialog.py" line="295"/>
         <source>&amp;Version</source>
         <comment>Tab text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/aboutdialog.ui" line="200"/>
+        <location filename="../ui/Ui_aboutdialog.py" line="311"/>
         <source>A&amp;uthors</source>
         <comment>Tab text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/aboutdialog.ui" line="245"/>
+        <location filename="../ui/Ui_aboutdialog.py" line="319"/>
         <source>&amp;License Agreement</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/aboutdialog.ui" line="280"/>
+        <location filename="../ui/Ui_aboutdialog.py" line="312"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -43,7 +43,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/aboutdialog.ui" line="142"/>
+        <location filename="../ui/Ui_aboutdialog.py" line="273"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -56,7 +56,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/aboutdialog.ui" line="178"/>
+        <location filename="../ui/Ui_aboutdialog.py" line="283"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -72,7 +72,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/aboutdialog.ui" line="217"/>
+        <location filename="../ui/Ui_aboutdialog.py" line="296"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -92,39 +92,6 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>CircuitMacrosManager</name>
-    <message>
-        <location filename="../circuitmacrosmanager.py" line="80"/>
-        <source>Cannot determine the standard writable location for PyCirkuit</source>
-        <comment>Error message</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../circuitmacrosmanager.py" line="129"/>
-        <source>Error uncompressing the Circuit Macros: </source>
-        <comment>Error message</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../circuitmacrosmanager.py" line="104"/>
-        <source>Network error: </source>
-        <comment>Error message</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../circuitmacrosmanager.py" line="52"/>
-        <source>Circuit Macros not found</source>
-        <comment>Exception title</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../circuitmacrosmanager.py" line="47"/>
-        <source>New Circuit Macros version available!</source>
-        <comment>Exception title</comment>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>ConfigDialog</name>
     <message>
         <location filename="../ui/configdialog.py" line="123"/>
@@ -139,40 +106,40 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/configdialog.ui" line="20"/>
+        <location filename="../ui/Ui_configdialog.py" line="121"/>
         <source>Config Dialog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/configdialog.ui" line="62"/>
+        <location filename="../ui/Ui_configdialog.py" line="125"/>
         <source>General</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/configdialog.ui" line="99"/>
+        <location filename="../ui/Ui_configdialog.py" line="127"/>
         <source>Circuit Macros Location</source>
         <comment>Group box title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/configdialog.ui" line="162"/>
+        <location filename="../ui/Ui_configdialog.py" line="131"/>
         <source>Enter Path Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/configdialog.ui" line="178"/>
+        <location filename="../ui/Ui_configdialog.py" line="132"/>
         <source>Choose...</source>
         <comment>Button text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/configdialog.ui" line="153"/>
+        <location filename="../ui/Ui_configdialog.py" line="130"/>
         <source>LaTeX Template File</source>
         <comment>Group box title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/configdialog.ui" line="218"/>
+        <location filename="../ui/Ui_configdialog.py" line="133"/>
         <source>RadioB&amp;utton</source>
         <translation type="unfinished"></translation>
     </message>
@@ -228,13 +195,13 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/tool_base.py" line="42"/>
+        <location filename="../exceptions.py" line="58"/>
         <source>Tool Execution Error</source>
         <comment>Exception title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/tool_base.py" line="47"/>
+        <location filename="../exceptions.py" line="63"/>
         <source>Cannot find the {toolLongName}!
 
 </source>
@@ -242,7 +209,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/tool_base.py" line="49"/>
+        <location filename="../exceptions.py" line="65"/>
         <source>Please ensure that you have this application properly installed and the executable &quot;{toolExecutableName}&quot; is in the PATH.
 
 </source>
@@ -250,18 +217,18 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/tool_base.py" line="50"/>
+        <location filename="../exceptions.py" line="66"/>
         <source>Cannot generate the preview.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/tool_base.py" line="52"/>
+        <location filename="../exceptions.py" line="68"/>
         <source>Tool Not Found</source>
         <comment>Exception title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/tool_base.py" line="57"/>
+        <location filename="../exceptions.py" line="43"/>
         <source>Cannot find the {toolName} manual!
 
 </source>
@@ -269,202 +236,246 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/tool_base.py" line="59"/>
+        <location filename="../exceptions.py" line="45"/>
         <source>Please ensure that you have this application properly installed, including the documentation, in a standard location.
 
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/tool_base.py" line="60"/>
+        <location filename="../exceptions.py" line="53"/>
         <source>File Not Found</source>
         <comment>Exception title</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../exceptions.py" line="84"/>
+        <source>Circuit Macros not found</source>
+        <comment>Exception title</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../exceptions.py" line="79"/>
+        <source>New Circuit Macros version available!</source>
+        <comment>Exception title</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tools/circuitmacrosmanager.py" line="72"/>
+        <source>Cannot determine the standard writable location for PyCirkuit</source>
+        <comment>Error message</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tools/circuitmacrosmanager.py" line="96"/>
+        <source>Network error: </source>
+        <comment>Error message</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tools/circuitmacrosmanager.py" line="140"/>
+        <source>Error uncompressing the Circuit Macros: </source>
+        <comment>Error message</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../exceptions.py" line="51"/>
+        <source>Cannot find the &quot;Circuit Macros&quot; documentation.
+
+</source>
+        <comment>Warning message</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../exceptions.py" line="52"/>
+        <source>You will have to search for it manually. It should be a PDF file located into {cmPath} folder or one of its subfolders.</source>
+        <comment>Message Box text. DO NOT translate &apos;{cmPath}&apos; variable.</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../ui/mainwindow.ui" line="20"/>
+        <location filename="../ui/Ui_mainwindow.py" line="180"/>
         <source>PyCirkuit - by Orestes Mas</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="101"/>
+        <location filename="../ui/Ui_mainwindow.py" line="184"/>
         <source>Fi&amp;le</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="111"/>
+        <location filename="../ui/Ui_mainwindow.py" line="185"/>
         <source>Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="121"/>
+        <location filename="../ui/Ui_mainwindow.py" line="186"/>
         <source>Setti&amp;ngs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="221"/>
+        <location filename="../ui/Ui_mainwindow.py" line="192"/>
         <source>Open Drawing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="266"/>
+        <location filename="../ui/Ui_mainwindow.py" line="201"/>
         <source>New Drawing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="39"/>
+        <location filename="../ui/Ui_mainwindow.py" line="181"/>
         <source>Source Editor</source>
         <comment>Tab title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="64"/>
+        <location filename="../ui/Ui_mainwindow.py" line="182"/>
         <source>Process and display</source>
         <comment>Button text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="78"/>
+        <location filename="../ui/Ui_mainwindow.py" line="183"/>
         <source>Export to TIkZ</source>
         <comment>Button text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="142"/>
+        <location filename="../ui/Ui_mainwindow.py" line="187"/>
         <source>&amp;Preview</source>
         <comment>Dock window title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="203"/>
+        <location filename="../ui/Ui_mainwindow.py" line="188"/>
         <source>&amp;Quit</source>
         <comment>Menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="218"/>
+        <location filename="../ui/Ui_mainwindow.py" line="191"/>
         <source>&amp;Open...</source>
         <comment>Menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="263"/>
+        <location filename="../ui/Ui_mainwindow.py" line="200"/>
         <source>&amp;New</source>
         <comment>Menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="281"/>
+        <location filename="../ui/Ui_mainwindow.py" line="204"/>
         <source>&amp;Save</source>
         <comment>Menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="296"/>
+        <location filename="../ui/Ui_mainwindow.py" line="207"/>
         <source>Sa&amp;ve As...</source>
         <comment>Menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="317"/>
+        <location filename="../ui/Ui_mainwindow.py" line="212"/>
         <source>Ctrl+M</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="209"/>
+        <location filename="../ui/Ui_mainwindow.py" line="190"/>
         <source>Ctrl+Q</source>
         <comment>Keyboard Shortcut</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="227"/>
+        <location filename="../ui/Ui_mainwindow.py" line="194"/>
         <source>Ctrl+O</source>
         <comment>Keyboard Shortcut</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="248"/>
+        <location filename="../ui/Ui_mainwindow.py" line="197"/>
         <source>Configure &amp;PyCirkuit...</source>
         <comment>Menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="254"/>
+        <location filename="../ui/Ui_mainwindow.py" line="199"/>
         <source>Ctrl+P</source>
         <comment>Keyboard Shortcut</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="272"/>
+        <location filename="../ui/Ui_mainwindow.py" line="203"/>
         <source>Ctrl+N</source>
         <comment>Keyboard Shortcut</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="287"/>
+        <location filename="../ui/Ui_mainwindow.py" line="206"/>
         <source>Ctrl+S</source>
         <comment>Keyboard Shortcut</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="302"/>
+        <location filename="../ui/Ui_mainwindow.py" line="209"/>
         <source>Ctrl+Shift+S</source>
         <comment>Keyboard Shortcut</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="472"/>
+        <location filename="../ui/mainwindow.py" line="464"/>
         <source>Enter a file to save into</source>
         <comment>Window Title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="372"/>
+        <location filename="../ui/mainwindow.py" line="364"/>
         <source>PyCirkuit files (*.ckt)</source>
         <comment>File filter text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="372"/>
+        <location filename="../ui/mainwindow.py" line="364"/>
         <source>TeX files (*.tex)</source>
         <comment>File filter text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="372"/>
+        <location filename="../ui/mainwindow.py" line="364"/>
         <source>Any files (*)</source>
         <comment>File filter text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="420"/>
+        <location filename="../ui/mainwindow.py" line="412"/>
         <source>Enter a file to save into</source>
         <comment>File Dialog title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="423"/>
+        <location filename="../ui/mainwindow.py" line="415"/>
         <source>PyCirkuit files (*.ckt)</source>
         <comment>File filter</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="478"/>
+        <location filename="../ui/mainwindow.py" line="470"/>
         <source>Any files (*)</source>
         <comment>File filter</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="236"/>
+        <location filename="../ui/Ui_mainwindow.py" line="195"/>
         <source>&amp;About PyCirkuit</source>
         <comment>Menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="370"/>
+        <location filename="../ui/mainwindow.py" line="362"/>
         <source>Source File Selection</source>
         <comment>File Dialog title</comment>
         <translation type="unfinished"></translation>
@@ -476,7 +487,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="353"/>
+        <location filename="../ui/mainwindow.py" line="345"/>
         <source>.PS
 scale=2.54
 cct_init
@@ -489,88 +500,88 @@ l=elen_
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="311"/>
+        <location filename="../ui/Ui_mainwindow.py" line="210"/>
         <source>&amp;Circuit Macros manual</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="326"/>
+        <location filename="../ui/Ui_mainwindow.py" line="213"/>
         <source>&amp;Dpic manual</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="332"/>
+        <location filename="../ui/Ui_mainwindow.py" line="215"/>
         <source>Ctrl+D</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="206"/>
+        <location filename="../ui/Ui_mainwindow.py" line="189"/>
         <source>Close application</source>
         <comment>Status Bar Message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="239"/>
+        <location filename="../ui/Ui_mainwindow.py" line="196"/>
         <source>Application information</source>
         <comment>Status Bar Message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="251"/>
+        <location filename="../ui/Ui_mainwindow.py" line="198"/>
         <source>Opens config dialog</source>
         <comment>Status Bar Message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="314"/>
+        <location filename="../ui/Ui_mainwindow.py" line="211"/>
         <source>Opens Circuit Macros manual</source>
         <comment>Status Bar Message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="329"/>
+        <location filename="../ui/Ui_mainwindow.py" line="214"/>
         <source>Opens Dpic manual</source>
         <comment>Status Bar Message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="224"/>
+        <location filename="../ui/Ui_mainwindow.py" line="193"/>
         <source>Opens an existing drawing</source>
         <comment>Status Bar Message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="269"/>
+        <location filename="../ui/Ui_mainwindow.py" line="202"/>
         <source>Creates an empty drawing</source>
         <comment>Status Bar Message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="284"/>
+        <location filename="../ui/Ui_mainwindow.py" line="205"/>
         <source>Saves drawing</source>
         <comment>Status Bar Message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.ui" line="299"/>
+        <location filename="../ui/Ui_mainwindow.py" line="208"/>
         <source>Saves drawing with new name</source>
         <comment>Status Bar Message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="372"/>
+        <location filename="../ui/mainwindow.py" line="364"/>
         <source>M4 macro files (*.m4)</source>
         <comment>File filter text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="478"/>
+        <location filename="../ui/mainwindow.py" line="470"/>
         <source>TikZ files (*.tikz)</source>
         <comment>File filter</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="478"/>
+        <location filename="../ui/mainwindow.py" line="470"/>
         <source>TeX files (*.tex)</source>
         <comment>File filter</comment>
         <translation type="unfinished"></translation>
@@ -601,19 +612,19 @@ l=elen_
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="457"/>
+        <location filename="../ui/mainwindow.py" line="449"/>
         <source>Warning</source>
         <comment>Message Box title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="460"/>
+        <location filename="../ui/mainwindow.py" line="452"/>
         <source>Do you want to overwrite it?</source>
         <comment>Message Box text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="462"/>
+        <location filename="../ui/mainwindow.py" line="454"/>
         <source>Save As...</source>
         <comment>Button text</comment>
         <translation type="unfinished"></translation>
@@ -675,13 +686,7 @@ l=elen_
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="331"/>
-        <source>You will have to search for it manually. It should be a PDF file located into {cmPath} folder or one of its subfolders.</source>
-        <comment>Message Box text. DO NOT translate &apos;{cmPath}&apos; variable.</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.py" line="346"/>
+        <location filename="../ui/mainwindow.py" line="338"/>
         <source>Error</source>
         <comment>Message Box title</comment>
         <translation type="unfinished"></translation>
@@ -693,15 +698,7 @@ l=elen_
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="330"/>
-        <source>Cannot find the &quot;Circuit Macros&quot; documentation.
-
-</source>
-        <comment>Warning message</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.py" line="459"/>
+        <location filename="../ui/mainwindow.py" line="451"/>
         <source>There&apos;s already a file named &quot;{filename}&quot; at working directory.</source>
         <comment>Message box text. Don&apos;t translate &apos;{filename}&apos;</comment>
         <translation type="unfinished"></translation>
@@ -718,7 +715,7 @@ l=elen_
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="344"/>
+        <location filename="../ui/mainwindow.py" line="336"/>
         <source>Cannot find the &quot;Dpic&quot; documentation.
 
 </source>
@@ -726,7 +723,7 @@ l=elen_
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="345"/>
+        <location filename="../ui/mainwindow.py" line="337"/>
         <source>You will have to search for it manually.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -746,25 +743,25 @@ l=elen_
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="501"/>
+        <location filename="../ui/mainwindow.py" line="493"/>
         <source>PyCirkuit - Error</source>
         <comment>Message Box title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="495"/>
+        <location filename="../ui/mainwindow.py" line="487"/>
         <source>Permission denied writing the file {filename}.</source>
         <comment>Message box text. Don&apos;t translate &apos;{filename}&apos;</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="496"/>
+        <location filename="../ui/mainwindow.py" line="488"/>
         <source>Please try to export again with another name and/or location.</source>
         <comment>Message Box text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="500"/>
+        <location filename="../ui/mainwindow.py" line="492"/>
         <source>An error has occurred trying to export the file. Please try again, perhaps with another name or location.</source>
         <comment>Message Box text</comment>
         <translation type="unfinished"></translation>
@@ -782,25 +779,25 @@ l=elen_
 <context>
     <name>StatusBar</name>
     <message>
-        <location filename="../ui/mainwindow.py" line="538"/>
+        <location filename="../ui/mainwindow.py" line="530"/>
         <source>Converting: Circuit Macros -&gt; PIC</source>
         <comment>Status Bar message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="543"/>
+        <location filename="../ui/mainwindow.py" line="535"/>
         <source>Converting: PIC -&gt; TIKZ</source>
         <comment>Status Bar message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="549"/>
+        <location filename="../ui/mainwindow.py" line="541"/>
         <source>Converting: TIKZ -&gt; PDF</source>
         <comment>Status Bar message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="554"/>
+        <location filename="../ui/mainwindow.py" line="546"/>
         <source>Converting: PDF -&gt; PNG</source>
         <comment>Status Bar message</comment>
         <translation type="unfinished"></translation>

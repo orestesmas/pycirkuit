@@ -21,7 +21,6 @@ Module implementing a CircuitMacros Manager class.
 
 # Standard library imports
 import os
-import io
 import shutil
 import tarfile
 import urllib.request as Net
@@ -29,27 +28,13 @@ import urllib.error as NetError
 
 # Third-party imports
 from PyQt5 import QtCore
+from PyQt5.QtCore import QStandardPaths
 
 # Local application imports
-from pycirkuit.exceptions import PyCirkuitError
+from pycirkuit.exceptions import *
 
 # Translation function
 _translate = QtCore.QCoreApplication.translate
-
-# Own exceptions
-class PyCktCMNotFoundError(PyCirkuitError):
-    def __init__(self, message):
-        super().__init__(message, title=_translate("CircuitMacrosManager", "Circuit Macros not found", "Exception title"))
-
-
-class PyCktCMNewVersionAvailable(PyCirkuitError):
-    def __init__(self, message):
-        super().__init__(message, title=_translate("CircuitMacrosManager", "New Circuit Macros version available!", "Exception title"))
-
-
-class PyCktCMFetchError(PyCirkuitError):
-    def __init__(self, message):
-        super().__init__(message, title=_translate("CircuitMacrosManager", "Circuit Macros not found", "Exception title"))
 
 
 class CircuitMacrosManager(QtCore.QObject):
@@ -66,6 +51,13 @@ class CircuitMacrosManager(QtCore.QObject):
         pass
 
     def check_installed(self):
+        #TODO: Should:
+        #  1) Test several places, starting with the one set up in config, but then test also standard locations
+        #  2) Two possibilities can arise:
+        #     a) There's only one place where CM are
+        #     b) They are found in two or more places
+        #  3) We can do many things: Ask user which ones to use, use the newest ones, pick up the first found...
+        #  4) Finally, as a SIDE EFFECT we can update config automatically or not.
         settings = QtCore.QSettings()
         cmPath = settings.value("General/cmPath",  "")
         return os.path.exists(os.path.join(cmPath , "libcct.m4"))
@@ -77,7 +69,7 @@ class CircuitMacrosManager(QtCore.QObject):
         origin = "http://www.ece.uwaterloo.ca/~aplevich/Circuit_macros/Circuit_macros.tar.gz"
         destination = os.path.dirname(self.default_CMPath())
         if destination == "":
-            raise PyCirkuitError(_translate("CircuitMacrosManager", "Cannot determine the standard writable location for PyCirkuit",  "Error message"))
+            raise PyCirkuitError(_translate("ExternalTool", "Cannot determine the standard writable location for PyCirkuit",  "Error message"))
         if not os.path.exists(destination):
             os.makedirs(destination)
         destination = os.path.join(destination,"Circuit_macros.tar.gz")
@@ -101,7 +93,34 @@ class CircuitMacrosManager(QtCore.QObject):
                     percent.setValue(size)
         except NetError.URLError as e:
             #FIXME: Convert to MessageBox by reraising as PyCktCMFetchError
-            print(_translate("CircuitMacrosManager", "Network error: ",  "Error message"), e)
+            print(_translate("ExternalTool", "Network error: ",  "Error message"), e)
+
+    def getManUrl(self):
+        import glob
+        import magic
+        mime = magic.Magic(mime=True)   # Prepare to detect a file's mimetype based on its contents
+        # Get standard locations for documentation in a platform-independent way
+        dirList = QStandardPaths.standardLocations(QStandardPaths.GenericDataLocation)
+        # Append specific app subdir to each possible location
+        dirList = [os.path.join(dir, "doc", "circuit_macros") for dir in dirList]
+        # Add the config-stored Circuit Macros Location to this list
+        settings = QtCore.QSettings()
+        extraPath = os.path.normpath(settings.value("General/cmPath",  ""))
+        extraPath = os.path.join(extraPath, "doc")
+        dirList.append(extraPath)
+        # Add the default Circuit Macros location to this list (can be the same as above)
+        dirList.append(os.path.join(self.default_CMPath(), "doc"))
+        # Explore the generated list searching for pdf or compressed pdf
+        for testPath in dirList:
+            # Perhaps we should search for *.pdf* or, at least, for *.pdf AND *.pdf.gz
+            candidates = glob.glob(os.path.join(testPath, "Circuit_macros.pdf"))
+            candidates.extend(glob.glob(os.path.join(testPath, "Circuit_macros.pdf.gz")))
+            for candidate in candidates:
+                mimeType = mime.from_file(candidate)
+                if (mimeType == "application/pdf") or (mimeType == "application/gzip"):
+                    return(candidate)
+        else:
+            raise PyCktCMManNotFoundError(os.path.normpath(settings.value("General/cmPath",  "")))
 
     def unpack_circuit_macros(self):
         try:
@@ -126,4 +145,4 @@ class CircuitMacrosManager(QtCore.QObject):
             if os.path.exists(dataPath):
                 shutil.rmtree(os.path.join(dataPath , "/."))
             #FIXME: Convert to MessageBox by reraising as PyCktCMFetchError
-            print(_translate("CircuitMacrosManager", "Error uncompressing the Circuit Macros: ",  "Error message"), e)
+            print(_translate("ExternalTool", "Error uncompressing the Circuit Macros: ",  "Error message"), e)

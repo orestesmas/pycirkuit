@@ -31,33 +31,10 @@ from PyQt5.QtCore import QCoreApplication
 
 # Local application imports
 import pycirkuit
-from pycirkuit.exceptions import PyCirkuitError
+from pycirkuit.exceptions import *
 
 # Translation function
 _translate = QCoreApplication.translate
-
-# Own exceptions
-class PyCktToolExecutionError(PyCirkuitError):
-    def __init__(self, message, moreInfo=""):
-        super().__init__(message, title=_translate("ExternalTool", "Tool Execution Error", "Exception title"), moreInfo=moreInfo)
-
-
-class PyCktToolNotFoundError(PyCirkuitError):
-    def __init__(self, executableName, longName):
-        errMsg = _translate("ExternalTool", "Cannot find the {toolLongName}!\n\n", "Leave untranslated the variable name inside curly braces (included)")
-        errMsg = errMsg.format(toolLongName=longName)
-        info = _translate("ExternalTool", "Please ensure that you have this application properly installed and the executable \"{toolExecutableName}\" is in the PATH.\n\n", "Leave untranslated the variable name inside curly braces (included)")
-        info += _translate("ExternalTool", "Cannot generate the preview.")
-        info = info.format(toolExecutableName=executableName)
-        super().__init__(errMsg, title=_translate("ExternalTool", "Tool Not Found", "Exception title"), moreInfo=info)
-
-
-class PyCktDocNotFoundError(PyCirkuitError):
-    def __init__(self, toolName):
-        errMsg = _translate("ExternalTool", "Cannot find the {toolName} manual!\n\n", "Leave untranslated the variable name inside curly braces (included)")
-        errMsg = errMsg.format(toolName=toolName)
-        info = _translate("ExternalTool", "Please ensure that you have this application properly installed, including the documentation, in a standard location.\n\n")
-        super().__init__(errMsg, title=_translate("ExternalTool", "File Not Found", "Exception title"), moreInfo=info)
 
 # Base class for external tools
 class ExternalTool(abc.ABC):
@@ -69,7 +46,7 @@ class ExternalTool(abc.ABC):
         if platform.system() == 'Windows':
             # Append '.exe' to the executable name we're searching
             executableName = executableName + '.exe'
-            # Also, we add an entry to the executable search path poynting to our "lib" dir
+            # Also, we add an entry to the executable search path pointing to our "lib" dir
             libDir = os.path.dirname(inspect.getfile(pycirkuit))
             libDir = os.path.join(libDir, 'lib')
             execPath.append(libDir)

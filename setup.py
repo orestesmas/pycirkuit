@@ -52,6 +52,7 @@ setup(name = 'pycirkuit',
         "Intended Audience :: End Users/Desktop",
     ],
     install_requires = [
-        'PyQt5'
+        'PyQt5',           # Debian package is python3-pyqt5
+        'python-magic'     # Debian package is python3-magic
     ],
     zip_safe = True)
