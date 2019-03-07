@@ -441,7 +441,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         settings = QtCore.QSettings()
         lastWD = settings.value("General/lastWD")
         src = "{srcFile}".format(srcFile=os.path.join(self.tmpDir .path(), "cirkuit_tmp.tikz"))
-        dst = "{dstFile}".format(dstFile=os.path.join(lastWD, self.openedFilename.rpartition('.')[0]) +".tikz")
+        dst = "{dstFile}".format(dstFile=os.path.join(lastWD, os.path.splitext(self.openedFilename)[0]) +".tikz")
         try:    
             if os.path.exists(dst):
                 msgBox = QtWidgets.QMessageBox(self)
