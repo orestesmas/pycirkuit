@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fix potential bugs on windows due to path separator ([9192eae](https://github.com/orestesmas/pycirkuit/commit/9192eae)), ([b5aa03b](https://github.com/orestesmas/pycirkuit/commit/b5aa03b)).
 - Don't be silent when trying to export into a write-protected location ([6f0f891](https://github.com/orestesmas/pycirkuit/commit/6f0f891)). Closes [#26](https://github.com/orestesmas/pycirkuit/issues/26).
 - Fix erroneous polarity in one example circuit ([0b2db1fa](https://github.com/orestesmas/pycirkuit/commit/0b2db1fa)).
+- Fix bug when exporting to TikZ circuits from files without extension ([dc4dcb4](https://github.com/orestesmas/pycirkuit/commit/dc4dcb4)).
 
 <a name="0.2.0"></a>
 ### [0.2.0](https://github.com/orestesmas/pycirkuit/compare/v0.1..v0.2.0) : (2019-02-24)
