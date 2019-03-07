@@ -49,3 +49,6 @@ class AboutDialog(QDialog, Ui_AboutDialog):
         # Try to change the variable in the text for the copyright
         s = self.textLicense.toHtml()
         self.textLicense.setHtml(s.replace('{copyrightInfo}', __copyright__, 1))
+        
+        # Start with first Tab visible
+        self.tabWidget.setCurrentIndex(0)
