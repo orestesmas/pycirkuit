@@ -19,6 +19,7 @@ along with PyCirkuit.  If not, see <https://www.gnu.org/licenses/>.
 
 from setuptools import setup, find_packages
 import pycirkuit
+import platform
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
@@ -52,7 +53,9 @@ setup(name = 'pycirkuit',
         "Intended Audience :: End Users/Desktop",
     ],
     install_requires = [
-        'PyQt5',           # Debian package is python3-pyqt5
-        'python-magic'     # Debian package is python3-magic
+        # Debian package is python3-pyqt5
+        'PyQt5',
+        # Debian package is python3-magic
+        'python-magic-bin' if platform.system() == 'Windows' else 'python-magic'
     ],
     zip_safe = True)
