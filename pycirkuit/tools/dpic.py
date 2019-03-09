@@ -48,7 +48,10 @@ class ToolDpic(ExternalTool):
         
     def getManUrl(self):
         import glob
-        import magic
+        try:
+            import magic
+        except ImportError:
+            raise PyCirkuitError(_translate("ExternalTool", "Module 'python-magic' not found. Please check that all PyCirkuit dependencies are correctly installed.",  "Error message"))
         mime = magic.Magic(mime=True)   # Prepare to detect a file's mimetype based on its contents
         # Get standard locations for documentation in a platform-independent way
         dirList = QStandardPaths.standardLocations(QStandardPaths.GenericDataLocation)
@@ -64,5 +67,9 @@ class ToolDpic(ExternalTool):
                 if (mimeType == "application/pdf") or (mimeType == "application/gzip"):
                     return(candidate)
         else:
-            raise PyCktDocNotFoundError("dpic")
+            err = PyCktDocNotFoundError("dpic")
+            # Add the list of possible locations to 'moreinfo' message's box variable
+            info = err.moreInfo + '\n'.join(dirList)
+            err.moreInfo = info
+            raise err
 

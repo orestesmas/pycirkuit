@@ -40,9 +40,9 @@ class PyCirkuitError(Exception):
 # Tool exceptions
 class PyCktDocNotFoundError(PyCirkuitError):
     def __init__(self, toolName):
-        errMsg = _translate("ExternalTool", "Cannot find the {toolName} manual!\n\n", "Leave untranslated the variable name inside curly braces (included)")
+        errMsg = _translate("ExternalTool", "Cannot find the {toolName} manual!", "Leave untranslated the variable name inside curly braces (included)")
         errMsg = errMsg.format(toolName=toolName)
-        info = _translate("ExternalTool", "Please ensure that you have this application properly installed, including the documentation, in a standard location.\n\n")
+        info = _translate("ExternalTool", "Please ensure that you have this application properly installed, with its documentation into one of these standard locations:\n\n")
         super().__init__(errMsg, title=_translate("ExternalTool", "File Not Found", "Exception title"), moreInfo=info)
 
 

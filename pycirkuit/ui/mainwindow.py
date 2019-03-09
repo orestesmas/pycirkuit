@@ -333,10 +333,14 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             dpic = ToolDpic();
             path = dpic.getManUrl()
             QtGui.QDesktopServices.openUrl(QtCore.QUrl.fromLocalFile(path))
-        except:
-            errMsg  = _translate("MessageBox", 'Cannot find the "Dpic" documentation.\n\n', "Warning message")
-            errMsg += _translate("MessageBox", "You will have to search for it manually.")
-            QtWidgets.QMessageBox.warning(self, _translate("MessageBox", "Error", "Message Box title"),  errMsg)
+        except PyCktDocNotFoundError as err:
+            msgBox = QtWidgets.QMessageBox(self)
+            msgBox.setWindowTitle(err.title)
+            msgBox.setIcon(QtWidgets.QMessageBox.Warning)
+            msgBox.setText(str(err))
+            msgBox.setInformativeText(err.moreInfo)
+            msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
+            msgBox.exec()
 
 
     @pyqtSlot()
@@ -442,7 +446,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         settings = QtCore.QSettings()
         lastWD = settings.value("General/lastWD")
         src = "{srcFile}".format(srcFile=os.path.join(self.tmpDir .path(), "cirkuit_tmp.tikz"))
-        dst = "{dstFile}".format(dstFile=os.path.join(lastWD, self.openedFilename.rpartition('.')[0]) +".tikz")
+        dst = "{dstFile}".format(dstFile=os.path.join(lastWD, os.path.splitext(self.openedFilename)[0]) +".tikz")
         try:    
             if os.path.exists(dst):
                 msgBox = QtWidgets.QMessageBox(self)

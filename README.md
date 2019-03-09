@@ -27,6 +27,7 @@ To run this application you need to have the following applications/libraries in
   * Qt5 libraries
   * Python 3, with virtual environment support
   * PyQt5 python bindings to Qt libraries (*see note below*)
+  * 'libmagic' and its Python bindings
   * (pdf)latex
   * m4
   * dpic
@@ -45,7 +46,7 @@ To install PyCirkuit in you computer, please follow this steps:
 
          sudo apt-get install texlive-latex-base texlive-latex-recommended \
          texlive-base-bin texlive-extra-utils texlive-latex-extra texlive-science texlive-pictures preview-latex-style \
-         m4 dpic poppler-utils python3-venv qtcreator
+         m4 dpic poppler-utils python3-venv python3-magic
 
      <sup>1</sup> Apparently, Debian does not have ```dpic``` packaged, but Ubuntu has (in
      the *universe* repository). If you are trying PyCirkuit in a Debian system, you'll
