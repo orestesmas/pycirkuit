@@ -108,7 +108,10 @@ class CircuitMacrosManager(QtCore.QObject):
 
     def getManUrl(self):
         import glob
-        import magic
+        try:
+            import magic
+        except ImportError:
+            raise PyCirkuitError(_translate("ExternalTool", "Module 'python-magic' not found. Please check that all PyCirkuit dependencies are correctly installed.",  "Error message"))
         mime = magic.Magic(mime=True)   # Prepare to detect a file's mimetype based on its contents
         # Get standard locations for documentation in a platform-independent way
         dirList = QStandardPaths.standardLocations(QStandardPaths.GenericDataLocation)
