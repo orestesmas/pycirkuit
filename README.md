@@ -27,6 +27,7 @@ To run this application you need to have the following applications/libraries in
   * Qt5 libraries
   * Python 3, with virtual environment support
   * PyQt5 python bindings to Qt libraries (*see note below*)
+  * Python Magic (*see note below*)
   * (pdf)latex
   * m4
   * dpic
@@ -45,7 +46,7 @@ To install PyCirkuit in you computer, please follow this steps:
 
          sudo apt-get install texlive-latex-base texlive-latex-recommended \
          texlive-base-bin texlive-extra-utils texlive-latex-extra texlive-science texlive-pictures preview-latex-style \
-         m4 dpic poppler-utils python3-venv python3-magic
+         m4 dpic poppler-utils python3-venv
 
      <sup>1</sup> Apparently, Debian does not have ```dpic``` packaged, but Ubuntu has (in
      the *universe* repository). If you are trying PyCirkuit in a Debian system, you'll
@@ -54,8 +55,8 @@ To install PyCirkuit in you computer, please follow this steps:
      [https://ece.uwaterloo.ca/~aplevich/dpic/](https://ece.uwaterloo.ca/~aplevich/dpic/)
      and follow the instructions in the README file.
 
-     There's no Debian package for the Circuit Macros, but if PyCirkuit doesn't find them at
-     startup, it will offer the user to download and install them automatically. They don't
+     If PyCirkuit doesn't find Circuit Macros at startup, it will offer
+     the user to download and install them automatically. They don't
      require building.
 
   2. In order to isolate PyCirkuit and its dependencies from other python packages on your system, it's advisable to install it into a Python's Virtual Environment. To do so, choose or create a directory somewhere and __change into it__. Do the following to create the Virtual Environment inside and activate it:
