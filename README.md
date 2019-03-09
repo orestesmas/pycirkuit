@@ -27,6 +27,7 @@ To run this application you need to have the following applications/libraries in
   * Qt5 libraries
   * Python 3, with virtual environment support
   * PyQt5 python bindings to Qt libraries (*see note below*)
+  * 'libmagic' and its Python bindings
   * (pdf)latex
   * m4
   * dpic
