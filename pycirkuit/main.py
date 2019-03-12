@@ -20,21 +20,36 @@ Main program entry point/function
 # along with PyCirkuit.  If not, see <https://www.gnu.org/licenses/>.
 #
 
+# Third-party imports
+from PyQt5.QtWidgets import QApplication
+from PyQt5.QtCore import QCoreApplication, QTranslator, QLocale,  QLibraryInfo,  QCommandLineParser
+
+# Local application imports
+from pycirkuit.ui.mainwindow import MainWindow
+from pycirkuit import __version__, __productname__
+
+# Resources for translation
+from pycirkuit.resources import resources_rc
+
+import sys
+
+# The command line parser
+def parseCmdLine(app):
+    QCoreApplication.setApplicationName(__productname__)
+    QCoreApplication.setApplicationVersion(__version__)
+    parser = QCommandLineParser()
+    parser.setApplicationDescription("""PyCirkuit is a GUI front-end for Circuit Macros by Dwight Aplevich,
+which are a set of macros for drawing high-quality line diagrams
+to include in TeX, LaTeX, web or similar documents.""")
+    parser.addHelpOption()
+    parser.addVersionOption()
+    parser.process(app)
+    
 # Main entry point
 def main():
-    # Third-party imports
-    from PyQt5.QtWidgets import QApplication
-    from PyQt5.QtCore import QCoreApplication, QTranslator, QLocale,  QLibraryInfo
-    
-    # Local application imports
-    from pycirkuit.ui.mainwindow import MainWindow
-    
-    # Resources for translation
-    from pycirkuit.resources import resources_rc
-
-    import sys
     app = QApplication(sys.argv)
-
+    parseCmdLine(app)
+  
     # First try to load the Qt-provided translations (used in some standard dialog strings)
     qtTranslator = QTranslator()
     filename = "qtbase_" + QLocale.system().name().split("_")[0]
