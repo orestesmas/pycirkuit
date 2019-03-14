@@ -236,6 +236,25 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             return False
 
 
+    def _load_file(self, fileName):
+        settings = QtCore.QSettings()
+        # Check that file is not a broken link
+        fileName = os.path.normpath(fileName)
+        if os.path.isfile(fileName):
+            lastWD, filename = os.path.split(fileName)
+            # Change system working dir to target's dir
+            os.chdir(lastWD)
+            settings.setValue("General/lastWD", lastWD)
+            settings.sync()
+            with open(filename, 'r') as f:
+                txt = f.read()
+                self.sourceText.setPlainText(txt)
+                self.openedFilename = filename
+                self.needSaving = False
+                self._modify_title()
+                self.on_processButton_clicked()
+
+        
     def _enforce_circuit_macros(self):
         cmMgr = CircuitMacrosManager(self)
         if cmMgr.check_installed():
@@ -382,23 +401,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         # Check that user didn't press 'Cancel' on the Dialog Box...
         if fitxer != "":
-            # Check that file is not a broken link
-            fitxer = os.path.normpath(fitxer)
-            if os.path.exists(fitxer):
-                lastWD, filename = os.path.split(fitxer)
-                # Change system working dir to target's dir
-                os.chdir(lastWD)
-                settings.setValue("General/lastWD", lastWD)
-                settings.sync()
-                with open(filename, 'r') as f:
-                    txt = f.read()
-                    self.sourceText.setPlainText(txt)
-                    self.openedFilename = filename
-                    self.needSaving = False
-                    self._modify_title()
-                    self.on_processButton_clicked()
-
-
+            self._load_file(fitxer)
+    
+    
     @pyqtSlot()
     def on_actionPreferences_triggered(self):
         """
