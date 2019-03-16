@@ -901,7 +901,7 @@ l=elen_
 <context>
     <name>main</name>
     <message>
-        <location filename="../main.py" line="44"/>
+        <location filename="../main.py" line="49"/>
         <source>
 PyCirkuit is a GUI front-end for Circuit Macros by Dwight Aplevich,
 which are a set of macros for drawing high-quality line diagrams
@@ -913,21 +913,21 @@ que són un conjunt de macros per dibuixar diagrames d&apos;alta qualitat
 per ser inclosos en documents TeX, LaTeX, Web o similars.</translation>
     </message>
     <message>
-        <location filename="../main.py" line="50"/>
+        <location filename="../main.py" line="55"/>
         <source>file</source>
         <comment>Commandline help text</comment>
         <translation>fitxer</translation>
     </message>
     <message>
-        <location filename="../main.py" line="50"/>
+        <location filename="../main.py" line="55"/>
         <source>Source drawing file to open</source>
         <translation>Fitxer font de dibuix a obrir</translation>
     </message>
     <message>
-        <location filename="../main.py" line="61"/>
-        <source>Fatal: File does not exist. Exiting.</source>
-        <comment>Command line error.</comment>
-        <translation>Fatal: El fitxer no existeix. S&apos;està sortint.</translation>
+        <location filename="../main.py" line="69"/>
+        <source>Fatal: File {fileToOpen} does not exist. Exiting.</source>
+        <comment>Command line error. Don&apos;t translate the {fileToOpen} variable</comment>
+        <translation>Fatal: El fitxer {fileToOpen} no existeix. S&apos;està sortint.</translation>
     </message>
 </context>
 </TS>

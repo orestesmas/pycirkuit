@@ -836,7 +836,7 @@ l=elen_
 <context>
     <name>main</name>
     <message>
-        <location filename="../main.py" line="44"/>
+        <location filename="../main.py" line="49"/>
         <source>
 PyCirkuit is a GUI front-end for Circuit Macros by Dwight Aplevich,
 which are a set of macros for drawing high-quality line diagrams
@@ -845,20 +845,20 @@ to be included in TeX, LaTeX, web or similar documents.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.py" line="50"/>
+        <location filename="../main.py" line="55"/>
         <source>file</source>
         <comment>Commandline help text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.py" line="50"/>
+        <location filename="../main.py" line="55"/>
         <source>Source drawing file to open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.py" line="61"/>
-        <source>Fatal: File does not exist. Exiting.</source>
-        <comment>Command line error.</comment>
+        <location filename="../main.py" line="69"/>
+        <source>Fatal: File {fileToOpen} does not exist. Exiting.</source>
+        <comment>Command line error. Don&apos;t translate the {fileToOpen} variable</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>

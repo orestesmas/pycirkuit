@@ -22,10 +22,16 @@ Main program entry point/function
 
 # Standard library imports
 from os.path import abspath, isfile
+import glob
 
 # Third-party imports
 from PyQt5.QtWidgets import QApplication
-from PyQt5.QtCore import QCoreApplication, QTranslator, QLocale,  QLibraryInfo,  QCommandLineParser
+from PyQt5.QtCore import QCoreApplication, \
+                                            QTranslator, \
+                                            QLocale, \
+                                            QLibraryInfo, \
+                                            QCommandLineParser, \
+                                            QCommandLineOption
 
 # Local application imports
 from pycirkuit.ui.mainwindow import MainWindow
@@ -41,24 +47,48 @@ import sys
 # The command line parser
 def parseCmdLine(app):
     parser = QCommandLineParser()
+    # Adding the '-h, --help' option
     parser.setApplicationDescription(_translate("main", """
 PyCirkuit is a GUI front-end for Circuit Macros by Dwight Aplevich,
 which are a set of macros for drawing high-quality line diagrams
 to be included in TeX, LaTeX, web or similar documents.""", "Commandline help text"))
     parser.addHelpOption()
+    # Adding the '-v --version' option
     parser.addVersionOption()
+    # Adding the '-b', '--batch' option
+    batchOption = QCommandLineOption(["b", "batch"], 
+        "Group of files / directory to process in batch (unattended) mode.", 
+        "groupFiles"
+        )
+    parser.addOption(batchOption)
+    # Allowing one positional argument -- the file to open
     parser.addPositionalArgument(
         _translate("main", "file", "Commandline help text"), 
         _translate("main", "Source drawing file to open")
     )
     parser.process(app)
+    if parser.isSet(batchOption):
+        print("Option '-b' not yet implemented. Exiting.")
+        print("But the files to be processed are:")
+        pathSpec =  parser.value(batchOption)
+        fileIterator = iter(glob.iglob(pathSpec))
+        for file in fileIterator:
+            print(file)
+        sys.exit(-1)
     args = parser.positionalArguments()
-    if (len(args) == 1):
-        p = abspath(args[0])
-        if isfile(p):
-            return p
+    N = len(args)
+    if N == 0:
+        return None
+    if N == 1:
+        fileToOpen = abspath(args[0])
+        if isfile(fileToOpen):
+            return fileToOpen
         else:
-            print(_translate("main", "Fatal: File does not exist. Exiting.",  "Command line error."))
+            message = _translate("main",
+                "Fatal: File {fileToOpen} does not exist. Exiting.", 
+                "Command line error. Don't translate the {fileToOpen} variable"
+                ).format(fileToOpen = fileToOpen)
+            print(message)
             sys.exit(-1)
     else:
         parser.showHelp(exitCode=-1)
@@ -87,9 +117,9 @@ def main():
 
     # Start GUI
     my_mainWindow = MainWindow()
+    my_mainWindow.show()
     if fileToOpen != None:
         my_mainWindow._load_file(fileToOpen)
-    my_mainWindow.show()
     sys.exit(app.exec_())
     
     
