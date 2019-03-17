@@ -6,9 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## 0.3 series [Work in progress]
 #### Added
-- Log output tab ([4251c0f](https://github.comhttps://github.com/orestesmas/pycirkuit/commit/b5aa03b/orestesmas/pycirkuit/commit/4251c0f))
+- Basic command line support ([03e6402e](https://github.com/orestesmas/pycirkuit/commit/03e6402e))
+- Log output tab ([4251c0f](https://github.com/orestesmas/pycirkuit/commit/4251c0f))
 #### Changed
 - Code refactoring, cleaning and polishing.
+#### Bug Fixes
+- Fixed inconsistency between dash (-) and underscore(_) in Circuit Macros path ([27fc7680](27fc7680)). Closes [#33](https://github.com/orestesmas/pycirkuit/issues/33).
 
 ## 0.2 series
 ### [0.2.2](https://github.com/orestesmas/pycirkuit/compare/v0.2.1..v0.2.2) : (2019-03-10) [Bugfix release]
