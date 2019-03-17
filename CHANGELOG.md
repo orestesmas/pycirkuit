@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Code refactoring, cleaning and polishing.
 
 ## 0.2 series
+### [0.2.2](https://github.com/orestesmas/pycirkuit/compare/v0.2.1..v0.2.2) : (2019-03-10) [Bugfix release]
+#### Bug fixes
+- Fixed nasty bug found just after the last release when testing the debian package: ask for an alternate location when exporting to a non-writable location ([3c57f8a1](https://github.com/orestesmas/pycirkuit/commit/3c57f8a1)). Closes [#32](https://github.com/orestesmas/pycirkuit/issues/32).
 <a name="0.2.1"></a>
 ### [0.2.1](https://github.com/orestesmas/pycirkuit/compare/v0.2.0..v0.2.1) : (2019-03-09) [Bugfix release]
 #### Bug Fixes 

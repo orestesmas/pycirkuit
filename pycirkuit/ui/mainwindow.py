@@ -107,7 +107,25 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
 
 
-
+    def _ask_export_as(self, src, dst):
+        fdlg = QtWidgets.QFileDialog(self)
+        fdlg.setWindowTitle(_translate("MainWindow", "Enter a file to save into",  "Window Title"))
+        fdlg.setDirectory(dst)
+        fdlg.setFileMode(QtWidgets.QFileDialog.AnyFile)
+        fdlg.setOptions(QtWidgets.QFileDialog.DontUseNativeDialog)
+        fdlg.setViewMode(QtWidgets.QFileDialog.Detail)
+        fdlg.setFilter(QtCore.QDir.AllDirs | QtCore.QDir.Files)
+        fdlg.setNameFilters([
+            _translate("MainWindow", "TikZ files (*.tikz)", "File filter"),
+            _translate("MainWindow", "TeX files (*.tex)", "File filter"),
+            _translate("MainWindow", "Any files (*)", "File filter")])
+        if fdlg.exec():
+            dst = fdlg.selectedFiles()[0]
+            copyfile(src, dst)
+            return True
+        fdlg.close()
+        return False
+        
     def _ask_saving(self):
         # Open MessageBox and inform user
         msgBox = QtWidgets.QMessageBox(self)
@@ -458,6 +476,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     @pyqtSlot()
     def on_exportButton_clicked(self):
         #TODO: Delegate the export itself to the ToolDpic class. Pass it only the path where the source file is
+        # FIXME: Clean export logic
         settings = QtCore.QSettings()
         lastWD = settings.value("General/lastWD")
         src = "{srcFile}".format(srcFile=os.path.join(self.tmpDir .path(), "cirkuit_tmp.tikz"))
@@ -479,37 +498,30 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     self.exportButton.setEnabled(False)
                 # Save with another name (and ask for it first)
                 if (response == QtWidgets.QMessageBox.NoButton) and (msgBox.clickedButton() == saveAsButton):
-                    fdlg = QtWidgets.QFileDialog(self)
-                    fdlg.setWindowTitle(_translate("MainWindow", "Enter a file to save into",  "Window Title"))
-                    fdlg.setDirectory(dst)
-                    fdlg.setFileMode(QtWidgets.QFileDialog.AnyFile)
-                    fdlg.setOptions(QtWidgets.QFileDialog.DontUseNativeDialog)
-                    fdlg.setViewMode(QtWidgets.QFileDialog.Detail)
-                    fdlg.setFilter(QtCore.QDir.AllDirs | QtCore.QDir.Files)
-                    fdlg.setNameFilters([
-                        _translate("MainWindow", "TikZ files (*.tikz)", "File filter"),
-                        _translate("MainWindow", "TeX files (*.tex)", "File filter"),
-                        _translate("MainWindow", "Any files (*)", "File filter")])
-                    if fdlg.exec():
-                        dst = fdlg.selectedFiles()[0]
-                    fdlg.close()
-                    copyfile(src, dst)
-                    self.exportButton.setEnabled(False)
+                    if self._ask_export_as(src, dst):
+                        self.exportButton.setEnabled(False)
                 # Any other option means user doesn't want to overwrite the file -> Exit
             else:
                 copyfile(src, dst)
                 self.exportButton.setEnabled(False)
-        except PermissionError as e:
+        except PermissionError as err:
             msgBox = QtWidgets.QMessageBox(self)
             msgBox.setWindowTitle(_translate("MessageBox", "PyCirkuit - Error",  "Message Box title"))
             msgBox.setIcon(QtWidgets.QMessageBox.Critical)
-            msgBox.setText(_translate("MessageBox", "Permission denied writing the file {filename}.", "Message box text. Don't translate '{filename}'").format(filename=e.filename))
+            msgBox.setText(_translate("MessageBox", "Permission denied writing the file {filename}.", "Message box text. Don't translate '{filename}'").format(filename=err.filename))
             msgBox.setInformativeText(_translate("MessageBox", "Please try to export again with another name and/or location.",  "Message Box text"))
             msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
             response = msgBox.exec()
+            if self._ask_export_as(src, dst):
+                self.exportButton.setEnabled(False)
         except OSError:
-            msg = _translate("MessageBox", "An error has occurred trying to export the file. Please try again, perhaps with another name or location.", "Message Box text")
-            QtWidgets.QMessageBox.critical(self, _translate("MessageBox", "PyCirkuit - Error",  "Message Box title"), msg)
+            msgBox = QtWidgets.QMessageBox(self)
+            msgBox.setWindowTitle(_translate("MessageBox", "PyCirkuit - Error",  "Message Box title"))
+            msgBox.setIcon(QtWidgets.QMessageBox.Critical)
+            msgBox.setText(_translate("MessageBox", "An error has occurred trying to export the file. The error says:", "Message Box text"))
+            msgBox.setInformativeText(err.strerror)
+            msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
+            response = msgBox.exec()
 
 
     @pyqtSlot()
