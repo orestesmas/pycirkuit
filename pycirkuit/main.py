@@ -66,7 +66,9 @@ to be included in TeX, LaTeX, web or similar documents.""", "Commandline help te
         _translate("main", "file", "Commandline help text"), 
         _translate("main", "Source drawing file to open")
     )
+    # Process the command line options
     parser.process(app)
+    # Act upon given arguments
     if parser.isSet(batchOption):
         print("Option '-b' not yet implemented. Exiting.")
         print("But the files to be processed are:")
@@ -75,22 +77,15 @@ to be included in TeX, LaTeX, web or similar documents.""", "Commandline help te
         for file in fileIterator:
             print(file)
         sys.exit(-1)
+    # Finished test for options. Now test for a filename passed as parameter, or none
     args = parser.positionalArguments()
     N = len(args)
     if N == 0:
         return None
     if N == 1:
-        fileToOpen = abspath(args[0])
-        if isfile(fileToOpen):
-            return fileToOpen
-        else:
-            message = _translate("main",
-                "Fatal: File {fileToOpen} does not exist. Exiting.", 
-                "Command line error. Don't translate the {fileToOpen} variable"
-                ).format(fileToOpen = fileToOpen)
-            print(message)
-            sys.exit(-1)
+        return abspath(args[0])
     else:
+        # More than one argument is an error. Display help and exit.
         parser.showHelp(exitCode=-1)
     
 # Main entry point
@@ -119,7 +114,10 @@ def main():
     my_mainWindow = MainWindow()
     my_mainWindow.show()
     if fileToOpen != None:
-        my_mainWindow._load_file(fileToOpen)
+        if isfile(fileToOpen):
+            my_mainWindow._load_file(fileToOpen)
+        else:
+            my_mainWindow.on_actionNew_triggered(fileToOpen)
     sys.exit(app.exec_())
     
     

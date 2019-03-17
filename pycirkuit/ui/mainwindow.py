@@ -363,13 +363,23 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
 
     @pyqtSlot()
-    def on_actionNew_triggered(self):
+    def on_actionNew_triggered(self, newName=None):
         if self.needSaving:
             self._ask_saving()
         txt = _translate("MainWindow", ".PS\nscale=2.54\ncct_init\n\nl=elen_\n# Enter your drawing code here\n.PE\n",  "Template text. Translate ONLY the commented out text (line starting with '#')")
         self.sourceText.setText(txt)
-        self.openedFilename = self._translatedUnnamed
-        self.needSaving = False
+        if newName == None:
+            self.openedFilename = self._translatedUnnamed
+            self.needSaving = False
+        else:
+            settings = QtCore.QSettings()
+            lastWD, filename = os.path.split(newName)
+            # Change system working dir to target's dir
+            os.chdir(lastWD)
+            settings.setValue("General/lastWD", lastWD)
+            settings.sync()
+            self.openedFilename = filename
+            self.needSaving = True
         self._modify_title()
 
 

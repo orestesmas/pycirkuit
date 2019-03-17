@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-6.3.dtd">
 <!-- eric project file for project pycirkuit -->
-<!-- Saved: 2019-03-01, 13:29:53 -->
+<!-- Saved: 2019-03-17, 14:16:11 -->
 <!-- Copyright (C) 2019 Orestes Mas, orestes@tsc.upc.edu -->
 <Project version="6.3">
   <Language>en_US</Language>
   <Hash>64db83c4bf9c09d559b81ce72e1ee7897cee2a80</Hash>
   <ProgLanguage mixed="0">Python3</ProgLanguage>
   <ProjectType>PyQt5</ProjectType>
-  <Version>0.1</Version>
+  <Version>0.2.2</Version>
   <Author>Orestes Mas</Author>
   <Email>orestes@tsc.upc.edu</Email>
   <Eol index="0"/>
