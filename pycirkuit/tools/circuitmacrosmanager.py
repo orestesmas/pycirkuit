@@ -153,7 +153,7 @@ class CircuitMacrosManager(QtCore.QObject):
                 tarFile.extractall(path=dataPath)
             os.remove(tarName)
             settings = QtCore.QSettings()
-            settings.setValue("General/cmPath", join(dataPath , 'circuit_macros'))
+            settings.setValue("General/cmPath", join(dataPath , 'circuit-macros'))
             settings.sync()
         except tarfile.TarError as e:
             if exists(dataPath):
