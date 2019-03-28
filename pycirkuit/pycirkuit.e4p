@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-6.3.dtd">
 <!-- eric project file for project pycirkuit -->
-<!-- Saved: 2019-03-28, 22:43:57 -->
+<!-- Saved: 2019-03-29, 00:40:21 -->
 <!-- Copyright (C) 2019 Orestes Mas, orestes@tsc.upc.edu -->
 <Project version="6.3">
   <Language>en_US</Language>
@@ -18,7 +18,7 @@
     <Source>highlighter.py</Source>
     <Source>imageviewer.py</Source>
     <Source>main.py</Source>
-    <Source>previewwidget.py</Source>
+    <Source>previewimage.py</Source>
     <Source>resources/resources_rc.py</Source>
     <Source>texteditor.py</Source>
     <Source>tools/__init__.py</Source>
