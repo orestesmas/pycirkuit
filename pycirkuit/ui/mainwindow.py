@@ -36,7 +36,7 @@ from pycirkuit.ui.configdialog import ConfigDialog
 from pycirkuit.ui.aboutdialog import AboutDialog
 from pycirkuit.tools.circuitmacrosmanager import CircuitMacrosManager
 from pycirkuit.highlighter import PyCirkuitHighlighter
-from pycirkuit.previewwidget import pycktPreviewWidget
+#from pycirkuit.previewimage import pycktPreviewImage
 from pycirkuit.exceptions import *
 from pycirkuit.tools.m4 import ToolM4
 from pycirkuit.tools.dpic import ToolDpic
@@ -600,7 +600,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.sbProgressBar.setValue(4)
 
         except PyCktToolExecutionError as err:
-            self.previewWidget.setText(_translate("MainWindow", "Error!", "Fallback text to be displayed when the image cannot be generated"))
+            self.previewImage.setText(_translate("MainWindow", "Error!", "Fallback text to be displayed when the image cannot be generated"))
             self.outputText.appendPlainText(err.moreInfo)
             if err.tool == ToolPdfLaTeX:
                 with open(tmpFileBaseName+'.log', 'rt') as f:
@@ -617,7 +617,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             msgBox.exec()
         else:
             image = QtGui.QPixmap("{baseName}.png".format(baseName=tmpFileBaseName))
-            self.previewWidget.setPixmap(image)
+            self.previewImage.setPixmap(image)
             # If all went well and we have a generated image, we can 
             self.processButton.setEnabled(False)
             self.exportButton.setEnabled(True)

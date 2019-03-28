@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Module implementing pycktPreviewWidget
+Module implementing pycktPreviewImage
 """
 # Copyright (C) 2018 Orestes Mas
 # This file is part of PyCirkuit.
@@ -21,21 +21,19 @@ Module implementing pycktPreviewWidget
 
 # Standard library imports
 
-
 # Third-party imports
 from PyQt5.QtCore import QCoreApplication, Qt
-from PyQt5.QtWidgets import QGraphicsScene, QGraphicsView, QDockWidget, QHBoxLayout
+from PyQt5.QtWidgets import QGraphicsScene, QGraphicsView, QGraphicsPixmapItem
 from PyQt5.QtGui import QPixmap, QTransform
 
 # Translation function
 _translate = QCoreApplication.translate
 
-class pycktPreviewWidget(QDockWidget):
+class pycktPreviewImage(QGraphicsView):
     """
     Class documentation goes here.
     """
-    __presentZoomFactor = 1
-    
+
     def __init__(self, parent=None):
         """
         Constructor
@@ -49,29 +47,35 @@ class pycktPreviewWidget(QDockWidget):
         # First the scene...
         self.scene = QGraphicsScene(self)
         # Then the pixmap (initially empty)...
-        self.image = QPixmap()
-        self.scene.addPixmap(self.image)
-        # Then the graphics view. First, though, we have to lay out it
-        x = self.widget()
-        layout = QHBoxLayout(self.widget())
-        layout.setContentsMargins(0, 0, 0, 0)
-        layout.setObjectName("horizontalLayout_2")
-        self.preview = QGraphicsView(self.widget())
-        self.preview.setObjectName("preview")
-        self.preview.setScene(self.scene)
-        layout.addWidget(self.preview)
+        self.image = self.scene.addPixmap(QPixmap())
+        # Then the graphics view (ourselves)
+        self.setScene(self.scene)
         
+        # Class properties initialization
+        self.__presentZoomFactor = 1
+    
+    def _clear_items(self):
+        for item in self.scene.items():
+            self.scene.removeItem(item)
+
+    def _adjust_view(self):
+        r = self.scene.itemsBoundingRect()
+        print("Scene rect: {}".format(r))
+        s = self.Image.pixmap().rect()
+        print("Pixmap rect: {}".format(s))
+        self.resize(s.width(), s.height())
+        self.fitInView(self.scene.itemsBoundingRect(), Qt.KeepAspectRatio)
+        self.resetTransform()
+
     def setPixmap(self, newPixmap):
-        self.scene.addPixmap(newPixmap)
-        self.preview.resetTransform()
-        return
-        if self.image.isNull():
-            self.image = QPixmap(newPixmap)
-        else:
-            self.image.swap(newPixmap)
-        
+        self._clear_items()
+        self.Image = self.scene.addPixmap(newPixmap)
+        self._adjust_view()
+
     def setText(self, newText):
-        pass
+        self._clear_items()
+        self.scene.addText(newText)
+        self._adjust_view()
 
     def wheelEvent(self,event):
         if (event.modifiers()==Qt.ControlModifier):
@@ -80,6 +84,6 @@ class pycktPreviewWidget(QDockWidget):
             self.__presentZoomFactor += (numSteps.y() / 10)
             scaling = QTransform()
             scaling.scale(self.__presentZoomFactor, self.__presentZoomFactor)
-            self.preview.setTransform(scaling)
+            self.setTransform(scaling)
         else:
             super().wheelEvent(event)

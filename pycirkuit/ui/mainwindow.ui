@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>717</width>
-    <height>675</height>
+    <width>677</width>
+    <height>667</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -130,8 +130,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>717</width>
-     <height>36</height>
+     <width>677</width>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -165,7 +165,7 @@
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
-  <widget class="pycktPreviewWidget" name="previewWidget">
+  <widget class="QDockWidget" name="previewWidget">
    <property name="sizePolicy">
     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
      <horstretch>1</horstretch>
@@ -175,7 +175,7 @@
    <property name="minimumSize">
     <size>
      <width>96</width>
-     <height>100</height>
+     <height>110</height>
     </size>
    </property>
    <property name="windowIcon">
@@ -195,6 +195,27 @@
       <verstretch>0</verstretch>
      </sizepolicy>
     </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="pycktPreviewImage" name="previewImage">
+       <property name="acceptDrops">
+        <bool>false</bool>
+       </property>
+       <property name="sizeAdjustPolicy">
+        <enum>QAbstractScrollArea::AdjustIgnored</enum>
+       </property>
+       <property name="dragMode">
+        <enum>QGraphicsView::ScrollHandDrag</enum>
+       </property>
+       <property name="viewportUpdateMode">
+        <enum>QGraphicsView::FullViewportUpdate</enum>
+       </property>
+       <property name="rubberBandSelectionMode">
+        <enum>Qt::IntersectsItemShape</enum>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <action name="actionQuit">
@@ -343,10 +364,9 @@
    <header>pycirkuit/texteditor.h</header>
   </customwidget>
   <customwidget>
-   <class>pycktPreviewWidget</class>
-   <extends>QDockWidget</extends>
-   <header>pycirkuit/previewwidget.h</header>
-   <container>1</container>
+   <class>pycktPreviewImage</class>
+   <extends>QGraphicsView</extends>
+   <header>pycirkuit/previewimage.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

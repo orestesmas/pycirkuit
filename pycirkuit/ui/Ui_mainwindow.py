@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/orestes/Devel/Software/pycirkuit/pycirkuit/ui/mainwindow.ui'
 #
-# Created by: PyQt5 UI code generator 5.7
+# Created by: PyQt5 UI code generator 5.11.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -11,7 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(717, 675)
+        MainWindow.resize(677, 667)
         MainWindow.setMinimumSize(QtCore.QSize(440, 400))
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/icons/AppIcon"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -28,7 +28,6 @@ class Ui_MainWindow(object):
         self.tab_source = QtWidgets.QWidget()
         self.tab_source.setObjectName("tab_source")
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.tab_source)
-        self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.sourceText = pycktTextEditor(self.tab_source)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
@@ -44,7 +43,6 @@ class Ui_MainWindow(object):
         self.tab_log = QtWidgets.QWidget()
         self.tab_log.setObjectName("tab_log")
         self.horizontalLayout_4 = QtWidgets.QHBoxLayout(self.tab_log)
-        self.horizontalLayout_4.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
         self.outputText = QtWidgets.QPlainTextEdit(self.tab_log)
         font = QtGui.QFont()
@@ -79,7 +77,7 @@ class Ui_MainWindow(object):
         self.verticalLayout.addLayout(self.horizontalLayout)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menuBar = QtWidgets.QMenuBar(MainWindow)
-        self.menuBar.setGeometry(QtCore.QRect(0, 0, 717, 36))
+        self.menuBar.setGeometry(QtCore.QRect(0, 0, 677, 25))
         self.menuBar.setObjectName("menuBar")
         self.menuFile = QtWidgets.QMenu(self.menuBar)
         self.menuFile.setObjectName("menuFile")
@@ -91,13 +89,13 @@ class Ui_MainWindow(object):
         self.statusBar = QtWidgets.QStatusBar(MainWindow)
         self.statusBar.setObjectName("statusBar")
         MainWindow.setStatusBar(self.statusBar)
-        self.previewWidget = pycktPreviewWidget(MainWindow)
+        self.previewWidget = QtWidgets.QDockWidget(MainWindow)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(1)
         sizePolicy.setVerticalStretch(1)
         sizePolicy.setHeightForWidth(self.previewWidget.sizePolicy().hasHeightForWidth())
         self.previewWidget.setSizePolicy(sizePolicy)
-        self.previewWidget.setMinimumSize(QtCore.QSize(96, 100))
+        self.previewWidget.setMinimumSize(QtCore.QSize(96, 110))
         icon5 = QtGui.QIcon()
         icon5.addPixmap(QtGui.QPixmap(":/icons/view-preview.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.previewWidget.setWindowIcon(icon5)
@@ -109,6 +107,15 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.dockWidgetContents.sizePolicy().hasHeightForWidth())
         self.dockWidgetContents.setSizePolicy(sizePolicy)
         self.dockWidgetContents.setObjectName("dockWidgetContents")
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.dockWidgetContents)
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.previewImage = pycktPreviewImage(self.dockWidgetContents)
+        self.previewImage.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
+        self.previewImage.setDragMode(QtWidgets.QGraphicsView.ScrollHandDrag)
+        self.previewImage.setViewportUpdateMode(QtWidgets.QGraphicsView.FullViewportUpdate)
+        self.previewImage.setRubberBandSelectionMode(QtCore.Qt.IntersectsItemShape)
+        self.previewImage.setObjectName("previewImage")
+        self.horizontalLayout_2.addWidget(self.previewImage)
         self.previewWidget.setWidget(self.dockWidgetContents)
         MainWindow.addDockWidget(QtCore.Qt.DockWidgetArea(4), self.previewWidget)
         self.actionQuit = QtWidgets.QAction(MainWindow)
@@ -217,7 +224,7 @@ class Ui_MainWindow(object):
         self.actionDpicMan.setStatusTip(_translate("MainWindow", "Opens Dpic manual", "Status Bar Message"))
         self.actionDpicMan.setShortcut(_translate("MainWindow", "Ctrl+D"))
 
-from pycirkuit.previewwidget import pycktPreviewWidget
+from pycirkuit.previewimage import pycktPreviewImage
 from pycirkuit.texteditor import pycktTextEditor
 from pycirkuit.resources import resources_rc
 
