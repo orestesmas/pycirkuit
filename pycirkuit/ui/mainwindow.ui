@@ -131,7 +131,7 @@
      <x>0</x>
      <y>0</y>
      <width>677</width>
-     <height>25</height>
+     <height>34</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -174,8 +174,8 @@
    </property>
    <property name="minimumSize">
     <size>
-     <width>96</width>
-     <height>110</height>
+     <width>100</width>
+     <height>130</height>
     </size>
    </property>
    <property name="windowIcon">
@@ -197,12 +197,15 @@
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
-      <widget class="pycktPreviewImage" name="previewImage">
+      <widget class="pycktImageViewer" name="imageViewer">
        <property name="acceptDrops">
         <bool>false</bool>
        </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
+       </property>
        <property name="sizeAdjustPolicy">
-        <enum>QAbstractScrollArea::AdjustIgnored</enum>
+        <enum>QAbstractScrollArea::AdjustToContents</enum>
        </property>
        <property name="dragMode">
         <enum>QGraphicsView::ScrollHandDrag</enum>
@@ -364,9 +367,9 @@
    <header>pycirkuit/texteditor.h</header>
   </customwidget>
   <customwidget>
-   <class>pycktPreviewImage</class>
+   <class>pycktImageViewer</class>
    <extends>QGraphicsView</extends>
-   <header>pycirkuit/previewimage.h</header>
+   <header>pycirkuit/imageviewer.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>
