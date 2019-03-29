@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/orestes/Devel/Software/pycirkuit/pycirkuit/ui/mainwindow.ui'
 #
-# Created by: PyQt5 UI code generator 5.11.3
+# Created by: PyQt5 UI code generator 5.11.2
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -77,7 +77,7 @@ class Ui_MainWindow(object):
         self.verticalLayout.addLayout(self.horizontalLayout)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menuBar = QtWidgets.QMenuBar(MainWindow)
-        self.menuBar.setGeometry(QtCore.QRect(0, 0, 677, 25))
+        self.menuBar.setGeometry(QtCore.QRect(0, 0, 677, 34))
         self.menuBar.setObjectName("menuBar")
         self.menuFile = QtWidgets.QMenu(self.menuBar)
         self.menuFile.setObjectName("menuFile")
@@ -95,7 +95,7 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(1)
         sizePolicy.setHeightForWidth(self.previewWidget.sizePolicy().hasHeightForWidth())
         self.previewWidget.setSizePolicy(sizePolicy)
-        self.previewWidget.setMinimumSize(QtCore.QSize(96, 110))
+        self.previewWidget.setMinimumSize(QtCore.QSize(100, 130))
         icon5 = QtGui.QIcon()
         icon5.addPixmap(QtGui.QPixmap(":/icons/view-preview.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.previewWidget.setWindowIcon(icon5)
@@ -109,13 +109,15 @@ class Ui_MainWindow(object):
         self.dockWidgetContents.setObjectName("dockWidgetContents")
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.dockWidgetContents)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.previewImage = pycktPreviewImage(self.dockWidgetContents)
-        self.previewImage.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
-        self.previewImage.setDragMode(QtWidgets.QGraphicsView.ScrollHandDrag)
-        self.previewImage.setViewportUpdateMode(QtWidgets.QGraphicsView.FullViewportUpdate)
-        self.previewImage.setRubberBandSelectionMode(QtCore.Qt.IntersectsItemShape)
-        self.previewImage.setObjectName("previewImage")
-        self.horizontalLayout_2.addWidget(self.previewImage)
+        self.imageViewer = pycktImageViewer(self.dockWidgetContents)
+        self.imageViewer.setAcceptDrops(False)
+        self.imageViewer.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.imageViewer.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
+        self.imageViewer.setDragMode(QtWidgets.QGraphicsView.ScrollHandDrag)
+        self.imageViewer.setViewportUpdateMode(QtWidgets.QGraphicsView.FullViewportUpdate)
+        self.imageViewer.setRubberBandSelectionMode(QtCore.Qt.IntersectsItemShape)
+        self.imageViewer.setObjectName("imageViewer")
+        self.horizontalLayout_2.addWidget(self.imageViewer)
         self.previewWidget.setWidget(self.dockWidgetContents)
         MainWindow.addDockWidget(QtCore.Qt.DockWidgetArea(4), self.previewWidget)
         self.actionQuit = QtWidgets.QAction(MainWindow)
@@ -224,7 +226,7 @@ class Ui_MainWindow(object):
         self.actionDpicMan.setStatusTip(_translate("MainWindow", "Opens Dpic manual", "Status Bar Message"))
         self.actionDpicMan.setShortcut(_translate("MainWindow", "Ctrl+D"))
 
-from pycirkuit.previewimage import pycktPreviewImage
+from pycirkuit.imageviewer import pycktImageViewer
 from pycirkuit.texteditor import pycktTextEditor
 from pycirkuit.resources import resources_rc
 

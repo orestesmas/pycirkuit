@@ -21,16 +21,19 @@ Module implementing pycktImageViewer
 
 # Standard library imports
 
-
 # Third-party imports
-from PyQt5.QtWidgets import QScrollArea
+from PyQt5.QtCore import QCoreApplication, Qt
+from PyQt5.QtWidgets import QGraphicsScene, QGraphicsView
+from PyQt5.QtGui import QPixmap, QTransform, QFont
 
+# Translation function
+_translate = QCoreApplication.translate
 
-
-class pycktImageViewer(QScrollArea):
+class pycktImageViewer(QGraphicsView):
     """
     Class documentation goes here.
     """
+
     def __init__(self, parent=None):
         """
         Constructor
@@ -39,3 +42,45 @@ class pycktImageViewer(QScrollArea):
         @type QWidget
         """
         super().__init__(parent)
+        
+        # Initialize the graphics Scene-View pair with an empty pixmap
+        # First the scene...
+        self.scene = QGraphicsScene(self)
+        # Then the pixmap (initially empty)...
+        self.image = self.scene.addPixmap(QPixmap())
+        # Then the graphics view (ourselves)
+        self.setScene(self.scene)
+        
+        # Class properties initialization
+        self.__presentZoomFactor = 1
+    
+    def _clear_items(self):
+        for item in self.scene.items():
+            self.scene.removeItem(item)
+
+    def _adjust_view(self):
+        self.scene.setSceneRect(self.scene.itemsBoundingRect())
+        self.resetTransform()
+
+    def setPixmap(self, newPixmap):
+        self._clear_items()
+        self.Image = self.scene.addPixmap(newPixmap)
+        self._adjust_view()
+
+    def setText(self, newText):
+        self._clear_items()
+        font = QFont()
+        font.setPointSize(22)
+        self.scene.addText(newText, font)
+        self._adjust_view()
+
+    def wheelEvent(self,event):
+        if (event.modifiers()==Qt.ControlModifier):
+            event.accept()
+            numSteps = event.angleDelta() / 120
+            self.__presentZoomFactor += (numSteps.y() / 10)
+            scaling = QTransform()
+            scaling.scale(self.__presentZoomFactor, self.__presentZoomFactor)
+            self.setTransform(scaling)
+        else:
+            super().wheelEvent(event)
