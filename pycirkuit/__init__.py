@@ -34,3 +34,6 @@ __bigcopyright__  = """{__productname__} {__version__}
 {__license_long__}""".format(**locals())
 __homepage__      = "https://github.com/orestesmas/pycirkuit"
 
+# The temporary working dir should be globally addressed through the entire application
+__tmpDir__ = None
+

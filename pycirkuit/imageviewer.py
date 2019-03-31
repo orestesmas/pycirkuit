@@ -20,11 +20,16 @@ Module implementing pycktImageViewer
 #
 
 # Standard library imports
+import os
 
 # Third-party imports
 from PyQt5.QtCore import QCoreApplication, Qt
 from PyQt5.QtWidgets import QGraphicsScene, QGraphicsView
-from PyQt5.QtGui import QPixmap, QTransform, QFont
+from PyQt5.QtGui import QPixmap, QFont
+
+# Local application imports
+import pycirkuit
+from pycirkuit.tools.pdftopng import ToolPdfToPng
 
 # Translation function
 _translate = QCoreApplication.translate
@@ -45,42 +50,68 @@ class pycktImageViewer(QGraphicsView):
         
         # Initialize the graphics Scene-View pair with an empty pixmap
         # First the scene...
-        self.scene = QGraphicsScene(self)
+        self.__scene = QGraphicsScene(self)
+        # Initial image does not correspond to any file
+        self.__fileBaseName = None
         # Then the pixmap (initially empty)...
-        self.image = self.scene.addPixmap(QPixmap())
+        self.__image = self.__scene.addPixmap(QPixmap())
         # Then the graphics view (ourselves)
-        self.setScene(self.scene)
+        self.setScene(self.__scene)
         
         # Class properties initialization
-        self.__presentZoomFactor = 1
+        self.__wheelSteps = 0
     
-    def _clear_items(self):
-        for item in self.scene.items():
-            self.scene.removeItem(item)
-
     def _adjust_view(self):
-        self.scene.setSceneRect(self.scene.itemsBoundingRect())
+        self.__scene.setSceneRect(self.__scene.itemsBoundingRect())
         self.resetTransform()
 
-    def setPixmap(self, newPixmap):
+    def _clear_items(self):
+        for item in self.__scene.items():
+            self.__scene.removeItem(item)
+
+    def _qBound(self, minVal, current, maxVal):
+        """PyQt5 does not wrap the qBound function from Qt's global namespace
+           This is equivalent."""
+        return max(min(current, maxVal), minVal)
+
+    def setImage(self, fileBaseName):
         self._clear_items()
-        self.Image = self.scene.addPixmap(newPixmap)
-        self._adjust_view()
+        try:
+            newPixmap = QPixmap("{baseName}.png".format(baseName=fileBaseName))
+        except Exception as err:
+            print(err)
+        else:
+            self.__fileBaseName = fileBaseName
+            self.__image = self.__scene.addPixmap(newPixmap)
+            self._adjust_view()
 
     def setText(self, newText):
         self._clear_items()
         font = QFont()
         font.setPointSize(22)
-        self.scene.addText(newText, font)
+        self.__scene.addText(newText, font)
         self._adjust_view()
 
     def wheelEvent(self,event):
-        if (event.modifiers()==Qt.ControlModifier):
+        if (self.__fileBaseName != None) and (event.modifiers()==Qt.ControlModifier):
             event.accept()
-            numSteps = event.angleDelta() / 120
-            self.__presentZoomFactor += (numSteps.y() / 10)
-            scaling = QTransform()
-            scaling.scale(self.__presentZoomFactor, self.__presentZoomFactor)
-            self.setTransform(scaling)
+            # Set working dir
+            saveWD = os.getcwd()
+            os.chdir(pycirkuit.__tmpDir__.path())
+            # Accumulated mouse wheel steps
+            self.__wheelSteps = self._qBound(-10, self.__wheelSteps + event.angleDelta().y() / 120,  10)
+            zoomFactor = 1 + round(self.__wheelSteps/10, 1)
+            res = int(round(150 * zoomFactor, 0))
+            try:
+                converter = ToolPdfToPng()
+                converter.execute(self.__fileBaseName, resolution=res)
+                self.setImage(self.__fileBaseName)
+            except:
+                pass
+#            scaling = QTransform()
+#            scaling.scale(zoomFactor, zoomFactor)
+#            self.setTransform(scaling)
+            finally:
+                os.chdir(saveWD)
         else:
-            super().wheelEvent(event)
+            event.ignore()
