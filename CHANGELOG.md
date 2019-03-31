@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## 0.3 series [Work in progress]
 #### Added
+- Zoomable graphics with no quality loss ()
 - Basic command line support ([03e6402e](https://github.com/orestesmas/pycirkuit/commit/03e6402e))
 - Log output tab ([4251c0f](https://github.com/orestesmas/pycirkuit/commit/4251c0f))
 #### Changed

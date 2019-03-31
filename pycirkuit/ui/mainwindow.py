@@ -42,6 +42,7 @@ from pycirkuit.tools.m4 import ToolM4
 from pycirkuit.tools.dpic import ToolDpic
 from pycirkuit.tools.pdflatex import ToolPdfLaTeX
 from pycirkuit.tools.pdftopng import ToolPdfToPng
+import pycirkuit
 
 # Translation function
 _translate = QCoreApplication.translate
@@ -79,7 +80,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # do such connections AUTOMATICALLY (so connecting them manually triggers slots twice)
 
         # Set up a temporary directory to save intermediate files
-        self.tmpDir = QtCore.QTemporaryDir()
+        pycirkuit.__tmpDir__ = QtCore.QTemporaryDir()
 
         # Set up the editor
         font = QtGui.QFont()
@@ -106,8 +107,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # We're quitting constructor
         self.insideConstructor = False
 
-
-
     def _ask_export_as(self, src, dst):
         fdlg = QtWidgets.QFileDialog(self)
         fdlg.setWindowTitle(_translate("MainWindow", "Enter a file to save into",  "Window Title"))
@@ -126,7 +125,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             return True
         fdlg.close()
         return False
-        
+
+
     def _ask_saving(self):
         # Open MessageBox and inform user
         msgBox = QtWidgets.QMessageBox(self)
@@ -338,7 +338,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def closeEvent(self,  event):
         if self.needSaving:
             self._ask_saving()
-        self.tmpDir.remove()
+        pycirkuit.__tmpDir__.remove()
         super().closeEvent(event)
 
 
@@ -480,7 +480,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # FIXME: Clean export logic
         settings = QtCore.QSettings()
         lastWD = settings.value("General/lastWD")
-        src = "{srcFile}".format(srcFile=os.path.join(self.tmpDir .path(), "cirkuit_tmp.tikz"))
+        src = "{srcFile}".format(srcFile=os.path.join(pycirkuit.__tmpDir__.path(), "cirkuit_tmp.tikz"))
         dst = "{dstFile}".format(dstFile=os.path.join(lastWD, os.path.splitext(self.openedFilename)[0]) +".tikz")
         try:    
             if os.path.exists(dst):
@@ -547,7 +547,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
             # STEP1 : Save current WD and set a new one
             savedWD = os.getcwd()
-            os.chdir(self.tmpDir.path())
+            os.chdir(pycirkuit.__tmpDir__.path())
             
             # STEP 2: Establish a temporary file base name to store intermediate results
             tmpFileBaseName = "cirkuit_tmp"
@@ -616,8 +616,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             msgBox.setDefaultButton(QtWidgets.QMessageBox.Ok)
             msgBox.exec()
         else:
-            image = QtGui.QPixmap("{baseName}.png".format(baseName=tmpFileBaseName))
-            self.imageViewer.setPixmap(image)
+            self.imageViewer.setImage(tmpFileBaseName)
             # If all went well and we have a generated image, we can 
             self.processButton.setEnabled(False)
             self.exportButton.setEnabled(True)

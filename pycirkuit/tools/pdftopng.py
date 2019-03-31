@@ -35,11 +35,11 @@ class ToolPdfToPng(ExternalTool):
     def __init__(self):
         super().__init__("pdftoppm", _translate("ExternalTool", "PDF to PNG image converter", "Tool Long Name"))
         
-    def execute(self, baseName):
+    def execute(self, baseName, resolution=150):
         # Calculate src and dst names
         src = baseName + '.pdf'
         dst = baseName + '.png'
         # Instantiate a settings object to load config values. At this point the config have valid entries, so don't test much
-        command = [self.executableName, "-png", "{source}".format(source=src)]
+        command = [self.executableName, "-png", "-r", "{ppp}".format(ppp=resolution), "{source}".format(source=src)]
         errMsg = _translate("ExternalTool", "PDFTOPPM: Error converting PDF -> PNG", "Error message")
         super().execute(command, errMsg, destination=dst)
