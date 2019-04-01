@@ -240,40 +240,34 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 if "%%SOURCE%%" in templateCode:
                     return True
                 else:
-                    #TODO: Recode using dynamic methods and "InformativeText"
                     errMsg  = _translate("MessageBox", "The specified LaTeX template seems invalid!\n\n", "Error message")
                     errMsg += _translate("MessageBox", "Please indicate a correct one in the Settings.\n\n", "Error message")
                     errMsg += _translate("MessageBox", "Cannot generate the preview.", "Error message")
-                    QtWidgets.QMessageBox.critical(self, _translate("MessageBox", "Critical Error", "Message Box title"),  errMsg)
+                    error = PyCirkuitError(errMsg)
+                    self._display_error(error)
                     return False
         else:
-            #TODO: Recode using dynamic methods and "InformativeText"
             errMsg  = _translate("MessageBox", "The LaTeX template has not been found!\n\n", "Error message")
             errMsg += _translate("MessageBox", "Please indicate its correct PATH in the Settings.\n\n", "Error message")
             errMsg += _translate("MessageBox", "Cannot generate the preview.", "Error message")
-            QtWidgets.QMessageBox.critical(self, _translate("MessageBox", "Critical Error", "Message Box title"),  errMsg)
+            error = PyCirkuitError(errMsg)
+            self._display_error(error)
             return False
 
 
-    def _load_file(self, fileName):
-        settings = QtCore.QSettings()
-        # Check that file is not a broken link
-        fileName = os.path.normpath(fileName)
-        if os.path.isfile(fileName):
-            lastWD, filename = os.path.split(fileName)
-            # Change system working dir to target's dir
-            os.chdir(lastWD)
-            settings.setValue("General/lastWD", lastWD)
-            settings.sync()
-            with open(filename, 'r') as f:
-                txt = f.read()
-                self.sourceText.setPlainText(txt)
-                self.openedFilename = filename
-                self.needSaving = False
-                self._modify_title()
-                self.on_processButton_clicked()
+    def _display_error(self, error):
+        # Open MessageBox and inform user
+        #TODO: Use this method to display message boxes
+        msgBox = QtWidgets.QMessageBox(self)
+        msgBox.setWindowTitle(error.title)
+        msgBox.setIcon(QtWidgets.QMessageBox.Critical)
+        msgBox.setText(str(error))
+        msgBox.setInformativeText(error.moreInfo)
+        msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
+        msgBox.setDefaultButton(QtWidgets.QMessageBox.Ok)
+        msgBox.exec()
 
-        
+
     def _enforce_circuit_macros(self):
         cmMgr = CircuitMacrosManager(self)
         if cmMgr.check_installed():
@@ -304,6 +298,25 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 txt = _cmNotFound + _translate("MessageBox", "Please indicate the correct path to them in the settings dialog.")
                 QtWidgets.QMessageBox.critical(self, _translate("MessageBox", "Critical Error"),  txt)
             return result
+
+
+    def _load_file(self, fileName):
+        settings = QtCore.QSettings()
+        # Check that file is not a broken link
+        fileName = os.path.normpath(fileName)
+        if os.path.isfile(fileName):
+            lastWD, filename = os.path.split(fileName)
+            # Change system working dir to target's dir
+            os.chdir(lastWD)
+            settings.setValue("General/lastWD", lastWD)
+            settings.sync()
+            with open(filename, 'r') as f:
+                txt = f.read()
+                self.sourceText.setPlainText(txt)
+                self.openedFilename = filename
+                self.needSaving = False
+                self._modify_title()
+                self.on_processButton_clicked()
 
 
     def _modify_title(self):
@@ -598,6 +611,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.extTools[ToolPdfToPng].execute(tmpFileBaseName)
             writeOk()
             self.sbProgressBar.setValue(4)
+            
+            # STEP 8: Visualize the image (can fail
+            self.imageViewer.setImage(tmpFileBaseName)
 
         except PyCktToolExecutionError as err:
             self.imageViewer.setText(_translate("MainWindow", "Error!", "Fallback text to be displayed when the image cannot be generated"))
@@ -606,17 +622,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 with open(tmpFileBaseName+'.log', 'rt') as f:
                     for line in f.readlines():
                         self.outputText.appendPlainText(line)
-            # Open MessageBox and inform user
-            msgBox = QtWidgets.QMessageBox(self)
-            msgBox.setWindowTitle(err.title)
-            msgBox.setIcon(QtWidgets.QMessageBox.Critical)
-            msgBox.setText(str(err))
-            msgBox.setInformativeText(err.moreInfo)
-            msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
-            msgBox.setDefaultButton(QtWidgets.QMessageBox.Ok)
-            msgBox.exec()
+            self._display_error(err)
+        except PyCktImageError as err:
+            self.imageViewer.setText(_translate("MainWindow", "Error!", "Fallback text to be displayed when the image cannot be generated"))
+            self._display_error(err)
         else:
-            self.imageViewer.setImage(tmpFileBaseName)
             # If all went well and we have a generated image, we can 
             self.processButton.setEnabled(False)
             self.exportButton.setEnabled(True)

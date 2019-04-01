@@ -21,6 +21,7 @@ Module implementing pycktImageViewer
 
 # Standard library imports
 import os
+from math import log10
 
 # Third-party imports
 from PyQt5.QtCore import QCoreApplication, Qt
@@ -29,6 +30,7 @@ from PyQt5.QtGui import QPixmap, QFont
 
 # Local application imports
 import pycirkuit
+from pycirkuit.exceptions import *
 from pycirkuit.tools.pdftopng import ToolPdfToPng
 
 # Translation function
@@ -39,7 +41,7 @@ class pycktImageViewer(QGraphicsView):
     Class documentation goes here.
     """
 
-    def __init__(self, parent=None):
+    def __init__(self, parent = None, maxZoom = 5):
         """
         Constructor
 
@@ -57,21 +59,47 @@ class pycktImageViewer(QGraphicsView):
         self.__image = self.__scene.addPixmap(QPixmap())
         # Then the graphics view (ourselves)
         self.setScene(self.__scene)
+
+        # Set operation mode
+        self.setAlignment(Qt.AlignCenter)   # Image appears centered if fits in view
+        # self.setTransformationAnchor(self.AnchorUnderMouse)
         
-        # Class properties initialization
-        self.__wheelSteps = 0
+        # Zoom parameters initialization
+        self.__ppi_base = 150      # Base image resolution (pixels per inch)
+        self.__max_zoom = maxZoom  # Maximum magnification factor (default = 5)
+        self.__max_steps = 10      # No. of wheel steps required to achieve max. zoom
+        self.__wheel_steps = 0     # Initial value for wheel position
     
     def _adjust_view(self):
+        # Center image in view (if image fits inside)
+        center = self.mapToScene(self.viewport().rect().center())
+        self.centerOn(center)
         self.__scene.setSceneRect(self.__scene.itemsBoundingRect())
-        self.resetTransform()
+
+    def _calc_ppi(self, wheelSteps):
+        """
+        This function calculates the image resolution required to achieve the desired zoom level,
+        indicated by number of steps the mouse wheel has turned.
+        
+        @param wheelSteps Number of steps the user has turned the mouse wheel (must be bounded)
+        @type integer
+        """
+        # 'ratio' could be precalculated in __init__. Doing so here is a waste of cpu cycles
+        # but allows for more (future) flexibility, as we can, for instance, use variable ratios.
+        ratio = 10 ** (log10(self.__max_zoom)/self.__max_steps)
+        newPPI = round(self.__ppi_base * (ratio ** wheelSteps))
+        return newPPI
 
     def _clear_items(self):
         for item in self.__scene.items():
             self.__scene.removeItem(item)
 
     def _qBound(self, minVal, current, maxVal):
-        """PyQt5 does not wrap the qBound function from Qt's global namespace
-           This is equivalent."""
+        """
+        PyQt5 does not wrap the qBound function from Qt's global namespace.
+        This is equivalent. Returns "current" if it's between "minVal" and "maxVal",
+        otherwise saturates to one of these two limits.
+        """
         return max(min(current, maxVal), minVal)
 
     def setImage(self, fileBaseName):
@@ -79,7 +107,8 @@ class pycktImageViewer(QGraphicsView):
         try:
             newPixmap = QPixmap("{baseName}.png".format(baseName=fileBaseName))
         except Exception as err:
-            print(err)
+            self.setText("Error!!!")
+            raise PyCktImageError()
         else:
             self.__fileBaseName = fileBaseName
             self.__image = self.__scene.addPixmap(newPixmap)
@@ -89,7 +118,7 @@ class pycktImageViewer(QGraphicsView):
         self._clear_items()
         font = QFont()
         font.setPointSize(22)
-        self.__scene.addText(newText, font)
+        self.__scene.addText(newText, font).setDefaultTextColor(Qt.red)
         self._adjust_view()
 
     def wheelEvent(self,event):
@@ -99,18 +128,18 @@ class pycktImageViewer(QGraphicsView):
             saveWD = os.getcwd()
             os.chdir(pycirkuit.__tmpDir__.path())
             # Accumulated mouse wheel steps
-            self.__wheelSteps = self._qBound(-10, self.__wheelSteps + event.angleDelta().y() / 120,  10)
-            zoomFactor = 1 + round(self.__wheelSteps/10, 1)
-            res = int(round(150 * zoomFactor, 0))
+            self.__wheel_steps = self._qBound(
+                -self.__max_steps,
+                 self.__wheel_steps + event.angleDelta().y() / 120,
+                 self.__max_steps)
+            newPPI = self._calc_ppi(self.__wheel_steps)
             try:
                 converter = ToolPdfToPng()
-                converter.execute(self.__fileBaseName, resolution=res)
+                converter.execute(self.__fileBaseName, resolution = newPPI)
                 self.setImage(self.__fileBaseName)
-            except:
-                pass
-#            scaling = QTransform()
-#            scaling.scale(zoomFactor, zoomFactor)
-#            self.setTransform(scaling)
+            except Exception as err:
+                self.setText("Error!!!")
+                raise err
             finally:
                 os.chdir(saveWD)
         else:
