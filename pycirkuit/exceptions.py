@@ -31,9 +31,12 @@ _translate = QCoreApplication.translate
 # 2) The main message, perhaps as short as possible
 # 3) Additional info
 class PyCirkuitError(Exception):
-    def __init__(self, message, title=_translate("PyCirkuitError", "PyCirkuit Error",  "Exception title"), moreInfo=""):
+    def __init__(self, message, title="", moreInfo=""):
         super().__init__(message)
-        self.title=title
+        if title == "":
+            self.title = _translate("PyCirkuitError", "PyCirkuit Error", "Exception title")
+        else:
+            self.title = title
         self.moreInfo=moreInfo
 
 
