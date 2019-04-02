@@ -48,6 +48,7 @@ class PyCktImageError(PyCirkuitError):
         errMsg = _translate("PyCirkuitError", "The generated image could not be loaded.",  "Exception message")
         super().__init__(errMsg)
 
+
 # Tool Doc exceptions
 class PyCktDocNotFoundError(PyCirkuitError):
     def __init__(self, toolName):

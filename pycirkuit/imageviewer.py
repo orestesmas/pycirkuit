@@ -24,7 +24,7 @@ import os
 from math import log10
 
 # Third-party imports
-from PyQt5.QtCore import QCoreApplication, Qt
+from PyQt5.QtCore import QCoreApplication, Qt, QRect, pyqtSignal
 from PyQt5.QtWidgets import QGraphicsScene, QGraphicsView
 from PyQt5.QtGui import QPixmap, QFont
 
@@ -40,6 +40,9 @@ class pycktImageViewer(QGraphicsView):
     """
     Class documentation goes here.
     """
+    # A signal to inform of errors
+    conversion_failed = pyqtSignal(PyCirkuitError)
+    image_changed = pyqtSignal(QRect)
 
     def __init__(self, parent = None, maxZoom = 5):
         """
@@ -102,19 +105,40 @@ class pycktImageViewer(QGraphicsView):
         """
         return max(min(current, maxVal), minVal)
 
-    def setImage(self, fileBaseName):
+    def setImage(self, fileBaseName, adjustIGU=False):
+        """
+        Tries to load a PNG image from disk and display it
+        
+        Args:
+            fileBaseName (str): the file name of the image to load (without extension) relative to current dir.
+            adjustIGU (bool): Whether we want to adjust the size of IGU viewport to fit the image or not (default=False).
+        """
         self._clear_items()
         try:
             newPixmap = QPixmap("{baseName}.png".format(baseName=fileBaseName))
-        except IOError as err:
-            self.setText("Error!!!")
-            raise PyCktImageError()
+            if newPixmap.isNull():
+                raise PyCirkuitError(
+                    _translate("PyCirkuitError", "The converted image could not be loaded.", "Exception message"), 
+                    _translate("PyCirkuitError", "PyCirkuit Internal Error", "Exception title"), 
+                    moreInfo = _translate("PyCirkuitError", "This error should not happen in a normal operation. Please contact the developers.", "Exception additional info")
+                )
+        except PyCirkuitError as err:
+            self.setText( _translate("PyCirkuitError", "Internal error: cannot load image", "Displayed error message"))
+            self.conversion_failed.emit(err)
         else:
             self.__fileBaseName = fileBaseName
             self.__image = self.__scene.addPixmap(newPixmap)
+            if adjustIGU:
+                self.image_changed.emit(newPixmap.rect())
             self._adjust_view()
 
     def setText(self, newText):
+        """
+        Displays a text string (in bigger font and in red color) into the viewport
+        
+        Args:
+            newText (str): the string to display.
+        """       
         self._clear_items()
         font = QFont()
         font.setPointSize(22)
@@ -137,9 +161,9 @@ class pycktImageViewer(QGraphicsView):
                 converter = ToolPdfToPng()
                 converter.execute(self.__fileBaseName, resolution = newPPI)
                 self.setImage(self.__fileBaseName)
-            except Exception as err:
-                self.setText("Error creating zoomed image.")
-                #raise err
+            except PyCirkuitError as err:
+                self.setText(_translate("PyCirkuitError", "Error creating zoomed image.", "Displayed error message"))
+                self.conversion_failed.emit(err)
             finally:
                 os.chdir(saveWD)
         else:

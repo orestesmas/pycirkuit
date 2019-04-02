@@ -78,6 +78,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         #NOTE: Is NOT necessary to MANUALLY connect most signals to slots, as 
         # pyuic5 calls QtCore.QMetaObject.connectSlotsByName in Ui_configdialog.py
         # do such connections AUTOMATICALLY (so connecting them manually triggers slots twice)
+        self.imageViewer.conversion_failed.connect(self._display_error)
+        # self.imageViewer.image_changed.connect(self._adjust_IGU)
 
         # Set up a temporary directory to save intermediate files
         pycirkuit.__tmpDir__ = QtCore.QTemporaryDir()
@@ -106,6 +108,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         
         # We're quitting constructor
         self.insideConstructor = False
+
+    @pyqtSlot(QRect)
+    def _adjust_IGU(self, rect):
+        pass
 
     def _ask_export_as(self, src, dst):
         fdlg = QtWidgets.QFileDialog(self)
@@ -255,6 +261,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             return False
 
 
+    @pyqtSlot(PyCirkuitError)
     def _display_error(self, error):
         # Open MessageBox and inform user
         #TODO: Use this method to display message boxes
