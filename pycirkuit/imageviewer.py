@@ -106,7 +106,7 @@ class pycktImageViewer(QGraphicsView):
         self._clear_items()
         try:
             newPixmap = QPixmap("{baseName}.png".format(baseName=fileBaseName))
-        except Exception as err:
+        except IOError as err:
             self.setText("Error!!!")
             raise PyCktImageError()
         else:
@@ -138,8 +138,8 @@ class pycktImageViewer(QGraphicsView):
                 converter.execute(self.__fileBaseName, resolution = newPPI)
                 self.setImage(self.__fileBaseName)
             except Exception as err:
-                self.setText("Error!!!")
-                raise err
+                self.setText("Error creating zoomed image.")
+                #raise err
             finally:
                 os.chdir(saveWD)
         else:
