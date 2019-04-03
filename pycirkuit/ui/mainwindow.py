@@ -26,7 +26,7 @@ from shutil import copyfile
 import inspect
 
 # Third-party imports
-from PyQt5.QtCore import pyqtSlot,  QCoreApplication
+from PyQt5.QtCore import pyqtSlot, Qt, QCoreApplication, QRect
 from PyQt5 import QtCore, QtWidgets, QtGui
 from PyQt5.QtWidgets import QProgressBar
 
@@ -36,7 +36,6 @@ from pycirkuit.ui.configdialog import ConfigDialog
 from pycirkuit.ui.aboutdialog import AboutDialog
 from pycirkuit.tools.circuitmacrosmanager import CircuitMacrosManager
 from pycirkuit.highlighter import PyCirkuitHighlighter
-#from pycirkuit.previewimage import pycktPreviewImage
 from pycirkuit.exceptions import *
 from pycirkuit.tools.m4 import ToolM4
 from pycirkuit.tools.dpic import ToolDpic
@@ -79,7 +78,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # pyuic5 calls QtCore.QMetaObject.connectSlotsByName in Ui_configdialog.py
         # do such connections AUTOMATICALLY (so connecting them manually triggers slots twice)
         self.imageViewer.conversion_failed.connect(self._display_error)
-        # self.imageViewer.image_changed.connect(self._adjust_IGU)
+        self.imageViewer.image_changed.connect(self._resize_preview)
 
         # Set up a temporary directory to save intermediate files
         pycirkuit.__tmpDir__ = QtCore.QTemporaryDir()
@@ -108,10 +107,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         
         # We're quitting constructor
         self.insideConstructor = False
-
-    @pyqtSlot(QRect)
-    def _adjust_IGU(self, rect):
-        pass
 
     def _ask_export_as(self, src, dst):
         fdlg = QtWidgets.QFileDialog(self)
@@ -332,6 +327,14 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         else:
             title = "PyCirkuit - {filename}".format(filename=self.openedFilename)
         self.setWindowTitle(title)
+
+
+    @pyqtSlot(QRect)
+    def _resize_preview(self, rect):
+        # First, calculate the height difference between dock widget and its contents
+        extraHeight = self.previewWidget.height() - self.imageViewer.viewport().height()
+        # Then resize the dock widget in a way that acknowledges the size constraints of other widgets
+        self.resizeDocks([self.previewWidget], [rect.height() + extraHeight +2], Qt.Vertical)
 
 
     def _save_buffer(self,  dst):
@@ -619,8 +622,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             writeOk()
             self.sbProgressBar.setValue(4)
             
-            # STEP 8: Visualize the image (can fail
-            self.imageViewer.setImage(tmpFileBaseName)
+            # STEP 8: Visualize the image (can fail)
+            self.imageViewer.setImage(tmpFileBaseName, adjustIGU=True)
 
         except PyCktToolExecutionError as err:
             self.imageViewer.setText(_translate("MainWindow", "Error!", "Fallback text to be displayed when the image cannot be generated"))

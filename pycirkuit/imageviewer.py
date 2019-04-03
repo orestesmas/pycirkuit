@@ -160,7 +160,7 @@ class pycktImageViewer(QGraphicsView):
             try:
                 converter = ToolPdfToPng()
                 converter.execute(self.__fileBaseName, resolution = newPPI)
-                self.setImage(self.__fileBaseName)
+                self.setImage(self.__fileBaseName, adjustIGU=True)
             except PyCirkuitError as err:
                 self.setText(_translate("PyCirkuitError", "Error creating zoomed image.", "Displayed error message"))
                 self.conversion_failed.emit(err)
