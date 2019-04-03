@@ -368,12 +368,12 @@ p, li { white-space: pre-wrap; }
         <translation>Arra&amp;njament</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="204"/>
+        <location filename="../ui/Ui_mainwindow.py" line="210"/>
         <source>Open Drawing</source>
         <translation>Obre un dibuix</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="213"/>
+        <location filename="../ui/Ui_mainwindow.py" line="219"/>
         <source>New Drawing</source>
         <translation>Nou dibuix</translation>
     </message>
@@ -402,78 +402,78 @@ p, li { white-space: pre-wrap; }
         <translation>&amp;Previsualització</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="200"/>
+        <location filename="../ui/Ui_mainwindow.py" line="206"/>
         <source>&amp;Quit</source>
         <comment>Menu item</comment>
         <translation>S&amp;urt</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="203"/>
+        <location filename="../ui/Ui_mainwindow.py" line="209"/>
         <source>&amp;Open...</source>
         <comment>Menu item</comment>
         <translation>&amp;Obre...</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="212"/>
+        <location filename="../ui/Ui_mainwindow.py" line="218"/>
         <source>&amp;New</source>
         <comment>Menu item</comment>
         <translation>&amp;Nou</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="216"/>
+        <location filename="../ui/Ui_mainwindow.py" line="222"/>
         <source>&amp;Save</source>
         <comment>Menu item</comment>
         <translation>&amp;Desa</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="219"/>
+        <location filename="../ui/Ui_mainwindow.py" line="225"/>
         <source>Sa&amp;ve As...</source>
         <comment>Menu item</comment>
         <translation>Desa &amp;com a...</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="224"/>
+        <location filename="../ui/Ui_mainwindow.py" line="230"/>
         <source>Ctrl+M</source>
         <translation>Ctrl+M</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="202"/>
+        <location filename="../ui/Ui_mainwindow.py" line="208"/>
         <source>Ctrl+Q</source>
         <comment>Keyboard Shortcut</comment>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="206"/>
+        <location filename="../ui/Ui_mainwindow.py" line="212"/>
         <source>Ctrl+O</source>
         <comment>Keyboard Shortcut</comment>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="209"/>
+        <location filename="../ui/Ui_mainwindow.py" line="215"/>
         <source>Configure &amp;PyCirkuit...</source>
         <comment>Menu item</comment>
         <translation>Configura el &amp;PyCirkuit...</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="211"/>
+        <location filename="../ui/Ui_mainwindow.py" line="217"/>
         <source>Ctrl+P</source>
         <comment>Keyboard Shortcut</comment>
         <translation>Ctrl+P</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="215"/>
+        <location filename="../ui/Ui_mainwindow.py" line="221"/>
         <source>Ctrl+N</source>
         <comment>Keyboard Shortcut</comment>
         <translation>Ctrl+N</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="218"/>
+        <location filename="../ui/Ui_mainwindow.py" line="224"/>
         <source>Ctrl+S</source>
         <comment>Keyboard Shortcut</comment>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="221"/>
+        <location filename="../ui/Ui_mainwindow.py" line="227"/>
         <source>Ctrl+Shift+S</source>
         <comment>Keyboard Shortcut</comment>
         <translation>Ctrl+Shift+S</translation>
@@ -521,7 +521,7 @@ p, li { white-space: pre-wrap; }
         <translation>Qualsevol fitxer (*)</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="207"/>
+        <location filename="../ui/Ui_mainwindow.py" line="213"/>
         <source>&amp;About PyCirkuit</source>
         <comment>Menu item</comment>
         <translation>&amp;Quant al PyCirkuit</translation>
@@ -559,70 +559,70 @@ l=elen_
 </translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="222"/>
+        <location filename="../ui/Ui_mainwindow.py" line="228"/>
         <source>&amp;Circuit Macros manual</source>
         <translation>Manual de les &amp;Circuit Macros</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="225"/>
+        <location filename="../ui/Ui_mainwindow.py" line="231"/>
         <source>&amp;Dpic manual</source>
         <translation>Manual del &amp;Dpic</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="227"/>
+        <location filename="../ui/Ui_mainwindow.py" line="233"/>
         <source>Ctrl+D</source>
         <translation>Ctrl+D</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="201"/>
+        <location filename="../ui/Ui_mainwindow.py" line="207"/>
         <source>Close application</source>
         <comment>Status Bar Message</comment>
         <translation>Tanca l&apos;aplicació</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="208"/>
+        <location filename="../ui/Ui_mainwindow.py" line="214"/>
         <source>Application information</source>
         <comment>Status Bar Message</comment>
         <translation>Informació de l&apos;aplicació</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="210"/>
+        <location filename="../ui/Ui_mainwindow.py" line="216"/>
         <source>Opens config dialog</source>
         <comment>Status Bar Message</comment>
         <translation>Obre el diàleg de configuració</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="223"/>
+        <location filename="../ui/Ui_mainwindow.py" line="229"/>
         <source>Opens Circuit Macros manual</source>
         <comment>Status Bar Message</comment>
         <translation>Obre el manual de les Circuit Macros</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="226"/>
+        <location filename="../ui/Ui_mainwindow.py" line="232"/>
         <source>Opens Dpic manual</source>
         <comment>Status Bar Message</comment>
         <translation>Obre el manual del Dpic</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="205"/>
+        <location filename="../ui/Ui_mainwindow.py" line="211"/>
         <source>Opens an existing drawing</source>
         <comment>Status Bar Message</comment>
         <translation>Obre un dibuix existent</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="214"/>
+        <location filename="../ui/Ui_mainwindow.py" line="220"/>
         <source>Creates an empty drawing</source>
         <comment>Status Bar Message</comment>
         <translation>Crea un dibuix buit</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="217"/>
+        <location filename="../ui/Ui_mainwindow.py" line="223"/>
         <source>Saves drawing</source>
         <comment>Status Bar Message</comment>
         <translation>Desa el dibuix</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="220"/>
+        <location filename="../ui/Ui_mainwindow.py" line="226"/>
         <source>Saves drawing with new name</source>
         <comment>Status Bar Message</comment>
         <translation>Desa el dibuix amb un nom nou</translation>
@@ -662,6 +662,21 @@ l=elen_
         <source>Error!</source>
         <comment>Fallback text to be displayed when the image cannot be generated</comment>
         <translation>Error!</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="200"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Use:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt; Ctrl + Mouse Wheel to Zoom In/Out&lt;/li&gt;
+&lt;li&gt; Click and Move to drag the image inside the preview&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Empreu:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt; Ctrl + Roda del Ratolí per Ampliar/Reduir&lt;/li&gt;
+&lt;li&gt; Clic i moviment per a desplaçar la imatge dins de la previsualització&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>

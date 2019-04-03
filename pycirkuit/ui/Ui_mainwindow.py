@@ -197,6 +197,12 @@ class Ui_MainWindow(object):
         self.menuHelp.setTitle(_translate("MainWindow", "Help"))
         self.menuSettings.setTitle(_translate("MainWindow", "Setti&ngs"))
         self.previewWidget.setWindowTitle(_translate("MainWindow", "&Preview", "Dock window title"))
+        self.imageViewer.setToolTip(_translate("MainWindow", "<html><head/><body><p>Use:</p>\n"
+"<ul>\n"
+"<li> Ctrl + Mouse Wheel to Zoom In/Out</li>\n"
+"<li> Click and Move to drag the image inside the preview</li>\n"
+"</ul>\n"
+"</body></html>"))
         self.actionQuit.setText(_translate("MainWindow", "&Quit", "Menu item"))
         self.actionQuit.setStatusTip(_translate("MainWindow", "Close application", "Status Bar Message"))
         self.actionQuit.setShortcut(_translate("MainWindow", "Ctrl+Q", "Keyboard Shortcut"))

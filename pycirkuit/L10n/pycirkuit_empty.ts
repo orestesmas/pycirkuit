@@ -356,164 +356,164 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="200"/>
+        <location filename="../ui/Ui_mainwindow.py" line="206"/>
         <source>&amp;Quit</source>
         <comment>Menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="201"/>
+        <location filename="../ui/Ui_mainwindow.py" line="207"/>
         <source>Close application</source>
         <comment>Status Bar Message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="202"/>
+        <location filename="../ui/Ui_mainwindow.py" line="208"/>
         <source>Ctrl+Q</source>
         <comment>Keyboard Shortcut</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="203"/>
+        <location filename="../ui/Ui_mainwindow.py" line="209"/>
         <source>&amp;Open...</source>
         <comment>Menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="204"/>
+        <location filename="../ui/Ui_mainwindow.py" line="210"/>
         <source>Open Drawing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="205"/>
+        <location filename="../ui/Ui_mainwindow.py" line="211"/>
         <source>Opens an existing drawing</source>
         <comment>Status Bar Message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="206"/>
+        <location filename="../ui/Ui_mainwindow.py" line="212"/>
         <source>Ctrl+O</source>
         <comment>Keyboard Shortcut</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="207"/>
+        <location filename="../ui/Ui_mainwindow.py" line="213"/>
         <source>&amp;About PyCirkuit</source>
         <comment>Menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="208"/>
+        <location filename="../ui/Ui_mainwindow.py" line="214"/>
         <source>Application information</source>
         <comment>Status Bar Message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="209"/>
+        <location filename="../ui/Ui_mainwindow.py" line="215"/>
         <source>Configure &amp;PyCirkuit...</source>
         <comment>Menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="210"/>
+        <location filename="../ui/Ui_mainwindow.py" line="216"/>
         <source>Opens config dialog</source>
         <comment>Status Bar Message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="211"/>
+        <location filename="../ui/Ui_mainwindow.py" line="217"/>
         <source>Ctrl+P</source>
         <comment>Keyboard Shortcut</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="212"/>
+        <location filename="../ui/Ui_mainwindow.py" line="218"/>
         <source>&amp;New</source>
         <comment>Menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="213"/>
+        <location filename="../ui/Ui_mainwindow.py" line="219"/>
         <source>New Drawing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="214"/>
+        <location filename="../ui/Ui_mainwindow.py" line="220"/>
         <source>Creates an empty drawing</source>
         <comment>Status Bar Message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="215"/>
+        <location filename="../ui/Ui_mainwindow.py" line="221"/>
         <source>Ctrl+N</source>
         <comment>Keyboard Shortcut</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="216"/>
+        <location filename="../ui/Ui_mainwindow.py" line="222"/>
         <source>&amp;Save</source>
         <comment>Menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="217"/>
+        <location filename="../ui/Ui_mainwindow.py" line="223"/>
         <source>Saves drawing</source>
         <comment>Status Bar Message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="218"/>
+        <location filename="../ui/Ui_mainwindow.py" line="224"/>
         <source>Ctrl+S</source>
         <comment>Keyboard Shortcut</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="219"/>
+        <location filename="../ui/Ui_mainwindow.py" line="225"/>
         <source>Sa&amp;ve As...</source>
         <comment>Menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="220"/>
+        <location filename="../ui/Ui_mainwindow.py" line="226"/>
         <source>Saves drawing with new name</source>
         <comment>Status Bar Message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="221"/>
+        <location filename="../ui/Ui_mainwindow.py" line="227"/>
         <source>Ctrl+Shift+S</source>
         <comment>Keyboard Shortcut</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="222"/>
+        <location filename="../ui/Ui_mainwindow.py" line="228"/>
         <source>&amp;Circuit Macros manual</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="223"/>
+        <location filename="../ui/Ui_mainwindow.py" line="229"/>
         <source>Opens Circuit Macros manual</source>
         <comment>Status Bar Message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="224"/>
+        <location filename="../ui/Ui_mainwindow.py" line="230"/>
         <source>Ctrl+M</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="225"/>
+        <location filename="../ui/Ui_mainwindow.py" line="231"/>
         <source>&amp;Dpic manual</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="226"/>
+        <location filename="../ui/Ui_mainwindow.py" line="232"/>
         <source>Opens Dpic manual</source>
         <comment>Status Bar Message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="227"/>
+        <location filename="../ui/Ui_mainwindow.py" line="233"/>
         <source>Ctrl+D</source>
         <translation type="unfinished"></translation>
     </message>
@@ -606,6 +606,16 @@ l=elen_
         <location filename="../ui/mainwindow.py" line="638"/>
         <source>Error!</source>
         <comment>Fallback text to be displayed when the image cannot be generated</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="200"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Use:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt; Ctrl + Mouse Wheel to Zoom In/Out&lt;/li&gt;
+&lt;li&gt; Click and Move to drag the image inside the preview&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

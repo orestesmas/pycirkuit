@@ -201,6 +201,14 @@
        <property name="acceptDrops">
         <bool>false</bool>
        </property>
+       <property name="toolTip">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Use:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt; Ctrl + Mouse Wheel to Zoom In/Out&lt;/li&gt;
+&lt;li&gt; Click and Move to drag the image inside the preview&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
        <property name="styleSheet">
         <string notr="true">background-color: rgb(255, 255, 255);</string>
        </property>
