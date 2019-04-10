@@ -24,7 +24,7 @@ import os
 from math import log10
 
 # Third-party imports
-from PyQt5.QtCore import QCoreApplication, Qt, QRect, pyqtSignal
+from PyQt5.QtCore import QCoreApplication, Qt, pyqtSignal
 from PyQt5.QtWidgets import QGraphicsScene, QGraphicsView
 from PyQt5.QtGui import QPixmap, QFont
 
@@ -65,7 +65,7 @@ class pycktImageViewer(QGraphicsView):
 
         # Set operation mode
         self.setAlignment(Qt.AlignCenter)   # Image appears centered if fits in view
-        # self.setTransformationAnchor(self.AnchorUnderMouse)
+        self.setResizeAnchor(self.AnchorUnderMouse)
         
         # Zoom parameters initialization
         self.__ppi_base = 150      # Base image resolution (pixels per inch)
