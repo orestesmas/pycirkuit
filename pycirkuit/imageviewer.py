@@ -42,7 +42,7 @@ class pycktImageViewer(QGraphicsView):
     """
     # A signal to inform of errors
     conversion_failed = pyqtSignal(PyCirkuitError)
-    image_changed = pyqtSignal(QRect)
+    image_changed = pyqtSignal()
 
     def __init__(self, parent = None, maxZoom = 5):
         """
@@ -58,8 +58,8 @@ class pycktImageViewer(QGraphicsView):
         self.__scene = QGraphicsScene(self)
         # Initial image does not correspond to any file
         self.__fileBaseName = None
-        # Then the pixmap (initially empty)...
-        self.__image = self.__scene.addPixmap(QPixmap())
+        # Then the pixmap (initially empty). We maintain a reference to the pixmap, for easy access
+        self.__pixmapItem = self.__scene.addPixmap(QPixmap())
         # Then the graphics view (ourselves)
         self.setScene(self.__scene)
 
@@ -97,6 +97,9 @@ class pycktImageViewer(QGraphicsView):
         for item in self.__scene.items():
             self.__scene.removeItem(item)
 
+    def _get_rect(self):
+        return self.__pixmapItem.pixmap().rect()
+
     def _qBound(self, minVal, current, maxVal):
         """
         PyQt5 does not wrap the qBound function from Qt's global namespace.
@@ -127,9 +130,9 @@ class pycktImageViewer(QGraphicsView):
             self.conversion_failed.emit(err)
         else:
             self.__fileBaseName = fileBaseName
-            self.__image = self.__scene.addPixmap(newPixmap)
+            self.__pixmapItem = self.__scene.addPixmap(newPixmap)
             if adjustIGU:
-                self.image_changed.emit(newPixmap.rect())
+                self.image_changed.emit()
             self._adjust_view()
 
     def setText(self, newText):

@@ -79,6 +79,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # do such connections AUTOMATICALLY (so connecting them manually triggers slots twice)
         self.imageViewer.conversion_failed.connect(self._display_error)
         self.imageViewer.image_changed.connect(self._resize_preview)
+        self.previewWidget.dockLocationChanged.connect(self._resize_preview)
 
         # Set up a temporary directory to save intermediate files
         pycirkuit.__tmpDir__ = QtCore.QTemporaryDir()
@@ -329,12 +330,19 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.setWindowTitle(title)
 
 
-    @pyqtSlot(QRect)
-    def _resize_preview(self, rect):
-        # First, calculate the height difference between dock widget and its contents
+    @pyqtSlot()
+    def _resize_preview(self):
+        # First, retrieve the pixmap rect
+        rect = self.imageViewer._get_rect() 
+        # Next, calculate the differences between dock widget and its contents
         extraHeight = self.previewWidget.height() - self.imageViewer.viewport().height()
+        extraWidth  = self.previewWidget.width() - self.imageViewer.viewport().width()
         # Then resize the dock widget in a way that acknowledges the size constraints of other widgets
-        self.resizeDocks([self.previewWidget], [rect.height() + extraHeight +2], Qt.Vertical)
+        dockWidgetLocation = self.dockWidgetArea(self.previewWidget)
+        if (dockWidgetLocation == Qt.TopDockWidgetArea) or (dockWidgetLocation == Qt.BottomDockWidgetArea):
+            self.resizeDocks([self.previewWidget], [rect.height() + extraHeight +2], Qt.Vertical)
+        elif (dockWidgetLocation == Qt.LeftDockWidgetArea) or (dockWidgetLocation == Qt.RightDockWidgetArea):
+            self.resizeDocks([self.previewWidget], [rect.width() + extraWidth +2], Qt.Horizontal)
 
 
     def _save_buffer(self,  dst):
