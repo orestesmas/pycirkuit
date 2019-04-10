@@ -24,7 +24,7 @@ import os
 from math import log10
 
 # Third-party imports
-from PyQt5.QtCore import QCoreApplication, Qt, pyqtSignal
+from PyQt5.QtCore import QCoreApplication, Qt, QPointF, pyqtSignal
 from PyQt5.QtWidgets import QGraphicsScene, QGraphicsView
 from PyQt5.QtGui import QPixmap, QFont
 
@@ -38,7 +38,9 @@ _translate = QCoreApplication.translate
 
 class pycktImageViewer(QGraphicsView):
     """
-    Class documentation goes here.
+    A viewer for images compiled from circuit macros source files.
+    Being a subclass of QGraphicsView, this class handles zoom using
+    the mouse wheel.
     """
     # A signal to inform of errors
     conversion_failed = pyqtSignal(PyCirkuitError)
@@ -63,9 +65,8 @@ class pycktImageViewer(QGraphicsView):
         # Then the graphics view (ourselves)
         self.setScene(self.__scene)
 
-        # Set operation mode
+        # Set operation mode (some options set up in Designer)
         self.setAlignment(Qt.AlignCenter)   # Image appears centered if fits in view
-        self.setResizeAnchor(self.AnchorUnderMouse)
         
         # Zoom parameters initialization
         self.__ppi_base = 150      # Base image resolution (pixels per inch)
@@ -151,6 +152,14 @@ class pycktImageViewer(QGraphicsView):
     def wheelEvent(self,event):
         if (self.__fileBaseName != None) and (event.modifiers()==Qt.ControlModifier):
             event.accept()
+            # Get the cursor's position and translate to pixmap coordinates
+            scenePos = self.mapToScene(event.pos())
+            itemPos = self.__pixmapItem.mapFromScene(scenePos)
+            # Now find the % offset from pixmap's origin. This doesn't change with zoom
+            itemRect = self.__pixmapItem.boundingRect()
+            percentX = itemPos.x()/itemRect.width()
+            percentY = itemPos.y()/itemRect.height()
+            # Now perform the zoom by converting from PDF with suitable resulution
             # Set working dir
             saveWD = os.getcwd()
             os.chdir(pycirkuit.__tmpDir__.path())
@@ -164,6 +173,19 @@ class pycktImageViewer(QGraphicsView):
                 converter = ToolPdfToPng()
                 converter.execute(self.__fileBaseName, resolution = newPPI)
                 self.setImage(self.__fileBaseName, adjustIGU=True)
+                # Calculate the coordinates of the pixel which is (%X,%Y) from origin
+                rect = self.__pixmapItem.boundingRect()
+                # Now translate coords back: Item -> Scene -> View
+                itemNewPos = QPointF(rect.width()*percentX, rect.height()*percentY)
+                sceneNewPos = self.__pixmapItem.mapToScene(itemNewPos)
+                viewNewPos = self.mapFromScene(sceneNewPos)
+                # Finally move view so that the 'viewNewPos' appears under mouse
+                print("Pos: ({px},{py}   ScenePos: ({sx},{sy}))   Item%: ({ix},{iy})".format(
+                    px=event.pos().x(), py=event.pos().y(), 
+                    sx=scenePos.x(), sy=scenePos.y(), 
+                    ix=percentX, iy=percentY, 
+                    )
+                )            
             except PyCirkuitError as err:
                 self.setText(_translate("PyCirkuitError", "Error creating zoomed image.", "Displayed error message"))
                 self.conversion_failed.emit(err)
