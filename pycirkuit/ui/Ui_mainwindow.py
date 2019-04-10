@@ -111,7 +111,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.imageViewer = pycktImageViewer(self.dockWidgetContents)
         self.imageViewer.setAcceptDrops(False)
-        self.imageViewer.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.imageViewer.setAutoFillBackground(True)
         self.imageViewer.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
         self.imageViewer.setDragMode(QtWidgets.QGraphicsView.ScrollHandDrag)
         self.imageViewer.setViewportUpdateMode(QtWidgets.QGraphicsView.FullViewportUpdate)
