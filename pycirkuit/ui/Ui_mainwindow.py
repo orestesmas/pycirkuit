@@ -114,6 +114,7 @@ class Ui_MainWindow(object):
         self.imageViewer.setAutoFillBackground(True)
         self.imageViewer.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
         self.imageViewer.setDragMode(QtWidgets.QGraphicsView.ScrollHandDrag)
+        self.imageViewer.setResizeAnchor(QtWidgets.QGraphicsView.AnchorUnderMouse)
         self.imageViewer.setViewportUpdateMode(QtWidgets.QGraphicsView.FullViewportUpdate)
         self.imageViewer.setRubberBandSelectionMode(QtCore.Qt.IntersectsItemShape)
         self.imageViewer.setObjectName("imageViewer")
