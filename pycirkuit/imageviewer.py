@@ -24,7 +24,7 @@ import os
 from math import log10
 
 # Third-party imports
-from PyQt5.QtCore import QCoreApplication, Qt, QPointF, pyqtSignal
+from PyQt5.QtCore import QCoreApplication, Qt, QPointF, QSize, pyqtSignal
 from PyQt5.QtWidgets import QGraphicsScene, QGraphicsView
 from PyQt5.QtGui import QPixmap, QFont
 
@@ -178,7 +178,10 @@ class pycktImageViewer(QGraphicsView):
                 # Now translate coords back: Item -> Scene -> View
                 itemNewPos = QPointF(rect.width()*percentX, rect.height()*percentY)
                 sceneNewPos = self.__pixmapItem.mapToScene(itemNewPos)
-                viewNewPos = self.mapFromScene(sceneNewPos)
+                pos = QPointF(event.pos())
+                topLeft = sceneNewPos - pos
+                # And move the view so that the scene point under mouse appears at the same place
+                self.setSceneRect(topLeft.x(), topLeft.y(), self.width(), self.height())
                 # Finally move view so that the 'viewNewPos' appears under mouse
                 print("Pos: ({px},{py}   ScenePos: ({sx},{sy}))   Item%: ({ix},{iy})".format(
                     px=event.pos().x(), py=event.pos().y(), 
