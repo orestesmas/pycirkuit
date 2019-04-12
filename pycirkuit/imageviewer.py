@@ -109,6 +109,11 @@ class pycktImageViewer(QGraphicsView):
         """
         return max(min(current, maxVal), minVal)
 
+    def clearImage(self):
+        self._clear_items()
+        self.__pixmapItem = self.__scene.addPixmap(QPixmap())
+        self._adjust_view()
+
     def setImage(self, fileBaseName, adjustIGU=False):
         """
         Tries to load a PNG image from disk and display it

@@ -431,6 +431,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.openedFilename = filename
             self.needSaving = True
         self._modify_title()
+        self.imageViewer.clearImage()
 
 
     @pyqtSlot()
