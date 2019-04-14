@@ -190,6 +190,8 @@ class pycktImageViewer(QGraphicsView):
                     pos = QPointF(event.pos())
                     topLeft = sceneNewPos - pos
                     # And move the view so that the scene point under mouse appears at the same place
+                    #FIXME: NO!! el rectangle visualitzat ha de ser el de TOTA l'escena, i el que cal fer és traslladar el centre
+                    # altrament no es veuen les barres de scroll.
                     self.setSceneRect(topLeft.x(), topLeft.y(), self.width(), self.height())
                 else:
                     self.setSceneRect(rect)
