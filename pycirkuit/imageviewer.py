@@ -73,12 +73,10 @@ class pycktImageViewer(QGraphicsView):
         self.__max_zoom = maxZoom  # Maximum magnification factor (default = 5)
         self.__max_steps = 10      # No. of wheel steps required to achieve max. zoom
         self.__wheel_steps = 0     # Initial value for wheel position
+        self.__current_ppi = self._calc_ppi(self.__wheel_steps)  # Initial value for current resolution
     
     def _adjust_view(self):
-        # Center image in view (if image fits inside)
-        center = self.mapToScene(self.viewport().rect().center())
-        self.centerOn(center)
-        self.__scene.setSceneRect(self.__scene.itemsBoundingRect())
+        self.setSceneRect(self.__scene.itemsBoundingRect())
 
     def _calc_ppi(self, wheelSteps):
         """
@@ -157,6 +155,15 @@ class pycktImageViewer(QGraphicsView):
     def wheelEvent(self,event):
         if (self.__fileBaseName != None) and (event.modifiers()==Qt.ControlModifier):
             event.accept()
+            # Accumulated mouse wheel steps, bounded to certain limits
+            self.__wheel_steps = self._qBound(
+                -self.__max_steps,
+                 self.__wheel_steps + event.angleDelta().y() / 120,
+                 self.__max_steps)
+            newPPI = self._calc_ppi(self.__wheel_steps)
+            # Do nothing if reached one of the zoom limits
+            if (newPPI == self.__current_ppi):
+                return
             # Get the cursor's position and translate to pixmap coordinates
             scenePos = self.mapToScene(event.pos())
             itemPos = self.__pixmapItem.mapFromScene(scenePos)
@@ -164,39 +171,33 @@ class pycktImageViewer(QGraphicsView):
             itemRect = self.__pixmapItem.boundingRect()
             percentX = itemPos.x()/itemRect.width()
             percentY = itemPos.y()/itemRect.height()
-            # Now perform the zoom by converting from PDF with suitable resulution
+            # Now perform the zoom by converting from PDF with suitable resolution
             # Set working dir
             saveWD = os.getcwd()
             os.chdir(pycirkuit.__tmpDir__.path())
-            # Accumulated mouse wheel steps
-            self.__wheel_steps = self._qBound(
-                -self.__max_steps,
-                 self.__wheel_steps + event.angleDelta().y() / 120,
-                 self.__max_steps)
-            newPPI = self._calc_ppi(self.__wheel_steps)
             try:
                 converter = ToolPdfToPng()
                 converter.execute(self.__fileBaseName, resolution = newPPI)
                 self.setImage(self.__fileBaseName, adjustIGU=True)
-                # Calculate the coordinates of the pixel which is (%X,%Y) from origin
+                # If zooming in, maintain the pixel under mouse at the same place
+                # If zooming out, maintain image centered in view
                 rect = self.__pixmapItem.boundingRect()
-                # Now translate coords back: Item -> Scene -> View
-                itemNewPos = QPointF(rect.width()*percentX, rect.height()*percentY)
-                sceneNewPos = self.__pixmapItem.mapToScene(itemNewPos)
-                pos = QPointF(event.pos())
-                topLeft = sceneNewPos - pos
-                # And move the view so that the scene point under mouse appears at the same place
-                self.setSceneRect(topLeft.x(), topLeft.y(), self.width(), self.height())
-                # Finally move view so that the 'viewNewPos' appears under mouse
-                print("Pos: ({px},{py}   ScenePos: ({sx},{sy}))   Item%: ({ix},{iy})".format(
-                    px=event.pos().x(), py=event.pos().y(), 
-                    sx=scenePos.x(), sy=scenePos.y(), 
-                    ix=percentX, iy=percentY, 
-                    )
-                )            
+                if (event.angleDelta().y() > 0):
+                    # Calculate the coordinates of the pixel which is (%X,%Y) from origin
+                    # Now translate coords back: Item -> Scene -> View
+                    itemNewPos = QPointF(rect.width()*percentX, rect.height()*percentY)
+                    sceneNewPos = self.__pixmapItem.mapToScene(itemNewPos)
+                    pos = QPointF(event.pos())
+                    topLeft = sceneNewPos - pos
+                    # And move the view so that the scene point under mouse appears at the same place
+                    self.setSceneRect(topLeft.x(), topLeft.y(), self.width(), self.height())
+                else:
+                    self.setSceneRect(rect)
             except PyCirkuitError as err:
                 self.setText(_translate("PyCirkuitError", "Error creating zoomed image.", "Displayed error message"))
                 self.conversion_failed.emit(err)
+            else:
+                self.__current_ppi = newPPI
             finally:
                 os.chdir(saveWD)
         else:
