@@ -333,7 +333,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     @pyqtSlot()
     def _resize_preview(self):
         # First, retrieve the pixmap rect
-        rect = self.imageViewer._get_rect() 
+        rect = self.imageViewer.getRect() 
         # Next, calculate the differences between dock widget and its contents
         extraHeight = self.previewWidget.height() - self.imageViewer.viewport().height()
         extraWidth  = self.previewWidget.width() - self.imageViewer.viewport().width()

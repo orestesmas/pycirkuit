@@ -24,7 +24,7 @@ import os
 from math import log10
 
 # Third-party imports
-from PyQt5.QtCore import QCoreApplication, Qt, QPointF, QSize, pyqtSignal
+from PyQt5.QtCore import QCoreApplication, Qt, QRectF, QPointF, pyqtSignal
 from PyQt5.QtWidgets import QGraphicsScene, QGraphicsView
 from PyQt5.QtGui import QPixmap, QFont
 
@@ -59,9 +59,9 @@ class pycktImageViewer(QGraphicsView):
         # First the scene...
         self.__scene = QGraphicsScene(self)
         # Initial image does not correspond to any file
-        self.__fileBaseName = None
+        self.__file_base_name = None
         # Then the pixmap (initially empty). We maintain a reference to the pixmap, for easy access
-        self.__pixmapItem = self.__scene.addPixmap(QPixmap())
+        self.__pixmap_item = self.__scene.addPixmap(QPixmap())
         # Then the graphics view (ourselves)
         self.setScene(self.__scene)
 
@@ -73,14 +73,12 @@ class pycktImageViewer(QGraphicsView):
         self.__max_zoom = maxZoom  # Maximum magnification factor (default = 5)
         self.__max_steps = 10      # No. of wheel steps required to achieve max. zoom
         self.__wheel_steps = 0     # Initial value for wheel position
+        self.__current_ppi = self.__calc_ppi(self.__wheel_steps)  # Initial value for current resolution
     
-    def _adjust_view(self):
-        # Center image in view (if image fits inside)
-        center = self.mapToScene(self.viewport().rect().center())
-        self.centerOn(center)
-        self.__scene.setSceneRect(self.__scene.itemsBoundingRect())
+    def __adjust_view(self):
+        self.setSceneRect(self.__scene.itemsBoundingRect())
 
-    def _calc_ppi(self, wheelSteps):
+    def __calc_ppi(self, wheelSteps):
         """
         This function calculates the image resolution required to achieve the desired zoom level,
         indicated by number of steps the mouse wheel has turned.
@@ -94,14 +92,11 @@ class pycktImageViewer(QGraphicsView):
         newPPI = round(self.__ppi_base * (ratio ** wheelSteps))
         return newPPI
 
-    def _clear_items(self):
+    def __clear_items(self):
         for item in self.__scene.items():
             self.__scene.removeItem(item)
 
-    def _get_rect(self):
-        return self.__pixmapItem.pixmap().rect()
-
-    def _qBound(self, minVal, current, maxVal):
+    def __qBound(self, minVal, current, maxVal):
         """
         PyQt5 does not wrap the qBound function from Qt's global namespace.
         This is equivalent. Returns "current" if it's between "minVal" and "maxVal",
@@ -110,9 +105,12 @@ class pycktImageViewer(QGraphicsView):
         return max(min(current, maxVal), minVal)
 
     def clearImage(self):
-        self._clear_items()
-        self.__pixmapItem = self.__scene.addPixmap(QPixmap())
-        self._adjust_view()
+        self.__clear_items()
+        self.__pixmap_item = self.__scene.addPixmap(QPixmap())
+        self.__adjust_view()
+
+    def getRect(self):
+        return self.__pixmap_item.pixmap().rect()
 
     def setImage(self, fileBaseName, adjustIGU=False):
         """
@@ -122,7 +120,7 @@ class pycktImageViewer(QGraphicsView):
             fileBaseName (str): the file name of the image to load (without extension) relative to current dir.
             adjustIGU (bool): Whether we want to adjust the size of IGU viewport to fit the image or not (default=False).
         """
-        self._clear_items()
+        self.__clear_items()
         try:
             newPixmap = QPixmap("{baseName}.png".format(baseName=fileBaseName))
             if newPixmap.isNull():
@@ -135,11 +133,11 @@ class pycktImageViewer(QGraphicsView):
             self.setText( _translate("PyCirkuitError", "Internal error: cannot load image", "Displayed error message"))
             self.conversion_failed.emit(err)
         else:
-            self.__fileBaseName = fileBaseName
-            self.__pixmapItem = self.__scene.addPixmap(newPixmap)
+            self.__file_base_name = fileBaseName
+            self.__pixmap_item = self.__scene.addPixmap(newPixmap)
             if adjustIGU:
                 self.image_changed.emit()
-            self._adjust_view()
+            self.__adjust_view()
 
     def setText(self, newText):
         """
@@ -148,55 +146,59 @@ class pycktImageViewer(QGraphicsView):
         Args:
             newText (str): the string to display.
         """       
-        self._clear_items()
+        self.__clear_items()
         font = QFont()
         font.setPointSize(22)
         self.__scene.addText(newText, font).setDefaultTextColor(Qt.red)
-        self._adjust_view()
+        self.__adjust_view()
 
     def wheelEvent(self,event):
-        if (self.__fileBaseName != None) and (event.modifiers()==Qt.ControlModifier):
+        if (self.__file_base_name != None) and (event.modifiers()==Qt.ControlModifier):
             event.accept()
-            # Get the cursor's position and translate to pixmap coordinates
-            scenePos = self.mapToScene(event.pos())
-            itemPos = self.__pixmapItem.mapFromScene(scenePos)
-            # Now find the % offset from pixmap's origin. This doesn't change with zoom
-            itemRect = self.__pixmapItem.boundingRect()
-            percentX = itemPos.x()/itemRect.width()
-            percentY = itemPos.y()/itemRect.height()
-            # Now perform the zoom by converting from PDF with suitable resulution
-            # Set working dir
-            saveWD = os.getcwd()
-            os.chdir(pycirkuit.__tmpDir__.path())
-            # Accumulated mouse wheel steps
-            self.__wheel_steps = self._qBound(
+            # Accumulated mouse wheel steps, bounded to certain limits
+            self.__wheel_steps = self.__qBound(
                 -self.__max_steps,
                  self.__wheel_steps + event.angleDelta().y() / 120,
                  self.__max_steps)
-            newPPI = self._calc_ppi(self.__wheel_steps)
+            newPPI = self.__calc_ppi(self.__wheel_steps)
+            # Do nothing if reached one of the zoom limits
+            if (newPPI == self.__current_ppi):
+                return
+            
+            # Get the cursor's position and translate to pixmap coordinates
+            scenePos = self.mapToScene(event.pos())
+            # Now find the % offset from pixmap's origin. This doesn't change with zoom
+            percentX = scenePos.x()/self.__scene.itemsBoundingRect().width()
+            percentY = scenePos.y()/self.__scene.itemsBoundingRect().height()
+            
+            # Now perform the zoom by converting from PDF with suitable resolution
+            # Set working dir
+            saveWD = os.getcwd()
+            os.chdir(pycirkuit.__tmpDir__.path())
             try:
                 converter = ToolPdfToPng()
-                converter.execute(self.__fileBaseName, resolution = newPPI)
-                self.setImage(self.__fileBaseName, adjustIGU=True)
-                # Calculate the coordinates of the pixel which is (%X,%Y) from origin
-                rect = self.__pixmapItem.boundingRect()
-                # Now translate coords back: Item -> Scene -> View
-                itemNewPos = QPointF(rect.width()*percentX, rect.height()*percentY)
-                sceneNewPos = self.__pixmapItem.mapToScene(itemNewPos)
-                pos = QPointF(event.pos())
-                topLeft = sceneNewPos - pos
-                # And move the view so that the scene point under mouse appears at the same place
-                self.setSceneRect(topLeft.x(), topLeft.y(), self.width(), self.height())
-                # Finally move view so that the 'viewNewPos' appears under mouse
-                print("Pos: ({px},{py}   ScenePos: ({sx},{sy}))   Item%: ({ix},{iy})".format(
-                    px=event.pos().x(), py=event.pos().y(), 
-                    sx=scenePos.x(), sy=scenePos.y(), 
-                    ix=percentX, iy=percentY, 
-                    )
-                )            
+                converter.execute(self.__file_base_name, resolution = newPPI)
+                self.setImage(self.__file_base_name, adjustIGU=True)
+                
+                # If Scene contents area is smaller than current viewport size, center scene in view
+                currentSceneRect = self.__scene.itemsBoundingRect()
+                currentViewportRect = QRectF(self.rect())
+                if (currentViewportRect.contains(currentSceneRect)):
+                    self.setSceneRect(currentSceneRect)
+                    self.centerOn(currentSceneRect.center())
+                # Else, keep scene point under cursor at the same viewport position
+                else:
+                    # Calculate the scene coordinates of the position which is (%X,%Y) from origin
+                    newScenePos = QPointF(currentSceneRect.width()*percentX, currentSceneRect.height()*percentY)
+                    # Calculate pixel offset between mouse position and viewport center
+                    offset = QPointF(self.width()/2, self.height()/2) - QPointF(event.pos())
+                    # Then adjust things so that this scene position appears under the mouse
+                    self.centerOn(newScenePos +offset)
             except PyCirkuitError as err:
                 self.setText(_translate("PyCirkuitError", "Error creating zoomed image.", "Displayed error message"))
                 self.conversion_failed.emit(err)
+            else:
+                self.__current_ppi = newPPI
             finally:
                 os.chdir(saveWD)
         else:
