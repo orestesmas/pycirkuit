@@ -559,64 +559,64 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     @pyqtSlot()
     def on_processButton_clicked(self):
+        def writeHeader(tool):
+            aux = header.format(toolLongName=self.extTools[tool].longName)
+            self.outputText.appendPlainText('\n' + aux)
+            self.outputText.appendPlainText("="*len(aux))
+                
+        def writeOk():
+            self.outputText.appendPlainText(_translate("OutputLog", " + No execution errors", "Output log info"))
+
+        # STEP 0: Basic checks for the existence of auxiliary programs/utilities
         # Check if we have all the auxiliary apps correctly installed
         if not self._check_programs():
             return
-
         # Check if we have the Circuit Macros at the folder specified into the Settings
         if not self._enforce_circuit_macros():
             return
-
         # Check if the template file exists and is valid
         if not self._check_templates():
             return
 
         try:
-            # STEP0: Prepare the Progress Bar
+            # STEP 1: Prepare the Progress Bar
             self.sbProgressBar.setRange(0, 4)
             self.sbProgressBar.setValue(0)
             self.sbProgressBar.setVisible(True)
 
-            # STEP1 : Save current WD and set a new one
+            # STEP 2: Save current WD and set a new one
             savedWD = os.getcwd()
             os.chdir(pycirkuit.__tmpDir__.path())
             
-            # STEP 2: Establish a temporary file base name to store intermediate results
+            # STEP 3: Establish a temporary file base name to store intermediate results
             tmpFileBaseName = "cirkuit_tmp"
             with open("{baseName}.ckt".format(baseName=tmpFileBaseName), 'w') as tmpFile:
                 tmpFile.write(self.sourceText.toPlainText())
             
-            # STEP 3: Change cursor shape temporarily
+            # STEP 4: Change cursor shape temporarily
             app = QtWidgets.QApplication.instance()
             app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
             
-            # STEP 4: Clear log text
+            # STEP 5: Clear log text
             self.outputText.clear()
             self.outputText.setPlainText(_translate("OutputLog", ">>>>> Start processing", "Output log info"))
             header = _translate("OutputLog", "Output of {toolLongName}:", "Output log info. Do NOT modify/translate the '{toolLongName}' variable")
-            def writeHeader(tool):
-                aux = header.format(toolLongName=self.extTools[tool].longName)
-                self.outputText.appendPlainText('\n' + aux)
-                self.outputText.appendPlainText("="*len(aux))
-                
-            def writeOk():
-                self.outputText.appendPlainText(_translate("OutputLog", " + No execution errors", "Output log info"))
  
-            # STEP 4 Call M4: .CKT -> .PIC
+            # STEP 6: Call M4: .CKT -> .PIC
             self.statusBar.showMessage(_translate("StatusBar", "Converting: Circuit Macros -> PIC", "Status Bar message"))
             writeHeader(ToolM4)
             self.extTools[ToolM4].execute(tmpFileBaseName)
             writeOk()
             self.sbProgressBar.setValue(1)
 
-            # STEP 5: Call dpic: .PIC -> .TIKZ
+            # STEP 7: Call dpic: .PIC -> .TIKZ
             self.statusBar.showMessage(_translate("StatusBar", "Converting: PIC -> TIKZ", "Status Bar message"))
             writeHeader(ToolDpic)
             self.extTools[ToolDpic].execute(tmpFileBaseName)
             writeOk()
             self.sbProgressBar.setValue(2)
 
-            # STEP 6: Call PDFLaTeX: .TIKZ -> .PDF
+            # STEP 8: Call PDFLaTeX: .TIKZ -> .PDF
             # First we have to embed the .TIKZ code inside a suitable template
             self.statusBar.showMessage(_translate("StatusBar", "Converting: TIKZ -> PDF", "Status Bar message"))
             writeHeader(ToolPdfLaTeX)
@@ -624,14 +624,14 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             writeOk()
             self.sbProgressBar.setValue(3)
 
-            # STEP 7: Call pdftoppm to convert the PDF into a bitmap image to visualize it: .PDF -> .PNG
+            # STEP 9: Call pdftoppm to convert the PDF into a bitmap image to visualize it: .PDF -> .PNG
             self.statusBar.showMessage(_translate("StatusBar", "Converting: PDF -> PNG", "Status Bar message"))
             writeHeader(ToolPdfToPng)
             self.extTools[ToolPdfToPng].execute(tmpFileBaseName)
             writeOk()
             self.sbProgressBar.setValue(4)
             
-            # STEP 8: Visualize the image (can fail)
+            # STEP 10: Visualize the image (can fail)
             self.imageViewer.setImage(tmpFileBaseName, adjustIGU=True)
 
         except PyCktToolExecutionError as err:
