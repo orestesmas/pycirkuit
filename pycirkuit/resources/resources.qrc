@@ -15,7 +15,7 @@
     <file alias="Settings">preferences-system.png</file>
     <file alias="About">help-about.png</file>
     <file alias="Text">draw-text.png</file>
-    <file>view-preview.png</file>
+    <file alias="Bitmap">image-png.png</file>
   </qresource>
   <qresource prefix="/pixmaps">
     <file alias="AppLabel">application-x-pycirkuit.png</file>

@@ -92,11 +92,32 @@
      </widget>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout">
+     <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0">
+      <property name="spacing">
+       <number>6</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
       <item>
        <widget class="QPushButton" name="processButton">
         <property name="enabled">
          <bool>false</bool>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Ignored">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="baseSize">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
         </property>
         <property name="text">
          <string comment="Button text">Process and display</string>
@@ -108,18 +129,36 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="exportButton">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="text">
-         <string comment="Button text">Export to TIkZ</string>
-        </property>
-        <property name="icon">
-         <iconset resource="../resources/resources.qrc">
-          <normaloff>:/icons/Export</normaloff>:/icons/Export</iconset>
-        </property>
-       </widget>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QPushButton" name="exportTIKZ">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string comment="Button text">Export to TIkZ</string>
+          </property>
+          <property name="icon">
+           <iconset resource="../resources/resources.qrc">
+            <normaloff>:/icons/Export</normaloff>:/icons/Export</iconset>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="exportPNG">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Export to PNG</string>
+          </property>
+          <property name="icon">
+           <iconset resource="../resources/resources.qrc">
+            <normaloff>:/icons/Bitmap</normaloff>:/icons/Bitmap</iconset>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
      </layout>
     </item>
@@ -131,7 +170,7 @@
      <x>0</x>
      <y>0</y>
      <width>677</width>
-     <height>34</height>
+     <height>36</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -179,7 +218,7 @@
     </size>
    </property>
    <property name="windowIcon">
-    <iconset resource="../resources/resources.qrc">
+    <iconset>
      <normaloff>:/icons/view-preview.png</normaloff>:/icons/view-preview.png</iconset>
    </property>
    <property name="windowTitle">
@@ -385,8 +424,6 @@
  </customwidgets>
  <tabstops>
   <tabstop>sourceText</tabstop>
-  <tabstop>processButton</tabstop>
-  <tabstop>exportButton</tabstop>
  </tabstops>
  <resources>
   <include location="../resources/resources.qrc"/>

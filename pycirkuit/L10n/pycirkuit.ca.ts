@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="ca_ES">
+<!DOCTYPE TS><TS version="2.0" language="ca_ES" sourcelanguage="">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -217,7 +216,7 @@ p, li { white-space: pre-wrap; }
         <translation>Programa pdfLaTeX</translation>
     </message>
     <message>
-        <location filename="../tools/pdflatex.py" line="60"/>
+        <location filename="../tools/pdflatex.py" line="59"/>
         <source>PDFLaTeX: Error converting TIKZ -&gt; PDF</source>
         <comment>Error message</comment>
         <translation>PDFLaTeX: Error en la conversió TIKZ -&gt; PDF</translation>
@@ -348,186 +347,186 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="190"/>
+        <location filename="../ui/Ui_mainwindow.py" line="208"/>
         <source>PyCirkuit - by Orestes Mas</source>
         <translation>PyCircuit - per Orestes Mas</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="196"/>
+        <location filename="../ui/Ui_mainwindow.py" line="215"/>
         <source>Fi&amp;le</source>
         <translation>&amp;Fitxer</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="197"/>
+        <location filename="../ui/Ui_mainwindow.py" line="216"/>
         <source>Help</source>
         <translation>Ajuda</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="198"/>
+        <location filename="../ui/Ui_mainwindow.py" line="217"/>
         <source>Setti&amp;ngs</source>
         <translation>Arra&amp;njament</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="210"/>
+        <location filename="../ui/Ui_mainwindow.py" line="229"/>
         <source>Open Drawing</source>
         <translation>Obre un dibuix</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="219"/>
+        <location filename="../ui/Ui_mainwindow.py" line="238"/>
         <source>New Drawing</source>
         <translation>Nou dibuix</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="191"/>
+        <location filename="../ui/Ui_mainwindow.py" line="209"/>
         <source>Source Editor</source>
         <comment>Tab title</comment>
         <translation>Editor de la font</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="194"/>
+        <location filename="../ui/Ui_mainwindow.py" line="212"/>
         <source>Process and display</source>
         <comment>Button text</comment>
         <translation>Processa i mostra</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="195"/>
+        <location filename="../ui/Ui_mainwindow.py" line="213"/>
         <source>Export to TIkZ</source>
         <comment>Button text</comment>
         <translation>Exporta a TIkZ</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="199"/>
+        <location filename="../ui/Ui_mainwindow.py" line="218"/>
         <source>&amp;Preview</source>
         <comment>Dock window title</comment>
         <translation>&amp;Previsualització</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="206"/>
+        <location filename="../ui/Ui_mainwindow.py" line="225"/>
         <source>&amp;Quit</source>
         <comment>Menu item</comment>
         <translation>S&amp;urt</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="209"/>
+        <location filename="../ui/Ui_mainwindow.py" line="228"/>
         <source>&amp;Open...</source>
         <comment>Menu item</comment>
         <translation>&amp;Obre...</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="218"/>
+        <location filename="../ui/Ui_mainwindow.py" line="237"/>
         <source>&amp;New</source>
         <comment>Menu item</comment>
         <translation>&amp;Nou</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="222"/>
+        <location filename="../ui/Ui_mainwindow.py" line="241"/>
         <source>&amp;Save</source>
         <comment>Menu item</comment>
         <translation>&amp;Desa</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="225"/>
+        <location filename="../ui/Ui_mainwindow.py" line="244"/>
         <source>Sa&amp;ve As...</source>
         <comment>Menu item</comment>
         <translation>Desa &amp;com a...</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="230"/>
+        <location filename="../ui/Ui_mainwindow.py" line="249"/>
         <source>Ctrl+M</source>
         <translation>Ctrl+M</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="208"/>
+        <location filename="../ui/Ui_mainwindow.py" line="227"/>
         <source>Ctrl+Q</source>
         <comment>Keyboard Shortcut</comment>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="212"/>
+        <location filename="../ui/Ui_mainwindow.py" line="231"/>
         <source>Ctrl+O</source>
         <comment>Keyboard Shortcut</comment>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="215"/>
+        <location filename="../ui/Ui_mainwindow.py" line="234"/>
         <source>Configure &amp;PyCirkuit...</source>
         <comment>Menu item</comment>
         <translation>Configura el &amp;PyCirkuit...</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="217"/>
+        <location filename="../ui/Ui_mainwindow.py" line="236"/>
         <source>Ctrl+P</source>
         <comment>Keyboard Shortcut</comment>
         <translation>Ctrl+P</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="221"/>
+        <location filename="../ui/Ui_mainwindow.py" line="240"/>
         <source>Ctrl+N</source>
         <comment>Keyboard Shortcut</comment>
         <translation>Ctrl+N</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="224"/>
+        <location filename="../ui/Ui_mainwindow.py" line="243"/>
         <source>Ctrl+S</source>
         <comment>Keyboard Shortcut</comment>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="227"/>
+        <location filename="../ui/Ui_mainwindow.py" line="246"/>
         <source>Ctrl+Shift+S</source>
         <comment>Keyboard Shortcut</comment>
         <translation>Ctrl+Shift+S</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="113"/>
+        <location filename="../ui/mainwindow.py" line="114"/>
         <source>Enter a file to save into</source>
         <comment>Window Title</comment>
         <translation>Introduïu un fitxer on desar-ho</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="440"/>
+        <location filename="../ui/mainwindow.py" line="449"/>
         <source>PyCirkuit files (*.ckt)</source>
         <comment>File filter text</comment>
         <translation>Fitxers PyCirkuit (*.ckt)</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="440"/>
+        <location filename="../ui/mainwindow.py" line="449"/>
         <source>TeX files (*.tex)</source>
         <comment>File filter text</comment>
         <translation>Fitxers TeX (*.tex)</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="440"/>
+        <location filename="../ui/mainwindow.py" line="449"/>
         <source>Any files (*)</source>
         <comment>File filter text</comment>
         <translation>Qualsevol fitxer (*)</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="474"/>
+        <location filename="../ui/mainwindow.py" line="482"/>
         <source>Enter a file to save into</source>
         <comment>File Dialog title</comment>
         <translation>Introduïu un fitxer on desar-ho</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="477"/>
+        <location filename="../ui/mainwindow.py" line="485"/>
         <source>PyCirkuit files (*.ckt)</source>
         <comment>File filter</comment>
         <translation>Fitxers PyCirkuit (*.ckt)</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="477"/>
+        <location filename="../ui/mainwindow.py" line="485"/>
         <source>Any files (*)</source>
         <comment>File filter</comment>
         <translation>Qualsevol fitxer (*)</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="213"/>
+        <location filename="../ui/Ui_mainwindow.py" line="232"/>
         <source>&amp;About PyCirkuit</source>
         <comment>Menu item</comment>
         <translation>&amp;Quant al PyCirkuit</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="438"/>
+        <location filename="../ui/mainwindow.py" line="447"/>
         <source>Source File Selection</source>
         <comment>File Dialog title</comment>
         <translation>Selecció de fitxer font</translation>
@@ -539,7 +538,7 @@ p, li { white-space: pre-wrap; }
         <translation>sense nom</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="411"/>
+        <location filename="../ui/mainwindow.py" line="419"/>
         <source>.PS
 scale=2.54
 cct_init
@@ -559,112 +558,112 @@ l=elen_
 </translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="228"/>
+        <location filename="../ui/Ui_mainwindow.py" line="247"/>
         <source>&amp;Circuit Macros manual</source>
         <translation>Manual de les &amp;Circuit Macros</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="231"/>
+        <location filename="../ui/Ui_mainwindow.py" line="250"/>
         <source>&amp;Dpic manual</source>
         <translation>Manual del &amp;Dpic</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="233"/>
+        <location filename="../ui/Ui_mainwindow.py" line="252"/>
         <source>Ctrl+D</source>
         <translation>Ctrl+D</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="207"/>
+        <location filename="../ui/Ui_mainwindow.py" line="226"/>
         <source>Close application</source>
         <comment>Status Bar Message</comment>
         <translation>Tanca l&apos;aplicació</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="214"/>
+        <location filename="../ui/Ui_mainwindow.py" line="233"/>
         <source>Application information</source>
         <comment>Status Bar Message</comment>
         <translation>Informació de l&apos;aplicació</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="216"/>
+        <location filename="../ui/Ui_mainwindow.py" line="235"/>
         <source>Opens config dialog</source>
         <comment>Status Bar Message</comment>
         <translation>Obre el diàleg de configuració</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="229"/>
+        <location filename="../ui/Ui_mainwindow.py" line="248"/>
         <source>Opens Circuit Macros manual</source>
         <comment>Status Bar Message</comment>
         <translation>Obre el manual de les Circuit Macros</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="232"/>
+        <location filename="../ui/Ui_mainwindow.py" line="251"/>
         <source>Opens Dpic manual</source>
         <comment>Status Bar Message</comment>
         <translation>Obre el manual del Dpic</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="211"/>
+        <location filename="../ui/Ui_mainwindow.py" line="230"/>
         <source>Opens an existing drawing</source>
         <comment>Status Bar Message</comment>
         <translation>Obre un dibuix existent</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="220"/>
+        <location filename="../ui/Ui_mainwindow.py" line="239"/>
         <source>Creates an empty drawing</source>
         <comment>Status Bar Message</comment>
         <translation>Crea un dibuix buit</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="223"/>
+        <location filename="../ui/Ui_mainwindow.py" line="242"/>
         <source>Saves drawing</source>
         <comment>Status Bar Message</comment>
         <translation>Desa el dibuix</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="226"/>
+        <location filename="../ui/Ui_mainwindow.py" line="245"/>
         <source>Saves drawing with new name</source>
         <comment>Status Bar Message</comment>
         <translation>Desa el dibuix amb un nom nou</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="440"/>
+        <location filename="../ui/mainwindow.py" line="449"/>
         <source>M4 macro files (*.m4)</source>
         <comment>File filter text</comment>
         <translation>Fitxers de macros M4 (*.m4)</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="119"/>
+        <location filename="../ui/mainwindow.py" line="120"/>
         <source>TikZ files (*.tikz)</source>
         <comment>File filter</comment>
         <translation>Fitxers TikZ (*.tikz)</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="119"/>
+        <location filename="../ui/mainwindow.py" line="120"/>
         <source>TeX files (*.tex)</source>
         <comment>File filter</comment>
         <translation>Fitxers TeX (*.tex)</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="192"/>
+        <location filename="../ui/Ui_mainwindow.py" line="210"/>
         <source>&lt;Empty output&gt;</source>
         <comment>Placeholder text</comment>
         <translation>&lt;Sortida buida&gt;</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="193"/>
+        <location filename="../ui/Ui_mainwindow.py" line="211"/>
         <source>Output Log</source>
         <comment>Tab title</comment>
         <translation>Registre de sortida</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="638"/>
+        <location filename="../ui/mainwindow.py" line="697"/>
         <source>Error!</source>
         <comment>Fallback text to be displayed when the image cannot be generated</comment>
         <translation>Error!</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="200"/>
+        <location filename="../ui/Ui_mainwindow.py" line="219"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Use:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt; Ctrl + Mouse Wheel to Zoom In/Out&lt;/li&gt;
@@ -678,11 +677,16 @@ l=elen_
 &lt;/ul&gt;
 &lt;/body&gt;&lt;/html&gt;</translation>
     </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="214"/>
+        <source>Export to PNG</source>
+        <translation>Exporta a PNG</translation>
+    </message>
 </context>
 <context>
     <name>MessageBox</name>
     <message>
-        <location filename="../ui/mainwindow.py" line="278"/>
+        <location filename="../ui/mainwindow.py" line="279"/>
         <source>Cannot find the &apos;Circuit Macros&apos;!
 
 </source>
@@ -691,58 +695,58 @@ l=elen_
 </translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="279"/>
+        <location filename="../ui/mainwindow.py" line="280"/>
         <source>Do you want to try to search and install them automatically?</source>
         <translation>Voleu provar de cercar-les i instal·lar-les automàticament?</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="300"/>
+        <location filename="../ui/mainwindow.py" line="301"/>
         <source>Please indicate the correct path to them in the settings dialog.</source>
         <translation>Si us plau indiqueu-ne la ruta correcta al diàleg de l&apos;arranjament.</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="301"/>
+        <location filename="../ui/mainwindow.py" line="302"/>
         <source>Critical Error</source>
         <translation>Error crític</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="512"/>
+        <location filename="../ui/mainwindow.py" line="571"/>
         <source>Warning</source>
         <comment>Message Box title</comment>
         <translation>Avís</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="515"/>
+        <location filename="../ui/mainwindow.py" line="574"/>
         <source>Do you want to overwrite it?</source>
         <comment>Message Box text</comment>
         <translation>Voleu sobreescriure&apos;l?</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="517"/>
+        <location filename="../ui/mainwindow.py" line="576"/>
         <source>Save As...</source>
         <comment>Button text</comment>
         <translation>Desa com a...</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="345"/>
+        <location filename="../ui/mainwindow.py" line="353"/>
         <source>Error saving source file: </source>
         <comment>Error message</comment>
         <translation>S&apos;ha produït un error en desar el fitxer font: </translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="346"/>
+        <location filename="../ui/mainwindow.py" line="354"/>
         <source>Cannot execute command.</source>
         <comment>Error message</comment>
         <translation>No es pot executar l&apos;ordre.</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="347"/>
+        <location filename="../ui/mainwindow.py" line="355"/>
         <source>Critical Error</source>
         <comment>Message Box title</comment>
         <translation>Error crític</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="244"/>
+        <location filename="../ui/mainwindow.py" line="245"/>
         <source>The specified LaTeX template seems invalid!
 
 </source>
@@ -752,7 +756,7 @@ l=elen_
 </translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="245"/>
+        <location filename="../ui/mainwindow.py" line="246"/>
         <source>Please indicate a correct one in the Settings.
 
 </source>
@@ -762,13 +766,13 @@ l=elen_
 </translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="253"/>
+        <location filename="../ui/mainwindow.py" line="254"/>
         <source>Cannot generate the preview.</source>
         <comment>Error message</comment>
         <translation>No s&apos;ha pogut generar la previsualització.</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="251"/>
+        <location filename="../ui/mainwindow.py" line="252"/>
         <source>The LaTeX template has not been found!
 
 </source>
@@ -778,7 +782,7 @@ l=elen_
 </translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="252"/>
+        <location filename="../ui/mainwindow.py" line="253"/>
         <source>Please indicate its correct PATH in the Settings.
 
 </source>
@@ -788,24 +792,24 @@ l=elen_
 </translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="136"/>
+        <location filename="../ui/mainwindow.py" line="137"/>
         <source>Source file have unsaved changes.</source>
         <comment>Message box text</comment>
         <translation>El fitxer font té canvis sense desar.</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="514"/>
+        <location filename="../ui/mainwindow.py" line="573"/>
         <source>There&apos;s already a file named &quot;{filename}&quot; at working directory.</source>
         <comment>Message box text. Don&apos;t translate &apos;{filename}&apos;</comment>
         <translation>Ja hi ha un fitxer anomenat «{filename}» al directori de treball.</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="280"/>
+        <location filename="../ui/mainwindow.py" line="281"/>
         <source>Warning</source>
         <translation>Avís</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="137"/>
+        <location filename="../ui/mainwindow.py" line="138"/>
         <source>Do you want to save them before proceeding?</source>
         <comment>Message Box text</comment>
         <translation>Voleu desar-los abans de continuar?</translation>
@@ -826,25 +830,25 @@ l=elen_
         <translation>O bé cancel·leu el diàleg d&apos;arranjaments i el PyCirkuit descarregarà i instal·larà les Circuit Macros quan calgui.</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="544"/>
+        <location filename="../ui/mainwindow.py" line="603"/>
         <source>PyCirkuit - Error</source>
         <comment>Message Box title</comment>
         <translation>PyCirkuit - Error</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="536"/>
+        <location filename="../ui/mainwindow.py" line="595"/>
         <source>Permission denied writing the file {filename}.</source>
         <comment>Message box text. Don&apos;t translate &apos;{filename}&apos;</comment>
         <translation>S&apos;ha denegat el permís mentre s&apos;escrivia el fitxer {filename}.</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="537"/>
+        <location filename="../ui/mainwindow.py" line="596"/>
         <source>Please try to export again with another name and/or location.</source>
         <comment>Message Box text</comment>
         <translation>Proveu de tornar-lo a exportar amb un altre nom i/o ubicació.</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="546"/>
+        <location filename="../ui/mainwindow.py" line="605"/>
         <source>An error has occurred trying to export the file. The error says:</source>
         <comment>Message Box text</comment>
         <translation>S&apos;ha produït un error mentre s&apos;exportava el fitxer. L&apos;error diu:</translation>
@@ -853,19 +857,19 @@ l=elen_
 <context>
     <name>OutputLog</name>
     <message>
-        <location filename="../ui/mainwindow.py" line="587"/>
+        <location filename="../ui/mainwindow.py" line="653"/>
         <source>&gt;&gt;&gt;&gt;&gt; Start processing</source>
         <comment>Output log info</comment>
         <translation>&gt;&gt;&gt;&gt;&gt; Inici del processament</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="588"/>
+        <location filename="../ui/mainwindow.py" line="654"/>
         <source>Output of {toolLongName}:</source>
         <comment>Output log info. Do NOT modify/translate the &apos;{toolLongName}&apos; variable</comment>
         <translation>Sortida del {toolLongName}:</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="595"/>
+        <location filename="../ui/mainwindow.py" line="619"/>
         <source> + No execution errors</source>
         <comment>Output log info</comment>
         <translation> + Sense errors d&apos;execució</translation>
@@ -886,31 +890,31 @@ l=elen_
         <translation>No s&apos;ha pogut carregar la imatge generada.</translation>
     </message>
     <message>
-        <location filename="../imageviewer.py" line="120"/>
+        <location filename="../imageviewer.py" line="127"/>
         <source>The converted image could not be loaded.</source>
         <comment>Exception message</comment>
         <translation>No s&apos;ha pogut carregar la imatge convertida.</translation>
     </message>
     <message>
-        <location filename="../imageviewer.py" line="120"/>
+        <location filename="../imageviewer.py" line="127"/>
         <source>PyCirkuit Internal Error</source>
         <comment>Exception title</comment>
         <translation>Error intern del PyCirkuit</translation>
     </message>
     <message>
-        <location filename="../imageviewer.py" line="120"/>
+        <location filename="../imageviewer.py" line="127"/>
         <source>This error should not happen in a normal operation. Please contact the developers.</source>
         <comment>Exception additional info</comment>
         <translation>Aquest error no s&apos;hauria d&apos;esdevenir en l&apos;ús normal. Contacteu els desenvolupadors.</translation>
     </message>
     <message>
-        <location filename="../imageviewer.py" line="126"/>
+        <location filename="../imageviewer.py" line="133"/>
         <source>Internal error: cannot load image</source>
         <comment>Displayed error message</comment>
         <translation>Error intern: no s&apos;ha pogut carregar la imatge</translation>
     </message>
     <message>
-        <location filename="../imageviewer.py" line="165"/>
+        <location filename="../imageviewer.py" line="198"/>
         <source>Error creating zoomed image.</source>
         <comment>Displayed error message</comment>
         <translation>S&apos;ha produït un error en crear la imatge ampliada/reduïda.</translation>
@@ -919,31 +923,31 @@ l=elen_
 <context>
     <name>StatusBar</name>
     <message>
-        <location filename="../ui/mainwindow.py" line="598"/>
+        <location filename="../ui/mainwindow.py" line="657"/>
         <source>Converting: Circuit Macros -&gt; PIC</source>
         <comment>Status Bar message</comment>
         <translation>S&apos;està convertint: Circuit Macros -&gt; PIC</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="605"/>
+        <location filename="../ui/mainwindow.py" line="664"/>
         <source>Converting: PIC -&gt; TIKZ</source>
         <comment>Status Bar message</comment>
         <translation>S&apos;està convertint: PIC -&gt; TIKZ</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="613"/>
+        <location filename="../ui/mainwindow.py" line="672"/>
         <source>Converting: TIKZ -&gt; PDF</source>
         <comment>Status Bar message</comment>
         <translation>S&apos;està convertint: TIKZ -&gt; PDF</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="620"/>
+        <location filename="../ui/mainwindow.py" line="679"/>
         <source>Converting: PDF -&gt; PNG</source>
         <comment>Status Bar message</comment>
         <translation>S&apos;està convertint: PDF -&gt; PNG</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="284"/>
+        <location filename="../ui/mainwindow.py" line="285"/>
         <source>Downloading and unpacking Circuit Macros</source>
         <comment>Status Bar message</comment>
         <translation>S&apos;estan baixant i desempaquetant les «Circuit Macros»</translation>
