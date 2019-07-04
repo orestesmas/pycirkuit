@@ -22,7 +22,6 @@ Main program entry point/function
 
 # Standard library imports
 from os.path import abspath, isfile
-import glob
 
 # Third-party imports
 from PyQt5.QtWidgets import QApplication
@@ -36,6 +35,7 @@ from PyQt5.QtCore import QCoreApplication, \
 # Local application imports
 from pycirkuit.ui.mainwindow import MainWindow
 from pycirkuit import __version__
+from pycirkuit.tools import commandoptions
 
 # Resources for translation
 from pycirkuit.resources import resources_rc
@@ -85,15 +85,9 @@ to be included in TeX, LaTeX, web or similar documents.""", "Commandline help te
         if parser.isSet(option):
             optionName = option.names()[0]
             if optionName == "batch":
-                print("Option '-b' not yet implemented. Exiting.")
-                print("But the files to be processed are:")
-                pathSpec =  parser.value(option)
-                fileIterator = iter(glob.iglob(pathSpec))
-                for file in fileIterator:
-                    print(file)
-                sys.exit(-1)
+                commandoptions.batch(parser, option)
             elif optionName == "tikz":
-                print ("tikz")
+                commandoptions.tikz()
     # Finished test for options. Now test for a filename passed as parameter, or none
     args = parser.positionalArguments()
     N = len(args)
