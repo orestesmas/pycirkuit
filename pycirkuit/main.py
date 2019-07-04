@@ -62,7 +62,6 @@ to be included in TeX, LaTeX, web or similar documents.""", "Commandline help te
         QCommandLineOption(
             ["tikz"],
             "Generates a TiKz from the input file.",
-            "outputFile"
         ),
     ]
     # Adding the '-h, --help' option
