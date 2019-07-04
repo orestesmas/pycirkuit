@@ -55,6 +55,7 @@ setup(name = 'pycirkuit',
     install_requires = [
         # Debian package is python3-pyqt5
         'PyQt5',
+        'wheel',
         # Debian package is python3-magic
         'python-magic-bin' if platform.system() == 'Windows' else 'python-magic'
     ],
