@@ -47,20 +47,26 @@ import sys
 # The command line parser
 def parseCmdLine(app):
     parser = QCommandLineParser()
-    # Adding the '-h, --help' option
     parser.setApplicationDescription(_translate("main", """
 PyCirkuit is a GUI front-end for Circuit Macros by Dwight Aplevich,
 which are a set of macros for drawing high-quality line diagrams
 to be included in TeX, LaTeX, web or similar documents.""", "Commandline help text"))
+
+    # Adding command line options
+    options = [
+        QCommandLineOption(
+            ["b", "batch"],
+            "Group of files / directory to process in batch (unattended) mode.",
+            "groupFiles"
+        ),
+    ]
+    # Adding the '-h, --help' option
     parser.addHelpOption()
     # Adding the '-v --version' option
     parser.addVersionOption()
-    # Adding the '-b', '--batch' option
-    batchOption = QCommandLineOption(["b", "batch"], 
-        "Group of files / directory to process in batch (unattended) mode.", 
-        "groupFiles"
-        )
-    parser.addOption(batchOption)
+    # Adding the options in the list
+    for option in options:
+        parser.addOption(option)
     # Allowing one positional argument -- the file to open
     parser.addPositionalArgument(
         _translate("main", "file", "Commandline help text"), 
