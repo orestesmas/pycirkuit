@@ -32,6 +32,3 @@ def batch(parser, option):
     for file in fileIterator:
         print(file)
     sys.exit(-1)
-
-def tikz():
-    print ("tikz")
