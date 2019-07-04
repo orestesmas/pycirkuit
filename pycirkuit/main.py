@@ -79,7 +79,6 @@ to be included in TeX, LaTeX, web or similar documents.""", "Commandline help te
     )
     # Process the command line options
     parser.process(app)
-    print (parser.optionNames())
     # Act upon given arguments
     for option in options:
         if parser.isSet(option):
