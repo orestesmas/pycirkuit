@@ -2,7 +2,8 @@
 """
 Module implementing the functions to run when a command option is called
 """
-# Copyright (C) 2018-2019 Orestes Mas & Aniol Marti
+# Copyright (C) 2018-2019 Orestes Mas
+# Copyright (C) 2019 Aniol Marti
 # This file is part of PyCirkuit.
 #
 # PyCirkuit is free software: you can redistribute it and/or modify
