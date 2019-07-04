@@ -55,9 +55,14 @@ to be included in TeX, LaTeX, web or similar documents.""", "Commandline help te
     # Adding command line options
     options = [
         QCommandLineOption(
-            ["b", "batch"],
+            ["batch", "b"],
             "Group of files / directory to process in batch (unattended) mode.",
             "groupFiles"
+        ),
+        QCommandLineOption(
+            ["tikz"],
+            "Generates a TiKz from the input file.",
+            "outputFile"
         ),
     ]
     # Adding the '-h, --help' option
@@ -74,15 +79,21 @@ to be included in TeX, LaTeX, web or similar documents.""", "Commandline help te
     )
     # Process the command line options
     parser.process(app)
+    print (parser.optionNames())
     # Act upon given arguments
-    if parser.isSet(batchOption):
-        print("Option '-b' not yet implemented. Exiting.")
-        print("But the files to be processed are:")
-        pathSpec =  parser.value(batchOption)
-        fileIterator = iter(glob.iglob(pathSpec))
-        for file in fileIterator:
-            print(file)
-        sys.exit(-1)
+    for option in options:
+        if parser.isSet(option):
+            optionName = option.names()[0]
+            if optionName == "batch":
+                print("Option '-b' not yet implemented. Exiting.")
+                print("But the files to be processed are:")
+                pathSpec =  parser.value(option)
+                fileIterator = iter(glob.iglob(pathSpec))
+                for file in fileIterator:
+                    print(file)
+                sys.exit(-1)
+            elif optionName == "tikz":
+                print ("tikz")
     # Finished test for options. Now test for a filename passed as parameter, or none
     args = parser.positionalArguments()
     N = len(args)
