@@ -35,7 +35,7 @@ from PyQt5.QtCore import QCoreApplication, \
 # Local application imports
 from pycirkuit.ui.mainwindow import MainWindow
 from pycirkuit import __version__
-from pycirkuit.tools import commandlineoptions
+from pycirkuit.tools.commandlineoptions import CommandLineOptions
 
 # Resources for translation
 from pycirkuit.resources import resources_rc
@@ -82,10 +82,11 @@ to be included in TeX, LaTeX, web or similar documents.""", "Commandline help te
     for option in options:
         if parser.isSet(option):
             optionName = option.names()[0]
+            cli = CommandLineOptions(parser, option)
             if optionName == "batch":
-                commandlineoptions.batch(parser, option)
+                cli.batch()
             elif optionName == "tikz":
-                commandlineoptions.tikz()
+                cli.tikz()
     # Finished test for options. Now test for a filename passed as parameter, or none
     args = parser.positionalArguments()
     N = len(args)

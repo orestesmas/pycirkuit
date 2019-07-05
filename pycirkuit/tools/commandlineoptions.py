@@ -24,14 +24,25 @@ Module implementing the functions to run when a command option is called
 import glob
 import sys
 
-def batch(parser, option):
-    print("Option '-b' not yet implemented. Exiting.")
-    print("But the files to be processed are:")
-    pathSpec =  parser.value(option)
-    fileIterator = iter(glob.iglob(pathSpec))
-    for file in fileIterator:
-        print(file)
-    sys.exit(-1)
+class CommandLineOptions():
+    # Class constructor.
+    def __init__(self, parser, option=None):
+        self.parser = parser
+        self.option = option
 
-def tikz():
-    print ("tikz")
+    # Operational methods.
+    def setOption(self, option):
+        self.option = option
+
+    # Command line methods.
+    def batch(self):
+        print("Option '-b' not yet implemented. Exiting.")
+        print("But the files to be processed are:")
+        pathSpec =  self.parser.value(self.option)
+        fileIterator = iter(glob.iglob(pathSpec))
+        for file in fileIterator:
+            print(file)
+        sys.exit(-1)
+
+    def tikz(self):
+        print ("tikz")
