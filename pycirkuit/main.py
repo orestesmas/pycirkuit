@@ -22,7 +22,6 @@ Main program entry point/function
 
 # Standard library imports
 from os.path import abspath, isfile
-import glob
 
 # Third-party imports
 from PyQt5.QtWidgets import QApplication
@@ -36,6 +35,7 @@ from PyQt5.QtCore import QCoreApplication, \
 # Local application imports
 from pycirkuit.ui.mainwindow import MainWindow
 from pycirkuit import __version__
+from pycirkuit.tools import commandlineoptions
 
 # Resources for translation
 from pycirkuit.resources import resources_rc
@@ -47,20 +47,26 @@ import sys
 # The command line parser
 def parseCmdLine(app):
     parser = QCommandLineParser()
-    # Adding the '-h, --help' option
     parser.setApplicationDescription(_translate("main", """
 PyCirkuit is a GUI front-end for Circuit Macros by Dwight Aplevich,
 which are a set of macros for drawing high-quality line diagrams
 to be included in TeX, LaTeX, web or similar documents.""", "Commandline help text"))
+
+    # Adding command line options
+    options = [
+        QCommandLineOption(
+            ["batch", "b"],
+            "Group of files / directory to process in batch (unattended) mode.",
+            "groupFiles"
+        ),
+    ]
+    # Adding the '-h, --help' option
     parser.addHelpOption()
     # Adding the '-v --version' option
     parser.addVersionOption()
-    # Adding the '-b', '--batch' option
-    batchOption = QCommandLineOption(["b", "batch"], 
-        "Group of files / directory to process in batch (unattended) mode.", 
-        "groupFiles"
-        )
-    parser.addOption(batchOption)
+    # Adding the options in the list
+    for option in options:
+        parser.addOption(option)
     # Allowing one positional argument -- the file to open
     parser.addPositionalArgument(
         _translate("main", "file", "Commandline help text"), 
@@ -69,14 +75,13 @@ to be included in TeX, LaTeX, web or similar documents.""", "Commandline help te
     # Process the command line options
     parser.process(app)
     # Act upon given arguments
-    if parser.isSet(batchOption):
-        print("Option '-b' not yet implemented. Exiting.")
-        print("But the files to be processed are:")
-        pathSpec =  parser.value(batchOption)
-        fileIterator = iter(glob.iglob(pathSpec))
-        for file in fileIterator:
-            print(file)
-        sys.exit(-1)
+    for option in options:
+        if parser.isSet(option):
+            optionName = option.names()[0]
+            if optionName == "batch":
+                commandlineoptions.batch(parser, option)
+            # Add more options with elif.
+
     # Finished test for options. Now test for a filename passed as parameter, or none
     args = parser.positionalArguments()
     N = len(args)
