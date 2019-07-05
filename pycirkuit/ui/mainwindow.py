@@ -233,7 +233,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
 
     def _check_templates(self):
-        pass
         settings = QtCore.QSettings()
         template = settings.value("General/templatePath",  "")
         if os.path.exists(template):
