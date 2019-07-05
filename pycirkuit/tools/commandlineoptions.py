@@ -43,9 +43,3 @@ class CommandLineOptions():
         for file in fileIterator:
             print(file)
         sys.exit(-1)
-
-    def tikz(self):
-        '''I stop here. The code in ui/mainwindow.py shouldn't be coded there. The whole process of generating
-        a tikz file needs a UI. I think that there should be independent functions doing the job.
-        '''
-        pass
