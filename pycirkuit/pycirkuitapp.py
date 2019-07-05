@@ -64,6 +64,10 @@ class PyCirkuitApp(QApplication):
                 ["d", "pdf"],
                 _translate("main", "Convert files specified by <path> to PDF format in batch mode. Options -t, -p and -d can be used together.", "Commandline help text"),
             ),
+            QCommandLineOption(
+                ["r", "recurse"],
+                _translate("main", "Using this option the pattern '**' will match any files and zero or mode subdirs, so '**/*.ckt' will match all files fith 'ckt' extension in the current directory and all its subdirectories", "Commandline help text"),
+            ),
         ]
         # Adding the '-h, --help' option
         parser.addHelpOption()
@@ -74,8 +78,8 @@ class PyCirkuitApp(QApplication):
             parser.addOption(option)
         # Allowing one positional argument -- the file to open
         parser.addPositionalArgument(
-            _translate("main", "<path>", "Commandline help text"), 
-            _translate("main", "Path to source drawing file(s)/dir to process. Wildcards accepted. If no '-t', '-p' or '-d' options are present and <path> points to only one file, this file is opened into the GUI for editing. Otherwise the source files are processed sequentially in batch (unattended) mode and converted into the requested formats.", "Commandline help text")
+            _translate("main", "<path> [ <path2>...]", "Commandline help text"), 
+            _translate("main", "Path to source drawing file(s) to process. Wildcards accepted. If no '-t', '-p' or '-d' options are present and <path> points to only one file, this file is opened into the GUI for editing. Otherwise the source files are processed sequentially in batch (unattended) mode and converted into the requested formats.", "Commandline help text")
         )
 
         ##### 2) COMMAND-LINE PARSING
@@ -83,9 +87,14 @@ class PyCirkuitApp(QApplication):
 
         ##### 3) FETCH OPTIONS AND ARGUMENTS
         requestedOutputFormats = set()
+        recursive=False
         for option in options:
             if parser.isSet(option):
-                requestedOutputFormats.add(option.names()[1])
+                optionName = option.names()[0]
+                if optionName == 'r':
+                    recursive=True
+                else:
+                    requestedOutputFormats.add(option.names()[1])
         NumOpts = len(requestedOutputFormats)
                 
         # Finished test for options. Now test for some path passed as parameters, or none
@@ -94,7 +103,7 @@ class PyCirkuitApp(QApplication):
         # We have to expand them into files prior to process
         filesToProcess = list()
         for pathSpec in paths:
-            for f in glob.iglob(pathSpec):
+            for f in glob.iglob(pathSpec, recursive=recursive):
                 if isfile(f):
                     filesToProcess.append(f)
         NumArgs = len(filesToProcess)
@@ -117,4 +126,5 @@ class PyCirkuitApp(QApplication):
         for file in filesToProcess:
             #FIXME: Implement real functionality
             print("Processing file: {}".format(file))
+        print("Finished: {} files processed".format(NumArgs))
         sys.exit(0)
