@@ -35,8 +35,8 @@ class CommandLineOptions():
         self.option = option
 
     # Command line methods.
-    def batch(self):
-        print("Option '-b' not yet implemented. Exiting.")
+    def tikz(self):
+        print("Option '-t' not yet implemented. Exiting.")
         print("But the files to be processed are:")
         pathSpec =  self.parser.value(self.option)
         fileIterator = iter(glob.iglob(pathSpec))

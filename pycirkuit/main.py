@@ -22,76 +22,25 @@ Main program entry point/function
 
 # Standard library imports
 import sys
-from os.path import abspath, isfile
+from os.path import isfile
 
 # Third-party imports
 from PyQt5.QtCore import QCoreApplication, \
                                             QTranslator, \
                                             QLocale, \
-                                            QLibraryInfo, \
-                                            QCommandLineParser, \
-                                            QCommandLineOption
+                                            QLibraryInfo
 
 # Local application imports
 from pycirkuit.pycirkuitapp import PyCirkuitApp
 from pycirkuit.ui.mainwindow import MainWindow
 from pycirkuit import __version__
-from pycirkuit.tools.commandlineoptions import CommandLineOptions
 
 # Resources for translation
 from pycirkuit.resources import resources_rc
 # Translation function
 _translate = QCoreApplication.translate
 
-# The command line parser
-def parseCmdLine(app):
-    parser = QCommandLineParser()
-    parser.setApplicationDescription(_translate("main", """
-PyCirkuit is a GUI front-end for Circuit Macros by Dwight Aplevich,
-which are a set of macros for drawing high-quality line diagrams
-to be included in TeX, LaTeX, web or similar documents.""", "Commandline help text"))
 
-    # Adding command line options
-    options = [
-        QCommandLineOption(
-            ["batch", "b"],
-            "Group of files / directory to process in batch (unattended) mode.",
-            "groupFiles"
-        ),
-    ]
-    # Adding the '-h, --help' option
-    parser.addHelpOption()
-    # Adding the '-v --version' option
-    parser.addVersionOption()
-    # Adding the options in the list
-    for option in options:
-        parser.addOption(option)
-    # Allowing one positional argument -- the file to open
-    parser.addPositionalArgument(
-        _translate("main", "file", "Commandline help text"), 
-        _translate("main", "Source drawing file to open")
-    )
-    # Process the command line options
-    parser.process(app)
-    # Act upon given arguments
-    for option in options:
-        if parser.isSet(option):
-            optionName = option.names()[0]
-            cli = CommandLineOptions(parser, option)
-            if optionName == "batch":
-                cli.batch()
-            # Add more options with elif.
-    # Finished test for options. Now test for a filename passed as parameter, or none
-    args = parser.positionalArguments()
-    N = len(args)
-    if N == 0:
-        return None
-    if N == 1:
-        return abspath(args[0])
-    else:
-        # More than one argument is an error. Display help and exit.
-        parser.showHelp(exitCode=-1)
-    
 # Main entry point
 def main():
     app = PyCirkuitApp(sys.argv)
@@ -112,7 +61,7 @@ def main():
     QCoreApplication.setApplicationVersion(__version__)
 
     # Parse command line options
-    fileToOpen = parseCmdLine(app)
+    fileToOpen = app.parseCmdLine()
 
     # Start GUI
     my_mainWindow = MainWindow()
