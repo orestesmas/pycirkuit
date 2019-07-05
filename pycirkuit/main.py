@@ -21,10 +21,10 @@ Main program entry point/function
 #
 
 # Standard library imports
+import sys
 from os.path import abspath, isfile
 
 # Third-party imports
-from PyQt5.QtWidgets import QApplication
 from PyQt5.QtCore import QCoreApplication, \
                                             QTranslator, \
                                             QLocale, \
@@ -33,6 +33,7 @@ from PyQt5.QtCore import QCoreApplication, \
                                             QCommandLineOption
 
 # Local application imports
+from pycirkuit.pycirkuitapp import PyCirkuitApp
 from pycirkuit.ui.mainwindow import MainWindow
 from pycirkuit import __version__
 from pycirkuit.tools.commandlineoptions import CommandLineOptions
@@ -41,8 +42,6 @@ from pycirkuit.tools.commandlineoptions import CommandLineOptions
 from pycirkuit.resources import resources_rc
 # Translation function
 _translate = QCoreApplication.translate
-
-import sys
 
 # The command line parser
 def parseCmdLine(app):
@@ -95,7 +94,7 @@ to be included in TeX, LaTeX, web or similar documents.""", "Commandline help te
     
 # Main entry point
 def main():
-    app = QApplication(sys.argv)
+    app = PyCirkuitApp(sys.argv)
   
     # First try to load the Qt-provided translations (used in some standard dialog strings)
     qtTranslator = QTranslator()
