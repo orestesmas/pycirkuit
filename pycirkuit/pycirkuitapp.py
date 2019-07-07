@@ -35,10 +35,18 @@ from PyQt5.QtCore import QCoreApplication, QCommandLineParser, QCommandLineOptio
 # Translation function
 _translate = QCoreApplication.translate
 
-appDescription = _translate("main", """
+_appDescription = """
 PyCirkuit is a GUI front-end for Circuit Macros by Dwight Aplevich,
 which are a set of macros for drawing high-quality line diagrams
-to be included in TeX, LaTeX, web or similar documents.""", "Commandline help text")
+to be included in TeX, LaTeX, web or similar documents."""
+
+_batchOption = "Convert files specified by <path> to {} format in batch mode. Options -t, -p and -d can be used together."
+
+_pathDescription = """Path(s) to source drawing file(s) to process. Wildcards accepted.
+- If no <path> is given, the GUI is opened.
+- If <path> points to only one file and no '-t', '-p' or '-d' options are present, this file is opened into the GUI for editing.
+- If <path>s point to more than one valid file and a combination of '-t', '-p' or '-d' options are present, these source files are processed sequentially in batch (unattended) mode and converted into the requested formats.
+- Specifying more than one file to process with no '-t', '-b' or '-d' options present is not allowed."""
 
 class PyCirkuitApp(QApplication):
     def __init__(self, args):
@@ -49,24 +57,30 @@ class PyCirkuitApp(QApplication):
 
         ##### 1) PARSER SET-UP
         parser = QCommandLineParser()
-        parser.setApplicationDescription(appDescription)
+        parser.setApplicationDescription(_translate("CommandLine", _appDescription, "Commandline help text"))
         # Adding command line options
         options = [
             QCommandLineOption(
                 ["t", "tikz"],
-                _translate("main", "Convert files specified by <path> to TIkZ format in batch mode. Options -t, -p and -d can be used together.", "Commandline help text"),
+                _translate("CommandLine", _batchOption.format('TIkZ'), "Commandline help text"),
             ),
             QCommandLineOption(
                 ["p", "png"],
-                _translate("main", "Convert files specified by <path> to PNG format in batch mode. Options -t, -p and -d can be used together.", "Commandline help text"),
+                _translate("CommandLine", _batchOption.format('PNG'), "Commandline help text"),
+                "dpi", 
+                "150"
             ),
+#            QCommandLineOption(
+#                ["j", "jpg"],
+#                _translate("CommandLine", _batchOption.format('JPG'), "Commandline help text"),
+#            ),pdf
             QCommandLineOption(
                 ["d", "pdf"],
-                _translate("main", "Convert files specified by <path> to PDF format in batch mode. Options -t, -p and -d can be used together.", "Commandline help text"),
+                _translate("CommandLine", _batchOption.format('PDF'), "Commandline help text"),
             ),
             QCommandLineOption(
                 ["r", "recurse"],
-                _translate("main", "Using this option the pattern '**' will match any files and zero or mode subdirs, so '**/*.ckt' will match all files fith 'ckt' extension in the current directory and all its subdirectories", "Commandline help text"),
+                _translate("CommandLine", "Using this option the pattern '**' will match any files and zero or more subdirs, so '**/*.ckt' will match all files with 'ckt' extension in the current directory and all its subdirectories", "Commandline help text"),
             ),
         ]
         # Adding the '-h, --help' option
@@ -78,8 +92,8 @@ class PyCirkuitApp(QApplication):
             parser.addOption(option)
         # Allowing one positional argument -- the file to open
         parser.addPositionalArgument(
-            _translate("main", "<path> [ <path2>...]", "Commandline help text"), 
-            _translate("main", "Path to source drawing file(s) to process. Wildcards accepted. If no '-t', '-p' or '-d' options are present and <path> points to only one file, this file is opened into the GUI for editing. Otherwise the source files are processed sequentially in batch (unattended) mode and converted into the requested formats.", "Commandline help text")
+            _translate("CommandLine", "[<path> [ <path2>...]]", "Commandline help text"), 
+            _translate("CommandLine", _pathDescription, "Commandline help text")
         )
 
         ##### 2) COMMAND-LINE PARSING
@@ -112,12 +126,13 @@ class PyCirkuitApp(QApplication):
         # If called without options nor arguments, launch GUI
         if (NumArgs == 0):
             return None
-        # If called with a single file argument, and no options, launch GUI and open this file
-        if (NumArgs == 1) and (len(requestedOutputFormats) == 0):
+        # If called with a single file argument, and no options, launch GUI and open that file
+        elif (NumArgs == 1) and (len(requestedOutputFormats) == 0):
             return abspath(filesToProcess[0])
-        # So, there's more than one file to process in batch mode. This is an error if no option is given
-        if (NumOpts == 0):
+        # If there's more than one file to process, this is an error if no option is given
+        elif (NumArgs > 1) and (NumOpts == 0):
             # Display help and exit.
+            print(_translate("CommandLine", "ERROR: ", "Commandline help text"))
             parser.showHelp(exitCode=-1)
         # So, we have a bunch of files to process sequentially. 
         # For each file, the operations can be always: CKT -> PIC -> TIKZ -> PDF -> PNG and pick the
