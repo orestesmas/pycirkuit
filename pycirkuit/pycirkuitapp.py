@@ -117,6 +117,8 @@ class PyCirkuitApp(QApplication):
                 
         # Finished test for options. Now test for some path passed as parameters, or none
         paths = parser.positionalArguments()
+        # User gave no files to process?
+        pathPresent = (not len(paths)==0)
         # User may have entered more than one path, and these can contain wildcards
         # We have to expand them into files prior to process
         filesToProcess = list()
@@ -127,20 +129,24 @@ class PyCirkuitApp(QApplication):
         NumFiles = len(filesToProcess)
         
         ##### 4) MAKE DECISIONS
-        # If called without options nor arguments, launch GUI with a new empty drawing
-        if (NumFiles == 0) and (len(paths)==0):
+        # If called without options nor arguments nor options, launch GUI with a new empty drawing
+        if (NumFiles == 0) and (not pathPresent) and (NumOpts == 0):
             return None
-        # If No file match the specified argument, throw error
-        elif (NumFiles == 0) and (len(paths) != 0):
+        # If No file match the specified arguments, throw error
+        elif (NumFiles == 0) and (pathPresent):
             print("ERROR: No files match the argument")
             sys.exit(-1)
         # If called with a single file argument, and no options, launch GUI and open that file
         elif (NumFiles == 1) and (len(requestedOutputFormats) == 0):
             return abspath(filesToProcess[0])
+        # Is an error to call pycirkuit with a batch option and no filenames
+        elif (NumOpts > 0) and (NumFiles==0):
+            print(_translate("CommandLine", "ERROR: Batch processing requested with no files.", "Commandline error message"))
+            parser.showHelp(exitCode=-1)
         # If there's more than one file to process, this is an error if no option is given
         elif (NumFiles > 1) and (NumOpts == 0):
             # Display help and exit.
-            print(_translate("CommandLine", "ERROR: ", "Commandline help text"))
+            print(_translate("CommandLine", "ERROR: MOre than one file to process with no batch option given.", "Commandline error message"))
             parser.showHelp(exitCode=-1)
         # So, we have a bunch of files to process sequentially. 
         # For each file, the operations can be always: CKT -> PIC -> TIKZ -> PDF -> PNG and pick the
