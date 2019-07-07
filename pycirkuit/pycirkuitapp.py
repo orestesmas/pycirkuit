@@ -25,6 +25,7 @@ Application core functionality
 import sys
 from os.path import abspath, isfile
 import glob
+import argparse
 
 # Third-party imports
 from PyQt5.QtWidgets import QApplication
@@ -39,9 +40,9 @@ _appDescription = """
 PyCirkuit is a GUI front-end for Circuit Macros by Dwight Aplevich,
 which are a set of macros for drawing high-quality line diagrams
 to be included in TeX, LaTeX, web or similar documents."""
-
 _batchOption = "Convert files specified by <path> to {} format in batch mode. Options -t, -p and -d can be used together."
-
+_batchDPI = " <dpi> sets the resolution of output image, in dots per inch. Default is 150."
+_recurseOption="Using this option the pattern '**' will match any files and zero or more subdirs, so '**/*.ckt' will match all files with 'ckt' extension in the current directory and all its subdirectories"
 _pathDescription = """Path(s) to source drawing file(s) to process. Wildcards accepted.
 - If no <path> is given, the GUI is opened.
 - If <path> points to only one file and no '-t', '-p' or '-d' options are present, this file is opened into the GUI for editing.
@@ -52,21 +53,30 @@ class PyCirkuitApp(QApplication):
     def __init__(self, args):
         super().__init__(args)
 
-    # The command line parser
+    # The command line parser (Qt-based)
     def parseCmdLine(self):
-
         ##### 1) PARSER SET-UP
         parser = QCommandLineParser()
-        parser.setApplicationDescription(_translate("CommandLine", _appDescription, "Commandline help text"))
+        parser.setApplicationDescription(_translate("CommandLine", _appDescription, "Commandline application description"))
+        # Adding the '-h, --help' option
+        parser.addHelpOption()
+        # Adding the '-v --version' option
+        parser.addVersionOption()
+        # Allowing one positional argument (the file to open)
+        parser.addPositionalArgument(
+            _translate("CommandLine", "path", "Commandline argument name"), 
+            _translate("CommandLine", _pathDescription, "Commandline argument description"), 
+            _translate("CommandLine",  "[<path> [ <path2>...]]",  "Commandline argument syntax")
+        )
         # Adding command line options
         options = [
             QCommandLineOption(
                 ["t", "tikz"],
-                _translate("CommandLine", _batchOption.format('TIkZ'), "Commandline help text"),
+                _translate("CommandLine", _batchOption.format('TIkZ'), "Commandline option description"),
             ),
             QCommandLineOption(
                 ["p", "png"],
-                _translate("CommandLine", _batchOption.format('PNG'), "Commandline help text"),
+                _translate("CommandLine", _batchOption.format('PNG') + _batchDPI, "Commandline option description"),
                 "dpi", 
                 "150"
             ),
@@ -76,25 +86,16 @@ class PyCirkuitApp(QApplication):
 #            ),pdf
             QCommandLineOption(
                 ["d", "pdf"],
-                _translate("CommandLine", _batchOption.format('PDF'), "Commandline help text"),
+                _translate("CommandLine", _batchOption.format('PDF'), "Commandline option description"),
             ),
             QCommandLineOption(
                 ["r", "recurse"],
-                _translate("CommandLine", "Using this option the pattern '**' will match any files and zero or more subdirs, so '**/*.ckt' will match all files with 'ckt' extension in the current directory and all its subdirectories", "Commandline help text"),
+                _translate("CommandLine", _recurseOption, "Commandline option description"), 
             ),
         ]
-        # Adding the '-h, --help' option
-        parser.addHelpOption()
-        # Adding the '-v --version' option
-        parser.addVersionOption()
         # Adding the options in the list
         for option in options:
             parser.addOption(option)
-        # Allowing one positional argument -- the file to open
-        parser.addPositionalArgument(
-            _translate("CommandLine", "[<path> [ <path2>...]]", "Commandline help text"), 
-            _translate("CommandLine", _pathDescription, "Commandline help text")
-        )
 
         ##### 2) COMMAND-LINE PARSING
         parser.process(self)
@@ -107,6 +108,9 @@ class PyCirkuitApp(QApplication):
                 optionName = option.names()[0]
                 if optionName == 'r':
                     recursive=True
+                elif optionName == 'p':
+                    print("Option '-p' detected with value {}".format(parser.value(option)))
+                    requestedOutputFormats.add(option.names()[1])
                 else:
                     requestedOutputFormats.add(option.names()[1])
         NumOpts = len(requestedOutputFormats)
@@ -120,17 +124,21 @@ class PyCirkuitApp(QApplication):
             for f in glob.iglob(pathSpec, recursive=recursive):
                 if isfile(f):
                     filesToProcess.append(f)
-        NumArgs = len(filesToProcess)
+        NumFiles = len(filesToProcess)
         
         ##### 4) MAKE DECISIONS
-        # If called without options nor arguments, launch GUI
-        if (NumArgs == 0):
+        # If called without options nor arguments, launch GUI with a new empty drawing
+        if (NumFiles == 0) and (len(paths)==0):
             return None
+        # If No file match the specified argument, throw error
+        elif (NumFiles == 0) and (len(paths) != 0):
+            print("ERROR: No files match the argument")
+            sys.exit(-1)
         # If called with a single file argument, and no options, launch GUI and open that file
-        elif (NumArgs == 1) and (len(requestedOutputFormats) == 0):
+        elif (NumFiles == 1) and (len(requestedOutputFormats) == 0):
             return abspath(filesToProcess[0])
         # If there's more than one file to process, this is an error if no option is given
-        elif (NumArgs > 1) and (NumOpts == 0):
+        elif (NumFiles > 1) and (NumOpts == 0):
             # Display help and exit.
             print(_translate("CommandLine", "ERROR: ", "Commandline help text"))
             parser.showHelp(exitCode=-1)
@@ -141,5 +149,5 @@ class PyCirkuitApp(QApplication):
         for file in filesToProcess:
             #FIXME: Implement real functionality
             print("Processing file: {}".format(file))
-        print("Finished: {} files processed".format(NumArgs))
+        print("Finished: {} files processed".format(NumFiles))
         sys.exit(0)
