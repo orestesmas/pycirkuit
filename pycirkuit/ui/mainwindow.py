@@ -41,7 +41,9 @@ from pycirkuit.tools.m4 import ToolM4
 from pycirkuit.tools.dpic import ToolDpic
 from pycirkuit.tools.pdflatex import ToolPdfLaTeX
 from pycirkuit.tools.pdftopng import ToolPdfToPng
+from pycirkuit.tools.processor import PyCirkuitProcessor
 import pycirkuit
+
 
 # Translation function
 _translate = QCoreApplication.translate
@@ -81,8 +83,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.imageViewer.image_changed.connect(self._resize_preview)
         self.previewWidget.dockLocationChanged.connect(self._resize_preview)
 
-        # Set up a temporary directory to save intermediate files
-        pycirkuit.__tmpDir__ = QtCore.QTemporaryDir()
+        # Instantiate a processor object which will perform the actual file processing
+        self.processor = PyCirkuitProcessor()
 
         # Set up the editor
         font = QtGui.QFont()
@@ -368,7 +370,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def closeEvent(self,  event):
         if self.needSaving:
             self._ask_saving()
-        pycirkuit.__tmpDir__.remove()
+        processor.__delete__()
         super().closeEvent(event)
 
 

@@ -177,7 +177,7 @@ class PyCirkuitParser(QObject):
         # If there's more than one file to process, this is an error if no option is given
         elif (NumFiles > 1) and (NumFormats == 0):
             # Display help and exit.
-            print(_translate("CommandLine", "ERROR: MOre than one file to process with no batch option given.", "Commandline error message"))
+            print(_translate("CommandLine", "ERROR: More than one file to process with no batch option given.", "Commandline error message"))
             parser.showHelp(exitCode=-1)
         # So, we have a bunch of files to process sequentially. 
         # For each file, the operations can be always: CKT -> PIC -> TIKZ -> PDF -> PNG and pick the
