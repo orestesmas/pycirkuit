@@ -25,13 +25,13 @@ Application core functionality
 import sys
 from os.path import abspath, isfile
 import glob
-import argparse
 
 # Third-party imports
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtCore import QCoreApplication, QCommandLineParser, QCommandLineOption
 
 # Local imports
+from .tools.commandlineoptions import CommandLineOptions
 
 # Translation function
 _translate = QCoreApplication.translate
@@ -102,12 +102,13 @@ class PyCirkuitApp(QApplication):
 
         ##### 3) FETCH OPTIONS AND ARGUMENTS
         requestedOutputFormats = set()
-        recursive=False
+        recursive = False
         for option in options:
             if parser.isSet(option):
                 optionName = option.names()[0]
+                cli = CommandLineOptions(parser, option)
                 if optionName == 'r':
-                    recursive=True
+                    recursive = True
                 elif optionName == 'p':
                     print("Option '-p' detected with value {}".format(parser.value(option)))
                     requestedOutputFormats.add(option.names()[1])
@@ -137,7 +138,7 @@ class PyCirkuitApp(QApplication):
             print("ERROR: No files match the argument")
             sys.exit(-1)
         # If called with a single file argument, and no options, launch GUI and open that file
-        elif (NumFiles == 1) and (len(requestedOutputFormats) == 0):
+        elif (NumFiles == 1) and (NumOpts == 0):
             return abspath(filesToProcess[0])
         # Is an error to call pycirkuit with a batch option and no filenames
         elif (NumOpts > 0) and (NumFiles==0):
@@ -146,7 +147,7 @@ class PyCirkuitApp(QApplication):
         # If there's more than one file to process, this is an error if no option is given
         elif (NumFiles > 1) and (NumOpts == 0):
             # Display help and exit.
-            print(_translate("CommandLine", "ERROR: MOre than one file to process with no batch option given.", "Commandline error message"))
+            print(_translate("CommandLine", "ERROR: More than one file to process with no batch option given.", "Commandline error message"))
             parser.showHelp(exitCode=-1)
         # So, we have a bunch of files to process sequentially. 
         # For each file, the operations can be always: CKT -> PIC -> TIKZ -> PDF -> PNG and pick the
