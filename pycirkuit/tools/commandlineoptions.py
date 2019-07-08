@@ -34,7 +34,7 @@ class CommandLineOptions():
     def setOption(self, option):
         self.option = option
 
-    # Command line methods.
+    # Command line methods. All return a list of the files processed.
     def tikz(self):
         print("Option '-t' not yet implemented. Exiting.")
         print("But the files to be processed are:")
@@ -43,3 +43,22 @@ class CommandLineOptions():
         for file in fileIterator:
             print(file)
         sys.exit(-1)
+
+    def png(self):
+        files_to_process = self.parser.positionalArguments() # Arguments with no option.
+        # Temporal fix.
+        try:
+            dpi = int(self.parser.value(self.option))
+        except:
+            if (len(files_to_process) == 0):
+                files_to_process.append(self.parser.value(self.option))
+                dpi = 150
+
+        print("Option '-p' detected. Files to process: ")
+        print (files_to_process)
+        # Here create the PNG files.
+        return files_to_process
+
+    def pdf(self):
+        print ("PDF")
+        return []

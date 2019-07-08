@@ -103,6 +103,7 @@ class PyCirkuitApp(QApplication):
         ##### 3) FETCH OPTIONS AND ARGUMENTS
         requestedOutputFormats = set()
         recursive = False
+        paths = []
         for option in options:
             if parser.isSet(option):
                 optionName = option.names()[0]
@@ -110,14 +111,15 @@ class PyCirkuitApp(QApplication):
                 if optionName == 'r':
                     recursive = True
                 elif optionName == 'p':
-                    print("Option '-p' detected with value {}".format(parser.value(option)))
                     requestedOutputFormats.add(option.names()[1])
+                    paths = cli.png()
+                elif optionName == 'd':
+                    requestedOutputFormats.add(option.names()[1])
+                    paths = cli.pdf()
                 else:
                     requestedOutputFormats.add(option.names()[1])
         NumOpts = len(requestedOutputFormats)
-                
-        # Finished test for options. Now test for some path passed as parameters, or none
-        paths = parser.positionalArguments()
+
         # User gave no files to process?
         pathPresent = (not len(paths)==0)
         # User may have entered more than one path, and these can contain wildcards
