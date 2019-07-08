@@ -29,9 +29,10 @@ from PyQt5.QtCore import QCoreApplication, \
                                             QTranslator, \
                                             QLocale, \
                                             QLibraryInfo
+from PyQt5.QtWidgets import QApplication
 
 # Local application imports
-from pycirkuit.pycirkuitapp import PyCirkuitApp
+from pycirkuit.tools.cliparser import PyCirkuitParser
 from pycirkuit.ui.mainwindow import MainWindow
 from pycirkuit import __version__
 
@@ -43,7 +44,7 @@ _translate = QCoreApplication.translate
 
 # Main entry point
 def main():
-    app = PyCirkuitApp(sys.argv)
+    app = QApplication(sys.argv)
   
     # First try to load the Qt-provided translations (used in some standard dialog strings)
     qtTranslator = QTranslator()
@@ -61,7 +62,8 @@ def main():
     QCoreApplication.setApplicationVersion(__version__)
 
     # Parse command line options
-    fileToOpen = app.parseCmdLine()
+    cmdLineParser = PyCirkuitParser(sys.argv)
+    fileToOpen = cmdLineParser.parseCmdLine()
 
     # Start GUI
     my_mainWindow = MainWindow()
