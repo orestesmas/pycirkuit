@@ -19,6 +19,8 @@ Module storing the application version number and other metadata in a single pla
 # along with PyCirkuit.  If not, see <https://www.gnu.org/licenses/>.
 #
 
+from enum import Enum
+
 __all__ = ["mainwindow"]
 
 __productname__   = "PyCirkuit"
@@ -37,3 +39,9 @@ __homepage__      = "https://github.com/orestesmas/pycirkuit"
 # The temporary working dir should be globally addressed through the entire application
 __tmpDir__ = None
 
+# Class enumerating the several output formats we can produce
+class outputFormat(Enum):
+    PNG  = 'p'
+    JPEG = 'j'
+    PDF  = 'f'
+    TIKZ = 't'

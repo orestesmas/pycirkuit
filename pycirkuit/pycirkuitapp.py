@@ -32,6 +32,7 @@ from PyQt5.QtCore import QCoreApplication, QCommandLineParser, QCommandLineOptio
 
 # Local imports
 from .tools.commandlineoptions import CommandLineOptions
+from pycirkuit import outputFormat
 
 # Translation function
 _translate = QCoreApplication.translate
@@ -40,14 +41,15 @@ _appDescription = """
 PyCirkuit is a GUI front-end for Circuit Macros by Dwight Aplevich,
 which are a set of macros for drawing high-quality line diagrams
 to be included in TeX, LaTeX, web or similar documents."""
-_batchOption = "Convert files specified by <path> to {} format in batch mode. Options -t, -p and -d can be used together."
-_batchDPI = " <dpi> sets the resolution of output image, in dots per inch. Default is 150."
-_recurseOption="Using this option the pattern '**' will match any files and zero or more subdirs, so '**/*.ckt' will match all files with 'ckt' extension in the current directory and all its subdirectories"
+_batchOption = "Convert files specified by <path> to {} format in batch mode. Several output formats can be used together."
+_dpiOption = "Sets the resolution of output bitmap images (png, jpg), in dots per inch. Value <N> is mandatory."
+_qualityOption = "Sets the quality of output bitmap lossy images (jpg), in percent. Value <Q> is mandatory."
+_recurseOption = "Using this option the pattern '**' will match any files and zero or more subdirs, so '**/*.ckt' will match all files with 'ckt' extension in the current directory and all its subdirectories"
 _pathDescription = """Path(s) to source drawing file(s) to process. Wildcards accepted.
 - If no <path> is given, the GUI is opened.
-- If <path> points to only one file and no '-t', '-p' or '-d' options are present, this file is opened into the GUI for editing.
-- If <path>s point to more than one valid file and a combination of '-t', '-p' or '-d' options are present, these source files are processed sequentially in batch (unattended) mode and converted into the requested formats.
-- Specifying more than one file to process with no '-t', '-b' or '-d' options present is not allowed."""
+- If <path> points to only one file and no batch conversion options are present, this file is opened into the GUI for editing.
+- If <path>s point to more than one valid file and a combination of output formats options are present, these source files are processed sequentially in batch (unattended) mode and converted into the requested formats.
+- Specifying more than one file to process with no output format options present is not allowed."""
 
 class PyCirkuitApp(QApplication):
     def __init__(self, args):
@@ -57,6 +59,7 @@ class PyCirkuitApp(QApplication):
     def parseCmdLine(self):
         ##### 1) PARSER SET-UP
         parser = QCommandLineParser()
+        #parser.setSingleDashWordOptionMode(QCommandLineParser.ParseAsLongOptions)
         parser.setApplicationDescription(_translate("CommandLine", _appDescription, "Commandline application description"))
         # Adding the '-h, --help' option
         parser.addHelpOption()
@@ -71,25 +74,35 @@ class PyCirkuitApp(QApplication):
         # Adding command line options
         options = [
             QCommandLineOption(
-                ["t", "tikz"],
+                [outputFormat.TIKZ.value, "tikz"],
                 _translate("CommandLine", _batchOption.format('TIkZ'), "Commandline option description"),
             ),
             QCommandLineOption(
-                ["p", "png"],
-                _translate("CommandLine", _batchOption.format('PNG') + _batchDPI, "Commandline option description"),
-                "dpi", 
-                "150"
-            ),
-#            QCommandLineOption(
-#                ["j", "jpg"],
-#                _translate("CommandLine", _batchOption.format('JPG'), "Commandline help text"),
-#            ),pdf
-            QCommandLineOption(
-                ["d", "pdf"],
+                [outputFormat.PDF.value, "pdf"],
                 _translate("CommandLine", _batchOption.format('PDF'), "Commandline option description"),
             ),
             QCommandLineOption(
-                ["r", "recurse"],
+                [outputFormat.PNG.value, "png"],
+                _translate("CommandLine", _batchOption.format('PNG'), "Commandline option description"),
+            ),
+            QCommandLineOption(
+                [outputFormat.JPEG.value, "jpg"],
+                _translate("CommandLine", _batchOption.format('JPG'), "Commandline option description"),
+            ),
+            QCommandLineOption(
+                ["dpi"], 
+                _translate("CommandLine", _dpiOption, "Commandline option description"), 
+                "N", 
+                "150", 
+            ), 
+            QCommandLineOption(
+                ["quality"], 
+                _translate("CommandLine", _qualityOption, "Commandline option description"), 
+                "Q", 
+                "80", 
+            ), 
+            QCommandLineOption(
+                ["r"],
                 _translate("CommandLine", _recurseOption, "Commandline option description"), 
             ),
         ]
@@ -101,62 +114,48 @@ class PyCirkuitApp(QApplication):
         parser.process(self)
 
         ##### 3) FETCH OPTIONS AND ARGUMENTS
-        requestedOutputFormats = set()
-        recursive = False
-        paths = []
-        for option in options:
-            if parser.isSet(option):
-                optionName = option.names()[0]
-                cli = CommandLineOptions(parser, option)
-                if optionName == 'r':
-                    recursive = True
-                elif optionName == 'p':
-                    requestedOutputFormats.add(option.names()[1])
-                    paths = cli.png()
-                elif optionName == 'd':
-                    requestedOutputFormats.add(option.names()[1])
-                    paths = cli.pdf()
-                else:
-                    requestedOutputFormats.add(option.names()[1])
-        NumOpts = len(requestedOutputFormats)
+        cli_mode = False
+        requestedRecursive = False
+        if parser.isSet("r"):
+            requestedRecursive = True
 
+        # Test for some path passed as parameters, or none
+        paths = parser.positionalArguments()
         # User gave no files to process?
         pathPresent = (not len(paths)==0)
         # User may have entered more than one path, and these can contain wildcards
         # We have to expand them into files prior to process
         filesToProcess = list()
         for pathSpec in paths:
-            for f in glob.iglob(pathSpec, recursive=recursive):
+            for f in glob.iglob(pathSpec, recursive=requestedRecursive):
                 if isfile(f):
                     filesToProcess.append(f)
         NumFiles = len(filesToProcess)
-        
-        ##### 4) MAKE DECISIONS
-        # If called without options nor arguments nor options, launch GUI with a new empty drawing
-        if (NumFiles == 0) and (not pathPresent) and (NumOpts == 0):
+
+        # Test all the output options.
+        for option in options:
+            if parser.isSet(option):
+                optionName = option.names()[0]
+                cli_mode = True
+                cli = CommandLineOptions(parser, option, paths)
+                if optionName == outputFormat.PNG.value:
+                    cli.png(parser.value("dpi"))
+                elif optionName == outputFormat.JPEG.value:
+                    cli.jpg(parser.value("dpi"), parser.value("quality"))
+                # More options have to be added.
+
+        # Perform some final checks and exit.
+        if cli_mode:
+            sys.exit(0)
+        elif NumFiles == 0 and not pathPresent:
             return None
-        # If No file match the specified arguments, throw error
-        elif (NumFiles == 0) and (pathPresent):
-            print("ERROR: No files match the argument")
-            sys.exit(-1)
-        # If called with a single file argument, and no options, launch GUI and open that file
-        elif (NumFiles == 1) and (NumOpts == 0):
-            return abspath(filesToProcess[0])
-        # Is an error to call pycirkuit with a batch option and no filenames
-        elif (NumOpts > 0) and (NumFiles==0):
-            print(_translate("CommandLine", "ERROR: Batch processing requested with no files.", "Commandline error message"))
+        elif NumFiles == 0:
+            print(_translate("CommandLine", "ERROR: The given file does not exist.", "Commandline error message"))
             parser.showHelp(exitCode=-1)
-        # If there's more than one file to process, this is an error if no option is given
-        elif (NumFiles > 1) and (NumOpts == 0):
-            # Display help and exit.
+        elif NumFiles == 1:
+            return abspath(filesToProcess[0])
+        else:
             print(_translate("CommandLine", "ERROR: More than one file to process with no batch option given.", "Commandline error message"))
             parser.showHelp(exitCode=-1)
-        # So, we have a bunch of files to process sequentially. 
-        # For each file, the operations can be always: CKT -> PIC -> TIKZ -> PDF -> PNG and pick the
-        # intermediate formats requested by the user.
-        # But of course we can optimize by stopping the chain as soon as the rightmost requested format is obtained
-        for file in filesToProcess:
-            #FIXME: Implement real functionality
-            print("Processing file: {}".format(file))
-        print("Finished: {} files processed".format(NumFiles))
+
         sys.exit(0)

@@ -24,41 +24,58 @@ Module implementing the functions to run when a command option is called
 import glob
 import sys
 
+# Third-party imports
+from PyQt5.QtCore import QCoreApplication
+
+# Translation function
+_translate = QCoreApplication.translate
+
 class CommandLineOptions():
     # Class constructor.
-    def __init__(self, parser, option=None):
+    def __init__(self, parser, option, paths):
         self.parser = parser
         self.option = option
+        if len(paths) == 0:
+            print(_translate("CommandLine", "ERROR: Batch processing requested with no files.", "Commandline error message"))
+            parser.showHelp(exitCode=-1)
+        else:
+            self.paths = paths
 
     # Operational methods.
     def setOption(self, option):
         self.option = option
 
-    # Command line methods. All return a list of the files processed.
-    def tikz(self):
-        print("Option '-t' not yet implemented. Exiting.")
-        print("But the files to be processed are:")
-        pathSpec =  self.parser.value(self.option)
-        fileIterator = iter(glob.iglob(pathSpec))
-        for file in fileIterator:
-            print(file)
-        sys.exit(-1)
-
-    def png(self):
-        files_to_process = self.parser.positionalArguments() # Arguments with no option.
-        # Temporal fix.
+    # Check integer params.
+    def check_int_param(self, param, value):
         try:
-            dpi = int(self.parser.value(self.option))
+            if param == "quality":
+                if int(value) not in range(0, 100):
+                    raise Exception()
+            return int(value)
         except:
-            if (len(files_to_process) == 0):
-                files_to_process.append(self.parser.value(self.option))
-                dpi = 150
+            print(_translate("CommandLine", "Error: The --" + param + " parameter must be an integer.", "Error message"))
+            sys.exit(-1)
 
+    # Command line methods. All return a list of the files processed.
+    def png(self, dpi):
+        dpi = self.check_int_param("dpi", dpi)
+        # Check PDF existance.
         print("Option '-p' detected. Files to process: ")
-        print (files_to_process)
+        print (self.paths)
         # Here create the PNG files.
-        return files_to_process
+
+    def jpg(self, dpi, quality):
+        dpi = self.check_int_param("dpi", dpi)
+        quality = self.check_int_param("quality", quality)
+        # Check PDF existance.
+        print("Option '-j' detected. Files to process: ")
+        print (self.paths)
+        # Here create the JPG files.
 
     def pdf(self):
+        # Check TIKZ existance.
         print ("PDF")
-        return []
+
+    def tikz(self):
+        print("Option '-t' not yet implemented. Exiting.")    
+        sys.exit(-1)
