@@ -370,7 +370,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def closeEvent(self,  event):
         if self.needSaving:
             self._ask_saving()
-        processor.__delete__()
+        self.processor.__delete__()
         super().closeEvent(event)
 
 

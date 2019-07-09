@@ -38,10 +38,16 @@ __homepage__      = "https://github.com/orestesmas/pycirkuit"
 # The temporary working dir should be globally addressed through the entire application
 __tmpDir__ = None
 
-# Class enumerating the several output formats we can produce
-class outputFormat(Enum):
-    PNG  = 'p'
-    JPEG = 'j'
-    PDF  = 'f'
-    TIKZ = 't'
+# CLI options
+class Option(Enum):
+    TIKZ = 'tikzOption'
+    PDF  = 'pdfOption'
+    PNG  = 'pngOption'
+    JPEG = 'jpgOption'
+    DPI  = 'dpiOption'
+    QUAL = 'qualityOption'
+    REC  = 'recurseOption'
 
+# Default raster image parameters
+# FIXME: imageParam: Default values should be set in settings
+imageParam = {Option.DPI: 150,  Option.QUAL:80}
