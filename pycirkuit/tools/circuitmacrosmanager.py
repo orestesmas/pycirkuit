@@ -22,7 +22,6 @@ Module implementing a CircuitMacros Manager class.
 # Standard library imports
 import os
 from os.path import normpath, join, exists, dirname, abspath
-import shutil
 import zipfile
 import urllib.request as Net
 import urllib.error as NetError
