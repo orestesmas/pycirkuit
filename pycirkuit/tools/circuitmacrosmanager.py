@@ -42,8 +42,6 @@ class CircuitMacrosManager(QtCore.QObject):
     """
     Class documentation goes here.
     """
-    CIRCUIT_MACROS = "circuit_macros.zip"
-
     def __init__(self, parent=None):
         """
         Constructor
@@ -79,14 +77,13 @@ class CircuitMacrosManager(QtCore.QObject):
         return normpath(join(QtCore.QStandardPaths.writableLocation(QtCore.QStandardPaths.AppDataLocation), "circuit-macros"))
         
     def download_latest(self, percent):
-        origin = "http://mirrors.ctan.org/graphics/" + CIRCUIT_MACROS
-        print (origin)
+        origin = "https://ctan.mirror.norbert-ruehl.de/graphics/circuit_macros.zip"
         destination = dirname(self.default_CMPath())
         if destination == "":
             raise PyCirkuitError(_translate("ExternalTool", "Cannot determine the standard writable location for PyCirkuit",  "Error message"))
         if not exists(destination):
             os.makedirs(destination)
-        destination = join(destination, CIRCUIT_MACROS)
+        destination = join(destination,"circuit_macros.zip")
         try:
             with Net.urlopen(origin) as source,  open(destination, 'wb') as dest:
                 length = source.getheader('content-length')
@@ -142,18 +139,16 @@ class CircuitMacrosManager(QtCore.QObject):
     def unpack_circuit_macros(self):
         try:
             dataPath = QtCore.QStandardPaths.writableLocation(QtCore.QStandardPaths.AppDataLocation)
-            zipName = abspath(join(dataPath,  CIRCUIT_MACROS))
+            zipName = abspath(join(dataPath,  "circuit_macros.zip"))
             zip_ref = zipfile.ZipFile(zipName, "r")
             zip_parent_dir = zip_ref.namelist()[0]
             zip_ref.extractall(dataPath)
             zip_ref.close()
-            os.rename(zip_parent_dir, "circuit-macros")
+            os.rename(join(dataPath, zip_parent_dir), join(dataPath, "circuit-macros"))
             os.remove(zipName)
             settings = QtCore.QSettings()
             settings.setValue("General/cmPath", join(dataPath , 'circuit-macros'))
             settings.sync()
-        except OSError as e:
-            if exists(dataPath):
-                shutil.rmtree(join(dataPath , "/."))
+        except Exception as e:
             #FIXME: Convert to MessageBox by reraising as PyCktCMFetchError
             print(_translate("ExternalTool", "Error uncompressing the Circuit Macros: ",  "Error message"), e)
