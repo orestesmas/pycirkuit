@@ -47,13 +47,13 @@ class PyCirkuitParser(QObject):
             "Activates batch (unattended) mode, and convert files specified by <path> to {formatID} format. Several output formats can be used together.", 
             "Commandline option description. Don't translate the '{formatID}' variable.")
         self._dpiOptionStr = _translate("CommandLine",
-            "Sets the resolution of output raster images (png, jpg), in dots per inch. Value <N> is mandatory. If not set, default is {defaultDPI} (defined in 'settings' dialog).", 
+            "Sets the resolution of output raster images (png, jpg), in dots per inch. Value <N> is mandatory. If option is not set, default is {defaultDPI}dpi (defined in 'settings' dialog).", 
             "Commandline argument description. Don't translate the '{defaultDPI}' variable.")
         self._qualityOptionStr = _translate("CommandLine",
-            "Sets the quality of output raster lossy images (jpg), in percent. Value <Q> is mandatory. If not set, default is {defaultQuality}% (defined in 'settings' dialog).", 
+            "Sets the quality of output raster lossy images (jpg), in percent. Value <Q> is mandatory. If option is not set, default is {defaultQuality}% (defined in 'settings' dialog).", 
             "Commandline option description. Don't translate the '{defaultQuality}' variable.")
         self._recurseOptionStr = _translate("CommandLine",
-            "Using this option the pattern '**' will match any files and zero or more subdirs, so '**/*.ckt' will match all files with 'ckt' extension in the current directory and all its subdirectories. Activates batch mode.", 
+            "Using this option the pattern '**' will match any files and zero or more subdirs, so '**/*.ckt' will match all files with 'ckt' extension in the current directory and all its subdirectories.", 
             "Commandline option description.")
         self._pathDescriptionStr = _translate("CommandLine", 
             "Path to source drawing file(s) to process. Wildcards accepted.\n"
@@ -153,7 +153,7 @@ class PyCirkuitParser(QObject):
         return NumFormats
 
     def _checkRecursive(self):
-        self.cli_mode = self.requestedRecursive = self.parser.isSet(self.options[Option.REC])
+        self.requestedRecursive = self.parser.isSet(self.options[Option.REC])
     
     def _checkRasterOptions(self):
         # "imageParam" is a variable (global for now) predefined with default values in __init__.py
@@ -185,7 +185,7 @@ class PyCirkuitParser(QObject):
         self.parser.process(self.args)
 
         ##### FETCH OPTIONS AND ARGUMENTS
-        # Test if "recursive" flag is set (also, if it is set, we enter cli_mode)
+        # Test if "recursive" flag is set
         self._checkRecursive()
         
         # Check if user set some image raster parameters
@@ -222,6 +222,7 @@ class PyCirkuitParser(QObject):
                         processor.toTikz()
                         # Copy the result to original dir with correct extension. Check for file existence and abort!
                         print("Copying tikz file into destination")
+            print(_translate("CommandLine", "Files processed: {N}.", "Command line message. {N} will be an integer, don't translate it.").format(N=NumFiles))
             sys.exit(0)
 
         ##### Process GUI mode. Perform some final checks and exit.

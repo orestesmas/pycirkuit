@@ -130,7 +130,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="233"/>
+        <location filename="../tools/cliparser.py" line="234"/>
         <source>More than one file to process with no batch option given.</source>
         <comment>Commandline error message</comment>
         <translation type="unfinished"></translation>
@@ -158,19 +158,19 @@ to be included in TeX, LaTeX, web or similar documents.</source>
     </message>
     <message>
         <location filename="../tools/cliparser.py" line="49"/>
-        <source>Sets the resolution of output raster images (png, jpg), in dots per inch. Value &lt;N&gt; is mandatory. If not set, default is {defaultDPI} (defined in &apos;settings&apos; dialog).</source>
+        <source>Sets the resolution of output raster images (png, jpg), in dots per inch. Value &lt;N&gt; is mandatory. If option is not set, default is {defaultDPI}dpi (defined in &apos;settings&apos; dialog).</source>
         <comment>Commandline argument description. Don&apos;t translate the &apos;{defaultDPI}&apos; variable.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../tools/cliparser.py" line="52"/>
-        <source>Sets the quality of output raster lossy images (jpg), in percent. Value &lt;Q&gt; is mandatory. If not set, default is {defaultQuality}% (defined in &apos;settings&apos; dialog).</source>
+        <source>Sets the quality of output raster lossy images (jpg), in percent. Value &lt;Q&gt; is mandatory. If option is not set, default is {defaultQuality}% (defined in &apos;settings&apos; dialog).</source>
         <comment>Commandline option description. Don&apos;t translate the &apos;{defaultQuality}&apos; variable.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../tools/cliparser.py" line="55"/>
-        <source>Using this option the pattern &apos;**&apos; will match any files and zero or more subdirs, so &apos;**/*.ckt&apos; will match all files with &apos;ckt&apos; extension in the current directory and all its subdirectories. Activates batch mode.</source>
+        <source>Using this option the pattern &apos;**&apos; will match any files and zero or more subdirs, so &apos;**/*.ckt&apos; will match all files with &apos;ckt&apos; extension in the current directory and all its subdirectories.</source>
         <comment>Commandline option description.</comment>
         <translation type="unfinished"></translation>
     </message>
@@ -182,6 +182,12 @@ to be included in TeX, LaTeX, web or similar documents.</source>
 - If &lt;path&gt;s point to more than one valid file and a combination of output formats options are present, these source files are processed sequentially in batch (unattended) mode and converted into the requested formats.
 - Specifying more than one file to process with no output format options present is not allowed.</source>
         <comment>Commandline argument description. If you translate &lt;path&gt;, translate the name and path syntax accordingly.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tools/cliparser.py" line="225"/>
+        <source>Files processed: {N}.</source>
+        <comment>Command line message. {N} will be an integer, don&apos;t translate it.</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
