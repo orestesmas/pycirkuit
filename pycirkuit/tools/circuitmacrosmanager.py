@@ -23,7 +23,7 @@ Module implementing a CircuitMacros Manager class.
 import os
 from os.path import normpath, join, exists, dirname, abspath
 import shutil
-import tarfile
+import zipfile
 import urllib.request as Net
 import urllib.error as NetError
 
@@ -42,6 +42,8 @@ class CircuitMacrosManager(QtCore.QObject):
     """
     Class documentation goes here.
     """
+    CIRCUIT_MACROS = "circuit_macros.zip"
+
     def __init__(self, parent=None):
         """
         Constructor
@@ -77,13 +79,14 @@ class CircuitMacrosManager(QtCore.QObject):
         return normpath(join(QtCore.QStandardPaths.writableLocation(QtCore.QStandardPaths.AppDataLocation), "circuit-macros"))
         
     def download_latest(self, percent):
-        origin = "http://www.ece.uwaterloo.ca/~aplevich/Circuit_macros/Circuit_macros.tar.gz"
+        origin = "http://mirrors.ctan.org/graphics/" + CIRCUIT_MACROS
+        print (origin)
         destination = dirname(self.default_CMPath())
         if destination == "":
             raise PyCirkuitError(_translate("ExternalTool", "Cannot determine the standard writable location for PyCirkuit",  "Error message"))
         if not exists(destination):
             os.makedirs(destination)
-        destination = join(destination,"Circuit_macros.tar.gz")
+        destination = join(destination, CIRCUIT_MACROS)
         try:
             with Net.urlopen(origin) as source,  open(destination, 'wb') as dest:
                 length = source.getheader('content-length')
@@ -139,23 +142,17 @@ class CircuitMacrosManager(QtCore.QObject):
     def unpack_circuit_macros(self):
         try:
             dataPath = QtCore.QStandardPaths.writableLocation(QtCore.QStandardPaths.AppDataLocation)
-            tarName = abspath(join(dataPath,  'Circuit_macros.tar.gz'))
-            with tarfile.open(tarName, 'r:gz') as tarFile:
-                # Circuit Macros is distributed in a tree structure.
-                # We want the top dir of this structure to be 'circuit-macros', whichever it is now
-                # The following algorithm assumes that all circuit macros's files are in a subdir.
-                entry = tarFile.next()
-                storedDir, foo, bar = entry.name.partition('/')  # Got stored top dir name in 'storedDir'
-                # Now iterate and replace top directory name in all entries
-                for entry in tarFile.getmembers():
-                    filename = entry.name
-                    entry.name = filename.replace(storedDir, 'circuit-macros', 1)
-                tarFile.extractall(path=dataPath)
-            os.remove(tarName)
+            zipName = abspath(join(dataPath,  CIRCUIT_MACROS))
+            zip_ref = zipfile.ZipFile(zipName, "r")
+            zip_parent_dir = zip_ref.namelist()[0]
+            zip_ref.extractall(dataPath)
+            zip_ref.close()
+            os.rename(zip_parent_dir, "circuit-macros")
+            os.remove(zipName)
             settings = QtCore.QSettings()
             settings.setValue("General/cmPath", join(dataPath , 'circuit-macros'))
             settings.sync()
-        except tarfile.TarError as e:
+        except OSError as e:
             if exists(dataPath):
                 shutil.rmtree(join(dataPath , "/."))
             #FIXME: Convert to MessageBox by reraising as PyCktCMFetchError
