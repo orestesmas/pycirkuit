@@ -5,10 +5,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## 0.3 series [Work in progress]
+#### Added
+- Command line interface to process files in batch mode
+- Zoomable image
 #### Changed
 - Code refactoring, cleaning and polishing.
 
 ## 0.2 series
+### [0.2.3](https://github.com/orestesmas/pycirkuit/compare/v0.2.2..v0.2.3) : (2019-07-10) [Bugfix release]
+#### Bug fixes
+- Fixed broken link to Circuit Macros ([2cb630f5] (https://github.com/orestesmas/pycirkuit/commit/2cb630f5))
 ### [0.2.2](https://github.com/orestesmas/pycirkuit/compare/v0.2.1..v0.2.2) : (2019-03-10) [Bugfix release]
 #### Bug fixes
 - Fixed nasty bug found just after the last release when testing the debian package: ask for an alternate location when exporting to a non-writable location ([3c57f8a1](https://github.com/orestesmas/pycirkuit/commit/3c57f8a1)). Closes [#32](https://github.com/orestesmas/pycirkuit/issues/32).
