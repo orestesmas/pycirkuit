@@ -120,7 +120,7 @@ class PyCirkuitParser(QObject):
                     self.requestedFilesToProcess.append(f)
         NumFiles = len(self.requestedFilesToProcess)
         if (NumFiles == 0) and pathPresent:
-            print(_translate("CommandLine", "ERROR: The given path does not match any existing file.", "Commandline error message"))
+            print("\n", _translate("CommandLine", "ERROR: The given path does not match any existing file.", "Commandline error message"), "\n")
             self.parser.showHelp(exitCode=-1)
         return NumFiles
         
@@ -132,7 +132,6 @@ class PyCirkuitParser(QObject):
             if self.parser.isSet(self.options[outputFormat]):
                 self.cli_mode = True
                 self.requestedOutputFormats.add(outputFormat)
-                print("DEBUG: Detectada opció {}".format(outputFormat.value))
         NumFormats = len(self.requestedOutputFormats)
         return NumFormats
 
@@ -150,7 +149,7 @@ class PyCirkuitParser(QObject):
                 if imageParam(Option.DPI) not in range(25, 3001):
                     raise Exception()
             except:
-                print(_translate("CommandLine", "Error: The --dpi parameter must be an integer between 25 and 3000.", "Error message"))
+                print(_translate("CommandLine", "ERROR: The --dpi parameter must be an integer between 25 and 3000.", "Error message"))
                 sys.exit(-1)
         # Process the "quality" option
         if self.parser.isSet(self.options[Option.QUAL]):
@@ -159,16 +158,14 @@ class PyCirkuitParser(QObject):
                 if imageParam[Option.QUAL] not in range(0, 101):
                     raise Exception()
             except:
-                print(_translate("CommandLine", "Error: The --quality parameter must be an integer between 0 and 100.", "Error message"))
+                print(_translate("CommandLine", "ERROR: The --quality parameter must be an integer between 0 and 100.", "Error message"))
                 sys.exit(-1)
 
     # The command line parser (Qt-based)
     def parseCmdLine(self):
-        ##### 2) COMMAND-LINE PARSING
-        print("DEBUG: Processing command-line arguments: {}".format(self.args))
         self.parser.process(self.args)
 
-        ##### 3) FETCH OPTIONS AND ARGUMENTS
+        ##### FETCH OPTIONS AND ARGUMENTS
         # Test if "recursive" flag is set (also, if it is set, we enter cli_mode)
         self._checkRecursive()
         
@@ -181,7 +178,7 @@ class PyCirkuitParser(QObject):
         # Find files to process
         NumFiles = self._checkFiles()
         
-        ##### 4) Process CLI mode
+        ##### Process CLI mode
         if self.cli_mode:
             # Is an error to call pycirkuit with a batch option and no filenames
             if (NumFiles==0):
@@ -207,7 +204,7 @@ class PyCirkuitParser(QObject):
                         print("Copying tikz file into destination")
             sys.exit(0)
 
-        ##### 5) Process GUI mode. Perform some final checks and exit.
+        ##### Process GUI mode. Perform some final checks and exit.
         if NumFiles == 0:
             return None
         elif NumFiles == 1:
@@ -215,4 +212,4 @@ class PyCirkuitParser(QObject):
         else:
             print(_translate("CommandLine", "ERROR: More than one file to process with no batch option given.", "Commandline error message"))
             self.parser.showHelp(exitCode=-1)
-            
+
