@@ -29,37 +29,52 @@ from os.path import abspath, isfile
 from PyQt5.QtCore import QObject, QCoreApplication, QCommandLineParser, QCommandLineOption
 
 # Local imports
-from pycirkuit import Option, imageParam
+from pycirkuit import Option, imageParam, __productname__
 from pycirkuit.tools.processor import PyCirkuitProcessor
 
 # Translation function
 _translate = QCoreApplication.translate
 
 class PyCirkuitParser(QObject):
-    # Some static strings
-    _appDescription = """
-PyCirkuit is a GUI front-end for Circuit Macros by Dwight Aplevich,
-which are a set of macros for drawing high-quality line diagrams
-to be included in TeX, LaTeX, web or similar documents."""
-    _batchOption = "Convert files specified by <path> to {formatID} format in batch mode. Several output formats can be used together."
-    _dpiOption = "Sets the resolution of output bitmap images (png, jpg), in dots per inch. Value <N> is mandatory. If not set, default is {defaultDPI} (defined in 'settings' dialog)."
-    _qualityOption = "Sets the quality of output bitmap lossy images (jpg), in percent. Value <Q> is mandatory. If not set, default is {defaultQuality}% (defined in 'settings' dialog)."
-    _recurseOption = "Using this option the pattern '**' will match any files and zero or more subdirs, so '**/*.ckt' will match all files with 'ckt' extension in the current directory and all its subdirectories."
-    _pathDescription = """Path(s) to source drawing file(s) to process. Wildcards accepted.
-- If no <path> is given, the GUI is opened.
-- If <path> points to only one file and no batch conversion options are present, this file is opened into the GUI for editing.
-- If <path>s point to more than one valid file and a combination of output formats options are present, these source files are processed sequentially in batch (unattended) mode and converted into the requested formats.
-- Specifying more than one file to process with no output format options present is not allowed."""
-    _seeHelp = _translate("CommandLine", 'Try "{appName} --help" to get more information.', "Command-line error message.")
+    def _initStrings(self):
+        self._appDescriptionStr = _translate("CommandLine",
+            "\n"
+            "{productName} is a front-end for Circuit Macros by Dwight Aplevich,\n"
+            "which are a set of macros for drawing high-quality line diagrams\n"
+            "to be included in TeX, LaTeX, web or similar documents.",
+            "Commandline application description. Don't translate '{productName}'.")
+        self._batchOptionStr = _translate("CommandLine",
+            "Activates batch (unattended) mode, and convert files specified by <path> to {formatID} format. Several output formats can be used together.", 
+            "Commandline option description. Don't translate the '{formatID}' variable.")
+        self._dpiOptionStr = _translate("CommandLine",
+            "Sets the resolution of output raster images (png, jpg), in dots per inch. Value <N> is mandatory. If not set, default is {defaultDPI} (defined in 'settings' dialog).", 
+            "Commandline argument description. Don't translate the '{defaultDPI}' variable.")
+        self._qualityOptionStr = _translate("CommandLine",
+            "Sets the quality of output raster lossy images (jpg), in percent. Value <Q> is mandatory. If not set, default is {defaultQuality}% (defined in 'settings' dialog).", 
+            "Commandline option description. Don't translate the '{defaultQuality}' variable.")
+        self._recurseOptionStr = _translate("CommandLine",
+            "Using this option the pattern '**' will match any files and zero or more subdirs, so '**/*.ckt' will match all files with 'ckt' extension in the current directory and all its subdirectories. Activates batch mode.", 
+            "Commandline option description.")
+        self._pathDescriptionStr = _translate("CommandLine", 
+            "Path to source drawing file(s) to process. Wildcards accepted.\n"
+            "- If no <path> is given, the GUI is opened.\n"
+            "- If <path> points to only one file and no batch conversion options are present, this file is opened into the GUI for editing.\n"
+            "- If <path>s point to more than one valid file and a combination of output formats options are present, these source files are processed sequentially in batch (unattended) mode and converted into the requested formats.\n"
+            "- Specifying more than one file to process with no output format options present is not allowed.",
+            "Commandline argument description. If you translate <path>, translate the name and path syntax accordingly.")
+        self._seeHelpStr = _translate("CommandLine",
+            'Try "{appName} --help" to get more information.',
+            "Command-line error message. Don't translate '{appName}'.")
 
     def __init__(self, args):
         super().__init__()
         self.args = args
         self.cli_mode = False
         self.requestedRecursive = False
+        self._initStrings()
         self.parser = QCommandLineParser()
         #self.parser.setSingleDashWordOptionMode(QCommandLineself.parser.ParseAsLongOptions)
-        self.parser.setApplicationDescription(_translate("CommandLine", PyCirkuitParser._appDescription, "Commandline application description."))
+        self.parser.setApplicationDescription(self._appDescriptionStr.format(productName=__productname__))
         # Adding the '-h, --help' option
         self.parser.addHelpOption()
         # Adding the '-v --version' option
@@ -67,45 +82,41 @@ to be included in TeX, LaTeX, web or similar documents."""
         # Allowing positional arguments (the file/files to open or process)
         self.parser.addPositionalArgument(
             _translate("CommandLine", "path", "Commandline argument name. If you translate this name, translate it accordingly into the path description and path syntax."), 
-            _translate("CommandLine", PyCirkuitParser._pathDescription, "Commandline argument description. If you translate <path>, translate the name and path syntax accordingly."), 
+            self._pathDescriptionStr, 
             _translate("CommandLine",  "[<path> [ <path2>...]]",  "Commandline argument syntax. If you translate <path>, translate the name and path description accordingly.")
         )
         # Adding command line options
-        batchOptionStr = _translate("CommandLine", PyCirkuitParser._batchOption, "Commandline option description. Don't translate the '{formatID}' variable.")
-        dpiOptionStr = _translate("CommandLine", PyCirkuitParser._dpiOption, "Commandline argument description. Don't translate the '{defaultDPI}' variable.")
-        qualityOptionStr = _translate("CommandLine", PyCirkuitParser._qualityOption, "Commandline option description. Don't translate the '{defaultQuality}' variable.")
-        recurseOptionStr = _translate("CommandLine", PyCirkuitParser._recurseOption, "Commandline option description.")
         self.options = {
             Option.TIKZ: QCommandLineOption(
-                            ["t", "tikz"],
-                            batchOptionStr.format(formatID='TIkZ'), 
-                         ),
+                    ["t", "tikz"],
+                    self._batchOptionStr.format(formatID='TIkZ'), 
+                ),
             Option.PDF:  QCommandLineOption(
-                            ["f", "pdf"],
-                            batchOptionStr.format(formatID='PDF'),
-                         ),
+                    ["f", "pdf"],
+                    self._batchOptionStr.format(formatID='PDF'),
+                ),
             Option.PNG:  QCommandLineOption(
-                            ["p", "png"],
-                            batchOptionStr.format(formatID='PNG'),
-                         ),
+                    ["p", "png"],
+                    self._batchOptionStr.format(formatID='PNG'),
+                ),
             Option.JPEG: QCommandLineOption(
-                            ["j", "jpg"],
-                            batchOptionStr.format(formatID='JPG'),
-                         ),
+                    ["j", "jpg"],
+                    self._batchOptionStr.format(formatID='JPG'),
+                ),
             Option.DPI:  QCommandLineOption(
-                            ["dpi"], 
-                            dpiOptionStr.format(defaultDPI=imageParam[Option.DPI]),
-                            "N", 
-                         ), 
+                    ["dpi"], 
+                    self._dpiOptionStr.format(defaultDPI=imageParam[Option.DPI]),
+                    "N", 
+                ), 
             Option.QUAL: QCommandLineOption(
-                            ["quality"], 
-                            qualityOptionStr.format(defaultQuality=imageParam[Option.QUAL]), 
-                            "Q", 
-                         ), 
+                    ["quality"], 
+                    self._qualityOptionStr.format(defaultQuality=imageParam[Option.QUAL]), 
+                    "Q", 
+                ), 
             Option.REC:  QCommandLineOption(
-                            ["r"],
-                            recurseOptionStr, 
-                         ),
+                    ["r"],
+                    self._recurseOptionStr, 
+                ),
         }
         # Adding the options in the list
         for option in self.options.values():
@@ -126,7 +137,7 @@ to be included in TeX, LaTeX, web or similar documents."""
         NumFiles = len(self.requestedFilesToProcess)
         if (NumFiles == 0) and pathPresent:
             print(QCoreApplication.applicationName() + ": " + _translate("CommandLine", "The given path does not match any existing file.", "Commandline error message"))
-            print(PyCirkuitParser._seeHelp.format(appName=QCoreApplication.applicationName()))
+            print(self._seeHelpStr.format(appName=QCoreApplication.applicationName()))
             sys.exit(-1)
         return NumFiles
         
@@ -156,7 +167,7 @@ to be included in TeX, LaTeX, web or similar documents."""
                     raise Exception()
             except:
                 print(QCoreApplication.applicationName() + ": " + _translate("CommandLine", "The --dpi parameter must be an integer between 25 and 3000.", "Error message"))
-                print(PyCirkuitParser._seeHelp.format(appName=QCoreApplication.applicationName()))
+                print(self._seeHelpStr.format(appName=QCoreApplication.applicationName()))
                 sys.exit(-1)
         # Process the "quality" option
         if self.parser.isSet(self.options[Option.QUAL]):
@@ -166,7 +177,7 @@ to be included in TeX, LaTeX, web or similar documents."""
                     raise Exception()
             except:
                 print(QCoreApplication.applicationName() + ": " + _translate("CommandLine", "The --quality parameter must be an integer between 0 and 100.", "Error message"))
-                print(PyCirkuitParser._seeHelp.format(appName=QCoreApplication.applicationName()))
+                print(self._seeHelpStr.format(appName=QCoreApplication.applicationName()))
                 sys.exit(-1)
 
     # The command line parser (Qt-based)
@@ -191,7 +202,7 @@ to be included in TeX, LaTeX, web or similar documents."""
             # Is an error to call pycirkuit with a batch option and no filenames
             if (NumFiles==0):
                 print(QCoreApplication.applicationName() + ": " + _translate("CommandLine", "Batch processing requested with no files.", "Commandline error message"))
-                print(PyCirkuitParser._seeHelp.format(appName=QCoreApplication.applicationName()))
+                print(self._seeHelpStr.format(appName=QCoreApplication.applicationName()))
                 sys.exit(-1)
             processor = PyCirkuitProcessor(imageParam)
             for fileName in self.requestedFilesToProcess:
@@ -220,6 +231,6 @@ to be included in TeX, LaTeX, web or similar documents."""
             return abspath(self.requestedFilesToProcess[0])
         else:
             print(QCoreApplication.applicationName() + ": " + _translate("CommandLine", "More than one file to process with no batch option given.", "Commandline error message"))
-            print(PyCirkuitParser._seeHelp.format(appName=QCoreApplication.applicationName()))
+            print(self._seeHelpStr.format(appName=QCoreApplication.applicationName()))
             sys.exit(-1)
 
