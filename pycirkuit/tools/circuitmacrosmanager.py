@@ -3,6 +3,7 @@
 Module implementing a CircuitMacros Manager class.
 """
 # Copyright (C) 2018-2019 Orestes Mas
+# Copyright (C) 2019 Aniol Marti
 # This file is part of PyCirkuit.
 #
 # PyCirkuit is free software: you can redistribute it and/or modify
@@ -41,6 +42,7 @@ class CircuitMacrosManager(QtCore.QObject):
     """
     Class documentation goes here.
     """
+    CIRCUIT_MACROS_FILE = "circuit_macros.zip"
     def __init__(self, parent=None):
         """
         Constructor
@@ -76,13 +78,13 @@ class CircuitMacrosManager(QtCore.QObject):
         return normpath(join(QtCore.QStandardPaths.writableLocation(QtCore.QStandardPaths.AppDataLocation), "circuit-macros"))
         
     def download_latest(self, percent):
-        origin = "https://ctan.mirror.norbert-ruehl.de/graphics/circuit_macros.zip"
+        origin = "https://ctan.mirror.norbert-ruehl.de/graphics/" + self.CIRCUIT_MACROS_FILE
         destination = dirname(self.default_CMPath())
         if destination == "":
             raise PyCirkuitError(_translate("ExternalTool", "Cannot determine the standard writable location for PyCirkuit",  "Error message"))
         if not exists(destination):
             os.makedirs(destination)
-        destination = join(destination,"circuit_macros.zip")
+        destination = join(destination, self.CIRCUIT_MACROS_FILE)
         try:
             with Net.urlopen(origin) as source,  open(destination, 'wb') as dest:
                 length = source.getheader('content-length')
@@ -138,7 +140,7 @@ class CircuitMacrosManager(QtCore.QObject):
     def unpack_circuit_macros(self):
         try:
             dataPath = QtCore.QStandardPaths.writableLocation(QtCore.QStandardPaths.AppDataLocation)
-            zipName = abspath(join(dataPath,  "circuit_macros.zip"))
+            zipName = abspath(join(dataPath,  self.CIRCUIT_MACROS_FILE))
             zip_ref = zipfile.ZipFile(zipName, "r")
             zip_parent_dir = zip_ref.namelist()[0]
             zip_ref.extractall(dataPath)
