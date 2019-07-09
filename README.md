@@ -20,7 +20,7 @@ PyCirkuit source code is now hosted on github.com. The project homepage is [http
 
 # Requirements #
 
-As PyCirkuit is written in python 3 and uses multiplatform GUI libraries, it loads without problems on Windows (macOS not tested). However, its execution relies on using some helper applications whose availability on non-GNU systems is irregular. Version 0.1 has been reported to work on MacOS using external tools provided by [MacPorts](https://www.macports.org/). Windows support is coming and planned for version 0.2.
+As PyCirkuit is written in python 3 and uses multiplatform GUI libraries, it loads without problems on Windows (macOS not tested). However, its execution relies on using some helper applications whose availability on non-GNU systems is irregular. Version 0.1 has been reported to work on MacOS using external tools provided by [MacPorts](https://www.macports.org/). Works on Windows from version 0.2 onwards, although it's not throughly tested.
 
 To run this application you need to have the following applications/libraries installed:
 
