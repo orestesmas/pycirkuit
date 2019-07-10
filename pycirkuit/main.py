@@ -61,7 +61,10 @@ def main():
     QCoreApplication.setApplicationName("pycirkuit")
     QCoreApplication.setApplicationVersion(__version__)
 
-    # Parse command line options
+    # Parse command line options, deciding if user requested to work interactively (GUI)
+    # or to process a list of files in batch mode (CLI)
+    # If the former is chosen, this call returns with an eventual file to open in to the GUI
+    # Otherwise the call don't return and does the process itself.
     cmdLineParser = PyCirkuitParser(sys.argv)
     fileToOpen = cmdLineParser.parseCmdLine()
 
