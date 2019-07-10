@@ -6,10 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## 0.3 series [Work in progress]
 #### Added
-- Basic Bitmap (PNG) export functionality ([b963fb22](https://github.com/orestesmas/pycirkuit/commit/b963fb22))
-- Zoomable graphics with no quality loss (Various commits, mainly [131173e3](https://github.com/orestesmas/pycirkuit/commit/131173e3))
-- Basic command line support ([03e6402e](https://github.com/orestesmas/pycirkuit/commit/03e6402e))
+- Basic Bitmap (PNG) export functionality in GUI ([b963fb22](https://github.com/orestesmas/pycirkuit/commit/b963fb22))
+- Zoomable graphics with no quality loss
 - Log output tab ([4251c0f](https://github.com/orestesmas/pycirkuit/commit/4251c0f))
+- Command line interface to process files in batch mode
 #### Changed
 - Code refactoring, cleaning and polishing.
 #### Bug Fixes
@@ -17,6 +17,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed inconsistency between dash (-) and underscore(_) in Circuit Macros path ([27fc7680](https://github.com/orestesmas/pycirkuit/commit/27fc7680)). Closes [#33](https://github.com/orestesmas/pycirkuit/issues/33).
 
 ## 0.2 series
+### [0.2.3](https://github.com/orestesmas/pycirkuit/compare/v0.2.2..v0.2.3) : (2019-07-10) [Bugfix release]
+#### Bug fixes
+- Fixed broken link to Circuit Macros ([2cb630f5] (https://github.com/orestesmas/pycirkuit/commit/2cb630f5))
 ### [0.2.2](https://github.com/orestesmas/pycirkuit/compare/v0.2.1..v0.2.2) : (2019-03-10) [Bugfix release]
 #### Bug fixes
 - Fixed nasty bug found just after the last release when testing the debian package: ask for an alternate location when exporting to a non-writable location ([3c57f8a1](https://github.com/orestesmas/pycirkuit/commit/3c57f8a1)). Closes [#32](https://github.com/orestesmas/pycirkuit/issues/32).
