@@ -73,7 +73,7 @@ def main():
             my_mainWindow._load_file(fileToOpen)
         else:
             my_mainWindow.on_actionNew_triggered(fileToOpen)
-    sys.exit(app.exec_())
+    app.exec()
     
     
 if __name__ == "__main__":
