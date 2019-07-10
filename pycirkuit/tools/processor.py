@@ -21,12 +21,19 @@ Application core functionality
 # along with PyCirkuit.  If not, see <https://www.gnu.org/licenses/>.
 #
 
+# Standard library imports
+
 # Third-party imports
 from PyQt5.QtCore import QObject, QTemporaryDir
 
 # Local imports
 import pycirkuit
 from pycirkuit import Option, imageParam
+from pycirkuit.tools.m4 import ToolM4
+from pycirkuit.tools.dpic import ToolDpic
+from pycirkuit.tools.pdflatex import ToolPdfLaTeX
+from pycirkuit.tools.pdftopng import ToolPdfToPng
+
 
 class PyCirkuitProcessor(QObject):
     def __init__(self, imageParams=None):
@@ -36,20 +43,28 @@ class PyCirkuitProcessor(QObject):
         pycirkuit.__tmpDir__ = QTemporaryDir()
         # SET UP environment:
         # 1) Check if all tools are installed
+        self._check_programs()
         # 2) enforce circuit macros
         # 3) check templates
         # 4) Save current WD and set a new one
         # 5) Establish a temporary file base name to store intermediate results
     
-    def __delete__(self):
+    def __del__(self):
+        print("DEBUG: In «processor» destructor. Removing tmpdir.")
         pycirkuit.__tmpDir__.remove()
-        
+
     def _check_templates(self):
         pass
-        
+
     def _check_programs(self):
-        pass
-    
+        # Dictionary using a class as index and a class instance as value
+        self.extTools = {
+            ToolM4: ToolM4(),
+            ToolDpic: ToolDpic(), 
+            ToolPdfLaTeX: ToolPdfLaTeX(), 
+            ToolPdfToPng: ToolPdfToPng()
+        }
+
     def _enforce_circuit_macros(self):
         pass
 

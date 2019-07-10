@@ -29,12 +29,14 @@ from os.path import abspath, isfile
 from PyQt5.QtCore import QObject, QCoreApplication, QCommandLineParser, QCommandLineOption
 
 # Local imports
+from pycirkuit.exceptions import *
 from pycirkuit import Option, imageParam, __productname__
 from pycirkuit.tools.processor import PyCirkuitProcessor
 
 # Translation function
 _translate = QCoreApplication.translate
 
+# The command line parser (Qt-based)
 class PyCirkuitParser(QObject):
     def _initStrings(self):
         self._appDescriptionStr = _translate("CommandLine",
@@ -180,7 +182,6 @@ class PyCirkuitParser(QObject):
                 print(self._seeHelpStr.format(appName=QCoreApplication.applicationName()))
                 sys.exit(-1)
 
-    # The command line parser (Qt-based)
     def parseCmdLine(self):
         self.parser.process(self.args)
 
@@ -200,28 +201,33 @@ class PyCirkuitParser(QObject):
         ##### Process CLI mode
         if self.cli_mode:
             # Is an error to call pycirkuit with a batch option and no filenames
-            if (NumFiles==0):
+            if (NumFiles == 0):
                 print(QCoreApplication.applicationName() + ": " + _translate("CommandLine", "Batch processing requested with no files.", "Commandline error message"))
                 print(self._seeHelpStr.format(appName=QCoreApplication.applicationName()))
                 sys.exit(-1)
-            processor = PyCirkuitProcessor(imageParam)
-            for fileName in self.requestedFilesToProcess:
-                processor.setSourceFile(fileName)
-                for format in self.requestedOutputFormats:
-                    if format == Option.PNG:
-                        processor.toPng()
-                        # Copy the result to original dir with correct extension. Check for file existence and abort!
-                        print("Copying png file into destination")
-                    elif format == Option.JPEG:
-                        processor.toJpg()
-                    elif format == Option.PDF:
-                        processor.toPdf()
-                        # Copy the result to original dir with correct extension. Check for file existence and abort!
-                        print("Copying pdf file into destination")
-                    elif format == Option.TIKZ:
-                        processor.toTikz()
-                        # Copy the result to original dir with correct extension. Check for file existence and abort!
-                        print("Copying tikz file into destination")
+            # Instantiate a processor object for this CLI session
+            try:
+                processor = PyCirkuitProcessor(imageParam)
+                for fileName in self.requestedFilesToProcess:
+                    processor.setSourceFile(fileName)
+                    for format in self.requestedOutputFormats:
+                        if format == Option.PNG:
+                            processor.toPng()
+                            # Copy the result to original dir with correct extension. Check for file existence and abort!
+                            print("Copying png file into destination")
+                        elif format == Option.JPEG:
+                            processor.toJpg()
+                        elif format == Option.PDF:
+                            processor.toPdf()
+                            # Copy the result to original dir with correct extension. Check for file existence and abort!
+                            print("Copying pdf file into destination")
+                        elif format == Option.TIKZ:
+                            processor.toTikz()
+                            # Copy the result to original dir with correct extension. Check for file existence and abort!
+                            print("Copying tikz file into destination")
+            except PyCktToolNotFoundError as err:
+                print("pycirkuit:", err)
+                sys.exit(-1)
             print(_translate("CommandLine", "Files processed: {N}.", "Command line message. {N} will be an integer, don't translate it.").format(N=NumFiles))
             sys.exit(0)
 
