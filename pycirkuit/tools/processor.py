@@ -23,26 +23,35 @@ Application core functionality
 # Standard library imports
 import os
 import shutil
+from enum import Enum
 
 # Third-party imports
-from PyQt5.QtCore import QObject, QTemporaryDir, QSettings
+from PyQt5.QtCore import QCoreApplication, QObject, QTemporaryDir, QSettings
 
 # Local imports
 import pycirkuit
 from pycirkuit.exceptions import *
-from pycirkuit import Option
 from pycirkuit.tools.m4 import ToolM4
 from pycirkuit.tools.dpic import ToolDpic
 from pycirkuit.tools.pdflatex import ToolPdfLaTeX
 from pycirkuit.tools.pdftopng import ToolPdfToPng
 from pycirkuit.tools.circuitmacrosmanager import CircuitMacrosManager
 
+_translate = QCoreApplication.translate
 
+class Overwrite(Enum):
+    UNSET = 0
+    YES = 1
+    ALL = 2
+    NO = 3
+    NEVER =4
+    
 class PyCirkuitProcessor(QObject):
     TMP_FILE_BASENAME= "cirkuit_tmp"
     def __init__(self):
         self.environmentOk = False
         super().__init__()
+        self.overwrite = Overwrite.UNSET
         # Save current work dir and change into a temporary one
         self.savedWD = os.getcwd()
         pycirkuit.__tmpDir__ = QTemporaryDir()
@@ -80,6 +89,36 @@ class PyCirkuitProcessor(QObject):
         if not cmMgr.check_installed():
             raise PyCktCMNotFoundError(_translate("CommandLine", "Cannot find the Circuit Macros!",  "Command line error message."))
 
+    def _askUser(self):
+        print(_translate("CommandLine",  "The destination file already exists.", "Command line message."))
+        question = _translate("CommandLine",
+            "Would you like to overwrite it? ([y]es | [n]o | yes to [a]ll | ne[v]er): ",
+            "WARNING!! Critical translation. You should translate this message to your language, enclosing into brackets one single DIFFERENT character for each option, and translate accordingly the characters in the next message.")
+        answerYes = _translate("Commandline",
+            "y", 
+            "WARNING!! Critical translation. This char must match one of those of the message 'Would you like to overwrite it?'")
+        answerNo = _translate("Commandline",
+            "n", 
+            "WARNING!! Critical translation. This char must match one of those of the message 'Would you like to overwrite it?'")
+        answerAll = _translate("Commandline",
+            "a", 
+            "WARNING!! Critical translation. This char must match one of those of the message 'Would you like to overwrite it?'")
+        answerNever = _translate("Commandline",
+            "v", 
+            "WARNING!! Critical translation. This char must match one of those of the message 'Would you like to overwrite it?'")
+        answers = {
+            answerYes: Overwrite.YES,
+            answerNo: Overwrite.NO,
+            answerAll: Overwrite.ALL,
+            answerNever: Overwrite.NEVER
+        }
+        while True:
+            answer = input(question)
+            if answer.lower() not in answers:
+                continue
+            else:
+                return answers[answer]
+
     def checkEnvironment(self):
         self._check_programs()
         self._check_circuit_macros()
@@ -96,10 +135,24 @@ class PyCirkuitProcessor(QObject):
         dst = PyCirkuitProcessor.TMP_FILE_BASENAME + ".ckt"
         shutil.copy(src, dst)
 
-    def copyResult(self, extension):
-        # FIXME: SHOULD TEST IF dst IS PRESENT!!!!
+    def copyResult(self, extension, dstDir="", overwrite=Overwrite.UNSET):
+        if (overwrite == Overwrite.ALL) or (overwrite == Overwrite.NEVER):
+            self.overwrite = overwrite
         src = os.path.join(pycirkuit.__tmpDir__.path(), PyCirkuitProcessor.TMP_FILE_BASENAME) + os.extsep + extension
-        dst = self.sourceFile.rpartition(os.extsep)[0] + os.extsep + extension
+        if dstDir:
+            filename = os.path.basename(self.sourceFile).rpartition(os.extsep)[0]
+            dst = os.path.join(dstDir, filename) + os.extsep + extension
+        else:
+            dst = self.sourceFile.rpartition(os.extsep)[0] + os.extsep + extension
+        if os.path.isfile(dst):
+            if self.overwrite == Overwrite.UNSET:
+                self.overwrite = self._askUser()
+            if (self.overwrite == Overwrite.NO) or (self.overwrite == Overwrite.NEVER):
+                if (self.overwrite == Overwrite.NO):
+                    self.overwrite = Overwrite.UNSET
+                return
+            if (self.overwrite == Overwrite.YES):
+                self.overwrite = Overwrite.UNSET
         shutil.copy(src, dst)
 
     def toPng(self, dpi):

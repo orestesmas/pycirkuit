@@ -23,8 +23,7 @@ Module implementing the functions to run when a command option is called
 # Standard library imports
 import sys
 import glob
-from os.path import abspath, isfile
-import shutil
+from os.path import abspath, realpath, isfile, isdir
 
 # Third-party imports
 from PyQt5.QtCore import QObject, QCoreApplication, QCommandLineParser, QCommandLineOption
@@ -32,7 +31,7 @@ from PyQt5.QtCore import QObject, QCoreApplication, QCommandLineParser, QCommand
 # Local imports
 from pycirkuit.exceptions import *
 from pycirkuit import Option, imageParam, __productname__
-from pycirkuit.tools.processor import PyCirkuitProcessor
+from pycirkuit.tools.processor import PyCirkuitProcessor, Overwrite
 
 # Translation function
 _translate = QCoreApplication.translate
@@ -55,6 +54,17 @@ class PyCirkuitParser(QObject):
         self._qualityOptionStr = _translate("CommandLine",
             "Sets the quality of output raster lossy images (jpg), in percent. Value <Q> is mandatory. If option is not set, default is {defaultQuality}% (defined in 'settings' dialog).", 
             "Commandline option description. Don't translate the '{defaultQuality}' variable.")
+        self._overwriteOptionStr = _translate("CommandLine", 
+            "Overwrite by default the converted files if they are present. If not set, user will be asked at runtime.", 
+            "Commandline option description.")
+        self._followLinksOptionStr = _translate("CommandLine", 
+            "Follow symbolic links.\n"
+            " If not set, destination file will be saved into the same directory where the source file is, whether it's a real file or a symbolic link.\n"
+            " If set, destination file will be saved into the directory where the real file is located.", 
+            "Commandline option description.")
+        self._destDirOptionStr = _translate("CommandLine", 
+            "Save all converted files into the same destination directory <D> (value is mandatory).", 
+            "Commandline option description. Don't translate '<D>'.")
         self._recurseOptionStr = _translate("CommandLine",
             "Using this option the pattern '**' will match any files and zero or more subdirs, so '**/*.ckt' will match all files with 'ckt' extension in the current directory and all its subdirectories.", 
             "Commandline option description.")
@@ -74,6 +84,8 @@ class PyCirkuitParser(QObject):
         self.args = args
         self.cli_mode = False
         self.requestedRecursive = False
+        self.overwrite = Overwrite.UNSET
+        self.dstDir = ""
         self._initStrings()
         self.parser = QCommandLineParser()
         #self.parser.setSingleDashWordOptionMode(QCommandLineself.parser.ParseAsLongOptions)
@@ -116,6 +128,19 @@ class PyCirkuitParser(QObject):
                     self._qualityOptionStr.format(defaultQuality=imageParam[Option.QUAL]), 
                     "Q", 
                 ), 
+            Option.DEST: QCommandLineOption(
+                    ["destination"], 
+                    self._destDirOptionStr, 
+                    "D", 
+                ), 
+            Option.LINK: QCommandLineOption(
+                    ["links"], 
+                    self._followLinksOptionStr, 
+                ), 
+            Option.OVER: QCommandLineOption(
+                    ["overwrite"], 
+                    self._overwriteOptionStr, 
+                ), 
             Option.REC:  QCommandLineOption(
                     ["r"],
                     self._recurseOptionStr, 
@@ -135,15 +160,28 @@ class PyCirkuitParser(QObject):
         self.requestedFilesToProcess = list()
         for pathSpec in paths:
             for f in glob.iglob(pathSpec, recursive=self.requestedRecursive):
-                if isfile(f):
-                    self.requestedFilesToProcess.append(abspath(f))
+                if isfile(realpath(f)):
+                    f = realpath(f) if self.followSymlinks else abspath(f)
+                    self.requestedFilesToProcess.append(f)
         NumFiles = len(self.requestedFilesToProcess)
         if (NumFiles == 0) and pathPresent:
             print(QCoreApplication.applicationName() + ": " + _translate("CommandLine", "The given path does not match any existing file.", "Commandline error message"))
             print(self._seeHelpStr.format(appName=QCoreApplication.applicationName()))
             sys.exit(-1)
         return NumFiles
-        
+
+    def _checkFileOptions(self):
+        self.followSymlinks = self.parser.isSet(self.options[Option.LINK])
+        self.overwrite = Overwrite.ALL if self.parser.isSet(self.options[Option.OVER]) else Overwrite.UNSET
+        if self.parser.isSet(self.options[Option.DEST]):
+            self.dstDir = abspath(self.parser.value((self.options[Option.DEST])))
+            if not isdir(self.dstDir):
+                print(QCoreApplication.applicationName() + ": " + _translate("CommandLine", "The given path does not match any existing file.", "Commandline error message"))
+                print(self._seeHelpStr.format(appName=QCoreApplication.applicationName()))
+                sys.exit(-1)
+        else:
+            self.dstDir = ""
+    
     def _checkFormats(self):
         # Test for requested output formats. If any, cli_mode is set.
         validOutputFormats = {Option.TIKZ, Option.PNG, Option.PDF, Option.JPEG}
@@ -192,6 +230,8 @@ class PyCirkuitParser(QObject):
         self._checkRasterOptions()
         # Test how many output formats were requested.
         self._checkFormats()
+        # Test for various file options
+        self._checkFileOptions()
         # Find files to process
         NumFiles = self._checkFiles()
         
@@ -212,17 +252,18 @@ class PyCirkuitParser(QObject):
                         if format == Option.PNG:
                             processor.toPng(imageParam[Option.DPI])
                             # Copy the result to original dir with correct extension. Check for file existence and abort!
-                            processor.copyResult("png")
+                            processor.copyResult("png", dstDir=self.dstDir, overwrite=self.overwrite)
                         elif format == Option.JPEG:
                             processor.toJpg()
                         elif format == Option.PDF:
                             processor.toPdf()
                             # Copy the result to original dir with correct extension. Check for file existence and abort!
-                            processor.copyResult("pdf")
+                            processor.copyResult("pdf", dstDir=self.dstDir, overwrite=self.overwrite)
                         elif format == Option.TIKZ:
                             processor.toTikz()
                             # Copy the result to original dir with correct extension. Check for file existence and abort!
-                            processor.copyResult("tikz")
+                            processor.copyResult("tikz", dstDir=self.dstDir, overwrite=self.overwrite)
+                    print("")
             except PyCirkuitError as err:
                 print("pycirkuit:", err)
                 sys.exit(-1)
