@@ -25,6 +25,7 @@ import os
 import shutil
 
 # Third-party imports
+from PyQt5 import QtCore
 from PyQt5.QtCore import QObject, QTemporaryDir, QSettings
 
 # Local imports
@@ -36,6 +37,9 @@ from pycirkuit.tools.dpic import ToolDpic
 from pycirkuit.tools.pdflatex import ToolPdfLaTeX
 from pycirkuit.tools.pdftopng import ToolPdfToPng
 from pycirkuit.tools.circuitmacrosmanager import CircuitMacrosManager
+
+# Translation function
+_translate = QtCore.QCoreApplication.translate
 
 
 class PyCirkuitProcessor(QObject):
