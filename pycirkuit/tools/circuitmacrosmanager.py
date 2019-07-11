@@ -37,7 +37,6 @@ from pycirkuit.exceptions import *
 # Translation function
 _translate = QtCore.QCoreApplication.translate
 
-
 class CircuitMacrosManager(QtCore.QObject):
     """
     Class documentation goes here.

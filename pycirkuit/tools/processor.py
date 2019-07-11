@@ -40,7 +40,6 @@ from pycirkuit.tools.circuitmacrosmanager import CircuitMacrosManager
 # Translation function
 _translate = QCoreApplication.translate
 
-
 class Overwrite(Enum):
     UNSET = 0
     YES = 1
