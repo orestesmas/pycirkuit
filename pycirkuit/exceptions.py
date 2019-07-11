@@ -97,4 +97,4 @@ class PyCktCMFetchError(PyCirkuitError):
 # Other exceptions
 class PyCktLatexTemplateError(PyCirkuitError):
     def __init__(self, message):
-        super().__init(message, title="")
+        super().__init__(message, title="")
