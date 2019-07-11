@@ -41,12 +41,15 @@ __tmpDir__ = None
 # CLI options
 class Option(Enum):
     TIKZ = 'tikzOption'
-    PDF  = 'pdfOption'
-    PNG  = 'pngOption'
+    PDF = 'pdfOption'
+    PNG = 'pngOption'
     JPEG = 'jpgOption'
-    DPI  = 'dpiOption'
+    DPI = 'dpiOption'
     QUAL = 'qualityOption'
-    REC  = 'recurseOption'
+    REC = 'recurseOption'
+    LINK = 'followLinksOption'
+    DEST = 'destDirOption'
+    OVER = 'overwriteOption'
 
 # Default raster image parameters
 # FIXME: imageParam: Default values should be set in settings

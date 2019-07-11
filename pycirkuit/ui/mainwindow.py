@@ -508,12 +508,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     @pyqtSlot()
     def on_exportPNG_clicked(self):
-        #TODO: Delegate the export itself to the ToolPdfToPng class. Pass it only the path where the source file is
-        # FIXME: Clean export logic
+        # TODO: The "src" file should be provided by the processor class upon requested
+        # FIXME: Clean export logic: One single button to export, to all formats defined in Settings
         settings = QtCore.QSettings()
         lastWD = settings.value("General/lastWD")
-        src = "{srcFile}".format(srcFile=os.path.join(pycirkuit.__tmpDir__.path(), "cirkuit_tmp.png"))
-        dst = "{dstFile}".format(dstFile=os.path.join(lastWD, os.path.splitext(self.openedFilename)[0]) +".png")
+        src = os.path.join(pycirkuit.__tmpDir__.path(), "cirkuit_tmp.png")
+        dst = os.path.join(lastWD, os.path.splitext(self.openedFilename)[0]) + os.extsep + "png"
         try:    
             if os.path.exists(dst):
                 msgBox = QtWidgets.QMessageBox(self)
@@ -559,12 +559,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     @pyqtSlot()
     def on_exportTIKZ_clicked(self):
-        #TODO: Delegate the export itself to the ToolDpic class. Pass it only the path where the source file is
-        # FIXME: Clean export logic
+        # TODO: The "src" file should be provided by the processor class upon requested
+        # FIXME: Clean export logic: One single button to export, to all formats defined in Settings
         settings = QtCore.QSettings()
         lastWD = settings.value("General/lastWD")
-        src = "{srcFile}".format(srcFile=os.path.join(pycirkuit.__tmpDir__.path(), "cirkuit_tmp.tikz"))
-        dst = "{dstFile}".format(dstFile=os.path.join(lastWD, os.path.splitext(self.openedFilename)[0]) +".tikz")
+        src = os.path.join(pycirkuit.__tmpDir__.path(), "cirkuit_tmp.tikz")
+        dst = os.path.join(lastWD, os.path.splitext(self.openedFilename)[0]) + os.extsep + "tikz"
         try:    
             if os.path.exists(dst):
                 msgBox = QtWidgets.QMessageBox(self)
