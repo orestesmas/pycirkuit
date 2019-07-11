@@ -92,3 +92,9 @@ class PyCktCMNewVersionAvailable(PyCirkuitError):
 class PyCktCMFetchError(PyCirkuitError):
     def __init__(self, message):
         super().__init__(message, title=_translate("ExternalTool", "Circuit Macros not found", "Exception title"))
+
+
+# Other exceptions
+class PyCktLatexTemplateError(PyCirkuitError):
+    def __init__(self, message):
+        super().__init(message, title="")
