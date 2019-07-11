@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 """
 Application core functionality
 """
@@ -22,39 +21,50 @@ Application core functionality
 #
 
 # Standard library imports
+import os
+import shutil
 
 # Third-party imports
-from PyQt5.QtCore import QObject, QTemporaryDir
+from PyQt5.QtCore import QObject, QTemporaryDir, QSettings
 
 # Local imports
 import pycirkuit
-from pycirkuit import Option, imageParam
+from pycirkuit.exceptions import *
+from pycirkuit import Option
 from pycirkuit.tools.m4 import ToolM4
 from pycirkuit.tools.dpic import ToolDpic
 from pycirkuit.tools.pdflatex import ToolPdfLaTeX
 from pycirkuit.tools.pdftopng import ToolPdfToPng
+from pycirkuit.tools.circuitmacrosmanager import CircuitMacrosManager
 
 
 class PyCirkuitProcessor(QObject):
-    def __init__(self, imageParams=None):
-        #FIXME: imageParams: Should read params from settings if invoked without them????
-        self.imageParams = imageParams
+    TMP_FILE_BASENAME= "cirkuit_tmp"
+    def __init__(self):
+        self.environmentOk = False
         super().__init__()
+        # Save current work dir and change into a temporary one
+        self.savedWD = os.getcwd()
         pycirkuit.__tmpDir__ = QTemporaryDir()
-        # SET UP environment:
-        # 1) Check if all tools are installed
-        self._check_programs()
-        # 2) enforce circuit macros
-        # 3) check templates
-        # 4) Save current WD and set a new one
-        # 5) Establish a temporary file base name to store intermediate results
-    
+        os.chdir(pycirkuit.__tmpDir__.path())
+  
     def __del__(self):
-        print("DEBUG: In «processor» destructor. Removing tmpdir.")
+        # Restore working dir and remove temporary dir
+        os.chdir(self.savedWD)
         pycirkuit.__tmpDir__.remove()
 
-    def _check_templates(self):
-        pass
+    def _check_latex_template(self):
+        settings = QSettings()
+        template = settings.value("General/templatePath",  "")
+        if os.path.exists(template):
+            with open(template, 'r') as t:
+                templateCode = t.read()
+                if "%%SOURCE%%" in templateCode:
+                    return True
+                else:
+                    raise PyCktLatexTemplateError(_translate("CommandLine", "Found an invalid LaTeX template.", "Error message."))
+        else:
+            raise PyCktLatexTemplateError(_translate("CommandLine", "LaTeX template not found.", "Error message."))
 
     def _check_programs(self):
         # Dictionary using a class as index and a class instance as value
@@ -65,20 +75,39 @@ class PyCirkuitProcessor(QObject):
             ToolPdfToPng: ToolPdfToPng()
         }
 
-    def _enforce_circuit_macros(self):
-        pass
+    def _check_circuit_macros(self):
+        cmMgr = CircuitMacrosManager()
+        if not cmMgr.check_installed():
+            raise PyCktCMNotFoundError(_translate("CommandLine", "Cannot find the Circuit Macros!",  "Command line error message."))
 
-    def toPng(self):
-        # Check PNG existance in temporary dir
-        print("Checking existance of png into temporary dir... ", end="")
-        # If not, call "toPdf" and then generate png from pdf
+    def checkEnvironment(self):
+        self._check_programs()
+        self._check_circuit_macros()
+        self._check_latex_template()
+        self.environmentOk = True
+
+    def beginProcessing(self, src):
+        # 1) Check if all tools are installed
+        if not self.environmentOk:
+            self.checkEnvironment()
+        self.tikzExists = self.pdfExists = self.pngExists = self.jpgExists = False
+        # Copy source file into temporary file
+        self.sourceFile = src
+        dst = PyCirkuitProcessor.TMP_FILE_BASENAME + ".ckt"
+        shutil.copy(src, dst)
+
+    def copyResult(self, extension):
+        # FIXME: SHOULD TEST IF dst IS PRESENT!!!!
+        src = os.path.join(pycirkuit.__tmpDir__.path(), PyCirkuitProcessor.TMP_FILE_BASENAME) + os.extsep + extension
+        dst = self.sourceFile.rpartition(os.extsep)[0] + os.extsep + extension
+        shutil.copy(src, dst)
+
+    def toPng(self, dpi):
         if not self.pngExists:
-            print("Not found!")
             self.toPdf()
-            print("Converted pdf into png format at {} dpi".format(self.imageParams[Option.DPI]))
+            self.extTools[ToolPdfToPng].execute(PyCirkuitProcessor.TMP_FILE_BASENAME, resolution=dpi)
+            print(" -> PNG ({} dpi)".format(dpi), end="")
             self.pngExists = True
-        else:
-            print("Found!")
         return True
 
     def toJpg(self):
@@ -88,31 +117,19 @@ class PyCirkuitProcessor(QObject):
         return False
 
     def toPdf(self):
-        # Check PDF existance in temporary dir
-        print("Checking existance of pdf into temporary dir... ", end="")
-        # If not, call "toTikz" and then generate pdf from tikz
         if not self.pdfExists:
-            print("Not found!")
             self.toTikz()
-            print("Converted tikz into pdf format")
+            self.extTools[ToolPdfLaTeX].execute(PyCirkuitProcessor.TMP_FILE_BASENAME)
+            print(" -> PDF", end="")
             self.pdfExists = True
-        else:
-            print("Found!")
         return True
 
     def toTikz(self):
         # Check existance of tikz file in temporary dir
-        print("Checking existance of tikz into temporary dir... ", end="")
+        self.tikzExists = os.path.exists(os.path.join(PyCirkuitProcessor.TMP_FILE_BASENAME, "tikz"))
         if not self.tikzExists:
-            print("Not found!")
-            print("Converted {} to tikz format...".format(self.fileName))
+            self.extTools[ToolM4].execute(PyCirkuitProcessor.TMP_FILE_BASENAME)
+            self.extTools[ToolDpic].execute(PyCirkuitProcessor.TMP_FILE_BASENAME)
+            print("SRC -> TIKZ".format(self.sourceFile), end="")
             self.tikzExists = True
-        else:
-            print("Found!")
         return True
-
-    def setSourceFile(self, filename):
-        self.pngExists = self.pdfExists = self.tikzExists = False
-        self.fileName = filename
-        # Copy filename to temporary file
-        print("Copying {} into temporary location".format(filename))

@@ -24,6 +24,7 @@ Module implementing the functions to run when a command option is called
 import sys
 import glob
 from os.path import abspath, isfile
+import shutil
 
 # Third-party imports
 from PyQt5.QtCore import QObject, QCoreApplication, QCommandLineParser, QCommandLineOption
@@ -135,7 +136,7 @@ class PyCirkuitParser(QObject):
         for pathSpec in paths:
             for f in glob.iglob(pathSpec, recursive=self.requestedRecursive):
                 if isfile(f):
-                    self.requestedFilesToProcess.append(f)
+                    self.requestedFilesToProcess.append(abspath(f))
         NumFiles = len(self.requestedFilesToProcess)
         if (NumFiles == 0) and pathPresent:
             print(QCoreApplication.applicationName() + ": " + _translate("CommandLine", "The given path does not match any existing file.", "Commandline error message"))
@@ -165,7 +166,7 @@ class PyCirkuitParser(QObject):
         if self.parser.isSet(self.options[Option.DPI]):
             try:
                 imageParam[Option.DPI] = int(self.parser.value(self.options[Option.DPI]))
-                if imageParam(Option.DPI) not in range(25, 3001):
+                if imageParam[Option.DPI] not in range(25, 3001):
                     raise Exception()
             except:
                 print(QCoreApplication.applicationName() + ": " + _translate("CommandLine", "The --dpi parameter must be an integer between 25 and 3000.", "Error message"))
@@ -184,17 +185,13 @@ class PyCirkuitParser(QObject):
 
     def parseCmdLine(self):
         self.parser.process(self.args)
-
         ##### FETCH OPTIONS AND ARGUMENTS
         # Test if "recursive" flag is set
         self._checkRecursive()
-        
         # Check if user set some image raster parameters
         self._checkRasterOptions()
-        
         # Test how many output formats were requested.
         self._checkFormats()
-
         # Find files to process
         NumFiles = self._checkFiles()
         
@@ -207,25 +204,26 @@ class PyCirkuitParser(QObject):
                 sys.exit(-1)
             # Instantiate a processor object for this CLI session
             try:
-                processor = PyCirkuitProcessor(imageParam)
+                processor = PyCirkuitProcessor()
                 for fileName in self.requestedFilesToProcess:
-                    processor.setSourceFile(fileName)
+                    print(_translate("CommandLine",  "Processing file:", "Command line message. Will be followed by an absolute pile path"), fileName)
+                    processor.beginProcessing(fileName)
                     for format in self.requestedOutputFormats:
                         if format == Option.PNG:
-                            processor.toPng()
+                            processor.toPng(imageParam[Option.DPI])
                             # Copy the result to original dir with correct extension. Check for file existence and abort!
-                            print("Copying png file into destination")
+                            processor.copyResult("png")
                         elif format == Option.JPEG:
                             processor.toJpg()
                         elif format == Option.PDF:
                             processor.toPdf()
                             # Copy the result to original dir with correct extension. Check for file existence and abort!
-                            print("Copying pdf file into destination")
+                            processor.copyResult("pdf")
                         elif format == Option.TIKZ:
                             processor.toTikz()
                             # Copy the result to original dir with correct extension. Check for file existence and abort!
-                            print("Copying tikz file into destination")
-            except PyCktToolNotFoundError as err:
+                            processor.copyResult("tikz")
+            except PyCirkuitError as err:
                 print("pycirkuit:", err)
                 sys.exit(-1)
             print(_translate("CommandLine", "Files processed: {N}.", "Command line message. {N} will be an integer, don't translate it.").format(N=NumFiles))
