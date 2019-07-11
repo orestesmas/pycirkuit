@@ -246,18 +246,18 @@ i incloure&apos;ls en documents TeX, LaTeX, Web o similars.</translation>
     <message>
         <location filename="../tools/cliparser.py" line="60"/>
         <source>Follow symbolic links.
- If not set, destination file will be saved into the same directory where the source file is, whether it&apos;s a real file or a symbolic link.
- If set, destination file will be saved into the directory where the real file is located.</source>
+- If not set, destination file will be saved into the same directory where the source file is, whether it&apos;s a real file or a symbolic link.
+- If set, destination file will be saved into the directory where the real source file is located.</source>
         <comment>Commandline option description.</comment>
         <translation>Segueix els enllaços simbòlics.
- Si no l&apos;especifiqueu, el fitxer de destí es desarà al mateix directori del fitxer font, ja sigui un fitxer real o un enllaç simbòlic.
- Si l&apos;especifiqueu, el fitxer de destí es desarà al mateix directori del fitxer font.</translation>
+- Si no l&apos;especifiqueu, el fitxer de destí es desarà al mateix directori del fitxer font, ja sigui un fitxer real o un enllaç simbòlic.
+- Si l&apos;especifiqueu, el fitxer de destí es desarà al mateix directori del fitxer font real.</translation>
     </message>
     <message>
         <location filename="../tools/cliparser.py" line="65"/>
         <source>Save all converted files into the same destination directory &lt;D&gt; (value is mandatory).</source>
         <comment>Commandline option description. Don&apos;t translate &apos;&lt;D&gt;&apos;.</comment>
-        <translation>Desa tots els fitxers convertits al mateix directori de destí &lt;D&gt; (el valor és obpligatori).</translation>
+        <translation>Desa tots els fitxers convertits al mateix directori de destí &lt;D&gt; (el valor és obligatori).</translation>
     </message>
     <message>
         <location filename="../tools/cliparser.py" line="249"/>

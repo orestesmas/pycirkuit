@@ -59,8 +59,8 @@ class PyCirkuitParser(QObject):
             "Commandline option description.")
         self._followLinksOptionStr = _translate("CommandLine", 
             "Follow symbolic links.\n"
-            " If not set, destination file will be saved into the same directory where the source file is, whether it's a real file or a symbolic link.\n"
-            " If set, destination file will be saved into the directory where the real file is located.", 
+            "- If not set, destination file will be saved into the same directory where the source file is, whether it's a real file or a symbolic link.\n"
+            "- If set, destination file will be saved into the directory where the real source file is located.", 
             "Commandline option description.")
         self._destDirOptionStr = _translate("CommandLine", 
             "Save all converted files into the same destination directory <D> (value is mandatory).", 

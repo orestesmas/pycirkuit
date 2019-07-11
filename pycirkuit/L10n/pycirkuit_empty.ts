@@ -199,8 +199,8 @@ to be included in TeX, LaTeX, web or similar documents.</source>
     <message>
         <location filename="../tools/cliparser.py" line="60"/>
         <source>Follow symbolic links.
- If not set, destination file will be saved into the same directory where the source file is, whether it&apos;s a real file or a symbolic link.
- If set, destination file will be saved into the directory where the real file is located.</source>
+- If not set, destination file will be saved into the same directory where the source file is, whether it&apos;s a real file or a symbolic link.
+- If set, destination file will be saved into the directory where the real source file is located.</source>
         <comment>Commandline option description.</comment>
         <translation type="unfinished"></translation>
     </message>
