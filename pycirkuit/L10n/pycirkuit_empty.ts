@@ -94,55 +94,55 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>CommandLine</name>
     <message>
-        <location filename="../tools/cliparser.py" line="83"/>
+        <location filename="../tools/cliparser.py" line="98"/>
         <source>path</source>
         <comment>Commandline argument name. If you translate this name, translate it accordingly into the path description and path syntax.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="83"/>
+        <location filename="../tools/cliparser.py" line="98"/>
         <source>[&lt;path&gt; [ &lt;path2&gt;...]]</source>
         <comment>Commandline argument syntax. If you translate &lt;path&gt;, translate the name and path description accordingly.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="139"/>
+        <location filename="../tools/cliparser.py" line="179"/>
         <source>The given path does not match any existing file.</source>
         <comment>Commandline error message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="169"/>
+        <location filename="../tools/cliparser.py" line="210"/>
         <source>The --dpi parameter must be an integer between 25 and 3000.</source>
         <comment>Error message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="179"/>
+        <location filename="../tools/cliparser.py" line="220"/>
         <source>The --quality parameter must be an integer between 0 and 100.</source>
         <comment>Error message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="204"/>
+        <location filename="../tools/cliparser.py" line="242"/>
         <source>Batch processing requested with no files.</source>
         <comment>Commandline error message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="234"/>
+        <location filename="../tools/cliparser.py" line="279"/>
         <source>More than one file to process with no batch option given.</source>
         <comment>Commandline error message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="65"/>
+        <location filename="../tools/cliparser.py" line="78"/>
         <source>Try &quot;{appName} --help&quot; to get more information.</source>
         <comment>Command-line error message. Don&apos;t translate &apos;{appName}&apos;.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="40"/>
+        <location filename="../tools/cliparser.py" line="42"/>
         <source>
 {productName} is a front-end for Circuit Macros by Dwight Aplevich,
 which are a set of macros for drawing high-quality line diagrams
@@ -151,31 +151,31 @@ to be included in TeX, LaTeX, web or similar documents.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="46"/>
+        <location filename="../tools/cliparser.py" line="48"/>
         <source>Activates batch (unattended) mode, and convert files specified by &lt;path&gt; to {formatID} format. Several output formats can be used together.</source>
         <comment>Commandline option description. Don&apos;t translate the &apos;{formatID}&apos; variable.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="49"/>
+        <location filename="../tools/cliparser.py" line="51"/>
         <source>Sets the resolution of output raster images (png, jpg), in dots per inch. Value &lt;N&gt; is mandatory. If option is not set, default is {defaultDPI}dpi (defined in &apos;settings&apos; dialog).</source>
         <comment>Commandline argument description. Don&apos;t translate the &apos;{defaultDPI}&apos; variable.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="52"/>
+        <location filename="../tools/cliparser.py" line="54"/>
         <source>Sets the quality of output raster lossy images (jpg), in percent. Value &lt;Q&gt; is mandatory. If option is not set, default is {defaultQuality}% (defined in &apos;settings&apos; dialog).</source>
         <comment>Commandline option description. Don&apos;t translate the &apos;{defaultQuality}&apos; variable.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="55"/>
+        <location filename="../tools/cliparser.py" line="68"/>
         <source>Using this option the pattern &apos;**&apos; will match any files and zero or more subdirs, so &apos;**/*.ckt&apos; will match all files with &apos;ckt&apos; extension in the current directory and all its subdirectories.</source>
         <comment>Commandline option description.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="58"/>
+        <location filename="../tools/cliparser.py" line="71"/>
         <source>Path to source drawing file(s) to process. Wildcards accepted.
 - If no &lt;path&gt; is given, the GUI is opened.
 - If &lt;path&gt; points to only one file and no batch conversion options are present, this file is opened into the GUI for editing.
@@ -185,9 +185,89 @@ to be included in TeX, LaTeX, web or similar documents.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="225"/>
+        <location filename="../tools/cliparser.py" line="270"/>
         <source>Files processed: {N}.</source>
         <comment>Command line message. {N} will be an integer, don&apos;t translate it.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tools/cliparser.py" line="57"/>
+        <source>Overwrite by default the converted files if they are present. If not set, user will be asked at runtime.</source>
+        <comment>Commandline option description.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tools/cliparser.py" line="60"/>
+        <source>Follow symbolic links.
+ If not set, destination file will be saved into the same directory where the source file is, whether it&apos;s a real file or a symbolic link.
+ If set, destination file will be saved into the directory where the real file is located.</source>
+        <comment>Commandline option description.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tools/cliparser.py" line="65"/>
+        <source>Save all converted files into the same destination directory &lt;D&gt; (value is mandatory).</source>
+        <comment>Commandline option description. Don&apos;t translate &apos;&lt;D&gt;&apos;.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tools/cliparser.py" line="249"/>
+        <source>Processing file:</source>
+        <comment>Command line message. Will be followed by an absolute pile path</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tools/processor.py" line="74"/>
+        <source>Found an invalid LaTeX template.</source>
+        <comment>Error message.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tools/processor.py" line="76"/>
+        <source>LaTeX template not found.</source>
+        <comment>Error message.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tools/processor.py" line="90"/>
+        <source>Cannot find the Circuit Macros!</source>
+        <comment>Command line error message.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tools/processor.py" line="93"/>
+        <source>The destination file already exists.</source>
+        <comment>Command line message.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tools/processor.py" line="94"/>
+        <source>Would you like to overwrite it? ([y]es | [n]o | yes to [a]ll | ne[v]er): </source>
+        <comment>WARNING!! Critical translation. You should translate this message to your language, enclosing into brackets one single DIFFERENT character for each option, and translate accordingly the characters in the next message.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tools/processor.py" line="97"/>
+        <source>y</source>
+        <comment>WARNING!! Critical translation. This char must match one of those of the message &apos;Would you like to overwrite it?&apos;</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tools/processor.py" line="100"/>
+        <source>n</source>
+        <comment>WARNING!! Critical translation. This char must match one of those of the message &apos;Would you like to overwrite it?&apos;</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tools/processor.py" line="103"/>
+        <source>a</source>
+        <comment>WARNING!! Critical translation. This char must match one of those of the message &apos;Would you like to overwrite it?&apos;</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tools/processor.py" line="106"/>
+        <source>v</source>
+        <comment>WARNING!! Critical translation. This char must match one of those of the message &apos;Would you like to overwrite it?&apos;</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -325,13 +405,13 @@ to be included in TeX, LaTeX, web or similar documents.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/circuitmacrosmanager.py" line="83"/>
+        <location filename="../tools/circuitmacrosmanager.py" line="84"/>
         <source>Cannot determine the standard writable location for PyCirkuit</source>
         <comment>Error message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/circuitmacrosmanager.py" line="107"/>
+        <location filename="../tools/circuitmacrosmanager.py" line="108"/>
         <source>Network error: </source>
         <comment>Error message</comment>
         <translation type="unfinished"></translation>
@@ -343,7 +423,7 @@ to be included in TeX, LaTeX, web or similar documents.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/circuitmacrosmanager.py" line="162"/>
+        <location filename="../tools/circuitmacrosmanager.py" line="155"/>
         <source>Error uncompressing the Circuit Macros: </source>
         <comment>Error message</comment>
         <translation type="unfinished"></translation>
@@ -642,13 +722,13 @@ to be included in TeX, LaTeX, web or similar documents.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="486"/>
+        <location filename="../ui/mainwindow.py" line="485"/>
         <source>Any files (*)</source>
         <comment>File filter</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="420"/>
+        <location filename="../ui/mainwindow.py" line="419"/>
         <source>.PS
 scale=2.54
 cct_init
@@ -661,49 +741,49 @@ l=elen_
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="448"/>
+        <location filename="../ui/mainwindow.py" line="447"/>
         <source>Source File Selection</source>
         <comment>File Dialog title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="450"/>
+        <location filename="../ui/mainwindow.py" line="449"/>
         <source>PyCirkuit files (*.ckt)</source>
         <comment>File filter text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="450"/>
+        <location filename="../ui/mainwindow.py" line="449"/>
         <source>M4 macro files (*.m4)</source>
         <comment>File filter text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="450"/>
+        <location filename="../ui/mainwindow.py" line="449"/>
         <source>TeX files (*.tex)</source>
         <comment>File filter text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="450"/>
+        <location filename="../ui/mainwindow.py" line="449"/>
         <source>Any files (*)</source>
         <comment>File filter text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="483"/>
+        <location filename="../ui/mainwindow.py" line="482"/>
         <source>Enter a file to save into</source>
         <comment>File Dialog title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="486"/>
+        <location filename="../ui/mainwindow.py" line="485"/>
         <source>PyCirkuit files (*.ckt)</source>
         <comment>File filter</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="698"/>
+        <location filename="../ui/mainwindow.py" line="697"/>
         <source>Error!</source>
         <comment>Fallback text to be displayed when the image cannot be generated</comment>
         <translation type="unfinished"></translation>
@@ -742,7 +822,7 @@ l=elen_
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="572"/>
+        <location filename="../ui/mainwindow.py" line="571"/>
         <source>Warning</source>
         <comment>Message Box title</comment>
         <translation type="unfinished"></translation>
@@ -843,43 +923,43 @@ l=elen_
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="574"/>
+        <location filename="../ui/mainwindow.py" line="573"/>
         <source>There&apos;s already a file named &quot;{filename}&quot; at working directory.</source>
         <comment>Message box text. Don&apos;t translate &apos;{filename}&apos;</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="575"/>
+        <location filename="../ui/mainwindow.py" line="574"/>
         <source>Do you want to overwrite it?</source>
         <comment>Message Box text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="577"/>
+        <location filename="../ui/mainwindow.py" line="576"/>
         <source>Save As...</source>
         <comment>Button text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="604"/>
+        <location filename="../ui/mainwindow.py" line="603"/>
         <source>PyCirkuit - Error</source>
         <comment>Message Box title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="596"/>
+        <location filename="../ui/mainwindow.py" line="595"/>
         <source>Permission denied writing the file {filename}.</source>
         <comment>Message box text. Don&apos;t translate &apos;{filename}&apos;</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="597"/>
+        <location filename="../ui/mainwindow.py" line="596"/>
         <source>Please try to export again with another name and/or location.</source>
         <comment>Message Box text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="606"/>
+        <location filename="../ui/mainwindow.py" line="605"/>
         <source>An error has occurred trying to export the file. The error says:</source>
         <comment>Message Box text</comment>
         <translation type="unfinished"></translation>
@@ -888,19 +968,19 @@ l=elen_
 <context>
     <name>OutputLog</name>
     <message>
-        <location filename="../ui/mainwindow.py" line="654"/>
+        <location filename="../ui/mainwindow.py" line="653"/>
         <source>&gt;&gt;&gt;&gt;&gt; Start processing</source>
         <comment>Output log info</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="655"/>
+        <location filename="../ui/mainwindow.py" line="654"/>
         <source>Output of {toolLongName}:</source>
         <comment>Output log info. Do NOT modify/translate the &apos;{toolLongName}&apos; variable</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="620"/>
+        <location filename="../ui/mainwindow.py" line="619"/>
         <source> + No execution errors</source>
         <comment>Output log info</comment>
         <translation type="unfinished"></translation>
@@ -960,25 +1040,25 @@ l=elen_
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="658"/>
+        <location filename="../ui/mainwindow.py" line="657"/>
         <source>Converting: Circuit Macros -&gt; PIC</source>
         <comment>Status Bar message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="665"/>
+        <location filename="../ui/mainwindow.py" line="664"/>
         <source>Converting: PIC -&gt; TIKZ</source>
         <comment>Status Bar message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="673"/>
+        <location filename="../ui/mainwindow.py" line="672"/>
         <source>Converting: TIKZ -&gt; PDF</source>
         <comment>Status Bar message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="680"/>
+        <location filename="../ui/mainwindow.py" line="679"/>
         <source>Converting: PDF -&gt; PNG</source>
         <comment>Status Bar message</comment>
         <translation type="unfinished"></translation>

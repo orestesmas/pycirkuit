@@ -94,16 +94,16 @@ class PyCirkuitProcessor(QObject):
         question = _translate("CommandLine",
             "Would you like to overwrite it? ([y]es | [n]o | yes to [a]ll | ne[v]er): ",
             "WARNING!! Critical translation. You should translate this message to your language, enclosing into brackets one single DIFFERENT character for each option, and translate accordingly the characters in the next message.")
-        answerYes = _translate("Commandline",
+        answerYes = _translate("CommandLine",
             "y", 
             "WARNING!! Critical translation. This char must match one of those of the message 'Would you like to overwrite it?'")
-        answerNo = _translate("Commandline",
+        answerNo = _translate("CommandLine",
             "n", 
             "WARNING!! Critical translation. This char must match one of those of the message 'Would you like to overwrite it?'")
-        answerAll = _translate("Commandline",
+        answerAll = _translate("CommandLine",
             "a", 
             "WARNING!! Critical translation. This char must match one of those of the message 'Would you like to overwrite it?'")
-        answerNever = _translate("Commandline",
+        answerNever = _translate("CommandLine",
             "v", 
             "WARNING!! Critical translation. This char must match one of those of the message 'Would you like to overwrite it?'")
         answers = {
