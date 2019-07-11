@@ -7,10 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## 0.3 series [Work in progress]
 #### Added
 - JPEG export funcionality in CLI mode ([520bb95b](https://github.com/orestesmas/pycirkuit/commit/520bb95b))
+- Command line interface to process files in batch mode with rich functionality: selectable raster resolution, selectable output quality, intermediate vector formats, recursivity, selectable destination dir, overwriting switch, etc.
 - Basic Bitmap (PNG) export functionality in GUI ([b963fb22](https://github.com/orestesmas/pycirkuit/commit/b963fb22))
 - Zoomable graphics with no quality loss
 - Log output tab ([4251c0f](https://github.com/orestesmas/pycirkuit/commit/4251c0f))
-- Command line interface to process files in batch mode
 #### Changed
 - Code refactoring, cleaning and polishing.
 #### Bug Fixes
