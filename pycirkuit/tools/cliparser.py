@@ -115,8 +115,8 @@ class PyCirkuitParser(QObject):
                     self._batchOptionStr.format(formatID='PNG'),
                 ),
             Option.JPEG: QCommandLineOption(
-                    ["j", "jpg"],
-                    self._batchOptionStr.format(formatID='JPG'),
+                    ["j", "jpeg"],
+                    self._batchOptionStr.format(formatID='JPEG'),
                 ),
             Option.DPI:  QCommandLineOption(
                     ["dpi"], 
@@ -254,7 +254,9 @@ class PyCirkuitParser(QObject):
                             # Copy the result to original dir with correct extension. Check for file existence and abort!
                             processor.copyResult("png", dstDir=self.dstDir, overwrite=self.overwrite)
                         elif format == Option.JPEG:
-                            processor.toJpg()
+                            processor.toJpeg(imageParam[Option.DPI], imageParam[Option.QUAL])
+                            # Copy the result to original dir with correct extension. Check for file existence and abort!
+                            processor.copyResult("jpeg", dstDir=self.dstDir, overwrite=self.overwrite)
                         elif format == Option.PDF:
                             processor.toPdf()
                             # Copy the result to original dir with correct extension. Check for file existence and abort!

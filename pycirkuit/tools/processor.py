@@ -35,6 +35,7 @@ from pycirkuit.tools.m4 import ToolM4
 from pycirkuit.tools.dpic import ToolDpic
 from pycirkuit.tools.pdflatex import ToolPdfLaTeX
 from pycirkuit.tools.pdftopng import ToolPdfToPng
+from pycirkuit.tools.pdftojpg import ToolPdfToJpeg
 from pycirkuit.tools.circuitmacrosmanager import CircuitMacrosManager
 
 # Translation function
@@ -82,7 +83,8 @@ class PyCirkuitProcessor(QObject):
             ToolM4: ToolM4(),
             ToolDpic: ToolDpic(), 
             ToolPdfLaTeX: ToolPdfLaTeX(), 
-            ToolPdfToPng: ToolPdfToPng()
+            ToolPdfToPng: ToolPdfToPng(), 
+            ToolPdfToJpeg: ToolPdfToJpeg()
         }
 
     def _check_circuit_macros(self):
@@ -130,7 +132,7 @@ class PyCirkuitProcessor(QObject):
         # 1) Check if all tools are installed
         if not self.environmentOk:
             self.checkEnvironment()
-        self.tikzExists = self.pdfExists = self.pngExists = self.jpgExists = False
+        self.tikzExists = self.pdfExists = self.pngExists = self.jpegExists = False
         # Copy source file into temporary file
         self.sourceFile = src
         dst = PyCirkuitProcessor.TMP_FILE_BASENAME + ".ckt"
@@ -164,11 +166,13 @@ class PyCirkuitProcessor(QObject):
             self.pngExists = True
         return True
 
-    def toJpg(self):
-        # Check JPEG existance in temporary dir
-        # If not, call "toPdf" and then generate jpeg from pdf
-        print ("JPEG output format not yet implemented.")
-        return False
+    def toJpeg(self, dpi, q):
+        if not self.jpegExists:
+            self.toPdf()
+            self.extTools[ToolPdfToJpeg].execute(PyCirkuitProcessor.TMP_FILE_BASENAME, resolution=dpi, quality=q)
+            print(" -> JPEG ({dpi} dpi, {q}% quality)".format(dpi=dpi, q=q), end="")
+            self.jpegExists = True
+        return True
 
     def toPdf(self):
         if not self.pdfExists:
