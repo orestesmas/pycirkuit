@@ -18,8 +18,9 @@
     <file alias="Bitmap">image-png.png</file>
   </qresource>
   <qresource prefix="/pixmaps">
+    <file alias="CfgExportImage">Configure-export-image.png</file>
+    <file alias="CfgGeneral">Configure-General.png</file>
     <file alias="AppLabel">application-x-pycirkuit.png</file>
-    <file>config.png</file>
   </qresource>
   <qresource prefix="/backgrounds">
     <file>circuit-bg.jpg</file>

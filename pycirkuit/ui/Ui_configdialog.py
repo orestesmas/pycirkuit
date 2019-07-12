@@ -2,37 +2,59 @@
 
 # Form implementation generated from reading ui file '/home/orestes/Devel/Software/pycirkuit/pycirkuit/ui/configdialog.ui'
 #
-# Created by: PyQt5 UI code generator 5.7
+# Created by: PyQt5 UI code generator 5.12.1
 #
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+
 class Ui_ConfigDialog(object):
     def setupUi(self, ConfigDialog):
         ConfigDialog.setObjectName("ConfigDialog")
-        ConfigDialog.resize(840, 400)
+        ConfigDialog.resize(868, 430)
         ConfigDialog.setMinimumSize(QtCore.QSize(800, 0))
         self.verticalLayout = QtWidgets.QVBoxLayout(ConfigDialog)
         self.verticalLayout.setObjectName("verticalLayout")
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.listWidget = QtWidgets.QListWidget(ConfigDialog)
-        self.listWidget.setMaximumSize(QtCore.QSize(128, 16777215))
-        self.listWidget.setIconSize(QtCore.QSize(96, 84))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.listWidget.sizePolicy().hasHeightForWidth())
+        self.listWidget.setSizePolicy(sizePolicy)
+        self.listWidget.setMaximumSize(QtCore.QSize(115, 16777215))
+        self.listWidget.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.listWidget.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.listWidget.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
+        self.listWidget.setAutoScroll(False)
+        self.listWidget.setProperty("showDropIndicator", False)
+        self.listWidget.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
+        self.listWidget.setIconSize(QtCore.QSize(72, 72))
         self.listWidget.setTextElideMode(QtCore.Qt.ElideRight)
+        self.listWidget.setHorizontalScrollMode(QtWidgets.QAbstractItemView.ScrollPerItem)
         self.listWidget.setMovement(QtWidgets.QListView.Static)
+        self.listWidget.setFlow(QtWidgets.QListView.LeftToRight)
         self.listWidget.setResizeMode(QtWidgets.QListView.Fixed)
+        self.listWidget.setLayoutMode(QtWidgets.QListView.SinglePass)
         self.listWidget.setViewMode(QtWidgets.QListView.IconMode)
-        self.listWidget.setUniformItemSizes(False)
+        self.listWidget.setUniformItemSizes(True)
         self.listWidget.setSelectionRectVisible(True)
         self.listWidget.setObjectName("listWidget")
         item = QtWidgets.QListWidgetItem()
         item.setTextAlignment(QtCore.Qt.AlignCenter)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(":/pixmaps/config.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(":/pixmaps/CfgGeneral"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         item.setIcon(icon)
-        item.setFlags(QtCore.Qt.ItemIsSelectable|QtCore.Qt.ItemIsUserCheckable|QtCore.Qt.ItemIsEnabled)
+        item.setFlags(QtCore.Qt.ItemIsSelectable|QtCore.Qt.ItemIsEnabled)
+        self.listWidget.addItem(item)
+        item = QtWidgets.QListWidgetItem()
+        item.setTextAlignment(QtCore.Qt.AlignCenter)
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap(":/pixmaps/CfgExportImage"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        item.setIcon(icon1)
+        item.setFlags(QtCore.Qt.ItemIsSelectable|QtCore.Qt.ItemIsEnabled)
         self.listWidget.addItem(item)
         self.horizontalLayout.addWidget(self.listWidget, 0, QtCore.Qt.AlignHCenter)
         self.stackedWidget = QtWidgets.QStackedWidget(ConfigDialog)
@@ -42,7 +64,6 @@ class Ui_ConfigDialog(object):
         self.page1 = QtWidgets.QWidget()
         self.page1.setObjectName("page1")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.page1)
-        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.groupBox = QtWidgets.QGroupBox(self.page1)
         self.groupBox.setMinimumSize(QtCore.QSize(0, 100))
@@ -61,9 +82,9 @@ class Ui_ConfigDialog(object):
         self.horizontalLayout_3.addWidget(self.cmPath)
         self.toolButtonCMPath = QtWidgets.QToolButton(self.groupBox)
         self.toolButtonCMPath.setMinimumSize(QtCore.QSize(120, 0))
-        icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(":/icons/Open"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.toolButtonCMPath.setIcon(icon1)
+        icon2 = QtGui.QIcon()
+        icon2.addPixmap(QtGui.QPixmap(":/icons/Open"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.toolButtonCMPath.setIcon(icon2)
         self.toolButtonCMPath.setToolButtonStyle(QtCore.Qt.ToolButtonTextBesideIcon)
         self.toolButtonCMPath.setObjectName("toolButtonCMPath")
         self.horizontalLayout_3.addWidget(self.toolButtonCMPath)
@@ -80,7 +101,7 @@ class Ui_ConfigDialog(object):
         self.horizontalLayout_4.addWidget(self.templateFile)
         self.toolButtonTemplatePath = QtWidgets.QToolButton(self.groupBox_2)
         self.toolButtonTemplatePath.setMinimumSize(QtCore.QSize(120, 0))
-        self.toolButtonTemplatePath.setIcon(icon1)
+        self.toolButtonTemplatePath.setIcon(icon2)
         self.toolButtonTemplatePath.setToolButtonStyle(QtCore.Qt.ToolButtonTextBesideIcon)
         self.toolButtonTemplatePath.setObjectName("toolButtonTemplatePath")
         self.horizontalLayout_4.addWidget(self.toolButtonTemplatePath)
@@ -123,7 +144,9 @@ class Ui_ConfigDialog(object):
         __sortingEnabled = self.listWidget.isSortingEnabled()
         self.listWidget.setSortingEnabled(False)
         item = self.listWidget.item(0)
-        item.setText(_translate("ConfigDialog", "General"))
+        item.setText(_translate("ConfigDialog", "General", "Config dialog Section title. Not an action."))
+        item = self.listWidget.item(1)
+        item.setText(_translate("ConfigDialog", "Export", "Config dialog Section title. Not an action."))
         self.listWidget.setSortingEnabled(__sortingEnabled)
         self.groupBox.setTitle(_translate("ConfigDialog", "Circuit Macros Location", "Group box title"))
         self.cmPath.setPlaceholderText(_translate("ConfigDialog", "Enter Path Name"))
@@ -133,7 +156,9 @@ class Ui_ConfigDialog(object):
         self.toolButtonTemplatePath.setText(_translate("ConfigDialog", "Choose...", "Button text"))
         self.radioButton.setText(_translate("ConfigDialog", "RadioB&utton"))
 
+
 from pycirkuit.resources import resources_rc
+
 
 if __name__ == "__main__":
     import sys
@@ -143,4 +168,3 @@ if __name__ == "__main__":
     ui.setupUi(ConfigDialog)
     ConfigDialog.show()
     sys.exit(app.exec_())
-

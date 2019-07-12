@@ -130,7 +130,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="279"/>
+        <location filename="../tools/cliparser.py" line="281"/>
         <source>More than one file to process with no batch option given.</source>
         <comment>Commandline error message</comment>
         <translation type="unfinished"></translation>
@@ -185,7 +185,7 @@ to be included in TeX, LaTeX, web or similar documents.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="270"/>
+        <location filename="../tools/cliparser.py" line="272"/>
         <source>Files processed: {N}.</source>
         <comment>Command line message. {N} will be an integer, don&apos;t translate it.</comment>
         <translation type="unfinished"></translation>
@@ -217,55 +217,55 @@ to be included in TeX, LaTeX, web or similar documents.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/processor.py" line="74"/>
+        <location filename="../tools/processor.py" line="76"/>
         <source>Found an invalid LaTeX template.</source>
         <comment>Error message.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/processor.py" line="76"/>
+        <location filename="../tools/processor.py" line="78"/>
         <source>LaTeX template not found.</source>
         <comment>Error message.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/processor.py" line="90"/>
+        <location filename="../tools/processor.py" line="93"/>
         <source>Cannot find the Circuit Macros!</source>
         <comment>Command line error message.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/processor.py" line="93"/>
+        <location filename="../tools/processor.py" line="96"/>
         <source>The destination file already exists.</source>
         <comment>Command line message.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/processor.py" line="94"/>
+        <location filename="../tools/processor.py" line="97"/>
         <source>Would you like to overwrite it? ([y]es | [n]o | yes to [a]ll | ne[v]er): </source>
         <comment>WARNING!! Critical translation. You should translate this message to your language, enclosing into brackets one single DIFFERENT character for each option, and translate accordingly the characters in the next message.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/processor.py" line="97"/>
+        <location filename="../tools/processor.py" line="100"/>
         <source>y</source>
         <comment>WARNING!! Critical translation. This char must match one of those of the message &apos;Would you like to overwrite it?&apos;</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/processor.py" line="100"/>
+        <location filename="../tools/processor.py" line="103"/>
         <source>n</source>
         <comment>WARNING!! Critical translation. This char must match one of those of the message &apos;Would you like to overwrite it?&apos;</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/processor.py" line="103"/>
+        <location filename="../tools/processor.py" line="106"/>
         <source>a</source>
         <comment>WARNING!! Critical translation. This char must match one of those of the message &apos;Would you like to overwrite it?&apos;</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/processor.py" line="106"/>
+        <location filename="../tools/processor.py" line="109"/>
         <source>v</source>
         <comment>WARNING!! Critical translation. This char must match one of those of the message &apos;Would you like to overwrite it?&apos;</comment>
         <translation type="unfinished"></translation>
@@ -321,6 +321,18 @@ to be included in TeX, LaTeX, web or similar documents.</source>
         <location filename="../ui/configdialog.py" line="141"/>
         <source>Latex Template Location</source>
         <comment>File Dialog Title</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/configdialog.ui" line="62"/>
+        <source>General</source>
+        <comment>Config dialog Section title. Not an action.</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/configdialog.ui" line="77"/>
+        <source>Export</source>
+        <comment>Config dialog Section title. Not an action.</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -405,13 +417,13 @@ to be included in TeX, LaTeX, web or similar documents.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/circuitmacrosmanager.py" line="84"/>
+        <location filename="../tools/circuitmacrosmanager.py" line="83"/>
         <source>Cannot determine the standard writable location for PyCirkuit</source>
         <comment>Error message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/circuitmacrosmanager.py" line="108"/>
+        <location filename="../tools/circuitmacrosmanager.py" line="107"/>
         <source>Network error: </source>
         <comment>Error message</comment>
         <translation type="unfinished"></translation>
@@ -423,7 +435,7 @@ to be included in TeX, LaTeX, web or similar documents.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/circuitmacrosmanager.py" line="155"/>
+        <location filename="../tools/circuitmacrosmanager.py" line="154"/>
         <source>Error uncompressing the Circuit Macros: </source>
         <comment>Error message</comment>
         <translation type="unfinished"></translation>
@@ -473,6 +485,18 @@ to be included in TeX, LaTeX, web or similar documents.</source>
     <message>
         <location filename="../tools/pdftopng.py" line="44"/>
         <source>PDFTOPPM: Error converting PDF -&gt; PNG</source>
+        <comment>Error message</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tools/pdftojpg.py" line="38"/>
+        <source>PDF to JPEG image converter</source>
+        <comment>Tool Long Name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tools/pdftojpg.py" line="46"/>
+        <source>PDFTOPPM: Error converting PDF -&gt; JPEG</source>
         <comment>Error message</comment>
         <translation type="unfinished"></translation>
     </message>

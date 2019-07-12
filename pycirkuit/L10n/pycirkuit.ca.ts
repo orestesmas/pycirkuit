@@ -170,7 +170,7 @@ p, li { white-space: pre-wrap; }
         <translation>Heu demanat un procés per lots sense fitxers.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="279"/>
+        <location filename="../tools/cliparser.py" line="281"/>
         <source>More than one file to process with no batch option given.</source>
         <comment>Commandline error message</comment>
         <translation>Més d&apos;un fitxer per processar sense haver demanat un procés per lots.</translation>
@@ -232,7 +232,7 @@ i incloure&apos;ls en documents TeX, LaTeX, Web o similars.</translation>
         <translation>Si s&apos;especifica aquesta opció, el patró &apos;**&apos; concordarà amb qualsevol fitxer i zero o més subdirectoris. Així, «**/*.ckt» concordarà amb tots els fitxers amb extensió «ckt» del directori actual i tots els seus subdirectoris.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="270"/>
+        <location filename="../tools/cliparser.py" line="272"/>
         <source>Files processed: {N}.</source>
         <comment>Command line message. {N} will be an integer, don&apos;t translate it.</comment>
         <translation>Fitxers processats: {N}.</translation>
@@ -266,55 +266,55 @@ i incloure&apos;ls en documents TeX, LaTeX, Web o similars.</translation>
         <translation>Processant el fitxer:</translation>
     </message>
     <message>
-        <location filename="../tools/processor.py" line="74"/>
+        <location filename="../tools/processor.py" line="76"/>
         <source>Found an invalid LaTeX template.</source>
         <comment>Error message.</comment>
         <translation>S&apos;ha trobat una plantilla LaTeX invàlida.</translation>
     </message>
     <message>
-        <location filename="../tools/processor.py" line="76"/>
+        <location filename="../tools/processor.py" line="78"/>
         <source>LaTeX template not found.</source>
         <comment>Error message.</comment>
         <translation>No s&apos;ha trobat la plantilla LaTeX.</translation>
     </message>
     <message>
-        <location filename="../tools/processor.py" line="90"/>
+        <location filename="../tools/processor.py" line="93"/>
         <source>Cannot find the Circuit Macros!</source>
         <comment>Command line error message.</comment>
         <translation>No s&apos;han trobat les «Circuit Macros»!</translation>
     </message>
     <message>
-        <location filename="../tools/processor.py" line="93"/>
+        <location filename="../tools/processor.py" line="96"/>
         <source>The destination file already exists.</source>
         <comment>Command line message.</comment>
         <translation>El fitxer de destinació ja existeix.</translation>
     </message>
     <message>
-        <location filename="../tools/processor.py" line="94"/>
+        <location filename="../tools/processor.py" line="97"/>
         <source>Would you like to overwrite it? ([y]es | [n]o | yes to [a]ll | ne[v]er): </source>
         <comment>WARNING!! Critical translation. You should translate this message to your language, enclosing into brackets one single DIFFERENT character for each option, and translate accordingly the characters in the next message.</comment>
         <translation>Voleu sobreescriure&apos;l? ([s]i | [n]o | si a [t]ot | [m]ai): </translation>
     </message>
     <message>
-        <location filename="../tools/processor.py" line="97"/>
+        <location filename="../tools/processor.py" line="100"/>
         <source>y</source>
         <comment>WARNING!! Critical translation. This char must match one of those of the message &apos;Would you like to overwrite it?&apos;</comment>
         <translation>s</translation>
     </message>
     <message>
-        <location filename="../tools/processor.py" line="100"/>
+        <location filename="../tools/processor.py" line="103"/>
         <source>n</source>
         <comment>WARNING!! Critical translation. This char must match one of those of the message &apos;Would you like to overwrite it?&apos;</comment>
         <translation>n</translation>
     </message>
     <message>
-        <location filename="../tools/processor.py" line="103"/>
+        <location filename="../tools/processor.py" line="106"/>
         <source>a</source>
         <comment>WARNING!! Critical translation. This char must match one of those of the message &apos;Would you like to overwrite it?&apos;</comment>
         <translation>t</translation>
     </message>
     <message>
-        <location filename="../tools/processor.py" line="106"/>
+        <location filename="../tools/processor.py" line="109"/>
         <source>v</source>
         <comment>WARNING!! Critical translation. This char must match one of those of the message &apos;Would you like to overwrite it?&apos;</comment>
         <translation>m</translation>
@@ -371,6 +371,18 @@ i incloure&apos;ls en documents TeX, LaTeX, Web o similars.</translation>
         <location filename="../ui/Ui_configdialog.py" line="134"/>
         <source>RadioB&amp;utton</source>
         <translation>&amp;dummy--</translation>
+    </message>
+    <message>
+        <location filename="../ui/configdialog.ui" line="62"/>
+        <source>General</source>
+        <comment>Config dialog Section title. Not an action.</comment>
+        <translation>General</translation>
+    </message>
+    <message>
+        <location filename="../ui/configdialog.ui" line="77"/>
+        <source>Export</source>
+        <comment>Config dialog Section title. Not an action.</comment>
+        <translation>Exportació</translation>
     </message>
 </context>
 <context>
@@ -494,19 +506,19 @@ i incloure&apos;ls en documents TeX, LaTeX, Web o similars.</translation>
         <translation>Hi ha disponible una nova versió de les «Circuit Macros»!</translation>
     </message>
     <message>
-        <location filename="../tools/circuitmacrosmanager.py" line="84"/>
+        <location filename="../tools/circuitmacrosmanager.py" line="83"/>
         <source>Cannot determine the standard writable location for PyCirkuit</source>
         <comment>Error message</comment>
         <translation>No s&apos;ha pogut determinar la ubicació estàndard amb permís d&apos;escriptura per al PyCirkuit</translation>
     </message>
     <message>
-        <location filename="../tools/circuitmacrosmanager.py" line="108"/>
+        <location filename="../tools/circuitmacrosmanager.py" line="107"/>
         <source>Network error: </source>
         <comment>Error message</comment>
         <translation>Error de xarxa: </translation>
     </message>
     <message>
-        <location filename="../tools/circuitmacrosmanager.py" line="155"/>
+        <location filename="../tools/circuitmacrosmanager.py" line="154"/>
         <source>Error uncompressing the Circuit Macros: </source>
         <comment>Error message</comment>
         <translation>S&apos;ha produït un error en descomprimir les Circuit Macros: </translation>
@@ -532,6 +544,18 @@ i incloure&apos;ls en documents TeX, LaTeX, Web o similars.</translation>
         <source>Module &apos;python-magic&apos; not found. Please check that all PyCirkuit dependencies are correctly installed.</source>
         <comment>Error message</comment>
         <translation>No s&apos;ha trobat el mòdul &apos;python-magic&apos;. Comproveu que teniu correctament instal·lades totes les dependències del PyCirkuit.</translation>
+    </message>
+    <message>
+        <location filename="../tools/pdftojpg.py" line="38"/>
+        <source>PDF to JPEG image converter</source>
+        <comment>Tool Long Name</comment>
+        <translation>Convertidor d&apos;imatge PDF a JPEG</translation>
+    </message>
+    <message>
+        <location filename="../tools/pdftojpg.py" line="46"/>
+        <source>PDFTOPPM: Error converting PDF -&gt; JPEG</source>
+        <comment>Error message</comment>
+        <translation>PDFTOPPM: Error en la conversió PDF -&gt; JPEG</translation>
     </message>
 </context>
 <context>

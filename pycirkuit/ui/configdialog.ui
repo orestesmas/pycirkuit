@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>840</width>
-    <height>400</height>
+    <width>868</width>
+    <height>430</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -24,26 +24,59 @@
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item alignment="Qt::AlignHCenter">
       <widget class="QListWidget" name="listWidget">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="maximumSize">
         <size>
-         <width>128</width>
+         <width>115</width>
          <height>16777215</height>
         </size>
        </property>
+       <property name="verticalScrollBarPolicy">
+        <enum>Qt::ScrollBarAlwaysOff</enum>
+       </property>
+       <property name="horizontalScrollBarPolicy">
+        <enum>Qt::ScrollBarAlwaysOff</enum>
+       </property>
+       <property name="sizeAdjustPolicy">
+        <enum>QAbstractScrollArea::AdjustToContents</enum>
+       </property>
+       <property name="autoScroll">
+        <bool>false</bool>
+       </property>
+       <property name="showDropIndicator" stdset="0">
+        <bool>false</bool>
+       </property>
+       <property name="selectionMode">
+        <enum>QAbstractItemView::SingleSelection</enum>
+       </property>
        <property name="iconSize">
         <size>
-         <width>96</width>
-         <height>84</height>
+         <width>72</width>
+         <height>72</height>
         </size>
        </property>
        <property name="textElideMode">
         <enum>Qt::ElideRight</enum>
        </property>
+       <property name="horizontalScrollMode">
+        <enum>QAbstractItemView::ScrollPerItem</enum>
+       </property>
        <property name="movement">
         <enum>QListView::Static</enum>
        </property>
+       <property name="flow">
+        <enum>QListView::LeftToRight</enum>
+       </property>
        <property name="resizeMode">
         <enum>QListView::Fixed</enum>
+       </property>
+       <property name="layoutMode">
+        <enum>QListView::SinglePass</enum>
        </property>
        <property name="spacing">
         <number>12</number>
@@ -52,24 +85,39 @@
         <enum>QListView::IconMode</enum>
        </property>
        <property name="uniformItemSizes">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="selectionRectVisible">
         <bool>true</bool>
        </property>
        <item>
         <property name="text">
-         <string>General</string>
+         <string comment="Config dialog Section title. Not an action.">General</string>
         </property>
         <property name="textAlignment">
          <set>AlignCenter</set>
         </property>
         <property name="icon">
          <iconset resource="../resources/resources.qrc">
-          <normaloff>:/pixmaps/config.png</normaloff>:/pixmaps/config.png</iconset>
+          <normaloff>:/pixmaps/CfgGeneral</normaloff>:/pixmaps/CfgGeneral</iconset>
         </property>
         <property name="flags">
-         <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
+         <set>ItemIsSelectable|ItemIsEnabled</set>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string comment="Config dialog Section title. Not an action.">Export</string>
+        </property>
+        <property name="textAlignment">
+         <set>AlignCenter</set>
+        </property>
+        <property name="icon">
+         <iconset resource="../resources/resources.qrc">
+          <normaloff>:/pixmaps/CfgExportImage</normaloff>:/pixmaps/CfgExportImage</iconset>
+        </property>
+        <property name="flags">
+         <set>ItemIsSelectable|ItemIsEnabled</set>
         </property>
        </item>
       </widget>
