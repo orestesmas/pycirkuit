@@ -137,6 +137,7 @@ class PyCirkuitProcessor(QObject):
         self.sourceFile = src
         dst = PyCirkuitProcessor.TMP_FILE_BASENAME + ".ckt"
         shutil.copy(src, dst)
+        print(os.path.basename(self.sourceFile), end="")
 
     def copyResult(self, extension, dstDir="", overwrite=Overwrite.UNSET):
         if (overwrite == Overwrite.ALL) or (overwrite == Overwrite.NEVER):
@@ -183,11 +184,9 @@ class PyCirkuitProcessor(QObject):
         return True
 
     def toTikz(self):
-        # Check existance of tikz file in temporary dir
-        self.tikzExists = os.path.exists(os.path.join(PyCirkuitProcessor.TMP_FILE_BASENAME, "tikz"))
         if not self.tikzExists:
             self.extTools[ToolM4].execute(PyCirkuitProcessor.TMP_FILE_BASENAME)
             self.extTools[ToolDpic].execute(PyCirkuitProcessor.TMP_FILE_BASENAME)
-            print("SRC -> TIKZ".format(self.sourceFile), end="")
+            print(" -> TIKZ", end="")
             self.tikzExists = True
         return True
