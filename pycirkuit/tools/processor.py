@@ -93,7 +93,7 @@ class PyCirkuitProcessor(QObject):
             raise PyCktCMNotFoundError(_translate("CommandLine", "Cannot find the Circuit Macros!",  "Command line error message."))
 
     def _askUser(self):
-        print(_translate("CommandLine",  "The destination file already exists.", "Command line message."))
+        print(_translate("CommandLine",  "\nThe destination file already exists.", "Command line message. THE STARTING NEWLINE CHARACTER (\n) IS IMPORTANT."))
         question = _translate("CommandLine",
             "Would you like to overwrite it? ([y]es | [n]o | yes to [a]ll | ne[v]er): ",
             "WARNING!! Critical translation. You should translate this message to your language, enclosing into brackets one single DIFFERENT character for each option, and translate accordingly the characters in the next message.")
