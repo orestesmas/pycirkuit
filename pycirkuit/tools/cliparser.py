@@ -24,6 +24,7 @@ Module implementing the functions to run when a command option is called
 import sys
 import glob
 from os.path import abspath, realpath, isfile, isdir
+from enum import Enum
 
 # Third-party imports
 from PyQt5.QtCore import QObject, QCoreApplication, QCommandLineParser, QCommandLineOption
@@ -198,7 +199,8 @@ class PyCirkuitParser(QObject):
     
     def _checkRasterOptions(self):
         # "imageParam" is a variable (global for now) predefined with default values in __init__.py
-        # FIXME: imageParam: In the future, its default values should be fetched from the settings
+        # FIXME: imageParam: In the future, its default values should be fetched from the settings, here or in __init__()
+        #
         # Set the "dpi" and "quality" parameters to the values provided by user, if any
         # process the "dpi" option
         if self.parser.isSet(self.options[Option.DPI]):
@@ -249,25 +251,66 @@ class PyCirkuitParser(QObject):
                     print(_translate("CommandLine",  "Processing file:", "Command line message. Will be followed by an absolute pile path"), fileName)
                     processor.beginProcessing(fileName)
                     for format in self.requestedOutputFormats:
-                        if format == Option.PNG:
-                            processor.toPng(imageParam[Option.DPI])
-                            # Copy the result to original dir with correct extension. Check for file existence and abort!
-                            processor.copyResult("png", dstDir=self.dstDir, overwrite=self.overwrite)
-                        elif format == Option.JPEG:
-                            processor.toJpeg(imageParam[Option.DPI], imageParam[Option.QUAL])
-                            # Copy the result to original dir with correct extension. Check for file existence and abort!
-                            processor.copyResult("jpeg", dstDir=self.dstDir, overwrite=self.overwrite)
-                        elif format == Option.PDF:
-                            processor.toPdf()
-                            # Copy the result to original dir with correct extension. Check for file existence and abort!
-                            processor.copyResult("pdf", dstDir=self.dstDir, overwrite=self.overwrite)
-                        elif format == Option.TIKZ:
-                            processor.toTikz()
-                            # Copy the result to original dir with correct extension. Check for file existence and abort!
-                            processor.copyResult("tikz", dstDir=self.dstDir, overwrite=self.overwrite)
+                        try:
+                            processor.copyResult(format, dstDir=self.dstDir, overwrite=self.overwrite, dpi=imageParam[Option.DPI], quality=imageParam[Option.QUAL])
+#                            if format == Option.PNG:
+#                                # processor.toPng(imageParam[Option.DPI])
+#                                # Copy the result to original dir with correct extension. Check for file existence and abort!
+#                                processor.copyResult("png", dstDir=self.dstDir, overwrite=self.overwrite, dpi=imageParam[Option.DPI])
+#                            elif format == Option.JPEG:
+#                                # processor.toJpeg(imageParam[Option.DPI], imageParam[Option.QUAL])
+#                                # Copy the result to original dir with correct extension. Check for file existence and abort!
+#                                processor.copyResult("jpeg", dstDir=self.dstDir, overwrite=self.overwrite, dpi=imageParam[Option.DPI], quality=imageParam[Option.QUAL])
+#                            elif format == Option.PDF:
+#                                # processor.toPdf()
+#                                # Copy the result to original dir with correct extension. Check for file existence and abort!
+#                                processor.copyResult("pdf", dstDir=self.dstDir, overwrite=self.overwrite)
+#                            elif format == Option.TIKZ:
+#                                # processor.toTikz()
+#                                # Copy the result to original dir with correct extension. Check for file existence and abort!
+#                                processor.copyResult("tikz", dstDir=self.dstDir, overwrite=self.overwrite)
+                        except PyCktToolExecutionError as err:
+                            print("\npycirkuit:", err)
+                            question = _translate("CommandLine-UserInput2", 
+                                "Please choose what to do: [a]bort processing, [s]kip file, [o]pen in GUI for editing: ", 
+                                "WARNING!! Critical translation. You should translate this message to your language, enclosing into brackets one single DIFFERENT character for each option, and translate accordingly the characters in the next message.")
+                            answerAbort = _translate("CommandLine-UserInput2",
+                                "a", 
+                                "WARNING!! Critical translation. This char must match one of those of the message 'Please choose what to do:'")
+                            answerSkip = _translate("CommandLine-UserInput2",
+                                "s", 
+                                "WARNING!! Critical translation. This char must match one of those of the message 'Please choose what to do:'")
+                            answerOpen = _translate("CommandLine-UserInput2",
+                                "o", 
+                                "WARNING!! Critical translation. This char must match one of those of the message 'Please choose what to do:'")
+                            class Decision(Enum):
+                                ABORT = 1
+                                SKIP = 2
+                                OPEN = 3
+                            answers = {
+                                answerAbort: Decision.ABORT, 
+                                answerSkip: Decision.SKIP, 
+                                answerOpen: Decision.OPEN
+                            }
+                            answered = False
+                            while not answered:
+                                answer = input(question)
+                                if answer.lower() not in answers:
+                                    continue
+                                else:
+                                    if answers[answer] == Decision.ABORT:
+                                        sys.exit(-1)
+                                    elif answers[answer] == Decision.SKIP:
+                                        # Això no sortirà del while...
+                                        answered = True
+                                        continue
+                                    elif answers[answer] == Decision.OPEN:
+                                        # Cal obrir una altra instància del pycirkuit, possiblement en un altre thread
+                                        answered = True
+                                        pass
                     print("")
             except PyCirkuitError as err:
-                print("pycirkuit:", err)
+                print("\npycirkuit:", err)
                 sys.exit(-1)
             print(_translate("CommandLine", "Files processed: {N}.", "Command line message. {N} will be an integer, don't translate it.").format(N=NumFiles))
             sys.exit(0)

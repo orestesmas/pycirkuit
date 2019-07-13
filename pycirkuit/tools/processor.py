@@ -30,6 +30,7 @@ from PyQt5.QtCore import QCoreApplication, QObject, QTemporaryDir, QSettings
 
 # Local imports
 import pycirkuit
+from pycirkuit import Option
 from pycirkuit.exceptions import *
 from pycirkuit.tools.m4 import ToolM4
 from pycirkuit.tools.dpic import ToolDpic
@@ -93,20 +94,20 @@ class PyCirkuitProcessor(QObject):
             raise PyCktCMNotFoundError(_translate("CommandLine", "Cannot find the Circuit Macros!",  "Command line error message."))
 
     def _askUser(self):
-        print(_translate("CommandLine",  "\nThe destination file already exists.", "Command line message. THE STARTING NEWLINE CHARACTER (\n) IS IMPORTANT."))
-        question = _translate("CommandLine",
+        print(_translate("CommandLine-UserInput1",  "\nThe destination file already exists.", "Command line message. THE STARTING NEWLINE CHARACTER (\n) IS IMPORTANT."))
+        question = _translate("CommandLine-UserInput1",
             "Would you like to overwrite it? ([y]es | [n]o | yes to [a]ll | ne[v]er): ",
             "WARNING!! Critical translation. You should translate this message to your language, enclosing into brackets one single DIFFERENT character for each option, and translate accordingly the characters in the next message.")
-        answerYes = _translate("CommandLine",
+        answerYes = _translate("CommandLine-UserInput1",
             "y", 
             "WARNING!! Critical translation. This char must match one of those of the message 'Would you like to overwrite it?'")
-        answerNo = _translate("CommandLine",
+        answerNo = _translate("CommandLine-UserInput1",
             "n", 
             "WARNING!! Critical translation. This char must match one of those of the message 'Would you like to overwrite it?'")
-        answerAll = _translate("CommandLine",
+        answerAll = _translate("CommandLine-UserInput1",
             "a", 
             "WARNING!! Critical translation. This char must match one of those of the message 'Would you like to overwrite it?'")
-        answerNever = _translate("CommandLine",
+        answerNever = _translate("CommandLine-UserInput1",
             "v", 
             "WARNING!! Critical translation. This char must match one of those of the message 'Would you like to overwrite it?'")
         answers = {
@@ -139,7 +140,23 @@ class PyCirkuitProcessor(QObject):
         shutil.copy(src, dst)
         print(os.path.basename(self.sourceFile), end="")
 
-    def copyResult(self, extension, dstDir="", overwrite=Overwrite.UNSET):
+    def copyResult(self, option, dstDir="", overwrite=Overwrite.UNSET, dpi=150, quality=80):
+        if option == Option.PNG:
+            extension = "png"
+            startPoint = self.toPng
+            formatToCheck = self.pngExists
+        elif option == Option.JPEG:
+            extension = "jpeg"
+            startPoint = self.toJpeg
+            formatToCheck = self.jpegExists
+        elif option == Option.PDF:
+            extension = "pdf"
+            startPoint = self.toPdf
+            formatToCheck = self.pdfExists
+        elif option == Option.TIKZ:
+            extension = "tikz"
+            startPoint = self.toTikz
+            formatToCheck = self.tikzExists
         if (overwrite == Overwrite.ALL) or (overwrite == Overwrite.NEVER):
             self.overwrite = overwrite
         src = os.path.join(pycirkuit.__tmpDir__.path(), PyCirkuitProcessor.TMP_FILE_BASENAME) + os.extsep + extension
@@ -157,9 +174,13 @@ class PyCirkuitProcessor(QObject):
                 return
             if (self.overwrite == Overwrite.YES):
                 self.overwrite = Overwrite.UNSET
+        # Let's recurse
+        if not formatToCheck:
+            startPoint(dpi, quality)
+        # Si el font NO existeix, demanar crear-lo. Això implica
         shutil.copy(src, dst)
 
-    def toPng(self, dpi):
+    def toPng(self, dpi, q=None):
         if not self.pngExists:
             self.toPdf()
             self.extTools[ToolPdfToPng].execute(PyCirkuitProcessor.TMP_FILE_BASENAME, resolution=dpi)
@@ -175,7 +196,7 @@ class PyCirkuitProcessor(QObject):
             self.jpegExists = True
         return True
 
-    def toPdf(self):
+    def toPdf(self, dpi=None, q=None):
         if not self.pdfExists:
             self.toTikz()
             self.extTools[ToolPdfLaTeX].execute(PyCirkuitProcessor.TMP_FILE_BASENAME)
@@ -183,7 +204,7 @@ class PyCirkuitProcessor(QObject):
             self.pdfExists = True
         return True
 
-    def toTikz(self):
+    def toTikz(self, dpi=None, q=None):
         if not self.tikzExists:
             self.extTools[ToolM4].execute(PyCirkuitProcessor.TMP_FILE_BASENAME)
             self.extTools[ToolDpic].execute(PyCirkuitProcessor.TMP_FILE_BASENAME)

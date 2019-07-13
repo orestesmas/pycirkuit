@@ -134,55 +134,55 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>CommandLine</name>
     <message>
-        <location filename="../tools/cliparser.py" line="98"/>
+        <location filename="../tools/cliparser.py" line="99"/>
         <source>path</source>
         <comment>Commandline argument name. If you translate this name, translate it accordingly into the path description and path syntax.</comment>
         <translation>ruta</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="98"/>
+        <location filename="../tools/cliparser.py" line="99"/>
         <source>[&lt;path&gt; [ &lt;path2&gt;...]]</source>
         <comment>Commandline argument syntax. If you translate &lt;path&gt;, translate the name and path description accordingly.</comment>
         <translation>[&lt;ruta&gt; [&lt;ruta2&gt;...]]</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="179"/>
+        <location filename="../tools/cliparser.py" line="180"/>
         <source>The given path does not match any existing file.</source>
         <comment>Commandline error message</comment>
         <translation>La ruta introduïda no concorda amb cap fitxer existent.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="210"/>
+        <location filename="../tools/cliparser.py" line="211"/>
         <source>The --dpi parameter must be an integer between 25 and 3000.</source>
         <comment>Error message</comment>
         <translation>El paràmetre --dpi ha de ser un enter entre 25 i 3000.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="220"/>
+        <location filename="../tools/cliparser.py" line="221"/>
         <source>The --quality parameter must be an integer between 0 and 100.</source>
         <comment>Error message</comment>
         <translation>El paràmetre --quality ha de ser un enter entre 0 i 100.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="242"/>
+        <location filename="../tools/cliparser.py" line="243"/>
         <source>Batch processing requested with no files.</source>
         <comment>Commandline error message</comment>
         <translation>Heu demanat un procés per lots sense fitxers.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="281"/>
+        <location filename="../tools/cliparser.py" line="318"/>
         <source>More than one file to process with no batch option given.</source>
         <comment>Commandline error message</comment>
         <translation>Més d&apos;un fitxer per processar sense haver demanat un procés per lots.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="78"/>
+        <location filename="../tools/cliparser.py" line="79"/>
         <source>Try &quot;{appName} --help&quot; to get more information.</source>
         <comment>Command-line error message. Don&apos;t translate &apos;{appName}&apos;.</comment>
         <translation>Proveu «{appName}» --help per obtenir més informació.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="42"/>
+        <location filename="../tools/cliparser.py" line="43"/>
         <source>
 {productName} is a front-end for Circuit Macros by Dwight Aplevich,
 which are a set of macros for drawing high-quality line diagrams
@@ -194,7 +194,7 @@ que són un conjunt de macros per dibuixar diagrames d&apos;alta qualitat
 i incloure&apos;ls en documents TeX, LaTeX, Web o similars.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="71"/>
+        <location filename="../tools/cliparser.py" line="72"/>
         <source>Path to source drawing file(s) to process. Wildcards accepted.
 - If no &lt;path&gt; is given, the GUI is opened.
 - If &lt;path&gt; points to only one file and no batch conversion options are present, this file is opened into the GUI for editing.
@@ -208,43 +208,43 @@ i incloure&apos;ls en documents TeX, LaTeX, Web o similars.</translation>
 - No és permès d&apos;especificar més d&apos;un fitxer per processar sense haver indicat cap opció de format de sortida.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="48"/>
+        <location filename="../tools/cliparser.py" line="49"/>
         <source>Activates batch (unattended) mode, and convert files specified by &lt;path&gt; to {formatID} format. Several output formats can be used together.</source>
         <comment>Commandline option description. Don&apos;t translate the &apos;{formatID}&apos; variable.</comment>
         <translation>Activa el processament per lots i converteix els fitxers apuntats per &lt;ruta&gt; al format {formatID}. Es poden indicar conjuntament diversos formats de sortida.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="51"/>
+        <location filename="../tools/cliparser.py" line="52"/>
         <source>Sets the resolution of output raster images (png, jpg), in dots per inch. Value &lt;N&gt; is mandatory. If option is not set, default is {defaultDPI}dpi (defined in &apos;settings&apos; dialog).</source>
         <comment>Commandline argument description. Don&apos;t translate the &apos;{defaultDPI}&apos; variable.</comment>
         <translation>Estableix la resolució de les imatges «raster» de sortida (png, jpg), en punts per polzada. El valor &lt;N&gt; és obligatori. Si no especifiqueu l&apos;opció, el valor per defecte és {defaultDPI}dpi (definit al diàleg de configuració).</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="54"/>
+        <location filename="../tools/cliparser.py" line="55"/>
         <source>Sets the quality of output raster lossy images (jpg), in percent. Value &lt;Q&gt; is mandatory. If option is not set, default is {defaultQuality}% (defined in &apos;settings&apos; dialog).</source>
         <comment>Commandline option description. Don&apos;t translate the &apos;{defaultQuality}&apos; variable.</comment>
         <translation>Estableix la qualitat de les imatges «raster» de sortida amb pèrdua (jpg), en percentatge. El valor &lt;Q&gt; és obligatori. Si no especifiqueu l&apos;opció, el valor per defecte és {defaultQuality}% (definit al diàleg de configuració).</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="68"/>
+        <location filename="../tools/cliparser.py" line="69"/>
         <source>Using this option the pattern &apos;**&apos; will match any files and zero or more subdirs, so &apos;**/*.ckt&apos; will match all files with &apos;ckt&apos; extension in the current directory and all its subdirectories.</source>
         <comment>Commandline option description.</comment>
         <translation>Si s&apos;especifica aquesta opció, el patró &apos;**&apos; concordarà amb qualsevol fitxer i zero o més subdirectoris. Així, «**/*.ckt» concordarà amb tots els fitxers amb extensió «ckt» del directori actual i tots els seus subdirectoris.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="272"/>
+        <location filename="../tools/cliparser.py" line="309"/>
         <source>Files processed: {N}.</source>
         <comment>Command line message. {N} will be an integer, don&apos;t translate it.</comment>
         <translation>Fitxers processats: {N}.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="57"/>
+        <location filename="../tools/cliparser.py" line="58"/>
         <source>Overwrite by default the converted files if they are present. If not set, user will be asked at runtime.</source>
         <comment>Commandline option description.</comment>
         <translation>Sobreescriu per defecte els fitxers convertits si ja són presents. Si no s&apos;especifica, es preguntarà en temps d&apos;execució.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="60"/>
+        <location filename="../tools/cliparser.py" line="61"/>
         <source>Follow symbolic links.
 - If not set, destination file will be saved into the same directory where the source file is, whether it&apos;s a real file or a symbolic link.
 - If set, destination file will be saved into the directory where the real source file is located.</source>
@@ -254,13 +254,13 @@ i incloure&apos;ls en documents TeX, LaTeX, Web o similars.</translation>
 - Si l&apos;especifiqueu, el fitxer de destí es desarà al mateix directori del fitxer font real.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="65"/>
+        <location filename="../tools/cliparser.py" line="66"/>
         <source>Save all converted files into the same destination directory &lt;D&gt; (value is mandatory).</source>
         <comment>Commandline option description. Don&apos;t translate &apos;&lt;D&gt;&apos;.</comment>
         <translation>Desa tots els fitxers convertits al mateix directori de destí &lt;D&gt; (el valor és obligatori).</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="249"/>
+        <location filename="../tools/cliparser.py" line="250"/>
         <source>Processing file:</source>
         <comment>Command line message. Will be followed by an absolute pile path</comment>
         <translation>Processant el fitxer:</translation>
@@ -283,11 +283,16 @@ i incloure&apos;ls en documents TeX, LaTeX, Web o similars.</translation>
         <comment>Command line error message.</comment>
         <translation>No s&apos;han trobat les «Circuit Macros»!</translation>
     </message>
+</context>
+<context>
+    <name>CommandLine-UserInput1</name>
     <message>
         <location filename="../tools/processor.py" line="96"/>
-        <source>The destination file already exists.</source>
-        <comment>Command line message.</comment>
-        <translation>El fitxer de destinació ja existeix.</translation>
+        <source>
+The destination file already exists.</source>
+        <comment>Command line message. THE STARTING NEWLINE CHARACTER (
+) IS IMPORTANT.</comment>
+        <translation></translation>
     </message>
     <message>
         <location filename="../tools/processor.py" line="97"/>
@@ -321,6 +326,33 @@ i incloure&apos;ls en documents TeX, LaTeX, Web o similars.</translation>
     </message>
 </context>
 <context>
+    <name>CommandLine-UserInput2</name>
+    <message>
+        <location filename="../tools/cliparser.py" line="275"/>
+        <source>a</source>
+        <comment>WARNING!! Critical translation. This char must match one of those of the message &apos;Please choose what to do:&apos;</comment>
+        <translation>a</translation>
+    </message>
+    <message>
+        <location filename="../tools/cliparser.py" line="278"/>
+        <source>s</source>
+        <comment>WARNING!! Critical translation. This char must match one of those of the message &apos;Please choose what to do:&apos;</comment>
+        <translation>s</translation>
+    </message>
+    <message>
+        <location filename="../tools/cliparser.py" line="281"/>
+        <source>o</source>
+        <comment>WARNING!! Critical translation. This char must match one of those of the message &apos;Please choose what to do:&apos;</comment>
+        <translation>o</translation>
+    </message>
+    <message>
+        <location filename="../tools/cliparser.py" line="272"/>
+        <source>Please choose what to do: [a]bort processing, [s]kip file, [o]pen in GUI for editing: </source>
+        <comment>WARNING!! Critical translation. You should translate this message to your language, enclosing into brackets one single DIFFERENT character for each option, and translate accordingly the characters in the next message.</comment>
+        <translation>Escolliu què voleu fer: [a]vortar el procés, [s]altar aquest fitxer, [o]brir-lo en la IGU per editar-lo: </translation>
+    </message>
+</context>
+<context>
     <name>ConfigDialog</name>
     <message>
         <location filename="../ui/configdialog.py" line="123"/>
@@ -335,51 +367,46 @@ i incloure&apos;ls en documents TeX, LaTeX, Web o similars.</translation>
         <translation>Ubicació de la plantilla LaTeX</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="122"/>
+        <location filename="../ui/Ui_configdialog.py" line="143"/>
         <source>Config Dialog</source>
         <translation>Diàleg de configuració</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="126"/>
-        <source>General</source>
-        <translation>General</translation>
-    </message>
-    <message>
-        <location filename="../ui/Ui_configdialog.py" line="128"/>
+        <location filename="../ui/Ui_configdialog.py" line="151"/>
         <source>Circuit Macros Location</source>
         <comment>Group box title</comment>
         <translation>Ubicació de les Circuit Macros</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="132"/>
+        <location filename="../ui/Ui_configdialog.py" line="155"/>
         <source>Enter Path Name</source>
         <translation>Introduïu la ruta</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="133"/>
+        <location filename="../ui/Ui_configdialog.py" line="156"/>
         <source>Choose...</source>
         <comment>Button text</comment>
         <translation>Escull...</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="131"/>
+        <location filename="../ui/Ui_configdialog.py" line="154"/>
         <source>LaTeX Template File</source>
         <comment>Group box title</comment>
         <translation>Fitxer de plantilla LaTeX</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="134"/>
+        <location filename="../ui/Ui_configdialog.py" line="157"/>
         <source>RadioB&amp;utton</source>
         <translation>&amp;dummy--</translation>
     </message>
     <message>
-        <location filename="../ui/configdialog.ui" line="62"/>
+        <location filename="../ui/Ui_configdialog.py" line="147"/>
         <source>General</source>
         <comment>Config dialog Section title. Not an action.</comment>
         <translation>General</translation>
     </message>
     <message>
-        <location filename="../ui/configdialog.ui" line="77"/>
+        <location filename="../ui/Ui_configdialog.py" line="149"/>
         <source>Export</source>
         <comment>Config dialog Section title. Not an action.</comment>
         <translation>Exportació</translation>
