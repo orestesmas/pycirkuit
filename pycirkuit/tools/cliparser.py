@@ -252,23 +252,7 @@ class PyCirkuitParser(QObject):
                     processor.beginProcessing(fileName)
                     for format in self.requestedOutputFormats:
                         try:
-                            processor.copyResult(format, dstDir=self.dstDir, overwrite=self.overwrite, dpi=imageParam[Option.DPI], quality=imageParam[Option.QUAL])
-#                            if format == Option.PNG:
-#                                # processor.toPng(imageParam[Option.DPI])
-#                                # Copy the result to original dir with correct extension. Check for file existence and abort!
-#                                processor.copyResult("png", dstDir=self.dstDir, overwrite=self.overwrite, dpi=imageParam[Option.DPI])
-#                            elif format == Option.JPEG:
-#                                # processor.toJpeg(imageParam[Option.DPI], imageParam[Option.QUAL])
-#                                # Copy the result to original dir with correct extension. Check for file existence and abort!
-#                                processor.copyResult("jpeg", dstDir=self.dstDir, overwrite=self.overwrite, dpi=imageParam[Option.DPI], quality=imageParam[Option.QUAL])
-#                            elif format == Option.PDF:
-#                                # processor.toPdf()
-#                                # Copy the result to original dir with correct extension. Check for file existence and abort!
-#                                processor.copyResult("pdf", dstDir=self.dstDir, overwrite=self.overwrite)
-#                            elif format == Option.TIKZ:
-#                                # processor.toTikz()
-#                                # Copy the result to original dir with correct extension. Check for file existence and abort!
-#                                processor.copyResult("tikz", dstDir=self.dstDir, overwrite=self.overwrite)
+                            processor.requestResult(format, dstDir=self.dstDir, overwrite=self.overwrite, dpi=imageParam[Option.DPI], quality=imageParam[Option.QUAL])
                         except PyCktToolExecutionError as err:
                             print("\npycirkuit:", err)
                             question = _translate("CommandLine-UserInput2", 

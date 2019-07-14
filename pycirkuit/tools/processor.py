@@ -140,7 +140,7 @@ class PyCirkuitProcessor(QObject):
         shutil.copy(src, dst)
         print(os.path.basename(self.sourceFile), end="")
 
-    def copyResult(self, option, dstDir="", overwrite=Overwrite.UNSET, dpi=150, quality=80):
+    def requestResult(self, option, dstDir="", overwrite=Overwrite.UNSET, dpi=None, quality=None):
         if option == Option.PNG:
             extension = "png"
             startPoint = self.toPng
