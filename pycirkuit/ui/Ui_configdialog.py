@@ -2,9 +2,10 @@
 
 # Form implementation generated from reading ui file '/home/orestes/Devel/Software/pycirkuit/pycirkuit/ui/configdialog.ui'
 #
-# Created by: PyQt5 UI code generator 5.12.1
+# Created by: PyQt5 UI code generator 5.13.0
 #
 # WARNING! All changes made in this file will be lost!
+
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
@@ -25,6 +26,7 @@ class Ui_ConfigDialog(object):
         sizePolicy.setHeightForWidth(self.listWidget.sizePolicy().hasHeightForWidth())
         self.listWidget.setSizePolicy(sizePolicy)
         self.listWidget.setMaximumSize(QtCore.QSize(115, 16777215))
+        self.listWidget.setStyleSheet("background-position: center")
         self.listWidget.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.listWidget.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.listWidget.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
@@ -155,8 +157,6 @@ class Ui_ConfigDialog(object):
         self.templateFile.setPlaceholderText(_translate("ConfigDialog", "Enter Path Name"))
         self.toolButtonTemplatePath.setText(_translate("ConfigDialog", "Choose...", "Button text"))
         self.radioButton.setText(_translate("ConfigDialog", "RadioB&utton"))
-
-
 from pycirkuit.resources import resources_rc
 
 

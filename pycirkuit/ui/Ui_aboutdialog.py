@@ -2,11 +2,13 @@
 
 # Form implementation generated from reading ui file '/home/orestes/Devel/Software/pycirkuit/pycirkuit/ui/aboutdialog.ui'
 #
-# Created by: PyQt5 UI code generator 5.7
+# Created by: PyQt5 UI code generator 5.13.0
 #
 # WARNING! All changes made in this file will be lost!
 
+
 from PyQt5 import QtCore, QtGui, QtWidgets
+
 
 class Ui_AboutDialog(object):
     def setupUi(self, AboutDialog):
@@ -57,7 +59,6 @@ class Ui_AboutDialog(object):
         self.tabAbout = QtWidgets.QWidget()
         self.tabAbout.setObjectName("tabAbout")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.tabAbout)
-        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.textAbout = QtWidgets.QTextBrowser(self.tabAbout)
         font = QtGui.QFont()
@@ -72,7 +73,6 @@ class Ui_AboutDialog(object):
         self.tabVersion = QtWidgets.QWidget()
         self.tabVersion.setObjectName("tabVersion")
         self.horizontalLayout_4 = QtWidgets.QHBoxLayout(self.tabVersion)
-        self.horizontalLayout_4.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
         self.textVersion = QtWidgets.QTextBrowser(self.tabVersion)
         font = QtGui.QFont()
@@ -87,7 +87,6 @@ class Ui_AboutDialog(object):
         self.tabAuthor = QtWidgets.QWidget()
         self.tabAuthor.setObjectName("tabAuthor")
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.tabAuthor)
-        self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.textAuthor = QtWidgets.QTextBrowser(self.tabAuthor)
         font = QtGui.QFont()
@@ -103,7 +102,6 @@ class Ui_AboutDialog(object):
         self.tabGPL = QtWidgets.QWidget()
         self.tabGPL.setObjectName("tabGPL")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.tabGPL)
-        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.textLicense = QtWidgets.QTextBrowser(self.tabGPL)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
@@ -321,8 +319,8 @@ class Ui_AboutDialog(object):
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">You may use, distribute and copy PyCirkuit under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, which is shown below, or (at your option) any later version.</p>\n"
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">PyCirkuit uses also some icons and other artwork from &quot;Oxygen&quot; set, from the KDE project. These icons are under the GNU LGPL v3 license. See <a href=\"https://techbase.kde.org/Projects/Oxygen/Licensing\"><span style=\" text-decoration: underline; color:#2980b9;\">https://techbase.kde.org/Projects/Oxygen/Licensing</span></a> and <a href=\"http://www.gnu.org/copyleft/lesser.html\"><span style=\" text-decoration: underline; color:#2980b9;\">http://www.gnu.org/copyleft/lesser.html</span></a></p></body></html>"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tabGPL), _translate("AboutDialog", "&License Agreement"))
-
 from pycirkuit.resources import resources_rc
+
 
 if __name__ == "__main__":
     import sys
@@ -332,4 +330,3 @@ if __name__ == "__main__":
     ui.setupUi(AboutDialog)
     AboutDialog.show()
     sys.exit(app.exec_())
-
