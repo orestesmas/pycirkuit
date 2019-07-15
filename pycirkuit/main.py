@@ -32,7 +32,7 @@ from PyQt5.QtCore import QCoreApplication, \
 from PyQt5.QtWidgets import QApplication
 
 # Local application imports
-from pycirkuit.tools.cliparser import PyCirkuitParser
+from pycirkuit.cliparser import PyCirkuitParser
 from pycirkuit.ui.mainwindow import MainWindow
 from pycirkuit import __version__
 

@@ -134,55 +134,55 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>CommandLine</name>
     <message>
-        <location filename="../tools/cliparser.py" line="98"/>
+        <location filename="../cliparser.py" line="98"/>
         <source>path</source>
         <comment>Commandline argument name. If you translate this name, translate it accordingly into the path description and path syntax.</comment>
         <translation>ruta</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="98"/>
+        <location filename="../cliparser.py" line="98"/>
         <source>[&lt;path&gt; [ &lt;path2&gt;...]]</source>
         <comment>Commandline argument syntax. If you translate &lt;path&gt;, translate the name and path description accordingly.</comment>
         <translation>[&lt;ruta&gt; [&lt;ruta2&gt;...]]</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="179"/>
+        <location filename="../cliparser.py" line="179"/>
         <source>The given path does not match any existing file.</source>
         <comment>Commandline error message</comment>
         <translation>La ruta introduïda no concorda amb cap fitxer existent.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="210"/>
+        <location filename="../cliparser.py" line="210"/>
         <source>The --dpi parameter must be an integer between 25 and 3000.</source>
         <comment>Error message</comment>
         <translation>El paràmetre --dpi ha de ser un enter entre 25 i 3000.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="220"/>
+        <location filename="../cliparser.py" line="220"/>
         <source>The --quality parameter must be an integer between 0 and 100.</source>
         <comment>Error message</comment>
         <translation>El paràmetre --quality ha de ser un enter entre 0 i 100.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="242"/>
+        <location filename="../cliparser.py" line="242"/>
         <source>Batch processing requested with no files.</source>
         <comment>Commandline error message</comment>
         <translation>Heu demanat un procés per lots sense fitxers.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="281"/>
+        <location filename="../cliparser.py" line="281"/>
         <source>More than one file to process with no batch option given.</source>
         <comment>Commandline error message</comment>
         <translation>Més d&apos;un fitxer per processar sense haver demanat un procés per lots.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="78"/>
+        <location filename="../cliparser.py" line="78"/>
         <source>Try &quot;{appName} --help&quot; to get more information.</source>
         <comment>Command-line error message. Don&apos;t translate &apos;{appName}&apos;.</comment>
         <translation>Proveu «{appName}» --help per obtenir més informació.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="42"/>
+        <location filename="../cliparser.py" line="42"/>
         <source>
 {productName} is a front-end for Circuit Macros by Dwight Aplevich,
 which are a set of macros for drawing high-quality line diagrams
@@ -194,7 +194,7 @@ que són un conjunt de macros per dibuixar diagrames d&apos;alta qualitat
 i incloure&apos;ls en documents TeX, LaTeX, Web o similars.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="71"/>
+        <location filename="../cliparser.py" line="71"/>
         <source>Path to source drawing file(s) to process. Wildcards accepted.
 - If no &lt;path&gt; is given, the GUI is opened.
 - If &lt;path&gt; points to only one file and no batch conversion options are present, this file is opened into the GUI for editing.
@@ -208,43 +208,43 @@ i incloure&apos;ls en documents TeX, LaTeX, Web o similars.</translation>
 - No és permès d&apos;especificar més d&apos;un fitxer per processar sense haver indicat cap opció de format de sortida.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="48"/>
+        <location filename="../cliparser.py" line="48"/>
         <source>Activates batch (unattended) mode, and convert files specified by &lt;path&gt; to {formatID} format. Several output formats can be used together.</source>
         <comment>Commandline option description. Don&apos;t translate the &apos;{formatID}&apos; variable.</comment>
         <translation>Activa el processament per lots i converteix els fitxers apuntats per &lt;ruta&gt; al format {formatID}. Es poden indicar conjuntament diversos formats de sortida.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="51"/>
+        <location filename="../cliparser.py" line="51"/>
         <source>Sets the resolution of output raster images (png, jpg), in dots per inch. Value &lt;N&gt; is mandatory. If option is not set, default is {defaultDPI}dpi (defined in &apos;settings&apos; dialog).</source>
         <comment>Commandline argument description. Don&apos;t translate the &apos;{defaultDPI}&apos; variable.</comment>
         <translation>Estableix la resolució de les imatges «raster» de sortida (png, jpg), en punts per polzada. El valor &lt;N&gt; és obligatori. Si no especifiqueu l&apos;opció, el valor per defecte és {defaultDPI}dpi (definit al diàleg de configuració).</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="54"/>
+        <location filename="../cliparser.py" line="54"/>
         <source>Sets the quality of output raster lossy images (jpg), in percent. Value &lt;Q&gt; is mandatory. If option is not set, default is {defaultQuality}% (defined in &apos;settings&apos; dialog).</source>
         <comment>Commandline option description. Don&apos;t translate the &apos;{defaultQuality}&apos; variable.</comment>
         <translation>Estableix la qualitat de les imatges «raster» de sortida amb pèrdua (jpg), en percentatge. El valor &lt;Q&gt; és obligatori. Si no especifiqueu l&apos;opció, el valor per defecte és {defaultQuality}% (definit al diàleg de configuració).</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="68"/>
+        <location filename="../cliparser.py" line="68"/>
         <source>Using this option the pattern &apos;**&apos; will match any files and zero or more subdirs, so &apos;**/*.ckt&apos; will match all files with &apos;ckt&apos; extension in the current directory and all its subdirectories.</source>
         <comment>Commandline option description.</comment>
         <translation>Si s&apos;especifica aquesta opció, el patró &apos;**&apos; concordarà amb qualsevol fitxer i zero o més subdirectoris. Així, «**/*.ckt» concordarà amb tots els fitxers amb extensió «ckt» del directori actual i tots els seus subdirectoris.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="272"/>
+        <location filename="../cliparser.py" line="272"/>
         <source>Files processed: {N}.</source>
         <comment>Command line message. {N} will be an integer, don&apos;t translate it.</comment>
         <translation>Fitxers processats: {N}.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="57"/>
+        <location filename="../cliparser.py" line="57"/>
         <source>Overwrite by default the converted files if they are present. If not set, user will be asked at runtime.</source>
         <comment>Commandline option description.</comment>
         <translation>Sobreescriu per defecte els fitxers convertits si ja són presents. Si no s&apos;especifica, es preguntarà en temps d&apos;execució.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="60"/>
+        <location filename="../cliparser.py" line="60"/>
         <source>Follow symbolic links.
 - If not set, destination file will be saved into the same directory where the source file is, whether it&apos;s a real file or a symbolic link.
 - If set, destination file will be saved into the directory where the real source file is located.</source>
@@ -254,13 +254,13 @@ i incloure&apos;ls en documents TeX, LaTeX, Web o similars.</translation>
 - Si l&apos;especifiqueu, el fitxer de destí es desarà al mateix directori del fitxer font real.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="65"/>
+        <location filename="../cliparser.py" line="65"/>
         <source>Save all converted files into the same destination directory &lt;D&gt; (value is mandatory).</source>
         <comment>Commandline option description. Don&apos;t translate &apos;&lt;D&gt;&apos;.</comment>
         <translation>Desa tots els fitxers convertits al mateix directori de destí &lt;D&gt; (el valor és obligatori).</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="249"/>
+        <location filename="../cliparser.py" line="249"/>
         <source>Processing file:</source>
         <comment>Command line message. Will be followed by an absolute pile path</comment>
         <translation>Processant el fitxer:</translation>
