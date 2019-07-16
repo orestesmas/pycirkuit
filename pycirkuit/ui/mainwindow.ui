@@ -170,7 +170,7 @@
      <x>0</x>
      <y>0</y>
      <width>677</width>
-     <height>36</height>
+     <height>34</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -185,7 +185,7 @@
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
-     <string>Help</string>
+     <string>Hel&amp;p</string>
     </property>
     <addaction name="separator"/>
     <addaction name="actionCMMan"/>
@@ -222,7 +222,7 @@
      <normaloff>:/icons/view-preview.png</normaloff>:/icons/view-preview.png</iconset>
    </property>
    <property name="windowTitle">
-    <string comment="Dock window title">&amp;Preview</string>
+    <string>&amp;Preview</string>
    </property>
    <attribute name="dockWidgetArea">
     <number>4</number>
