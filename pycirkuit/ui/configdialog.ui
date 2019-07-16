@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>868</width>
-    <height>430</height>
+    <width>874</width>
+    <height>523</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -22,22 +22,26 @@
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
-     <item alignment="Qt::AlignHCenter">
+     <item>
       <widget class="QListWidget" name="listWidget">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-         <horstretch>0</horstretch>
+        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Expanding">
+         <horstretch>1</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
        <property name="maximumSize">
         <size>
-         <width>115</width>
+         <width>132</width>
          <height>16777215</height>
         </size>
        </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
        <property name="styleSheet">
-        <string notr="true">background-position: center</string>
+        <string notr="true">padding-top: 10px; 
+background-color: rgb(255, 255, 255);</string>
        </property>
        <property name="verticalScrollBarPolicy">
         <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -48,38 +52,20 @@
        <property name="sizeAdjustPolicy">
         <enum>QAbstractScrollArea::AdjustToContents</enum>
        </property>
-       <property name="autoScroll">
-        <bool>false</bool>
-       </property>
-       <property name="showDropIndicator" stdset="0">
-        <bool>false</bool>
-       </property>
-       <property name="selectionMode">
-        <enum>QAbstractItemView::SingleSelection</enum>
-       </property>
        <property name="iconSize">
         <size>
-         <width>72</width>
-         <height>72</height>
+         <width>48</width>
+         <height>48</height>
         </size>
        </property>
        <property name="textElideMode">
-        <enum>Qt::ElideRight</enum>
-       </property>
-       <property name="horizontalScrollMode">
-        <enum>QAbstractItemView::ScrollPerItem</enum>
-       </property>
-       <property name="movement">
-        <enum>QListView::Static</enum>
+        <enum>Qt::ElideNone</enum>
        </property>
        <property name="flow">
-        <enum>QListView::LeftToRight</enum>
+        <enum>QListView::TopToBottom</enum>
        </property>
-       <property name="resizeMode">
-        <enum>QListView::Fixed</enum>
-       </property>
-       <property name="layoutMode">
-        <enum>QListView::SinglePass</enum>
+       <property name="isWrapping" stdset="0">
+        <bool>true</bool>
        </property>
        <property name="spacing">
         <number>12</number>
@@ -87,15 +73,12 @@
        <property name="viewMode">
         <enum>QListView::IconMode</enum>
        </property>
-       <property name="uniformItemSizes">
-        <bool>true</bool>
-       </property>
-       <property name="selectionRectVisible">
+       <property name="wordWrap">
         <bool>true</bool>
        </property>
        <item>
         <property name="text">
-         <string comment="Config dialog Section title. Not an action.">General</string>
+         <string>General</string>
         </property>
         <property name="textAlignment">
          <set>AlignCenter</set>
@@ -110,7 +93,7 @@
        </item>
        <item>
         <property name="text">
-         <string comment="Config dialog Section title. Not an action.">Export</string>
+         <string>Exporting</string>
         </property>
         <property name="textAlignment">
          <set>AlignCenter</set>
@@ -127,6 +110,18 @@
      </item>
      <item>
       <widget class="QStackedWidget" name="stackedWidget">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>4</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="baseSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
        <property name="frameShape">
         <enum>QFrame::Panel</enum>
        </property>

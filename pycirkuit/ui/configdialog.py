@@ -23,15 +23,8 @@ Module implementing configDialog.
 import os
 
 # Third-party imports
-from PyQt5.QtCore import\
-        pyqtSlot,\
-        QDir,\
-        QSettings, \
-        QCoreApplication
-from PyQt5.QtWidgets import\
-        QDialog,\
-        QFileDialog, \
-        QMessageBox
+from PyQt5.QtCore import pyqtSlot, Qt, QSize, QDir, QSettings, QCoreApplication
+from PyQt5.QtWidgets import QDialog, QFileDialog, QMessageBox
 
 # Local application imports
 from pycirkuit.ui.Ui_configdialog import Ui_ConfigDialog
@@ -52,6 +45,11 @@ class ConfigDialog(QDialog, Ui_ConfigDialog):
         """
         super().__init__(parent)
         self.setupUi(self)
+        
+        # Hack to center items in QListView
+        for i in range(0, self.listWidget.count()):
+            self.listWidget.item(i).setSizeHint(QSize(132, 80))
+            self.listWidget.item(i).setTextAlignment(Qt.AlignCenter)
         
         # Persistent settings
         settings = QSettings() 
