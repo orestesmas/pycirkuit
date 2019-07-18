@@ -222,7 +222,7 @@
      <normaloff>:/icons/view-preview.png</normaloff>:/icons/view-preview.png</iconset>
    </property>
    <property name="windowTitle">
-    <string>&amp;Preview</string>
+    <string>Preview</string>
    </property>
    <attribute name="dockWidgetArea">
     <number>4</number>

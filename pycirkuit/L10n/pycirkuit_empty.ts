@@ -639,7 +639,7 @@ The destination file already exists.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../venv/lib64/python3.6/site-packages/pycirkuit/ui/Ui_mainwindow.py" line="217"/>
+        <location filename="../../build/lib/pycirkuit/ui/Ui_mainwindow.py" line="210"/>
         <source>Help</source>
         <translation type="unfinished"></translation>
     </message>
@@ -649,7 +649,7 @@ The destination file already exists.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../venv/lib64/python3.6/site-packages/pycirkuit/ui/Ui_mainwindow.py" line="219"/>
+        <location filename="../../build/lib/pycirkuit/ui/Ui_mainwindow.py" line="212"/>
         <source>&amp;Preview</source>
         <comment>Dock window title</comment>
         <translation type="unfinished"></translation>
@@ -923,13 +923,18 @@ l=elen_
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="217"/>
+        <location filename="../../venv/lib64/python3.6/site-packages/pycirkuit/ui/Ui_mainwindow.py" line="217"/>
         <source>Hel&amp;p</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="219"/>
+        <location filename="../../venv/lib64/python3.6/site-packages/pycirkuit/ui/Ui_mainwindow.py" line="219"/>
         <source>&amp;Preview</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="219"/>
+        <source>Preview</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

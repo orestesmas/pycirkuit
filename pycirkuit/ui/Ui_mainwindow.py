@@ -216,7 +216,7 @@ class Ui_MainWindow(object):
         self.menuFile.setTitle(_translate("MainWindow", "Fi&le"))
         self.menuHelp.setTitle(_translate("MainWindow", "Hel&p"))
         self.menuSettings.setTitle(_translate("MainWindow", "Setti&ngs"))
-        self.previewWidget.setWindowTitle(_translate("MainWindow", "&Preview"))
+        self.previewWidget.setWindowTitle(_translate("MainWindow", "Preview"))
         self.imageViewer.setToolTip(_translate("MainWindow", "<html><head/><body><p>Use:</p>\n"
 "<ul>\n"
 "<li> Ctrl + Mouse Wheel to Zoom In/Out</li>\n"

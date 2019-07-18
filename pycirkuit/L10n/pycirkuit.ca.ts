@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="2.0" language="ca_ES" sourcelanguage="">
+<!DOCTYPE TS>
+<TS version="2.1" language="ca_ES">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -665,7 +666,7 @@ The destination file already exists.</source>
         <translation>&amp;Fitxer</translation>
     </message>
     <message>
-        <location filename="../../venv/lib64/python3.6/site-packages/pycirkuit/ui/Ui_mainwindow.py" line="217"/>
+        <location filename="../../build/lib/pycirkuit/ui/Ui_mainwindow.py" line="210"/>
         <source>Help</source>
         <translation>Ajuda</translation>
     </message>
@@ -703,7 +704,7 @@ The destination file already exists.</source>
         <translation>Exporta a TIkZ</translation>
     </message>
     <message>
-        <location filename="../../venv/lib64/python3.6/site-packages/pycirkuit/ui/Ui_mainwindow.py" line="219"/>
+        <location filename="../../build/lib/pycirkuit/ui/Ui_mainwindow.py" line="212"/>
         <source>&amp;Preview</source>
         <comment>Dock window title</comment>
         <translation>&amp;Previsualització</translation>
@@ -991,14 +992,19 @@ l=elen_
         <translation>Exporta a PNG</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="217"/>
+        <location filename="../../venv/lib64/python3.6/site-packages/pycirkuit/ui/Ui_mainwindow.py" line="217"/>
         <source>Hel&amp;p</source>
         <translation>A&amp;juda</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="219"/>
+        <location filename="../../venv/lib64/python3.6/site-packages/pycirkuit/ui/Ui_mainwindow.py" line="219"/>
         <source>&amp;Preview</source>
         <translation>&amp;Previsualització</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="219"/>
+        <source>Preview</source>
+        <translation>Previsualització</translation>
     </message>
 </context>
 <context>
