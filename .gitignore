@@ -6,4 +6,4 @@
 /venv
 /dist
 /build
-pycirkuit.e4p
+*.e4p
