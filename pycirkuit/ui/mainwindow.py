@@ -23,10 +23,9 @@ Module implementing MainWindow.
 #import sys
 import os
 from shutil import copyfile
-import inspect
 
 # Third-party imports
-from PyQt5.QtCore import pyqtSlot, Qt, QCoreApplication
+from PyQt5.QtCore import pyqtSlot, Qt, QCoreApplication, QSettings
 from PyQt5 import QtCore, QtWidgets, QtGui
 from PyQt5.QtWidgets import QProgressBar
 
@@ -41,6 +40,7 @@ from pycirkuit.tools.m4 import ToolM4
 from pycirkuit.tools.dpic import ToolDpic
 from pycirkuit.tools.pdflatex import ToolPdfLaTeX
 from pycirkuit.tools.pdftopng import ToolPdfToPng
+from pycirkuit.tools.pdftojpg import ToolPdfToJpeg
 from pycirkuit.tools.processor import PyCirkuitProcessor
 import pycirkuit
 
@@ -72,9 +72,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         icon = QtGui.QIcon(":/icons/AppIcon")
         self.setWindowIcon(icon)
 
-        # Ensure meaningful default settings
-        self._check_settings()
-        
         # Connect signals with slots
         #NOTE: Is NOT necessary to MANUALLY connect most signals to slots, as 
         # pyuic5 calls QtCore.QMetaObject.connectSlotsByName in Ui_configdialog.py
@@ -121,6 +118,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         fdlg.setFilter(QtCore.QDir.AllDirs | QtCore.QDir.Files)
         fdlg.setNameFilters([
             _translate("MainWindow", "TikZ files (*.tikz)", "File filter"),
+            _translate("MainWindow", "PDF files (*.pdf)", "File filter"),
+            _translate("MainWindow", "PNG files (*.png)", "File filter"),
+            _translate("MainWindow", "JPEG files (*.jpeg *.jpg)", "File filter"),
             _translate("MainWindow", "TeX files (*.tex)", "File filter"),
             _translate("MainWindow", "Any files (*)", "File filter")])
         if fdlg.exec():
@@ -165,7 +165,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 ToolM4: ToolM4(),
                 ToolDpic: ToolDpic(), 
                 ToolPdfLaTeX: ToolPdfLaTeX(), 
-                ToolPdfToPng: ToolPdfToPng()
+                ToolPdfToPng: ToolPdfToPng(), 
+                ToolPdfToJpeg: ToolPdfToJpeg()
             }
         except PyCktToolNotFoundError as err:
             # Open MessageBox and inform user
@@ -181,61 +182,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         return True
 
 
-    def _check_settings(self):
-        """
-        Check if config file is empty (deleted, first run, etc.) and if so, set reasonable default values
-        """
-        settings = QtCore.QSettings()
-        # Import ourselves
-        import pycirkuit
-        # Find absolute application's path
-        applicationPath = os.path.dirname(inspect.getfile(pycirkuit))
-
-        # Check app version
-        storedVersion = settings.value("General/Version", "")
-        if (storedVersion == ""):
-            settings.setValue("General/Version", pycirkuit.__version__)
-        elif (storedVersion < pycirkuit.__version__):
-            #TODO: If upgrading we can remove the unnecessary entries, rename others, etc.
-            pass
-        elif (storedVersion > pycirkuit.__version__):
-            #TODO: Handle downgrading, perhaps raising an exception, showing warning, etc.
-            pass
-
-        # Check the stored path to LaTeX templates
-        if (settings.value("General/templatePath",  "") == ""):
-            # Add the relative path where the default template is located
-            templatePath = os.path.normpath(os.path.join(applicationPath, 'templates/cm_tikz.tpl'))
-            settings.setValue("General/templatePath", templatePath)
-            
-        # Check Circuit Macros path
-        if (settings.value("General/cmPath",  "") == ""):
-            CM = CircuitMacrosManager()
-            settings.setValue("General/cmPath", CM.default_CMPath())
-            
-        # Check the stored path to the built-in examples
-        if (settings.value("General/examplesPath",  "") == ""):
-            # Add the relative path where the examples are located
-            examplesPath = os.path.normpath(os.path.join(applicationPath, 'examples'))
-            settings.setValue("General/examplesPath", examplesPath)
-            
-        # Check last working dir (from where the files to be opened are taken)
-        # This one will be initially the same as the examples path. Later on, the user actions will change it.
-        if (settings.value("General/lastWD",  "") == ""):
-            # Add the relative path where the examples are located
-            examplesPath = os.path.normpath(os.path.join(applicationPath, 'examples'))
-            settings.setValue("General/lastWD", examplesPath)
-            
-        # Check the stored path to built-in documentation
-        if (settings.value("General/docPath",  "") == ""):
-            # Add the relative path where the examples are located
-            docPath = os.path.normpath(os.path.join(applicationPath, 'doc'))
-            settings.setValue("General/docPath", docPath)
-            
-
-
     def _check_templates(self):
-        settings = QtCore.QSettings()
+        settings = QSettings()
         template = settings.value("General/templatePath",  "")
         if os.path.exists(template):
             with open(template, 'r') as t:
@@ -304,8 +252,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             return result
 
 
+    @pyqtSlot()
+    def _exportSettingsChanged(self):
+        self.exportImage.setEnabled(False)
+        self.processButton.setEnabled(True)
+
     def _load_file(self, fileName):
-        settings = QtCore.QSettings()
+        settings = QSettings()
         # Check that file is not a broken link
         fileName = os.path.normpath(fileName)
         if os.path.isfile(fileName):
@@ -356,7 +309,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             QtWidgets.QMessageBox.critical(self, _translate("MessageBox", "Critical Error", "Message Box title"),  errMsg)
             return
         else:
-            settings = QtCore.QSettings()
+            settings = QSettings()
             lastWD, self.openedFilename = os.path.split(dst)
             os.chdir(lastWD)
             settings.setValue("General/lastWD", lastWD)
@@ -422,7 +375,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.openedFilename = self._translatedUnnamed
             self.needSaving = False
         else:
-            settings = QtCore.QSettings()
+            settings = QSettings()
             lastWD, filename = os.path.split(newName)
             # Change system working dir to target's dir
             os.chdir(lastWD)
@@ -440,7 +393,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self._ask_saving()
     
         # Instantiate a settings object
-        settings = QtCore.QSettings()
+        settings = QSettings()
 
         # Show the 'load file' Dialog
         fdlg = QtWidgets.QFileDialog(self)
@@ -471,12 +424,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         Slot documentation goes here.
         """
         cfgDlg = ConfigDialog()
+        cfgDlg.exportSettingsChange.connect(self._exportSettingsChanged)
         cfgDlg.exec()
 
 
     @pyqtSlot()
     def on_actionSaveAs_triggered(self):
-        settings = QtCore.QSettings()
+        settings = QSettings()
         lastWD = settings.value("General/lastWD", QtCore.QStandardPaths.displayName(QtCore.QStandardPaths.HomeLocation))
         fdlg = QtWidgets.QFileDialog(self)
         fdlg.setWindowTitle(_translate("MainWindow", "Enter a file to save into", "File Dialog title"))
@@ -497,7 +451,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     @pyqtSlot()
     def on_actionSave_triggered(self):
-        settings = QtCore.QSettings()
+        settings = QSettings()
         lastWD = settings.value("General/lastWD", "")
         filePath = os.path.join(lastWD , self.openedFilename)
         if os.path.isfile(filePath):
@@ -507,105 +461,63 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
 
     @pyqtSlot()
-    def on_exportPNG_clicked(self):
+    def on_exportImage_clicked(self):
         # TODO: The "src" file should be provided by the processor class upon requested
-        # FIXME: Clean export logic: One single button to export, to all formats defined in Settings
-        settings = QtCore.QSettings()
+        settings = QSettings()
         lastWD = settings.value("General/lastWD")
-        src = os.path.join(pycirkuit.__tmpDir__.path(), "cirkuit_tmp.png")
-        dst = os.path.join(lastWD, os.path.splitext(self.openedFilename)[0]) + os.extsep + "png"
-        try:    
-            if os.path.exists(dst):
-                msgBox = QtWidgets.QMessageBox(self)
-                msgBox.setWindowTitle(_translate("MessageBox", "Warning",  "Message Box title"))
-                msgBox.setIcon(QtWidgets.QMessageBox.Warning)
-                msgBox.setText(_translate("MessageBox", "There's already a file named \"{filename}\" at working directory.", "Message box text. Don't translate '{filename}'").format(filename=self.openedFilename.partition('.')[0]+".png"))
-                msgBox.setInformativeText(_translate("MessageBox", "Do you want to overwrite it?",  "Message Box text"))
-                msgBox.setStandardButtons(QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
-                saveAsButton = msgBox.addButton(_translate("MessageBox", "Save As...",  "Button text"),  QtWidgets.QMessageBox.AcceptRole)
-                msgBox.setDefaultButton(QtWidgets.QMessageBox.No)
-                response = msgBox.exec()
-                # Overwrite
-                if response == QtWidgets.QMessageBox.Yes:
+        toSave = []
+        if settings.value("Export/exportTIKZ", type=bool):
+            toSave.append("tikz")
+        if settings.value("Export/exportPDF", type=bool):
+            toSave.append("pdf")
+        if settings.value("Export/exportPNG", type=bool):
+            toSave.append("png")
+        if settings.value("Export/exportJPEG", type=bool):
+            toSave.append("jpeg")
+        for fileType in toSave:
+            src = os.path.join(pycirkuit.__tmpDir__.path(), "cirkuit_tmp") + os.extsep + fileType
+            dst = os.path.join(lastWD, os.path.splitext(self.openedFilename)[0]) + os.extsep + fileType
+            try:    
+                if os.path.exists(dst):
+                    msgBox = QtWidgets.QMessageBox(self)
+                    msgBox.setWindowTitle(_translate("MessageBox", "Warning",  "Message Box title"))
+                    msgBox.setIcon(QtWidgets.QMessageBox.Warning)
+                    msgBox.setText(_translate("MessageBox", "There's already a file named \"{filename}\" at working directory.", "Message box text. Don't translate '{filename}'").format(filename=self.openedFilename.partition('.')[0]+os.extsep+fileType))
+                    msgBox.setInformativeText(_translate("MessageBox", "Do you want to overwrite it?",  "Message Box text"))
+                    msgBox.setStandardButtons(QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
+                    saveAsButton = msgBox.addButton(_translate("MessageBox", "Save As...",  "Button text"),  QtWidgets.QMessageBox.AcceptRole)
+                    msgBox.setDefaultButton(QtWidgets.QMessageBox.No)
+                    response = msgBox.exec()
+                    # Overwrite
+                    if response == QtWidgets.QMessageBox.Yes:
+                        copyfile(src, dst)
+                        self.exportImage.setEnabled(False)
+                    # Save with another name (and ask for it first)
+                    if (response == QtWidgets.QMessageBox.NoButton) and (msgBox.clickedButton() == saveAsButton):
+                        if self._ask_export_as(src, dst):
+                            self.exportImage.setEnabled(False)
+                    # Any other option means user doesn't want to overwrite the file -> Exit
+                else:
                     copyfile(src, dst)
-                    self.exportPNG.setEnabled(False)
-                # Save with another name (and ask for it first)
-                if (response == QtWidgets.QMessageBox.NoButton) and (msgBox.clickedButton() == saveAsButton):
-                    if self._ask_export_as(src, dst):
-                        self.exportPNG.setEnabled(False)
-                # Any other option means user doesn't want to overwrite the file -> Exit
-            else:
-                copyfile(src, dst)
-                self.exportPNG.setEnabled(False)
-        except PermissionError as err:
-            msgBox = QtWidgets.QMessageBox(self)
-            msgBox.setWindowTitle(_translate("MessageBox", "PyCirkuit - Error",  "Message Box title"))
-            msgBox.setIcon(QtWidgets.QMessageBox.Critical)
-            msgBox.setText(_translate("MessageBox", "Permission denied writing the file {filename}.", "Message box text. Don't translate '{filename}'").format(filename=err.filename))
-            msgBox.setInformativeText(_translate("MessageBox", "Please try to export again with another name and/or location.",  "Message Box text"))
-            msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
-            response = msgBox.exec()
-            if self._ask_export_as(src, dst):
-                self.exportPNG.setEnabled(False)
-        except OSError:
-            msgBox = QtWidgets.QMessageBox(self)
-            msgBox.setWindowTitle(_translate("MessageBox", "PyCirkuit - Error",  "Message Box title"))
-            msgBox.setIcon(QtWidgets.QMessageBox.Critical)
-            msgBox.setText(_translate("MessageBox", "An error has occurred trying to export the file. The error says:", "Message Box text"))
-            msgBox.setInformativeText(err.strerror)
-            msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
-            response = msgBox.exec()
-
-
-    @pyqtSlot()
-    def on_exportTIKZ_clicked(self):
-        # TODO: The "src" file should be provided by the processor class upon requested
-        # FIXME: Clean export logic: One single button to export, to all formats defined in Settings
-        settings = QtCore.QSettings()
-        lastWD = settings.value("General/lastWD")
-        src = os.path.join(pycirkuit.__tmpDir__.path(), "cirkuit_tmp.tikz")
-        dst = os.path.join(lastWD, os.path.splitext(self.openedFilename)[0]) + os.extsep + "tikz"
-        try:    
-            if os.path.exists(dst):
+                    self.exportImage.setEnabled(False)
+            except PermissionError as err:
                 msgBox = QtWidgets.QMessageBox(self)
-                msgBox.setWindowTitle(_translate("MessageBox", "Warning",  "Message Box title"))
-                msgBox.setIcon(QtWidgets.QMessageBox.Warning)
-                msgBox.setText(_translate("MessageBox", "There's already a file named \"{filename}\" at working directory.", "Message box text. Don't translate '{filename}'").format(filename=self.openedFilename.partition('.')[0]+".tikz"))
-                msgBox.setInformativeText(_translate("MessageBox", "Do you want to overwrite it?",  "Message Box text"))
-                msgBox.setStandardButtons(QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
-                saveAsButton = msgBox.addButton(_translate("MessageBox", "Save As...",  "Button text"),  QtWidgets.QMessageBox.AcceptRole)
-                msgBox.setDefaultButton(QtWidgets.QMessageBox.No)
+                msgBox.setWindowTitle(_translate("MessageBox", "PyCirkuit - Error",  "Message Box title"))
+                msgBox.setIcon(QtWidgets.QMessageBox.Critical)
+                msgBox.setText(_translate("MessageBox", "Permission denied writing the file {filename}.", "Message box text. Don't translate '{filename}'").format(filename=err.filename))
+                msgBox.setInformativeText(_translate("MessageBox", "Please try to export again with another name and/or location.",  "Message Box text"))
+                msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
                 response = msgBox.exec()
-                # Overwrite
-                if response == QtWidgets.QMessageBox.Yes:
-                    copyfile(src, dst)
-                    self.exportTIKZ.setEnabled(False)
-                # Save with another name (and ask for it first)
-                if (response == QtWidgets.QMessageBox.NoButton) and (msgBox.clickedButton() == saveAsButton):
-                    if self._ask_export_as(src, dst):
-                        self.exportTIKZ.setEnabled(False)
-                # Any other option means user doesn't want to overwrite the file -> Exit
-            else:
-                copyfile(src, dst)
-                self.exportTIKZ.setEnabled(False)
-        except PermissionError as err:
-            msgBox = QtWidgets.QMessageBox(self)
-            msgBox.setWindowTitle(_translate("MessageBox", "PyCirkuit - Error",  "Message Box title"))
-            msgBox.setIcon(QtWidgets.QMessageBox.Critical)
-            msgBox.setText(_translate("MessageBox", "Permission denied writing the file {filename}.", "Message box text. Don't translate '{filename}'").format(filename=err.filename))
-            msgBox.setInformativeText(_translate("MessageBox", "Please try to export again with another name and/or location.",  "Message Box text"))
-            msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
-            response = msgBox.exec()
-            if self._ask_export_as(src, dst):
-                self.exportTIKZ.setEnabled(False)
-        except OSError:
-            msgBox = QtWidgets.QMessageBox(self)
-            msgBox.setWindowTitle(_translate("MessageBox", "PyCirkuit - Error",  "Message Box title"))
-            msgBox.setIcon(QtWidgets.QMessageBox.Critical)
-            msgBox.setText(_translate("MessageBox", "An error has occurred trying to export the file. The error says:", "Message Box text"))
-            msgBox.setInformativeText(err.strerror)
-            msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
-            response = msgBox.exec()
+                if self._ask_export_as(src, dst):
+                    self.exportImage.setEnabled(False)
+            except OSError:
+                msgBox = QtWidgets.QMessageBox(self)
+                msgBox.setWindowTitle(_translate("MessageBox", "PyCirkuit - Error",  "Message Box title"))
+                msgBox.setIcon(QtWidgets.QMessageBox.Critical)
+                msgBox.setText(_translate("MessageBox", "An error has occurred trying to export the file. The error says:", "Message Box text"))
+                msgBox.setInformativeText(err.strerror)
+                msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
+                response = msgBox.exec()
 
 
     @pyqtSlot()
@@ -630,6 +542,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             return
 
         try:
+            settings = QSettings()
             # STEP 1: Prepare the Progress Bar
             self.sbProgressBar.setRange(0, 4)
             self.sbProgressBar.setValue(0)
@@ -678,12 +591,21 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             # STEP 9: Call pdftoppm to convert the PDF into a bitmap image to visualize it: .PDF -> .PNG
             self.statusBar.showMessage(_translate("StatusBar", "Converting: PDF -> PNG", "Status Bar message"))
             writeHeader(ToolPdfToPng)
-            self.extTools[ToolPdfToPng].execute(tmpFileBaseName)
+            settings.beginGroup("Export")
+            dpi = settings.value("exportDPI", type=int)
+            self.extTools[ToolPdfToPng].execute(tmpFileBaseName, resolution=150)
+            copyfile(tmpFileBaseName+os.extsep+"png", tmpFileBaseName+"_display"+os.extsep+"png")
+            if settings.value("exportPNG", type=bool):
+                self.extTools[ToolPdfToPng].execute(tmpFileBaseName, resolution=dpi)
+            if settings.value("exportJPEG", type=bool):
+                q = settings.value("exportQuality", type=int)
+                self.extTools[ToolPdfToJpeg].execute(tmpFileBaseName, resolution=dpi, quality=q)
+            settings.endGroup()
             writeOk()
             self.sbProgressBar.setValue(4)
             
             # STEP 10: Visualize the image (can fail)
-            self.imageViewer.setImage(tmpFileBaseName, adjustIGU=True)
+            self.imageViewer.setImage(tmpFileBaseName+"_display", adjustIGU=True)
 
         except PyCktToolExecutionError as err:
             self.imageViewer.setText(_translate("MainWindow", "Error!", "Fallback text to be displayed when the image cannot be generated"))
@@ -699,8 +621,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         else:
             # If all went well and we have a generated image, we can 
             self.processButton.setEnabled(False)
-            self.exportTIKZ.setEnabled(True)
-            self.exportPNG.setEnabled(True)
+            self.exportImage.setEnabled(True)
         finally:
             os.chdir(savedWD)
             self.statusBar.showMessage("")
@@ -718,5 +639,4 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self._modify_title()
             self.actionSave.setEnabled(True)
             self.processButton.setEnabled(True)
-            self.exportTIKZ.setEnabled(False)
-            self.exportPNG.setEnabled(False)
+            self.exportImage.setEnabled(False)

@@ -51,6 +51,3 @@ class Option(Enum):
     DEST = 'destDirOption'
     OVER = 'overwriteOption'
 
-# Default raster image parameters
-# FIXME: imageParam: Default values should be set in settings
-imageParam = {Option.DPI: 150,  Option.QUAL:80}

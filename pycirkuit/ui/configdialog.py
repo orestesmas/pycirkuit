@@ -23,7 +23,7 @@ Module implementing configDialog.
 import os
 
 # Third-party imports
-from PyQt5.QtCore import pyqtSlot, Qt, QSize, QDir, QSettings, QCoreApplication
+from PyQt5.QtCore import pyqtSlot, Qt, QSize, QDir, QSettings, QCoreApplication, pyqtSignal
 from PyQt5.QtWidgets import QDialog, QFileDialog, QMessageBox
 
 # Local application imports
@@ -36,6 +36,9 @@ class ConfigDialog(QDialog, Ui_ConfigDialog):
     """
     Class documentation goes here.
     """
+    
+    exportSettingsChange = pyqtSignal()
+    
     def __init__(self, parent=None):
         """
         Constructor
@@ -48,11 +51,12 @@ class ConfigDialog(QDialog, Ui_ConfigDialog):
         
         # Hack to center items in QListView
         for i in range(0, self.listWidget.count()):
-            self.listWidget.item(i).setSizeHint(QSize(132, 80))
+            self.listWidget.item(i).setSizeHint(QSize(128, 80))
             self.listWidget.item(i).setTextAlignment(Qt.AlignCenter)
         
         # Persistent settings
         settings = QSettings() 
+        
         # Extract stored path to Circuit Macros
         cmStoredPath = settings.value("General/cmPath", "")
         if cmStoredPath == "":
@@ -69,11 +73,35 @@ class ConfigDialog(QDialog, Ui_ConfigDialog):
             self.templateFile.textChanged.emit("")
         else:
             self.templateFile.setText(storedLatexTemplateFile)
+            
+        # Settings from the second page "Export"
+        settings.beginGroup("Export")
+        self.exportTIKZ.setChecked(settings.value("exportTIKZ", type=bool))
+        self.exportPDF.setChecked(settings.value("exportPDF", type=bool))
+        self.exportPNG.setChecked(settings.value("exportPNG", type=bool))
+        self.exportJPEG.setChecked(settings.value("exportJPEG", type=bool))
+        self.exportDPI.setValue(settings.value("exportDPI", type=int))
+        self.exportQuality.setValue(settings.value("exportQuality", type=int))
+        settings.endGroup()
+
     
-    
+    def exportSettingsChanged(self):
+        settings = QSettings()
+        if (self.exportTIKZ.isChecked() != settings.value("Export/exportTIKZ", type=bool)) or \
+           (self.exportPDF.isChecked() != settings.value("Export/exportPDF", type=bool)) or \
+           (self.exportPNG.isChecked() != settings.value("Export/exportPNG", type=bool)) or \
+           (self.exportJPEG.isChecked() != settings.value("Export/exportJPEG", type=bool)) or \
+           (self.exportDPI.value() != settings.value("Export/exportDPI", type=int)) or \
+           (self.exportQuality.value() != settings.value("Export/exportQuality", type=int)):
+            return True
+        else:
+            return False
+        
+        
     @pyqtSlot()
     def accept(self):
         settings = QSettings()
+        # General page
         try:
             if not os.path.isdir(self.cmPath.text()):
                 message =_translate("MessageBox", "The path to the Circuit Macros location is not valid. Please enter a valid one.", "")
@@ -94,8 +122,22 @@ class ConfigDialog(QDialog, Ui_ConfigDialog):
             return
         settings.setValue("General/cmPath", self.cmPath.text())
         settings.setValue("General/templatePath", self.templateFile.text())
+        # Export page
+        if self.exportSettingsChanged():
+            QMessageBox.information(self, "PyCirkuit", _translate("MessageBox", "To be able to export with the new settings you have to process the source again.", ""))
+            self.exportSettingsChange.emit()
+        settings.beginGroup("Export")
+        settings.setValue("exportTIKZ", self.exportTIKZ.isChecked())
+        settings.setValue("exportPDF", self.exportPDF.isChecked())
+        settings.setValue("exportPNG", self.exportPNG.isChecked())
+        settings.setValue("exportJPEG", self.exportJPEG.isChecked())
+        settings.setValue("exportDPI", self.exportDPI.value())
+        settings.setValue("exportQuality", self.exportQuality.value())
+        settings.endGroup()
+        # save settings and quit
         settings.sync()
         QDialog.accept(self)
+
         
     @pyqtSlot()
     def reject(self):

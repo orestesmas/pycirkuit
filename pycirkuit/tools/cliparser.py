@@ -27,11 +27,11 @@ from os.path import abspath, realpath, isfile, isdir
 from enum import Enum
 
 # Third-party imports
-from PyQt5.QtCore import QObject, QCoreApplication, QCommandLineParser, QCommandLineOption
+from PyQt5.QtCore import QObject, QCoreApplication, QCommandLineParser, QCommandLineOption, QSettings
 
 # Local imports
 from pycirkuit.exceptions import *
-from pycirkuit import Option, imageParam, __productname__
+from pycirkuit import Option, __productname__
 from pycirkuit.tools.processor import PyCirkuitProcessor, Overwrite
 
 # Translation function
@@ -83,6 +83,11 @@ class PyCirkuitParser(QObject):
     def __init__(self, args):
         super().__init__()
         self.args = args
+        settings = QSettings()
+        self.imageParam = {
+            Option.DPI: settings.value("Export/exportDPI", 150, type=int),  
+            Option.QUAL: settings.value("Export/exportQuality", 80, type=int), 
+        }
         self.cli_mode = False
         self.requestedRecursive = False
         self.overwrite = Overwrite.UNSET
@@ -121,12 +126,12 @@ class PyCirkuitParser(QObject):
                 ),
             Option.DPI:  QCommandLineOption(
                     ["dpi"], 
-                    self._dpiOptionStr.format(defaultDPI=imageParam[Option.DPI]),
+                    self._dpiOptionStr.format(defaultDPI=self.imageParam[Option.DPI]),
                     "N", 
                 ), 
             Option.QUAL: QCommandLineOption(
                     ["quality"], 
-                    self._qualityOptionStr.format(defaultQuality=imageParam[Option.QUAL]), 
+                    self._qualityOptionStr.format(defaultQuality=self.imageParam[Option.QUAL]), 
                     "Q", 
                 ), 
             Option.DEST: QCommandLineOption(
@@ -198,15 +203,12 @@ class PyCirkuitParser(QObject):
         self.requestedRecursive = self.parser.isSet(self.options[Option.REC])
     
     def _checkRasterOptions(self):
-        # "imageParam" is a variable (global for now) predefined with default values in __init__.py
-        # FIXME: imageParam: In the future, its default values should be fetched from the settings, here or in __init__()
-        #
         # Set the "dpi" and "quality" parameters to the values provided by user, if any
         # process the "dpi" option
         if self.parser.isSet(self.options[Option.DPI]):
             try:
-                imageParam[Option.DPI] = int(self.parser.value(self.options[Option.DPI]))
-                if imageParam[Option.DPI] not in range(25, 3001):
+                self.imageParam[Option.DPI] = int(self.parser.value(self.options[Option.DPI]))
+                if self.imageParam[Option.DPI] not in range(25, 3001):
                     raise Exception()
             except:
                 print(QCoreApplication.applicationName() + ": " + _translate("CommandLine", "The --dpi parameter must be an integer between 25 and 3000.", "Error message"))
@@ -215,8 +217,8 @@ class PyCirkuitParser(QObject):
         # Process the "quality" option
         if self.parser.isSet(self.options[Option.QUAL]):
             try:
-                imageParam[Option.QUAL] = int(self.parser.value(self.options[Option.QUAL]))
-                if imageParam[Option.QUAL] not in range(0, 101):
+                self.imageParam[Option.QUAL] = int(self.parser.value(self.options[Option.QUAL]))
+                if self.imageParam[Option.QUAL] not in range(0, 101):
                     raise Exception()
             except:
                 print(QCoreApplication.applicationName() + ": " + _translate("CommandLine", "The --quality parameter must be an integer between 0 and 100.", "Error message"))
@@ -252,7 +254,7 @@ class PyCirkuitParser(QObject):
                     processor.beginProcessing(fileName)
                     for format in self.requestedOutputFormats:
                         try:
-                            processor.requestResult(format, dstDir=self.dstDir, overwrite=self.overwrite, dpi=imageParam[Option.DPI], quality=imageParam[Option.QUAL])
+                            processor.requestResult(format, dstDir=self.dstDir, overwrite=self.overwrite, dpi=self.imageParam[Option.DPI], quality=self.imageParam[Option.QUAL])
                         except PyCktToolExecutionError as err:
                             print("\npycirkuit:", err)
                             question = _translate("CommandLine-UserInput2", 

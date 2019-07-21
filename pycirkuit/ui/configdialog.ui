@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>874</width>
-    <height>550</height>
+    <width>899</width>
+    <height>561</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -32,7 +32,7 @@
        </property>
        <property name="maximumSize">
         <size>
-         <width>132</width>
+         <width>128</width>
          <height>16777215</height>
         </size>
        </property>
@@ -269,7 +269,7 @@ background-color: rgb(255, 255, 255);</string>
        <widget class="QWidget" name="page2">
         <layout class="QVBoxLayout" name="verticalLayout_3">
          <item>
-          <widget class="QGroupBox" name="groupBox_5">
+          <widget class="QGroupBox" name="groupBox_vector">
            <property name="minimumSize">
             <size>
              <width>0</width>
@@ -277,7 +277,7 @@ background-color: rgb(255, 255, 255);</string>
             </size>
            </property>
            <property name="title">
-            <string comment="Group box title">Vector image formats to export</string>
+            <string comment="Group box title">Image formats to export</string>
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout_6">
             <property name="spacing">
@@ -292,10 +292,10 @@ background-color: rgb(255, 255, 255);</string>
                </sizepolicy>
               </property>
               <property name="text">
-               <string>Choose which image formats will be generated and saved when the button &quot;Export vector image&quot; is pressed.</string>
+               <string>Choose which formats will be saved when the button &quot;Export&quot; is pressed:</string>
               </property>
               <property name="alignment">
-               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
               </property>
               <property name="wordWrap">
                <bool>true</bool>
@@ -318,7 +318,7 @@ background-color: rgb(255, 255, 255);</string>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_5">
                <item>
-                <widget class="QCheckBox" name="checkBox_4">
+                <widget class="QCheckBox" name="exportTIKZ">
                  <property name="text">
                   <string>&amp;TIKZ</string>
                  </property>
@@ -328,9 +328,26 @@ background-color: rgb(255, 255, 255);</string>
                 </widget>
                </item>
                <item>
-                <widget class="QCheckBox" name="checkBox_5">
+                <widget class="QCheckBox" name="exportPDF">
                  <property name="text">
                   <string>PD&amp;F</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="exportPNG">
+                 <property name="text">
+                  <string>&amp;PNG (raster)</string>
+                 </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="exportJPEG">
+                 <property name="text">
+                  <string>&amp;JPEG (raster)</string>
                  </property>
                 </widget>
                </item>
@@ -357,92 +374,7 @@ background-color: rgb(255, 255, 255);</string>
           </spacer>
          </item>
          <item>
-          <widget class="QGroupBox" name="groupBox_3">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>110</height>
-            </size>
-           </property>
-           <property name="title">
-            <string comment="Group box title">Raster image formats to export</string>
-           </property>
-           <layout class="QHBoxLayout" name="horizontalLayout_5">
-            <property name="spacing">
-             <number>20</number>
-            </property>
-            <item>
-             <widget class="QLabel" name="label">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                <horstretch>3</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="text">
-               <string>Choose which image formats will be generated and saved when the button &quot;Export raster image&quot; is pressed.</string>
-              </property>
-              <property name="wordWrap">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QFrame" name="frame_2">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                <horstretch>1</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="frameShape">
-               <enum>QFrame::StyledPanel</enum>
-              </property>
-              <property name="frameShadow">
-               <enum>QFrame::Raised</enum>
-              </property>
-              <layout class="QVBoxLayout" name="verticalLayout_4">
-               <item>
-                <widget class="QCheckBox" name="checkBox_3">
-                 <property name="text">
-                  <string>&amp;PNG</string>
-                 </property>
-                 <property name="checked">
-                  <bool>true</bool>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QCheckBox" name="checkBox_2">
-                 <property name="text">
-                  <string>&amp;JPG</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-         <item>
-          <spacer name="verticalSpacer_4">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::Maximum</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>5</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
-          <widget class="QGroupBox" name="groupBox_4">
+          <widget class="QGroupBox" name="groupBox_rasterParam">
            <property name="minimumSize">
             <size>
              <width>0</width>
@@ -473,12 +405,12 @@ background-color: rgb(255, 255, 255);</string>
                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                 </property>
                 <property name="buddy">
-                 <cstring>spinBoxDPI</cstring>
+                 <cstring>exportDPI</cstring>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QSpinBox" name="spinBoxDPI">
+               <widget class="QSpinBox" name="exportDPI">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                   <horstretch>1</horstretch>
@@ -524,12 +456,12 @@ background-color: rgb(255, 255, 255);</string>
                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                 </property>
                 <property name="buddy">
-                 <cstring>spinBoxQuality</cstring>
+                 <cstring>exportQuality</cstring>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QSpinBox" name="spinBoxQuality">
+               <widget class="QSpinBox" name="exportQuality">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                   <horstretch>1</horstretch>
@@ -599,12 +531,10 @@ background-color: rgb(255, 255, 255);</string>
   <tabstop>toolButtonCMPath</tabstop>
   <tabstop>templateFile</tabstop>
   <tabstop>toolButtonTemplatePath</tabstop>
-  <tabstop>checkBox_4</tabstop>
-  <tabstop>checkBox_5</tabstop>
-  <tabstop>checkBox_3</tabstop>
-  <tabstop>checkBox_2</tabstop>
-  <tabstop>spinBoxDPI</tabstop>
-  <tabstop>spinBoxQuality</tabstop>
+  <tabstop>exportTIKZ</tabstop>
+  <tabstop>exportPDF</tabstop>
+  <tabstop>exportDPI</tabstop>
+  <tabstop>exportQuality</tabstop>
  </tabstops>
  <resources>
   <include location="../resources/resources.qrc"/>
