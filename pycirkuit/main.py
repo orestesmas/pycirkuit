@@ -138,7 +138,7 @@ def main():
 
     # Start GUI
     if type(app) != "<class 'PyQt5.QtCore.QApplication'>":
-        sys.exit(_translate("CommandLine", "No desktop environment available.", "")
+        sys.exit(_translate("CommandLine", "No desktop environment available.", ""))
     my_mainWindow = MainWindow()
     my_mainWindow.show()
     if fileToOpen != None:
