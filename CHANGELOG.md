@@ -4,14 +4,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 0.3 series [Work in progress]
+## 0.3 series
+<a name="0.3.0"></a>
+### [0.3.0](https://github.com/orestesmas/pycirkuit/compare/v0.2.0..v0.3.0) : (2019-07-22)
 #### Added
-- JPEG export funcionality in CLI mode ([520bb95b](https://github.com/orestesmas/pycirkuit/commit/520bb95b))
 - Command line interface to process files in batch mode with rich functionality: selectable raster resolution, selectable output quality, intermediate vector formats, recursivity, selectable destination dir, overwriting switch, etc.
-- Basic Bitmap (PNG) export functionality in GUI ([b963fb22](https://github.com/orestesmas/pycirkuit/commit/b963fb22))
+- Parametrized export functionality in settings.
+- Added new export formats, either vector (PDF) and raster (BMP, JPEG).
 - Zoomable graphics with no quality loss
 - Log output tab ([4251c0f](https://github.com/orestesmas/pycirkuit/commit/4251c0f))
 #### Changed
+- Updated catalan translation.
+- Updated credits.
 - Code refactoring, cleaning and polishing.
 #### Bug Fixes
 - Clear image when 'New' menu option is clicked ([a98a4125](https://github.com/orestesmas/pycirkuit/commit/a98a4125)).
@@ -34,7 +38,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fix bug when exporting to TikZ circuits from files without extension ([efebeb4c](https://github.com/orestesmas/pycirkuit/commit/efebeb4c)).
 - Start with first Tab selected in About dialog ([3115de6a](https://github.com/orestesmas/pycirkuit/commit/3115de6a)).
 - Other minor fixes.
-
 #### Changed
 - Updated catalan translation.
 
