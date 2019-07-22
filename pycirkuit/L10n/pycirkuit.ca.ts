@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="2.0" language="ca_ES" sourcelanguage="">
+<!DOCTYPE TS>
+<TS version="2.1" language="ca_ES">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -281,6 +282,11 @@ i incloure&apos;ls en documents TeX, LaTeX, Web o similars.</translation>
         <source>Cannot find the Circuit Macros!</source>
         <comment>Command line error message.</comment>
         <translation>No s&apos;han trobat les «Circuit Macros»!</translation>
+    </message>
+    <message>
+        <location filename="../main.py" line="141"/>
+        <source>No desktop environment available.</source>
+        <translation>No hi ha disponible cap entorn d&apos;escriptori.</translation>
     </message>
 </context>
 <context>

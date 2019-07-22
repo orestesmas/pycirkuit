@@ -234,6 +234,11 @@ to be included in TeX, LaTeX, web or similar documents.</source>
         <comment>Command line error message.</comment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../main.py" line="141"/>
+        <source>No desktop environment available.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CommandLine-UserInput1</name>
