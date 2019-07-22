@@ -24,7 +24,7 @@ __all__ = ["mainwindow"]
 
 __productname__   = "PyCirkuit"
 # Expecting trailing "-rcN" or "" for stable releases.
-__version__       = "0.2.3"
+__version__       = "0.3.0"
 __description__   = "A front-end for Circuit Macros"
 __author__        = "Orestes Mas"
 __author_email__  = "orestes@tsc.upc.edu"
