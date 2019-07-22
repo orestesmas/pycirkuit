@@ -21,7 +21,7 @@ Main program entry point/function
 #
 
 # Standard library imports
-import sys, os, inspect
+import sys, os, inspect, platform
 from os.path import isfile
 
 # Third-party imports
@@ -106,7 +106,10 @@ def _check_settings():
 
 # Main entry point
 def main():
-    app = QApplication(sys.argv)
+    if "DESKTOP_SESSION" in os.environ or platform.system() == 'Windows':
+        app = QApplication(sys.argv)
+    else:
+        app = QCoreApplication(sys.argv)
   
     # First try to load the Qt-provided translations (used in some standard dialog strings)
     qtTranslator = QTranslator()
@@ -134,6 +137,8 @@ def main():
     fileToOpen = cmdLineParser.parseCmdLine()
 
     # Start GUI
+    if type(app) != "<class 'PyQt5.QtCore.QApplication'>":
+        sys.exit("No desktop environment available.")
     my_mainWindow = MainWindow()
     my_mainWindow.show()
     if fileToOpen != None:
