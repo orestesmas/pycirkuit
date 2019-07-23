@@ -297,7 +297,8 @@ i incloure&apos;ls en documents TeX, LaTeX, Web o similars.</translation>
 The destination file already exists.</source>
         <comment>Command line message. THE STARTING NEWLINE CHARACTER (
 ) IS IMPORTANT.</comment>
-        <translation></translation>
+        <translation>
+El fitxer de destinació ja existeix.</translation>
     </message>
     <message>
         <location filename="../tools/processor.py" line="98"/>
