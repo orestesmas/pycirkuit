@@ -593,8 +593,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             writeHeader(ToolPdfToPng)
             settings.beginGroup("Export")
             dpi = settings.value("exportDPI", type=int)
-            self.extTools[ToolPdfToPng].execute(tmpFileBaseName, resolution=150)
-            copyfile(tmpFileBaseName+os.extsep+"png", tmpFileBaseName+"_display"+os.extsep+"png")
+            copyfile(tmpFileBaseName+os.extsep+"pdf", tmpFileBaseName+"_display"+os.extsep+"pdf")
+            self.extTools[ToolPdfToPng].execute(tmpFileBaseName+"_display", resolution=150)
             if settings.value("exportPNG", type=bool):
                 self.extTools[ToolPdfToPng].execute(tmpFileBaseName, resolution=dpi)
             if settings.value("exportJPEG", type=bool):
