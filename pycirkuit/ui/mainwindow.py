@@ -254,7 +254,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     @pyqtSlot()
     def _exportSettingsChanged(self):
-        self.exportImage.setEnabled(False)
+        self.exportButton.setEnabled(False)
         self.processButton.setEnabled(True)
 
     def _load_file(self, fileName):
@@ -491,15 +491,15 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     # Overwrite
                     if response == QtWidgets.QMessageBox.Yes:
                         copyfile(src, dst)
-                        self.exportImage.setEnabled(False)
+                        self.exportButton.setEnabled(False)
                     # Save with another name (and ask for it first)
                     if (response == QtWidgets.QMessageBox.NoButton) and (msgBox.clickedButton() == saveAsButton):
                         if self._ask_export_as(src, dst):
-                            self.exportImage.setEnabled(False)
+                            self.exportButton.setEnabled(False)
                     # Any other option means user doesn't want to overwrite the file -> Exit
                 else:
                     copyfile(src, dst)
-                    self.exportImage.setEnabled(False)
+                    self.exportButton.setEnabled(False)
             except PermissionError as err:
                 msgBox = QtWidgets.QMessageBox(self)
                 msgBox.setWindowTitle(_translate("MessageBox", "PyCirkuit - Error",  "Message Box title"))
@@ -509,7 +509,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
                 response = msgBox.exec()
                 if self._ask_export_as(src, dst):
-                    self.exportImage.setEnabled(False)
+                    self.exportButton.setEnabled(False)
             except OSError:
                 msgBox = QtWidgets.QMessageBox(self)
                 msgBox.setWindowTitle(_translate("MessageBox", "PyCirkuit - Error",  "Message Box title"))
@@ -621,7 +621,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         else:
             # If all went well and we have a generated image, we can 
             self.processButton.setEnabled(False)
-            self.exportImage.setEnabled(True)
+            self.exportButton.setEnabled(True)
         finally:
             os.chdir(savedWD)
             self.statusBar.showMessage("")
@@ -639,4 +639,4 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self._modify_title()
             self.actionSave.setEnabled(True)
             self.processButton.setEnabled(True)
-            self.exportImage.setEnabled(False)
+            self.exportButton.setEnabled(False)
