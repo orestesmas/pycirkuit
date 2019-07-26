@@ -67,6 +67,7 @@ class ExternalTool(abc.ABC):
         try:
             # Invoke external tool to do the job
             # For tools that give their output to STDOUT, we capture it and write contents to a file later
+            # TODO: Python Doc says "Note: Do not use stdout=PIPE or stderr=PIPE with this function as that can deadlock based on the child process output volume. Use Popen with the communicate() method when you need pipes. "
             result = subprocess.run(cmd, shell=False, check=False, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
             if result.returncode != 0:
                 info = result.stderr.decode()
