@@ -99,25 +99,31 @@
          <bool>false</bool>
         </property>
         <property name="text">
-         <string comment="Button text">Process and display</string>
+         <string comment="Button text">&amp;Process and display</string>
         </property>
         <property name="icon">
          <iconset resource="../resources/resources.qrc">
           <normaloff>:/icons/Run</normaloff>:/icons/Run</iconset>
         </property>
+        <property name="shortcut">
+         <string>Alt+P</string>
+        </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="exportImage">
+       <widget class="QPushButton" name="exportButton">
         <property name="enabled">
          <bool>false</bool>
         </property>
         <property name="text">
-         <string comment="Button text">Export</string>
+         <string comment="Button text">E&amp;xport</string>
         </property>
         <property name="icon">
          <iconset resource="../resources/resources.qrc">
           <normaloff>:/icons/Export</normaloff>:/icons/Export</iconset>
+        </property>
+        <property name="shortcut">
+         <string>Alt+X</string>
         </property>
        </widget>
       </item>
@@ -183,7 +189,7 @@
      <normaloff>:/icons/view-preview.png</normaloff>:/icons/view-preview.png</iconset>
    </property>
    <property name="windowTitle">
-    <string>&amp;Preview</string>
+    <string comment="A window title, NOT an action.">Preview</string>
    </property>
    <attribute name="dockWidgetArea">
     <number>4</number>

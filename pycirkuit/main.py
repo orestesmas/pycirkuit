@@ -26,10 +26,10 @@ from os.path import isfile
 
 # Third-party imports
 from PyQt5.QtCore import QCoreApplication, \
-                                            QTranslator, \
-                                            QLocale, \
-                                            QLibraryInfo, \
-                                            QSettings
+                         QTranslator, \
+                         QLocale, \
+                         QLibraryInfo, \
+                         QSettings
 from PyQt5.QtWidgets import QApplication
 
 # Local application imports
@@ -106,7 +106,7 @@ def _check_settings():
 
 # Main entry point
 def main():
-    if "DESKTOP_SESSION" in os.environ or platform.system() == 'Windows':
+    if ("DESKTOP_SESSION" in os.environ) or (platform.system() == 'Windows'):
         app = QApplication(sys.argv)
     else:
         app = QCoreApplication(sys.argv)
@@ -137,7 +137,7 @@ def main():
     fileToOpen = cmdLineParser.parseCmdLine()
 
     # Start GUI
-    if type(app) != "<class 'PyQt5.QtCore.QApplication'>":
+    if not isinstance(app, QApplication):
         sys.exit(_translate("CommandLine", "No desktop environment available.", ""))
     my_mainWindow = MainWindow()
     my_mainWindow.show()

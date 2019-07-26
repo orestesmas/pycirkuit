@@ -35,8 +35,11 @@ setup(name = 'pycirkuit',
     license = pycirkuit.__license_short__,
     packages = find_packages(),
     package_data = {
-        'pycirkuit': ['lib/*', 'templates/*', 'examples/*'],
+        'pycirkuit': ['doc/*', 'lib/*', 'templates/*', 'examples/*'],
     },
+    data_files = [
+        ('.', ['COPYING.md']),    # Include global license file
+        ],
     entry_points = {
         'gui_scripts': [
             'pycirkuit = pycirkuit.main:main',
