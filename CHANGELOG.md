@@ -6,14 +6,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## 0.3 series
 ### [0.3.1](https://github.com/orestesmas/pycirkuit/compare/v0.3.1..v0.3.0) : (2019-07-26) [Bugfix release]
-#### Bug fixes
-- Make behave correctly when executing from a non-graphical session (several commits).
-- Fix regression introduced by commit [e4eab569](https://github.com/orestesmas/pycirkuit/commit/e4eab569) related to image zooming.
-- Make some MessageBox titles homogeneous ([eb4ddb0c](https://github.com/orestesmas/pycirkuit/commit/eb4ddb0c)).
+#### Added
+- Added 2 more examples
 #### Changed
 - Changed some GUI names and shortcuts ([0ec9b859](https://github.com/orestesmas/pycirkuit/commit/0ec9b859)).
 - Changed export icon in settings dialog.
 - Updated catalan translation.
+#### Bug fixes
+- Implemented a missed feature: when an error is encountered while processing a file in batch (CLI) mode, allow to open the GUI to solve the issue manually ([670c51e0](https://github.com/orestesmas/pycirkuit/commit/670c51e0)).
+- Make behave correctly when executing from a non-graphical session (several commits).
+- Fix regression introduced by commit [e4eab569](https://github.com/orestesmas/pycirkuit/commit/e4eab569) related to image zooming.
+- Make some MessageBox titles homogeneous ([eb4ddb0c](https://github.com/orestesmas/pycirkuit/commit/eb4ddb0c)).
 <a name="0.3.0"></a>
 ### [0.3.0](https://github.com/orestesmas/pycirkuit/compare/v0.2.0..v0.3.0) : (2019-07-22)
 #### Added
