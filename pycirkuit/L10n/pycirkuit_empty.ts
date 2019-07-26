@@ -953,12 +953,6 @@ l=elen_
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="492"/>
-        <source>Warning</source>
-        <comment>Message Box title</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../ui/mainwindow.py" line="139"/>
         <source>Source file have unsaved changes.</source>
         <comment>Message box text</comment>
@@ -993,12 +987,6 @@ l=elen_
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="309"/>
-        <source>Critical Error</source>
-        <comment>Message Box title</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../ui/mainwindow.py" line="201"/>
         <source>The LaTeX template has not been found!
 
@@ -1027,18 +1015,8 @@ l=elen_
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="230"/>
-        <source>Warning</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../ui/mainwindow.py" line="250"/>
         <source>Please indicate the correct path to them in the settings dialog.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.py" line="251"/>
-        <source>Critical Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1101,7 +1079,7 @@ l=elen_
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="467"/>
+        <location filename="../ui/mainwindow.py" line="492"/>
         <source>PyCirkuit - Warning</source>
         <comment>Message Box title</comment>
         <translation type="unfinished"></translation>

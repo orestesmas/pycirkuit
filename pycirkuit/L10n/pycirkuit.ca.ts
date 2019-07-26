@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="ca_ES">
+<!DOCTYPE TS><TS version="2.0" language="ca_ES" sourcelanguage="">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -1027,17 +1026,6 @@ l=elen_
         <translation>Si us plau indiqueu-ne la ruta correcta al diàleg de l&apos;arranjament.</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="251"/>
-        <source>Critical Error</source>
-        <translation>Error crític</translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.py" line="492"/>
-        <source>Warning</source>
-        <comment>Message Box title</comment>
-        <translation>Avís</translation>
-    </message>
-    <message>
         <location filename="../ui/mainwindow.py" line="495"/>
         <source>Do you want to overwrite it?</source>
         <comment>Message Box text</comment>
@@ -1060,12 +1048,6 @@ l=elen_
         <source>Cannot execute command.</source>
         <comment>Error message</comment>
         <translation>No es pot executar l&apos;ordre.</translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.py" line="309"/>
-        <source>Critical Error</source>
-        <comment>Message Box title</comment>
-        <translation>Error crític</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.py" line="194"/>
@@ -1126,11 +1108,6 @@ l=elen_
         <translation>Ja hi ha un fitxer anomenat «{filename}» al directori de treball.</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="230"/>
-        <source>Warning</source>
-        <translation>Avís</translation>
-    </message>
-    <message>
         <location filename="../ui/mainwindow.py" line="140"/>
         <source>Do you want to save them before proceeding?</source>
         <comment>Message Box text</comment>
@@ -1181,7 +1158,7 @@ l=elen_
         <translation>Per poder exportar amb els nous paràmetres cal que torneu a processar el fitxer font.</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="467"/>
+        <location filename="../ui/mainwindow.py" line="492"/>
         <source>PyCirkuit - Warning</source>
         <comment>Message Box title</comment>
         <translation>PyCirkuit - Avís</translation>

@@ -134,7 +134,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def _ask_saving(self):
         # Open MessageBox and inform user
         msgBox = QtWidgets.QMessageBox(self)
-        msgBox.setWindowTitle(_translate("MessageBox", "Warning",  "Message Box title"))
+        msgBox.setWindowTitle(_translate("MessageBox", "PyCirkuit - Warning",  "Message Box title"))
         msgBox.setIcon(QtWidgets.QMessageBox.Warning)
         msgBox.setText(_translate("MessageBox", "Source file have unsaved changes.", "Message box text"))
         msgBox.setInformativeText(_translate("MessageBox", "Do you want to save them before proceeding?",  "Message Box text"))
@@ -227,7 +227,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         else:
             _cmNotFound  = _translate("MessageBox", "Cannot find the 'Circuit Macros'!\n\n")
             txt = _cmNotFound + _translate("MessageBox", "Do you want to try to search and install them automatically?")
-            response = QtWidgets.QMessageBox.question(self, _translate("MessageBox", "Warning"),  txt,  defaultButton=QtWidgets.QMessageBox.Yes)
+            response = QtWidgets.QMessageBox.question(self, _translate("MessageBox", "PyCirkuit - Warning", "Message Box title"),  txt,  defaultButton=QtWidgets.QMessageBox.Yes)
             result = False
             if response == QtWidgets.QMessageBox.Yes:
                 try:
@@ -248,7 +248,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     self.sbProgressBar.setVisible(False)
             else:
                 txt = _cmNotFound + _translate("MessageBox", "Please indicate the correct path to them in the settings dialog.")
-                QtWidgets.QMessageBox.critical(self, _translate("MessageBox", "Critical Error"),  txt)
+                QtWidgets.QMessageBox.critical(self, _translate("MessageBox", "PyCirkuit - Error", "Message Box title"),  txt)
             return result
 
 
@@ -306,7 +306,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         except OSError as e:
             errMsg = _translate("MessageBox", "Error saving source file: ", "Error message") + e.strerror + ".\n\n"
             errMsg += _translate("MessageBox", "Cannot execute command.", "Error message")
-            QtWidgets.QMessageBox.critical(self, _translate("MessageBox", "Critical Error", "Message Box title"),  errMsg)
+            QtWidgets.QMessageBox.critical(self, _translate("MessageBox", "PyCirkuit - Error", "Message Box title"),  errMsg)
             return
         else:
             settings = QSettings()
@@ -461,7 +461,16 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
 
     @pyqtSlot()
-    def on_exportImage_clicked(self):
+    def on_exportButton_clicked(self):
+        if self.openedFilename == self._translatedUnnamed:
+            msgBox = QtWidgets.QMessageBox(self)
+            msgBox.setWindowTitle(_translate("MessageBox", "PyCirkuit - Warning",  "Message Box title"))
+            msgBox.setIcon(QtWidgets.QMessageBox.Warning)
+            msgBox.setText(_translate("MessageBox", "The source file isn't saved yet.", "Message box text."))
+            msgBox.setInformativeText(_translate("MessageBox", "Please save the source file somewhere prior to exporting it.",  "Message Box text"))
+            msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
+            response = msgBox.exec()
+            return
         # TODO: The "src" file should be provided by the processor class upon requested
         settings = QSettings()
         lastWD = settings.value("General/lastWD")
@@ -480,7 +489,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             try:    
                 if os.path.exists(dst):
                     msgBox = QtWidgets.QMessageBox(self)
-                    msgBox.setWindowTitle(_translate("MessageBox", "Warning",  "Message Box title"))
+                    msgBox.setWindowTitle(_translate("MessageBox", "PyCirkuit - Warning",  "Message Box title"))
                     msgBox.setIcon(QtWidgets.QMessageBox.Warning)
                     msgBox.setText(_translate("MessageBox", "There's already a file named \"{filename}\" at working directory.", "Message box text. Don't translate '{filename}'").format(filename=self.openedFilename.partition('.')[0]+os.extsep+fileType))
                     msgBox.setInformativeText(_translate("MessageBox", "Do you want to overwrite it?",  "Message Box text"))
