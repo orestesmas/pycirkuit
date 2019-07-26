@@ -1,0 +1,45 @@
+.PS
+scale=2.54
+cct_init
+
+l=elen_
+setrgb(0,0,1)
+Rel: relay(2)
+line left_ l/2 from Rel.P1-(0.04,0)
+{
+  arrowline(left_ l/4 at last line.c); llabel(,"\tiny $i_B$")
+}
+corner
+ttmotor(up_ Rel.P2.y-Rel.P1.y,M)
+corner
+line right_ l/2
+{
+  arrowline(left_ l/4 at last line.c); rlabel(,"\tiny $i_A$")
+}
+line left_ 3*l/4 from Rel.V1
+R: dot(,,1)
+line right l/8 from Rel.V2 then down l/4 
+line left (Here.x-R.x)
+dot(,,1)
+"\footnotesize Control" above
+"\tiny A" at Rel.C2 above
+"\tiny A" at Rel.C1 below
+"\tiny B" at Rel.O2 above
+"\tiny B" at Rel.O1 above
+
+# Línies d'alimentació positiva
+setrgb(1,0,0)
+line right_ l/2 from Rel.C2
+D1: dot
+line right_ l/4 then up_ l/4
+dot(,,1); "$+v_{_M}$" above
+line right_ l/2 from Rel.O1 then up_ to D1
+
+# Línies de massa
+setrgb(0,0,0)
+line right_ 3*l/4 from Rel.O2 then down 3*l/4
+ground(,T,E); "\footnotesize GND" below
+line right_ 3*l/4 from Rel.C1
+dot
+
+.PE
