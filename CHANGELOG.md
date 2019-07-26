@@ -5,14 +5,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## 0.3 series
+### [0.3.1](https://github.com/orestesmas/pycirkuit/compare/v0.3.1..v0.3.0) : (2019-07-26) [Bugfix release]
+#### Bug fixes
+- Make behave correctly when executing from a non-graphical session (several commits).
+- Fix regression introduced by commit [e4eab569](https://github.com/orestesmas/pycirkuit/commit/e4eab569) related to image zooming.
+- Make some MessageBox titles homogeneous ([eb4ddb0c](https://github.com/orestesmas/pycirkuit/commit/eb4ddb0c)).
+#### Changed
+- Changed some GUI names and shortcuts ([0ec9b859](https://github.com/orestesmas/pycirkuit/commit/0ec9b859)).
+- Changed export icon in settings dialog.
+- Updated catalan translation.
 <a name="0.3.0"></a>
 ### [0.3.0](https://github.com/orestesmas/pycirkuit/compare/v0.2.0..v0.3.0) : (2019-07-22)
 #### Added
 - Command line interface to process files in batch mode with rich functionality: selectable raster resolution, selectable output quality, intermediate vector formats, recursivity, selectable destination dir, overwriting switch, etc.
 - Parametrized export functionality in settings.
 - Added new export formats, either vector (PDF) and raster (BMP, JPEG).
-- Zoomable graphics with no quality loss
-- Log output tab ([4251c0f](https://github.com/orestesmas/pycirkuit/commit/4251c0f))
+- Zoomable graphics with no quality loss.
+- Log output tab ([4251c0f](https://github.com/orestesmas/pycirkuit/commit/4251c0f)).
 #### Changed
 - Updated catalan translation.
 - Updated credits.
