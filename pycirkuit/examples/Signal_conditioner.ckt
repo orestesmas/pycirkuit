@@ -1,0 +1,98 @@
+.PS
+scale=2.54
+cct_init
+
+l=elen_
+
+# SEGON AMPLIFICADOR NO INVERSOR
+AO1: opamp(right_ 0.75*l,,,,R)
+"\textcircled{10}" above
+dot
+line down_ l/2
+corner
+resistor(left_ 0.9*l);llabel(,R_b)
+corner
+{
+  line up_ (AO1.In2.y-Here.y) then to AO1.In2
+}
+dot
+"\textcircled{9}" rjust
+resistor(down_ 0.75*l);rlabel(,R_a)
+ground(,T,E)
+
+# SUMADOR
+line left_ l/2 from AO1.In1 "\textcircled{8}" above
+dot
+{
+  line up_ l/4
+  corner
+  resistor(left_ 0.75*l);rlabel(,R_1)
+  line left_ l/2 "$v_y$" above
+  line down l then left_ 0.0001
+  En1: Here
+}
+{
+  line down_ l/4
+  corner
+  P: potentiometer(left_ 0.75*l,4,0.25,5mm__) with .Start at Here;rlabel(,R_2)
+  corner
+  line down_ l/2 from last [].End "\textcircled{4}" rjust
+  dot(,,1)
+  "$+V_{cc}$" below
+  move to P.Start
+  dot
+  line to (Here,P.T1) then to P.T1
+}
+line right_ l/4 from AO1.Out
+dot(,,1)
+"$v_h$" ljust
+
+# AMPLIFICADOR PSEUDO-LOGARÍTMIC
+AO2: opamp() with .Out at En1
+line left_ l/4 from AO2.In2 then down_ l/2
+Gnd: ground(,T,E)
+line left_ l/4 from AO2.In1
+dot
+"\textcircled{6}" below
+{
+  resistor(left_ 0.75*l);rlabel(,R_d);llabel(,\SI{50}{\kohm})
+  "$v_x$" above
+
+  # FEM UNA INCURSIÓ PER PINTAR EL PRIMER AMPLI NO INVERSOR
+  line left_ l/4
+  corner
+  line to (Here,AO1.Out) then left_ l/4 "\textcircled{3}" above
+  AO3: opamp(right_ 0.75*l,,,,R) with .Out at Here
+  dot(at AO3.Out)
+  line down_ l/2
+  corner
+  resistor(left_ 0.9*l);llabel(,R_5)
+  corner
+  {
+    line up_ (AO3.In2.y-Here.y) then to AO3.In2
+  }
+  dot
+  "\textcircled{2}" rjust
+  resistor(down_ 0.75*l);rlabel(,R_4)
+  ground(,T,E)
+  line left_ 0.75*l from AO3.In1 "\textcircled{1}" above
+  {
+    setrgb(0.6,0.6,0.6)
+    source(down_ Here.y-Gnd.y,V,,R);rlabel(,v_\text{sensor})
+    ground(,T,E)
+    resetrgb
+  }
+  dot(,,1)
+  "$v_s$" rjust above
+}
+line up_ l/2
+corner
+diode(right_ AO2.Out.x-Here.x);dlabel(0.4,-0.3,+,v_d,-)
+b_current(i_d,,,,0.4)
+dot
+"\textcircled{7}" ljust
+line to AO2.Out
+dot
+
+
+.PE

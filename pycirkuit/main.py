@@ -26,16 +26,16 @@ from os.path import isfile
 
 # Third-party imports
 from PyQt5.QtCore import QCoreApplication, \
-                                            QTranslator, \
-                                            QLocale, \
-                                            QLibraryInfo, \
-                                            QSettings
+                         QTranslator, \
+                         QLocale, \
+                         QLibraryInfo, \
+                         QSettings
 from PyQt5.QtWidgets import QApplication
 
 # Local application imports
+import pycirkuit
 from pycirkuit.tools.cliparser import PyCirkuitParser
 from pycirkuit.ui.mainwindow import MainWindow
-from pycirkuit import __version__
 
 # Resources for translation
 from pycirkuit.resources import resources_rc
@@ -106,10 +106,12 @@ def _check_settings():
 
 # Main entry point
 def main():
-    if "DESKTOP_SESSION" in os.environ or platform.system() == 'Windows':
+    if ("DESKTOP_SESSION" in os.environ) or (platform.system() == 'Windows'):
         app = QApplication(sys.argv)
+        pycirkuit.__haveGUI__ = True
     else:
         app = QCoreApplication(sys.argv)
+        pycirkuit.__haveGUI__ = False
   
     # First try to load the Qt-provided translations (used in some standard dialog strings)
     qtTranslator = QTranslator()
@@ -124,7 +126,7 @@ def main():
     # These two next values are passed to every instance of QSettings everywhere in the app
     QCoreApplication.setOrganizationName("PyCirkuit")
     QCoreApplication.setApplicationName("pycirkuit")
-    QCoreApplication.setApplicationVersion(__version__)
+    QCoreApplication.setApplicationVersion(pycirkuit.__version__)
 
     # Ensure meaningful settings
     _check_settings()
@@ -137,7 +139,7 @@ def main():
     fileToOpen = cmdLineParser.parseCmdLine()
 
     # Start GUI
-    if type(app) != "<class 'PyQt5.QtCore.QApplication'>":
+    if not isinstance(app, QApplication):
         sys.exit(_translate("CommandLine", "No desktop environment available.", ""))
     my_mainWindow = MainWindow()
     my_mainWindow.show()

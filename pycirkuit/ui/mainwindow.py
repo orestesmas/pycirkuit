@@ -134,7 +134,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def _ask_saving(self):
         # Open MessageBox and inform user
         msgBox = QtWidgets.QMessageBox(self)
-        msgBox.setWindowTitle(_translate("MessageBox", "Warning",  "Message Box title"))
+        msgBox.setWindowTitle(_translate("MessageBox", "PyCirkuit - Warning",  "Message Box title"))
         msgBox.setIcon(QtWidgets.QMessageBox.Warning)
         msgBox.setText(_translate("MessageBox", "Source file have unsaved changes.", "Message box text"))
         msgBox.setInformativeText(_translate("MessageBox", "Do you want to save them before proceeding?",  "Message Box text"))
@@ -227,7 +227,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         else:
             _cmNotFound  = _translate("MessageBox", "Cannot find the 'Circuit Macros'!\n\n")
             txt = _cmNotFound + _translate("MessageBox", "Do you want to try to search and install them automatically?")
-            response = QtWidgets.QMessageBox.question(self, _translate("MessageBox", "Warning"),  txt,  defaultButton=QtWidgets.QMessageBox.Yes)
+            response = QtWidgets.QMessageBox.question(self, _translate("MessageBox", "PyCirkuit - Warning", "Message Box title"),  txt,  defaultButton=QtWidgets.QMessageBox.Yes)
             result = False
             if response == QtWidgets.QMessageBox.Yes:
                 try:
@@ -248,13 +248,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     self.sbProgressBar.setVisible(False)
             else:
                 txt = _cmNotFound + _translate("MessageBox", "Please indicate the correct path to them in the settings dialog.")
-                QtWidgets.QMessageBox.critical(self, _translate("MessageBox", "Critical Error"),  txt)
+                QtWidgets.QMessageBox.critical(self, _translate("MessageBox", "PyCirkuit - Error", "Message Box title"),  txt)
             return result
 
 
     @pyqtSlot()
     def _exportSettingsChanged(self):
-        self.exportImage.setEnabled(False)
+        self.exportButton.setEnabled(False)
         self.processButton.setEnabled(True)
 
     def _load_file(self, fileName):
@@ -306,7 +306,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         except OSError as e:
             errMsg = _translate("MessageBox", "Error saving source file: ", "Error message") + e.strerror + ".\n\n"
             errMsg += _translate("MessageBox", "Cannot execute command.", "Error message")
-            QtWidgets.QMessageBox.critical(self, _translate("MessageBox", "Critical Error", "Message Box title"),  errMsg)
+            QtWidgets.QMessageBox.critical(self, _translate("MessageBox", "PyCirkuit - Error", "Message Box title"),  errMsg)
             return
         else:
             settings = QSettings()
@@ -461,7 +461,16 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
 
     @pyqtSlot()
-    def on_exportImage_clicked(self):
+    def on_exportButton_clicked(self):
+        if self.openedFilename == self._translatedUnnamed:
+            msgBox = QtWidgets.QMessageBox(self)
+            msgBox.setWindowTitle(_translate("MessageBox", "PyCirkuit - Warning",  "Message Box title"))
+            msgBox.setIcon(QtWidgets.QMessageBox.Warning)
+            msgBox.setText(_translate("MessageBox", "The source file isn't saved yet.", "Message box text."))
+            msgBox.setInformativeText(_translate("MessageBox", "Please save the source file somewhere prior to exporting it.",  "Message Box text"))
+            msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
+            response = msgBox.exec()
+            return
         # TODO: The "src" file should be provided by the processor class upon requested
         settings = QSettings()
         lastWD = settings.value("General/lastWD")
@@ -480,7 +489,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             try:    
                 if os.path.exists(dst):
                     msgBox = QtWidgets.QMessageBox(self)
-                    msgBox.setWindowTitle(_translate("MessageBox", "Warning",  "Message Box title"))
+                    msgBox.setWindowTitle(_translate("MessageBox", "PyCirkuit - Warning",  "Message Box title"))
                     msgBox.setIcon(QtWidgets.QMessageBox.Warning)
                     msgBox.setText(_translate("MessageBox", "There's already a file named \"{filename}\" at working directory.", "Message box text. Don't translate '{filename}'").format(filename=self.openedFilename.partition('.')[0]+os.extsep+fileType))
                     msgBox.setInformativeText(_translate("MessageBox", "Do you want to overwrite it?",  "Message Box text"))
@@ -491,15 +500,15 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     # Overwrite
                     if response == QtWidgets.QMessageBox.Yes:
                         copyfile(src, dst)
-                        self.exportImage.setEnabled(False)
+                        self.exportButton.setEnabled(False)
                     # Save with another name (and ask for it first)
                     if (response == QtWidgets.QMessageBox.NoButton) and (msgBox.clickedButton() == saveAsButton):
                         if self._ask_export_as(src, dst):
-                            self.exportImage.setEnabled(False)
+                            self.exportButton.setEnabled(False)
                     # Any other option means user doesn't want to overwrite the file -> Exit
                 else:
                     copyfile(src, dst)
-                    self.exportImage.setEnabled(False)
+                    self.exportButton.setEnabled(False)
             except PermissionError as err:
                 msgBox = QtWidgets.QMessageBox(self)
                 msgBox.setWindowTitle(_translate("MessageBox", "PyCirkuit - Error",  "Message Box title"))
@@ -509,7 +518,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
                 response = msgBox.exec()
                 if self._ask_export_as(src, dst):
-                    self.exportImage.setEnabled(False)
+                    self.exportButton.setEnabled(False)
             except OSError:
                 msgBox = QtWidgets.QMessageBox(self)
                 msgBox.setWindowTitle(_translate("MessageBox", "PyCirkuit - Error",  "Message Box title"))
@@ -593,8 +602,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             writeHeader(ToolPdfToPng)
             settings.beginGroup("Export")
             dpi = settings.value("exportDPI", type=int)
-            self.extTools[ToolPdfToPng].execute(tmpFileBaseName, resolution=150)
-            copyfile(tmpFileBaseName+os.extsep+"png", tmpFileBaseName+"_display"+os.extsep+"png")
+            copyfile(tmpFileBaseName+os.extsep+"pdf", tmpFileBaseName+"_display"+os.extsep+"pdf")
+            self.extTools[ToolPdfToPng].execute(tmpFileBaseName+"_display", resolution=150)
             if settings.value("exportPNG", type=bool):
                 self.extTools[ToolPdfToPng].execute(tmpFileBaseName, resolution=dpi)
             if settings.value("exportJPEG", type=bool):
@@ -621,7 +630,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         else:
             # If all went well and we have a generated image, we can 
             self.processButton.setEnabled(False)
-            self.exportImage.setEnabled(True)
+            self.exportButton.setEnabled(True)
         finally:
             os.chdir(savedWD)
             self.statusBar.showMessage("")
@@ -639,4 +648,4 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self._modify_title()
             self.actionSave.setEnabled(True)
             self.processButton.setEnabled(True)
-            self.exportImage.setEnabled(False)
+            self.exportButton.setEnabled(False)

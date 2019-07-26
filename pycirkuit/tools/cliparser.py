@@ -24,18 +24,26 @@ Module implementing the functions to run when a command option is called
 import sys
 import glob
 from os.path import abspath, realpath, isfile, isdir
+from subprocess import run
 from enum import Enum
 
 # Third-party imports
 from PyQt5.QtCore import QObject, QCoreApplication, QCommandLineParser, QCommandLineOption, QSettings
 
 # Local imports
+import pycirkuit
 from pycirkuit.exceptions import *
 from pycirkuit import Option, __productname__
 from pycirkuit.tools.processor import PyCirkuitProcessor, Overwrite
 
 # Translation function
 _translate = QCoreApplication.translate
+
+# A Enumeration class
+class Decision(Enum):
+    ABORT = 1
+    SKIP = 2
+    OPEN = 3
 
 # The command line parser (Qt-based)
 class PyCirkuitParser(QObject):
@@ -250,50 +258,29 @@ class PyCirkuitParser(QObject):
             try:
                 processor = PyCirkuitProcessor()
                 for fileName in self.requestedFilesToProcess:
+                    processed = False
                     print(_translate("CommandLine",  "Processing file:", "Command line message. Will be followed by an absolute pile path"), fileName)
-                    processor.beginProcessing(fileName)
-                    for format in self.requestedOutputFormats:
-                        try:
-                            processor.requestResult(format, dstDir=self.dstDir, overwrite=self.overwrite, dpi=self.imageParam[Option.DPI], quality=self.imageParam[Option.QUAL])
-                        except PyCktToolExecutionError as err:
-                            print("\npycirkuit:", err)
-                            question = _translate("CommandLine-UserInput2", 
-                                "Please choose what to do: [a]bort processing, [s]kip file, [o]pen in GUI for editing: ", 
-                                "WARNING!! Critical translation. You should translate this message to your language, enclosing into brackets one single DIFFERENT character for each option, and translate accordingly the characters in the next message.")
-                            answerAbort = _translate("CommandLine-UserInput2",
-                                "a", 
-                                "WARNING!! Critical translation. This char must match one of those of the message 'Please choose what to do:'")
-                            answerSkip = _translate("CommandLine-UserInput2",
-                                "s", 
-                                "WARNING!! Critical translation. This char must match one of those of the message 'Please choose what to do:'")
-                            answerOpen = _translate("CommandLine-UserInput2",
-                                "o", 
-                                "WARNING!! Critical translation. This char must match one of those of the message 'Please choose what to do:'")
-                            class Decision(Enum):
-                                ABORT = 1
-                                SKIP = 2
-                                OPEN = 3
-                            answers = {
-                                answerAbort: Decision.ABORT, 
-                                answerSkip: Decision.SKIP, 
-                                answerOpen: Decision.OPEN
-                            }
-                            answered = False
-                            while not answered:
-                                answer = input(question)
-                                if answer.lower() not in answers:
+                    while not processed:
+                        processor.beginProcessing(fileName)
+                        for format in self.requestedOutputFormats:
+                            try:
+                                processor.requestResult(format, dstDir=self.dstDir, overwrite=self.overwrite, dpi=self.imageParam[Option.DPI], quality=self.imageParam[Option.QUAL])
+                                processed = True
+                            except PyCktToolExecutionError as err:
+                                answer = self._askOnError(err)
+                                if answer == Decision.ABORT:
+                                    # Terminate program
+                                    sys.exit(-1)
+                                elif answer == Decision.SKIP:
+                                    # Consider file processed and jump to the next one
+                                    processed = True
                                     continue
-                                else:
-                                    if answers[answer] == Decision.ABORT:
-                                        sys.exit(-1)
-                                    elif answers[answer] == Decision.SKIP:
-                                        # Això no sortirà del while...
-                                        answered = True
-                                        continue
-                                    elif answers[answer] == Decision.OPEN:
-                                        # Cal obrir una altra instància del pycirkuit, possiblement en un altre thread
-                                        answered = True
-                                        pass
+                                elif answer == Decision.OPEN:
+                                    # Open a IGU
+                                    try:
+                                        run(["pycirkuit", fileName], shell=False, check=False)
+                                    except:
+                                        processed = True
                     print("")
             except PyCirkuitError as err:
                 print("\npycirkuit:", err)
@@ -311,3 +298,42 @@ class PyCirkuitParser(QObject):
             print(self._seeHelpStr.format(appName=QCoreApplication.applicationName()))
             sys.exit(-1)
 
+    def _askOnError(self, err):
+        # Test if we have GUI or not, and ask accordingly
+        print("\npycirkuit:", err)
+        if pycirkuit.__haveGUI__:
+            pass
+        question = _translate("CommandLine-UserInput2", 
+            "Please choose what to do: [a]bort processing, [s]kip file, [o]pen in GUI for editing: ", 
+            "WARNING!! Critical translation. You should translate this message to your language, enclosing into brackets one single DIFFERENT character for each option, and translate accordingly the characters in the next message.")
+        answerAbort = _translate("CommandLine-UserInput2",
+            "a", 
+            "WARNING!! Critical translation. This char must match one of those of the message 'Please choose what to do:'")
+        answerSkip = _translate("CommandLine-UserInput2",
+            "s", 
+            "WARNING!! Critical translation. This char must match one of those of the message 'Please choose what to do:'")
+        answerOpen = _translate("CommandLine-UserInput2",
+            "o", 
+            "WARNING!! Critical translation. This char must match one of those of the message 'Please choose what to do:'")
+        if pycirkuit.__haveGUI__:
+            question = _translate("CommandLine-UserInput2", 
+                "Please choose what to do: [a]bort processing, [s]kip file, [o]pen in GUI for editing: ", 
+                "WARNING!! Critical translation. You should translate this message to your language, enclosing into brackets one single DIFFERENT character for each option, and translate accordingly the characters in the next message.")
+            answers = {
+                answerAbort: Decision.ABORT, 
+                answerSkip: Decision.SKIP, 
+                answerOpen: Decision.OPEN
+            }
+        else:
+            question = _translate("CommandLine-UserInput2", 
+                "Please choose what to do: [a]bort processing, [s]kip file: ", 
+                "WARNING!! Critical translation. You should translate this message to your language, enclosing into brackets one single DIFFERENT character for each option, and translate accordingly the characters in the next message.")
+            answers = {
+                answerAbort: Decision.ABORT, 
+                answerSkip: Decision.SKIP, 
+            }
+        # Ask for user decision, loop until answered
+        while True:
+            answer = input(question)
+            if answer.lower() in answers:
+                return answers[answer]

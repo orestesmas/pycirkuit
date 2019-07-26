@@ -134,55 +134,55 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>CommandLine</name>
     <message>
-        <location filename="../tools/cliparser.py" line="104"/>
+        <location filename="../tools/cliparser.py" line="112"/>
         <source>path</source>
         <comment>Commandline argument name. If you translate this name, translate it accordingly into the path description and path syntax.</comment>
         <translation>ruta</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="104"/>
+        <location filename="../tools/cliparser.py" line="112"/>
         <source>[&lt;path&gt; [ &lt;path2&gt;...]]</source>
         <comment>Commandline argument syntax. If you translate &lt;path&gt;, translate the name and path description accordingly.</comment>
         <translation>[&lt;ruta&gt; [&lt;ruta2&gt;...]]</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="185"/>
+        <location filename="../tools/cliparser.py" line="193"/>
         <source>The given path does not match any existing file.</source>
         <comment>Commandline error message</comment>
         <translation>La ruta introduïda no concorda amb cap fitxer existent.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="214"/>
+        <location filename="../tools/cliparser.py" line="222"/>
         <source>The --dpi parameter must be an integer between 25 and 3000.</source>
         <comment>Error message</comment>
         <translation>El paràmetre --dpi ha de ser un enter entre 25 i 3000.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="224"/>
+        <location filename="../tools/cliparser.py" line="232"/>
         <source>The --quality parameter must be an integer between 0 and 100.</source>
         <comment>Error message</comment>
         <translation>El paràmetre --quality ha de ser un enter entre 0 i 100.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="246"/>
+        <location filename="../tools/cliparser.py" line="254"/>
         <source>Batch processing requested with no files.</source>
         <comment>Commandline error message</comment>
         <translation>Heu demanat un procés per lots sense fitxers.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="310"/>
+        <location filename="../tools/cliparser.py" line="297"/>
         <source>More than one file to process with no batch option given.</source>
         <comment>Commandline error message</comment>
         <translation>Més d&apos;un fitxer per processar sense haver demanat un procés per lots.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="79"/>
+        <location filename="../tools/cliparser.py" line="87"/>
         <source>Try &quot;{appName} --help&quot; to get more information.</source>
         <comment>Command-line error message. Don&apos;t translate &apos;{appName}&apos;.</comment>
         <translation>Proveu «{appName}» --help per obtenir més informació.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="43"/>
+        <location filename="../tools/cliparser.py" line="51"/>
         <source>
 {productName} is a front-end for Circuit Macros by Dwight Aplevich,
 which are a set of macros for drawing high-quality line diagrams
@@ -194,7 +194,7 @@ que són un conjunt de macros per dibuixar diagrames d&apos;alta qualitat
 i incloure&apos;ls en documents TeX, LaTeX, Web o similars.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="72"/>
+        <location filename="../tools/cliparser.py" line="80"/>
         <source>Path to source drawing file(s) to process. Wildcards accepted.
 - If no &lt;path&gt; is given, the GUI is opened.
 - If &lt;path&gt; points to only one file and no batch conversion options are present, this file is opened into the GUI for editing.
@@ -208,43 +208,43 @@ i incloure&apos;ls en documents TeX, LaTeX, Web o similars.</translation>
 - No és permès d&apos;especificar més d&apos;un fitxer per processar sense haver indicat cap opció de format de sortida.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="49"/>
+        <location filename="../tools/cliparser.py" line="57"/>
         <source>Activates batch (unattended) mode, and convert files specified by &lt;path&gt; to {formatID} format. Several output formats can be used together.</source>
         <comment>Commandline option description. Don&apos;t translate the &apos;{formatID}&apos; variable.</comment>
         <translation>Activa el processament per lots i converteix els fitxers apuntats per &lt;ruta&gt; al format {formatID}. Es poden indicar conjuntament diversos formats de sortida.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="52"/>
+        <location filename="../tools/cliparser.py" line="60"/>
         <source>Sets the resolution of output raster images (png, jpg), in dots per inch. Value &lt;N&gt; is mandatory. If option is not set, default is {defaultDPI}dpi (defined in &apos;settings&apos; dialog).</source>
         <comment>Commandline argument description. Don&apos;t translate the &apos;{defaultDPI}&apos; variable.</comment>
         <translation>Estableix la resolució de les imatges «raster» de sortida (png, jpg), en punts per polzada. El valor &lt;N&gt; és obligatori. Si no especifiqueu l&apos;opció, el valor per defecte és {defaultDPI}dpi (definit al diàleg de configuració).</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="55"/>
+        <location filename="../tools/cliparser.py" line="63"/>
         <source>Sets the quality of output raster lossy images (jpg), in percent. Value &lt;Q&gt; is mandatory. If option is not set, default is {defaultQuality}% (defined in &apos;settings&apos; dialog).</source>
         <comment>Commandline option description. Don&apos;t translate the &apos;{defaultQuality}&apos; variable.</comment>
         <translation>Estableix la qualitat de les imatges «raster» de sortida amb pèrdua (jpg), en percentatge. El valor &lt;Q&gt; és obligatori. Si no especifiqueu l&apos;opció, el valor per defecte és {defaultQuality}% (definit al diàleg de configuració).</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="69"/>
+        <location filename="../tools/cliparser.py" line="77"/>
         <source>Using this option the pattern &apos;**&apos; will match any files and zero or more subdirs, so &apos;**/*.ckt&apos; will match all files with &apos;ckt&apos; extension in the current directory and all its subdirectories.</source>
         <comment>Commandline option description.</comment>
         <translation>Si s&apos;especifica aquesta opció, el patró &apos;**&apos; concordarà amb qualsevol fitxer i zero o més subdirectoris. Així, «**/*.ckt» concordarà amb tots els fitxers amb extensió «ckt» del directori actual i tots els seus subdirectoris.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="301"/>
+        <location filename="../tools/cliparser.py" line="288"/>
         <source>Files processed: {N}.</source>
         <comment>Command line message. {N} will be an integer, don&apos;t translate it.</comment>
         <translation>Fitxers processats: {N}.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="58"/>
+        <location filename="../tools/cliparser.py" line="66"/>
         <source>Overwrite by default the converted files if they are present. If not set, user will be asked at runtime.</source>
         <comment>Commandline option description.</comment>
         <translation>Sobreescriu per defecte els fitxers convertits si ja són presents. Si no s&apos;especifica, es preguntarà en temps d&apos;execució.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="61"/>
+        <location filename="../tools/cliparser.py" line="69"/>
         <source>Follow symbolic links.
 - If not set, destination file will be saved into the same directory where the source file is, whether it&apos;s a real file or a symbolic link.
 - If set, destination file will be saved into the directory where the real source file is located.</source>
@@ -254,13 +254,13 @@ i incloure&apos;ls en documents TeX, LaTeX, Web o similars.</translation>
 - Si l&apos;especifiqueu, el fitxer de destí es desarà al mateix directori del fitxer font real.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="66"/>
+        <location filename="../tools/cliparser.py" line="74"/>
         <source>Save all converted files into the same destination directory &lt;D&gt; (value is mandatory).</source>
         <comment>Commandline option description. Don&apos;t translate &apos;&lt;D&gt;&apos;.</comment>
         <translation>Desa tots els fitxers convertits al mateix directori de destí &lt;D&gt; (el valor és obligatori).</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="253"/>
+        <location filename="../tools/cliparser.py" line="262"/>
         <source>Processing file:</source>
         <comment>Command line message. Will be followed by an absolute pile path</comment>
         <translation>Processant el fitxer:</translation>
@@ -284,7 +284,7 @@ i incloure&apos;ls en documents TeX, LaTeX, Web o similars.</translation>
         <translation>No s&apos;han trobat les «Circuit Macros»!</translation>
     </message>
     <message>
-        <location filename="../main.py" line="141"/>
+        <location filename="../main.py" line="143"/>
         <source>No desktop environment available.</source>
         <translation>No hi ha disponible cap entorn d&apos;escriptori.</translation>
     </message>
@@ -297,7 +297,8 @@ i incloure&apos;ls en documents TeX, LaTeX, Web o similars.</translation>
 The destination file already exists.</source>
         <comment>Command line message. THE STARTING NEWLINE CHARACTER (
 ) IS IMPORTANT.</comment>
-        <translation></translation>
+        <translation>
+El fitxer de destinació ja existeix.</translation>
     </message>
     <message>
         <location filename="../tools/processor.py" line="98"/>
@@ -333,28 +334,34 @@ The destination file already exists.</source>
 <context>
     <name>CommandLine-UserInput2</name>
     <message>
-        <location filename="../tools/cliparser.py" line="263"/>
+        <location filename="../tools/cliparser.py" line="309"/>
         <source>a</source>
         <comment>WARNING!! Critical translation. This char must match one of those of the message &apos;Please choose what to do:&apos;</comment>
         <translation>a</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="266"/>
+        <location filename="../tools/cliparser.py" line="312"/>
         <source>s</source>
         <comment>WARNING!! Critical translation. This char must match one of those of the message &apos;Please choose what to do:&apos;</comment>
         <translation>s</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="269"/>
+        <location filename="../tools/cliparser.py" line="315"/>
         <source>o</source>
         <comment>WARNING!! Critical translation. This char must match one of those of the message &apos;Please choose what to do:&apos;</comment>
         <translation>o</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="260"/>
+        <location filename="../tools/cliparser.py" line="319"/>
         <source>Please choose what to do: [a]bort processing, [s]kip file, [o]pen in GUI for editing: </source>
         <comment>WARNING!! Critical translation. You should translate this message to your language, enclosing into brackets one single DIFFERENT character for each option, and translate accordingly the characters in the next message.</comment>
         <translation>Escolliu què voleu fer: [a]vortar el procés, [s]altar aquest fitxer, [o]brir-lo en la IGU per editar-lo: </translation>
+    </message>
+    <message>
+        <location filename="../tools/cliparser.py" line="328"/>
+        <source>Please choose what to do: [a]bort processing, [s]kip file: </source>
+        <comment>WARNING!! Critical translation. You should translate this message to your language, enclosing into brackets one single DIFFERENT character for each option, and translate accordingly the characters in the next message.</comment>
+        <translation>Escolliu què voleu fer: [a]vortar el procés, [s]altar aquest fitxer: </translation>
     </message>
 </context>
 <context>
@@ -650,22 +657,22 @@ The destination file already exists.</source>
         <translation>PyCircuit - per Orestes Mas</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="197"/>
+        <location filename="../ui/Ui_mainwindow.py" line="199"/>
         <source>Fi&amp;le</source>
         <translation>&amp;Fitxer</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="199"/>
+        <location filename="../ui/Ui_mainwindow.py" line="201"/>
         <source>Setti&amp;ngs</source>
         <translation>Arra&amp;njament</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="211"/>
+        <location filename="../ui/Ui_mainwindow.py" line="213"/>
         <source>Open Drawing</source>
         <translation>Obre un dibuix</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="220"/>
+        <location filename="../ui/Ui_mainwindow.py" line="222"/>
         <source>New Drawing</source>
         <translation>Nou dibuix</translation>
     </message>
@@ -676,84 +683,78 @@ The destination file already exists.</source>
         <translation>Editor de la font</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="195"/>
-        <source>Process and display</source>
-        <comment>Button text</comment>
-        <translation>Processa i mostra</translation>
-    </message>
-    <message>
-        <location filename="../ui/Ui_mainwindow.py" line="207"/>
+        <location filename="../ui/Ui_mainwindow.py" line="209"/>
         <source>&amp;Quit</source>
         <comment>Menu item</comment>
         <translation>S&amp;urt</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="210"/>
+        <location filename="../ui/Ui_mainwindow.py" line="212"/>
         <source>&amp;Open...</source>
         <comment>Menu item</comment>
         <translation>&amp;Obre...</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="219"/>
+        <location filename="../ui/Ui_mainwindow.py" line="221"/>
         <source>&amp;New</source>
         <comment>Menu item</comment>
         <translation>&amp;Nou</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="223"/>
+        <location filename="../ui/Ui_mainwindow.py" line="225"/>
         <source>&amp;Save</source>
         <comment>Menu item</comment>
         <translation>&amp;Desa</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="226"/>
+        <location filename="../ui/Ui_mainwindow.py" line="228"/>
         <source>Sa&amp;ve As...</source>
         <comment>Menu item</comment>
         <translation>Desa &amp;com a...</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="231"/>
+        <location filename="../ui/Ui_mainwindow.py" line="233"/>
         <source>Ctrl+M</source>
         <translation>Ctrl+M</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="209"/>
+        <location filename="../ui/Ui_mainwindow.py" line="211"/>
         <source>Ctrl+Q</source>
         <comment>Keyboard Shortcut</comment>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="213"/>
+        <location filename="../ui/Ui_mainwindow.py" line="215"/>
         <source>Ctrl+O</source>
         <comment>Keyboard Shortcut</comment>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="216"/>
+        <location filename="../ui/Ui_mainwindow.py" line="218"/>
         <source>Configure &amp;PyCirkuit...</source>
         <comment>Menu item</comment>
         <translation>Configura el &amp;PyCirkuit...</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="218"/>
+        <location filename="../ui/Ui_mainwindow.py" line="220"/>
         <source>Ctrl+P</source>
         <comment>Keyboard Shortcut</comment>
         <translation>Ctrl+P</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="222"/>
+        <location filename="../ui/Ui_mainwindow.py" line="224"/>
         <source>Ctrl+N</source>
         <comment>Keyboard Shortcut</comment>
         <translation>Ctrl+N</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="225"/>
+        <location filename="../ui/Ui_mainwindow.py" line="227"/>
         <source>Ctrl+S</source>
         <comment>Keyboard Shortcut</comment>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="228"/>
+        <location filename="../ui/Ui_mainwindow.py" line="230"/>
         <source>Ctrl+Shift+S</source>
         <comment>Keyboard Shortcut</comment>
         <translation>Ctrl+Shift+S</translation>
@@ -801,7 +802,7 @@ The destination file already exists.</source>
         <translation>Qualsevol fitxer (*)</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="214"/>
+        <location filename="../ui/Ui_mainwindow.py" line="216"/>
         <source>&amp;About PyCirkuit</source>
         <comment>Menu item</comment>
         <translation>&amp;Quant al PyCirkuit</translation>
@@ -839,70 +840,70 @@ l=elen_
 </translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="229"/>
+        <location filename="../ui/Ui_mainwindow.py" line="231"/>
         <source>&amp;Circuit Macros manual</source>
         <translation>Manual de les &amp;Circuit Macros</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="232"/>
+        <location filename="../ui/Ui_mainwindow.py" line="234"/>
         <source>&amp;Dpic manual</source>
         <translation>Manual del &amp;Dpic</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="234"/>
+        <location filename="../ui/Ui_mainwindow.py" line="236"/>
         <source>Ctrl+D</source>
         <translation>Ctrl+D</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="208"/>
+        <location filename="../ui/Ui_mainwindow.py" line="210"/>
         <source>Close application</source>
         <comment>Status Bar Message</comment>
         <translation>Tanca l&apos;aplicació</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="215"/>
+        <location filename="../ui/Ui_mainwindow.py" line="217"/>
         <source>Application information</source>
         <comment>Status Bar Message</comment>
         <translation>Informació de l&apos;aplicació</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="217"/>
+        <location filename="../ui/Ui_mainwindow.py" line="219"/>
         <source>Opens config dialog</source>
         <comment>Status Bar Message</comment>
         <translation>Obre el diàleg de configuració</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="230"/>
+        <location filename="../ui/Ui_mainwindow.py" line="232"/>
         <source>Opens Circuit Macros manual</source>
         <comment>Status Bar Message</comment>
         <translation>Obre el manual de les Circuit Macros</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="233"/>
+        <location filename="../ui/Ui_mainwindow.py" line="235"/>
         <source>Opens Dpic manual</source>
         <comment>Status Bar Message</comment>
         <translation>Obre el manual del Dpic</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="212"/>
+        <location filename="../ui/Ui_mainwindow.py" line="214"/>
         <source>Opens an existing drawing</source>
         <comment>Status Bar Message</comment>
         <translation>Obre un dibuix existent</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="221"/>
+        <location filename="../ui/Ui_mainwindow.py" line="223"/>
         <source>Creates an empty drawing</source>
         <comment>Status Bar Message</comment>
         <translation>Crea un dibuix buit</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="224"/>
+        <location filename="../ui/Ui_mainwindow.py" line="226"/>
         <source>Saves drawing</source>
         <comment>Status Bar Message</comment>
         <translation>Desa el dibuix</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="227"/>
+        <location filename="../ui/Ui_mainwindow.py" line="229"/>
         <source>Saves drawing with new name</source>
         <comment>Status Bar Message</comment>
         <translation>Desa el dibuix amb un nom nou</translation>
@@ -938,13 +939,13 @@ l=elen_
         <translation>Registre de sortida</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="619"/>
+        <location filename="../ui/mainwindow.py" line="628"/>
         <source>Error!</source>
         <comment>Fallback text to be displayed when the image cannot be generated</comment>
         <translation>Error!</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="201"/>
+        <location filename="../ui/Ui_mainwindow.py" line="203"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Use:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt; Ctrl + Mouse Wheel to Zoom In/Out&lt;/li&gt;
@@ -959,7 +960,7 @@ l=elen_
 &lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="198"/>
+        <location filename="../ui/Ui_mainwindow.py" line="200"/>
         <source>Hel&amp;p</source>
         <translation>A&amp;juda</translation>
     </message>
@@ -982,15 +983,32 @@ l=elen_
         <translation>Fitxers JPEG (*.jpeg *.jpg)</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="196"/>
-        <source>Export</source>
+        <location filename="../ui/Ui_mainwindow.py" line="195"/>
+        <source>&amp;Process and display</source>
         <comment>Button text</comment>
-        <translation>Exporta</translation>
+        <translation>&amp;Processa i mostra</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="200"/>
-        <source>&amp;Preview</source>
-        <translation>&amp;Previsualització</translation>
+        <location filename="../ui/Ui_mainwindow.py" line="196"/>
+        <source>Alt+P</source>
+        <translation>Alt+P</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="197"/>
+        <source>E&amp;xport</source>
+        <comment>Button text</comment>
+        <translation>E&amp;xporta</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="198"/>
+        <source>Alt+X</source>
+        <translation>Alt+X</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="202"/>
+        <source>Preview</source>
+        <comment>A window title, NOT an action.</comment>
+        <translation>Previsualització</translation>
     </message>
 </context>
 <context>
@@ -1015,24 +1033,13 @@ l=elen_
         <translation>Si us plau indiqueu-ne la ruta correcta al diàleg de l&apos;arranjament.</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="251"/>
-        <source>Critical Error</source>
-        <translation>Error crític</translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.py" line="483"/>
-        <source>Warning</source>
-        <comment>Message Box title</comment>
-        <translation>Avís</translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.py" line="486"/>
+        <location filename="../ui/mainwindow.py" line="495"/>
         <source>Do you want to overwrite it?</source>
         <comment>Message Box text</comment>
         <translation>Voleu sobreescriure&apos;l?</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="488"/>
+        <location filename="../ui/mainwindow.py" line="497"/>
         <source>Save As...</source>
         <comment>Button text</comment>
         <translation>Desa com a...</translation>
@@ -1048,12 +1055,6 @@ l=elen_
         <source>Cannot execute command.</source>
         <comment>Error message</comment>
         <translation>No es pot executar l&apos;ordre.</translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.py" line="309"/>
-        <source>Critical Error</source>
-        <comment>Message Box title</comment>
-        <translation>Error crític</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.py" line="194"/>
@@ -1108,15 +1109,10 @@ l=elen_
         <translation>El fitxer font té canvis sense desar.</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="485"/>
+        <location filename="../ui/mainwindow.py" line="494"/>
         <source>There&apos;s already a file named &quot;{filename}&quot; at working directory.</source>
         <comment>Message box text. Don&apos;t translate &apos;{filename}&apos;</comment>
         <translation>Ja hi ha un fitxer anomenat «{filename}» al directori de treball.</translation>
-    </message>
-    <message>
-        <location filename="../ui/mainwindow.py" line="230"/>
-        <source>Warning</source>
-        <translation>Avís</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.py" line="140"/>
@@ -1140,25 +1136,25 @@ l=elen_
         <translation>O bé cancel·leu el diàleg d&apos;arranjaments i el PyCirkuit descarregarà i instal·larà les Circuit Macros quan calgui.</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="515"/>
+        <location filename="../ui/mainwindow.py" line="524"/>
         <source>PyCirkuit - Error</source>
         <comment>Message Box title</comment>
         <translation>PyCirkuit - Error</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="507"/>
+        <location filename="../ui/mainwindow.py" line="516"/>
         <source>Permission denied writing the file {filename}.</source>
         <comment>Message box text. Don&apos;t translate &apos;{filename}&apos;</comment>
         <translation>S&apos;ha denegat el permís mentre s&apos;escrivia el fitxer {filename}.</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="508"/>
+        <location filename="../ui/mainwindow.py" line="517"/>
         <source>Please try to export again with another name and/or location.</source>
         <comment>Message Box text</comment>
         <translation>Proveu de tornar-lo a exportar amb un altre nom i/o ubicació.</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="517"/>
+        <location filename="../ui/mainwindow.py" line="526"/>
         <source>An error has occurred trying to export the file. The error says:</source>
         <comment>Message Box text</comment>
         <translation>S&apos;ha produït un error mentre s&apos;exportava el fitxer. L&apos;error diu:</translation>
@@ -1168,23 +1164,41 @@ l=elen_
         <source>To be able to export with the new settings you have to process the source again.</source>
         <translation>Per poder exportar amb els nous paràmetres cal que torneu a processar el fitxer font.</translation>
     </message>
+    <message>
+        <location filename="../ui/mainwindow.py" line="492"/>
+        <source>PyCirkuit - Warning</source>
+        <comment>Message Box title</comment>
+        <translation>PyCirkuit - Avís</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.py" line="470"/>
+        <source>Please save the source file somewhere prior to exporting it.</source>
+        <comment>Message Box text</comment>
+        <translation>Deseu-lo en algun lloc abans d&apos;exportar-lo.</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.py" line="469"/>
+        <source>The source file isn&apos;t saved yet.</source>
+        <comment>Message box text.</comment>
+        <translation>El fitxer font encara no s&apos;ha desat.</translation>
+    </message>
 </context>
 <context>
     <name>OutputLog</name>
     <message>
-        <location filename="../ui/mainwindow.py" line="566"/>
+        <location filename="../ui/mainwindow.py" line="575"/>
         <source>&gt;&gt;&gt;&gt;&gt; Start processing</source>
         <comment>Output log info</comment>
         <translation>&gt;&gt;&gt;&gt;&gt; Inici del processament</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="567"/>
+        <location filename="../ui/mainwindow.py" line="576"/>
         <source>Output of {toolLongName}:</source>
         <comment>Output log info. Do NOT modify/translate the &apos;{toolLongName}&apos; variable</comment>
         <translation>Sortida del {toolLongName}:</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="531"/>
+        <location filename="../ui/mainwindow.py" line="540"/>
         <source> + No execution errors</source>
         <comment>Output log info</comment>
         <translation> + Sense errors d&apos;execució</translation>
@@ -1238,25 +1252,25 @@ l=elen_
 <context>
     <name>StatusBar</name>
     <message>
-        <location filename="../ui/mainwindow.py" line="570"/>
+        <location filename="../ui/mainwindow.py" line="579"/>
         <source>Converting: Circuit Macros -&gt; PIC</source>
         <comment>Status Bar message</comment>
         <translation>S&apos;està convertint: Circuit Macros -&gt; PIC</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="577"/>
+        <location filename="../ui/mainwindow.py" line="586"/>
         <source>Converting: PIC -&gt; TIKZ</source>
         <comment>Status Bar message</comment>
         <translation>S&apos;està convertint: PIC -&gt; TIKZ</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="585"/>
+        <location filename="../ui/mainwindow.py" line="594"/>
         <source>Converting: TIKZ -&gt; PDF</source>
         <comment>Status Bar message</comment>
         <translation>S&apos;està convertint: TIKZ -&gt; PDF</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="592"/>
+        <location filename="../ui/mainwindow.py" line="601"/>
         <source>Converting: PDF -&gt; PNG</source>
         <comment>Status Bar message</comment>
         <translation>S&apos;està convertint: PDF -&gt; PNG</translation>

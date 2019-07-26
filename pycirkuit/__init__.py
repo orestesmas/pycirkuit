@@ -38,6 +38,9 @@ __homepage__      = "https://github.com/orestesmas/pycirkuit"
 # The temporary working dir should be globally addressed through the entire application
 __tmpDir__ = None
 
+# Global variable that indicates if we are being executed on a desktop environment or not
+__haveGUI__ = None
+
 # CLI options
 class Option(Enum):
     TIKZ = 'tikzOption'
