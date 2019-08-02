@@ -106,7 +106,7 @@ def _check_settings():
 
 # Main entry point
 def main():
-    if ("DESKTOP_SESSION" in os.environ) or (platform.system() == 'Windows'):
+    if ("DESKTOP_SESSION" in os.environ) or (platform.system() == 'Windows') or (platform.system() == 'Darwin'):
         app = QApplication(sys.argv)
         pycirkuit.__haveGUI__ = True
     else:
