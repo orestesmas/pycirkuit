@@ -5,6 +5,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## 0.3 series
+### [0.3.2](https://github.com/orestesmas/pycirkuit/compare/v0.3.2..v0.3.0) : (2019-08-02) [Bugfix release]
+#### Bug fixes
+- Fix the GUI for Mac.
 ### [0.3.1](https://github.com/orestesmas/pycirkuit/compare/v0.3.1..v0.3.0) : (2019-07-26) [Bugfix release]
 #### Added
 - Added 2 more examples
