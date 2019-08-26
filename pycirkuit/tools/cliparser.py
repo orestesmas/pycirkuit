@@ -259,13 +259,12 @@ class PyCirkuitParser(QObject):
                 processor = PyCirkuitProcessor()
                 for fileName in self.requestedFilesToProcess:
                     processed = False
-                    print(_translate("CommandLine",  "Processing file:", "Command line message. Will be followed by an absolute pile path"), fileName)
+                    print(_translate("CommandLine",  "Processing file:", "Command line message. Will be followed by an absolute file path"), fileName)
                     while not processed:
                         processor.beginProcessing(fileName)
                         for format in self.requestedOutputFormats:
                             try:
                                 processor.requestResult(format, dstDir=self.dstDir, overwrite=self.overwrite, dpi=self.imageParam[Option.DPI], quality=self.imageParam[Option.QUAL])
-                                processed = True
                             except PyCktToolExecutionError as err:
                                 answer = self._askOnError(err)
                                 if answer == Decision.ABORT:
@@ -279,8 +278,12 @@ class PyCirkuitParser(QObject):
                                     # Open a IGU
                                     try:
                                         run(["pycirkuit", fileName], shell=False, check=False)
+                                        # Breaking here puts us out of the "for" loop and source is re-read in "beginProcesing"
+                                        break
                                     except:
                                         processed = True
+                        else:
+                            processed = True
                     print("")
             except PyCirkuitError as err:
                 print("\npycirkuit:", err)
