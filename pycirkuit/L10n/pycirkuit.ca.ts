@@ -170,7 +170,7 @@ p, li { white-space: pre-wrap; }
         <translation>Heu demanat un procés per lots sense fitxers.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="297"/>
+        <location filename="../tools/cliparser.py" line="300"/>
         <source>More than one file to process with no batch option given.</source>
         <comment>Commandline error message</comment>
         <translation>Més d&apos;un fitxer per processar sense haver demanat un procés per lots.</translation>
@@ -232,7 +232,7 @@ i incloure&apos;ls en documents TeX, LaTeX, Web o similars.</translation>
         <translation>Si s&apos;especifica aquesta opció, el patró &apos;**&apos; concordarà amb qualsevol fitxer i zero o més subdirectoris. Així, «**/*.ckt» concordarà amb tots els fitxers amb extensió «ckt» del directori actual i tots els seus subdirectoris.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="288"/>
+        <location filename="../tools/cliparser.py" line="291"/>
         <source>Files processed: {N}.</source>
         <comment>Command line message. {N} will be an integer, don&apos;t translate it.</comment>
         <translation>Fitxers processats: {N}.</translation>
@@ -260,12 +260,6 @@ i incloure&apos;ls en documents TeX, LaTeX, Web o similars.</translation>
         <translation>Desa tots els fitxers convertits al mateix directori de destí &lt;D&gt; (el valor és obligatori).</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="262"/>
-        <source>Processing file:</source>
-        <comment>Command line message. Will be followed by an absolute pile path</comment>
-        <translation>Processant el fitxer:</translation>
-    </message>
-    <message>
         <location filename="../tools/processor.py" line="77"/>
         <source>Found an invalid LaTeX template.</source>
         <comment>Error message.</comment>
@@ -287,6 +281,12 @@ i incloure&apos;ls en documents TeX, LaTeX, Web o similars.</translation>
         <location filename="../main.py" line="143"/>
         <source>No desktop environment available.</source>
         <translation>No hi ha disponible cap entorn d&apos;escriptori.</translation>
+    </message>
+    <message>
+        <location filename="../tools/cliparser.py" line="262"/>
+        <source>Processing file:</source>
+        <comment>Command line message. Will be followed by an absolute file path</comment>
+        <translation>Processant el fitxer:</translation>
     </message>
 </context>
 <context>
@@ -334,31 +334,31 @@ El fitxer de destinació ja existeix.</translation>
 <context>
     <name>CommandLine-UserInput2</name>
     <message>
-        <location filename="../tools/cliparser.py" line="309"/>
+        <location filename="../tools/cliparser.py" line="312"/>
         <source>a</source>
         <comment>WARNING!! Critical translation. This char must match one of those of the message &apos;Please choose what to do:&apos;</comment>
         <translation>a</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="312"/>
+        <location filename="../tools/cliparser.py" line="315"/>
         <source>s</source>
         <comment>WARNING!! Critical translation. This char must match one of those of the message &apos;Please choose what to do:&apos;</comment>
         <translation>s</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="315"/>
+        <location filename="../tools/cliparser.py" line="318"/>
         <source>o</source>
         <comment>WARNING!! Critical translation. This char must match one of those of the message &apos;Please choose what to do:&apos;</comment>
         <translation>o</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="319"/>
+        <location filename="../tools/cliparser.py" line="322"/>
         <source>Please choose what to do: [a]bort processing, [s]kip file, [o]pen in GUI for editing: </source>
         <comment>WARNING!! Critical translation. You should translate this message to your language, enclosing into brackets one single DIFFERENT character for each option, and translate accordingly the characters in the next message.</comment>
         <translation>Escolliu què voleu fer: [a]vortar el procés, [s]altar aquest fitxer, [o]brir-lo en la IGU per editar-lo: </translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="328"/>
+        <location filename="../tools/cliparser.py" line="331"/>
         <source>Please choose what to do: [a]bort processing, [s]kip file: </source>
         <comment>WARNING!! Critical translation. You should translate this message to your language, enclosing into brackets one single DIFFERENT character for each option, and translate accordingly the characters in the next message.</comment>
         <translation>Escolliu què voleu fer: [a]vortar el procés, [s]altar aquest fitxer: </translation>

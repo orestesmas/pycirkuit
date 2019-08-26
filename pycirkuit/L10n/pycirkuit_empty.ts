@@ -130,7 +130,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="297"/>
+        <location filename="../tools/cliparser.py" line="300"/>
         <source>More than one file to process with no batch option given.</source>
         <comment>Commandline error message</comment>
         <translation type="unfinished"></translation>
@@ -185,7 +185,7 @@ to be included in TeX, LaTeX, web or similar documents.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="288"/>
+        <location filename="../tools/cliparser.py" line="291"/>
         <source>Files processed: {N}.</source>
         <comment>Command line message. {N} will be an integer, don&apos;t translate it.</comment>
         <translation type="unfinished"></translation>
@@ -211,12 +211,6 @@ to be included in TeX, LaTeX, web or similar documents.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="262"/>
-        <source>Processing file:</source>
-        <comment>Command line message. Will be followed by an absolute pile path</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../tools/processor.py" line="77"/>
         <source>Found an invalid LaTeX template.</source>
         <comment>Error message.</comment>
@@ -237,6 +231,12 @@ to be included in TeX, LaTeX, web or similar documents.</source>
     <message>
         <location filename="../main.py" line="143"/>
         <source>No desktop environment available.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tools/cliparser.py" line="262"/>
+        <source>Processing file:</source>
+        <comment>Command line message. Will be followed by an absolute file path</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -284,31 +284,31 @@ The destination file already exists.</source>
 <context>
     <name>CommandLine-UserInput2</name>
     <message>
-        <location filename="../tools/cliparser.py" line="309"/>
+        <location filename="../tools/cliparser.py" line="312"/>
         <source>a</source>
         <comment>WARNING!! Critical translation. This char must match one of those of the message &apos;Please choose what to do:&apos;</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="312"/>
+        <location filename="../tools/cliparser.py" line="315"/>
         <source>s</source>
         <comment>WARNING!! Critical translation. This char must match one of those of the message &apos;Please choose what to do:&apos;</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="315"/>
+        <location filename="../tools/cliparser.py" line="318"/>
         <source>o</source>
         <comment>WARNING!! Critical translation. This char must match one of those of the message &apos;Please choose what to do:&apos;</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="319"/>
+        <location filename="../tools/cliparser.py" line="322"/>
         <source>Please choose what to do: [a]bort processing, [s]kip file, [o]pen in GUI for editing: </source>
         <comment>WARNING!! Critical translation. You should translate this message to your language, enclosing into brackets one single DIFFERENT character for each option, and translate accordingly the characters in the next message.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="328"/>
+        <location filename="../tools/cliparser.py" line="331"/>
         <source>Please choose what to do: [a]bort processing, [s]kip file: </source>
         <comment>WARNING!! Critical translation. You should translate this message to your language, enclosing into brackets one single DIFFERENT character for each option, and translate accordingly the characters in the next message.</comment>
         <translation type="unfinished"></translation>
