@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## 0.3 series
 ### [0.3.3] [Unreleased]
+#### Added
+- Export to SVG format ([d46e8801](https://github.com/orestesmas/pycirkuit/commit/d46e8801)).
 #### Bug Fixes
 - Reprocess erroneus source file that has been manually corrected in the middle of a batch operation ([de1c9c31bf](https://github.com/orestesmas/pycirkuit/commit/de1c9c31bf)). Closes [#50](https://github.com/orestesmas/pycirkuit/issues/50).
 ### [0.3.2](https://github.com/orestesmas/pycirkuit/compare/v0.3.2..v0.3.0) : (2019-08-02) [Bugfix release]
