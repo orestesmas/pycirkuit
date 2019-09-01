@@ -133,7 +133,8 @@ class PyCirkuitProcessor(QObject):
         # 1) Check if all tools are installed
         if not self.environmentOk:
             self.checkEnvironment()
-        self.tikzExists = self.pdfExists = self.pngExists = self.jpegExists = False
+        # 2) Set all formats to "ungenerated" state
+        self.picExists = self.tikzExists = self.svgExists = self.pdfExists = self.pngExists = self.jpegExists = False
         # Copy source file into temporary file
         self.sourceFile = src
         dst = PyCirkuitProcessor.TMP_FILE_BASENAME + ".ckt"
@@ -153,6 +154,10 @@ class PyCirkuitProcessor(QObject):
             extension = "pdf"
             startPoint = self.toPdf
             formatToCheck = self.pdfExists
+        elif option == Option.SVG:
+            extension = "svg"
+            startPoint = self.toSvg
+            formatToCheck = self.svgExists
         elif option == Option.TIKZ:
             extension = "tikz"
             startPoint = self.toTikz
@@ -204,10 +209,25 @@ class PyCirkuitProcessor(QObject):
             self.pdfExists = True
         return True
 
+    def toSvg(self, dpi=None, q=None):
+        if not self.svgExists:
+            self.toPic()
+            self.extTools[ToolDpic].execute(PyCirkuitProcessor.TMP_FILE_BASENAME, outputType=Option.SVG)
+            print(" -> SVG", end="")
+            self.svgExists = True
+        return True
+
     def toTikz(self, dpi=None, q=None):
         if not self.tikzExists:
-            self.extTools[ToolM4].execute(PyCirkuitProcessor.TMP_FILE_BASENAME)
-            self.extTools[ToolDpic].execute(PyCirkuitProcessor.TMP_FILE_BASENAME)
+            self.toPic()
+            self.extTools[ToolDpic].execute(PyCirkuitProcessor.TMP_FILE_BASENAME, outputType=Option.TIKZ)
             print(" -> TIKZ", end="")
             self.tikzExists = True
+        return True
+
+    def toPic(self, dpi=None, q=None):
+        if not self.picExists:
+            self.extTools[ToolM4].execute(PyCirkuitProcessor.TMP_FILE_BASENAME)
+            print(" -> PIC", end="")
+            self.picExists = True
         return True

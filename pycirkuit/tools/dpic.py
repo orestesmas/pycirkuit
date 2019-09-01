@@ -26,6 +26,7 @@ from os.path import *
 from PyQt5.QtCore import QCoreApplication, QStandardPaths
 
 # Local application imports
+from pycirkuit import Option
 from pycirkuit.tools.tool_base import ExternalTool, PyCktDocNotFoundError
 
 # Translation function
@@ -37,12 +38,17 @@ class ToolDpic(ExternalTool):
     def __init__(self):
         super().__init__("dpic", _translate("ExternalTool", "'PIC' language compiler", "Tool Long Name"))
         
-    def execute(self, baseName):
+    def execute(self, baseName,  outputType = Option.TIKZ):
         # Calculate src and dst names
         src = baseName + '.pic'
-        dst = baseName + '.tikz'
+        if outputType == Option.TIKZ:
+            dst = baseName + '.tikz'
+            flag = '-g'
+        elif outputType == Option.SVG:
+            dst = baseName + '.svg'
+            flag = '-v'
         # Instantiate a settings object to load config values. At this point the config have valid entries, so don't test much
-        command = [self.executableName, "-g", "{source}".format(source=src)]
+        command = [self.executableName, flag, "{source}".format(source=src)]
         errMsg = _translate("ExternalTool", "DPIC: Error converting PIC -> TIKZ", "Error message")
         super().execute(command, errMsg, destination=dst)
         
