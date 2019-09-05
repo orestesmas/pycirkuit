@@ -4,16 +4,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 0.3 series
-### [0.3.3] [Unreleased]
+## [0.4](https://github.com/orestesmas/pycirkuit/compare/v0.3.2..v0.4.0) series
+<a name="0.4.0"></a>
+### [0.4.0](https://github.com/orestesmas/pycirkuit/compare/v0.3.2..v0.4.0) : (2019-09-06)
 #### Added
 - Export to SVG format ([d46e8801](https://github.com/orestesmas/pycirkuit/commit/d46e8801)).
 #### Bug Fixes
 - Reprocess erroneus source file that has been manually corrected in the middle of a batch operation ([de1c9c31bf](https://github.com/orestesmas/pycirkuit/commit/de1c9c31bf)). Closes [#50](https://github.com/orestesmas/pycirkuit/issues/50).
-### [0.3.2](https://github.com/orestesmas/pycirkuit/compare/v0.3.2..v0.3.0) : (2019-08-02) [Bugfix release]
+
+## [0.3](https://github.com/orestesmas/pycirkuit/compare/v0.2.3..v0.3.2) series
+<a name="0.3.2"></a>
+### [0.3.2](https://github.com/orestesmas/pycirkuit/compare/v0.3.1..v0.3.2) : (2019-08-02) [Bugfix release]
 #### Bug fixes
 - Fix the GUI for Mac.
-### [0.3.1](https://github.com/orestesmas/pycirkuit/compare/v0.3.1..v0.3.0) : (2019-07-26) [Bugfix release]
+<a name="0.3.1"></a>
+### [0.3.1](https://github.com/orestesmas/pycirkuit/compare/v0.3.0..v0.3.1) : (2019-07-26) [Bugfix release]
 #### Added
 - Added 2 more examples
 #### Changed
@@ -26,7 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fix regression introduced by commit [e4eab569](https://github.com/orestesmas/pycirkuit/commit/e4eab569) related to image zooming.
 - Make some MessageBox titles homogeneous ([eb4ddb0c](https://github.com/orestesmas/pycirkuit/commit/eb4ddb0c)).
 <a name="0.3.0"></a>
-### [0.3.0](https://github.com/orestesmas/pycirkuit/compare/v0.2.0..v0.3.0) : (2019-07-22)
+### [0.3.0](https://github.com/orestesmas/pycirkuit/compare/v0.2.3..v0.3.0) : (2019-07-22)
 #### Added
 - Command line interface to process files in batch mode with rich functionality: selectable raster resolution, selectable output quality, intermediate vector formats, recursivity, selectable destination dir, overwriting switch, etc.
 - Parametrized export functionality in settings.
@@ -41,7 +46,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Clear image when 'New' menu option is clicked ([a98a4125](https://github.com/orestesmas/pycirkuit/commit/a98a4125)).
 - Fixed inconsistency between dash (-) and underscore(_) in Circuit Macros path ([27fc7680](https://github.com/orestesmas/pycirkuit/commit/27fc7680)). Closes [#33](https://github.com/orestesmas/pycirkuit/issues/33).
 
-## 0.2 series
+## [0.2](https://github.com/orestesmas/pycirkuit/compare/v0.2.0..v0.2.3) series
 ### [0.2.3](https://github.com/orestesmas/pycirkuit/compare/v0.2.2..v0.2.3) : (2019-07-10) [Bugfix release]
 #### Bug fixes
 - Fixed broken link to Circuit Macros ([2cb630f5](https://github.com/orestesmas/pycirkuit/commit/2cb630f5))
@@ -60,8 +65,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Other minor fixes.
 #### Changed
 - Updated catalan translation.
-
-
 <a name="0.2.0"></a>
 ### [0.2.0](https://github.com/orestesmas/pycirkuit/compare/v0.1..v0.2.0) : (2019-02-24)
 #### Added
