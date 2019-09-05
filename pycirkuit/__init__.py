@@ -47,6 +47,7 @@ class Option(Enum):
     PDF = 'pdfOption'
     PNG = 'pngOption'
     JPEG = 'jpgOption'
+    SVG = 'svgOption'
     DPI = 'dpiOption'
     QUAL = 'qualityOption'
     REC = 'recurseOption'

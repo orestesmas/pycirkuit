@@ -132,6 +132,10 @@ class PyCirkuitParser(QObject):
                     ["j", "jpeg"],
                     self._batchOptionStr.format(formatID='JPEG'),
                 ),
+            Option.SVG: QCommandLineOption(
+                    ["s", "svg"],
+                    self._batchOptionStr.format(formatID='SVG'),
+                ),
             Option.DPI:  QCommandLineOption(
                     ["dpi"], 
                     self._dpiOptionStr.format(defaultDPI=self.imageParam[Option.DPI]),
@@ -198,7 +202,7 @@ class PyCirkuitParser(QObject):
     
     def _checkFormats(self):
         # Test for requested output formats. If any, cli_mode is set.
-        validOutputFormats = {Option.TIKZ, Option.PNG, Option.PDF, Option.JPEG}
+        validOutputFormats = {Option.TIKZ, Option.PNG, Option.PDF, Option.JPEG, Option.SVG}
         self.requestedOutputFormats = set()
         for outputFormat in validOutputFormats:
             if self.parser.isSet(self.options[outputFormat]):
@@ -304,8 +308,6 @@ class PyCirkuitParser(QObject):
     def _askOnError(self, err):
         # Test if we have GUI or not, and ask accordingly
         print("\npycirkuit:", err)
-        if pycirkuit.__haveGUI__:
-            pass
         question = _translate("CommandLine-UserInput2", 
             "Please choose what to do: [a]bort processing, [s]kip file, [o]pen in GUI for editing: ", 
             "WARNING!! Critical translation. You should translate this message to your language, enclosing into brackets one single DIFFERENT character for each option, and translate accordingly the characters in the next message.")

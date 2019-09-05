@@ -2,10 +2,9 @@
 
 # Form implementation generated from reading ui file '/home/orestes/Devel/Software/pycirkuit/pycirkuit/ui/configdialog.ui'
 #
-# Created by: PyQt5 UI code generator 5.13.0
+# Created by: PyQt5 UI code generator 5.12.1
 #
 # WARNING! All changes made in this file will be lost!
-
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
@@ -149,6 +148,9 @@ class Ui_ConfigDialog(object):
         self.exportTIKZ.setChecked(True)
         self.exportTIKZ.setObjectName("exportTIKZ")
         self.verticalLayout_5.addWidget(self.exportTIKZ)
+        self.exportSVG = QtWidgets.QCheckBox(self.frame)
+        self.exportSVG.setObjectName("exportSVG")
+        self.verticalLayout_5.addWidget(self.exportSVG)
         self.exportPDF = QtWidgets.QCheckBox(self.frame)
         self.exportPDF.setObjectName("exportPDF")
         self.verticalLayout_5.addWidget(self.exportPDF)
@@ -268,6 +270,7 @@ class Ui_ConfigDialog(object):
         self.groupBox_vector.setTitle(_translate("ConfigDialog", "Image formats to export", "Group box title"))
         self.label_2.setText(_translate("ConfigDialog", "Choose which formats will be saved when the button \"Export\" is pressed:"))
         self.exportTIKZ.setText(_translate("ConfigDialog", "&TIKZ"))
+        self.exportSVG.setText(_translate("ConfigDialog", "SVG"))
         self.exportPDF.setText(_translate("ConfigDialog", "PD&F"))
         self.exportPNG.setText(_translate("ConfigDialog", "&PNG (raster)"))
         self.exportJPEG.setText(_translate("ConfigDialog", "&JPEG (raster)"))
@@ -276,6 +279,8 @@ class Ui_ConfigDialog(object):
         self.exportDPI.setSuffix(_translate("ConfigDialog", " dpi", "Suffix in spin box (translate to acronym)"))
         self.labelQuality.setText(_translate("ConfigDialog", "Image &quality for lossy formats like jpeg (percent):"))
         self.exportQuality.setSuffix(_translate("ConfigDialog", " %", "Spin box suffix"))
+
+
 from pycirkuit.resources import resources_rc
 
 

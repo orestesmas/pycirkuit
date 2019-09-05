@@ -477,6 +477,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         toSave = []
         if settings.value("Export/exportTIKZ", type=bool):
             toSave.append("tikz")
+        if settings.value("Export/exportSVG", type=bool):
+            toSave.append("svg")
         if settings.value("Export/exportPDF", type=bool):
             toSave.append("pdf")
         if settings.value("Export/exportPNG", type=bool):
@@ -553,7 +555,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         try:
             settings = QSettings()
             # STEP 1: Prepare the Progress Bar
-            self.sbProgressBar.setRange(0, 4)
+            self.sbProgressBar.setRange(0, 8)
             self.sbProgressBar.setValue(0)
             self.sbProgressBar.setVisible(True)
 
@@ -582,12 +584,20 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             writeOk()
             self.sbProgressBar.setValue(1)
 
-            # STEP 7: Call dpic: .PIC -> .TIKZ
+            # STEP 7a: Call dpic: .PIC -> .TIKZ
             self.statusBar.showMessage(_translate("StatusBar", "Converting: PIC -> TIKZ", "Status Bar message"))
             writeHeader(ToolDpic)
-            self.extTools[ToolDpic].execute(tmpFileBaseName)
+            self.extTools[ToolDpic].execute(tmpFileBaseName, outputType = pycirkuit.Option.TIKZ)
             writeOk()
             self.sbProgressBar.setValue(2)
+
+            # STEP 7b: Call dpic: .PIC -> .SVG
+            if settings.value("Export/exportSVG", type=bool):
+                self.statusBar.showMessage(_translate("StatusBar", "Converting: PIC -> SVG", "Status Bar message"))
+                writeHeader(ToolDpic)
+                self.extTools[ToolDpic].execute(tmpFileBaseName, outputType = pycirkuit.Option.SVG)
+                writeOk()
+                self.sbProgressBar.setValue(3)
 
             # STEP 8: Call PDFLaTeX: .TIKZ -> .PDF
             # First we have to embed the .TIKZ code inside a suitable template
@@ -595,7 +605,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             writeHeader(ToolPdfLaTeX)
             self.extTools[ToolPdfLaTeX].execute(tmpFileBaseName)
             writeOk()
-            self.sbProgressBar.setValue(3)
+            self.sbProgressBar.setValue(4)
 
             # STEP 9: Call pdftoppm to convert the PDF into a bitmap image to visualize it: .PDF -> .PNG
             self.statusBar.showMessage(_translate("StatusBar", "Converting: PDF -> PNG", "Status Bar message"))
@@ -611,9 +621,22 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 self.extTools[ToolPdfToJpeg].execute(tmpFileBaseName, resolution=dpi, quality=q)
             settings.endGroup()
             writeOk()
-            self.sbProgressBar.setValue(4)
+            self.sbProgressBar.setValue(5)
+            
+            # STEP 10: Call pdftoppm to convert the PDF into a JPEG
+            settings.beginGroup("Export")
+            if settings.value("exportJPEG", type=bool):
+                dpi = settings.value("exportDPI", type=int)
+                q = settings.value("exportQuality", type=int)
+                self.statusBar.showMessage(_translate("StatusBar", "Converting: PDF -> JPEG", "Status Bar message"))
+                writeHeader(ToolPdfToPng)
+                self.extTools[ToolPdfToJpeg].execute(tmpFileBaseName, resolution=dpi, quality=q)
+                writeOk()
+                self.sbProgressBar.setValue(6)
+            settings.endGroup()
             
             # STEP 10: Visualize the image (can fail)
+            self.sbProgressBar.setValue(7)
             self.imageViewer.setImage(tmpFileBaseName+"_display", adjustIGU=True)
 
         except PyCktToolExecutionError as err:

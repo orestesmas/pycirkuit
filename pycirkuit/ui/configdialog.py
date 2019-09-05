@@ -77,6 +77,7 @@ class ConfigDialog(QDialog, Ui_ConfigDialog):
         # Settings from the second page "Export"
         settings.beginGroup("Export")
         self.exportTIKZ.setChecked(settings.value("exportTIKZ", type=bool))
+        self.exportSVG.setChecked(settings.value("exportSVG", type=bool))
         self.exportPDF.setChecked(settings.value("exportPDF", type=bool))
         self.exportPNG.setChecked(settings.value("exportPNG", type=bool))
         self.exportJPEG.setChecked(settings.value("exportJPEG", type=bool))
@@ -88,6 +89,7 @@ class ConfigDialog(QDialog, Ui_ConfigDialog):
     def exportSettingsChanged(self):
         settings = QSettings()
         if (self.exportTIKZ.isChecked() != settings.value("Export/exportTIKZ", type=bool)) or \
+           (self.exportSVG.isChecked() != settings.value("Export/exportSVG", type=bool)) or \
            (self.exportPDF.isChecked() != settings.value("Export/exportPDF", type=bool)) or \
            (self.exportPNG.isChecked() != settings.value("Export/exportPNG", type=bool)) or \
            (self.exportJPEG.isChecked() != settings.value("Export/exportJPEG", type=bool)) or \
@@ -128,6 +130,7 @@ class ConfigDialog(QDialog, Ui_ConfigDialog):
             self.exportSettingsChange.emit()
         settings.beginGroup("Export")
         settings.setValue("exportTIKZ", self.exportTIKZ.isChecked())
+        settings.setValue("exportSVG", self.exportSVG.isChecked())
         settings.setValue("exportPDF", self.exportPDF.isChecked())
         settings.setValue("exportPNG", self.exportPNG.isChecked())
         settings.setValue("exportJPEG", self.exportJPEG.isChecked())

@@ -328,6 +328,13 @@ background-color: rgb(255, 255, 255);</string>
                 </widget>
                </item>
                <item>
+                <widget class="QCheckBox" name="exportSVG">
+                 <property name="text">
+                  <string>SVG</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="QCheckBox" name="exportPDF">
                  <property name="text">
                   <string>PD&amp;F</string>
