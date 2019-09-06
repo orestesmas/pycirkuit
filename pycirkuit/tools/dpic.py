@@ -47,8 +47,9 @@ class ToolDpic(ExternalTool):
         elif outputType == Option.SVG:
             dst = baseName + '.svg'
             flag = '-v'
+        #NOTE: We add the '-z' flag to always execute dpic in "safe mode"
         # Instantiate a settings object to load config values. At this point the config have valid entries, so don't test much
-        command = [self.executableName, flag, "{source}".format(source=src)]
+        command = [self.executableName, flag, '-z', "{source}".format(source=src)]
         errMsg = _translate("ExternalTool", "DPIC: Error converting PIC -> TIKZ", "Error message")
         super().execute(command, errMsg, destination=dst)
         
