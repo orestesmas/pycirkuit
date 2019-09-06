@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### [0.4.1] : (Unreleased)
 #### Changed
 - Improved software description.
+- Improved some error messages
+#### Added
+- Added flag to execute Dpic in 'safe mode' ([ae008a50bf](https://github.com/orestesmas/pycirkuit/commit/ae008a50bf)).
 <a name="0.4.0"></a>
 ### [0.4.0](https://github.com/orestesmas/pycirkuit/compare/v0.3.2..v0.4.0) : (2019-09-06)
 #### Added
