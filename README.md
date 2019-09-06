@@ -1,11 +1,14 @@
 # Description #
 
-PyCirkuit is a GUI/CLI front-end for [Circuit Macros] by Dwight Aplevich, which is a set of macros for drawing high-quality line diagrams to include in TeX, LaTeX, web, LibreOffice or similar documents. PyCirkuit GUI builds a live preview of the source code and can export the resulting images in TikZ code, PDF, PNG and JPEG formats. More export formats are also planned. PyCirkuit CLI mode is useful for batch-processing multiple files.
+PyCirkuit is a GUI/CLI front-end for [Circuit Macros] and [Dpic] by Dwight Aplevich, which make up a software chain for drawing high-quality line diagrams to include in LaTeX, web, LibreOffice or similar documents. PyCirkuit GUI builds a live preview of the source code and can export the resulting images in TikZ code, PDF, SVG, PNG and JPEG formats. More export formats are also planned. PyCirkuit CLI mode is useful for batch-processing multiple files.
 
 PyCirkuit is written in Python 3 using the PyQt5 libraries, but is largely inspired (in both ideas and code snippets) on [Cirkuit], a C++ application written by Matteo Agostinelli using KDE4 libraries, which is nowadays increasingly difficult to compile due to the switching, started in 2013, of KDE project from KDE4 platform to the Qt5-based KDE frameworks 5. A port of Cirkuit to KDE frameworks 5 [has begun], but's still not functional and its development appears to be stalled.
 
 [Circuit Macros]: <https://ece.uwaterloo.ca/~aplevich/Circuit_macros/>
 (M4 Macros for diagram and circuit drawing)
+
+[Dpic]: <https://gitlab.com/aplevich/dpic>
+(An implementation of the pic "little language," with support for LaTeX, PDF, SVG, Postscript, and xfig 3.2 output)
 
 [Cirkuit]: <https://wwwu.uni-klu.ac.at/magostin/cirkuit.html>
 (Cirkuit)
