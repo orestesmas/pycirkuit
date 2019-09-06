@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="ca_ES">
+<!DOCTYPE TS><TS version="2.0" language="ca_ES" sourcelanguage="">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -490,12 +489,6 @@ El fitxer de destinació ja existeix.</translation>
         <translation>Compilador de llenguatge «PIC»</translation>
     </message>
     <message>
-        <location filename="../tools/dpic.py" line="52"/>
-        <source>DPIC: Error converting PIC -&gt; TIKZ</source>
-        <comment>Error message</comment>
-        <translation>DPIC: Error en la conversió PIC -&gt; TIKZ</translation>
-    </message>
-    <message>
         <location filename="../tools/m4.py" line="36"/>
         <source>&apos;M4&apos; Macro Processor</source>
         <comment>Tool Long Name</comment>
@@ -636,7 +629,7 @@ El fitxer de destinació ja existeix.</translation>
         <translation>L&apos;haureu de cercar manualment. Hauria de ser un fitxer PDF ubicat a la carpeta {cmPath} o en una de les seves subcarpetes.</translation>
     </message>
     <message>
-        <location filename="../tools/dpic.py" line="60"/>
+        <location filename="../tools/dpic.py" line="61"/>
         <source>Module &apos;python-magic&apos; not found. Please check that all PyCirkuit dependencies are correctly installed.</source>
         <comment>Error message</comment>
         <translation>No s&apos;ha trobat el mòdul &apos;python-magic&apos;. Comproveu que teniu correctament instal·lades totes les dependències del PyCirkuit.</translation>
@@ -652,6 +645,12 @@ El fitxer de destinació ja existeix.</translation>
         <source>PDFTOPPM: Error converting PDF -&gt; JPEG</source>
         <comment>Error message</comment>
         <translation>PDFTOPPM: Error en la conversió PDF -&gt; JPEG</translation>
+    </message>
+    <message>
+        <location filename="../tools/dpic.py" line="53"/>
+        <source>DPIC: Error processing source file</source>
+        <comment>Error message</comment>
+        <translation>DPIC: Error en processar el fitxer font</translation>
     </message>
 </context>
 <context>

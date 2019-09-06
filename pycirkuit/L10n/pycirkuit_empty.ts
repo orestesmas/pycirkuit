@@ -524,7 +524,7 @@ The destination file already exists.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tools/dpic.py" line="60"/>
+        <location filename="../tools/dpic.py" line="61"/>
         <source>Module &apos;python-magic&apos; not found. Please check that all PyCirkuit dependencies are correctly installed.</source>
         <comment>Error message</comment>
         <translation type="unfinished"></translation>
@@ -539,12 +539,6 @@ The destination file already exists.</source>
         <location filename="../tools/dpic.py" line="39"/>
         <source>&apos;PIC&apos; language compiler</source>
         <comment>Tool Long Name</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../tools/dpic.py" line="52"/>
-        <source>DPIC: Error converting PIC -&gt; TIKZ</source>
-        <comment>Error message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -592,6 +586,12 @@ The destination file already exists.</source>
     <message>
         <location filename="../tools/pdftojpg.py" line="46"/>
         <source>PDFTOPPM: Error converting PDF -&gt; JPEG</source>
+        <comment>Error message</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tools/dpic.py" line="53"/>
+        <source>DPIC: Error processing source file</source>
         <comment>Error message</comment>
         <translation type="unfinished"></translation>
     </message>
