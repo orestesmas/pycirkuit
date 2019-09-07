@@ -5,9 +5,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [0.5](https://github.com/orestesmas/pycirkuit/compare/v0.4.0..v0.5.0) series
-### [0.5.0](https://github.com/orestesmas/pycirkuit/compare/v0.3.2..v0.4.0) : (2019-09-08)
+### [0.5.0](https://github.com/orestesmas/pycirkuit/compare/v0.4.0..v0.5.0) : (2019-09-08)
 #### Changed
-- Changes to ease the creation of **PyCirkuit Debian package** (thanks to Aniol for this) ([24e5753604](https://github.com/orestesmas/pycirkuit/commit/24e5753604)).
+- Changes to ease the creation of **PyCirkuit Debian package** (thanks to Aniol Martí for this) ([24e5753604](https://github.com/orestesmas/pycirkuit/commit/24e5753604)).
 - Updated README to add the installation via Debian package.
 - Updated credits.
 - Improved software description.
