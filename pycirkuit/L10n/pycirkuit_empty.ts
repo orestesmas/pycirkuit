@@ -3,36 +3,36 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <location filename="../ui/Ui_aboutdialog.py" line="274"/>
+        <location filename="../ui/Ui_aboutdialog.py" line="273"/>
         <source>About PyCirkuit</source>
         <comment>Dialog Title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_aboutdialog.py" line="284"/>
+        <location filename="../ui/Ui_aboutdialog.py" line="283"/>
         <source>&amp;About</source>
         <comment>Tab text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_aboutdialog.py" line="297"/>
+        <location filename="../ui/Ui_aboutdialog.py" line="296"/>
         <source>&amp;Version</source>
         <comment>Tab text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_aboutdialog.py" line="313"/>
+        <location filename="../ui/Ui_aboutdialog.py" line="312"/>
         <source>A&amp;uthors</source>
         <comment>Tab text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_aboutdialog.py" line="321"/>
+        <location filename="../ui/Ui_aboutdialog.py" line="320"/>
         <source>&amp;License Agreement</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_aboutdialog.py" line="275"/>
+        <location filename="../ui/Ui_aboutdialog.py" line="274"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -45,7 +45,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_aboutdialog.py" line="285"/>
+        <location filename="../ui/Ui_aboutdialog.py" line="284"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -61,7 +61,18 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_aboutdialog.py" line="298"/>
+        <location filename="../ui/Ui_aboutdialog.py" line="313"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;PyCirkuit&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; is {copyrightInfo} &amp;lt;orestes@tsc.upc.edu&amp;gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;You may use, distribute and copy PyCirkuit under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, which is shown below, or (at your option) any later version.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;PyCirkuit uses also some icons and other artwork from &amp;quot;Oxygen&amp;quot; set, from the KDE project. These icons are under the GNU LGPL v3 license. See &lt;/span&gt;&lt;a href=&quot;https://techbase.kde.org/Projects/Oxygen/Licensing&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#2980b9;&quot;&gt;https://techbase.kde.org/Projects/Oxygen/Licensing&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; and &lt;/span&gt;&lt;a href=&quot;http://www.gnu.org/copyleft/lesser.html&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#2980b9;&quot;&gt;http://www.gnu.org/copyleft/lesser.html&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_aboutdialog.py" line="297"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -70,24 +81,13 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;Original Author, Maintainer and Translator to Catalan&lt;/span&gt;&lt;/p&gt;
 &lt;hr /&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;Aniol Marti&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;Debian packages for PyCirkuit and Dpic, beta-testing and bug reporting. Contribution to CLI code.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;Debian packages for PyCirkuit, Dpic and Circuit Macros, beta-testing and bug reporting. Contribution to CLI code.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt; font-style:italic;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;Guillem Casadesus&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;Beta-testing and bug reporting on macOS&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt; font-style:italic;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;Billy Andriamahazomandimby&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-style:italic;&quot;&gt;Beta-testing and bug reporting on Windows&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/Ui_aboutdialog.py" line="314"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;PyCirkuit&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; is {copyrightInfo} &amp;lt;orestes@tsc.upc.edu&amp;gt;&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;You may use, distribute and copy PyCirkuit under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, which is shown below, or (at your option) any later version.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;PyCirkuit uses also some icons and other artwork from &amp;quot;Oxygen&amp;quot; set, from the KDE project. These icons are under the GNU LGPL v3 license. See &lt;/span&gt;&lt;a href=&quot;https://techbase.kde.org/Projects/Oxygen/Licensing&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#2980b9;&quot;&gt;https://techbase.kde.org/Projects/Oxygen/Licensing&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; and &lt;/span&gt;&lt;a href=&quot;http://www.gnu.org/copyleft/lesser.html&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#2980b9;&quot;&gt;http://www.gnu.org/copyleft/lesser.html&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

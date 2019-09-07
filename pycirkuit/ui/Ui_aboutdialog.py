@@ -2,10 +2,9 @@
 
 # Form implementation generated from reading ui file '/home/orestes/Devel/Software/pycirkuit/pycirkuit/ui/aboutdialog.ui'
 #
-# Created by: PyQt5 UI code generator 5.13.0
+# Created by: PyQt5 UI code generator 5.12.1
 #
 # WARNING! All changes made in this file will be lost!
-
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
@@ -264,7 +263,7 @@ class Ui_AboutDialog(object):
         self.verticalLayout.addWidget(self.buttonBox)
 
         self.retranslateUi(AboutDialog)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(2)
         self.buttonBox.accepted.connect(AboutDialog.accept)
         self.buttonBox.rejected.connect(AboutDialog.reject)
         QtCore.QMetaObject.connectSlotsByName(AboutDialog)
@@ -303,7 +302,7 @@ class Ui_AboutDialog(object):
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt; font-style:italic;\">Original Author, Maintainer and Translator to Catalan</span></p>\n"
 "<hr />\n"
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt; font-weight:600;\">Aniol Marti</span></p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt; font-style:italic;\">Debian packages for PyCirkuit and Dpic, beta-testing and bug reporting. Contribution to CLI code.</span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt; font-style:italic;\">Debian packages for PyCirkuit, Dpic and Circuit Macros, beta-testing and bug reporting. Contribution to CLI code.</span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:11pt; font-style:italic;\"><br /></p>\n"
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt; font-weight:600;\">Guillem Casadesus</span></p>\n"
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt; font-style:italic;\">Beta-testing and bug reporting on macOS</span></p>\n"
@@ -319,6 +318,8 @@ class Ui_AboutDialog(object):
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt;\">You may use, distribute and copy PyCirkuit under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, which is shown below, or (at your option) any later version.</span></p>\n"
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt;\">PyCirkuit uses also some icons and other artwork from &quot;Oxygen&quot; set, from the KDE project. These icons are under the GNU LGPL v3 license. See </span><a href=\"https://techbase.kde.org/Projects/Oxygen/Licensing\"><span style=\" font-size:11pt; text-decoration: underline; color:#2980b9;\">https://techbase.kde.org/Projects/Oxygen/Licensing</span></a><span style=\" font-size:11pt;\"> and </span><a href=\"http://www.gnu.org/copyleft/lesser.html\"><span style=\" font-size:11pt; text-decoration: underline; color:#2980b9;\">http://www.gnu.org/copyleft/lesser.html</span></a></p></body></html>"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tabGPL), _translate("AboutDialog", "&License Agreement"))
+
+
 from pycirkuit.resources import resources_rc
 
 
