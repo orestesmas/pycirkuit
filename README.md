@@ -23,9 +23,9 @@ PyCirkuit source code is now hosted on github.com. The project homepage is [http
 
 # Requirements #
 
-As PyCirkuit is written in python 3 and uses multiplatform GUI libraries, it loads without problems on Windows (macOS not tested). However, its execution relies on using some helper applications whose availability on non-GNU systems is irregular. Version 0.1 has been reported to work on MacOS using external tools provided by [MacPorts](https://www.macports.org/). Works on Windows from version 0.2 onwards, although it's not throughly tested.
+As PyCirkuit is written in python 3 and uses multiplatform GUI libraries, it loads without problems on GNU/Linux, Windows and macOS. However, its execution relies on using some helper applications whose availability on non-GNU systems is irregular. Version 0.1 has been reported to work on MacOS using external tools provided by [MacPorts](https://www.macports.org/). Works on Windows from version 0.2 onwards, although it's not throughly tested.
 
-To run this application you need to have the following applications/libraries installed:
+To install and run this application you need to have the following applications/libraries installed:
 
   * Qt5 libraries
   * Python 3, with virtual environment support
@@ -39,7 +39,16 @@ To run this application you need to have the following applications/libraries in
 
 
 # Installation #
-## Installing on GNU/Linux systems ##
+
+## Installing on recent Debian/Ubuntu systems ##
+
+PyCirkuit will hopefully enter Debian Sid/Bullseye shortly after the 0.5.0 release (September 2019). It will also probably be available on Ubuntu 20.04 onwards. On those systems, you can install it by the usual Debian spell (casted as root):
+
+    apt-get install pycirkuit
+
+Note that if your system is Debian Stable you will probably have to use [*pinning*](https://jaqque.sbih.org/kplug/apt-pinning.html) to install selected packages from Debian Testing, or use the more generic methods described below.
+
+## Installing on older Debian/Ubuntu or other GNU/Linux systems ##
 
 To install PyCirkuit in you computer, please follow this steps:
 
@@ -51,8 +60,8 @@ To install PyCirkuit in you computer, please follow this steps:
          texlive-base-bin texlive-extra-utils texlive-latex-extra texlive-science texlive-pictures preview-latex-style \
          m4 dpic poppler-utils python3-venv libmagic1
 
-     <sup>1</sup> Apparently, Debian does not have ```dpic``` packaged, but Ubuntu has (in
-     the *universe* repository). If you are trying PyCirkuit in a Debian system, you'll
+     <sup>1</sup> Debian Buster and older don't have ```dpic``` packaged, but Ubuntu 18.10 (cosmic) has (in
+     the *universe* repository). If you are trying PyCirkuit in such a Debian system, you'll
      have to compile and install it yourself. Luckily, this is very easy because it's a
      little program with few/no dependencies. Download ```dpic``` from
      [https://ece.uwaterloo.ca/~aplevich/dpic/](https://ece.uwaterloo.ca/~aplevich/dpic/)
@@ -84,6 +93,7 @@ To install PyCirkuit in you computer, please follow this steps:
 
 ## Installing on MacOS ##
 (These explanations were provided by some user. I cannot test them personally)
+
   1. Prerequisites and dependencies:
   
      1.1 You need to have installed Xcode and Xcode command tools. Of course, you will need also Python 3. To install it you can follow [https://www.python.org/downloads/release/python-372/](https://www.python.org/downloads/release/python-372/) or [https://docs.python-guide.org/starting/install3/osx/](https://docs.python-guide.org/starting/install3/osx/).
