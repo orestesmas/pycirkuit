@@ -25,7 +25,7 @@ import os
 from shutil import copyfile
 
 # Third-party imports
-from PyQt5.QtCore import pyqtSlot, Qt, QCoreApplication, QSettings
+from PyQt5.QtCore import pyqtSlot, Qt, QCoreApplication, QSettings,  QFileInfo
 from PyQt5 import QtCore, QtWidgets, QtGui
 from PyQt5.QtWidgets import QProgressBar
 
@@ -485,6 +485,16 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             toSave.append("png")
         if settings.value("Export/exportJPEG", type=bool):
             toSave.append("jpeg")
+        # First we must detect if destination dir is writable. If not, ask for another one and update "lastWD" setting (if it's writable)
+        while True:
+            # Get a temporary file name. Add the "lastWD" path to it
+            myDir = QFileInfo(lastWD)
+            if ( myDir.isDir() and myDir.isWritable() ):
+                break
+            else:
+                print("Dir locked!")
+                raise Exception
+        
         for fileType in toSave:
             src = os.path.join(pycirkuit.__tmpDir__.path(), "cirkuit_tmp") + os.extsep + fileType
             dst = os.path.join(lastWD, os.path.splitext(self.openedFilename)[0]) + os.extsep + fileType
