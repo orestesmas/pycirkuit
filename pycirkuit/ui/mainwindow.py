@@ -25,9 +25,9 @@ import os
 from shutil import copyfile
 
 # Third-party imports
-from PyQt5.QtCore import pyqtSlot, Qt, QCoreApplication, QSettings
+from PyQt5.QtCore import pyqtSlot, Qt, QCoreApplication, QSettings,  QFileInfo
 from PyQt5 import QtCore, QtWidgets, QtGui
-from PyQt5.QtWidgets import QProgressBar
+from PyQt5.QtWidgets import QProgressBar, QFileDialog
 
 # Local application imports
 from pycirkuit.ui.Ui_mainwindow import Ui_MainWindow
@@ -175,6 +175,20 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         if response == QtWidgets.QMessageBox.Yes:
             self.actionSave.trigger()
 
+    def _ask_writable_dir(self, offendingDir):
+        fdlg = QFileDialog(self)
+        fdlg.setWindowTitle(_translate("ConfigDialog", "Circuit Macros Location", "File Dialog Title"))
+        fdlg.setDirectory(offendingDir)
+        fdlg.setFileMode(QFileDialog.Directory)
+        fdlg.setOptions(QFileDialog.ShowDirsOnly | QFileDialog.DontUseNativeDialog | QFileDialog.ReadOnly)
+        fdlg.setViewMode(QFileDialog.Detail)
+        fdlg.setFilter(QDir.Dirs | QDir.Hidden)
+        if fdlg.exec():
+            newPath = fdlg.selectedFiles()
+        else:
+           newPath = None
+        fdlg.close()
+        return newPath
 
     def _center(self):
         # Get desktop's geometry
@@ -516,6 +530,27 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             toSave.append("png")
         if settings.value("Export/exportJPEG", type=bool):
             toSave.append("jpeg")
+        # First we must detect if destination dir is writable. If not, ask for another one and update "lastWD" setting (if it's writable)
+        while True:
+            # Get a temporary file name. Add the "lastWD" path to it
+            myDir = QFileInfo(lastWD)
+            if ( myDir.isDir() and myDir.isWritable() ):
+                break
+            else:
+                # Display error messagebox
+                msgBox = QtWidgets.QMessageBox(self)
+                msgBox.setWindowTitle(_translate("MessageBox", "PyCirkuit - Error",  "Message Box title"))
+                msgBox.setIcon(QtWidgets.QMessageBox.Critical)
+                msgBox.setText(_translate("MessageBox", "The destination directory is not writable.", "Message box text." ))
+                msgBox.setInformativeText(_translate("MessageBox", "Please enter a suitable directory to write onto.",  "Message Box text"))
+                msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
+                response = msgBox.exec()
+               # Ask user to choose another directory
+                if self._ask_writable_dir(myDir) != None:
+                    lastWD = fdlg.selectedFiles()
+                    settings.setValue("General/lastWD",  lastWD)
+                    break
+            
         for fileType in toSave:
             src = os.path.join(pycirkuit.__tmpDir__.path(), "cirkuit_tmp") + os.extsep + fileType
             dst = os.path.join(lastWD, os.path.splitext(self.openedFilename)[0]) + os.extsep + fileType
