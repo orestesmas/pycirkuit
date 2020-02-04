@@ -81,10 +81,10 @@ def _check_settings():
         settings.setValue("examplesPath", examplesPath)
     # Check last working dir (from where the files to be opened are taken)
     # This one will be initially the same as the examples path. Later on, the user actions will change it.
-    if (settings.value("lastWD",  "") == ""):
+    if (settings.value("lastSrcDir",  "") == ""):
         # Add the relative path where the examples are located
         examplesPath = os.path.normpath(os.path.join(applicationPath, 'examples'))
-        settings.setValue("lastWD", examplesPath)
+        settings.setValue("lastSrcDir", examplesPath)
     # Check the stored path to built-in documentation
     if (settings.value("docPath",  "") == ""):
         # Add the relative path where the examples are located

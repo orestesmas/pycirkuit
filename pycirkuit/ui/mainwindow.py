@@ -307,10 +307,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # Check that file is not a broken link
         fileName = os.path.normpath(fileName)
         if os.path.isfile(fileName):
-            lastWD, filename = os.path.split(fileName)
+            lastSrcDir, filename = os.path.split(fileName)
             # Change system working dir to target's dir
-            os.chdir(lastWD)
-            settings.setValue("General/lastWD", lastWD)
+            os.chdir(lastSrcDir)
+            settings.setValue("General/lastSrcDir", lastSrcDir)
             settings.sync()
             with open(filename, 'r') as f:
                 txt = f.read()
@@ -355,9 +355,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             return
         else:
             settings = QSettings()
-            lastWD, self.openedFilename = os.path.split(dst)
-            os.chdir(lastWD)
-            settings.setValue("General/lastWD", lastWD)
+            lastSrcDir, self.openedFilename = os.path.split(dst)
+            os.chdir(lastSrcDir)
+            settings.setValue("General/lastSrcDir", lastSrcDir)
             self.needSaving = False
             self._modify_title()
             self.actionSave.setEnabled(False)
@@ -421,10 +421,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.needSaving = False
         else:
             settings = QSettings()
-            lastWD, filename = os.path.split(newName)
+            lastSrcDir, filename = os.path.split(newName)
             # Change system working dir to target's dir
-            os.chdir(lastWD)
-            settings.setValue("General/lastWD", lastWD)
+            os.chdir(lastSrcDir)
+            settings.setValue("General/lastSrcDir", lastSrcDir)
             settings.sync()
             self.openedFilename = filename
             self.needSaving = True
@@ -443,7 +443,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # Show the 'load file' Dialog
         fdlg = QtWidgets.QFileDialog(self)
         fdlg.setWindowTitle(_translate("MainWindow", "Source File Selection", "File Dialog title"))
-        fdlg.setDirectory(settings.value("General/lastWD",  ""))
+        fdlg.setDirectory(settings.value("General/lastSrcDir",  ""))
         fdlg.setNameFilters([
             _translate("MainWindow", "PyCirkuit files (*.ckt)", "File filter text"), 
             _translate("MainWindow", "M4 macro files (*.m4)", "File filter text"),
@@ -476,10 +476,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     @pyqtSlot()
     def on_actionSaveAs_triggered(self):
         settings = QSettings()
-        lastWD = settings.value("General/lastWD", QtCore.QStandardPaths.displayName(QtCore.QStandardPaths.HomeLocation))
+        lastSrcDir = settings.value("General/lastSrcDir", QtCore.QStandardPaths.displayName(QtCore.QStandardPaths.HomeLocation))
         fdlg = QtWidgets.QFileDialog(self)
         fdlg.setWindowTitle(_translate("MainWindow", "Enter a file to save into", "File Dialog title"))
-        fdlg.setDirectory(lastWD)
+        fdlg.setDirectory(lastSrcDir)
         fdlg.setFilter(QtCore.QDir.AllDirs | QtCore.QDir.Files)
         fdlg.setNameFilters([
             _translate("MainWindow", "PyCirkuit files (*.ckt)", "File filter"),
@@ -497,8 +497,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     @pyqtSlot()
     def on_actionSave_triggered(self):
         settings = QSettings()
-        lastWD = settings.value("General/lastWD", "")
-        filePath = os.path.join(lastWD , self.openedFilename)
+        lastSrcDir = settings.value("General/lastSrcDir", "")
+        filePath = os.path.join(lastSrcDir , self.openedFilename)
         if os.path.isfile(filePath):
             self._save_buffer(filePath)
         else:
@@ -518,7 +518,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             return
         # TODO: The "src" file should be provided by the processor class upon requested
         settings = QSettings()
-        lastWD = settings.value("General/lastWD")
+        lastSrcDir = settings.value("General/lastSrcDir")
         toSave = []
         if settings.value("Export/exportTIKZ", type=bool):
             toSave.append("tikz")
@@ -571,11 +571,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                         if response == QtWidgets.QMessageBox.Yes:
                             copyfile(src, dst)
                             success = True
-                        # Save with another name (and ask for it first)
+                        # Save with another name/path (and ask for it first)
                         if (response == QtWidgets.QMessageBox.NoButton) and (msgBox.clickedButton() == saveAsButton):
                             dst = self._ask_export_file(dst)
-                            lastWD, f = os.path.split(dst)
-                            settings.setValue("General/lastWD", lastWD)
+                            lastSrcDir, f = os.path.split(dst)
+                            settings.setValue("General/lastSrcDir", lastSrcDir)
                             copyfile(src, dst)
                             success = True
                         # Any other option means user doesn't want to overwrite the file -> Exit
@@ -593,8 +593,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     response = msgBox.exec()
                     # Replace dst with the new user-choosed file
                     dst = self._ask_export_file(dst)
-                    lastWD, f = os.path.split(dst)
-                    settings.setValue("General/lastWD", lastWD)
+                    lastSrcDir, f = os.path.split(dst)
+                    settings.setValue("General/lastSrcDir", lastSrcDir)
                 except OSError:
                     msgBox = QtWidgets.QMessageBox(self)
                     msgBox.setWindowTitle(_translate("MessageBox", "PyCirkuit - Error",  "Message Box title"))
