@@ -71,6 +71,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # The app icon is located inside the resource file
         icon = QtGui.QIcon(":/icons/AppIcon")
         self.setWindowIcon(icon)
+        
+        # A class variable to hold the exporting dir temporarily
+        settings = QSettings()
+        self.lastDstDir = settings.value("General/lastSrcDir", "")
 
         # Connect signals with slots
         #NOTE: Is NOT necessary to MANUALLY connect most signals to slots, as 
@@ -141,6 +145,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         fdlg.setOptions(QtWidgets.QFileDialog.DontUseNativeDialog)
         fdlg.setViewMode(QtWidgets.QFileDialog.Detail)
         fdlg.setFilter(QtCore.QDir.AllDirs | QtCore.QDir.Files)
+        fdlg.selectFile(dst)
         #FIXME: Bad programming style: new format additions are been managed in too many differents places
         filterList = []
         n, e = os.path.splitext(dst)
@@ -175,14 +180,15 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         if response == QtWidgets.QMessageBox.Yes:
             self.actionSave.trigger()
 
+
     def _ask_writable_dir(self, offendingDir):
         fdlg = QFileDialog(self)
-        fdlg.setWindowTitle(_translate("ConfigDialog", "Circuit Macros Location", "File Dialog Title"))
+        fdlg.setWindowTitle(_translate("MainWindow", "Enter new directory", "File Dialog Title"))
         fdlg.setDirectory(offendingDir)
         fdlg.setFileMode(QFileDialog.Directory)
         fdlg.setOptions(QFileDialog.ShowDirsOnly | QFileDialog.DontUseNativeDialog | QFileDialog.ReadOnly)
         fdlg.setViewMode(QFileDialog.Detail)
-        fdlg.setFilter(QDir.Dirs | QDir.Hidden)
+        fdlg.setFilter(QtCore.QDir.Dirs | QtCore.QDir.Hidden)
         if fdlg.exec():
             newPath = fdlg.selectedFiles()
         else:
@@ -249,6 +255,26 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             error = PyCirkuitError(errMsg)
             self._display_error(error)
             return False
+
+
+
+    def _ensure_writable_location(self, dstDir):
+        while True:
+            dstDirInfo = QFileInfo(dstDir)
+            if ( dstDirInfo.isDir() and dstDirInfo.isWritable() ):
+                return dstDir
+            else:
+                # Display error messagebox
+                msgBox = QtWidgets.QMessageBox(self)
+                msgBox.setWindowTitle(_translate("MessageBox", "PyCirkuit - Error",  "Message Box title"))
+                msgBox.setIcon(QtWidgets.QMessageBox.Critical)
+                msgBox.setText(_translate("MessageBox", "The exporting destination directory is not writable.", "Message box text." ))
+                msgBox.setInformativeText(_translate("MessageBox", "Please enter a suitable directory to write into.",  "Message Box text"))
+                msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
+                msgBox.exec()
+                # Ask user to choose another directory
+                dstDir = self._ask_writable_dir(dstDirInfo.canonicalPath())[0]
+
 
 
     @pyqtSlot(PyCirkuitError)
@@ -344,10 +370,16 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.resizeDocks([self.previewWidget], [rect.width() + extraWidth +2], Qt.Horizontal)
 
 
+
     def _save_buffer(self,  dst):
+        """ Saves the content of the editing buffer onto disk.
+        
+        Arguments:
+        dst -- the destination directory
+        """
         try:
-            f = open(dst,'w', encoding='UTF-8')
-            f.write(self.sourceText.toPlainText())
+            with open(dst,'w', encoding='UTF-8') as f:
+                f.write(self.sourceText.toPlainText())
         except OSError as e:
             errMsg = _translate("MessageBox", "Error saving source file: ", "Error message") + e.strerror + ".\n\n"
             errMsg += _translate("MessageBox", "Cannot execute command.", "Error message")
@@ -358,11 +390,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             lastSrcDir, self.openedFilename = os.path.split(dst)
             os.chdir(lastSrcDir)
             settings.setValue("General/lastSrcDir", lastSrcDir)
+            self.lastDstDir = lastSrcDir
             self.needSaving = False
             self._modify_title()
             self.actionSave.setEnabled(False)
-        finally:
-            f.close()
 
 
     def closeEvent(self,  event):
@@ -497,8 +528,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     @pyqtSlot()
     def on_actionSave_triggered(self):
         settings = QSettings()
-        lastSrcDir = settings.value("General/lastSrcDir", "")
-        filePath = os.path.join(lastSrcDir , self.openedFilename)
+        # Set destination dir to the same value of source dir. Defaults to empty.
+        self.lastDstDir = settings.value("General/lastSrcDir", "")
+        filePath = os.path.join(self.lastDstDir , self.openedFilename)
+        # If file exists, save onto it. If not (first save of unnamed file), ask for a name.
         if os.path.isfile(filePath):
             self._save_buffer(filePath)
         else:
@@ -518,7 +551,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             return
         # TODO: The "src" file should be provided by the processor class upon requested
         settings = QSettings()
-        lastSrcDir = settings.value("General/lastSrcDir")
+        # Try to put the exported files into the same dir where the source resides
+        self.lastDstDir = settings.value("General/lastSrcDir")
         toSave = []
         if settings.value("Export/exportTIKZ", type=bool):
             toSave.append("tikz")
@@ -530,30 +564,15 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             toSave.append("png")
         if settings.value("Export/exportJPEG", type=bool):
             toSave.append("jpeg")
-        # First we must detect if destination dir is writable. If not, ask for another one and update "lastWD" setting (if it's writable)
-        while True:
-            # Get a temporary file name. Add the "lastWD" path to it
-            myDir = QFileInfo(lastWD)
-            if ( myDir.isDir() and myDir.isWritable() ):
-                break
-            else:
-                # Display error messagebox
-                msgBox = QtWidgets.QMessageBox(self)
-                msgBox.setWindowTitle(_translate("MessageBox", "PyCirkuit - Error",  "Message Box title"))
-                msgBox.setIcon(QtWidgets.QMessageBox.Critical)
-                msgBox.setText(_translate("MessageBox", "The destination directory is not writable.", "Message box text." ))
-                msgBox.setInformativeText(_translate("MessageBox", "Please enter a suitable directory to write onto.",  "Message Box text"))
-                msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
-                response = msgBox.exec()
-               # Ask user to choose another directory
-                if self._ask_writable_dir(myDir) != None:
-                    lastWD = fdlg.selectedFiles()
-                    settings.setValue("General/lastWD",  lastWD)
-                    break
-            
+        
+        # First we must detect if destination dir is writable. If not, ask for another one and update "lastSrcDir" setting (if it's writable)
+        self.lastDstDir = self._ensure_writable_location(self.lastDstDir)
+        
+        # Next we do a loop for every export format requested
         for fileType in toSave:
             src = os.path.join(pycirkuit.__tmpDir__.path(), "cirkuit_tmp") + os.extsep + fileType
-            dst = os.path.join(lastWD, os.path.splitext(self.openedFilename)[0]) + os.extsep + fileType
+            # First try for destination path
+            dst = os.path.join(self.lastDstDir, os.path.splitext(self.openedFilename)[0]) + os.extsep + fileType
             success = False
             while not success:
                 try:    
@@ -574,8 +593,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                         # Save with another name/path (and ask for it first)
                         if (response == QtWidgets.QMessageBox.NoButton) and (msgBox.clickedButton() == saveAsButton):
                             dst = self._ask_export_file(dst)
-                            lastSrcDir, f = os.path.split(dst)
-                            settings.setValue("General/lastSrcDir", lastSrcDir)
+                            self.lastDstDir, f = os.path.split(dst)
                             copyfile(src, dst)
                             success = True
                         # Any other option means user doesn't want to overwrite the file -> Exit
@@ -593,7 +611,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     response = msgBox.exec()
                     # Replace dst with the new user-choosed file
                     dst = self._ask_export_file(dst)
-                    lastSrcDir, f = os.path.split(dst)
                     settings.setValue("General/lastSrcDir", lastSrcDir)
                 except OSError:
                     msgBox = QtWidgets.QMessageBox(self)
