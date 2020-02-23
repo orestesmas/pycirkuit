@@ -27,7 +27,7 @@ from shutil import copyfile
 # Third-party imports
 from PyQt5.QtCore import pyqtSlot, Qt, QCoreApplication, QSettings,  QFileInfo
 from PyQt5 import QtCore, QtWidgets, QtGui
-from PyQt5.QtWidgets import QProgressBar, QFileDialog
+from PyQt5.QtWidgets import QProgressBar, QFileDialog,  QDialog
 
 # Local application imports
 from pycirkuit.ui.Ui_mainwindow import Ui_MainWindow
@@ -73,6 +73,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.setWindowIcon(icon)
         
         # A class variable to hold the exporting dir temporarily
+        # Set destination dir to the same value of source dir. Defaults to empty.
         settings = QSettings()
         self.lastDstDir = settings.value("General/lastSrcDir", "")
 
@@ -186,7 +187,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         fdlg.setWindowTitle(_translate("MainWindow", "Enter new directory", "File Dialog Title"))
         fdlg.setDirectory(offendingDir)
         fdlg.setFileMode(QFileDialog.Directory)
-        fdlg.setOptions(QFileDialog.ShowDirsOnly | QFileDialog.DontUseNativeDialog | QFileDialog.ReadOnly)
+        fdlg.setOptions(QFileDialog.ShowDirsOnly | QFileDialog.DontUseNativeDialog)
         fdlg.setViewMode(QFileDialog.Detail)
         fdlg.setFilter(QtCore.QDir.Dirs | QtCore.QDir.Hidden)
         if fdlg.exec():
@@ -336,8 +337,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             lastSrcDir, filename = os.path.split(fileName)
             # Change system working dir to target's dir
             os.chdir(lastSrcDir)
+            # Make new source dir persistent
             settings.setValue("General/lastSrcDir", lastSrcDir)
             settings.sync()
+            # Destination dir for saving and exporting will be equal to source dir initially
+            self.lastDstDir = lastSrcDir
             with open(filename, 'r') as f:
                 txt = f.read()
                 self.sourceText.setPlainText(txt)
@@ -377,20 +381,20 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         Arguments:
         dst -- the destination directory
         """
+        # We decided to handle exceptions
         try:
             with open(dst,'w', encoding='UTF-8') as f:
                 f.write(self.sourceText.toPlainText())
-        except OSError as e:
-            errMsg = _translate("MessageBox", "Error saving source file: ", "Error message") + e.strerror + ".\n\n"
-            errMsg += _translate("MessageBox", "Cannot execute command.", "Error message")
+        except FileNotFoundError:
+            raise
+        except PermissionError:
+            errMsg = _translate("MessageBox", "Error saving source file: Destination is not writable.\n\n", "Error message")
+            errMsg += _translate("MessageBox", "Please select a suitable destination to save into.", "Error message")
             QtWidgets.QMessageBox.critical(self, _translate("MessageBox", "PyCirkuit - Error", "Message Box title"),  errMsg)
-            return
+            raise
         else:
-            settings = QSettings()
-            lastSrcDir, self.openedFilename = os.path.split(dst)
-            os.chdir(lastSrcDir)
-            settings.setValue("General/lastSrcDir", lastSrcDir)
-            self.lastDstDir = lastSrcDir
+            # If saving succeeded, write down the export path and file name
+            self.lastDstDir, self.openedFilename = os.path.split(dst)
             self.needSaving = False
             self._modify_title()
             self.actionSave.setEnabled(False)
@@ -519,23 +523,28 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         fdlg.setFileMode(QtWidgets.QFileDialog.AnyFile)
         fdlg.setViewMode(QtWidgets.QFileDialog.Detail)
         fdlg.setAcceptMode(QtWidgets.QFileDialog.AcceptSave)
-        if fdlg.exec():
+        while (fdlg.exec() == QDialog.Accepted):
             dst = fdlg.selectedFiles()[0]
-            self._save_buffer(dst)
-        fdlg.close()
+            try:
+                self._save_buffer(dst)
+                return
+            except PermissionError:
+                pass
 
 
     @pyqtSlot()
     def on_actionSave_triggered(self):
-        settings = QSettings()
-        # Set destination dir to the same value of source dir. Defaults to empty.
-        self.lastDstDir = settings.value("General/lastSrcDir", "")
+        # Try to save into the last destination dir used.
         filePath = os.path.join(self.lastDstDir , self.openedFilename)
-        # If file exists, save onto it. If not (first save of unnamed file), ask for a name.
-        if os.path.isfile(filePath):
-            self._save_buffer(filePath)
-        else:
+        # Check empty name
+        if (self.openedFilename == self._translatedUnnamed ):
             self.actionSaveAs.trigger()
+        else:
+            # Try to save. If it fails (non-writable location...), ask for a name.
+            try:
+                self._save_buffer(filePath)
+            except PermissionError:
+                self.actionSaveAs.trigger()
 
 
     @pyqtSlot()
@@ -549,10 +558,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
             response = msgBox.exec()
             return
-        # TODO: The "src" file should be provided by the processor class upon requested
+
+        # Fetch the formats to save. For now the extensions are fixed
         settings = QSettings()
-        # Try to put the exported files into the same dir where the source resides
-        self.lastDstDir = settings.value("General/lastSrcDir")
         toSave = []
         if settings.value("Export/exportTIKZ", type=bool):
             toSave.append("tikz")
@@ -610,8 +618,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
                     response = msgBox.exec()
                     # Replace dst with the new user-choosed file
-                    dst = self._ask_export_file(dst)
-                    settings.setValue("General/lastSrcDir", lastSrcDir)
+                    self.lastDstDir = self._ask_export_file(dst)
                 except OSError:
                     msgBox = QtWidgets.QMessageBox(self)
                     msgBox.setWindowTitle(_translate("MessageBox", "PyCirkuit - Error",  "Message Box title"))
