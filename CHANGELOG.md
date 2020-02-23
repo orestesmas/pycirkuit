@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [0.5](https://github.com/orestesmas/pycirkuit/compare/v0.4.0..v0.5.0) series
+<a name="0.5.1"></a>
+### [0.5.1](https://github.com/orestesmas/pycirkuit/compare/v0.5.0..v0.5.1) : (2020-02-23) [Bugfix Release]
+#### Bug Fixes
+- Fixed nasty bug when trying to save/export into a non-writable location ([7e26ff4b20](https://github.com/orestesmas/pycirkuit/commit/7e26ff4b20)). Closes [#58](https://github.com/orestesmas/pycirkuit/issues/58).
+<a name="0.5.0"></a>
 ### [0.5.0](https://github.com/orestesmas/pycirkuit/compare/v0.4.0..v0.5.0) : (2019-09-08)
 #### Changed
 - Changes to ease the creation of **PyCirkuit Debian package** (thanks to Aniol Martí for this) ([24e5753604](https://github.com/orestesmas/pycirkuit/commit/24e5753604)).
@@ -58,9 +63,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed inconsistency between dash (-) and underscore(_) in Circuit Macros path ([27fc7680](https://github.com/orestesmas/pycirkuit/commit/27fc7680)). Closes [#33](https://github.com/orestesmas/pycirkuit/issues/33).
 
 ## [0.2](https://github.com/orestesmas/pycirkuit/compare/v0.2.0..v0.2.3) series
+<a name="0.2.3"></a>
 ### [0.2.3](https://github.com/orestesmas/pycirkuit/compare/v0.2.2..v0.2.3) : (2019-07-10) [Bugfix release]
 #### Bug fixes
 - Fixed broken link to Circuit Macros ([2cb630f5](https://github.com/orestesmas/pycirkuit/commit/2cb630f5))
+<a name="0.2.2"></a>
 ### [0.2.2](https://github.com/orestesmas/pycirkuit/compare/v0.2.1..v0.2.2) : (2019-03-10) [Bugfix release]
 #### Bug fixes
 - Fixed nasty bug found just after the last release when testing the debian package: ask for an alternate location when exporting to a non-writable location ([3c57f8a1](https://github.com/orestesmas/pycirkuit/commit/3c57f8a1)). Closes [#32](https://github.com/orestesmas/pycirkuit/issues/32).
