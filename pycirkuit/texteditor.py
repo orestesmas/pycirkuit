@@ -27,14 +27,16 @@ from PyQt5.QtGui import QKeySequence
 # Translation function
 _translate = QCoreApplication.translate
 
+
 class pycktTextEditor(QTextEdit):
     """
     Class documentation goes here.
     """
+
     def __init__(self, parent=None):
         """
         Constructor
-        
+
         @param parent reference to the parent widget
         @type QTextEdit
         """
@@ -47,15 +49,15 @@ class pycktTextEditor(QTextEdit):
             self._change_font_size(-1)
         else:
             super().keyPressEvent(event)
-    
+
     def wheelEvent(self, event):
-        if (event.modifiers()==Qt.ControlModifier):
+        if event.modifiers() == Qt.ControlModifier:
             event.accept()
             numSteps = event.angleDelta() / 120
             self._change_font_size(numSteps.y())
         else:
             super().wheelEvent(event)
-        
+
     def _change_font_size(self, steps):
         editorFont = self.font()
         fontSize = editorFont.pointSize()

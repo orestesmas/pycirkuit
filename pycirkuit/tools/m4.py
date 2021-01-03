@@ -29,20 +29,34 @@ from pycirkuit.tools.tool_base import ExternalTool
 # Translation function
 _translate = QCoreApplication.translate
 
+
 class ToolM4(ExternalTool):
     # Class variable
-    ID = 'M4'
+    ID = "M4"
+
     def __init__(self):
-        super().__init__("m4", _translate("ExternalTool", "'M4' Macro Processor", "Tool Long Name"))
-        
+        super().__init__(
+            "m4", _translate("ExternalTool", "'M4' Macro Processor", "Tool Long Name")
+        )
+
     def execute(self, baseName):
         # Calculate src and dst names
-        src = baseName + '.ckt'
-        dst = baseName + '.pic'
+        src = baseName + ".ckt"
+        dst = baseName + ".pic"
         # Instantiate a settings object to load config values. At this point the config have valid entries, so don't test much
         settings = QSettings()
-        cmPath = settings.value("General/cmPath") 
+        cmPath = settings.value("General/cmPath")
         srcPath = settings.value("General/lastSrcDir")
-        command = [self.executableName , "-I", "{cmPath}".format(cmPath=cmPath),  "-I", "{srcPath}".format(srcPath=srcPath), "pgf.m4",  "{source}".format(source=src)]
-        errMsg = _translate("ExternalTool", "M4: Error converting CKT -> PIC",  "Error message")
+        command = [
+            self.executableName,
+            "-I",
+            "{cmPath}".format(cmPath=cmPath),
+            "-I",
+            "{srcPath}".format(srcPath=srcPath),
+            "pgf.m4",
+            "{source}".format(source=src),
+        ]
+        errMsg = _translate(
+            "ExternalTool", "M4: Error converting CKT -> PIC", "Error message"
+        )
         super().execute(command, errMsg, destination=dst)

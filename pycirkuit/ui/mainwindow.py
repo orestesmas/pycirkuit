@@ -20,14 +20,14 @@ Module implementing MainWindow.
 #
 
 # Standard library imports
-#import sys
+# import sys
 import os
 from shutil import copyfile
 
 # Third-party imports
-from PyQt5.QtCore import pyqtSlot, Qt, QCoreApplication, QSettings,  QFileInfo
+from PyQt5.QtCore import pyqtSlot, Qt, QCoreApplication, QSettings, QFileInfo
 from PyQt5 import QtCore, QtWidgets, QtGui
-from PyQt5.QtWidgets import QProgressBar, QFileDialog,  QDialog
+from PyQt5.QtWidgets import QProgressBar, QFileDialog, QDialog
 
 # Local application imports
 from pycirkuit.ui.Ui_mainwindow import Ui_MainWindow
@@ -48,10 +48,12 @@ import pycirkuit
 # Translation function
 _translate = QCoreApplication.translate
 
+
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     """
     Class documentation goes here.
     """
+
     def __init__(self, parent=None):
         """
         Constructor
@@ -61,8 +63,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         """
         super().__init__(parent)
         # This is the translated name for unnamed files
-        self._translatedUnnamed = _translate("MainWindow", "unnamed", "Initial name of a new empty file")
-        
+        self._translatedUnnamed = _translate(
+            "MainWindow", "unnamed", "Initial name of a new empty file"
+        )
+
         # This is to avoid starting the app with buffer marked as "dirty", and hence needing saving
         # This occurs because the "setupUI" method modifies text and hence triggers a textChanged signal
         self.insideConstructor = True
@@ -71,14 +75,14 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # The app icon is located inside the resource file
         icon = QtGui.QIcon(":/icons/AppIcon")
         self.setWindowIcon(icon)
-        
+
         # A class variable to hold the exporting dir temporarily
         # Set destination dir to the same value of source dir. Defaults to empty.
         settings = QSettings()
         self.lastDstDir = settings.value("General/lastSrcDir", "")
 
         # Connect signals with slots
-        #NOTE: Is NOT necessary to MANUALLY connect most signals to slots, as 
+        # NOTE: Is NOT necessary to MANUALLY connect most signals to slots, as
         # pyuic5 calls QtCore.QMetaObject.connectSlotsByName in Ui_configdialog.py
         # do such connections AUTOMATICALLY (so connecting them manually triggers slots twice)
         self.imageViewer.conversion_failed.connect(self._display_error)
@@ -90,7 +94,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         # Set up the editor
         font = QtGui.QFont()
-        font.setFamily('Courier')
+        font.setFamily("Courier")
         font.setFixedPitch(True)
         font.setPointSize(12)
         self.sourceText.setFont(font)
@@ -98,7 +102,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # Initialize editor contents with a default drawing template
         self.needSaving = False
         self.on_actionNew_triggered()
-        
+
         # Center the window on screen
         self._center()
 
@@ -109,57 +113,74 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.sbProgressBar.setTextVisible(False)
         self.sbProgressBar.setVisible(False)
         self.statusBar.addPermanentWidget(self.sbProgressBar)
-        
+
         # We're quitting constructor
         self.insideConstructor = False
 
-
     def _check_export_dir(self, dir):
         fdlg = QtWidgets.QFileDialog(self)
-        fdlg.setWindowTitle(_translate("MainWindow", "Enter a writable directory to save into",  "Window Title"))
+        fdlg.setWindowTitle(
+            _translate(
+                "MainWindow", "Enter a writable directory to save into", "Window Title"
+            )
+        )
         fdlg.setDirectory(dir)
         fdlg.setFileMode(QtWidgets.QFileDialog.Directory)
-        fdlg.setOptions(QtWidgets.QFileDialog.DontUseNativeDialog | QtWidgets.QFileDialog.ShowDirsOnly)
+        fdlg.setOptions(
+            QtWidgets.QFileDialog.DontUseNativeDialog
+            | QtWidgets.QFileDialog.ShowDirsOnly
+        )
         fdlg.setViewMode(QtWidgets.QFileDialog.List)
         while True:
             if fdlg.exec() == QtWidgets.QFileDialog.Accepted:
                 newDir = fdlg.selectedFiles()[0]
-                #TODO: Check if selected dir is writable
+                # TODO: Check if selected dir is writable
                 try:
-                    name = os.path.join(newDir, 'test.txt')
-                    with open(name, 'w'):
+                    name = os.path.join(newDir, "test.txt")
+                    with open(name, "w"):
                         pass
                 except:
                     pass
                 return newDir
             else:
-                #Dialog cancelled,  we must return with the dir name unchanged
+                # Dialog cancelled,  we must return with the dir name unchanged
                 break
         return dir
 
-
     def _ask_export_file(self, dst):
         fdlg = QtWidgets.QFileDialog(self)
-        fdlg.setWindowTitle(_translate("MainWindow", "Enter a file to save into",  "Window Title"))
+        fdlg.setWindowTitle(
+            _translate("MainWindow", "Enter a file to save into", "Window Title")
+        )
         fdlg.setDirectory(dst)
         fdlg.setFileMode(QtWidgets.QFileDialog.AnyFile)
         fdlg.setOptions(QtWidgets.QFileDialog.DontUseNativeDialog)
         fdlg.setViewMode(QtWidgets.QFileDialog.Detail)
         fdlg.setFilter(QtCore.QDir.AllDirs | QtCore.QDir.Files)
         fdlg.selectFile(dst)
-        #FIXME: Bad programming style: new format additions are been managed in too many differents places
+        # FIXME: Bad programming style: new format additions are been managed in too many differents places
         filterList = []
         n, e = os.path.splitext(dst)
-        if e == '.tikz':
-            filterList.append(_translate("MainWindow", "TikZ files (*.tikz)", "File filter"))
-        elif e == '.pdf':
-            filterList.append(_translate("MainWindow", "PDF files (*.pdf)", "File filter"))
-        elif e == '.png':
-            filterList.append(_translate("MainWindow", "PNG files (*.png)", "File filter"))
-        elif e == '.jpeg':
-            filterList.append(_translate("MainWindow", "JPEG files (*.jpeg *.jpg)", "File filter"))
-        elif e == '.svg':
-            filterList.append(_translate("MainWindow", "SVG files (*.svg)", "File filter"))
+        if e == ".tikz":
+            filterList.append(
+                _translate("MainWindow", "TikZ files (*.tikz)", "File filter")
+            )
+        elif e == ".pdf":
+            filterList.append(
+                _translate("MainWindow", "PDF files (*.pdf)", "File filter")
+            )
+        elif e == ".png":
+            filterList.append(
+                _translate("MainWindow", "PNG files (*.png)", "File filter")
+            )
+        elif e == ".jpeg":
+            filterList.append(
+                _translate("MainWindow", "JPEG files (*.jpeg *.jpg)", "File filter")
+            )
+        elif e == ".svg":
+            filterList.append(
+                _translate("MainWindow", "SVG files (*.svg)", "File filter")
+            )
         filterList.append(_translate("MainWindow", "Any files (*)", "File filter"))
         fdlg.setNameFilters(filterList)
         if fdlg.exec():
@@ -167,24 +188,36 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         fdlg.close()
         return dst
 
-
     def _ask_saving(self):
         # Open MessageBox and inform user
         msgBox = QtWidgets.QMessageBox(self)
-        msgBox.setWindowTitle(_translate("MessageBox", "PyCirkuit - Warning",  "Message Box title"))
+        msgBox.setWindowTitle(
+            _translate("MessageBox", "PyCirkuit - Warning", "Message Box title")
+        )
         msgBox.setIcon(QtWidgets.QMessageBox.Warning)
-        msgBox.setText(_translate("MessageBox", "Source file have unsaved changes.", "Message box text"))
-        msgBox.setInformativeText(_translate("MessageBox", "Do you want to save them before proceeding?",  "Message Box text"))
+        msgBox.setText(
+            _translate(
+                "MessageBox", "Source file have unsaved changes.", "Message box text"
+            )
+        )
+        msgBox.setInformativeText(
+            _translate(
+                "MessageBox",
+                "Do you want to save them before proceeding?",
+                "Message Box text",
+            )
+        )
         msgBox.setStandardButtons(QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
         msgBox.setDefaultButton(QtWidgets.QMessageBox.Yes)
         response = msgBox.exec()
         if response == QtWidgets.QMessageBox.Yes:
             self.actionSave.trigger()
 
-
     def _ask_writable_dir(self, offendingDir):
         fdlg = QFileDialog(self)
-        fdlg.setWindowTitle(_translate("MainWindow", "Enter new directory", "File Dialog Title"))
+        fdlg.setWindowTitle(
+            _translate("MainWindow", "Enter new directory", "File Dialog Title")
+        )
         fdlg.setDirectory(offendingDir)
         fdlg.setFileMode(QFileDialog.Directory)
         fdlg.setOptions(QFileDialog.ShowDirsOnly | QFileDialog.DontUseNativeDialog)
@@ -193,7 +226,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         if fdlg.exec():
             newPath = fdlg.selectedFiles()
         else:
-           newPath = None
+            newPath = None
         fdlg.close()
         return newPath
 
@@ -209,16 +242,15 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # Finally, move the physical window using the top-left corner coords:
         self.move(winRect.x(), winRect.y())
 
-
     def _check_programs(self):
         try:
             # Dictionary using a class as index and a class instance as value
             self.extTools = {
                 ToolM4: ToolM4(),
-                ToolDpic: ToolDpic(), 
-                ToolPdfLaTeX: ToolPdfLaTeX(), 
-                ToolPdfToPng: ToolPdfToPng(), 
-                ToolPdfToJpeg: ToolPdfToJpeg()
+                ToolDpic: ToolDpic(),
+                ToolPdfLaTeX: ToolPdfLaTeX(),
+                ToolPdfToPng: ToolPdfToPng(),
+                ToolPdfToJpeg: ToolPdfToJpeg(),
             }
         except PyCktToolNotFoundError as err:
             # Open MessageBox and inform user
@@ -233,55 +265,84 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             return False
         return True
 
-
     def _check_templates(self):
         settings = QSettings()
-        template = settings.value("General/templatePath",  "")
+        template = settings.value("General/templatePath", "")
         if os.path.exists(template):
-            with open(template, 'r') as t:
+            with open(template, "r") as t:
                 templateCode = t.read()
                 if "%%SOURCE%%" in templateCode:
                     return True
                 else:
-                    errMsg  = _translate("MessageBox", "The specified LaTeX template seems invalid!\n\n", "Error message")
-                    errMsg += _translate("MessageBox", "Please indicate a correct one in the Settings.\n\n", "Error message")
-                    errMsg += _translate("MessageBox", "Cannot generate the preview.", "Error message")
+                    errMsg = _translate(
+                        "MessageBox",
+                        "The specified LaTeX template seems invalid!\n\n",
+                        "Error message",
+                    )
+                    errMsg += _translate(
+                        "MessageBox",
+                        "Please indicate a correct one in the Settings.\n\n",
+                        "Error message",
+                    )
+                    errMsg += _translate(
+                        "MessageBox", "Cannot generate the preview.", "Error message"
+                    )
                     error = PyCirkuitError(errMsg)
                     self._display_error(error)
                     return False
         else:
-            errMsg  = _translate("MessageBox", "The LaTeX template has not been found!\n\n", "Error message")
-            errMsg += _translate("MessageBox", "Please indicate its correct PATH in the Settings.\n\n", "Error message")
-            errMsg += _translate("MessageBox", "Cannot generate the preview.", "Error message")
+            errMsg = _translate(
+                "MessageBox",
+                "The LaTeX template has not been found!\n\n",
+                "Error message",
+            )
+            errMsg += _translate(
+                "MessageBox",
+                "Please indicate its correct PATH in the Settings.\n\n",
+                "Error message",
+            )
+            errMsg += _translate(
+                "MessageBox", "Cannot generate the preview.", "Error message"
+            )
             error = PyCirkuitError(errMsg)
             self._display_error(error)
             return False
 
-
-
     def _ensure_writable_location(self, dstDir):
         while True:
             dstDirInfo = QFileInfo(dstDir)
-            if ( dstDirInfo.isDir() and dstDirInfo.isWritable() ):
+            if dstDirInfo.isDir() and dstDirInfo.isWritable():
                 return dstDir
             else:
                 # Display error messagebox
                 msgBox = QtWidgets.QMessageBox(self)
-                msgBox.setWindowTitle(_translate("MessageBox", "PyCirkuit - Error",  "Message Box title"))
+                msgBox.setWindowTitle(
+                    _translate("MessageBox", "PyCirkuit - Error", "Message Box title")
+                )
                 msgBox.setIcon(QtWidgets.QMessageBox.Critical)
-                msgBox.setText(_translate("MessageBox", "The exporting destination directory is not writable.", "Message box text." ))
-                msgBox.setInformativeText(_translate("MessageBox", "Please enter a suitable directory to write into.",  "Message Box text"))
+                msgBox.setText(
+                    _translate(
+                        "MessageBox",
+                        "The exporting destination directory is not writable.",
+                        "Message box text.",
+                    )
+                )
+                msgBox.setInformativeText(
+                    _translate(
+                        "MessageBox",
+                        "Please enter a suitable directory to write into.",
+                        "Message Box text",
+                    )
+                )
                 msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
                 msgBox.exec()
                 # Ask user to choose another directory
                 dstDir = self._ask_writable_dir(dstDirInfo.canonicalPath())[0]
 
-
-
     @pyqtSlot(PyCirkuitError)
     def _display_error(self, error):
         # Open MessageBox and inform user
-        #TODO: Use this method to display message boxes
+        # TODO: Use this method to display message boxes
         msgBox = QtWidgets.QMessageBox(self)
         msgBox.setWindowTitle(error.title)
         msgBox.setIcon(QtWidgets.QMessageBox.Critical)
@@ -291,19 +352,34 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         msgBox.setDefaultButton(QtWidgets.QMessageBox.Ok)
         msgBox.exec()
 
-
     def _enforce_circuit_macros(self):
         cmMgr = CircuitMacrosManager(self)
         if cmMgr.check_installed():
             return True
         else:
-            _cmNotFound  = _translate("MessageBox", "Cannot find the 'Circuit Macros'!\n\n")
-            txt = _cmNotFound + _translate("MessageBox", "Do you want to try to search and install them automatically?")
-            response = QtWidgets.QMessageBox.question(self, _translate("MessageBox", "PyCirkuit - Warning", "Message Box title"),  txt,  defaultButton=QtWidgets.QMessageBox.Yes)
+            _cmNotFound = _translate(
+                "MessageBox", "Cannot find the 'Circuit Macros'!\n\n"
+            )
+            txt = _cmNotFound + _translate(
+                "MessageBox",
+                "Do you want to try to search and install them automatically?",
+            )
+            response = QtWidgets.QMessageBox.question(
+                self,
+                _translate("MessageBox", "PyCirkuit - Warning", "Message Box title"),
+                txt,
+                defaultButton=QtWidgets.QMessageBox.Yes,
+            )
             result = False
             if response == QtWidgets.QMessageBox.Yes:
                 try:
-                    self.statusBar.showMessage(_translate("StatusBar", "Downloading and unpacking Circuit Macros", "Status Bar message"))
+                    self.statusBar.showMessage(
+                        _translate(
+                            "StatusBar",
+                            "Downloading and unpacking Circuit Macros",
+                            "Status Bar message",
+                        )
+                    )
                     app = QtWidgets.QApplication.instance()
                     app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
                     self.sbProgressBar.setRange(0, 100)
@@ -319,10 +395,16 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     self.statusBar.clearMessage()
                     self.sbProgressBar.setVisible(False)
             else:
-                txt = _cmNotFound + _translate("MessageBox", "Please indicate the correct path to them in the settings dialog.")
-                QtWidgets.QMessageBox.critical(self, _translate("MessageBox", "PyCirkuit - Error", "Message Box title"),  txt)
+                txt = _cmNotFound + _translate(
+                    "MessageBox",
+                    "Please indicate the correct path to them in the settings dialog.",
+                )
+                QtWidgets.QMessageBox.critical(
+                    self,
+                    _translate("MessageBox", "PyCirkuit - Error", "Message Box title"),
+                    txt,
+                )
             return result
-
 
     @pyqtSlot()
     def _exportSettingsChanged(self):
@@ -342,14 +424,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             settings.sync()
             # Destination dir for saving and exporting will be equal to source dir initially
             self.lastDstDir = lastSrcDir
-            with open(filename, 'r') as f:
+            with open(filename, "r") as f:
                 txt = f.read()
                 self.sourceText.setPlainText(txt)
                 self.openedFilename = filename
                 self.needSaving = False
                 self._modify_title()
                 self.on_processButton_clicked()
-
 
     def _modify_title(self):
         if self.needSaving:
@@ -358,39 +439,56 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             title = "PyCirkuit - {filename}".format(filename=self.openedFilename)
         self.setWindowTitle(title)
 
-
     @pyqtSlot()
     def _resize_preview(self):
         # First, retrieve the pixmap rect
-        rect = self.imageViewer.getRect() 
+        rect = self.imageViewer.getRect()
         # Next, calculate the differences between dock widget and its contents
         extraHeight = self.previewWidget.height() - self.imageViewer.viewport().height()
-        extraWidth  = self.previewWidget.width() - self.imageViewer.viewport().width()
+        extraWidth = self.previewWidget.width() - self.imageViewer.viewport().width()
         # Then resize the dock widget in a way that acknowledges the size constraints of other widgets
         dockWidgetLocation = self.dockWidgetArea(self.previewWidget)
-        if (dockWidgetLocation == Qt.TopDockWidgetArea) or (dockWidgetLocation == Qt.BottomDockWidgetArea):
-            self.resizeDocks([self.previewWidget], [rect.height() + extraHeight +2], Qt.Vertical)
-        elif (dockWidgetLocation == Qt.LeftDockWidgetArea) or (dockWidgetLocation == Qt.RightDockWidgetArea):
-            self.resizeDocks([self.previewWidget], [rect.width() + extraWidth +2], Qt.Horizontal)
+        if (dockWidgetLocation == Qt.TopDockWidgetArea) or (
+            dockWidgetLocation == Qt.BottomDockWidgetArea
+        ):
+            self.resizeDocks(
+                [self.previewWidget], [rect.height() + extraHeight + 2], Qt.Vertical
+            )
+        elif (dockWidgetLocation == Qt.LeftDockWidgetArea) or (
+            dockWidgetLocation == Qt.RightDockWidgetArea
+        ):
+            self.resizeDocks(
+                [self.previewWidget], [rect.width() + extraWidth + 2], Qt.Horizontal
+            )
 
+    def _save_buffer(self, dst):
+        """Saves the content of the editing buffer onto disk.
 
-
-    def _save_buffer(self,  dst):
-        """ Saves the content of the editing buffer onto disk.
-        
         Arguments:
         dst -- the destination directory
         """
         # We decided to handle exceptions
         try:
-            with open(dst,'w', encoding='UTF-8') as f:
+            with open(dst, "w", encoding="UTF-8") as f:
                 f.write(self.sourceText.toPlainText())
         except FileNotFoundError:
             raise
         except PermissionError:
-            errMsg = _translate("MessageBox", "Error saving source file: Destination is not writable.\n\n", "Error message")
-            errMsg += _translate("MessageBox", "Please select a suitable destination to save into.", "Error message")
-            QtWidgets.QMessageBox.critical(self, _translate("MessageBox", "PyCirkuit - Error", "Message Box title"),  errMsg)
+            errMsg = _translate(
+                "MessageBox",
+                "Error saving source file: Destination is not writable.\n\n",
+                "Error message",
+            )
+            errMsg += _translate(
+                "MessageBox",
+                "Please select a suitable destination to save into.",
+                "Error message",
+            )
+            QtWidgets.QMessageBox.critical(
+                self,
+                _translate("MessageBox", "PyCirkuit - Error", "Message Box title"),
+                errMsg,
+            )
             raise
         else:
             # If saving succeeded, write down the export path and file name
@@ -399,12 +497,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self._modify_title()
             self.actionSave.setEnabled(False)
 
-
-    def closeEvent(self,  event):
+    def closeEvent(self, event):
         if self.needSaving:
             self._ask_saving()
         super().closeEvent(event)
-
 
     @pyqtSlot()
     def on_actionAbout_triggered(self):
@@ -413,7 +509,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         """
         dlg = AboutDialog()
         dlg.exec()
-
 
     @pyqtSlot()
     def on_actionCMMan_triggered(self):
@@ -426,13 +521,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 # I choose the former because I want Qt to deal with the differences between OSes
                 QtGui.QDesktopServices.openUrl(QtCore.QUrl.fromLocalFile(cmPath))
             except PyCktCMManNotFoundError as error:
-                QtWidgets.QMessageBox.warning(self, error.title,  str(error))
-
+                QtWidgets.QMessageBox.warning(self, error.title, str(error))
 
     @pyqtSlot()
     def on_actionDpicMan_triggered(self):
         try:
-            dpic = ToolDpic();
+            dpic = ToolDpic()
             path = dpic.getManUrl()
             QtGui.QDesktopServices.openUrl(QtCore.QUrl.fromLocalFile(path))
         except PyCktDocNotFoundError as err:
@@ -444,12 +538,15 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
             msgBox.exec()
 
-
     @pyqtSlot()
     def on_actionNew_triggered(self, newName=None):
         if self.needSaving:
             self._ask_saving()
-        txt = _translate("MainWindow", ".PS\nscale=2.54\ncct_init\n\nl=elen_\n# Enter your drawing code here\n.PE\n",  "Template text. Translate ONLY the commented out text (line starting with '#')")
+        txt = _translate(
+            "MainWindow",
+            ".PS\nscale=2.54\ncct_init\n\nl=elen_\n# Enter your drawing code here\n.PE\n",
+            "Template text. Translate ONLY the commented out text (line starting with '#')",
+        )
         self.sourceText.setText(txt)
         if newName == None:
             self.openedFilename = self._translatedUnnamed
@@ -466,28 +563,36 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self._modify_title()
         self.imageViewer.clearImage()
 
-
     @pyqtSlot()
     def on_actionOpen_triggered(self):
         if self.needSaving:
             self._ask_saving()
-    
+
         # Instantiate a settings object
         settings = QSettings()
 
         # Show the 'load file' Dialog
         fdlg = QtWidgets.QFileDialog(self)
-        fdlg.setWindowTitle(_translate("MainWindow", "Source File Selection", "File Dialog title"))
-        fdlg.setDirectory(settings.value("General/lastSrcDir",  ""))
-        fdlg.setNameFilters([
-            _translate("MainWindow", "PyCirkuit files (*.ckt)", "File filter text"), 
-            _translate("MainWindow", "M4 macro files (*.m4)", "File filter text"),
-            _translate("MainWindow", "TeX files (*.tex)", "File filter text"),
-            _translate("MainWindow", "Any files (*)", "File filter text")])
+        fdlg.setWindowTitle(
+            _translate("MainWindow", "Source File Selection", "File Dialog title")
+        )
+        fdlg.setDirectory(settings.value("General/lastSrcDir", ""))
+        fdlg.setNameFilters(
+            [
+                _translate("MainWindow", "PyCirkuit files (*.ckt)", "File filter text"),
+                _translate("MainWindow", "M4 macro files (*.m4)", "File filter text"),
+                _translate("MainWindow", "TeX files (*.tex)", "File filter text"),
+                _translate("MainWindow", "Any files (*)", "File filter text"),
+            ]
+        )
         fdlg.setFileMode(QtWidgets.QFileDialog.ExistingFile)
-        fdlg.setOptions(QtWidgets.QFileDialog.DontUseNativeDialog | QtWidgets.QFileDialog.ReadOnly)
+        fdlg.setOptions(
+            QtWidgets.QFileDialog.DontUseNativeDialog | QtWidgets.QFileDialog.ReadOnly
+        )
         fdlg.setViewMode(QtWidgets.QFileDialog.Detail)
-        fdlg.setFilter(QtCore.QDir.AllDirs | QtCore.QDir.Files | QtCore.QDir.NoDotAndDotDot)
+        fdlg.setFilter(
+            QtCore.QDir.AllDirs | QtCore.QDir.Files | QtCore.QDir.NoDotAndDotDot
+        )
         fitxer = ""
         if fdlg.exec():
             fitxer = fdlg.selectedFiles()[0]
@@ -496,8 +601,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # Check that user didn't press 'Cancel' on the Dialog Box...
         if fitxer != "":
             self._load_file(fitxer)
-    
-    
+
     @pyqtSlot()
     def on_actionPreferences_triggered(self):
         """
@@ -507,23 +611,30 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         cfgDlg.exportSettingsChange.connect(self._exportSettingsChanged)
         cfgDlg.exec()
 
-
     @pyqtSlot()
     def on_actionSaveAs_triggered(self):
         settings = QSettings()
-        lastSrcDir = settings.value("General/lastSrcDir", QtCore.QStandardPaths.displayName(QtCore.QStandardPaths.HomeLocation))
+        lastSrcDir = settings.value(
+            "General/lastSrcDir",
+            QtCore.QStandardPaths.displayName(QtCore.QStandardPaths.HomeLocation),
+        )
         fdlg = QtWidgets.QFileDialog(self)
-        fdlg.setWindowTitle(_translate("MainWindow", "Enter a file to save into", "File Dialog title"))
+        fdlg.setWindowTitle(
+            _translate("MainWindow", "Enter a file to save into", "File Dialog title")
+        )
         fdlg.setDirectory(lastSrcDir)
         fdlg.setFilter(QtCore.QDir.AllDirs | QtCore.QDir.Files)
-        fdlg.setNameFilters([
-            _translate("MainWindow", "PyCirkuit files (*.ckt)", "File filter"),
-            _translate("MainWindow", "Any files (*)", "File filter")])
+        fdlg.setNameFilters(
+            [
+                _translate("MainWindow", "PyCirkuit files (*.ckt)", "File filter"),
+                _translate("MainWindow", "Any files (*)", "File filter"),
+            ]
+        )
         fdlg.setOptions(QtWidgets.QFileDialog.DontUseNativeDialog)
         fdlg.setFileMode(QtWidgets.QFileDialog.AnyFile)
         fdlg.setViewMode(QtWidgets.QFileDialog.Detail)
         fdlg.setAcceptMode(QtWidgets.QFileDialog.AcceptSave)
-        while (fdlg.exec() == QDialog.Accepted):
+        while fdlg.exec() == QDialog.Accepted:
             dst = fdlg.selectedFiles()[0]
             try:
                 self._save_buffer(dst)
@@ -531,13 +642,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             except PermissionError:
                 pass
 
-
     @pyqtSlot()
     def on_actionSave_triggered(self):
         # Try to save into the last destination dir used.
-        filePath = os.path.join(self.lastDstDir , self.openedFilename)
+        filePath = os.path.join(self.lastDstDir, self.openedFilename)
         # Check empty name
-        if (self.openedFilename == self._translatedUnnamed ):
+        if self.openedFilename == self._translatedUnnamed:
             self.actionSaveAs.trigger()
         else:
             # Try to save. If it fails (non-writable location...), ask for a name.
@@ -546,15 +656,28 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             except PermissionError:
                 self.actionSaveAs.trigger()
 
-
     @pyqtSlot()
     def on_exportButton_clicked(self):
         if self.openedFilename == self._translatedUnnamed:
             msgBox = QtWidgets.QMessageBox(self)
-            msgBox.setWindowTitle(_translate("MessageBox", "PyCirkuit - Warning",  "Message Box title"))
+            msgBox.setWindowTitle(
+                _translate("MessageBox", "PyCirkuit - Warning", "Message Box title")
+            )
             msgBox.setIcon(QtWidgets.QMessageBox.Warning)
-            msgBox.setText(_translate("MessageBox", "The source file isn't saved yet.", "Message box text."))
-            msgBox.setInformativeText(_translate("MessageBox", "Please save the source file somewhere prior to exporting it.",  "Message Box text"))
+            msgBox.setText(
+                _translate(
+                    "MessageBox",
+                    "The source file isn't saved yet.",
+                    "Message box text.",
+                )
+            )
+            msgBox.setInformativeText(
+                _translate(
+                    "MessageBox",
+                    "Please save the source file somewhere prior to exporting it.",
+                    "Message Box text",
+                )
+            )
             msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
             response = msgBox.exec()
             return
@@ -572,26 +695,59 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             toSave.append("png")
         if settings.value("Export/exportJPEG", type=bool):
             toSave.append("jpeg")
-        
+
         # First we must detect if destination dir is writable. If not, ask for another one and update "lastSrcDir" setting (if it's writable)
         self.lastDstDir = self._ensure_writable_location(self.lastDstDir)
-        
+
         # Next we do a loop for every export format requested
         for fileType in toSave:
-            src = os.path.join(pycirkuit.__tmpDir__.path(), "cirkuit_tmp") + os.extsep + fileType
+            src = (
+                os.path.join(pycirkuit.__tmpDir__.path(), "cirkuit_tmp")
+                + os.extsep
+                + fileType
+            )
             # First try for destination path
-            dst = os.path.join(self.lastDstDir, os.path.splitext(self.openedFilename)[0]) + os.extsep + fileType
+            dst = (
+                os.path.join(self.lastDstDir, os.path.splitext(self.openedFilename)[0])
+                + os.extsep
+                + fileType
+            )
             success = False
             while not success:
-                try:    
+                try:
                     if os.path.exists(dst):
                         msgBox = QtWidgets.QMessageBox(self)
-                        msgBox.setWindowTitle(_translate("MessageBox", "PyCirkuit - Warning",  "Message Box title"))
+                        msgBox.setWindowTitle(
+                            _translate(
+                                "MessageBox", "PyCirkuit - Warning", "Message Box title"
+                            )
+                        )
                         msgBox.setIcon(QtWidgets.QMessageBox.Warning)
-                        msgBox.setText(_translate("MessageBox", "There's already a file named \"{filename}\" at working directory.", "Message box text. Don't translate '{filename}'").format(filename=self.openedFilename.partition('.')[0]+os.extsep+fileType))
-                        msgBox.setInformativeText(_translate("MessageBox", "Do you want to overwrite it?",  "Message Box text"))
-                        msgBox.setStandardButtons(QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
-                        saveAsButton = msgBox.addButton(_translate("MessageBox", "Save As...",  "Button text"),  QtWidgets.QMessageBox.AcceptRole)
+                        msgBox.setText(
+                            _translate(
+                                "MessageBox",
+                                'There\'s already a file named "{filename}" at working directory.',
+                                "Message box text. Don't translate '{filename}'",
+                            ).format(
+                                filename=self.openedFilename.partition(".")[0]
+                                + os.extsep
+                                + fileType
+                            )
+                        )
+                        msgBox.setInformativeText(
+                            _translate(
+                                "MessageBox",
+                                "Do you want to overwrite it?",
+                                "Message Box text",
+                            )
+                        )
+                        msgBox.setStandardButtons(
+                            QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No
+                        )
+                        saveAsButton = msgBox.addButton(
+                            _translate("MessageBox", "Save As...", "Button text"),
+                            QtWidgets.QMessageBox.AcceptRole,
+                        )
                         msgBox.setDefaultButton(QtWidgets.QMessageBox.No)
                         response = msgBox.exec()
                         # Overwrite
@@ -599,7 +755,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                             copyfile(src, dst)
                             success = True
                         # Save with another name/path (and ask for it first)
-                        if (response == QtWidgets.QMessageBox.NoButton) and (msgBox.clickedButton() == saveAsButton):
+                        if (response == QtWidgets.QMessageBox.NoButton) and (
+                            msgBox.clickedButton() == saveAsButton
+                        ):
                             dst = self._ask_export_file(dst)
                             self.lastDstDir, f = os.path.split(dst)
                             copyfile(src, dst)
@@ -611,36 +769,62 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                         success = True
                 except PermissionError as err:
                     msgBox = QtWidgets.QMessageBox(self)
-                    msgBox.setWindowTitle(_translate("MessageBox", "PyCirkuit - Error",  "Message Box title"))
+                    msgBox.setWindowTitle(
+                        _translate(
+                            "MessageBox", "PyCirkuit - Error", "Message Box title"
+                        )
+                    )
                     msgBox.setIcon(QtWidgets.QMessageBox.Critical)
-                    msgBox.setText(_translate("MessageBox", "Permission denied writing the file {filename}.", "Message box text. Don't translate '{filename}'").format(filename=err.filename))
-                    msgBox.setInformativeText(_translate("MessageBox", "Please try to export again with another name and/or location.",  "Message Box text"))
+                    msgBox.setText(
+                        _translate(
+                            "MessageBox",
+                            "Permission denied writing the file {filename}.",
+                            "Message box text. Don't translate '{filename}'",
+                        ).format(filename=err.filename)
+                    )
+                    msgBox.setInformativeText(
+                        _translate(
+                            "MessageBox",
+                            "Please try to export again with another name and/or location.",
+                            "Message Box text",
+                        )
+                    )
                     msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
                     response = msgBox.exec()
                     # Replace dst with the new user-choosed file
                     self.lastDstDir = self._ask_export_file(dst)
                 except OSError:
                     msgBox = QtWidgets.QMessageBox(self)
-                    msgBox.setWindowTitle(_translate("MessageBox", "PyCirkuit - Error",  "Message Box title"))
+                    msgBox.setWindowTitle(
+                        _translate(
+                            "MessageBox", "PyCirkuit - Error", "Message Box title"
+                        )
+                    )
                     msgBox.setIcon(QtWidgets.QMessageBox.Critical)
-                    msgBox.setText(_translate("MessageBox", "An error has occurred trying to export the file. The error says:", "Message Box text"))
+                    msgBox.setText(
+                        _translate(
+                            "MessageBox",
+                            "An error has occurred trying to export the file. The error says:",
+                            "Message Box text",
+                        )
+                    )
                     msgBox.setInformativeText(err.strerror)
                     msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
                     response = msgBox.exec()
         # Continue after the 'for' loop. If we are here we've saved successfully all the requested formats, so we can disable the button
         self.exportButton.setEnabled(False)
 
-
-
     @pyqtSlot()
     def on_processButton_clicked(self):
         def writeHeader(tool):
             aux = header.format(toolLongName=self.extTools[tool].longName)
-            self.outputText.appendPlainText('\n' + aux)
-            self.outputText.appendPlainText("="*len(aux))
-                
+            self.outputText.appendPlainText("\n" + aux)
+            self.outputText.appendPlainText("=" * len(aux))
+
         def writeOk():
-            self.outputText.appendPlainText(_translate("OutputLog", " + No execution errors", "Output log info"))
+            self.outputText.appendPlainText(
+                _translate("OutputLog", " + No execution errors", "Output log info")
+            )
 
         # STEP 0: Basic checks for the existence of auxiliary programs/utilities
         # Check if we have all the auxiliary apps correctly installed
@@ -663,96 +847,149 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             # STEP 2: Save current WD and set a new one
             savedWD = os.getcwd()
             os.chdir(pycirkuit.__tmpDir__.path())
-            
+
             # STEP 3: Establish a temporary file base name to store intermediate results
             tmpFileBaseName = "cirkuit_tmp"
-            with open("{baseName}.ckt".format(baseName=tmpFileBaseName), 'w') as tmpFile:
+            with open(
+                "{baseName}.ckt".format(baseName=tmpFileBaseName), "w"
+            ) as tmpFile:
                 tmpFile.write(self.sourceText.toPlainText())
-            
+
             # STEP 4: Change cursor shape temporarily
             app = QtWidgets.QApplication.instance()
             app.setOverrideCursor(QtGui.QCursor(QtCore.Qt.WaitCursor))
-            
+
             # STEP 5: Clear log text
             self.outputText.clear()
-            self.outputText.setPlainText(_translate("OutputLog", ">>>>> Start processing", "Output log info"))
-            header = _translate("OutputLog", "Output of {toolLongName}:", "Output log info. Do NOT modify/translate the '{toolLongName}' variable")
- 
+            self.outputText.setPlainText(
+                _translate("OutputLog", ">>>>> Start processing", "Output log info")
+            )
+            header = _translate(
+                "OutputLog",
+                "Output of {toolLongName}:",
+                "Output log info. Do NOT modify/translate the '{toolLongName}' variable",
+            )
+
             # STEP 6: Call M4: .CKT -> .PIC
-            self.statusBar.showMessage(_translate("StatusBar", "Converting: Circuit Macros -> PIC", "Status Bar message"))
+            self.statusBar.showMessage(
+                _translate(
+                    "StatusBar",
+                    "Converting: Circuit Macros -> PIC",
+                    "Status Bar message",
+                )
+            )
             writeHeader(ToolM4)
             self.extTools[ToolM4].execute(tmpFileBaseName)
             writeOk()
             self.sbProgressBar.setValue(1)
 
             # STEP 7a: Call dpic: .PIC -> .TIKZ
-            self.statusBar.showMessage(_translate("StatusBar", "Converting: PIC -> TIKZ", "Status Bar message"))
+            self.statusBar.showMessage(
+                _translate("StatusBar", "Converting: PIC -> TIKZ", "Status Bar message")
+            )
             writeHeader(ToolDpic)
-            self.extTools[ToolDpic].execute(tmpFileBaseName, outputType = pycirkuit.Option.TIKZ)
+            self.extTools[ToolDpic].execute(
+                tmpFileBaseName, outputType=pycirkuit.Option.TIKZ
+            )
             writeOk()
             self.sbProgressBar.setValue(2)
 
             # STEP 7b: Call dpic: .PIC -> .SVG
             if settings.value("Export/exportSVG", type=bool):
-                self.statusBar.showMessage(_translate("StatusBar", "Converting: PIC -> SVG", "Status Bar message"))
+                self.statusBar.showMessage(
+                    _translate(
+                        "StatusBar", "Converting: PIC -> SVG", "Status Bar message"
+                    )
+                )
                 writeHeader(ToolDpic)
-                self.extTools[ToolDpic].execute(tmpFileBaseName, outputType = pycirkuit.Option.SVG)
+                self.extTools[ToolDpic].execute(
+                    tmpFileBaseName, outputType=pycirkuit.Option.SVG
+                )
                 writeOk()
                 self.sbProgressBar.setValue(3)
 
             # STEP 8: Call PDFLaTeX: .TIKZ -> .PDF
             # First we have to embed the .TIKZ code inside a suitable template
-            self.statusBar.showMessage(_translate("StatusBar", "Converting: TIKZ -> PDF", "Status Bar message"))
+            self.statusBar.showMessage(
+                _translate("StatusBar", "Converting: TIKZ -> PDF", "Status Bar message")
+            )
             writeHeader(ToolPdfLaTeX)
             self.extTools[ToolPdfLaTeX].execute(tmpFileBaseName)
             writeOk()
             self.sbProgressBar.setValue(4)
 
             # STEP 9: Call pdftoppm to convert the PDF into a bitmap image to visualize it: .PDF -> .PNG
-            self.statusBar.showMessage(_translate("StatusBar", "Converting: PDF -> PNG", "Status Bar message"))
+            self.statusBar.showMessage(
+                _translate("StatusBar", "Converting: PDF -> PNG", "Status Bar message")
+            )
             writeHeader(ToolPdfToPng)
             settings.beginGroup("Export")
             dpi = settings.value("exportDPI", type=int)
-            copyfile(tmpFileBaseName+os.extsep+"pdf", tmpFileBaseName+"_display"+os.extsep+"pdf")
-            self.extTools[ToolPdfToPng].execute(tmpFileBaseName+"_display", resolution=150)
+            copyfile(
+                tmpFileBaseName + os.extsep + "pdf",
+                tmpFileBaseName + "_display" + os.extsep + "pdf",
+            )
+            self.extTools[ToolPdfToPng].execute(
+                tmpFileBaseName + "_display", resolution=150
+            )
             if settings.value("exportPNG", type=bool):
                 self.extTools[ToolPdfToPng].execute(tmpFileBaseName, resolution=dpi)
             if settings.value("exportJPEG", type=bool):
                 q = settings.value("exportQuality", type=int)
-                self.extTools[ToolPdfToJpeg].execute(tmpFileBaseName, resolution=dpi, quality=q)
+                self.extTools[ToolPdfToJpeg].execute(
+                    tmpFileBaseName, resolution=dpi, quality=q
+                )
             settings.endGroup()
             writeOk()
             self.sbProgressBar.setValue(5)
-            
+
             # STEP 10: Call pdftoppm to convert the PDF into a JPEG
             settings.beginGroup("Export")
             if settings.value("exportJPEG", type=bool):
                 dpi = settings.value("exportDPI", type=int)
                 q = settings.value("exportQuality", type=int)
-                self.statusBar.showMessage(_translate("StatusBar", "Converting: PDF -> JPEG", "Status Bar message"))
+                self.statusBar.showMessage(
+                    _translate(
+                        "StatusBar", "Converting: PDF -> JPEG", "Status Bar message"
+                    )
+                )
                 writeHeader(ToolPdfToPng)
-                self.extTools[ToolPdfToJpeg].execute(tmpFileBaseName, resolution=dpi, quality=q)
+                self.extTools[ToolPdfToJpeg].execute(
+                    tmpFileBaseName, resolution=dpi, quality=q
+                )
                 writeOk()
                 self.sbProgressBar.setValue(6)
             settings.endGroup()
-            
+
             # STEP 10: Visualize the image (can fail)
             self.sbProgressBar.setValue(7)
-            self.imageViewer.setImage(tmpFileBaseName+"_display", adjustIGU=True)
+            self.imageViewer.setImage(tmpFileBaseName + "_display", adjustIGU=True)
 
         except PyCktToolExecutionError as err:
-            self.imageViewer.setText(_translate("MainWindow", "Error!", "Fallback text to be displayed when the image cannot be generated"))
+            self.imageViewer.setText(
+                _translate(
+                    "MainWindow",
+                    "Error!",
+                    "Fallback text to be displayed when the image cannot be generated",
+                )
+            )
             self.outputText.appendPlainText(err.moreInfo)
             if err.tool == ToolPdfLaTeX:
-                with open(tmpFileBaseName+'.log', 'rt') as f:
+                with open(tmpFileBaseName + ".log", "rt") as f:
                     for line in f.readlines():
                         self.outputText.appendPlainText(line)
             self._display_error(err)
         except PyCktImageError as err:
-            self.imageViewer.setText(_translate("MainWindow", "Error!", "Fallback text to be displayed when the image cannot be generated"))
+            self.imageViewer.setText(
+                _translate(
+                    "MainWindow",
+                    "Error!",
+                    "Fallback text to be displayed when the image cannot be generated",
+                )
+            )
             self._display_error(err)
         else:
-            # If all went well and we have a generated image, we can 
+            # If all went well and we have a generated image, we can
             self.processButton.setEnabled(False)
             self.exportButton.setEnabled(True)
         finally:
@@ -760,7 +997,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.statusBar.showMessage("")
             self.sbProgressBar.setVisible(False)
             app.restoreOverrideCursor()
-
 
     @pyqtSlot()
     def on_sourceText_textChanged(self):

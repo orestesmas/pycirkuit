@@ -31,10 +31,11 @@ class AboutDialog(QDialog, Ui_AboutDialog):
     """
     Class documentation goes here.
     """
+
     def __init__(self, parent=None):
         """
         Constructor
-        
+
         @param parent reference to the parent widget
         @type QWidget
         """
@@ -44,11 +45,11 @@ class AboutDialog(QDialog, Ui_AboutDialog):
         # Cannot use str.format() here because the HTML string does contain other items between curly brackets
         # Try to change the variable in the text for the version number
         s = self.textVersion.toHtml()
-        self.textVersion.setHtml(s.replace('{versionNumber}', __version__, 1))
-            
+        self.textVersion.setHtml(s.replace("{versionNumber}", __version__, 1))
+
         # Try to change the variable in the text for the copyright
         s = self.textLicense.toHtml()
-        self.textLicense.setHtml(s.replace('{copyrightInfo}', __copyright__, 1))
-        
+        self.textLicense.setHtml(s.replace("{copyrightInfo}", __copyright__, 1))
+
         # Start with first Tab visible
         self.tabWidget.setCurrentIndex(0)

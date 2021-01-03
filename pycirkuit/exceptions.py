@@ -34,10 +34,12 @@ class PyCirkuitError(Exception):
     def __init__(self, message, title="", moreInfo=""):
         super().__init__(message)
         if title == "":
-            self.title = _translate("PyCirkuitError", "PyCirkuit Error", "Exception title")
+            self.title = _translate(
+                "PyCirkuitError", "PyCirkuit Error", "Exception title"
+            )
         else:
             self.title = title
-        self.moreInfo=moreInfo
+        self.moreInfo = moreInfo
 
 
 # Image manipulation exceptions
@@ -45,53 +47,117 @@ class PyCktImageError(PyCirkuitError):
     def __init__(self):
         # Define error message, title (if different from default) and moreInfo (if different from default)
         # call parent constructor with these 3 strings as params.
-        errMsg = _translate("PyCirkuitError", "The generated image could not be loaded.",  "Exception message")
+        errMsg = _translate(
+            "PyCirkuitError",
+            "The generated image could not be loaded.",
+            "Exception message",
+        )
         super().__init__(errMsg)
 
 
 # Tool Doc exceptions
 class PyCktDocNotFoundError(PyCirkuitError):
     def __init__(self, toolName):
-        errMsg = _translate("ExternalTool", "Cannot find the {toolName} manual!", "Leave untranslated the variable name inside curly braces (included)")
+        errMsg = _translate(
+            "ExternalTool",
+            "Cannot find the {toolName} manual!",
+            "Leave untranslated the variable name inside curly braces (included)",
+        )
         errMsg = errMsg.format(toolName=toolName)
-        info = _translate("ExternalTool", "Please ensure that you have this application properly installed, with its documentation into one of these standard locations:\n\n")
-        super().__init__(errMsg, title=_translate("ExternalTool", "File Not Found", "Exception title"), moreInfo=info)
+        info = _translate(
+            "ExternalTool",
+            "Please ensure that you have this application properly installed, with its documentation into one of these standard locations:\n\n",
+        )
+        super().__init__(
+            errMsg,
+            title=_translate("ExternalTool", "File Not Found", "Exception title"),
+            moreInfo=info,
+        )
+
 
 class PyCktCMManNotFoundError(PyCirkuitError):
     def __init__(self, cmPath):
-        errMsg  = _translate("ExternalTool", 'Cannot find the "Circuit Macros" documentation.\n\n', "Warning message")
-        errMsg += _translate("ExternalTool", "You will have to search for it manually. It should be a PDF file located into {cmPath} folder or one of its subfolders.", "Message Box text. DO NOT translate '{cmPath}' variable.").format(cmPath=cmPath)
-        super().__init__(errMsg, title=_translate("ExternalTool", "File Not Found", "Exception title"), moreInfo="")
+        errMsg = _translate(
+            "ExternalTool",
+            'Cannot find the "Circuit Macros" documentation.\n\n',
+            "Warning message",
+        )
+        errMsg += _translate(
+            "ExternalTool",
+            "You will have to search for it manually. It should be a PDF file located into {cmPath} folder or one of its subfolders.",
+            "Message Box text. DO NOT translate '{cmPath}' variable.",
+        ).format(cmPath=cmPath)
+        super().__init__(
+            errMsg,
+            title=_translate("ExternalTool", "File Not Found", "Exception title"),
+            moreInfo="",
+        )
 
 
 # Tool exceptions
 class PyCktToolExecutionError(PyCirkuitError):
     def __init__(self, message, moreInfo="", tool=""):
-        super().__init__(message, title=_translate("ExternalTool", "Tool Execution Error", "Exception title"), moreInfo=moreInfo)
+        super().__init__(
+            message,
+            title=_translate("ExternalTool", "Tool Execution Error", "Exception title"),
+            moreInfo=moreInfo,
+        )
         self.tool = tool
+
 
 class PyCktToolNotFoundError(PyCirkuitError):
     def __init__(self, executableName, longName):
-        errMsg = _translate("ExternalTool", "Cannot find the {toolLongName}!\n\n", "Leave untranslated the variable name inside curly braces (included)")
+        errMsg = _translate(
+            "ExternalTool",
+            "Cannot find the {toolLongName}!\n\n",
+            "Leave untranslated the variable name inside curly braces (included)",
+        )
         errMsg = errMsg.format(toolLongName=longName)
-        info = _translate("ExternalTool", "Please ensure that you have this application properly installed and the executable \"{toolExecutableName}\" is in the PATH.\n\n", "Leave untranslated the variable name inside curly braces (included)")
+        info = _translate(
+            "ExternalTool",
+            'Please ensure that you have this application properly installed and the executable "{toolExecutableName}" is in the PATH.\n\n',
+            "Leave untranslated the variable name inside curly braces (included)",
+        )
         info += _translate("ExternalTool", "Cannot generate the preview.")
         info = info.format(toolExecutableName=executableName)
-        super().__init__(errMsg, title=_translate("ExternalTool", "Tool Not Found", "Exception title"), moreInfo=info)
+        super().__init__(
+            errMsg,
+            title=_translate("ExternalTool", "Tool Not Found", "Exception title"),
+            moreInfo=info,
+        )
 
 
 # Circuit Macros exceptions
 class PyCktCMNotFoundError(PyCirkuitError):
     def __init__(self, message):
-        super().__init__(message, title=_translate("ExternalTool", "Circuit Macros not found", "Exception title"))
+        super().__init__(
+            message,
+            title=_translate(
+                "ExternalTool", "Circuit Macros not found", "Exception title"
+            ),
+        )
+
 
 class PyCktCMNewVersionAvailable(PyCirkuitError):
     def __init__(self, message):
-        super().__init__(message, title=_translate("ExternalTool", "New Circuit Macros version available!", "Exception title"))
+        super().__init__(
+            message,
+            title=_translate(
+                "ExternalTool",
+                "New Circuit Macros version available!",
+                "Exception title",
+            ),
+        )
+
 
 class PyCktCMFetchError(PyCirkuitError):
     def __init__(self, message):
-        super().__init__(message, title=_translate("ExternalTool", "Circuit Macros not found", "Exception title"))
+        super().__init__(
+            message,
+            title=_translate(
+                "ExternalTool", "Circuit Macros not found", "Exception title"
+            ),
+        )
 
 
 # Other exceptions

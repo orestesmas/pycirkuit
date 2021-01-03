@@ -31,17 +31,32 @@ from pycirkuit.tools.tool_base import ExternalTool
 # Translation function
 _translate = QCoreApplication.translate
 
+
 class ToolPdfToJpeg(ExternalTool):
     # Class variable
-    ID = 'PDFTOJPG'
+    ID = "PDFTOJPG"
+
     def __init__(self):
-        super().__init__("pdftoppm", _translate("ExternalTool", "PDF to JPEG image converter", "Tool Long Name"))
-        
+        super().__init__(
+            "pdftoppm",
+            _translate("ExternalTool", "PDF to JPEG image converter", "Tool Long Name"),
+        )
+
     def execute(self, baseName, resolution=150, quality=100):
         # Calculate src and dst names
         src = baseName + extsep + "pdf"
         dst = baseName + extsep + "jpeg"
         # Instantiate a settings object to load config values. At this point the config have valid entries, so don't test much
-        command = [self.executableName, "-jpeg", "-jpegopt", "quality={q}".format(q=quality), "-r", "{ppp}".format(ppp=resolution), "{source}".format(source=src)]
-        errMsg = _translate("ExternalTool", "PDFTOPPM: Error converting PDF -> JPEG", "Error message")
+        command = [
+            self.executableName,
+            "-jpeg",
+            "-jpegopt",
+            "quality={q}".format(q=quality),
+            "-r",
+            "{ppp}".format(ppp=resolution),
+            "{source}".format(source=src),
+        ]
+        errMsg = _translate(
+            "ExternalTool", "PDFTOPPM: Error converting PDF -> JPEG", "Error message"
+        )
         super().execute(command, errMsg, destination=dst)
