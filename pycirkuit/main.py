@@ -25,11 +25,7 @@ import sys, os, inspect, platform
 from os.path import isfile
 
 # Third-party imports
-from PyQt5.QtCore import QCoreApplication, \
-                         QTranslator, \
-                         QLocale, \
-                         QLibraryInfo, \
-                         QSettings
+from PyQt5.QtCore import QCoreApplication, QTranslator, QLocale, QLibraryInfo, QSettings
 from PyQt5.QtWidgets import QApplication
 
 # Local application imports
@@ -39,6 +35,7 @@ from pycirkuit.ui.mainwindow import MainWindow
 
 # Resources for translation
 from pycirkuit.resources import resources_rc
+
 # Translation function
 _translate = QCoreApplication.translate
 
@@ -52,45 +49,49 @@ def _check_settings():
     settings.beginGroup("General")
     # Import ourselves
     import pycirkuit
+
     # Find absolute application's path
     applicationPath = os.path.dirname(inspect.getfile(pycirkuit))
     # Check app version
     storedVersion = settings.value("Version", "")
-    if (storedVersion == ""):
+    if storedVersion == "":
         settings.setValue("Version", pycirkuit.__version__)
-    elif (storedVersion < pycirkuit.__version__):
-        #TODO: If upgrading we can remove the unnecessary entries, rename others, etc.
+    elif storedVersion < pycirkuit.__version__:
+        # TODO: If upgrading we can remove the unnecessary entries, rename others, etc.
         pass
-    elif (storedVersion > pycirkuit.__version__):
-        #TODO: Handle downgrading, perhaps raising an exception, showing warning, etc.
+    elif storedVersion > pycirkuit.__version__:
+        # TODO: Handle downgrading, perhaps raising an exception, showing warning, etc.
         pass
     # Check the stored path to LaTeX templates
-    if (settings.value("templatePath",  "") == ""):
+    if settings.value("templatePath", "") == "":
         # Add the relative path where the default template is located
-        templatePath = os.path.normpath(os.path.join(applicationPath, 'templates/cm_tikz.tpl'))
+        templatePath = os.path.normpath(
+            os.path.join(applicationPath, "templates/cm_tikz.tpl")
+        )
         settings.setValue("templatePath", templatePath)
     # Check Circuit Macros path
     from pycirkuit.tools.circuitmacrosmanager import CircuitMacrosManager
-    if (settings.value("cmPath",  "") == ""):
+
+    if settings.value("cmPath", "") == "":
         CM = CircuitMacrosManager()
         settings.setValue("cmPath", CM.default_CMPath())
     # Check the stored path to the built-in examples
-    if (settings.value("examplesPath",  "") == ""):
+    if settings.value("examplesPath", "") == "":
         # Add the relative path where the examples are located
-        examplesPath = os.path.normpath(os.path.join(applicationPath, 'examples'))
+        examplesPath = os.path.normpath(os.path.join(applicationPath, "examples"))
         settings.setValue("examplesPath", examplesPath)
     # Check last working dir (from where the files to be opened are taken)
     # This one will be initially the same as the examples path. Later on, the user actions will change it.
-    if (settings.value("lastSrcDir",  "") == ""):
+    if settings.value("lastSrcDir", "") == "":
         # Add the relative path where the examples are located
-        examplesPath = os.path.normpath(os.path.join(applicationPath, 'examples'))
+        examplesPath = os.path.normpath(os.path.join(applicationPath, "examples"))
         settings.setValue("lastSrcDir", examplesPath)
     # Check the stored path to built-in documentation
-    if (settings.value("docPath",  "") == ""):
+    if settings.value("docPath", "") == "":
         # Add the relative path where the examples are located
-        docPath = os.path.normpath(os.path.join(applicationPath, 'doc'))
+        docPath = os.path.normpath(os.path.join(applicationPath, "doc"))
         settings.setValue("docPath", docPath)
-    settings.endGroup()   # Finished updating the "General" section
+    settings.endGroup()  # Finished updating the "General" section
     # Begin updating the "Export" section
     settings.beginGroup("Export")
     settings.setValue("exportTIKZ", settings.value("exportTIKZ", True, type=bool))
@@ -100,29 +101,36 @@ def _check_settings():
     settings.setValue("exportDPI", settings.value("exportDPI", 150, type=int))
     settings.setValue("exportQuality", settings.value("exportQuality", 80, type=int))
     settings.endGroup()  # Finished updating the "Export" section
-    
+
     # Save settings for other object's use
     settings.sync()
 
+
 # Main entry point
 def main():
-    if ("DESKTOP_SESSION" in os.environ) or (platform.system() == 'Windows') or (platform.system() == 'Darwin'):
+    if (
+        ("DESKTOP_SESSION" in os.environ)
+        or (platform.system() == "Windows")
+        or (platform.system() == "Darwin")
+    ):
         app = QApplication(sys.argv)
         pycirkuit.__haveGUI__ = True
     else:
         app = QCoreApplication(sys.argv)
         pycirkuit.__haveGUI__ = False
-  
+
     # First try to load the Qt-provided translations (used in some standard dialog strings)
     qtTranslator = QTranslator()
     filename = "qtbase_" + QLocale.system().name().split("_")[0]
-    if qtTranslator.load(filename, QLibraryInfo.location(QLibraryInfo.TranslationsPath), suffix=".qm"):
+    if qtTranslator.load(
+        filename, QLibraryInfo.location(QLibraryInfo.TranslationsPath), suffix=".qm"
+    ):
         app.installTranslator(qtTranslator)
     # Then load PyCirkuit translations
     pycirkuitTranslator = QTranslator()
     if pycirkuitTranslator.load(QLocale(), "pycirkuit", ".", ":/translations", ".qm"):
         app.installTranslator(pycirkuitTranslator)
-        
+
     # These two next values are passed to every instance of QSettings everywhere in the app
     QCoreApplication.setOrganizationName("PyCirkuit")
     QCoreApplication.setApplicationName("pycirkuit")
@@ -130,7 +138,7 @@ def main():
 
     # Ensure meaningful settings
     _check_settings()
-    
+
     # Parse command line options, deciding if user requested to work interactively (GUI)
     # or to process a list of files in batch mode (CLI)
     # If the former is chosen, this call returns with an eventual file to open in to the GUI
@@ -149,7 +157,7 @@ def main():
         else:
             my_mainWindow.on_actionNew_triggered(fileToOpen)
     app.exec()
-    
-    
+
+
 if __name__ == "__main__":
     main()

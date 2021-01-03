@@ -42,15 +42,18 @@ from pycirkuit.tools.circuitmacrosmanager import CircuitMacrosManager
 # Translation function
 _translate = QCoreApplication.translate
 
+
 class Overwrite(Enum):
     UNSET = 0
     YES = 1
     ALL = 2
     NO = 3
-    NEVER =4
-    
+    NEVER = 4
+
+
 class PyCirkuitProcessor(QObject):
-    TMP_FILE_BASENAME= "cirkuit_tmp"
+    TMP_FILE_BASENAME = "cirkuit_tmp"
+
     def __init__(self):
         self.environmentOk = False
         super().__init__()
@@ -59,7 +62,7 @@ class PyCirkuitProcessor(QObject):
         self.savedWD = os.getcwd()
         pycirkuit.__tmpDir__ = QTemporaryDir()
         os.chdir(pycirkuit.__tmpDir__.path())
-  
+
     def __del__(self):
         # Restore working dir and remove temporary dir
         os.chdir(self.savedWD)
@@ -67,54 +70,84 @@ class PyCirkuitProcessor(QObject):
 
     def _check_latex_template(self):
         settings = QSettings()
-        template = settings.value("General/templatePath",  "")
+        template = settings.value("General/templatePath", "")
         if os.path.exists(template):
-            with open(template, 'r') as t:
+            with open(template, "r") as t:
                 templateCode = t.read()
                 if "%%SOURCE%%" in templateCode:
                     return True
                 else:
-                    raise PyCktLatexTemplateError(_translate("CommandLine", "Found an invalid LaTeX template.", "Error message."))
+                    raise PyCktLatexTemplateError(
+                        _translate(
+                            "CommandLine",
+                            "Found an invalid LaTeX template.",
+                            "Error message.",
+                        )
+                    )
         else:
-            raise PyCktLatexTemplateError(_translate("CommandLine", "LaTeX template not found.", "Error message."))
+            raise PyCktLatexTemplateError(
+                _translate("CommandLine", "LaTeX template not found.", "Error message.")
+            )
 
     def _check_programs(self):
         # Dictionary using a class as index and a class instance as value
         self.extTools = {
             ToolM4: ToolM4(),
-            ToolDpic: ToolDpic(), 
-            ToolPdfLaTeX: ToolPdfLaTeX(), 
-            ToolPdfToPng: ToolPdfToPng(), 
-            ToolPdfToJpeg: ToolPdfToJpeg()
+            ToolDpic: ToolDpic(),
+            ToolPdfLaTeX: ToolPdfLaTeX(),
+            ToolPdfToPng: ToolPdfToPng(),
+            ToolPdfToJpeg: ToolPdfToJpeg(),
         }
 
     def _check_circuit_macros(self):
         cmMgr = CircuitMacrosManager()
         if not cmMgr.check_installed():
-            raise PyCktCMNotFoundError(_translate("CommandLine", "Cannot find the Circuit Macros!",  "Command line error message."))
+            raise PyCktCMNotFoundError(
+                _translate(
+                    "CommandLine",
+                    "Cannot find the Circuit Macros!",
+                    "Command line error message.",
+                )
+            )
 
     def _askUser(self):
-        print(_translate("CommandLine-UserInput1",  "\nThe destination file already exists.", "Command line message. THE STARTING NEWLINE CHARACTER (\n) IS IMPORTANT."))
-        question = _translate("CommandLine-UserInput1",
+        print(
+            _translate(
+                "CommandLine-UserInput1",
+                "\nThe destination file already exists.",
+                "Command line message. THE STARTING NEWLINE CHARACTER (\n) IS IMPORTANT.",
+            )
+        )
+        question = _translate(
+            "CommandLine-UserInput1",
             "Would you like to overwrite it? ([y]es | [n]o | yes to [a]ll | ne[v]er): ",
-            "WARNING!! Critical translation. You should translate this message to your language, enclosing into brackets one single DIFFERENT character for each option, and translate accordingly the characters in the next message.")
-        answerYes = _translate("CommandLine-UserInput1",
-            "y", 
-            "WARNING!! Critical translation. This char must match one of those of the message 'Would you like to overwrite it?'")
-        answerNo = _translate("CommandLine-UserInput1",
-            "n", 
-            "WARNING!! Critical translation. This char must match one of those of the message 'Would you like to overwrite it?'")
-        answerAll = _translate("CommandLine-UserInput1",
-            "a", 
-            "WARNING!! Critical translation. This char must match one of those of the message 'Would you like to overwrite it?'")
-        answerNever = _translate("CommandLine-UserInput1",
-            "v", 
-            "WARNING!! Critical translation. This char must match one of those of the message 'Would you like to overwrite it?'")
+            "WARNING!! Critical translation. You should translate this message to your language, enclosing into brackets one single DIFFERENT character for each option, and translate accordingly the characters in the next message.",
+        )
+        answerYes = _translate(
+            "CommandLine-UserInput1",
+            "y",
+            "WARNING!! Critical translation. This char must match one of those of the message 'Would you like to overwrite it?'",
+        )
+        answerNo = _translate(
+            "CommandLine-UserInput1",
+            "n",
+            "WARNING!! Critical translation. This char must match one of those of the message 'Would you like to overwrite it?'",
+        )
+        answerAll = _translate(
+            "CommandLine-UserInput1",
+            "a",
+            "WARNING!! Critical translation. This char must match one of those of the message 'Would you like to overwrite it?'",
+        )
+        answerNever = _translate(
+            "CommandLine-UserInput1",
+            "v",
+            "WARNING!! Critical translation. This char must match one of those of the message 'Would you like to overwrite it?'",
+        )
         answers = {
             answerYes: Overwrite.YES,
             answerNo: Overwrite.NO,
             answerAll: Overwrite.ALL,
-            answerNever: Overwrite.NEVER
+            answerNever: Overwrite.NEVER,
         }
         while True:
             answer = input(question)
@@ -134,14 +167,18 @@ class PyCirkuitProcessor(QObject):
         if not self.environmentOk:
             self.checkEnvironment()
         # 2) Set all formats to "ungenerated" state
-        self.picExists = self.tikzExists = self.svgExists = self.pdfExists = self.pngExists = self.jpegExists = False
+        self.picExists = (
+            self.tikzExists
+        ) = self.svgExists = self.pdfExists = self.pngExists = self.jpegExists = False
         # Copy source file into temporary file
         self.sourceFile = src
         dst = PyCirkuitProcessor.TMP_FILE_BASENAME + ".ckt"
         shutil.copy(src, dst)
         print(os.path.basename(self.sourceFile), end="")
 
-    def requestResult(self, option, dstDir="", overwrite=Overwrite.UNSET, dpi=None, quality=None):
+    def requestResult(
+        self, option, dstDir="", overwrite=Overwrite.UNSET, dpi=None, quality=None
+    ):
         if option == Option.PNG:
             extension = "png"
             startPoint = self.toPng
@@ -164,7 +201,13 @@ class PyCirkuitProcessor(QObject):
             formatToCheck = self.tikzExists
         if (overwrite == Overwrite.ALL) or (overwrite == Overwrite.NEVER):
             self.overwrite = overwrite
-        src = os.path.join(pycirkuit.__tmpDir__.path(), PyCirkuitProcessor.TMP_FILE_BASENAME) + os.extsep + extension
+        src = (
+            os.path.join(
+                pycirkuit.__tmpDir__.path(), PyCirkuitProcessor.TMP_FILE_BASENAME
+            )
+            + os.extsep
+            + extension
+        )
         if dstDir:
             filename = os.path.basename(self.sourceFile).rpartition(os.extsep)[0]
             dst = os.path.join(dstDir, filename) + os.extsep + extension
@@ -174,10 +217,10 @@ class PyCirkuitProcessor(QObject):
             if self.overwrite == Overwrite.UNSET:
                 self.overwrite = self._askUser()
             if (self.overwrite == Overwrite.NO) or (self.overwrite == Overwrite.NEVER):
-                if (self.overwrite == Overwrite.NO):
+                if self.overwrite == Overwrite.NO:
                     self.overwrite = Overwrite.UNSET
                 return
-            if (self.overwrite == Overwrite.YES):
+            if self.overwrite == Overwrite.YES:
                 self.overwrite = Overwrite.UNSET
         # Let's recurse
         if not formatToCheck:
@@ -188,7 +231,9 @@ class PyCirkuitProcessor(QObject):
     def toPng(self, dpi, q=None):
         if not self.pngExists:
             self.toPdf()
-            self.extTools[ToolPdfToPng].execute(PyCirkuitProcessor.TMP_FILE_BASENAME, resolution=dpi)
+            self.extTools[ToolPdfToPng].execute(
+                PyCirkuitProcessor.TMP_FILE_BASENAME, resolution=dpi
+            )
             print(" -> PNG ({} dpi)".format(dpi), end="")
             self.pngExists = True
         return True
@@ -196,7 +241,9 @@ class PyCirkuitProcessor(QObject):
     def toJpeg(self, dpi, q):
         if not self.jpegExists:
             self.toPdf()
-            self.extTools[ToolPdfToJpeg].execute(PyCirkuitProcessor.TMP_FILE_BASENAME, resolution=dpi, quality=q)
+            self.extTools[ToolPdfToJpeg].execute(
+                PyCirkuitProcessor.TMP_FILE_BASENAME, resolution=dpi, quality=q
+            )
             print(" -> JPEG ({dpi} dpi, {q}% quality)".format(dpi=dpi, q=q), end="")
             self.jpegExists = True
         return True
@@ -212,7 +259,9 @@ class PyCirkuitProcessor(QObject):
     def toSvg(self, dpi=None, q=None):
         if not self.svgExists:
             self.toPic()
-            self.extTools[ToolDpic].execute(PyCirkuitProcessor.TMP_FILE_BASENAME, outputType=Option.SVG)
+            self.extTools[ToolDpic].execute(
+                PyCirkuitProcessor.TMP_FILE_BASENAME, outputType=Option.SVG
+            )
             print(" -> SVG", end="")
             self.svgExists = True
         return True
@@ -220,7 +269,9 @@ class PyCirkuitProcessor(QObject):
     def toTikz(self, dpi=None, q=None):
         if not self.tikzExists:
             self.toPic()
-            self.extTools[ToolDpic].execute(PyCirkuitProcessor.TMP_FILE_BASENAME, outputType=Option.TIKZ)
+            self.extTools[ToolDpic].execute(
+                PyCirkuitProcessor.TMP_FILE_BASENAME, outputType=Option.TIKZ
+            )
             print(" -> TIKZ", end="")
             self.tikzExists = True
         return True
