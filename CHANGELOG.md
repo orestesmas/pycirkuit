@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.5](https://github.com/orestesmas/pycirkuit/compare/v0.4.0..v0.5.0) series
 <a name="0.5.1"></a>
+### [Unreleased]
+#### Bug Fixes
+- Improved GUI detection in Linux OSes, which prevented start when connecting remotely via X2Go (and possibly others)
+#### Changed
+- Done reformatting to follow Black's python coding style
+#### Added
+- Started LuaLaTeX support (currently unfinished)
 ### [0.5.1](https://github.com/orestesmas/pycirkuit/compare/v0.5.0..v0.5.1) : (2020-02-23) [Bugfix Release]
 #### Bug Fixes
 - Fixed nasty bug when trying to save/export into a non-writable location ([7e26ff4b20](https://github.com/orestesmas/pycirkuit/commit/7e26ff4b20)). Closes [#58](https://github.com/orestesmas/pycirkuit/issues/58).
