@@ -38,6 +38,7 @@ from pycirkuit.highlighter import PyCirkuitHighlighter
 from pycirkuit.exceptions import *
 from pycirkuit.tools.m4 import ToolM4
 from pycirkuit.tools.dpic import ToolDpic
+from pycirkuit.tools.lualatex import ToolLuaLaTeX
 from pycirkuit.tools.pdflatex import ToolPdfLaTeX
 from pycirkuit.tools.pdftopng import ToolPdfToPng
 from pycirkuit.tools.pdftojpg import ToolPdfToJpeg
@@ -249,6 +250,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 ToolM4: ToolM4(),
                 ToolDpic: ToolDpic(),
                 ToolPdfLaTeX: ToolPdfLaTeX(),
+                ToolLuaLaTeX: ToolLuaLaTeX(),
                 ToolPdfToPng: ToolPdfToPng(),
                 ToolPdfToJpeg: ToolPdfToJpeg(),
             }
@@ -913,8 +915,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.statusBar.showMessage(
                 _translate("StatusBar", "Converting: TIKZ -> PDF", "Status Bar message")
             )
-            writeHeader(ToolPdfLaTeX)
-            self.extTools[ToolPdfLaTeX].execute(tmpFileBaseName)
+            writeHeader(ToolLuaLaTeX)
+            self.extTools[ToolLuaLaTeX].execute(tmpFileBaseName)
             writeOk()
             self.sbProgressBar.setValue(4)
 
@@ -974,7 +976,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 )
             )
             self.outputText.appendPlainText(err.moreInfo)
-            if err.tool == ToolPdfLaTeX:
+            if err.tool == ToolLuaLaTeX:
                 with open(tmpFileBaseName + ".log", "rt") as f:
                     for line in f.readlines():
                         self.outputText.appendPlainText(line)
