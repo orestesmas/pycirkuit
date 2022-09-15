@@ -8,4 +8,4 @@
 /build
 *.e4p
 pycirkuit/doc/llista_macros*
-
+/docs/build
