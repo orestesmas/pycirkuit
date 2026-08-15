@@ -59,6 +59,10 @@ class PyCirkuitProcessor(QObject):
         self.environmentOk = False
         super().__init__()
         self.overwrite = Overwrite.UNSET
+        # CLI-only terminal progress narrative ("file.ckt -> PIC -> TIKZ -> ...").
+        # The GUI shares these same step methods but has its own progress
+        # bar/log widget, so it turns this off (see MainWindow.__init__).
+        self.printProgress = True
         # Save current work dir and change into a temporary one
         self.savedWD = os.getcwd()
         pycirkuit.__tmpDir__ = QTemporaryDir()
@@ -184,7 +188,8 @@ class PyCirkuitProcessor(QObject):
         self.sourceFile = src
         dst = PyCirkuitProcessor.TMP_FILE_BASENAME + ".ckt"
         shutil.copy(src, dst)
-        print(os.path.basename(self.sourceFile), end="")
+        if self.printProgress:
+            print(os.path.basename(self.sourceFile), end="")
 
     def beginProcessingSource(self, sourceText):
         """Start processing raw source text (GUI entry point), e.g. an editor
@@ -257,7 +262,8 @@ class PyCirkuitProcessor(QObject):
             self.extTools[ToolPdfToPng].execute(
                 PyCirkuitProcessor.TMP_FILE_BASENAME, resolution=dpi
             )
-            print(" -> PNG ({} dpi)".format(dpi), end="")
+            if self.printProgress:
+                print(" -> PNG ({} dpi)".format(dpi), end="")
             self.pngExists = True
         return True
 
@@ -267,7 +273,10 @@ class PyCirkuitProcessor(QObject):
             self.extTools[ToolPdfToJpeg].execute(
                 PyCirkuitProcessor.TMP_FILE_BASENAME, resolution=dpi, quality=q
             )
-            print(" -> JPEG ({dpi} dpi, {q}% quality)".format(dpi=dpi, q=q), end="")
+            if self.printProgress:
+                print(
+                    " -> JPEG ({dpi} dpi, {q}% quality)".format(dpi=dpi, q=q), end=""
+                )
             self.jpegExists = True
         return True
 
@@ -275,7 +284,8 @@ class PyCirkuitProcessor(QObject):
         if not self.pdfExists:
             self.toTikz()
             self.extTools[ToolLuaLaTeX].execute(PyCirkuitProcessor.TMP_FILE_BASENAME)
-            print(" -> PDF", end="")
+            if self.printProgress:
+                print(" -> PDF", end="")
             self.pdfExists = True
         return True
 
@@ -290,7 +300,8 @@ class PyCirkuitProcessor(QObject):
             # the SVG output too, which it didn't before.
             self.toPdf()
             self.extTools[ToolPdfToSvg].execute(PyCirkuitProcessor.TMP_FILE_BASENAME)
-            print(" -> SVG", end="")
+            if self.printProgress:
+                print(" -> SVG", end="")
             self.svgExists = True
         return True
 
@@ -300,13 +311,15 @@ class PyCirkuitProcessor(QObject):
             self.extTools[ToolDpic].execute(
                 PyCirkuitProcessor.TMP_FILE_BASENAME, outputType=Option.TIKZ
             )
-            print(" -> TIKZ", end="")
+            if self.printProgress:
+                print(" -> TIKZ", end="")
             self.tikzExists = True
         return True
 
     def toPic(self, dpi=None, q=None):
         if not self.picExists:
             self.extTools[ToolM4].execute(PyCirkuitProcessor.TMP_FILE_BASENAME)
-            print(" -> PIC", end="")
+            if self.printProgress:
+                print(" -> PIC", end="")
             self.picExists = True
         return True

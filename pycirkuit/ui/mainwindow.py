@@ -92,6 +92,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         # Instantiate a processor object which will perform the actual file processing
         self.processor = PyCirkuitProcessor()
+        # Silence the processor's CLI-oriented terminal progress narrative;
+        # the GUI has its own progress bar and output log widget instead.
+        self.processor.printProgress = False
 
         # Set up the editor
         font = QtGui.QFont()
