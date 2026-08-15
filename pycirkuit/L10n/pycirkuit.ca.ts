@@ -513,6 +513,30 @@ El fitxer de destinació ja existeix.</translation>
         <translation>Programa pdfLaTeX</translation>
     </message>
     <message>
+        <location filename="../tools/latex.py" line="125"/>
+        <source>LuaLaTeX program</source>
+        <comment>Tool Long Name</comment>
+        <translation>Programa LuaLaTeX</translation>
+    </message>
+    <message>
+        <location filename="../tools/latex.py" line="124"/>
+        <source>pdfLaTeX</source>
+        <comment>LaTeX engine name</comment>
+        <translation>pdfLaTeX</translation>
+    </message>
+    <message>
+        <location filename="../tools/latex.py" line="126"/>
+        <source>LuaLaTeX</source>
+        <comment>LaTeX engine name</comment>
+        <translation>LuaLaTeX</translation>
+    </message>
+    <message>
+        <location filename="../tools/latex.py" line="79"/>
+        <source>{engine}: Error converting TIKZ -&gt; PDF</source>
+        <comment>Error message</comment>
+        <translation>{engine}: Error en la conversió TIKZ -&gt; PDF</translation>
+    </message>
+    <message>
         <location filename="../tools/pdflatex.py" line="59"/>
         <source>PDFLaTeX: Error converting TIKZ -&gt; PDF</source>
         <comment>Error message</comment>
@@ -529,6 +553,18 @@ El fitxer de destinació ja existeix.</translation>
         <source>PDFTOPPM: Error converting PDF -&gt; PNG</source>
         <comment>Error message</comment>
         <translation>PDFTOPPM: Error en la conversió PDF -&gt; PNG</translation>
+    </message>
+    <message>
+        <location filename="../tools/pdftosvg.py" line="34"/>
+        <source>PDF to SVG image converter</source>
+        <comment>Tool Long Name</comment>
+        <translation>Convertidor d&apos;imatge PDF a SVG</translation>
+    </message>
+    <message>
+        <location filename="../tools/pdftosvg.py" line="54"/>
+        <source>PDF2SVG: Error converting PDF -&gt; SVG</source>
+        <comment>Error message</comment>
+        <translation>PDF2SVG: Error en la conversió PDF -&gt; SVG</translation>
     </message>
     <message>
         <location filename="../exceptions.py" line="70"/>
@@ -1312,6 +1348,12 @@ l=elen_
         <source>Converting: PDF -&gt; PNG</source>
         <comment>Status Bar message</comment>
         <translation>S&apos;està convertint: PDF -&gt; PNG</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.py" line="120"/>
+        <source>Converting: PDF -&gt; SVG</source>
+        <comment>Status Bar message</comment>
+        <translation>S&apos;està convertint: PDF -&gt; SVG</translation>
     </message>
     <message>
         <location filename="../ui/mainwindow.py" line="306"/>

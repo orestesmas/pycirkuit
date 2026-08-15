@@ -566,6 +566,30 @@ The destination file already exists.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../tools/latex.py" line="125"/>
+        <source>LuaLaTeX program</source>
+        <comment>Tool Long Name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tools/latex.py" line="124"/>
+        <source>pdfLaTeX</source>
+        <comment>LaTeX engine name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tools/latex.py" line="126"/>
+        <source>LuaLaTeX</source>
+        <comment>LaTeX engine name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tools/latex.py" line="79"/>
+        <source>{engine}: Error converting TIKZ -&gt; PDF</source>
+        <comment>Error message</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../tools/pdflatex.py" line="59"/>
         <source>PDFLaTeX: Error converting TIKZ -&gt; PDF</source>
         <comment>Error message</comment>
@@ -575,6 +599,18 @@ The destination file already exists.</source>
         <location filename="../tools/pdftopng.py" line="36"/>
         <source>PDF to PNG image converter</source>
         <comment>Tool Long Name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tools/pdftosvg.py" line="34"/>
+        <source>PDF to SVG image converter</source>
+        <comment>Tool Long Name</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tools/pdftosvg.py" line="54"/>
+        <source>PDF2SVG: Error converting PDF -&gt; SVG</source>
+        <comment>Error message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1235,6 +1271,12 @@ l=elen_
     <message>
         <location filename="../ui/mainwindow.py" line="712"/>
         <source>Converting: PDF -&gt; PNG</source>
+        <comment>Status Bar message</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainwindow.py" line="120"/>
+        <source>Converting: PDF -&gt; SVG</source>
         <comment>Status Bar message</comment>
         <translation type="unfinished"></translation>
     </message>
