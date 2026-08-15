@@ -188,8 +188,9 @@ class pycktImageViewer(QGraphicsView):
             if newPPI == self.__current_ppi:
                 return
 
-            # Get the cursor's position and translate to pixmap coordinates
-            scenePos = self.mapToScene(event.pos())
+            # Get the cursor's position and translate to pixmap coordinates.
+            # QWheelEvent.pos() is gone in Qt6; position() returns a QPointF.
+            scenePos = self.mapToScene(event.position().toPoint())
             # Now find the % offset from pixmap's origin. This doesn't change with zoom
             percentX = scenePos.x() / self.__scene.itemsBoundingRect().width()
             percentY = scenePos.y() / self.__scene.itemsBoundingRect().height()
@@ -217,9 +218,9 @@ class pycktImageViewer(QGraphicsView):
                         currentSceneRect.height() * percentY,
                     )
                     # Calculate pixel offset between mouse position and viewport center
-                    offset = QPointF(self.width() / 2, self.height() / 2) - QPointF(
-                        event.pos()
-                    )
+                    offset = QPointF(
+                        self.width() / 2, self.height() / 2
+                    ) - event.position()
                     # Then adjust things so that this scene position appears under the mouse
                     self.centerOn(newScenePos + offset)
             except PyCirkuitError as err:
