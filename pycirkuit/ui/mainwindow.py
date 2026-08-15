@@ -492,6 +492,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         else:
             # If saving succeeded, write down the export path and file name
             self.lastDstDir, self.openedFilename = os.path.split(dst)
+            # Keep "last used directory" in sync with saves too, not just
+            # opens, so the next Open/Save As dialog starts where the user
+            # last was.
+            os.chdir(self.lastDstDir)
+            settings = QSettings()
+            settings.setValue("General/lastSrcDir", self.lastDstDir)
+            settings.sync()
             self.needSaving = False
             self._modify_title()
             self.actionSave.setEnabled(False)

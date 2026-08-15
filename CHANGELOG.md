@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed wrong character rendering under LuaLaTeX (stale pdfLaTeX-era packages in the default template).
 - Fixed duplicate JPEG export.
 - Fixed spurious CLI progress messages leaking into the GUI.
+- Fixed "last used directory" not updating on Save/Save As, only on Open.
 
 ## [0.5](https://github.com/orestesmas/pycirkuit/compare/v0.4.0..v0.5.0) series
 <a name="0.5.1"></a>
