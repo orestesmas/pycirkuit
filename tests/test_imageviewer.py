@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 """
-Regression test for pycktImageViewer's Ctrl+wheel zoom: PySide6/Qt6 removed
+Tests for pycktImageViewer's Ctrl+wheel zoom.
+
+Includes a regression test for PySide6/Qt6 removing
 QWheelEvent.pos()/globalPos() in favor of position()/globalPosition(),
 which broke this at runtime (no static analysis catches it - it's only
-exercised by an actual QWheelEvent).
+exercised by an actual QWheelEvent), and coverage for the zoom-state
+accessors used to keep the current zoom level across image updates.
 """
 from unittest.mock import MagicMock
 
@@ -66,3 +69,25 @@ def test_wheel_event_ignored_without_a_loaded_image(viewer):
     viewer._pycktImageViewer__file_base_name = None
     viewer.wheelEvent(_ctrl_wheel_event())
     viewer.setImage.assert_not_called()
+
+
+def test_ctrl_wheel_zoom_updates_current_resolution_and_custom_zoom_flag(viewer):
+    base_resolution = viewer.currentResolution()
+    assert viewer.hasCustomZoom() is False
+
+    viewer._pycktImageViewer__scene.addRect(QRectF(0, 0, 10, 10))
+    viewer.wheelEvent(_ctrl_wheel_event())
+
+    assert viewer.hasCustomZoom() is True
+    assert viewer.currentResolution() != base_resolution
+
+
+def test_clear_image_resets_zoom_state(viewer):
+    viewer._pycktImageViewer__scene.addRect(QRectF(0, 0, 10, 10))
+    viewer.wheelEvent(_ctrl_wheel_event())
+    assert viewer.hasCustomZoom() is True
+
+    viewer.clearImage()
+
+    assert viewer.hasCustomZoom() is False
+    assert viewer.currentResolution() == viewer._pycktImageViewer__ppi_base

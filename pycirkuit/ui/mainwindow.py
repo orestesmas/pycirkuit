@@ -942,12 +942,15 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 self.processor.toSvg()
 
             # STEP 9: Render the PDF into a bitmap image to visualize it (a
-            # dedicated low-res copy, independent of the export DPI setting),
+            # dedicated preview copy, independent of the export DPI setting),
             # and additionally produce the PNG/JPEG export formats if
             # requested, at the configured DPI/quality. The display copy
             # bypasses the processor's own toPng() (and its signals): it's a
             # GUI-only preview concern, not a pipeline step, and always runs
-            # regardless of whether the user wants a PNG export.
+            # regardless of whether the user wants a PNG export. It's
+            # rendered at the viewer's current resolution (not a fixed
+            # default) so that a zoom level set via the mouse wheel survives
+            # re-processing instead of snapping back on every update.
             self.statusBar.showMessage(
                 _translate("StatusBar", "Converting: PDF -> PNG", "Status Bar message")
             )
@@ -958,7 +961,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 tmpFileBaseName + "_display" + os.extsep + "pdf",
             )
             self.processor.extTools[ToolPdfToPng].execute(
-                tmpFileBaseName + "_display", resolution=150
+                tmpFileBaseName + "_display",
+                resolution=self.imageViewer.currentResolution(),
             )
             if settings.value("exportPNG", type=bool):
                 self.processor.toPng(dpi)
@@ -968,9 +972,15 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             settings.endGroup()
             self.sbProgressBar.setValue(self.sbProgressBar.value() + 1)
 
-            # STEP 10: Visualize the image (can fail)
+            # STEP 10: Visualize the image (can fail). Only auto-fit the
+            # preview dock to the image when the user hasn't manually
+            # zoomed - otherwise this would silently reset their zoom/pan
+            # on every re-process.
             self.sbProgressBar.setValue(self.sbProgressBar.maximum())
-            self.imageViewer.setImage(tmpFileBaseName + "_display", adjustIGU=True)
+            self.imageViewer.setImage(
+                tmpFileBaseName + "_display",
+                adjustIGU=not self.imageViewer.hasCustomZoom(),
+            )
 
         except PyCktToolExecutionError as err:
             self.imageViewer.setText(

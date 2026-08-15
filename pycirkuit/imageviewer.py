@@ -112,9 +112,20 @@ class pycktImageViewer(QGraphicsView):
         self.__clear_items()
         self.__pixmap_item = self.__scene.addPixmap(QPixmap())
         self.__adjust_view()
+        # A new/different document starts fresh, at the default zoom level.
+        self.__wheel_steps = 0
+        self.__current_ppi = self.__calc_ppi(self.__wheel_steps)
 
     def getRect(self):
         return self.__pixmap_item.pixmap().rect()
+
+    def currentResolution(self):
+        """Resolution (in ppi) the currently displayed image was rendered at."""
+        return self.__current_ppi
+
+    def hasCustomZoom(self):
+        """Whether the user has zoomed away from the default (base) resolution."""
+        return self.__wheel_steps != 0
 
     def setImage(self, fileBaseName, adjustIGU=False):
         """
