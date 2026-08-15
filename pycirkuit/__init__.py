@@ -24,13 +24,10 @@ from enum import Enum
 __all__ = ["mainwindow"]
 
 __productname__ = "PyCirkuit"
-# PEP 440 version. Pre-release identifiers (.devN, aN/bN, rcN) while master
-# is mid-modernization; plain "1.0.0" once that work is ready to release.
-#
-# Also the single source of truth for pyproject.toml's [project] version
-# (read via `attr = "pycirkuit.__version__"`), so it doesn't need to be
-# updated in two places.
-__version__ = "1.0.0.dev2"
+# PEP 440 version. Also the single source of truth for pyproject.toml's
+# [project] version (read via `attr = "pycirkuit.__version__"`), so it
+# doesn't need to be updated in two places.
+__version__ = "1.0.0"
 # Only kept here because __copyright__ (used by the About dialog) is built
 # from them. Everything else PyPI/Debian-facing (description, author email,
 # license, homepage...) lives solely in pyproject.toml - nothing at runtime

@@ -4,9 +4,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 1.0 series
+## [1.0](https://github.com/orestesmas/pycirkuit/compare/v0.5.1..v1.0.0) series
 <a name="1.0.0"></a>
-### [Unreleased]
+### [1.0.0](https://github.com/orestesmas/pycirkuit/compare/v0.5.1..v1.0.0) : (2026-08-16) [Major Release]
 #### Added
 - Selectable LaTeX engine (pdflatex/lualatex), with a dropdown in the config dialog.
 - Test suite (`tests/`, run with `pytest`).
