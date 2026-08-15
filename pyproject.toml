@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pycirkuit"
+dynamic = ["version"]
+description = "A front-end for Circuit Macros"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "GPLv3+"}
+authors = [
+    {name = "Orestes Mas", email = "orestes@tsc.upc.edu"},
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "Operating System :: OS Independent",
+    "Topic :: Multimedia :: Graphics :: Editors",
+    "Topic :: Scientific/Engineering",
+    "Intended Audience :: Education",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: End Users/Desktop",
+]
+dependencies = [
+    # Debian package is python3-pyqt5
+    "PyQt5",
+    # Debian package is python3-magic
+    "python-magic; sys_platform != 'win32'",
+    "python-magic-bin; sys_platform == 'win32'",
+]
+
+[project.urls]
+Homepage = "https://github.com/orestesmas/pycirkuit"
+
+[project.gui-scripts]
+pycirkuit = "pycirkuit.main:main"
+
+[tool.setuptools]
+zip-safe = true
+
+[tool.setuptools.dynamic]
+version = {attr = "pycirkuit.__version__"}
+
+[tool.setuptools.packages.find]
+include = ["pycirkuit*"]
+
+[tool.setuptools.package-data]
+pycirkuit = ["doc/*", "lib/*", "templates/*", "examples/*"]
