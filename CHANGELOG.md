@@ -4,15 +4,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 1.0 series
+<a name="1.0.0"></a>
+### [Unreleased]
+#### Added
+- Selectable LaTeX engine (pdflatex/lualatex), with a dropdown in the config dialog.
+#### Changed
+- Unified the GUI and CLI processing pipelines (previously duplicated and diverging).
+- Default LaTeX engine is now LuaLaTeX.
+- SVG export now goes through the rendered PDF and `pdf2svg` instead of dpic's own (lower quality) SVG output. New dependency: pdf2svg.
+- Migrated packaging from setup.py to pyproject.toml.
+- Done reformatting to follow Black's python coding style.
+#### Bug Fixes
+- Improved GUI detection in Linux OSes, which prevented start when connecting remotely via X2Go (and possibly others).
+- Fixed wrong character rendering under LuaLaTeX (stale pdfLaTeX-era packages in the default template).
+- Fixed duplicate JPEG export.
+- Fixed spurious CLI progress messages leaking into the GUI.
+
 ## [0.5](https://github.com/orestesmas/pycirkuit/compare/v0.4.0..v0.5.0) series
 <a name="0.5.1"></a>
-### [Unreleased]
-#### Bug Fixes
-- Improved GUI detection in Linux OSes, which prevented start when connecting remotely via X2Go (and possibly others)
-#### Changed
-- Done reformatting to follow Black's python coding style
-#### Added
-- Started LuaLaTeX support (currently unfinished)
 ### [0.5.1](https://github.com/orestesmas/pycirkuit/compare/v0.5.0..v0.5.1) : (2020-02-23) [Bugfix Release]
 #### Bug Fixes
 - Fixed nasty bug when trying to save/export into a non-writable location ([7e26ff4b20](https://github.com/orestesmas/pycirkuit/commit/7e26ff4b20)). Closes [#58](https://github.com/orestesmas/pycirkuit/issues/58).
