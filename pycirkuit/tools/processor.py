@@ -3,7 +3,7 @@
 Application core functionality
 """
 
-# Copyright (C) 2018-2019 Orestes Mas
+# Copyright (C) 2018-2026 Orestes Mas
 # Copyright (C) 2019 Aniol Marti
 # This file is part of PyCirkuit.
 #

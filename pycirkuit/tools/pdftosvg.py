@@ -2,7 +2,7 @@
 """
 Module implementing a class to handle the pdf2svg external tool
 """
-# Copyright (C) 2018-2019 Orestes Mas
+# Copyright (C) 2018-2026 Orestes Mas
 # This file is part of PyCirkuit.
 #
 # PyCirkuit is free software: you can redistribute it and/or modify
