@@ -1,11 +1,17 @@
 %%backend=circuitmacros%%
 \documentclass{article}
-\usepackage[utf8x]{inputenc}
-% Choose your own language if you are using localized strings.
+\usepackage{fontspec}
+
+% Uncomment and adapt if you want language support other than English.
 %\usepackage[catalan]{babel}
 
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
+% Default font is Latin Modern (fontspec's default, visually equivalent to
+% Computer Modern). To use a different font, uncomment and adapt the lines
+% below to your chosen family.
+%\setmainfont{Libertinus Serif}
+%\setsansfont{Libertinus Sans}
+%\usepackage{unicode-math}
+%\setmathfont{Libertinus Math}
 
 \usepackage{siunitx}
 \sisetup{

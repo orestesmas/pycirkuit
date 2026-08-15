@@ -39,9 +39,9 @@ from pycirkuit.exceptions import *
 from pycirkuit.tools.m4 import ToolM4
 from pycirkuit.tools.dpic import ToolDpic
 from pycirkuit.tools.lualatex import ToolLuaLaTeX
-from pycirkuit.tools.pdflatex import ToolPdfLaTeX
 from pycirkuit.tools.pdftopng import ToolPdfToPng
 from pycirkuit.tools.pdftojpg import ToolPdfToJpeg
+from pycirkuit.tools.pdftosvg import ToolPdfToSvg
 from pycirkuit.tools.processor import PyCirkuitProcessor
 import pycirkuit
 
@@ -245,15 +245,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def _check_programs(self):
         try:
-            # Dictionary using a class as index and a class instance as value
-            self.extTools = {
-                ToolM4: ToolM4(),
-                ToolDpic: ToolDpic(),
-                ToolPdfLaTeX: ToolPdfLaTeX(),
-                ToolLuaLaTeX: ToolLuaLaTeX(),
-                ToolPdfToPng: ToolPdfToPng(),
-                ToolPdfToJpeg: ToolPdfToJpeg(),
-            }
+            # Delegate to the shared processor so the GUI and CLI always
+            # agree on which tools/engine are in use.
+            self.processor.check_programs()
         except PyCktToolNotFoundError as err:
             # Open MessageBox and inform user
             msgBox = QtWidgets.QMessageBox(self)
@@ -819,7 +813,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     @pyqtSlot()
     def on_processButton_clicked(self):
         def writeHeader(tool):
-            aux = header.format(toolLongName=self.extTools[tool].longName)
+            aux = header.format(toolLongName=self.processor.extTools[tool].longName)
             self.outputText.appendPlainText("\n" + aux)
             self.outputText.appendPlainText("=" * len(aux))
 
@@ -838,11 +832,16 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # Check if the template file exists and is valid
         if not self._check_templates():
             return
+        # The three checks above already cover everything
+        # PyCirkuitProcessor.checkEnvironment() would otherwise redo (with
+        # less helpful, non-interactive error reporting); mark it satisfied
+        # so beginProcessingSource() below doesn't repeat the work.
+        self.processor.environmentOk = True
 
         try:
             settings = QSettings()
             # STEP 1: Prepare the Progress Bar
-            self.sbProgressBar.setRange(0, 8)
+            self.sbProgressBar.setRange(0, 6)
             self.sbProgressBar.setValue(0)
             self.sbProgressBar.setVisible(True)
 
@@ -850,12 +849,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             savedWD = os.getcwd()
             os.chdir(pycirkuit.__tmpDir__.path())
 
-            # STEP 3: Establish a temporary file base name to store intermediate results
-            tmpFileBaseName = "cirkuit_tmp"
-            with open(
-                "{baseName}.ckt".format(baseName=tmpFileBaseName), "w"
-            ) as tmpFile:
-                tmpFile.write(self.sourceText.toPlainText())
+            # STEP 3: Hand the current editor buffer to the shared processor,
+            # which writes it to the temporary source file and resets the
+            # per-format memoization state. The pipeline itself (which tool
+            # does what, in what order) now lives entirely in
+            # PyCirkuitProcessor, shared with the CLI.
+            tmpFileBaseName = PyCirkuitProcessor.TMP_FILE_BASENAME
+            self.processor.beginProcessingSource(self.sourceText.toPlainText())
 
             # STEP 4: Change cursor shape temporarily
             app = QtWidgets.QApplication.instance()
@@ -881,7 +881,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 )
             )
             writeHeader(ToolM4)
-            self.extTools[ToolM4].execute(tmpFileBaseName)
+            self.processor.toPic()
             writeOk()
             self.sbProgressBar.setValue(1)
 
@@ -890,37 +890,39 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 _translate("StatusBar", "Converting: PIC -> TIKZ", "Status Bar message")
             )
             writeHeader(ToolDpic)
-            self.extTools[ToolDpic].execute(
-                tmpFileBaseName, outputType=pycirkuit.Option.TIKZ
-            )
+            self.processor.toTikz()
             writeOk()
             self.sbProgressBar.setValue(2)
 
-            # STEP 7b: Call dpic: .PIC -> .SVG
-            if settings.value("Export/exportSVG", type=bool):
-                self.statusBar.showMessage(
-                    _translate(
-                        "StatusBar", "Converting: PIC -> SVG", "Status Bar message"
-                    )
-                )
-                writeHeader(ToolDpic)
-                self.extTools[ToolDpic].execute(
-                    tmpFileBaseName, outputType=pycirkuit.Option.SVG
-                )
-                writeOk()
-                self.sbProgressBar.setValue(3)
-
-            # STEP 8: Call PDFLaTeX: .TIKZ -> .PDF
+            # STEP 8: Call LuaLaTeX: .TIKZ -> .PDF
             # First we have to embed the .TIKZ code inside a suitable template
             self.statusBar.showMessage(
                 _translate("StatusBar", "Converting: TIKZ -> PDF", "Status Bar message")
             )
             writeHeader(ToolLuaLaTeX)
-            self.extTools[ToolLuaLaTeX].execute(tmpFileBaseName)
+            self.processor.toPdf()
             writeOk()
-            self.sbProgressBar.setValue(4)
+            self.sbProgressBar.setValue(3)
 
-            # STEP 9: Call pdftoppm to convert the PDF into a bitmap image to visualize it: .PDF -> .PNG
+            # STEP 8b: Call pdf2svg: .PDF -> .SVG
+            # (Goes through the PDF, not straight from .PIC: dpic's own SVG
+            # output quality isn't as good. This also means the SVG output
+            # is affected by the LaTeX template's font setup, unlike before.)
+            if settings.value("Export/exportSVG", type=bool):
+                self.statusBar.showMessage(
+                    _translate(
+                        "StatusBar", "Converting: PDF -> SVG", "Status Bar message"
+                    )
+                )
+                writeHeader(ToolPdfToSvg)
+                self.processor.toSvg()
+                writeOk()
+                self.sbProgressBar.setValue(4)
+
+            # STEP 9: Render the PDF into a bitmap image to visualize it (a
+            # dedicated low-res copy, independent of the export DPI setting),
+            # and additionally produce the PNG/JPEG export formats if
+            # requested, at the configured DPI/quality.
             self.statusBar.showMessage(
                 _translate("StatusBar", "Converting: PDF -> PNG", "Status Bar message")
             )
@@ -931,40 +933,20 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 tmpFileBaseName + os.extsep + "pdf",
                 tmpFileBaseName + "_display" + os.extsep + "pdf",
             )
-            self.extTools[ToolPdfToPng].execute(
+            self.processor.extTools[ToolPdfToPng].execute(
                 tmpFileBaseName + "_display", resolution=150
             )
             if settings.value("exportPNG", type=bool):
-                self.extTools[ToolPdfToPng].execute(tmpFileBaseName, resolution=dpi)
+                self.processor.toPng(dpi)
             if settings.value("exportJPEG", type=bool):
                 q = settings.value("exportQuality", type=int)
-                self.extTools[ToolPdfToJpeg].execute(
-                    tmpFileBaseName, resolution=dpi, quality=q
-                )
+                self.processor.toJpeg(dpi, q)
             settings.endGroup()
             writeOk()
             self.sbProgressBar.setValue(5)
 
-            # STEP 10: Call pdftoppm to convert the PDF into a JPEG
-            settings.beginGroup("Export")
-            if settings.value("exportJPEG", type=bool):
-                dpi = settings.value("exportDPI", type=int)
-                q = settings.value("exportQuality", type=int)
-                self.statusBar.showMessage(
-                    _translate(
-                        "StatusBar", "Converting: PDF -> JPEG", "Status Bar message"
-                    )
-                )
-                writeHeader(ToolPdfToPng)
-                self.extTools[ToolPdfToJpeg].execute(
-                    tmpFileBaseName, resolution=dpi, quality=q
-                )
-                writeOk()
-                self.sbProgressBar.setValue(6)
-            settings.endGroup()
-
             # STEP 10: Visualize the image (can fail)
-            self.sbProgressBar.setValue(7)
+            self.sbProgressBar.setValue(6)
             self.imageViewer.setImage(tmpFileBaseName + "_display", adjustIGU=True)
 
         except PyCktToolExecutionError as err:

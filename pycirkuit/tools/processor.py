@@ -34,9 +34,10 @@ from pycirkuit import Option
 from pycirkuit.exceptions import *
 from pycirkuit.tools.m4 import ToolM4
 from pycirkuit.tools.dpic import ToolDpic
-from pycirkuit.tools.pdflatex import ToolPdfLaTeX
+from pycirkuit.tools.lualatex import ToolLuaLaTeX
 from pycirkuit.tools.pdftopng import ToolPdfToPng
 from pycirkuit.tools.pdftojpg import ToolPdfToJpeg
+from pycirkuit.tools.pdftosvg import ToolPdfToSvg
 from pycirkuit.tools.circuitmacrosmanager import CircuitMacrosManager
 
 # Translation function
@@ -68,7 +69,7 @@ class PyCirkuitProcessor(QObject):
         os.chdir(self.savedWD)
         pycirkuit.__tmpDir__.remove()
 
-    def _check_latex_template(self):
+    def check_latex_template(self):
         settings = QSettings()
         template = settings.value("General/templatePath", "")
         if os.path.exists(template):
@@ -89,17 +90,21 @@ class PyCirkuitProcessor(QObject):
                 _translate("CommandLine", "LaTeX template not found.", "Error message.")
             )
 
-    def _check_programs(self):
+    def check_programs(self):
         # Dictionary using a class as index and a class instance as value
+        # NOTE: LaTeX engine is fixed to LuaLaTeX for now, matching the GUI's
+        # prior behaviour. Making it selectable is tracked separately (see
+        # MODERNIZATION.md, step 5).
         self.extTools = {
             ToolM4: ToolM4(),
             ToolDpic: ToolDpic(),
-            ToolPdfLaTeX: ToolPdfLaTeX(),
+            ToolLuaLaTeX: ToolLuaLaTeX(),
             ToolPdfToPng: ToolPdfToPng(),
             ToolPdfToJpeg: ToolPdfToJpeg(),
+            ToolPdfToSvg: ToolPdfToSvg(),
         }
 
-    def _check_circuit_macros(self):
+    def check_circuit_macros(self):
         cmMgr = CircuitMacrosManager()
         if not cmMgr.check_installed():
             raise PyCktCMNotFoundError(
@@ -157,24 +162,42 @@ class PyCirkuitProcessor(QObject):
                 return answers[answer]
 
     def checkEnvironment(self):
-        self._check_programs()
-        self._check_circuit_macros()
-        self._check_latex_template()
+        self.check_programs()
+        self.check_circuit_macros()
+        self.check_latex_template()
         self.environmentOk = True
 
-    def beginProcessing(self, src):
-        # 1) Check if all tools are installed
-        if not self.environmentOk:
-            self.checkEnvironment()
-        # 2) Set all formats to "ungenerated" state
+    def _reset_state(self):
+        # Set all formats to "ungenerated" state
         self.picExists = (
             self.tikzExists
         ) = self.svgExists = self.pdfExists = self.pngExists = self.jpegExists = False
+
+    def beginProcessing(self, src):
+        """Start processing a source file already on disk (CLI/batch entry point)."""
+        # 1) Check if all tools are installed
+        if not self.environmentOk:
+            self.checkEnvironment()
+        # 2) Reset memoized conversion state
+        self._reset_state()
         # Copy source file into temporary file
         self.sourceFile = src
         dst = PyCirkuitProcessor.TMP_FILE_BASENAME + ".ckt"
         shutil.copy(src, dst)
         print(os.path.basename(self.sourceFile), end="")
+
+    def beginProcessingSource(self, sourceText):
+        """Start processing raw source text (GUI entry point), e.g. an editor
+        buffer that may not be saved to disk yet."""
+        # 1) Check if all tools are installed
+        if not self.environmentOk:
+            self.checkEnvironment()
+        # 2) Reset memoized conversion state
+        self._reset_state()
+        self.sourceFile = None
+        dst = PyCirkuitProcessor.TMP_FILE_BASENAME + ".ckt"
+        with open(dst, "w") as f:
+            f.write(sourceText)
 
     def requestResult(
         self, option, dstDir="", overwrite=Overwrite.UNSET, dpi=None, quality=None
@@ -251,17 +274,22 @@ class PyCirkuitProcessor(QObject):
     def toPdf(self, dpi=None, q=None):
         if not self.pdfExists:
             self.toTikz()
-            self.extTools[ToolPdfLaTeX].execute(PyCirkuitProcessor.TMP_FILE_BASENAME)
+            self.extTools[ToolLuaLaTeX].execute(PyCirkuitProcessor.TMP_FILE_BASENAME)
             print(" -> PDF", end="")
             self.pdfExists = True
         return True
 
     def toSvg(self, dpi=None, q=None):
         if not self.svgExists:
-            self.toPic()
-            self.extTools[ToolDpic].execute(
-                PyCirkuitProcessor.TMP_FILE_BASENAME, outputType=Option.SVG
-            )
+            # Go through the PDF rather than asking dpic for SVG directly:
+            # dpic's own SVG output is noticeably lower quality (e.g. text
+            # placement/fonts), whereas rendering via LaTeX and converting
+            # the resulting PDF with pdf2svg reuses the same, better,
+            # LaTeX-driven rendering as the PDF/PNG/JPEG outputs. One
+            # consequence: the font set up in the LaTeX template now affects
+            # the SVG output too, which it didn't before.
+            self.toPdf()
+            self.extTools[ToolPdfToSvg].execute(PyCirkuitProcessor.TMP_FILE_BASENAME)
             print(" -> SVG", end="")
             self.svgExists = True
         return True

@@ -31,10 +31,11 @@ To install and run this application you need to have the following applications/
   * Python 3, with virtual environment support
   * PyQt5 python bindings to Qt libraries (*see note below*)
   * 'libmagic' and its Python bindings
-  * (pdf)latex
+  * lualatex
   * m4
   * dpic
   * pdftoppm (from poppler project)
+  * pdf2svg
   * Circuit Macros
 
 
