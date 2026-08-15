@@ -155,3 +155,57 @@ def test_check_programs_defaults_to_lualatex_when_unset(fake_tools_on_path):
     finally:
         os.chdir(proc.savedWD)
         pycirkuit.__tmpDir__.remove()
+
+
+# --- step signals (MODERNIZATION.md step 6) -------------------------------
+
+
+def test_signals_fire_in_order_for_the_whole_cascade(processor):
+    events = []
+    processor.stepStarted.connect(lambda name: events.append(("started", name)))
+    processor.stepFinished.connect(lambda name: events.append(("finished", name)))
+
+    processor.beginProcessingSource(".PS\n.PE\n")
+    processor.toPdf()
+
+    assert events == [
+        ("started", "PIC"),
+        ("finished", "PIC"),
+        ("started", "TIKZ"),
+        ("finished", "TIKZ"),
+        ("started", "PDF"),
+        ("finished", "PDF"),
+    ]
+
+
+def test_memoized_step_does_not_re_emit_signals(processor):
+    events = []
+    processor.stepStarted.connect(lambda name: events.append(name))
+
+    processor.beginProcessingSource(".PS\n.PE\n")
+    processor.toPic()
+    processor.toPic()
+
+    assert events == ["PIC"]
+
+
+def test_step_failure_emits_stepFailed_and_still_raises(processor):
+    from pycirkuit.exceptions import PyCktToolExecutionError
+
+    processor.extTools[ToolM4].execute.side_effect = PyCktToolExecutionError(
+        "boom", tool=ToolM4
+    )
+    events = []
+    processor.stepFailed.connect(lambda name: events.append(name))
+
+    processor.beginProcessingSource(".PS\n.PE\n")
+    try:
+        processor.toPic()
+        assert False, "expected PyCktToolExecutionError to propagate"
+    except PyCktToolExecutionError:
+        pass
+
+    assert events == ["PIC"]
+    # A failed step must not be marked as done - a later retry should still
+    # try to actually run it again, not silently skip it as "memoized".
+    assert processor.picExists is False

@@ -93,8 +93,42 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # Instantiate a processor object which will perform the actual file processing
         self.processor = PyCirkuitProcessor()
         # Silence the processor's CLI-oriented terminal progress narrative;
-        # the GUI has its own progress bar and output log widget instead.
+        # the GUI has its own progress bar and output log widget instead,
+        # driven by the processor's stepStarted/stepFinished signals.
         self.processor.printProgress = False
+        self.processor.stepStarted.connect(self._on_step_started)
+        self.processor.stepFinished.connect(self._on_step_finished)
+        # Maps a pipeline step name (as emitted by PyCirkuitProcessor's
+        # signals) to its status bar message and the tool whose longName
+        # headers the output log for that step.
+        self._stepInfo = {
+            "PIC": (
+                _translate(
+                    "StatusBar", "Converting: Circuit Macros -> PIC", "Status Bar message"
+                ),
+                ToolM4,
+            ),
+            "TIKZ": (
+                _translate("StatusBar", "Converting: PIC -> TIKZ", "Status Bar message"),
+                ToolDpic,
+            ),
+            "PDF": (
+                _translate("StatusBar", "Converting: TIKZ -> PDF", "Status Bar message"),
+                ToolLaTeX,
+            ),
+            "SVG": (
+                _translate("StatusBar", "Converting: PDF -> SVG", "Status Bar message"),
+                ToolPdfToSvg,
+            ),
+            "PNG": (
+                _translate("StatusBar", "Converting: PDF -> PNG", "Status Bar message"),
+                ToolPdfToPng,
+            ),
+            "JPEG": (
+                _translate("StatusBar", "Converting: PDF -> JPEG", "Status Bar message"),
+                ToolPdfToJpeg,
+            ),
+        }
 
         # Set up the editor
         font = QtGui.QFont()
@@ -820,18 +854,32 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # Continue after the 'for' loop. If we are here we've saved successfully all the requested formats, so we can disable the button
         self.exportButton.setEnabled(False)
 
+    @pyqtSlot(str)
+    def _on_step_started(self, name):
+        message, tool = self._stepInfo[name]
+        self.statusBar.showMessage(message)
+        toolInstance = self.processor.extTools[tool]
+        # Prefer the terser shortName (e.g. "LuaLaTeX") when the tool has
+        # one: longName (e.g. "LuaLaTeX program") reads awkwardly in
+        # "Output of ...:" - the header already implies it's a program.
+        displayName = getattr(toolInstance, "shortName", toolInstance.longName)
+        header = _translate(
+            "OutputLog",
+            "Output of {toolLongName}:",
+            "Output log info. Do NOT modify/translate the '{toolLongName}' variable",
+        ).format(toolLongName=displayName)
+        self.outputText.appendPlainText("\n" + header)
+        self.outputText.appendPlainText("=" * len(header))
+
+    @pyqtSlot(str)
+    def _on_step_finished(self, name):
+        self.outputText.appendPlainText(
+            _translate("OutputLog", " + No execution errors", "Output log info")
+        )
+        self.sbProgressBar.setValue(self.sbProgressBar.value() + 1)
+
     @pyqtSlot()
     def on_processButton_clicked(self):
-        def writeHeader(tool):
-            aux = header.format(toolLongName=self.processor.extTools[tool].longName)
-            self.outputText.appendPlainText("\n" + aux)
-            self.outputText.appendPlainText("=" * len(aux))
-
-        def writeOk():
-            self.outputText.appendPlainText(
-                _translate("OutputLog", " + No execution errors", "Output log info")
-            )
-
         # STEP 0: Basic checks for the existence of auxiliary programs/utilities
         # Check if we have all the auxiliary apps correctly installed
         if not self._check_programs():
@@ -850,8 +898,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         try:
             settings = QSettings()
-            # STEP 1: Prepare the Progress Bar
-            self.sbProgressBar.setRange(0, 6)
+            # STEP 1: Prepare the Progress Bar. Up to 8 increments can fire
+            # (PIC/TIKZ/PDF always, SVG/PNG/JPEG optionally, plus the
+            # display render and the final visualize step below) - if fewer
+            # fire, STEP 10 snaps the bar to full anyway.
+            self.sbProgressBar.setRange(0, 8)
             self.sbProgressBar.setValue(0)
             self.sbProgressBar.setVisible(True)
 
@@ -876,67 +927,27 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.outputText.setPlainText(
                 _translate("OutputLog", ">>>>> Start processing", "Output log info")
             )
-            header = _translate(
-                "OutputLog",
-                "Output of {toolLongName}:",
-                "Output log info. Do NOT modify/translate the '{toolLongName}' variable",
-            )
 
-            # STEP 6: Call M4: .CKT -> .PIC
-            self.statusBar.showMessage(
-                _translate(
-                    "StatusBar",
-                    "Converting: Circuit Macros -> PIC",
-                    "Status Bar message",
-                )
-            )
-            writeHeader(ToolM4)
+            # STEPS 6-8b: PIC -> TIKZ -> PDF -> (optionally) SVG. Status bar,
+            # output log headers and progress bar are all driven by
+            # _on_step_started()/_on_step_finished(), connected to the
+            # processor's stepStarted/stepFinished signals in __init__.
             self.processor.toPic()
-            writeOk()
-            self.sbProgressBar.setValue(1)
-
-            # STEP 7a: Call dpic: .PIC -> .TIKZ
-            self.statusBar.showMessage(
-                _translate("StatusBar", "Converting: PIC -> TIKZ", "Status Bar message")
-            )
-            writeHeader(ToolDpic)
             self.processor.toTikz()
-            writeOk()
-            self.sbProgressBar.setValue(2)
-
-            # STEP 8: Call the configured LaTeX engine: .TIKZ -> .PDF
-            # First we have to embed the .TIKZ code inside a suitable template
-            self.statusBar.showMessage(
-                _translate("StatusBar", "Converting: TIKZ -> PDF", "Status Bar message")
-            )
-            writeHeader(ToolLaTeX)
             self.processor.toPdf()
-            writeOk()
-            self.sbProgressBar.setValue(3)
-
-            # STEP 8b: Call pdf2svg: .PDF -> .SVG
-            # (Goes through the PDF, not straight from .PIC: dpic's own SVG
-            # output quality isn't as good. This also means the SVG output
-            # is affected by the LaTeX template's font setup, unlike before.)
             if settings.value("Export/exportSVG", type=bool):
-                self.statusBar.showMessage(
-                    _translate(
-                        "StatusBar", "Converting: PDF -> SVG", "Status Bar message"
-                    )
-                )
-                writeHeader(ToolPdfToSvg)
                 self.processor.toSvg()
-                writeOk()
-                self.sbProgressBar.setValue(4)
 
             # STEP 9: Render the PDF into a bitmap image to visualize it (a
             # dedicated low-res copy, independent of the export DPI setting),
             # and additionally produce the PNG/JPEG export formats if
-            # requested, at the configured DPI/quality.
+            # requested, at the configured DPI/quality. The display copy
+            # bypasses the processor's own toPng() (and its signals): it's a
+            # GUI-only preview concern, not a pipeline step, and always runs
+            # regardless of whether the user wants a PNG export.
             self.statusBar.showMessage(
                 _translate("StatusBar", "Converting: PDF -> PNG", "Status Bar message")
             )
-            writeHeader(ToolPdfToPng)
             settings.beginGroup("Export")
             dpi = settings.value("exportDPI", type=int)
             copyfile(
@@ -952,11 +963,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 q = settings.value("exportQuality", type=int)
                 self.processor.toJpeg(dpi, q)
             settings.endGroup()
-            writeOk()
-            self.sbProgressBar.setValue(5)
+            self.sbProgressBar.setValue(self.sbProgressBar.value() + 1)
 
             # STEP 10: Visualize the image (can fail)
-            self.sbProgressBar.setValue(6)
+            self.sbProgressBar.setValue(self.sbProgressBar.maximum())
             self.imageViewer.setImage(tmpFileBaseName + "_display", adjustIGU=True)
 
         except PyCktToolExecutionError as err:

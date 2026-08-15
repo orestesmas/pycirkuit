@@ -27,7 +27,7 @@ import shutil
 from enum import Enum
 
 # Third-party imports
-from PyQt5.QtCore import QCoreApplication, QObject, QTemporaryDir, QSettings
+from PyQt5.QtCore import QCoreApplication, QObject, QTemporaryDir, QSettings, pyqtSignal
 
 # Local imports
 import pycirkuit
@@ -55,6 +55,14 @@ class Overwrite(Enum):
 
 class PyCirkuitProcessor(QObject):
     TMP_FILE_BASENAME = "cirkuit_tmp"
+
+    # Emitted around each pipeline step (PIC/TIKZ/PDF/SVG/PNG/JPEG) that
+    # actually runs (memoized steps don't re-emit). Lets callers (the GUI,
+    # in particular) react to progress without the pipeline itself needing
+    # to know anything about progress bars or log widgets.
+    stepStarted = pyqtSignal(str)
+    stepFinished = pyqtSignal(str)
+    stepFailed = pyqtSignal(str)
 
     def __init__(self):
         self.environmentOk = False
@@ -256,34 +264,58 @@ class PyCirkuitProcessor(QObject):
         # Si el font NO existeix, demanar crear-lo. Això implica
         shutil.copy(src, dst)
 
+    def _run_step(self, name, work, label=None):
+        """Run one pipeline step's own tool call, wrapped in stepStarted/
+        stepFinished/stepFailed signals. Cascading to prerequisite steps
+        (e.g. toPdf() calling toTikz() first) happens outside this, in each
+        toXxx() method below, so prerequisites emit their own signals too.
+        `label` overrides `name` for the CLI's printed narrative only, for
+        steps that want to show extra detail (e.g. dpi)."""
+        self.stepStarted.emit(name)
+        try:
+            work()
+        except PyCktToolExecutionError:
+            self.stepFailed.emit(name)
+            raise
+        self.stepFinished.emit(name)
+        if self.printProgress:
+            print(" -> " + (name if label is None else label), end="")
+
     def toPng(self, dpi, q=None):
         if not self.pngExists:
             self.toPdf()
-            self.extTools[ToolPdfToPng].execute(
-                PyCirkuitProcessor.TMP_FILE_BASENAME, resolution=dpi
+            self._run_step(
+                "PNG",
+                lambda: self.extTools[ToolPdfToPng].execute(
+                    PyCirkuitProcessor.TMP_FILE_BASENAME, resolution=dpi
+                ),
+                label="PNG ({} dpi)".format(dpi),
             )
-            if self.printProgress:
-                print(" -> PNG ({} dpi)".format(dpi), end="")
             self.pngExists = True
         return True
 
     def toJpeg(self, dpi, q):
         if not self.jpegExists:
             self.toPdf()
-            self.extTools[ToolPdfToJpeg].execute(
-                PyCirkuitProcessor.TMP_FILE_BASENAME, resolution=dpi, quality=q
+            self._run_step(
+                "JPEG",
+                lambda: self.extTools[ToolPdfToJpeg].execute(
+                    PyCirkuitProcessor.TMP_FILE_BASENAME, resolution=dpi, quality=q
+                ),
+                label="JPEG ({dpi} dpi, {q}% quality)".format(dpi=dpi, q=q),
             )
-            if self.printProgress:
-                print(" -> JPEG ({dpi} dpi, {q}% quality)".format(dpi=dpi, q=q), end="")
             self.jpegExists = True
         return True
 
     def toPdf(self, dpi=None, q=None):
         if not self.pdfExists:
             self.toTikz()
-            self.extTools[ToolLaTeX].execute(PyCirkuitProcessor.TMP_FILE_BASENAME)
-            if self.printProgress:
-                print(" -> PDF", end="")
+            self._run_step(
+                "PDF",
+                lambda: self.extTools[ToolLaTeX].execute(
+                    PyCirkuitProcessor.TMP_FILE_BASENAME
+                ),
+            )
             self.pdfExists = True
         return True
 
@@ -297,27 +329,34 @@ class PyCirkuitProcessor(QObject):
             # consequence: the font set up in the LaTeX template now affects
             # the SVG output too, which it didn't before.
             self.toPdf()
-            self.extTools[ToolPdfToSvg].execute(PyCirkuitProcessor.TMP_FILE_BASENAME)
-            if self.printProgress:
-                print(" -> SVG", end="")
+            self._run_step(
+                "SVG",
+                lambda: self.extTools[ToolPdfToSvg].execute(
+                    PyCirkuitProcessor.TMP_FILE_BASENAME
+                ),
+            )
             self.svgExists = True
         return True
 
     def toTikz(self, dpi=None, q=None):
         if not self.tikzExists:
             self.toPic()
-            self.extTools[ToolDpic].execute(
-                PyCirkuitProcessor.TMP_FILE_BASENAME, outputType=Option.TIKZ
+            self._run_step(
+                "TIKZ",
+                lambda: self.extTools[ToolDpic].execute(
+                    PyCirkuitProcessor.TMP_FILE_BASENAME, outputType=Option.TIKZ
+                ),
             )
-            if self.printProgress:
-                print(" -> TIKZ", end="")
             self.tikzExists = True
         return True
 
     def toPic(self, dpi=None, q=None):
         if not self.picExists:
-            self.extTools[ToolM4].execute(PyCirkuitProcessor.TMP_FILE_BASENAME)
-            if self.printProgress:
-                print(" -> PIC", end="")
+            self._run_step(
+                "PIC",
+                lambda: self.extTools[ToolM4].execute(
+                    PyCirkuitProcessor.TMP_FILE_BASENAME
+                ),
+            )
             self.picExists = True
         return True
