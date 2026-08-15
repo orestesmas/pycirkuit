@@ -24,16 +24,16 @@ Module implementing configDialog.
 import os
 
 # Third-party imports
-from PyQt5.QtCore import (
-    pyqtSlot,
+from PySide6.QtCore import (
+    Slot,
     Qt,
     QSize,
     QDir,
     QSettings,
     QCoreApplication,
-    pyqtSignal,
+    Signal,
 )
-from PyQt5.QtWidgets import QDialog, QFileDialog, QMessageBox
+from PySide6.QtWidgets import QDialog, QFileDialog, QMessageBox
 
 # Local application imports
 from pycirkuit.ui.Ui_configdialog import Ui_ConfigDialog
@@ -53,7 +53,7 @@ class ConfigDialog(QDialog, Ui_ConfigDialog):
     Class documentation goes here.
     """
 
-    exportSettingsChange = pyqtSignal()
+    exportSettingsChange = Signal()
 
     def __init__(self, parent=None):
         """
@@ -142,7 +142,7 @@ class ConfigDialog(QDialog, Ui_ConfigDialog):
         else:
             return False
 
-    @pyqtSlot()
+    @Slot()
     def accept(self):
         settings = QSettings()
         # General page
@@ -206,11 +206,11 @@ class ConfigDialog(QDialog, Ui_ConfigDialog):
         settings.sync()
         QDialog.accept(self)
 
-    @pyqtSlot()
+    @Slot()
     def reject(self):
         QDialog.reject(self)
 
-    @pyqtSlot(int)
+    @Slot(int)
     def on_listWidget_currentRowChanged(self, currentRow):
         """
         Slot documentation goes here.
@@ -220,7 +220,7 @@ class ConfigDialog(QDialog, Ui_ConfigDialog):
         """
         self.stackedWidget.setCurrentIndex(currentRow)
 
-    @pyqtSlot(int)
+    @Slot(int)
     def on_latexEngine_currentIndexChanged(self, index):
         """
         If the current template path still points at one of the bundled
@@ -242,7 +242,7 @@ class ConfigDialog(QDialog, Ui_ConfigDialog):
             newBasename = default_template_filename(newEngineId)
             self.templateFile.setText(os.path.join(currentDir, newBasename))
 
-    @pyqtSlot()
+    @Slot()
     def on_toolButtonCMPath_clicked(self):
         """
         Slot documentation goes here.
@@ -265,7 +265,7 @@ class ConfigDialog(QDialog, Ui_ConfigDialog):
             self.cmPath.setText(newPath[0])
         fdlg.close()
 
-    @pyqtSlot()
+    @Slot()
     def on_toolButtonTemplatePath_clicked(self):
         """
         Slot documentation goes here.
@@ -284,7 +284,7 @@ class ConfigDialog(QDialog, Ui_ConfigDialog):
             self.templateFile.setText(newPath[0])
         fdlg.close()
 
-    @pyqtSlot(str)
+    @Slot(str)
     def on_cmPath_textChanged(self, newText):
         if os.path.isdir(newText):
             self.cmPath.setStyleSheet(
@@ -295,7 +295,7 @@ class ConfigDialog(QDialog, Ui_ConfigDialog):
                 "background-color: {reddish};".format(reddish="rgb(255, 230, 230)")
             )
 
-    @pyqtSlot(str)
+    @Slot(str)
     def on_templateFile_textChanged(self, newText):
         if os.path.isfile(newText):
             self.templateFile.setStyleSheet(

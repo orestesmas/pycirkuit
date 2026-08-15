@@ -23,7 +23,7 @@ Module implementing a class to handle the dpic external tool
 from os.path import *
 
 # Third-party imports
-from PyQt5.QtCore import QCoreApplication, QStandardPaths
+from PySide6.QtCore import QCoreApplication, QStandardPaths
 
 # Local application imports
 from pycirkuit import Option

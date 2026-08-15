@@ -40,20 +40,18 @@ with no error to explain why.
      every locale file the project ships (currently `pycirkuit.ca.ts`) plus
      `pycirkuit_empty.ts`:
      ```
-     pylupdate5 <changed .py files...> -ts pycirkuit.<LOCALE>.ts pycirkuit_empty.ts
+     pyside6-lupdate <changed .py files...> -ts pycirkuit.<LOCALE>.ts pycirkuit_empty.ts
      ```
-     **Gotcha:** `pylupdate5`'s scanner misses `_translate(...)` calls that
-     Black has reformatted one-argument-per-line; it only recognizes the
-     call when `context, source, comment` are folded onto one line after
-     the opening paren. This is a real, project-wide issue introduced by
-     the Black migration and not yet cleaned up (see `MODERNIZATION.md`) —
-     **do not run `pylupdate5` across the whole tree and blindly accept the
-     merge**: check the "Found N source texts... kept M obsolete" summary
-     it prints, and if M looks too high, some of those "obsolete" strings
-     are probably still live and about to be silently dropped from that
-     locale's compiled translation. When in doubt, add the new `<message>`
-     entry to the locale `.ts` file(s) by hand instead, matching the format
-     of a neighboring entry.
+     **Known gap, not yet resolved**: `pyside6-lupdate` does not recognize
+     this project's `_translate = QCoreApplication.translate` alias at
+     all - it extracts zero strings from files using it (confirmed even on
+     the simplest single-call cases, not just Black-formatting edge cases).
+     Until this is sorted out (either restructure the calls, or find the
+     right `pyside6-lupdate` invocation), **add new `<message>` entries to
+     the locale `.ts` file(s) by hand instead**, matching the format of a
+     neighboring entry. (The predecessor tool, PyQt5's `pylupdate5`, did at
+     least work when `_translate(...)` calls were folded onto one line -
+     see git history if reviving that tool is ever an option again.)
   2. **Fill in the translation** for any new `<translation
      type="unfinished"></translation>` entries in each locale's `.ts` file
      (Qt Linguist, or edit the XML directly) — for whichever language(s)
@@ -67,16 +65,19 @@ with no error to explain why.
      `resources.qrc` and bundles every `.qm` listed there. Updating a `.qm`
      alone has no visible effect until this is redone:
      ```
-     cd pycirkuit/resources && pyrcc5 resources.qrc -o resources_rc.py
+     cd pycirkuit/resources && pyside6-rcc resources.qrc -o resources_rc.py
      ```
      If a `.ui` file changed instead, the equivalent step is regenerating
-     its `Ui_*.py` with `pyuic5 <file>.ui -o Ui_<file>.py
-     --import-from=pycirkuit.resources`, then running `black` on it to
-     match the project's code style.
+     its `Ui_*.py` with `pyside6-uic <file>.ui -o Ui_<file>.py`, then fixing
+     the generated `import resources_rc` line to
+     `from pycirkuit.resources import resources_rc` (no flag currently
+     produces the correctly-qualified import directly) and running `black`
+     on it to match the project's code style.
 
-  Note: `pyuic5`/`pyrcc5` output differs noticeably between PyQt5 versions
-  (byte-level re-encoding of embedded resources, line wrapping). A large,
-  hard-to-review diff in `resources_rc.py` or a `Ui_*.py` file after
+  Note: `pyside6-uic`/`pyside6-rcc` output can differ noticeably between
+  PySide6 versions (byte-level re-encoding of embedded resources, line
+  wrapping). A large, hard-to-review diff in `resources_rc.py` or a
+  `Ui_*.py` file after
   regenerating isn't necessarily a sign anything is wrong — the compiled
   `.qm`/`.ui` content is what actually matters, not the generated source's
   shape.

@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 """
 Characterization tests for PyCirkuitProcessor: lock down the pipeline's
-call order and memoization behaviour before it's refactored further (see
-MODERNIZATION.md, step 6). External tools are stand-in MagicMocks (see
-conftest.py's `processor` fixture) - these tests never call m4/dpic/
-lualatex/pdftoppm/pdf2svg for real.
+call order and memoization behaviour before it's refactored further.
+External tools are stand-in MagicMocks (see conftest.py's `processor`
+fixture) - these tests never call m4/dpic/lualatex/pdftoppm/pdf2svg for
+real.
 """
 import os
 
-from PyQt5.QtCore import QSettings
+from PySide6.QtCore import QSettings
 
 import pycirkuit
 from pycirkuit.tools.m4 import ToolM4
@@ -157,7 +157,7 @@ def test_check_programs_defaults_to_lualatex_when_unset(fake_tools_on_path):
         pycirkuit.__tmpDir__.remove()
 
 
-# --- step signals (MODERNIZATION.md step 6) -------------------------------
+# --- pipeline step signals -------------------------------------------------
 
 
 def test_signals_fire_in_order_for_the_whole_cascade(processor):

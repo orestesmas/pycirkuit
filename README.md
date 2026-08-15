@@ -2,7 +2,7 @@
 
 PyCirkuit is a GUI/CLI front-end for [Circuit Macros] and [Dpic] by Dwight Aplevich, which make up a software chain for drawing high-quality line diagrams to include in LaTeX, web, LibreOffice or similar documents. PyCirkuit GUI builds a live preview of the source code and can export the resulting images in TikZ code, PDF, SVG, PNG and JPEG formats. More export formats are also planned. PyCirkuit CLI mode is useful for batch-processing multiple files.
 
-PyCirkuit is written in Python 3 using the PyQt5 libraries, but is largely inspired (in both ideas and code snippets) on [Cirkuit], a C++ application written by Matteo Agostinelli using KDE4 libraries, which is nowadays increasingly difficult to compile due to the switching, started in 2013, of KDE project from KDE4 platform to the Qt5-based KDE frameworks 5. A port of Cirkuit to KDE frameworks 5 [has begun], but's still not functional and its development appears to be stalled.
+PyCirkuit is written in Python 3 using the PySide6 libraries, but is largely inspired (in both ideas and code snippets) on [Cirkuit], a C++ application written by Matteo Agostinelli using KDE4 libraries, which is nowadays increasingly difficult to compile due to the switching, started in 2013, of KDE project from KDE4 platform to the Qt5-based KDE frameworks 5. A port of Cirkuit to KDE frameworks 5 [has begun], but's still not functional and its development appears to be stalled.
 
 [Circuit Macros]: <https://ece.uwaterloo.ca/~aplevich/Circuit_macros/>
 (M4 Macros for diagram and circuit drawing)
@@ -25,11 +25,13 @@ PyCirkuit source code is now hosted on github.com. The project homepage is [http
 
 As PyCirkuit is written in python 3 and uses multiplatform GUI libraries, it loads without problems on GNU/Linux, Windows and macOS. However, its execution relies on using some helper applications whose availability on non-GNU systems is irregular. Version 0.1 has been reported to work on MacOS using external tools provided by [MacPorts](https://www.macports.org/). Works on Windows from version 0.2 onwards, although it's not throughly tested.
 
+**A note on the current development line**: the platform reports above are for the PyQt5-based 0.x releases, which did have real macOS and Windows testers. The version under active development here has since switched to PySide6 and undergone other significant internal changes, and **has only been run on GNU/Linux so far** - the maintainer has no macOS or Windows systems available for testing. Consider Windows/macOS support experimental/untested for this line until someone confirms otherwise. Testers on either platform are very welcome!
+
 To install and run this application you need to have the following applications/libraries installed:
 
-  * Qt5 libraries
+  * Qt6 libraries
   * Python 3, with virtual environment support
-  * PyQt5 python bindings to Qt libraries (*see note below*)
+  * PySide6 python bindings to Qt libraries
   * 'libmagic' and its Python bindings
   * lualatex
   * m4
@@ -79,7 +81,7 @@ To install PyCirkuit in you computer, please follow this steps:
 
   3. Install PyCirkuit. You have several ways to do so. Choose one of the following:
   
-     3.1 PyCirkuit is available at the [Python Package Index (PyPI)](https://pypi.org/), so you can install it using PIP. It will download and install alongside the required dependencies (PyQt5). After installation, PyCirkuit code and files will be under
+     3.1 PyCirkuit is available at the [Python Package Index (PyPI)](https://pypi.org/), so you can install it using PIP. It will download and install alongside the required dependencies (PySide6). After installation, PyCirkuit code and files will be under
   ```PyCirkuit/lib/python3.X/site-packages/pycirkuit```
 
          pip install pycirkuit
@@ -93,7 +95,7 @@ To install PyCirkuit in you computer, please follow this steps:
          pycirkuit
 
 ## Installing on MacOS ##
-(These explanations were provided by some user. I cannot test them personally)
+(These explanations were provided by some user. I cannot test them personally. They also predate the switch to PySide6 in the current development line and haven't been re-verified since.)
 
   1. Prerequisites and dependencies:
   
@@ -106,6 +108,8 @@ To install PyCirkuit in you computer, please follow this steps:
   2. Finally, proceed as explained on the steps #2 and #3 of the previous section to create a Python virtual environment and to install PyCirkuit from PyPI there.
 
 ## Installing on MS Windows ##
+(These instructions predate the switch to PySide6 in the current development line and haven't been re-verified since; the maintainer has no Windows system to test on.)
+
   1. Install the dependencies and auxiliary programs:
 
      1.1 Choose a LaTeX distribution for windows. I tested PyCirkuit with MikTeX. Download it from https://miktex.org/ and follow the instructions to install it.

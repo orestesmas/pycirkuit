@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-Tests for the LaTeX engine registry (tools/latex.py), introduced in
-MODERNIZATION.md step 5 to replace the old pdflatex.py/lualatex.py
-duplication.
+Tests for the LaTeX engine registry (tools/latex.py), which replaced the
+old pdflatex.py/lualatex.py duplication.
 """
 from pycirkuit.tools.latex import (
     DEFAULT_LATEX_ENGINE,

@@ -28,7 +28,7 @@ from subprocess import run
 from enum import Enum
 
 # Third-party imports
-from PyQt5.QtCore import (
+from PySide6.QtCore import (
     QObject,
     QCoreApplication,
     QCommandLineParser,

@@ -20,7 +20,7 @@ Module implementing the PyCirkuit exceptions
 #
 
 # Third-party imports
-from PyQt5.QtCore import QCoreApplication
+from PySide6.QtCore import QCoreApplication
 
 # Translation function
 _translate = QCoreApplication.translate

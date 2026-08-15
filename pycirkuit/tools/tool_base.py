@@ -27,7 +27,7 @@ import inspect
 import platform
 
 # Third-party imports
-from PyQt5.QtCore import QCoreApplication
+from PySide6.QtCore import QCoreApplication
 
 # Local application imports
 import pycirkuit

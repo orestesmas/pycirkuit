@@ -26,8 +26,8 @@ import sys, os, inspect, platform
 from os.path import isfile
 
 # Third-party imports
-from PyQt5.QtCore import QCoreApplication, QTranslator, QLocale, QLibraryInfo, QSettings
-from PyQt5.QtWidgets import QApplication
+from PySide6.QtCore import QCoreApplication, QTranslator, QLocale, QLibraryInfo, QSettings
+from PySide6.QtWidgets import QApplication
 
 # Local application imports
 import pycirkuit
@@ -134,7 +134,7 @@ def main():
     qtTranslator = QTranslator()
     filename = "qtbase_" + QLocale.system().name().split("_")[0]
     if qtTranslator.load(
-        filename, QLibraryInfo.location(QLibraryInfo.TranslationsPath), suffix=".qm"
+        filename, QLibraryInfo.path(QLibraryInfo.LibraryPath.TranslationsPath), suffix=".qm"
     ):
         app.installTranslator(qtTranslator)
     # Then load PyCirkuit translations

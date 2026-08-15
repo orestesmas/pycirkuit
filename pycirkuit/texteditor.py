@@ -20,9 +20,9 @@ Module implementing a customized TextEditor
 #
 
 # Third-party imports
-from PyQt5.QtCore import QCoreApplication, Qt
-from PyQt5.QtWidgets import QTextEdit
-from PyQt5.QtGui import QKeySequence
+from PySide6.QtCore import QCoreApplication, Qt
+from PySide6.QtWidgets import QTextEdit
+from PySide6.QtGui import QKeySequence
 
 # Translation function
 _translate = QCoreApplication.translate

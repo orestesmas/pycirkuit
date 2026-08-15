@@ -24,9 +24,9 @@ import os
 from math import log10
 
 # Third-party imports
-from PyQt5.QtCore import QCoreApplication, Qt, QRectF, QPointF, pyqtSignal
-from PyQt5.QtWidgets import QGraphicsScene, QGraphicsView
-from PyQt5.QtGui import QPixmap, QFont
+from PySide6.QtCore import QCoreApplication, Qt, QRectF, QPointF, Signal
+from PySide6.QtWidgets import QGraphicsScene, QGraphicsView
+from PySide6.QtGui import QPixmap, QFont
 
 # Local application imports
 import pycirkuit
@@ -45,8 +45,8 @@ class pycktImageViewer(QGraphicsView):
     """
 
     # A signal to inform of errors
-    conversion_failed = pyqtSignal(PyCirkuitError)
-    image_changed = pyqtSignal()
+    conversion_failed = Signal(PyCirkuitError)
+    image_changed = Signal()
 
     def __init__(self, parent=None, maxZoom=5):
         """
@@ -102,7 +102,7 @@ class pycktImageViewer(QGraphicsView):
 
     def __qBound(self, minVal, current, maxVal):
         """
-        PyQt5 does not wrap the qBound function from Qt's global namespace.
+        PySide6 does not wrap the qBound function from Qt's global namespace.
         This is equivalent. Returns "current" if it's between "minVal" and "maxVal",
         otherwise saturates to one of these two limits.
         """

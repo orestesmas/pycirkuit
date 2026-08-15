@@ -23,7 +23,7 @@ Module implementing a class to handle the pdftoppm external tool
 from os import extsep
 
 # Third-party imports
-from PyQt5.QtCore import QCoreApplication
+from PySide6.QtCore import QCoreApplication
 
 # Local application imports
 from pycirkuit.tools.tool_base import ExternalTool

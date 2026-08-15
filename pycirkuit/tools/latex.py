@@ -26,7 +26,7 @@ supports.
 import re
 
 # Third-party imports
-from PyQt5.QtCore import QCoreApplication, QSettings
+from PySide6.QtCore import QCoreApplication, QSettings
 
 # Local application imports
 from pycirkuit.tools.tool_base import ExternalTool, PyCktToolExecutionError
@@ -138,8 +138,9 @@ def _engine_specs():
     }
 
 
-# lualatex handles UTF-8/fonts natively (see MODERNIZATION.md for the
-# pdflatex-era template regression this avoids by default).
+# lualatex handles UTF-8/fonts natively, avoiding the wrong-character
+# rendering that pdflatex-era template packages (inputenc, fontenc,
+# lmodern) caused.
 DEFAULT_LATEX_ENGINE = "lualatex"
 
 

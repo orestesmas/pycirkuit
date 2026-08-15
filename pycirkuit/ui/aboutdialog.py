@@ -20,7 +20,7 @@ Module implementing a personalized AboutDialog.
 #
 
 # Third-party imports
-from PyQt5.QtWidgets import QDialog
+from PySide6.QtWidgets import QDialog
 
 # Local application imports
 from pycirkuit import __version__, __copyright__

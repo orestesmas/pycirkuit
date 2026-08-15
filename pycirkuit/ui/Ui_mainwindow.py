@@ -1,217 +1,205 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/orestes/Devel/Software/pycirkuit/pycirkuit/ui/mainwindow.ui'
-#
-# Created by: PyQt5 UI code generator 5.13.0
-#
-# WARNING! All changes made in this file will be lost!
+################################################################################
+## Form generated from reading UI file 'mainwindow.ui'
+##
+## Created by: Qt User Interface Compiler version 6.11.1
+##
+## WARNING! All changes made in this file will be lost when recompiling UI file!
+################################################################################
 
+from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
+    QMetaObject, QObject, QPoint, QRect,
+    QSize, QTime, QUrl, Qt)
+from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
+    QCursor, QFont, QFontDatabase, QGradient,
+    QIcon, QImage, QKeySequence, QLinearGradient,
+    QPainter, QPalette, QPixmap, QRadialGradient,
+    QTransform)
+from PySide6.QtWidgets import (QAbstractScrollArea, QApplication, QDockWidget, QGraphicsView,
+    QHBoxLayout, QMainWindow, QMenu, QMenuBar,
+    QPlainTextEdit, QPushButton, QSizePolicy, QStatusBar,
+    QTabWidget, QVBoxLayout, QWidget)
 
-from PyQt5 import QtCore, QtGui, QtWidgets
-
+from pycirkuit.imageviewer import pycktImageViewer
+from pycirkuit.texteditor import pycktTextEditor
+from pycirkuit.resources import resources_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
-        MainWindow.setObjectName("MainWindow")
+        if not MainWindow.objectName():
+            MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(677, 667)
-        MainWindow.setMinimumSize(QtCore.QSize(440, 400))
-        icon = QtGui.QIcon()
-        icon.addPixmap(
-            QtGui.QPixmap(":/icons/AppIcon"), QtGui.QIcon.Normal, QtGui.QIcon.Off
-        )
+        MainWindow.setMinimumSize(QSize(440, 400))
+        icon = QIcon()
+        icon.addFile(u":/icons/AppIcon", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         MainWindow.setWindowIcon(icon)
-        self.centralwidget = QtWidgets.QWidget(MainWindow)
-        self.centralwidget.setObjectName("centralwidget")
-        self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
-        self.verticalLayout.setObjectName("verticalLayout")
-        self.tabWidget = QtWidgets.QTabWidget(self.centralwidget)
-        font = QtGui.QFont()
+        self.actionQuit = QAction(MainWindow)
+        self.actionQuit.setObjectName(u"actionQuit")
+        icon1 = QIcon()
+        icon1.addFile(u":/icons/Exit", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.actionQuit.setIcon(icon1)
+        self.actionOpen = QAction(MainWindow)
+        self.actionOpen.setObjectName(u"actionOpen")
+        icon2 = QIcon()
+        icon2.addFile(u":/icons/Open", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.actionOpen.setIcon(icon2)
+        self.actionAbout = QAction(MainWindow)
+        self.actionAbout.setObjectName(u"actionAbout")
+        icon3 = QIcon()
+        icon3.addFile(u":/icons/About", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.actionAbout.setIcon(icon3)
+        self.actionPreferences = QAction(MainWindow)
+        self.actionPreferences.setObjectName(u"actionPreferences")
+        icon4 = QIcon()
+        icon4.addFile(u":/icons/Settings", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.actionPreferences.setIcon(icon4)
+        self.actionNew = QAction(MainWindow)
+        self.actionNew.setObjectName(u"actionNew")
+        icon5 = QIcon()
+        icon5.addFile(u":/icons/New", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.actionNew.setIcon(icon5)
+        self.actionSave = QAction(MainWindow)
+        self.actionSave.setObjectName(u"actionSave")
+        icon6 = QIcon()
+        icon6.addFile(u":/icons/Save", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.actionSave.setIcon(icon6)
+        self.actionSaveAs = QAction(MainWindow)
+        self.actionSaveAs.setObjectName(u"actionSaveAs")
+        icon7 = QIcon()
+        icon7.addFile(u":/icons/SaveAs", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.actionSaveAs.setIcon(icon7)
+        self.actionCMMan = QAction(MainWindow)
+        self.actionCMMan.setObjectName(u"actionCMMan")
+        icon8 = QIcon()
+        icon8.addFile(u":/icons/CMman", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.actionCMMan.setIcon(icon8)
+        self.actionDpicMan = QAction(MainWindow)
+        self.actionDpicMan.setObjectName(u"actionDpicMan")
+        self.actionDpicMan.setIcon(icon8)
+        self.centralwidget = QWidget(MainWindow)
+        self.centralwidget.setObjectName(u"centralwidget")
+        self.verticalLayout = QVBoxLayout(self.centralwidget)
+        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.tabWidget = QTabWidget(self.centralwidget)
+        self.tabWidget.setObjectName(u"tabWidget")
+        font = QFont()
         font.setKerning(True)
         self.tabWidget.setFont(font)
-        self.tabWidget.setObjectName("tabWidget")
-        self.tab_source = QtWidgets.QWidget()
-        self.tab_source.setObjectName("tab_source")
-        self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.tab_source)
-        self.horizontalLayout_3.setObjectName("horizontalLayout_3")
+        self.tab_source = QWidget()
+        self.tab_source.setObjectName(u"tab_source")
+        self.horizontalLayout_3 = QHBoxLayout(self.tab_source)
+        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.sourceText = pycktTextEditor(self.tab_source)
-        sizePolicy = QtWidgets.QSizePolicy(
-            QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding
-        )
+        self.sourceText.setObjectName(u"sourceText")
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.sourceText.sizePolicy().hasHeightForWidth())
         self.sourceText.setSizePolicy(sizePolicy)
-        self.sourceText.setObjectName("sourceText")
+
         self.horizontalLayout_3.addWidget(self.sourceText)
-        icon1 = QtGui.QIcon()
-        icon1.addPixmap(
-            QtGui.QPixmap(":/icons/Text"), QtGui.QIcon.Normal, QtGui.QIcon.Off
-        )
-        self.tabWidget.addTab(self.tab_source, icon1, "")
-        self.tab_log = QtWidgets.QWidget()
-        self.tab_log.setObjectName("tab_log")
-        self.horizontalLayout_4 = QtWidgets.QHBoxLayout(self.tab_log)
-        self.horizontalLayout_4.setObjectName("horizontalLayout_4")
-        self.outputText = QtWidgets.QPlainTextEdit(self.tab_log)
-        font = QtGui.QFont()
-        font.setFamily("Monospace")
-        font.setPointSize(11)
-        self.outputText.setFont(font)
+
+        icon9 = QIcon()
+        icon9.addFile(u":/icons/Text", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.tabWidget.addTab(self.tab_source, icon9, "")
+        self.tab_log = QWidget()
+        self.tab_log.setObjectName(u"tab_log")
+        self.horizontalLayout_4 = QHBoxLayout(self.tab_log)
+        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
+        self.outputText = QPlainTextEdit(self.tab_log)
+        self.outputText.setObjectName(u"outputText")
+        font1 = QFont()
+        font1.setFamilies([u"Monospace"])
+        font1.setPointSize(11)
+        self.outputText.setFont(font1)
         self.outputText.setReadOnly(True)
-        self.outputText.setPlainText("")
-        self.outputText.setTextInteractionFlags(
-            QtCore.Qt.TextSelectableByKeyboard | QtCore.Qt.TextSelectableByMouse
-        )
-        self.outputText.setObjectName("outputText")
+        self.outputText.setPlainText(u"")
+        self.outputText.setTextInteractionFlags(Qt.TextSelectableByKeyboard|Qt.TextSelectableByMouse)
+
         self.horizontalLayout_4.addWidget(self.outputText)
-        icon2 = QtGui.QIcon()
-        icon2.addPixmap(
-            QtGui.QPixmap(":/icons/Output"), QtGui.QIcon.Normal, QtGui.QIcon.Off
-        )
-        self.tabWidget.addTab(self.tab_log, icon2, "")
+
+        icon10 = QIcon()
+        icon10.addFile(u":/icons/Output", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.tabWidget.addTab(self.tab_log, icon10, "")
+
         self.verticalLayout.addWidget(self.tabWidget)
-        self.horizontalLayout = QtWidgets.QHBoxLayout()
-        self.horizontalLayout.setObjectName("horizontalLayout")
-        self.processButton = QtWidgets.QPushButton(self.centralwidget)
+
+        self.horizontalLayout = QHBoxLayout()
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.processButton = QPushButton(self.centralwidget)
+        self.processButton.setObjectName(u"processButton")
         self.processButton.setEnabled(False)
-        icon3 = QtGui.QIcon()
-        icon3.addPixmap(
-            QtGui.QPixmap(":/icons/Run"), QtGui.QIcon.Normal, QtGui.QIcon.Off
-        )
-        self.processButton.setIcon(icon3)
-        self.processButton.setObjectName("processButton")
+        icon11 = QIcon()
+        icon11.addFile(u":/icons/Run", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.processButton.setIcon(icon11)
+
         self.horizontalLayout.addWidget(self.processButton)
-        self.exportButton = QtWidgets.QPushButton(self.centralwidget)
+
+        self.exportButton = QPushButton(self.centralwidget)
+        self.exportButton.setObjectName(u"exportButton")
         self.exportButton.setEnabled(False)
-        icon4 = QtGui.QIcon()
-        icon4.addPixmap(
-            QtGui.QPixmap(":/icons/Export"), QtGui.QIcon.Normal, QtGui.QIcon.Off
-        )
-        self.exportButton.setIcon(icon4)
-        self.exportButton.setObjectName("exportButton")
+        icon12 = QIcon()
+        icon12.addFile(u":/icons/Export", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.exportButton.setIcon(icon12)
+
         self.horizontalLayout.addWidget(self.exportButton)
+
+
         self.verticalLayout.addLayout(self.horizontalLayout)
+
         MainWindow.setCentralWidget(self.centralwidget)
-        self.menuBar = QtWidgets.QMenuBar(MainWindow)
-        self.menuBar.setGeometry(QtCore.QRect(0, 0, 677, 30))
-        self.menuBar.setObjectName("menuBar")
-        self.menuFile = QtWidgets.QMenu(self.menuBar)
-        self.menuFile.setObjectName("menuFile")
-        self.menuHelp = QtWidgets.QMenu(self.menuBar)
-        self.menuHelp.setObjectName("menuHelp")
-        self.menuSettings = QtWidgets.QMenu(self.menuBar)
-        self.menuSettings.setObjectName("menuSettings")
+        self.menuBar = QMenuBar(MainWindow)
+        self.menuBar.setObjectName(u"menuBar")
+        self.menuBar.setGeometry(QRect(0, 0, 677, 30))
+        self.menuFile = QMenu(self.menuBar)
+        self.menuFile.setObjectName(u"menuFile")
+        self.menuHelp = QMenu(self.menuBar)
+        self.menuHelp.setObjectName(u"menuHelp")
+        self.menuSettings = QMenu(self.menuBar)
+        self.menuSettings.setObjectName(u"menuSettings")
         MainWindow.setMenuBar(self.menuBar)
-        self.statusBar = QtWidgets.QStatusBar(MainWindow)
-        self.statusBar.setObjectName("statusBar")
+        self.statusBar = QStatusBar(MainWindow)
+        self.statusBar.setObjectName(u"statusBar")
         MainWindow.setStatusBar(self.statusBar)
-        self.previewWidget = QtWidgets.QDockWidget(MainWindow)
-        sizePolicy = QtWidgets.QSizePolicy(
-            QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding
-        )
-        sizePolicy.setHorizontalStretch(1)
-        sizePolicy.setVerticalStretch(1)
-        sizePolicy.setHeightForWidth(
-            self.previewWidget.sizePolicy().hasHeightForWidth()
-        )
-        self.previewWidget.setSizePolicy(sizePolicy)
-        self.previewWidget.setMinimumSize(QtCore.QSize(100, 130))
-        icon5 = QtGui.QIcon()
-        icon5.addPixmap(
-            QtGui.QPixmap(":/icons/view-preview.png"),
-            QtGui.QIcon.Normal,
-            QtGui.QIcon.Off,
-        )
-        self.previewWidget.setWindowIcon(icon5)
-        self.previewWidget.setObjectName("previewWidget")
-        self.dockWidgetContents = QtWidgets.QWidget()
-        sizePolicy = QtWidgets.QSizePolicy(
-            QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred
-        )
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(
-            self.dockWidgetContents.sizePolicy().hasHeightForWidth()
-        )
-        self.dockWidgetContents.setSizePolicy(sizePolicy)
-        self.dockWidgetContents.setObjectName("dockWidgetContents")
-        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.dockWidgetContents)
-        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.previewWidget = QDockWidget(MainWindow)
+        self.previewWidget.setObjectName(u"previewWidget")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
+        sizePolicy1.setHorizontalStretch(1)
+        sizePolicy1.setVerticalStretch(1)
+        sizePolicy1.setHeightForWidth(self.previewWidget.sizePolicy().hasHeightForWidth())
+        self.previewWidget.setSizePolicy(sizePolicy1)
+        self.previewWidget.setMinimumSize(QSize(100, 130))
+        icon13 = QIcon()
+        icon13.addFile(u":/icons/view-preview.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.previewWidget.setWindowIcon(icon13)
+        self.dockWidgetContents = QWidget()
+        self.dockWidgetContents.setObjectName(u"dockWidgetContents")
+        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.dockWidgetContents.sizePolicy().hasHeightForWidth())
+        self.dockWidgetContents.setSizePolicy(sizePolicy2)
+        self.horizontalLayout_2 = QHBoxLayout(self.dockWidgetContents)
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.imageViewer = pycktImageViewer(self.dockWidgetContents)
+        self.imageViewer.setObjectName(u"imageViewer")
         self.imageViewer.setAcceptDrops(False)
         self.imageViewer.setAutoFillBackground(True)
-        self.imageViewer.setSizeAdjustPolicy(
-            QtWidgets.QAbstractScrollArea.AdjustToContents
-        )
-        self.imageViewer.setDragMode(QtWidgets.QGraphicsView.ScrollHandDrag)
-        self.imageViewer.setResizeAnchor(QtWidgets.QGraphicsView.AnchorUnderMouse)
-        self.imageViewer.setViewportUpdateMode(
-            QtWidgets.QGraphicsView.FullViewportUpdate
-        )
-        self.imageViewer.setRubberBandSelectionMode(QtCore.Qt.IntersectsItemShape)
-        self.imageViewer.setObjectName("imageViewer")
+        self.imageViewer.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+        self.imageViewer.setDragMode(QGraphicsView.ScrollHandDrag)
+        self.imageViewer.setResizeAnchor(QGraphicsView.AnchorUnderMouse)
+        self.imageViewer.setViewportUpdateMode(QGraphicsView.FullViewportUpdate)
+        self.imageViewer.setRubberBandSelectionMode(Qt.IntersectsItemShape)
+
         self.horizontalLayout_2.addWidget(self.imageViewer)
+
         self.previewWidget.setWidget(self.dockWidgetContents)
-        MainWindow.addDockWidget(QtCore.Qt.DockWidgetArea(4), self.previewWidget)
-        self.actionQuit = QtWidgets.QAction(MainWindow)
-        icon6 = QtGui.QIcon()
-        icon6.addPixmap(
-            QtGui.QPixmap(":/icons/Exit"), QtGui.QIcon.Normal, QtGui.QIcon.Off
-        )
-        self.actionQuit.setIcon(icon6)
-        self.actionQuit.setObjectName("actionQuit")
-        self.actionOpen = QtWidgets.QAction(MainWindow)
-        icon7 = QtGui.QIcon()
-        icon7.addPixmap(
-            QtGui.QPixmap(":/icons/Open"), QtGui.QIcon.Normal, QtGui.QIcon.Off
-        )
-        self.actionOpen.setIcon(icon7)
-        self.actionOpen.setObjectName("actionOpen")
-        self.actionAbout = QtWidgets.QAction(MainWindow)
-        icon8 = QtGui.QIcon()
-        icon8.addPixmap(
-            QtGui.QPixmap(":/icons/About"), QtGui.QIcon.Normal, QtGui.QIcon.Off
-        )
-        self.actionAbout.setIcon(icon8)
-        self.actionAbout.setObjectName("actionAbout")
-        self.actionPreferences = QtWidgets.QAction(MainWindow)
-        icon9 = QtGui.QIcon()
-        icon9.addPixmap(
-            QtGui.QPixmap(":/icons/Settings"), QtGui.QIcon.Normal, QtGui.QIcon.Off
-        )
-        self.actionPreferences.setIcon(icon9)
-        self.actionPreferences.setObjectName("actionPreferences")
-        self.actionNew = QtWidgets.QAction(MainWindow)
-        icon10 = QtGui.QIcon()
-        icon10.addPixmap(
-            QtGui.QPixmap(":/icons/New"), QtGui.QIcon.Normal, QtGui.QIcon.Off
-        )
-        self.actionNew.setIcon(icon10)
-        self.actionNew.setObjectName("actionNew")
-        self.actionSave = QtWidgets.QAction(MainWindow)
-        icon11 = QtGui.QIcon()
-        icon11.addPixmap(
-            QtGui.QPixmap(":/icons/Save"), QtGui.QIcon.Normal, QtGui.QIcon.Off
-        )
-        self.actionSave.setIcon(icon11)
-        self.actionSave.setObjectName("actionSave")
-        self.actionSaveAs = QtWidgets.QAction(MainWindow)
-        icon12 = QtGui.QIcon()
-        icon12.addPixmap(
-            QtGui.QPixmap(":/icons/SaveAs"), QtGui.QIcon.Normal, QtGui.QIcon.Off
-        )
-        self.actionSaveAs.setIcon(icon12)
-        self.actionSaveAs.setObjectName("actionSaveAs")
-        self.actionCMMan = QtWidgets.QAction(MainWindow)
-        icon13 = QtGui.QIcon()
-        icon13.addPixmap(
-            QtGui.QPixmap(":/icons/CMman"), QtGui.QIcon.Normal, QtGui.QIcon.Off
-        )
-        self.actionCMMan.setIcon(icon13)
-        self.actionCMMan.setObjectName("actionCMMan")
-        self.actionDpicMan = QtWidgets.QAction(MainWindow)
-        self.actionDpicMan.setIcon(icon13)
-        self.actionDpicMan.setObjectName("actionDpicMan")
+        MainWindow.addDockWidget(Qt.DockWidgetArea.TopDockWidgetArea, self.previewWidget)
+
+        self.menuBar.addAction(self.menuFile.menuAction())
+        self.menuBar.addAction(self.menuSettings.menuAction())
+        self.menuBar.addAction(self.menuHelp.menuAction())
         self.menuFile.addAction(self.actionNew)
         self.menuFile.addAction(self.actionOpen)
         self.menuFile.addAction(self.actionSave)
@@ -223,133 +211,106 @@ class Ui_MainWindow(object):
         self.menuHelp.addSeparator()
         self.menuHelp.addAction(self.actionAbout)
         self.menuSettings.addAction(self.actionPreferences)
-        self.menuBar.addAction(self.menuFile.menuAction())
-        self.menuBar.addAction(self.menuSettings.menuAction())
-        self.menuBar.addAction(self.menuHelp.menuAction())
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(0)
         self.actionQuit.triggered.connect(MainWindow.close)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+        self.tabWidget.setCurrentIndex(0)
+
+
+        QMetaObject.connectSlotsByName(MainWindow)
+    # setupUi
 
     def retranslateUi(self, MainWindow):
-        _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(
-            _translate("MainWindow", "PyCirkuit - by Orestes Mas")
-        )
-        self.tabWidget.setTabText(
-            self.tabWidget.indexOf(self.tab_source),
-            _translate("MainWindow", "Source Editor", "Tab title"),
-        )
-        self.outputText.setPlaceholderText(
-            _translate("MainWindow", "<Empty output>", "Placeholder text")
-        )
-        self.tabWidget.setTabText(
-            self.tabWidget.indexOf(self.tab_log),
-            _translate("MainWindow", "Output Log", "Tab title"),
-        )
-        self.processButton.setText(
-            _translate("MainWindow", "&Process and display", "Button text")
-        )
-        self.processButton.setShortcut(_translate("MainWindow", "Alt+P"))
-        self.exportButton.setText(_translate("MainWindow", "E&xport", "Button text"))
-        self.exportButton.setShortcut(_translate("MainWindow", "Alt+X"))
-        self.menuFile.setTitle(_translate("MainWindow", "Fi&le"))
-        self.menuHelp.setTitle(_translate("MainWindow", "Hel&p"))
-        self.menuSettings.setTitle(_translate("MainWindow", "Setti&ngs"))
-        self.previewWidget.setWindowTitle(
-            _translate("MainWindow", "Preview", "A window title, NOT an action.")
-        )
-        self.imageViewer.setToolTip(
-            _translate(
-                "MainWindow",
-                "<html><head/><body><p>Use:</p>\n"
-                "<ul>\n"
-                "<li> Ctrl + Mouse Wheel to Zoom In/Out</li>\n"
-                "<li> Click and Move to drag the image inside the preview</li>\n"
-                "</ul>\n"
-                "</body></html>",
-            )
-        )
-        self.actionQuit.setText(_translate("MainWindow", "&Quit", "Menu item"))
-        self.actionQuit.setStatusTip(
-            _translate("MainWindow", "Close application", "Status Bar Message")
-        )
-        self.actionQuit.setShortcut(
-            _translate("MainWindow", "Ctrl+Q", "Keyboard Shortcut")
-        )
-        self.actionOpen.setText(_translate("MainWindow", "&Open...", "Menu item"))
-        self.actionOpen.setToolTip(_translate("MainWindow", "Open Drawing"))
-        self.actionOpen.setStatusTip(
-            _translate("MainWindow", "Opens an existing drawing", "Status Bar Message")
-        )
-        self.actionOpen.setShortcut(
-            _translate("MainWindow", "Ctrl+O", "Keyboard Shortcut")
-        )
-        self.actionAbout.setText(
-            _translate("MainWindow", "&About PyCirkuit", "Menu item")
-        )
-        self.actionAbout.setStatusTip(
-            _translate("MainWindow", "Application information", "Status Bar Message")
-        )
-        self.actionPreferences.setText(
-            _translate("MainWindow", "Configure &PyCirkuit...", "Menu item")
-        )
-        self.actionPreferences.setStatusTip(
-            _translate("MainWindow", "Opens config dialog", "Status Bar Message")
-        )
-        self.actionPreferences.setShortcut(
-            _translate("MainWindow", "Ctrl+P", "Keyboard Shortcut")
-        )
-        self.actionNew.setText(_translate("MainWindow", "&New", "Menu item"))
-        self.actionNew.setToolTip(_translate("MainWindow", "New Drawing"))
-        self.actionNew.setStatusTip(
-            _translate("MainWindow", "Creates an empty drawing", "Status Bar Message")
-        )
-        self.actionNew.setShortcut(
-            _translate("MainWindow", "Ctrl+N", "Keyboard Shortcut")
-        )
-        self.actionSave.setText(_translate("MainWindow", "&Save", "Menu item"))
-        self.actionSave.setStatusTip(
-            _translate("MainWindow", "Saves drawing", "Status Bar Message")
-        )
-        self.actionSave.setShortcut(
-            _translate("MainWindow", "Ctrl+S", "Keyboard Shortcut")
-        )
-        self.actionSaveAs.setText(_translate("MainWindow", "Sa&ve As...", "Menu item"))
-        self.actionSaveAs.setStatusTip(
-            _translate(
-                "MainWindow", "Saves drawing with new name", "Status Bar Message"
-            )
-        )
-        self.actionSaveAs.setShortcut(
-            _translate("MainWindow", "Ctrl+Shift+S", "Keyboard Shortcut")
-        )
-        self.actionCMMan.setText(_translate("MainWindow", "&Circuit Macros manual"))
-        self.actionCMMan.setStatusTip(
-            _translate(
-                "MainWindow", "Opens Circuit Macros manual", "Status Bar Message"
-            )
-        )
-        self.actionCMMan.setShortcut(_translate("MainWindow", "Ctrl+M"))
-        self.actionDpicMan.setText(_translate("MainWindow", "&Dpic manual"))
-        self.actionDpicMan.setStatusTip(
-            _translate("MainWindow", "Opens Dpic manual", "Status Bar Message")
-        )
-        self.actionDpicMan.setShortcut(_translate("MainWindow", "Ctrl+D"))
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"PyCirkuit - by Orestes Mas", None))
+        self.actionQuit.setText(QCoreApplication.translate("MainWindow", u"&Quit", u"Menu item"))
+#if QT_CONFIG(statustip)
+        self.actionQuit.setStatusTip(QCoreApplication.translate("MainWindow", u"Close application", u"Status Bar Message"))
+#endif // QT_CONFIG(statustip)
+#if QT_CONFIG(shortcut)
+        self.actionQuit.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+Q", u"Keyboard Shortcut"))
+#endif // QT_CONFIG(shortcut)
+        self.actionOpen.setText(QCoreApplication.translate("MainWindow", u"&Open...", u"Menu item"))
+#if QT_CONFIG(tooltip)
+        self.actionOpen.setToolTip(QCoreApplication.translate("MainWindow", u"Open Drawing", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.actionOpen.setStatusTip(QCoreApplication.translate("MainWindow", u"Opens an existing drawing", u"Status Bar Message"))
+#endif // QT_CONFIG(statustip)
+#if QT_CONFIG(shortcut)
+        self.actionOpen.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+O", u"Keyboard Shortcut"))
+#endif // QT_CONFIG(shortcut)
+        self.actionAbout.setText(QCoreApplication.translate("MainWindow", u"&About PyCirkuit", u"Menu item"))
+#if QT_CONFIG(statustip)
+        self.actionAbout.setStatusTip(QCoreApplication.translate("MainWindow", u"Application information", u"Status Bar Message"))
+#endif // QT_CONFIG(statustip)
+        self.actionPreferences.setText(QCoreApplication.translate("MainWindow", u"Configure &PyCirkuit...", u"Menu item"))
+#if QT_CONFIG(statustip)
+        self.actionPreferences.setStatusTip(QCoreApplication.translate("MainWindow", u"Opens config dialog", u"Status Bar Message"))
+#endif // QT_CONFIG(statustip)
+#if QT_CONFIG(shortcut)
+        self.actionPreferences.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+P", u"Keyboard Shortcut"))
+#endif // QT_CONFIG(shortcut)
+        self.actionNew.setText(QCoreApplication.translate("MainWindow", u"&New", u"Menu item"))
+#if QT_CONFIG(tooltip)
+        self.actionNew.setToolTip(QCoreApplication.translate("MainWindow", u"New Drawing", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        self.actionNew.setStatusTip(QCoreApplication.translate("MainWindow", u"Creates an empty drawing", u"Status Bar Message"))
+#endif // QT_CONFIG(statustip)
+#if QT_CONFIG(shortcut)
+        self.actionNew.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+N", u"Keyboard Shortcut"))
+#endif // QT_CONFIG(shortcut)
+        self.actionSave.setText(QCoreApplication.translate("MainWindow", u"&Save", u"Menu item"))
+#if QT_CONFIG(statustip)
+        self.actionSave.setStatusTip(QCoreApplication.translate("MainWindow", u"Saves drawing", u"Status Bar Message"))
+#endif // QT_CONFIG(statustip)
+#if QT_CONFIG(shortcut)
+        self.actionSave.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+S", u"Keyboard Shortcut"))
+#endif // QT_CONFIG(shortcut)
+        self.actionSaveAs.setText(QCoreApplication.translate("MainWindow", u"Sa&ve As...", u"Menu item"))
+#if QT_CONFIG(statustip)
+        self.actionSaveAs.setStatusTip(QCoreApplication.translate("MainWindow", u"Saves drawing with new name", u"Status Bar Message"))
+#endif // QT_CONFIG(statustip)
+#if QT_CONFIG(shortcut)
+        self.actionSaveAs.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+Shift+S", u"Keyboard Shortcut"))
+#endif // QT_CONFIG(shortcut)
+        self.actionCMMan.setText(QCoreApplication.translate("MainWindow", u"&Circuit Macros manual", None))
+#if QT_CONFIG(statustip)
+        self.actionCMMan.setStatusTip(QCoreApplication.translate("MainWindow", u"Opens Circuit Macros manual", u"Status Bar Message"))
+#endif // QT_CONFIG(statustip)
+#if QT_CONFIG(shortcut)
+        self.actionCMMan.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+M", None))
+#endif // QT_CONFIG(shortcut)
+        self.actionDpicMan.setText(QCoreApplication.translate("MainWindow", u"&Dpic manual", None))
+#if QT_CONFIG(statustip)
+        self.actionDpicMan.setStatusTip(QCoreApplication.translate("MainWindow", u"Opens Dpic manual", u"Status Bar Message"))
+#endif // QT_CONFIG(statustip)
+#if QT_CONFIG(shortcut)
+        self.actionDpicMan.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+D", None))
+#endif // QT_CONFIG(shortcut)
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_source), QCoreApplication.translate("MainWindow", u"Source Editor", u"Tab title"))
+        self.outputText.setPlaceholderText(QCoreApplication.translate("MainWindow", u"<Empty output>", u"Placeholder text"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_log), QCoreApplication.translate("MainWindow", u"Output Log", u"Tab title"))
+        self.processButton.setText(QCoreApplication.translate("MainWindow", u"&Process and display", u"Button text"))
+#if QT_CONFIG(shortcut)
+        self.processButton.setShortcut(QCoreApplication.translate("MainWindow", u"Alt+P", None))
+#endif // QT_CONFIG(shortcut)
+        self.exportButton.setText(QCoreApplication.translate("MainWindow", u"E&xport", u"Button text"))
+#if QT_CONFIG(shortcut)
+        self.exportButton.setShortcut(QCoreApplication.translate("MainWindow", u"Alt+X", None))
+#endif // QT_CONFIG(shortcut)
+        self.menuFile.setTitle(QCoreApplication.translate("MainWindow", u"Fi&le", None))
+        self.menuHelp.setTitle(QCoreApplication.translate("MainWindow", u"Hel&p", None))
+        self.menuSettings.setTitle(QCoreApplication.translate("MainWindow", u"Setti&ngs", None))
+        self.previewWidget.setWindowTitle(QCoreApplication.translate("MainWindow", u"Preview", u"A window title, NOT an action."))
+#if QT_CONFIG(tooltip)
+        self.imageViewer.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Use:</p>\n"
+"<ul>\n"
+"<li> Ctrl + Mouse Wheel to Zoom In/Out</li>\n"
+"<li> Click and Move to drag the image inside the preview</li>\n"
+"</ul>\n"
+"</body></html>", None))
+#endif // QT_CONFIG(tooltip)
+    # retranslateUi
 
-
-from pycirkuit.imageviewer import pycktImageViewer
-from pycirkuit.texteditor import pycktTextEditor
-from pycirkuit.resources import resources_rc
-
-
-if __name__ == "__main__":
-    import sys
-
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-    sys.exit(app.exec_())

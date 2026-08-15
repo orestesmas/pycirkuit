@@ -21,7 +21,7 @@ Module implementing a class to handle the M4 external tool
 
 
 # Third-party imports
-from PyQt5.QtCore import QCoreApplication, QSettings
+from PySide6.QtCore import QCoreApplication, QSettings
 
 # Local application imports
 from pycirkuit.tools.tool_base import ExternalTool

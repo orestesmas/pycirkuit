@@ -26,16 +26,20 @@ import os
 from shutil import copyfile
 
 # Third-party imports
-from PyQt5.QtCore import pyqtSlot, Qt, QCoreApplication, QSettings, QFileInfo
-from PyQt5 import QtCore, QtWidgets, QtGui
-from PyQt5.QtWidgets import QProgressBar, QFileDialog, QDialog
+from PySide6.QtCore import Slot, Qt, QCoreApplication, QSettings, QFileInfo
+from PySide6 import QtCore, QtWidgets, QtGui
+from PySide6.QtWidgets import QProgressBar, QFileDialog, QDialog
 
 # Local application imports
 from pycirkuit.ui.Ui_mainwindow import Ui_MainWindow
 from pycirkuit.ui.configdialog import ConfigDialog
 from pycirkuit.ui.aboutdialog import AboutDialog
 from pycirkuit.tools.circuitmacrosmanager import CircuitMacrosManager
-from pycirkuit.highlighter import PyCirkuitHighlighter
+
+# highlighter.py isn't imported: it still uses QRegExp, which doesn't exist
+# in Qt6, and both it and the editor widget are due to be replaced anyway -
+# not worth porting code about to be rewritten. Syntax highlighting is off
+# until then.
 from pycirkuit.exceptions import *
 from pycirkuit.tools.m4 import ToolM4
 from pycirkuit.tools.dpic import ToolDpic
@@ -136,7 +140,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         font.setFixedPitch(True)
         font.setPointSize(12)
         self.sourceText.setFont(font)
-        self.highlighter = PyCirkuitHighlighter(self.sourceText.document())
+        # No syntax highlighter for now - see the import comment above.
         # Initialize editor contents with a default drawing template
         self.needSaving = False
         self.on_actionNew_triggered()
@@ -269,10 +273,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         return newPath
 
     def _center(self):
-        # Get desktop's geometry
-        app = QtWidgets.QApplication.instance()
-        desktop = app.desktop()
-        deskRect = desktop.screenGeometry(-1)
+        # Get desktop's geometry. QDesktopWidget/app.desktop() is gone in
+        # Qt6; QGuiApplication.primaryScreen() is the direct replacement.
+        deskRect = QtGui.QGuiApplication.primaryScreen().geometry()
         # Now get MainWindow's geometry
         winRect = self.frameGeometry()
         # Now translate the window's rectangle so its center coincides with the desktop's one
@@ -372,7 +375,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 # Ask user to choose another directory
                 dstDir = self._ask_writable_dir(dstDirInfo.canonicalPath())[0]
 
-    @pyqtSlot(PyCirkuitError)
+    @Slot(PyCirkuitError)
     def _display_error(self, error):
         # Open MessageBox and inform user
         # TODO: Use this method to display message boxes
@@ -439,7 +442,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 )
             return result
 
-    @pyqtSlot()
+    @Slot()
     def _exportSettingsChanged(self):
         self.exportButton.setEnabled(False)
         self.processButton.setEnabled(True)
@@ -472,7 +475,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             title = "PyCirkuit - {filename}".format(filename=self.openedFilename)
         self.setWindowTitle(title)
 
-    @pyqtSlot()
+    @Slot()
     def _resize_preview(self):
         # First, retrieve the pixmap rect
         rect = self.imageViewer.getRect()
@@ -542,7 +545,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self._ask_saving()
         super().closeEvent(event)
 
-    @pyqtSlot()
+    @Slot()
     def on_actionAbout_triggered(self):
         """
         Slot documentation goes here.
@@ -550,7 +553,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         dlg = AboutDialog()
         dlg.exec()
 
-    @pyqtSlot()
+    @Slot()
     def on_actionCMMan_triggered(self):
         # Search for Circuit Macros PDF manual
         if self._enforce_circuit_macros():
@@ -563,7 +566,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             except PyCktCMManNotFoundError as error:
                 QtWidgets.QMessageBox.warning(self, error.title, str(error))
 
-    @pyqtSlot()
+    @Slot()
     def on_actionDpicMan_triggered(self):
         try:
             dpic = ToolDpic()
@@ -578,7 +581,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             msgBox.setStandardButtons(QtWidgets.QMessageBox.Ok)
             msgBox.exec()
 
-    @pyqtSlot()
+    @Slot()
     def on_actionNew_triggered(self, newName=None):
         if self.needSaving:
             self._ask_saving()
@@ -603,7 +606,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self._modify_title()
         self.imageViewer.clearImage()
 
-    @pyqtSlot()
+    @Slot()
     def on_actionOpen_triggered(self):
         if self.needSaving:
             self._ask_saving()
@@ -642,7 +645,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         if fitxer != "":
             self._load_file(fitxer)
 
-    @pyqtSlot()
+    @Slot()
     def on_actionPreferences_triggered(self):
         """
         Slot documentation goes here.
@@ -651,7 +654,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         cfgDlg.exportSettingsChange.connect(self._exportSettingsChanged)
         cfgDlg.exec()
 
-    @pyqtSlot()
+    @Slot()
     def on_actionSaveAs_triggered(self):
         settings = QSettings()
         lastSrcDir = settings.value(
@@ -682,7 +685,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             except PermissionError:
                 pass
 
-    @pyqtSlot()
+    @Slot()
     def on_actionSave_triggered(self):
         # Try to save into the last destination dir used.
         filePath = os.path.join(self.lastDstDir, self.openedFilename)
@@ -696,7 +699,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             except PermissionError:
                 self.actionSaveAs.trigger()
 
-    @pyqtSlot()
+    @Slot()
     def on_exportButton_clicked(self):
         if self.openedFilename == self._translatedUnnamed:
             msgBox = QtWidgets.QMessageBox(self)
@@ -854,7 +857,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # Continue after the 'for' loop. If we are here we've saved successfully all the requested formats, so we can disable the button
         self.exportButton.setEnabled(False)
 
-    @pyqtSlot(str)
+    @Slot(str)
     def _on_step_started(self, name):
         message, tool = self._stepInfo[name]
         self.statusBar.showMessage(message)
@@ -871,14 +874,14 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.outputText.appendPlainText("\n" + header)
         self.outputText.appendPlainText("=" * len(header))
 
-    @pyqtSlot(str)
+    @Slot(str)
     def _on_step_finished(self, name):
         self.outputText.appendPlainText(
             _translate("OutputLog", " + No execution errors", "Output log info")
         )
         self.sbProgressBar.setValue(self.sbProgressBar.value() + 1)
 
-    @pyqtSlot()
+    @Slot()
     def on_processButton_clicked(self):
         # STEP 0: Basic checks for the existence of auxiliary programs/utilities
         # Check if we have all the auxiliary apps correctly installed
@@ -1002,7 +1005,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.sbProgressBar.setVisible(False)
             app.restoreOverrideCursor()
 
-    @pyqtSlot()
+    @Slot()
     def on_sourceText_textChanged(self):
         self.outputText.clear()
         if self.insideConstructor:

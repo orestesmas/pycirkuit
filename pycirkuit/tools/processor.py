@@ -27,7 +27,7 @@ import shutil
 from enum import Enum
 
 # Third-party imports
-from PyQt5.QtCore import QCoreApplication, QObject, QTemporaryDir, QSettings, pyqtSignal
+from PySide6.QtCore import QCoreApplication, QObject, QTemporaryDir, QSettings, Signal
 
 # Local imports
 import pycirkuit
@@ -60,9 +60,9 @@ class PyCirkuitProcessor(QObject):
     # actually runs (memoized steps don't re-emit). Lets callers (the GUI,
     # in particular) react to progress without the pipeline itself needing
     # to know anything about progress bars or log widgets.
-    stepStarted = pyqtSignal(str)
-    stepFinished = pyqtSignal(str)
-    stepFailed = pyqtSignal(str)
+    stepStarted = Signal(str)
+    stepFinished = Signal(str)
+    stepFailed = Signal(str)
 
     def __init__(self):
         self.environmentOk = False

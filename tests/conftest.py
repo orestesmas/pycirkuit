@@ -6,7 +6,7 @@ import os
 from unittest.mock import MagicMock
 
 import pytest
-from PyQt5.QtCore import QCoreApplication, QSettings
+from PySide6.QtCore import QCoreApplication, QSettings
 
 import pycirkuit
 from pycirkuit.tools.processor import PyCirkuitProcessor

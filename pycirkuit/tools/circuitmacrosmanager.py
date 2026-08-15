@@ -28,8 +28,8 @@ import urllib.request as Net
 import urllib.error as NetError
 
 # Third-party imports
-from PyQt5 import QtCore
-from PyQt5.QtCore import QStandardPaths
+from PySide6 import QtCore
+from PySide6.QtCore import QStandardPaths
 
 # Local application imports
 from pycirkuit.exceptions import *
