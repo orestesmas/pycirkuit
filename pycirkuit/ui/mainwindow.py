@@ -2,6 +2,7 @@
 """
 Module implementing MainWindow.
 """
+
 # Copyright (C) 2018-2019 Orestes Mas
 # This file is part of PyCirkuit.
 #
@@ -38,13 +39,12 @@ from pycirkuit.highlighter import PyCirkuitHighlighter
 from pycirkuit.exceptions import *
 from pycirkuit.tools.m4 import ToolM4
 from pycirkuit.tools.dpic import ToolDpic
-from pycirkuit.tools.lualatex import ToolLuaLaTeX
+from pycirkuit.tools.latex import ToolLaTeX
 from pycirkuit.tools.pdftopng import ToolPdfToPng
 from pycirkuit.tools.pdftojpg import ToolPdfToJpeg
 from pycirkuit.tools.pdftosvg import ToolPdfToSvg
 from pycirkuit.tools.processor import PyCirkuitProcessor
 import pycirkuit
-
 
 # Translation function
 _translate = QCoreApplication.translate
@@ -897,12 +897,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             writeOk()
             self.sbProgressBar.setValue(2)
 
-            # STEP 8: Call LuaLaTeX: .TIKZ -> .PDF
+            # STEP 8: Call the configured LaTeX engine: .TIKZ -> .PDF
             # First we have to embed the .TIKZ code inside a suitable template
             self.statusBar.showMessage(
                 _translate("StatusBar", "Converting: TIKZ -> PDF", "Status Bar message")
             )
-            writeHeader(ToolLuaLaTeX)
+            writeHeader(ToolLaTeX)
             self.processor.toPdf()
             writeOk()
             self.sbProgressBar.setValue(3)
@@ -961,7 +961,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 )
             )
             self.outputText.appendPlainText(err.moreInfo)
-            if err.tool == ToolLuaLaTeX:
+            if err.tool == ToolLaTeX:
                 with open(tmpFileBaseName + ".log", "rt") as f:
                     for line in f.readlines():
                         self.outputText.appendPlainText(line)

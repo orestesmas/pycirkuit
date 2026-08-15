@@ -2,6 +2,7 @@
 """
 Application core functionality
 """
+
 # Copyright (C) 2018-2019 Orestes Mas
 # Copyright (C) 2019 Aniol Marti
 # This file is part of PyCirkuit.
@@ -34,7 +35,7 @@ from pycirkuit import Option
 from pycirkuit.exceptions import *
 from pycirkuit.tools.m4 import ToolM4
 from pycirkuit.tools.dpic import ToolDpic
-from pycirkuit.tools.lualatex import ToolLuaLaTeX
+from pycirkuit.tools.latex import ToolLaTeX, create_latex_engine, DEFAULT_LATEX_ENGINE
 from pycirkuit.tools.pdftopng import ToolPdfToPng
 from pycirkuit.tools.pdftojpg import ToolPdfToJpeg
 from pycirkuit.tools.pdftosvg import ToolPdfToSvg
@@ -96,13 +97,12 @@ class PyCirkuitProcessor(QObject):
 
     def check_programs(self):
         # Dictionary using a class as index and a class instance as value
-        # NOTE: LaTeX engine is fixed to LuaLaTeX for now, matching the GUI's
-        # prior behaviour. Making it selectable is tracked separately (see
-        # MODERNIZATION.md, step 5).
+        settings = QSettings()
+        engineId = settings.value("General/latexEngine", DEFAULT_LATEX_ENGINE)
         self.extTools = {
             ToolM4: ToolM4(),
             ToolDpic: ToolDpic(),
-            ToolLuaLaTeX: ToolLuaLaTeX(),
+            ToolLaTeX: create_latex_engine(engineId),
             ToolPdfToPng: ToolPdfToPng(),
             ToolPdfToJpeg: ToolPdfToJpeg(),
             ToolPdfToSvg: ToolPdfToSvg(),
@@ -173,9 +173,9 @@ class PyCirkuitProcessor(QObject):
 
     def _reset_state(self):
         # Set all formats to "ungenerated" state
-        self.picExists = (
-            self.tikzExists
-        ) = self.svgExists = self.pdfExists = self.pngExists = self.jpegExists = False
+        self.picExists = self.tikzExists = self.svgExists = self.pdfExists = (
+            self.pngExists
+        ) = self.jpegExists = False
 
     def beginProcessing(self, src):
         """Start processing a source file already on disk (CLI/batch entry point)."""
@@ -274,16 +274,14 @@ class PyCirkuitProcessor(QObject):
                 PyCirkuitProcessor.TMP_FILE_BASENAME, resolution=dpi, quality=q
             )
             if self.printProgress:
-                print(
-                    " -> JPEG ({dpi} dpi, {q}% quality)".format(dpi=dpi, q=q), end=""
-                )
+                print(" -> JPEG ({dpi} dpi, {q}% quality)".format(dpi=dpi, q=q), end="")
             self.jpegExists = True
         return True
 
     def toPdf(self, dpi=None, q=None):
         if not self.pdfExists:
             self.toTikz()
-            self.extTools[ToolLuaLaTeX].execute(PyCirkuitProcessor.TMP_FILE_BASENAME)
+            self.extTools[ToolLaTeX].execute(PyCirkuitProcessor.TMP_FILE_BASENAME)
             if self.printProgress:
                 print(" -> PDF", end="")
             self.pdfExists = True

@@ -204,6 +204,43 @@ background-color: rgb(255, 255, 255);</string>
           </spacer>
          </item>
          <item>
+          <widget class="QGroupBox" name="groupBox_latexEngine">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>70</height>
+            </size>
+           </property>
+           <property name="title">
+            <string comment="Group box title">LaTeX Engine</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_latexEngine">
+            <item>
+             <widget class="QComboBox" name="latexEngine"/>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_6">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Maximum</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>5</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
           <widget class="QGroupBox" name="groupBox_2">
            <property name="minimumSize">
             <size>
@@ -536,6 +573,7 @@ background-color: rgb(255, 255, 255);</string>
   <tabstop>listWidget</tabstop>
   <tabstop>cmPath</tabstop>
   <tabstop>toolButtonCMPath</tabstop>
+  <tabstop>latexEngine</tabstop>
   <tabstop>templateFile</tabstop>
   <tabstop>toolButtonTemplatePath</tabstop>
   <tabstop>exportTIKZ</tabstop>

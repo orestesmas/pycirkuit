@@ -339,6 +339,12 @@ The destination file already exists.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../ui/Ui_configdialog.py" line="346"/>
+        <source>LaTeX Engine</source>
+        <comment>Group box title</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/Ui_configdialog.py" line="267"/>
         <source>LaTeX Template File</source>
         <comment>Group box title</comment>

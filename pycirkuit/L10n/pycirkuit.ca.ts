@@ -400,6 +400,12 @@ El fitxer de destinació ja existeix.</translation>
         <translation>Escull...</translation>
     </message>
     <message>
+        <location filename="../ui/Ui_configdialog.py" line="346"/>
+        <source>LaTeX Engine</source>
+        <comment>Group box title</comment>
+        <translation>Motor LaTeX</translation>
+    </message>
+    <message>
         <location filename="../ui/Ui_configdialog.py" line="267"/>
         <source>LaTeX Template File</source>
         <comment>Group box title</comment>

@@ -3,6 +3,7 @@
 """
 Main program entry point/function
 """
+
 # Copyright (C) 2018-2019 Orestes Mas
 # This file is part of PyCirkuit.
 #
@@ -39,6 +40,7 @@ from pycirkuit.resources import resources_rc
 # Translation function
 _translate = QCoreApplication.translate
 
+
 # Function to ensure meaningful settings
 def _check_settings():
     """
@@ -62,11 +64,20 @@ def _check_settings():
     elif storedVersion > pycirkuit.__version__:
         # TODO: Handle downgrading, perhaps raising an exception, showing warning, etc.
         pass
+    # Check the stored LaTeX engine choice
+    from pycirkuit.tools.latex import DEFAULT_LATEX_ENGINE, default_template_filename
+
+    if settings.value("latexEngine", "") == "":
+        settings.setValue("latexEngine", DEFAULT_LATEX_ENGINE)
     # Check the stored path to LaTeX templates
     if settings.value("templatePath", "") == "":
-        # Add the relative path where the default template is located
+        # Add the relative path where the default template for the
+        # configured engine is located
+        engineId = settings.value("latexEngine", DEFAULT_LATEX_ENGINE)
         templatePath = os.path.normpath(
-            os.path.join(applicationPath, "templates/cm_tikz.tpl")
+            os.path.join(
+                applicationPath, "templates", default_template_filename(engineId)
+            )
         )
         settings.setValue("templatePath", templatePath)
     # Check Circuit Macros path

@@ -2,6 +2,7 @@
 """
 Module implementing configDialog.
 """
+
 # Copyright (C) 2018-2019 Orestes Mas
 # This file is part of PyCirkuit.
 #
@@ -37,6 +38,11 @@ from PyQt5.QtWidgets import QDialog, QFileDialog, QMessageBox
 # Local application imports
 from pycirkuit.ui.Ui_configdialog import Ui_ConfigDialog
 from pycirkuit.exceptions import PyCirkuitError
+from pycirkuit.tools.latex import (
+    latex_engine_choices,
+    default_template_filename,
+    DEFAULT_LATEX_ENGINE,
+)
 
 # Translation function
 _translate = QCoreApplication.translate
@@ -74,6 +80,14 @@ class ConfigDialog(QDialog, Ui_ConfigDialog):
             self.cmPath.textChanged.emit("")
         else:
             self.cmPath.setText(cmStoredPath)
+
+        # Populate and select the LaTeX engine combo box
+        for engineId, displayName in latex_engine_choices():
+            self.latexEngine.addItem(displayName, engineId)
+        storedEngine = settings.value("General/latexEngine", DEFAULT_LATEX_ENGINE)
+        engineIndex = self.latexEngine.findData(storedEngine)
+        if engineIndex >= 0:
+            self.latexEngine.setCurrentIndex(engineIndex)
 
         # Extract stored path to LaTeX template file
         # defaultPath = QDir.homePath() + "/Plantilles/cm_tikz.ckt"
@@ -165,6 +179,7 @@ class ConfigDialog(QDialog, Ui_ConfigDialog):
             msgBox.exec()
             return
         settings.setValue("General/cmPath", self.cmPath.text())
+        settings.setValue("General/latexEngine", self.latexEngine.currentData())
         settings.setValue("General/templatePath", self.templateFile.text())
         # Export page
         if self.exportSettingsChanged():
@@ -204,6 +219,28 @@ class ConfigDialog(QDialog, Ui_ConfigDialog):
         @type int
         """
         self.stackedWidget.setCurrentIndex(currentRow)
+
+    @pyqtSlot(int)
+    def on_latexEngine_currentIndexChanged(self, index):
+        """
+        If the current template path still points at one of the bundled
+        per-engine default templates, switch it to the new engine's default
+        too, so picking an engine doesn't silently leave an incompatible
+        template configured. A custom template path (anything else) is left
+        untouched.
+        """
+        newEngineId = self.latexEngine.itemData(index)
+        if newEngineId is None:
+            return
+        currentDir = os.path.dirname(self.templateFile.text())
+        currentBasename = os.path.basename(self.templateFile.text())
+        knownDefaults = {
+            default_template_filename(engineId)
+            for engineId, _ in latex_engine_choices()
+        }
+        if currentBasename in knownDefaults:
+            newBasename = default_template_filename(newEngineId)
+            self.templateFile.setText(os.path.join(currentDir, newBasename))
 
     @pyqtSlot()
     def on_toolButtonCMPath_clicked(self):
