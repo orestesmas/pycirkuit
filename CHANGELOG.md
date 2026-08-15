@@ -9,8 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### [Unreleased]
 #### Added
 - Selectable LaTeX engine (pdflatex/lualatex), with a dropdown in the config dialog.
+- Test suite (`tests/`, run with `pytest`).
 #### Changed
-- Unified the GUI and CLI processing pipelines (previously duplicated and diverging).
+- GUI/CLI now built on PySide6 instead of PyQt5.
+- Unified the GUI and CLI processing pipelines (previously duplicated and diverging), now sharing progress/status reporting too.
 - Default LaTeX engine is now LuaLaTeX.
 - SVG export now goes through the rendered PDF and `pdf2svg` instead of dpic's own (lower quality) SVG output. New dependency: pdf2svg.
 - Migrated packaging from setup.py to pyproject.toml.
@@ -21,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed duplicate JPEG export.
 - Fixed spurious CLI progress messages leaking into the GUI.
 - Fixed "last used directory" not updating on Save/Save As, only on Open.
+- Fixed the preview losing its zoom level and pan position every time the drawing was re-processed.
 
 ## [0.5](https://github.com/orestesmas/pycirkuit/compare/v0.4.0..v0.5.0) series
 <a name="0.5.1"></a>
