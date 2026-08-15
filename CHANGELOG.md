@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 #### Added
 - Selectable LaTeX engine (pdflatex/lualatex), with a dropdown in the config dialog.
 - Test suite (`tests/`, run with `pytest`).
+- Source editor: line numbers, syntax highlighting, current-line and matching-bracket highlighting, Ctrl+/ comment toggle.
 #### Changed
 - GUI/CLI now built on PySide6 instead of PyQt5.
 - Unified the GUI and CLI processing pipelines (previously duplicated and diverging), now sharing progress/status reporting too.

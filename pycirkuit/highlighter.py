@@ -2,6 +2,7 @@
 """
 Module implementing a Text Highlighter
 """
+
 # Copyright (C) 2018-2026 Orestes Mas
 # This file is part of PyCirkuit.
 #
@@ -20,8 +21,8 @@ Module implementing a Text Highlighter
 #
 
 # Third-party imports
-from PyQt5.QtCore import QRegExp
-from PyQt5.QtGui import QFont, QSyntaxHighlighter, QTextCharFormat, QColor
+from PySide6.QtCore import QRegularExpression
+from PySide6.QtGui import QFont, QSyntaxHighlighter, QTextCharFormat, QColor
 
 
 class PyCirkuitHighlighter(QSyntaxHighlighter):
@@ -37,34 +38,41 @@ class PyCirkuitHighlighter(QSyntaxHighlighter):
         punctuationFormat = QTextCharFormat()
         punctuationFormat.setFontWeight(QFont.Bold)
         punctuationFormat.setForeground(QColor("sienna"))
-        self.highlightingRules.append((QRegExp("[()\{\},;]"), punctuationFormat))
+        self.highlightingRules.append(
+            (QRegularExpression(r"[()\{\},;]"), punctuationFormat)
+        )
 
         # Formatting rules for operators
         operatorFormat = QTextCharFormat()
         operatorFormat.setFontItalic(True)
         operatorFormat.setForeground(QColor("teal"))
         self.highlightingRules.append(
-            (QRegExp("(\+|\-|\*|/|\.|=|<-|->|<->){1,1}"), operatorFormat)
+            (QRegularExpression(r"(\+|\-|\*|/|\.|=|<-|->|<->){1,1}"), operatorFormat)
         )
 
         # Label displaying rules
         labelFormat = QTextCharFormat()
         labelFormat.setFontWeight(QFont.Bold)
         labelFormat.setForeground(QColor("deeppink"))
-        self.highlightingRules.append((QRegExp("[A-Z]+[A-Za-z0-9]*:"), labelFormat))
+        self.highlightingRules.append(
+            (QRegularExpression("[A-Z]+[A-Za-z0-9]*:"), labelFormat)
+        )
 
         # String displaying rules
         stringFormat = QTextCharFormat()
         stringFormat.setFontWeight(QFont.Bold)
         stringFormat.setForeground(QColor("firebrick"))
-        self.highlightingRules.append((QRegExp('".*"'), stringFormat))
+        self.highlightingRules.append((QRegularExpression(r'".*"'), stringFormat))
 
         # Now the beggining and ending PIC commands in red
-        picBoundaryPatterns = ["^\.P[SE]{1,1}\\b"]
+        picBoundaryPatterns = [r"^\.P[SE]{1,1}\b"]
         picBoundaryFormat = QTextCharFormat()
         picBoundaryFormat.setForeground(QColor("darkred"))
         self.highlightingRules.extend(
-            [(QRegExp(pattern), picBoundaryFormat) for pattern in picBoundaryPatterns]
+            [
+                (QRegularExpression(pattern), picBoundaryFormat)
+                for pattern in picBoundaryPatterns
+            ]
         )
 
         # Format for PIC commands: Italic Blue
@@ -160,7 +168,7 @@ class PyCirkuitHighlighter(QSyntaxHighlighter):
         picFormat.setFontItalic(True)
         picFormat.setForeground(QColor("blue"))
         self.highlightingRules.extend(
-            [(QRegExp(pattern), picFormat) for pattern in picPatterns]
+            [(QRegularExpression(pattern), picFormat) for pattern in picPatterns]
         )
 
         # Format for PIC variables: Italic Red
@@ -188,7 +196,7 @@ class PyCirkuitHighlighter(QSyntaxHighlighter):
         picFormat.setFontItalic(True)
         picFormat.setForeground(QColor("red"))
         self.highlightingRules.extend(
-            [(QRegExp(pattern), picFormat) for pattern in picVariables]
+            [(QRegularExpression(pattern), picFormat) for pattern in picVariables]
         )
 
         # Commands and format for M4 primitives
@@ -219,7 +227,7 @@ class PyCirkuitHighlighter(QSyntaxHighlighter):
         m4Format.setFontWeight(QFont.Bold)
         m4Format.setForeground(QColor("DarkOrchid"))
         self.highlightingRules.extend(
-            [(QRegExp(pattern), m4Format) for pattern in m4Patterns]
+            [(QRegularExpression(pattern), m4Format) for pattern in m4Patterns]
         )
 
         cmPatterns = [
@@ -536,19 +544,19 @@ class PyCirkuitHighlighter(QSyntaxHighlighter):
         cmFormat.setFontWeight(QFont.Bold)
         cmFormat.setForeground(QColor("DarkGreen"))
         self.highlightingRules.extend(
-            [(QRegExp(pattern), cmFormat) for pattern in cmPatterns]
+            [(QRegularExpression(pattern), cmFormat) for pattern in cmPatterns]
         )
 
         # Comments are displayed in gray
         singleLineCommentFormat = QTextCharFormat()
         singleLineCommentFormat.setForeground(QColor("DarkGray"))
-        self.highlightingRules.append((QRegExp("#[^\n]*"), singleLineCommentFormat))
+        self.highlightingRules.append(
+            (QRegularExpression("#[^\n]*"), singleLineCommentFormat)
+        )
 
     def highlightBlock(self, text):
         for pattern, format in self.highlightingRules:
-            expression = QRegExp(pattern)
-            index = expression.indexIn(text)
-            while index >= 0:
-                length = expression.matchedLength()
-                self.setFormat(index, length, format)
-                index = expression.indexIn(text, index + length)
+            matchIterator = pattern.globalMatch(text)
+            while matchIterator.hasNext():
+                match = matchIterator.next()
+                self.setFormat(match.capturedStart(), match.capturedLength(), format)

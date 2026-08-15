@@ -380,7 +380,7 @@
  <customwidgets>
   <customwidget>
    <class>pycktTextEditor</class>
-   <extends>QTextEdit</extends>
+   <extends>QPlainTextEdit</extends>
    <header>pycirkuit/texteditor.h</header>
   </customwidget>
   <customwidget>

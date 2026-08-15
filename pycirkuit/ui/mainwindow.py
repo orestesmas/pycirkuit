@@ -35,11 +35,7 @@ from pycirkuit.ui.Ui_mainwindow import Ui_MainWindow
 from pycirkuit.ui.configdialog import ConfigDialog
 from pycirkuit.ui.aboutdialog import AboutDialog
 from pycirkuit.tools.circuitmacrosmanager import CircuitMacrosManager
-
-# highlighter.py isn't imported: it still uses QRegExp, which doesn't exist
-# in Qt6, and both it and the editor widget are due to be replaced anyway -
-# not worth porting code about to be rewritten. Syntax highlighting is off
-# until then.
+from pycirkuit.highlighter import PyCirkuitHighlighter
 from pycirkuit.exceptions import *
 from pycirkuit.tools.m4 import ToolM4
 from pycirkuit.tools.dpic import ToolDpic
@@ -108,16 +104,22 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self._stepInfo = {
             "PIC": (
                 _translate(
-                    "StatusBar", "Converting: Circuit Macros -> PIC", "Status Bar message"
+                    "StatusBar",
+                    "Converting: Circuit Macros -> PIC",
+                    "Status Bar message",
                 ),
                 ToolM4,
             ),
             "TIKZ": (
-                _translate("StatusBar", "Converting: PIC -> TIKZ", "Status Bar message"),
+                _translate(
+                    "StatusBar", "Converting: PIC -> TIKZ", "Status Bar message"
+                ),
                 ToolDpic,
             ),
             "PDF": (
-                _translate("StatusBar", "Converting: TIKZ -> PDF", "Status Bar message"),
+                _translate(
+                    "StatusBar", "Converting: TIKZ -> PDF", "Status Bar message"
+                ),
                 ToolLaTeX,
             ),
             "SVG": (
@@ -129,7 +131,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 ToolPdfToPng,
             ),
             "JPEG": (
-                _translate("StatusBar", "Converting: PDF -> JPEG", "Status Bar message"),
+                _translate(
+                    "StatusBar", "Converting: PDF -> JPEG", "Status Bar message"
+                ),
                 ToolPdfToJpeg,
             ),
         }
@@ -140,7 +144,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         font.setFixedPitch(True)
         font.setPointSize(12)
         self.sourceText.setFont(font)
-        # No syntax highlighter for now - see the import comment above.
+        self.highlighter = PyCirkuitHighlighter(self.sourceText.document())
         # Initialize editor contents with a default drawing template
         self.needSaving = False
         self.on_actionNew_triggered()
@@ -590,7 +594,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             ".PS\nscale=2.54\ncct_init\n\nl=elen_\n# Enter your drawing code here\n.PE\n",
             "Template text. Translate ONLY the commented out text (line starting with '#')",
         )
-        self.sourceText.setText(txt)
+        self.sourceText.setPlainText(txt)
         if newName == None:
             self.openedFilename = self._translatedUnnamed
             self.needSaving = False
