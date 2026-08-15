@@ -80,3 +80,14 @@ with no error to explain why.
   regenerating isn't necessarily a sign anything is wrong — the compiled
   `.qm`/`.ui` content is what actually matters, not the generated source's
   shape.
+
+
+## Running the tests
+
+```
+pip install -e ".[test]"
+pytest
+```
+
+Tests mock every external tool (m4, dpic, lualatex, pdf2svg...), so none of
+them need to be installed to run the suite.

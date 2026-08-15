@@ -30,6 +30,9 @@ dependencies = [
     "python-magic-bin; sys_platform == 'win32'",
 ]
 
+[project.optional-dependencies]
+test = ["pytest"]
+
 [project.urls]
 Homepage = "https://github.com/orestesmas/pycirkuit"
 
@@ -47,3 +50,6 @@ include = ["pycirkuit*"]
 
 [tool.setuptools.package-data]
 pycirkuit = ["doc/*", "lib/*", "templates/*", "examples/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
