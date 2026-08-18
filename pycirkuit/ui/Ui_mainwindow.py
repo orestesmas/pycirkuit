@@ -76,17 +76,29 @@ class Ui_MainWindow(object):
         self.actionQuit = QAction(MainWindow)
         self.actionQuit.setObjectName("actionQuit")
         icon1 = QIcon()
-        icon1.addFile(":/icons/Exit", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        if QIcon.hasThemeIcon(QIcon.ThemeIcon.ApplicationExit):
+            icon1 = QIcon.fromTheme(QIcon.ThemeIcon.ApplicationExit)
+        else:
+            icon1.addFile(":/icons/Exit", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+
         self.actionQuit.setIcon(icon1)
         self.actionOpen = QAction(MainWindow)
         self.actionOpen.setObjectName("actionOpen")
         icon2 = QIcon()
-        icon2.addFile(":/icons/Open", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        if QIcon.hasThemeIcon(QIcon.ThemeIcon.DocumentOpen):
+            icon2 = QIcon.fromTheme(QIcon.ThemeIcon.DocumentOpen)
+        else:
+            icon2.addFile(":/icons/Open", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+
         self.actionOpen.setIcon(icon2)
         self.actionAbout = QAction(MainWindow)
         self.actionAbout.setObjectName("actionAbout")
         icon3 = QIcon()
-        icon3.addFile(":/icons/About", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        if QIcon.hasThemeIcon(QIcon.ThemeIcon.HelpAbout):
+            icon3 = QIcon.fromTheme(QIcon.ThemeIcon.HelpAbout)
+        else:
+            icon3.addFile(":/icons/About", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+
         self.actionAbout.setIcon(icon3)
         self.actionPreferences = QAction(MainWindow)
         self.actionPreferences.setObjectName("actionPreferences")
@@ -96,17 +108,29 @@ class Ui_MainWindow(object):
         self.actionNew = QAction(MainWindow)
         self.actionNew.setObjectName("actionNew")
         icon5 = QIcon()
-        icon5.addFile(":/icons/New", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        if QIcon.hasThemeIcon(QIcon.ThemeIcon.DocumentNew):
+            icon5 = QIcon.fromTheme(QIcon.ThemeIcon.DocumentNew)
+        else:
+            icon5.addFile(":/icons/New", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+
         self.actionNew.setIcon(icon5)
         self.actionSave = QAction(MainWindow)
         self.actionSave.setObjectName("actionSave")
         icon6 = QIcon()
-        icon6.addFile(":/icons/Save", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        if QIcon.hasThemeIcon(QIcon.ThemeIcon.DocumentSave):
+            icon6 = QIcon.fromTheme(QIcon.ThemeIcon.DocumentSave)
+        else:
+            icon6.addFile(":/icons/Save", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+
         self.actionSave.setIcon(icon6)
         self.actionSaveAs = QAction(MainWindow)
         self.actionSaveAs.setObjectName("actionSaveAs")
         icon7 = QIcon()
-        icon7.addFile(":/icons/SaveAs", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        if QIcon.hasThemeIcon(QIcon.ThemeIcon.DocumentSaveAs):
+            icon7 = QIcon.fromTheme(QIcon.ThemeIcon.DocumentSaveAs)
+        else:
+            icon7.addFile(":/icons/SaveAs", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+
         self.actionSaveAs.setIcon(icon7)
         self.actionCMMan = QAction(MainWindow)
         self.actionCMMan.setObjectName("actionCMMan")
