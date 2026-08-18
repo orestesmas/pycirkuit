@@ -1,38 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="2.0" language="ca_ES" sourcelanguage="">
+<!DOCTYPE TS>
+<TS version="2.1" language="ca_ES">
 <context>
     <name>AboutDialog</name>
     <message>
-        <location filename="../ui/Ui_aboutdialog.py" line="273"/>
+        <location filename="../ui/Ui_aboutdialog.py" line="417"/>
         <source>About PyCirkuit</source>
         <comment>Dialog Title</comment>
         <translation>Quant al PyCirkuit</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_aboutdialog.py" line="283"/>
+        <location filename="../ui/Ui_aboutdialog.py" line="421"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;PyCirkuit&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; is a GUI front-end for &lt;/span&gt;&lt;a href=&quot;https://ece.uwaterloo.ca/~aplevich/Circuit_macros/&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#2980b9;&quot;&gt;Circuit Macros&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; and &lt;/span&gt;&lt;a href=&quot;https://gitlab.com/aplevich/dpic&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;Dpic&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; by Dwight Aplevich, which make up a software chain for drawing high-quality line diagrams to be included in TeX, LaTeX, LibreOffice, web or similar documents. PyCirkuit is written in Python 3 using the PySide6 libraries, but is largely inspired (in both ideas and code snippets) on &lt;/span&gt;&lt;a href=&quot;https://wwwu.uni-klu.ac.at/magostin/cirkuit.html&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#2980b9;&quot;&gt;Cirkuit&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, a C++ application written by Matteo Agostinelli using KDE4 libraries.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;PyCirkuit compiles the source code on demand to generate a live preview, and can export the resulting image in various formats to be included directly in your documents.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;You can send bug reports via the &lt;/span&gt;&lt;a href=&quot;https://github.com/orestesmas/pycirkuit&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#2980b9;&quot;&gt;project repository on GitHub&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If you are willing to contribute, please read &lt;/span&gt;&lt;a href=&quot;https://github.com/orestesmas/pycirkuit/blob/master/CONTRIBUTING.md&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#2980b9;&quot;&gt;these guidelines&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;PyCirkuit uses icons from KDE&apos;s &amp;quot;Oxygen&amp;quot; set, which are under the LGPL license. See &lt;/span&gt;&lt;a href=&quot;https://techbase.kde.org/Projects/Oxygen/Licensing&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#2980b9;&quot;&gt;https://techbase.kde.org/Projects/Oxygen/Licensing&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;PyCirkuit&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; és una interfície gràfica (IGU) per a les &lt;/span&gt;&lt;a href=&quot;https://ece.uwaterloo.ca/~aplevich/Circuit_macros/&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#2980b9;&quot;&gt;Circuit Macros&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; i el &lt;/span&gt;&lt;a href=&quot;https://gitlab.com/aplevich/dpic&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;Dpic&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; de Dwight Aplevich, que conformen una cadena de programari per dibuixar diagrames d&apos;alta qualitat i incloure&apos;ls en documents TeX, LaTeX, LibreOffice, web o similars. El PyCirkuit està escrit en Python 3 emprant les biblioteques PySide6, però s&apos;inspira en gran mesura (tant en codi com en idees) en el &lt;/span&gt;&lt;a href=&quot;https://wwwu.uni-klu.ac.at/magostin/cirkuit.html&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#2980b9;&quot;&gt;Cirkuit&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;, una aplicació C++ escrita per Matteo Agostinelli emprant les biblioteques del KDE4.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;El PyCirkuit compila a petició de l&apos;usuari el codi font per tal de generar una previsualització, i pot exportar la imatge resultant en diversos formats per tal de poder incloure&apos;ls directament als vostres documents.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Podeu enviar informes d&apos;error via el &lt;/span&gt;&lt;a href=&quot;https://github.com/orestesmas/pycirkuit&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#2980b9;&quot;&gt;repositori del projecte a GitHub&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Si desitgeu contribuir al projecte, llegiu &lt;/span&gt;&lt;a href=&quot;https://github.com/orestesmas/pycirkuit/blob/master/CONTRIBUTING.md&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#2980b9;&quot;&gt;aquests consells&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;El PyCirkuit empra icones del conjunt «Oxygen» del KDE, que estan sota la llicència LGPL. Vegeu &lt;/span&gt;&lt;a href=&quot;https://techbase.kde.org/Projects/Oxygen/Licensing&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#2980b9;&quot;&gt;https://techbase.kde.org/Projects/Oxygen/Licensing&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_aboutdialog.py" line="440"/>
         <source>&amp;About</source>
         <comment>Tab text</comment>
         <translation>&amp;Quant a</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_aboutdialog.py" line="296"/>
+        <location filename="../ui/Ui_aboutdialog.py" line="443"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;Version {versionNumber}&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Using:&lt;/span&gt;&lt;/p&gt;
+&lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; font-size:11pt;&quot; style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://www.pyside.org/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;PySide6&lt;/span&gt;&lt;/a&gt; Python bindings to Qt6 by The Qt Company.&lt;/li&gt;
+&lt;li style=&quot; font-size:11pt;&quot; style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://ece.uwaterloo.ca/~aplevich/Circuit_macros/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;Circuit Macros&lt;/span&gt;&lt;/a&gt;, by Dwight Aplevich.&lt;/li&gt;
+&lt;li style=&quot; font-size:11pt;&quot; style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://www.gnu.org/software/m4/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;GNU m4&lt;/span&gt;&lt;/a&gt; Macro Processor, from the GNU Project.&lt;/li&gt;
+&lt;li style=&quot; font-size:11pt;&quot; style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://gitlab.com/aplevich/dpic&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;dpic&lt;/span&gt;&lt;/a&gt;, by Dwight Aplevich.&lt;/li&gt;
+&lt;li style=&quot; font-size:11pt;&quot; style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://ctan.org/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;LaTeX + TIkZ&lt;/span&gt;&lt;/a&gt;, by Donald Knuth, Leslie Lamport, Till Tantau and many more contributors.&lt;/li&gt;
+&lt;li style=&quot; font-size:11pt;&quot; style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://linux.die.net/man/1/pdftoppm&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;pdftoppm&lt;/span&gt;&lt;/a&gt;, a software by &lt;a href=&quot;https://poppler.freedesktop.org/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;The Poppler project&lt;/span&gt;&lt;/a&gt;. &lt;/li&gt;
+&lt;li style=&quot; font-size:11pt;&quot; style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://github.com/dawbarton/pdf2svg&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;pdf2svg&lt;/span&gt;&lt;/a&gt;, a software by David Barton, Matthew Flaschen and Edward Grace.&lt;/li&gt;&lt;/ul&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;Versió {versionNumber}&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Emprant:&lt;/span&gt;&lt;/p&gt;
+&lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; font-size:11pt;&quot; style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://www.pyside.org/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;PySide6&lt;/span&gt;&lt;/a&gt;, enllaços Python a Qt6, de The Qt Company.&lt;/li&gt;
+&lt;li style=&quot; font-size:11pt;&quot; style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://ece.uwaterloo.ca/~aplevich/Circuit_macros/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;Circuit Macros&lt;/span&gt;&lt;/a&gt;, de Dwight Aplevich.&lt;/li&gt;
+&lt;li style=&quot; font-size:11pt;&quot; style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://www.gnu.org/software/m4/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;GNU m4&lt;/span&gt;&lt;/a&gt;, processador de macros del projecte GNU.&lt;/li&gt;
+&lt;li style=&quot; font-size:11pt;&quot; style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://gitlab.com/aplevich/dpic&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;dpic&lt;/span&gt;&lt;/a&gt;, de Dwight Aplevich.&lt;/li&gt;
+&lt;li style=&quot; font-size:11pt;&quot; style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://ctan.org/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;LaTeX + TIkZ&lt;/span&gt;&lt;/a&gt;, de Donald Knuth, Leslie Lamport, Till Tantau i molts altres contribuents.&lt;/li&gt;
+&lt;li style=&quot; font-size:11pt;&quot; style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://linux.die.net/man/1/pdftoppm&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;pdftoppm&lt;/span&gt;&lt;/a&gt;, un programari del &lt;a href=&quot;https://poppler.freedesktop.org/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;projecte Poppler&lt;/span&gt;&lt;/a&gt;. &lt;/li&gt;
+&lt;li style=&quot; font-size:11pt;&quot; style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://github.com/dawbarton/pdf2svg&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;pdf2svg&lt;/span&gt;&lt;/a&gt;, un programari de David Barton, Matthew Flaschen i Edward Grace.&lt;/li&gt;&lt;/ul&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_aboutdialog.py" line="466"/>
         <source>&amp;Version</source>
         <comment>Tab text</comment>
         <translation>&amp;Versió</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_aboutdialog.py" line="312"/>
+        <location filename="../ui/Ui_aboutdialog.py" line="493"/>
         <source>A&amp;uthors</source>
         <comment>Tab text</comment>
         <translation>A&amp;utors</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_aboutdialog.py" line="320"/>
+        <location filename="../ui/Ui_aboutdialog.py" line="496"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;PyCirkuit&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; is {copyrightInfo} &amp;lt;orestes.mas@upc.edu&amp;gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;You may use, distribute and copy PyCirkuit under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, which is shown below, or (at your option) any later version.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;PyCirkuit uses also some icons and other artwork from &amp;quot;Oxygen&amp;quot; set, from the KDE project. These icons are under the GNU LGPL v3 license. See &lt;/span&gt;&lt;a href=&quot;https://techbase.kde.org/Projects/Oxygen/Licensing&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#2980b9;&quot;&gt;https://techbase.kde.org/Projects/Oxygen/Licensing&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; and &lt;/span&gt;&lt;a href=&quot;http://www.gnu.org/copyleft/lesser.html&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#2980b9;&quot;&gt;http://www.gnu.org/copyleft/lesser.html&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;PyCirkuit&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; té el {copyrightInfo} &amp;lt;orestes.mas@upc.edu&amp;gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Podeu emprar, distribuir i copiar el PyCirkuit sota els termes de la Llicència Pública General de GNU, tal i com la publica la Fundació per al Programari Lliure (FSF), ja sigui la versió 3 de la llicència, la qual es mostra a sota, o bé (a elecció vostra) qualsevol versió posterior.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;El PyCirkuit empra també algunes icones i altres elements gràfics del conjunt «Oxygen», del projecte KDE. Aquestes icones estan sota la llicència GNU LGPL v3. Vegeu &lt;/span&gt;&lt;a href=&quot;https://techbase.kde.org/Projects/Oxygen/Licensing&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#2980b9;&quot;&gt;https://techbase.kde.org/Projects/Oxygen/Licensing&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; i &lt;/span&gt;&lt;a href=&quot;http://www.gnu.org/copyleft/lesser.html&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#2980b9;&quot;&gt;http://www.gnu.org/copyleft/lesser.html&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_aboutdialog.py" line="511"/>
         <source>&amp;License Agreement</source>
         <translation>Acord de &amp;Llicència</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_aboutdialog.py" line="274"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -42,7 +109,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;You can send bug reports via the &lt;/span&gt;&lt;a href=&quot;https://github.com/orestesmas/pycirkuit&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#2980b9;&quot;&gt;project repository on GitHub&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;If you are willing to contribute, please read &lt;/span&gt;&lt;a href=&quot;https://github.com/orestesmas/pycirkuit/blob/master/CONTRIBUTING.md&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#2980b9;&quot;&gt;these guidelines&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;PyCirkuit uses icons from KDE&apos;s &amp;quot;Oxygen&amp;quot; set, which are under the LGPL license. See &lt;/span&gt;&lt;a href=&quot;https://techbase.kde.org/Projects/Oxygen/Licensing&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#2980b9;&quot;&gt;https://techbase.kde.org/Projects/Oxygen/Licensing&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation type="vanished">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -53,7 +120,6 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;El PyCirkuit empra icones del conjunt «Oxygen» del KDE, que estan sota la llicència LGPL. Llegiu &lt;/span&gt;&lt;a href=&quot;https://techbase.kde.org/Projects/Oxygen/Licensing&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#2980b9;&quot;&gt;https://techbase.kde.org/Projects/Oxygen/Licensing&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_aboutdialog.py" line="284"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -66,7 +132,7 @@ p, li { white-space: pre-wrap; }
 &lt;li style=&quot; font-size:11pt;&quot; style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://ece.uwaterloo.ca/~aplevich/dpic&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;Dpic&lt;/span&gt;&lt;/a&gt;, by Dwight Aplevich.&lt;/li&gt;
 &lt;li style=&quot; font-size:11pt;&quot; style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://ctan.org/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;LaTeX + TIkZ&lt;/span&gt;&lt;/a&gt;, by Donald Knuth, Leslie Lamport, Till Tantau and many more contributors.&lt;/li&gt;
 &lt;li style=&quot; font-size:11pt;&quot; style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://linux.die.net/man/1/pdftoppm&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;PdfToPpm&lt;/span&gt;&lt;/a&gt;, a software by &lt;a href=&quot;https://poppler.freedesktop.org/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;The Poppler project&lt;/span&gt;&lt;/a&gt;. &lt;/li&gt;&lt;/ul&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation type="vanished">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -80,7 +146,6 @@ p, li { white-space: pre-wrap; }
 &lt;li style=&quot; font-size:11pt;&quot; style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://linux.die.net/man/1/pdftoppm&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;PdfToPpm&lt;/span&gt;&lt;/a&gt;, un programari d&apos;&lt;a href=&quot;https://poppler.freedesktop.org/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;el projecte Poppler&lt;/span&gt;&lt;/a&gt;.&lt;/li&gt;&lt;/ul&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_aboutdialog.py" line="313"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -88,7 +153,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;PyCirkuit&lt;/span&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; is {copyrightInfo} &amp;lt;orestes@tsc.upc.edu&amp;gt;&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;You may use, distribute and copy PyCirkuit under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, which is shown below, or (at your option) any later version.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;PyCirkuit uses also some icons and other artwork from &amp;quot;Oxygen&amp;quot; set, from the KDE project. These icons are under the GNU LGPL v3 license. See &lt;/span&gt;&lt;a href=&quot;https://techbase.kde.org/Projects/Oxygen/Licensing&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#2980b9;&quot;&gt;https://techbase.kde.org/Projects/Oxygen/Licensing&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; and &lt;/span&gt;&lt;a href=&quot;http://www.gnu.org/copyleft/lesser.html&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#2980b9;&quot;&gt;http://www.gnu.org/copyleft/lesser.html&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation type="vanished">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -97,7 +162,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;El PyCirkuit empra també algunes icones del conjunt «Oxygen», del projecte KDE. Aquestes icones estan sota la llicència GNU LGPL v3. Vegeu &lt;/span&gt;&lt;a href=&quot;https://techbase.kde.org/Projects/Oxygen/Licensing&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#2980b9;&quot;&gt;https://techbase.kde.org/Projects/Oxygen/Licensing&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; i &lt;/span&gt;&lt;a href=&quot;http://www.gnu.org/copyleft/lesser.html&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#2980b9;&quot;&gt;http://www.gnu.org/copyleft/lesser.html&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_aboutdialog.py" line="297"/>
+        <location filename="../ui/Ui_aboutdialog.py" line="469"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -133,55 +198,56 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>CommandLine</name>
     <message>
-        <location filename="../tools/cliparser.py" line="112"/>
+        <location filename="../tools/cliparser.py" line="142"/>
         <source>path</source>
         <comment>Commandline argument name. If you translate this name, translate it accordingly into the path description and path syntax.</comment>
         <translation>ruta</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="112"/>
+        <location filename="../tools/cliparser.py" line="148"/>
         <source>[&lt;path&gt; [ &lt;path2&gt;...]]</source>
         <comment>Commandline argument syntax. If you translate &lt;path&gt;, translate the name and path description accordingly.</comment>
         <translation>[&lt;ruta&gt; [&lt;ruta2&gt;...]]</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="197"/>
+        <location filename="../tools/cliparser.py" line="228"/>
+        <location filename="../tools/cliparser.py" line="251"/>
         <source>The given path does not match any existing file.</source>
         <comment>Commandline error message</comment>
         <translation>La ruta introduïda no concorda amb cap fitxer existent.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="226"/>
+        <location filename="../tools/cliparser.py" line="298"/>
         <source>The --dpi parameter must be an integer between 25 and 3000.</source>
         <comment>Error message</comment>
         <translation>El paràmetre --dpi ha de ser un enter entre 25 i 3000.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="236"/>
+        <location filename="../tools/cliparser.py" line="320"/>
         <source>The --quality parameter must be an integer between 0 and 100.</source>
         <comment>Error message</comment>
         <translation>El paràmetre --quality ha de ser un enter entre 0 i 100.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="258"/>
+        <location filename="../tools/cliparser.py" line="352"/>
         <source>Batch processing requested with no files.</source>
         <comment>Commandline error message</comment>
         <translation>Heu demanat un procés per lots sense fitxers.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="304"/>
+        <location filename="../tools/cliparser.py" line="431"/>
         <source>More than one file to process with no batch option given.</source>
         <comment>Commandline error message</comment>
         <translation>Més d&apos;un fitxer per processar sense haver demanat un procés per lots.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="87"/>
+        <location filename="../tools/cliparser.py" line="112"/>
         <source>Try &quot;{appName} --help&quot; to get more information.</source>
         <comment>Command-line error message. Don&apos;t translate &apos;{appName}&apos;.</comment>
         <translation>Proveu «{appName}» --help per obtenir més informació.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="51"/>
+        <location filename="../tools/cliparser.py" line="58"/>
         <source>
 {productName} is a front-end for Circuit Macros by Dwight Aplevich,
 which are a set of macros for drawing high-quality line diagrams
@@ -193,7 +259,7 @@ que són un conjunt de macros per dibuixar diagrames d&apos;alta qualitat
 i incloure&apos;ls en documents TeX, LaTeX, Web o similars.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="80"/>
+        <location filename="../tools/cliparser.py" line="103"/>
         <source>Path to source drawing file(s) to process. Wildcards accepted.
 - If no &lt;path&gt; is given, the GUI is opened.
 - If &lt;path&gt; points to only one file and no batch conversion options are present, this file is opened into the GUI for editing.
@@ -207,43 +273,43 @@ i incloure&apos;ls en documents TeX, LaTeX, Web o similars.</translation>
 - No és permès d&apos;especificar més d&apos;un fitxer per processar sense haver indicat cap opció de format de sortida.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="57"/>
+        <location filename="../tools/cliparser.py" line="66"/>
         <source>Activates batch (unattended) mode, and convert files specified by &lt;path&gt; to {formatID} format. Several output formats can be used together.</source>
         <comment>Commandline option description. Don&apos;t translate the &apos;{formatID}&apos; variable.</comment>
         <translation>Activa el processament per lots i converteix els fitxers apuntats per &lt;ruta&gt; al format {formatID}. Es poden indicar conjuntament diversos formats de sortida.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="60"/>
+        <location filename="../tools/cliparser.py" line="71"/>
         <source>Sets the resolution of output raster images (png, jpg), in dots per inch. Value &lt;N&gt; is mandatory. If option is not set, default is {defaultDPI}dpi (defined in &apos;settings&apos; dialog).</source>
         <comment>Commandline argument description. Don&apos;t translate the &apos;{defaultDPI}&apos; variable.</comment>
         <translation>Estableix la resolució de les imatges «raster» de sortida (png, jpg), en punts per polzada. El valor &lt;N&gt; és obligatori. Si no especifiqueu l&apos;opció, el valor per defecte és {defaultDPI}dpi (definit al diàleg de configuració).</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="63"/>
+        <location filename="../tools/cliparser.py" line="76"/>
         <source>Sets the quality of output raster lossy images (jpg), in percent. Value &lt;Q&gt; is mandatory. If option is not set, default is {defaultQuality}% (defined in &apos;settings&apos; dialog).</source>
         <comment>Commandline option description. Don&apos;t translate the &apos;{defaultQuality}&apos; variable.</comment>
         <translation>Estableix la qualitat de les imatges «raster» de sortida amb pèrdua (jpg), en percentatge. El valor &lt;Q&gt; és obligatori. Si no especifiqueu l&apos;opció, el valor per defecte és {defaultQuality}% (definit al diàleg de configuració).</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="77"/>
+        <location filename="../tools/cliparser.py" line="98"/>
         <source>Using this option the pattern &apos;**&apos; will match any files and zero or more subdirs, so &apos;**/*.ckt&apos; will match all files with &apos;ckt&apos; extension in the current directory and all its subdirectories.</source>
         <comment>Commandline option description.</comment>
         <translation>Si s&apos;especifica aquesta opció, el patró &apos;**&apos; concordarà amb qualsevol fitxer i zero o més subdirectoris. Així, «**/*.ckt» concordarà amb tots els fitxers amb extensió «ckt» del directori actual i tots els seus subdirectoris.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="295"/>
+        <location filename="../tools/cliparser.py" line="414"/>
         <source>Files processed: {N}.</source>
         <comment>Command line message. {N} will be an integer, don&apos;t translate it.</comment>
         <translation>Fitxers processats: {N}.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="66"/>
+        <location filename="../tools/cliparser.py" line="81"/>
         <source>Overwrite by default the converted files if they are present. If not set, user will be asked at runtime.</source>
         <comment>Commandline option description.</comment>
         <translation>Sobreescriu per defecte els fitxers convertits si ja són presents. Si no s&apos;especifica, es preguntarà en temps d&apos;execució.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="69"/>
+        <location filename="../tools/cliparser.py" line="86"/>
         <source>Follow symbolic links.
 - If not set, destination file will be saved into the same directory where the source file is, whether it&apos;s a real file or a symbolic link.
 - If set, destination file will be saved into the directory where the real source file is located.</source>
@@ -253,36 +319,36 @@ i incloure&apos;ls en documents TeX, LaTeX, Web o similars.</translation>
 - Si l&apos;especifiqueu, el fitxer de destí es desarà al mateix directori del fitxer font real.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="74"/>
+        <location filename="../tools/cliparser.py" line="93"/>
         <source>Save all converted files into the same destination directory &lt;D&gt; (value is mandatory).</source>
         <comment>Commandline option description. Don&apos;t translate &apos;&lt;D&gt;&apos;.</comment>
         <translation>Desa tots els fitxers convertits al mateix directori de destí &lt;D&gt; (el valor és obligatori).</translation>
     </message>
     <message>
-        <location filename="../tools/processor.py" line="77"/>
+        <location filename="../tools/processor.py" line="95"/>
         <source>Found an invalid LaTeX template.</source>
         <comment>Error message.</comment>
         <translation>S&apos;ha trobat una plantilla LaTeX invàlida.</translation>
     </message>
     <message>
-        <location filename="../tools/processor.py" line="79"/>
+        <location filename="../tools/processor.py" line="103"/>
         <source>LaTeX template not found.</source>
         <comment>Error message.</comment>
         <translation>No s&apos;ha trobat la plantilla LaTeX.</translation>
     </message>
     <message>
-        <location filename="../tools/processor.py" line="94"/>
+        <location filename="../tools/processor.py" line="123"/>
         <source>Cannot find the Circuit Macros!</source>
         <comment>Command line error message.</comment>
         <translation>No s&apos;han trobat les «Circuit Macros»!</translation>
     </message>
     <message>
-        <location filename="../main.py" line="143"/>
+        <location filename="../main.py" line="162"/>
         <source>No desktop environment available.</source>
         <translation>No hi ha disponible cap entorn d&apos;escriptori.</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="266"/>
+        <location filename="../tools/cliparser.py" line="368"/>
         <source>Processing file:</source>
         <comment>Command line message. Will be followed by an absolute file path</comment>
         <translation>Processant el fitxer:</translation>
@@ -291,7 +357,7 @@ i incloure&apos;ls en documents TeX, LaTeX, Web o similars.</translation>
 <context>
     <name>CommandLine-UserInput1</name>
     <message>
-        <location filename="../tools/processor.py" line="97"/>
+        <location filename="../tools/processor.py" line="132"/>
         <source>
 The destination file already exists.</source>
         <comment>Command line message. THE STARTING NEWLINE CHARACTER (
@@ -300,31 +366,31 @@ The destination file already exists.</source>
 El fitxer de destinació ja existeix.</translation>
     </message>
     <message>
-        <location filename="../tools/processor.py" line="98"/>
+        <location filename="../tools/processor.py" line="138"/>
         <source>Would you like to overwrite it? ([y]es | [n]o | yes to [a]ll | ne[v]er): </source>
         <comment>WARNING!! Critical translation. You should translate this message to your language, enclosing into brackets one single DIFFERENT character for each option, and translate accordingly the characters in the next message.</comment>
         <translation>Voleu sobreescriure&apos;l? ([s]i | [n]o | si a [t]ot | [m]ai): </translation>
     </message>
     <message>
-        <location filename="../tools/processor.py" line="101"/>
+        <location filename="../tools/processor.py" line="143"/>
         <source>y</source>
         <comment>WARNING!! Critical translation. This char must match one of those of the message &apos;Would you like to overwrite it?&apos;</comment>
         <translation>s</translation>
     </message>
     <message>
-        <location filename="../tools/processor.py" line="104"/>
+        <location filename="../tools/processor.py" line="148"/>
         <source>n</source>
         <comment>WARNING!! Critical translation. This char must match one of those of the message &apos;Would you like to overwrite it?&apos;</comment>
         <translation>n</translation>
     </message>
     <message>
-        <location filename="../tools/processor.py" line="107"/>
+        <location filename="../tools/processor.py" line="153"/>
         <source>a</source>
         <comment>WARNING!! Critical translation. This char must match one of those of the message &apos;Would you like to overwrite it?&apos;</comment>
         <translation>t</translation>
     </message>
     <message>
-        <location filename="../tools/processor.py" line="110"/>
+        <location filename="../tools/processor.py" line="158"/>
         <source>v</source>
         <comment>WARNING!! Critical translation. This char must match one of those of the message &apos;Would you like to overwrite it?&apos;</comment>
         <translation>m</translation>
@@ -333,31 +399,32 @@ El fitxer de destinació ja existeix.</translation>
 <context>
     <name>CommandLine-UserInput2</name>
     <message>
-        <location filename="../tools/cliparser.py" line="314"/>
+        <location filename="../tools/cliparser.py" line="448"/>
         <source>a</source>
         <comment>WARNING!! Critical translation. This char must match one of those of the message &apos;Please choose what to do:&apos;</comment>
         <translation>a</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="317"/>
+        <location filename="../tools/cliparser.py" line="453"/>
         <source>s</source>
         <comment>WARNING!! Critical translation. This char must match one of those of the message &apos;Please choose what to do:&apos;</comment>
         <translation>s</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="320"/>
+        <location filename="../tools/cliparser.py" line="458"/>
         <source>o</source>
         <comment>WARNING!! Critical translation. This char must match one of those of the message &apos;Please choose what to do:&apos;</comment>
         <translation>o</translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="324"/>
+        <location filename="../tools/cliparser.py" line="443"/>
+        <location filename="../tools/cliparser.py" line="464"/>
         <source>Please choose what to do: [a]bort processing, [s]kip file, [o]pen in GUI for editing: </source>
         <comment>WARNING!! Critical translation. You should translate this message to your language, enclosing into brackets one single DIFFERENT character for each option, and translate accordingly the characters in the next message.</comment>
         <translation>Escolliu què voleu fer: [a]vortar el procés, [s]altar aquest fitxer, [o]brir-lo en la IGU per editar-lo: </translation>
     </message>
     <message>
-        <location filename="../tools/cliparser.py" line="333"/>
+        <location filename="../tools/cliparser.py" line="475"/>
         <source>Please choose what to do: [a]bort processing, [s]kip file: </source>
         <comment>WARNING!! Critical translation. You should translate this message to your language, enclosing into brackets one single DIFFERENT character for each option, and translate accordingly the characters in the next message.</comment>
         <translation>Escolliu què voleu fer: [a]vortar el procés, [s]altar aquest fitxer: </translation>
@@ -366,122 +433,124 @@ El fitxer de destinació ja existeix.</translation>
 <context>
     <name>ConfigDialog</name>
     <message>
-        <location filename="../ui/configdialog.py" line="166"/>
+        <location filename="../ui/configdialog.py" line="252"/>
         <source>Circuit Macros Location</source>
         <comment>File Dialog Title</comment>
         <translation>Ubicació de les Circuit Macros</translation>
     </message>
     <message>
-        <location filename="../ui/configdialog.py" line="184"/>
+        <location filename="../ui/configdialog.py" line="275"/>
         <source>Latex Template Location</source>
         <comment>File Dialog Title</comment>
         <translation>Ubicació de la plantilla LaTeX</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="256"/>
+        <location filename="../ui/Ui_configdialog.py" line="420"/>
         <source>Config Dialog</source>
         <translation>Diàleg de configuració</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="264"/>
+        <location filename="../ui/Ui_configdialog.py" line="436"/>
         <source>Circuit Macros Location</source>
         <comment>Group box title</comment>
         <translation>Ubicació de les Circuit Macros</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="268"/>
+        <location filename="../ui/Ui_configdialog.py" line="441"/>
+        <location filename="../ui/Ui_configdialog.py" line="457"/>
         <source>Enter Path Name</source>
         <translation>Introduïu la ruta</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="269"/>
+        <location filename="../ui/Ui_configdialog.py" line="444"/>
+        <location filename="../ui/Ui_configdialog.py" line="460"/>
         <source>Choose...</source>
         <comment>Button text</comment>
         <translation>Escull...</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="346"/>
+        <location filename="../ui/Ui_configdialog.py" line="447"/>
         <source>LaTeX Engine</source>
         <comment>Group box title</comment>
         <translation>Motor LaTeX</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="267"/>
+        <location filename="../ui/Ui_configdialog.py" line="452"/>
         <source>LaTeX Template File</source>
         <comment>Group box title</comment>
         <translation>Fitxer de plantilla LaTeX</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="260"/>
+        <location filename="../ui/Ui_configdialog.py" line="427"/>
         <source>General</source>
         <translation>General</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="262"/>
+        <location filename="../ui/Ui_configdialog.py" line="431"/>
         <source>Exporting</source>
         <translation>Exportació</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="272"/>
+        <location filename="../ui/Ui_configdialog.py" line="475"/>
         <source>&amp;TIKZ</source>
         <translation>&amp;TIKZ</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="274"/>
+        <location filename="../ui/Ui_configdialog.py" line="478"/>
         <source>PD&amp;F</source>
         <translation>PD&amp;F</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="277"/>
+        <location filename="../ui/Ui_configdialog.py" line="486"/>
         <source>Raster image export parameters</source>
         <comment>Group box title</comment>
         <translation>Paràmetres d&apos;exportació de les imatges de mapa de bits</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="278"/>
+        <location filename="../ui/Ui_configdialog.py" line="491"/>
         <source>Ras&amp;ter image resolution in dots per inch (dpi):</source>
         <translation>&amp;Resolució de les imatges de mapa de bits en punts per polzada (ppp):</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="279"/>
+        <location filename="../ui/Ui_configdialog.py" line="496"/>
         <source> dpi</source>
         <comment>Suffix in spin box (translate to acronym)</comment>
         <translation> ppp</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="280"/>
+        <location filename="../ui/Ui_configdialog.py" line="501"/>
         <source>Image &amp;quality for lossy formats like jpeg (percent):</source>
         <translation>&amp;Qualitat d&apos;imatge pels formats amb pèrdua del tipus jpeg (percentatge):</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="281"/>
+        <location filename="../ui/Ui_configdialog.py" line="508"/>
         <source> %</source>
         <comment>Spin box suffix</comment>
         <translation> %</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="270"/>
+        <location filename="../ui/Ui_configdialog.py" line="463"/>
         <source>Image formats to export</source>
         <comment>Group box title</comment>
         <translation>Formats d&apos;imatge a exportar</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="271"/>
+        <location filename="../ui/Ui_configdialog.py" line="468"/>
         <source>Choose which formats will be saved when the button &quot;Export&quot; is pressed:</source>
         <translation>Escolliu quins formats es desaran quan es premi el botó «Exporta»:</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="275"/>
+        <location filename="../ui/Ui_configdialog.py" line="480"/>
         <source>&amp;PNG (raster)</source>
         <translation>&amp;PNG (raster)</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="276"/>
+        <location filename="../ui/Ui_configdialog.py" line="483"/>
         <source>&amp;JPEG (raster)</source>
         <translation>&amp;JPEG (raster)</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_configdialog.py" line="273"/>
+        <location filename="../ui/Ui_configdialog.py" line="477"/>
         <source>SVG</source>
         <translation></translation>
     </message>
@@ -489,25 +558,25 @@ El fitxer de destinació ja existeix.</translation>
 <context>
     <name>ExternalTool</name>
     <message>
-        <location filename="../tools/dpic.py" line="39"/>
+        <location filename="../tools/dpic.py" line="43"/>
         <source>&apos;PIC&apos; language compiler</source>
         <comment>Tool Long Name</comment>
         <translation>Compilador de llenguatge «PIC»</translation>
     </message>
     <message>
-        <location filename="../tools/m4.py" line="36"/>
+        <location filename="../tools/m4.py" line="39"/>
         <source>&apos;M4&apos; Macro Processor</source>
         <comment>Tool Long Name</comment>
         <translation>Processador de Macros «M4»</translation>
     </message>
     <message>
-        <location filename="../tools/m4.py" line="47"/>
+        <location filename="../tools/m4.py" line="59"/>
         <source>M4: Error converting CKT -&gt; PIC</source>
         <comment>Error message</comment>
         <translation>M4: Error en la conversió CKT -&gt; PIC</translation>
     </message>
     <message>
-        <location filename="../tools/pdflatex.py" line="38"/>
+        <location filename="../tools/latex.py" line="123"/>
         <source>pdfLaTeX program</source>
         <comment>Tool Long Name</comment>
         <translation>Programa pdfLaTeX</translation>
@@ -531,49 +600,48 @@ El fitxer de destinació ja existeix.</translation>
         <translation>LuaLaTeX</translation>
     </message>
     <message>
-        <location filename="../tools/latex.py" line="79"/>
+        <location filename="../tools/latex.py" line="78"/>
         <source>{engine}: Error converting TIKZ -&gt; PDF</source>
         <comment>Error message</comment>
         <translation>{engine}: Error en la conversió TIKZ -&gt; PDF</translation>
     </message>
     <message>
-        <location filename="../tools/pdflatex.py" line="59"/>
         <source>PDFLaTeX: Error converting TIKZ -&gt; PDF</source>
         <comment>Error message</comment>
-        <translation>PDFLaTeX: Error en la conversió TIKZ -&gt; PDF</translation>
+        <translation type="vanished">PDFLaTeX: Error en la conversió TIKZ -&gt; PDF</translation>
     </message>
     <message>
-        <location filename="../tools/pdftopng.py" line="36"/>
+        <location filename="../tools/pdftopng.py" line="40"/>
         <source>PDF to PNG image converter</source>
         <comment>Tool Long Name</comment>
         <translation>Convertidor d&apos;imatge PDF a PNG</translation>
     </message>
     <message>
-        <location filename="../tools/pdftopng.py" line="44"/>
+        <location filename="../tools/pdftopng.py" line="55"/>
         <source>PDFTOPPM: Error converting PDF -&gt; PNG</source>
         <comment>Error message</comment>
         <translation>PDFTOPPM: Error en la conversió PDF -&gt; PNG</translation>
     </message>
     <message>
-        <location filename="../tools/pdftosvg.py" line="34"/>
+        <location filename="../tools/pdftosvg.py" line="39"/>
         <source>PDF to SVG image converter</source>
         <comment>Tool Long Name</comment>
         <translation>Convertidor d&apos;imatge PDF a SVG</translation>
     </message>
     <message>
-        <location filename="../tools/pdftosvg.py" line="54"/>
+        <location filename="../tools/pdftosvg.py" line="53"/>
         <source>PDF2SVG: Error converting PDF -&gt; SVG</source>
         <comment>Error message</comment>
         <translation>PDF2SVG: Error en la conversió PDF -&gt; SVG</translation>
     </message>
     <message>
-        <location filename="../exceptions.py" line="70"/>
+        <location filename="../exceptions.py" line="102"/>
         <source>Tool Execution Error</source>
         <comment>Exception title</comment>
         <translation>Error d&apos;execució de l&apos;eina</translation>
     </message>
     <message>
-        <location filename="../exceptions.py" line="75"/>
+        <location filename="../exceptions.py" line="110"/>
         <source>Cannot find the {toolLongName}!
 
 </source>
@@ -583,7 +651,7 @@ El fitxer de destinació ja existeix.</translation>
 </translation>
     </message>
     <message>
-        <location filename="../exceptions.py" line="77"/>
+        <location filename="../exceptions.py" line="116"/>
         <source>Please ensure that you have this application properly installed and the executable &quot;{toolExecutableName}&quot; is in the PATH.
 
 </source>
@@ -593,24 +661,24 @@ El fitxer de destinació ja existeix.</translation>
 </translation>
     </message>
     <message>
-        <location filename="../exceptions.py" line="78"/>
+        <location filename="../exceptions.py" line="121"/>
         <source>Cannot generate the preview.</source>
         <translation>No s&apos;ha pogut generar la previsualització.</translation>
     </message>
     <message>
-        <location filename="../exceptions.py" line="80"/>
+        <location filename="../exceptions.py" line="125"/>
         <source>Tool Not Found</source>
         <comment>Exception title</comment>
         <translation>No s&apos;ha trobat l&apos;eina</translation>
     </message>
     <message>
-        <location filename="../exceptions.py" line="55"/>
+        <location filename="../exceptions.py" line="61"/>
         <source>Cannot find the {toolName} manual!</source>
         <comment>Leave untranslated the variable name inside curly braces (included)</comment>
         <translation>No s&apos;ha trobat el manual del {toolName}!</translation>
     </message>
     <message>
-        <location filename="../exceptions.py" line="57"/>
+        <location filename="../exceptions.py" line="67"/>
         <source>Please ensure that you have this application properly installed, with its documentation into one of these standard locations:
 
 </source>
@@ -619,43 +687,45 @@ El fitxer de destinació ja existeix.</translation>
 </translation>
     </message>
     <message>
-        <location filename="../exceptions.py" line="64"/>
+        <location filename="../exceptions.py" line="73"/>
+        <location filename="../exceptions.py" line="92"/>
         <source>File Not Found</source>
         <comment>Exception title</comment>
         <translation>No s&apos;ha trobat el fitxer</translation>
     </message>
     <message>
-        <location filename="../exceptions.py" line="94"/>
+        <location filename="../exceptions.py" line="135"/>
+        <location filename="../exceptions.py" line="157"/>
         <source>Circuit Macros not found</source>
         <comment>Exception title</comment>
         <translation>No s&apos;han trobat les «Circuit Macros»</translation>
     </message>
     <message>
-        <location filename="../exceptions.py" line="90"/>
+        <location filename="../exceptions.py" line="145"/>
         <source>New Circuit Macros version available!</source>
         <comment>Exception title</comment>
         <translation>Hi ha disponible una nova versió de les «Circuit Macros»!</translation>
     </message>
     <message>
-        <location filename="../tools/circuitmacrosmanager.py" line="83"/>
+        <location filename="../tools/circuitmacrosmanager.py" line="97"/>
         <source>Cannot determine the standard writable location for PyCirkuit</source>
         <comment>Error message</comment>
         <translation>No s&apos;ha pogut determinar la ubicació estàndard amb permís d&apos;escriptura per al PyCirkuit</translation>
     </message>
     <message>
-        <location filename="../tools/circuitmacrosmanager.py" line="107"/>
+        <location filename="../tools/circuitmacrosmanager.py" line="126"/>
         <source>Network error: </source>
         <comment>Error message</comment>
         <translation>Error de xarxa: </translation>
     </message>
     <message>
-        <location filename="../tools/circuitmacrosmanager.py" line="154"/>
+        <location filename="../tools/circuitmacrosmanager.py" line="187"/>
         <source>Error uncompressing the Circuit Macros: </source>
         <comment>Error message</comment>
         <translation>S&apos;ha produït un error en descomprimir les Circuit Macros: </translation>
     </message>
     <message>
-        <location filename="../exceptions.py" line="62"/>
+        <location filename="../exceptions.py" line="80"/>
         <source>Cannot find the &quot;Circuit Macros&quot; documentation.
 
 </source>
@@ -665,208 +735,376 @@ El fitxer de destinació ja existeix.</translation>
 </translation>
     </message>
     <message>
-        <location filename="../exceptions.py" line="63"/>
+        <location filename="../exceptions.py" line="85"/>
         <source>You will have to search for it manually. It should be a PDF file located into {cmPath} folder or one of its subfolders.</source>
         <comment>Message Box text. DO NOT translate &apos;{cmPath}&apos; variable.</comment>
         <translation>L&apos;haureu de cercar manualment. Hauria de ser un fitxer PDF ubicat a la carpeta {cmPath} o en una de les seves subcarpetes.</translation>
     </message>
     <message>
-        <location filename="../tools/dpic.py" line="61"/>
+        <location filename="../tools/circuitmacrosmanager.py" line="135"/>
+        <location filename="../tools/dpic.py" line="70"/>
         <source>Module &apos;python-magic&apos; not found. Please check that all PyCirkuit dependencies are correctly installed.</source>
         <comment>Error message</comment>
         <translation>No s&apos;ha trobat el mòdul &apos;python-magic&apos;. Comproveu que teniu correctament instal·lades totes les dependències del PyCirkuit.</translation>
     </message>
     <message>
-        <location filename="../tools/pdftojpg.py" line="38"/>
+        <location filename="../tools/pdftojpg.py" line="42"/>
         <source>PDF to JPEG image converter</source>
         <comment>Tool Long Name</comment>
         <translation>Convertidor d&apos;imatge PDF a JPEG</translation>
     </message>
     <message>
-        <location filename="../tools/pdftojpg.py" line="46"/>
+        <location filename="../tools/pdftojpg.py" line="59"/>
         <source>PDFTOPPM: Error converting PDF -&gt; JPEG</source>
         <comment>Error message</comment>
         <translation>PDFTOPPM: Error en la conversió PDF -&gt; JPEG</translation>
     </message>
     <message>
-        <location filename="../tools/dpic.py" line="53"/>
+        <location filename="../tools/dpic.py" line="58"/>
         <source>DPIC: Error processing source file</source>
         <comment>Error message</comment>
         <translation>DPIC: Error en processar el fitxer font</translation>
     </message>
 </context>
 <context>
+    <name>FindReplaceBar</name>
+    <message>
+        <location filename="../findreplacebar.py" line="67"/>
+        <source>Close</source>
+        <translation>Tanca</translation>
+    </message>
+    <message>
+        <location filename="../findreplacebar.py" line="71"/>
+        <source>Find...</source>
+        <translation>Cerca...</translation>
+    </message>
+    <message>
+        <location filename="../findreplacebar.py" line="79"/>
+        <source>Find previous</source>
+        <translation>Cerca l&apos;anterior</translation>
+    </message>
+    <message>
+        <location filename="../findreplacebar.py" line="85"/>
+        <source>Find next</source>
+        <translation>Cerca el següent</translation>
+    </message>
+    <message>
+        <location filename="../findreplacebar.py" line="89"/>
+        <source>Aa</source>
+        <comment>Case sensitive, abbreviated</comment>
+        <translation>Aa</translation>
+    </message>
+    <message>
+        <location filename="../findreplacebar.py" line="92"/>
+        <source>Case sensitive</source>
+        <translation>Sensible a caixa</translation>
+    </message>
+    <message>
+        <location filename="../findreplacebar.py" line="97"/>
+        <source>Ab</source>
+        <comment>Whole word, abbreviated</comment>
+        <translation>Ab</translation>
+    </message>
+    <message>
+        <location filename="../findreplacebar.py" line="99"/>
+        <source>Whole word</source>
+        <translation>Paraules senceres</translation>
+    </message>
+    <message>
+        <location filename="../findreplacebar.py" line="112"/>
+        <source>Replace...</source>
+        <translation>Reemplaça...</translation>
+    </message>
+    <message>
+        <location filename="../findreplacebar.py" line="118"/>
+        <source>Replace</source>
+        <translation>Reemplaça</translation>
+    </message>
+    <message>
+        <location filename="../findreplacebar.py" line="123"/>
+        <source>Replace All</source>
+        <translation>Reemplaça-ho tot</translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="191"/>
+        <location filename="../ui/Ui_mainwindow.py" line="340"/>
         <source>PyCirkuit - by Orestes Mas</source>
         <translation>PyCircuit - per Orestes Mas</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="199"/>
+        <location filename="../ui/Ui_mainwindow.py" line="486"/>
+        <source>&amp;Undo</source>
+        <translation>&amp;Desfés</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="489"/>
+        <source>Ctrl+Z</source>
+        <comment>Keyboard Shortcut</comment>
+        <translation>Ctrl+Z</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="492"/>
+        <source>&amp;Redo</source>
+        <translation>Re&amp;fés</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="495"/>
+        <source>Ctrl+Y</source>
+        <comment>Keyboard Shortcut</comment>
+        <translation>Ctrl+Y</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="499"/>
+        <source>&amp;Toggle Comment</source>
+        <translation>Co&amp;mmuta el comentari</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="503"/>
+        <source>Ctrl+/</source>
+        <comment>Keyboard Shortcut is handled by the editor itself, see texteditor.py, so that Shift is tolerated as incidental on ES/CAT keyboard layouts where &apos;/&apos; is typed as Shift+7</comment>
+        <translation>Ctrl+/</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="511"/>
+        <source>&amp;Find...</source>
+        <translation>C&amp;erca...</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="515"/>
+        <source>Ctrl+F</source>
+        <comment>Keyboard Shortcut</comment>
+        <translation>Ctrl+F</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="519"/>
+        <source>&amp;Replace...</source>
+        <translation>&amp;Reemplaça...</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="523"/>
+        <source>Ctrl+H</source>
+        <comment>Keyboard Shortcut</comment>
+        <translation>Ctrl+H</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="526"/>
+        <source>&amp;Cut</source>
+        <translation>&amp;Talla</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="529"/>
+        <source>Ctrl+X</source>
+        <translation>Ctrl+X</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="533"/>
+        <source>&amp;Paste</source>
+        <translation>En&amp;ganxa</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="537"/>
+        <source>Ctrl+V</source>
+        <translation>Ctrl+V</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="540"/>
+        <source>C&amp;opy</source>
+        <translation>Co&amp;pia</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="543"/>
+        <source>Ctrl+C</source>
+        <translation>Ctrl+C</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="547"/>
+        <source>Find &amp;Next</source>
+        <translation>Cerca el &amp;següent</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="551"/>
+        <source>F3</source>
+        <translation>F3</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="555"/>
+        <source>Find Pre&amp;vious</source>
+        <translation>Cerca l&apos;&amp;anterior</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="559"/>
+        <source>Shift+F3</source>
+        <comment>Keyboard Shortcut</comment>
+        <translation>Shift+F3</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="596"/>
         <source>Fi&amp;le</source>
         <translation>&amp;Fitxer</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="201"/>
+        <location filename="../ui/Ui_mainwindow.py" line="605"/>
         <source>Setti&amp;ngs</source>
         <translation>Arra&amp;njament</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="213"/>
+        <location filename="../ui/Ui_mainwindow.py" line="362"/>
         <source>Open Drawing</source>
         <translation>Obre un dibuix</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="222"/>
+        <location filename="../ui/Ui_mainwindow.py" line="409"/>
         <source>New Drawing</source>
         <translation>Nou dibuix</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="192"/>
+        <location filename="../ui/Ui_mainwindow.py" line="564"/>
         <source>Source Editor</source>
         <comment>Tab title</comment>
         <translation>Editor de la font</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="209"/>
+        <location filename="../ui/Ui_mainwindow.py" line="343"/>
         <source>&amp;Quit</source>
         <comment>Menu item</comment>
         <translation>S&amp;urt</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="212"/>
+        <location filename="../ui/Ui_mainwindow.py" line="358"/>
         <source>&amp;Open...</source>
         <comment>Menu item</comment>
         <translation>&amp;Obre...</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="221"/>
+        <location filename="../ui/Ui_mainwindow.py" line="405"/>
         <source>&amp;New</source>
         <comment>Menu item</comment>
         <translation>&amp;Nou</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="225"/>
+        <location filename="../ui/Ui_mainwindow.py" line="425"/>
         <source>&amp;Save</source>
         <comment>Menu item</comment>
         <translation>&amp;Desa</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="228"/>
+        <location filename="../ui/Ui_mainwindow.py" line="440"/>
         <source>Sa&amp;ve As...</source>
         <comment>Menu item</comment>
         <translation>Desa &amp;com a...</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="233"/>
+        <location filename="../ui/Ui_mainwindow.py" line="468"/>
         <source>Ctrl+M</source>
         <translation>Ctrl+M</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="211"/>
+        <location filename="../ui/Ui_mainwindow.py" line="354"/>
         <source>Ctrl+Q</source>
         <comment>Keyboard Shortcut</comment>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="215"/>
+        <location filename="../ui/Ui_mainwindow.py" line="374"/>
         <source>Ctrl+O</source>
         <comment>Keyboard Shortcut</comment>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="218"/>
+        <location filename="../ui/Ui_mainwindow.py" line="388"/>
         <source>Configure &amp;PyCirkuit...</source>
         <comment>Menu item</comment>
         <translation>Configura el &amp;PyCirkuit...</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="220"/>
+        <location filename="../ui/Ui_mainwindow.py" line="401"/>
         <source>Ctrl+P</source>
         <comment>Keyboard Shortcut</comment>
         <translation>Ctrl+P</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="224"/>
+        <location filename="../ui/Ui_mainwindow.py" line="421"/>
         <source>Ctrl+N</source>
         <comment>Keyboard Shortcut</comment>
         <translation>Ctrl+N</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="227"/>
+        <location filename="../ui/Ui_mainwindow.py" line="436"/>
         <source>Ctrl+S</source>
         <comment>Keyboard Shortcut</comment>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="230"/>
+        <location filename="../ui/Ui_mainwindow.py" line="451"/>
         <source>Ctrl+Shift+S</source>
         <comment>Keyboard Shortcut</comment>
         <translation>Ctrl+Shift+S</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="143"/>
+        <location filename="../ui/mainwindow.py" line="220"/>
         <source>Enter a file to save into</source>
         <comment>Window Title</comment>
         <translation>Introduïu un fitxer on desar-ho</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="482"/>
+        <location filename="../ui/mainwindow.py" line="650"/>
         <source>PyCirkuit files (*.ckt)</source>
         <comment>File filter text</comment>
         <translation>Fitxers PyCirkuit (*.ckt)</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="482"/>
+        <location filename="../ui/mainwindow.py" line="652"/>
         <source>TeX files (*.tex)</source>
         <comment>File filter text</comment>
         <translation>Fitxers TeX (*.tex)</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="482"/>
+        <location filename="../ui/mainwindow.py" line="653"/>
         <source>Any files (*)</source>
         <comment>File filter text</comment>
         <translation>Qualsevol fitxer (*)</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="516"/>
+        <location filename="../ui/mainwindow.py" line="691"/>
         <source>Enter a file to save into</source>
         <comment>File Dialog title</comment>
         <translation>Introduïu un fitxer on desar-ho</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="519"/>
+        <location filename="../ui/mainwindow.py" line="697"/>
         <source>PyCirkuit files (*.ckt)</source>
         <comment>File filter</comment>
         <translation>Fitxers PyCirkuit (*.ckt)</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="519"/>
+        <location filename="../ui/mainwindow.py" line="251"/>
+        <location filename="../ui/mainwindow.py" line="698"/>
         <source>Any files (*)</source>
         <comment>File filter</comment>
         <translation>Qualsevol fitxer (*)</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="216"/>
+        <location filename="../ui/Ui_mainwindow.py" line="378"/>
         <source>&amp;About PyCirkuit</source>
         <comment>Menu item</comment>
         <translation>&amp;Quant al PyCirkuit</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="480"/>
+        <location filename="../ui/mainwindow.py" line="645"/>
         <source>Source File Selection</source>
         <comment>File Dialog title</comment>
         <translation>Selecció de fitxer font</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="64"/>
+        <location filename="../ui/mainwindow.py" line="68"/>
         <source>unnamed</source>
         <comment>Initial name of a new empty file</comment>
         <translation>sense nom</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="452"/>
+        <location filename="../ui/mainwindow.py" line="613"/>
         <source>.PS
 scale=2.54
 cct_init
@@ -886,106 +1124,107 @@ l=elen_
 </translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="231"/>
+        <location filename="../ui/Ui_mainwindow.py" line="457"/>
         <source>&amp;Circuit Macros manual</source>
         <translation>Manual de les &amp;Circuit Macros</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="234"/>
+        <location filename="../ui/Ui_mainwindow.py" line="472"/>
         <source>&amp;Dpic manual</source>
         <translation>Manual del &amp;Dpic</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="236"/>
+        <location filename="../ui/Ui_mainwindow.py" line="483"/>
         <source>Ctrl+D</source>
         <translation>Ctrl+D</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="210"/>
+        <location filename="../ui/Ui_mainwindow.py" line="347"/>
         <source>Close application</source>
         <comment>Status Bar Message</comment>
         <translation>Tanca l&apos;aplicació</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="217"/>
+        <location filename="../ui/Ui_mainwindow.py" line="382"/>
         <source>Application information</source>
         <comment>Status Bar Message</comment>
         <translation>Informació de l&apos;aplicació</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="219"/>
+        <location filename="../ui/Ui_mainwindow.py" line="394"/>
         <source>Opens config dialog</source>
         <comment>Status Bar Message</comment>
         <translation>Obre el diàleg de configuració</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="232"/>
+        <location filename="../ui/Ui_mainwindow.py" line="461"/>
         <source>Opens Circuit Macros manual</source>
         <comment>Status Bar Message</comment>
         <translation>Obre el manual de les Circuit Macros</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="235"/>
+        <location filename="../ui/Ui_mainwindow.py" line="476"/>
         <source>Opens Dpic manual</source>
         <comment>Status Bar Message</comment>
         <translation>Obre el manual del Dpic</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="214"/>
+        <location filename="../ui/Ui_mainwindow.py" line="367"/>
         <source>Opens an existing drawing</source>
         <comment>Status Bar Message</comment>
         <translation>Obre un dibuix existent</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="223"/>
+        <location filename="../ui/Ui_mainwindow.py" line="414"/>
         <source>Creates an empty drawing</source>
         <comment>Status Bar Message</comment>
         <translation>Crea un dibuix buit</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="226"/>
+        <location filename="../ui/Ui_mainwindow.py" line="429"/>
         <source>Saves drawing</source>
         <comment>Status Bar Message</comment>
         <translation>Desa el dibuix</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="229"/>
+        <location filename="../ui/Ui_mainwindow.py" line="444"/>
         <source>Saves drawing with new name</source>
         <comment>Status Bar Message</comment>
         <translation>Desa el dibuix amb un nom nou</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="482"/>
+        <location filename="../ui/mainwindow.py" line="651"/>
         <source>M4 macro files (*.m4)</source>
         <comment>File filter text</comment>
         <translation>Fitxers de macros M4 (*.m4)</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="154"/>
+        <location filename="../ui/mainwindow.py" line="233"/>
         <source>TikZ files (*.tikz)</source>
         <comment>File filter</comment>
         <translation>Fitxers TikZ (*.tikz)</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="193"/>
+        <location filename="../ui/Ui_mainwindow.py" line="567"/>
         <source>&lt;Empty output&gt;</source>
         <comment>Placeholder text</comment>
         <translation>&lt;Sortida buida&gt;</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="194"/>
+        <location filename="../ui/Ui_mainwindow.py" line="573"/>
         <source>Output Log</source>
         <comment>Tab title</comment>
         <translation>Registre de sortida</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="752"/>
+        <location filename="../ui/mainwindow.py" line="1012"/>
+        <location filename="../ui/mainwindow.py" line="1026"/>
         <source>Error!</source>
         <comment>Fallback text to be displayed when the image cannot be generated</comment>
         <translation>Error!</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="203"/>
+        <location filename="../ui/Ui_mainwindow.py" line="618"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Use:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt; Ctrl + Mouse Wheel to Zoom In/Out&lt;/li&gt;
@@ -1000,70 +1239,75 @@ l=elen_
 &lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="200"/>
+        <location filename="../ui/Ui_mainwindow.py" line="600"/>
         <source>Hel&amp;p</source>
-        <translation>A&amp;juda</translation>
+        <translation>&amp;Ajuda</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="156"/>
+        <location filename="../ui/mainwindow.py" line="237"/>
         <source>PDF files (*.pdf)</source>
         <comment>File filter</comment>
         <translation>Fitxers PDF (*.pdf)</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="158"/>
+        <location filename="../ui/mainwindow.py" line="241"/>
         <source>PNG files (*.png)</source>
         <comment>File filter</comment>
         <translation>Fitxers PNG (*.png)</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="160"/>
+        <location filename="../ui/mainwindow.py" line="245"/>
         <source>JPEG files (*.jpeg *.jpg)</source>
         <comment>File filter</comment>
         <translation>Fitxers JPEG (*.jpeg *.jpg)</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="195"/>
+        <location filename="../ui/Ui_mainwindow.py" line="576"/>
         <source>&amp;Process and display</source>
         <comment>Button text</comment>
         <translation>&amp;Processa i mostra</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="196"/>
+        <location filename="../ui/Ui_mainwindow.py" line="582"/>
         <source>Alt+P</source>
         <translation>Alt+P</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="197"/>
+        <location filename="../ui/Ui_mainwindow.py" line="586"/>
         <source>E&amp;xport</source>
         <comment>Button text</comment>
         <translation>E&amp;xporta</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="198"/>
+        <location filename="../ui/Ui_mainwindow.py" line="590"/>
         <source>Alt+X</source>
         <translation>Alt+X</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="202"/>
+        <location filename="../ui/Ui_mainwindow.py" line="610"/>
+        <source>&amp;Edit</source>
+        <translation>&amp;Edita</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="612"/>
         <source>Preview</source>
         <comment>A window title, NOT an action.</comment>
         <translation>Previsualització</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="119"/>
+        <location filename="../ui/mainwindow.py" line="190"/>
         <source>Enter a writable directory to save into</source>
         <comment>Window Title</comment>
         <translation>Introduïu un directori amb permisos d&apos;escriptura</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="162"/>
+        <location filename="../ui/mainwindow.py" line="249"/>
         <source>SVG files (*.svg)</source>
         <comment>File filter</comment>
         <translation>Fitxers SVG (*.svg)</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="187"/>
+        <location filename="../ui/mainwindow.py" line="286"/>
         <source>Enter new directory</source>
         <comment>File Dialog Title</comment>
         <translation>Introduïu un directori nou</translation>
@@ -1072,7 +1316,7 @@ l=elen_
 <context>
     <name>MessageBox</name>
     <message>
-        <location filename="../ui/mainwindow.py" line="300"/>
+        <location filename="../ui/mainwindow.py" line="421"/>
         <source>Cannot find the &apos;Circuit Macros&apos;!
 
 </source>
@@ -1081,29 +1325,29 @@ l=elen_
 </translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="301"/>
+        <location filename="../ui/mainwindow.py" line="424"/>
         <source>Do you want to try to search and install them automatically?</source>
         <translation>Voleu provar de cercar-les i instal·lar-les automàticament?</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="322"/>
+        <location filename="../ui/mainwindow.py" line="459"/>
         <source>Please indicate the correct path to them in the settings dialog.</source>
         <translation>Si us plau indiqueu-ne la ruta correcta al diàleg de l&apos;arranjament.</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="592"/>
+        <location filename="../ui/mainwindow.py" line="806"/>
         <source>Do you want to overwrite it?</source>
         <comment>Message Box text</comment>
         <translation>Voleu sobreescriure&apos;l?</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="594"/>
+        <location filename="../ui/mainwindow.py" line="816"/>
         <source>Save As...</source>
         <comment>Button text</comment>
         <translation>Desa com a...</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="246"/>
+        <location filename="../ui/mainwindow.py" line="338"/>
         <source>The specified LaTeX template seems invalid!
 
 </source>
@@ -1113,7 +1357,7 @@ l=elen_
 </translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="247"/>
+        <location filename="../ui/mainwindow.py" line="343"/>
         <source>Please indicate a correct one in the Settings.
 
 </source>
@@ -1123,13 +1367,14 @@ l=elen_
 </translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="255"/>
+        <location filename="../ui/mainwindow.py" line="348"/>
+        <location filename="../ui/mainwindow.py" line="365"/>
         <source>Cannot generate the preview.</source>
         <comment>Error message</comment>
         <translation>No s&apos;ha pogut generar la previsualització.</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="253"/>
+        <location filename="../ui/mainwindow.py" line="355"/>
         <source>The LaTeX template has not been found!
 
 </source>
@@ -1139,7 +1384,7 @@ l=elen_
 </translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="254"/>
+        <location filename="../ui/mainwindow.py" line="360"/>
         <source>Please indicate its correct PATH in the Settings.
 
 </source>
@@ -1149,99 +1394,106 @@ l=elen_
 </translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="176"/>
+        <location filename="../ui/mainwindow.py" line="266"/>
         <source>Source file have unsaved changes.</source>
         <comment>Message box text</comment>
         <translation>El fitxer font té canvis sense desar.</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="591"/>
+        <location filename="../ui/mainwindow.py" line="795"/>
         <source>There&apos;s already a file named &quot;{filename}&quot; at working directory.</source>
         <comment>Message box text. Don&apos;t translate &apos;{filename}&apos;</comment>
         <translation>Ja hi ha un fitxer anomenat «{filename}» al directori de treball.</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="177"/>
+        <location filename="../ui/mainwindow.py" line="271"/>
         <source>Do you want to save them before proceeding?</source>
         <comment>Message Box text</comment>
         <translation>Voleu desar-los abans de continuar?</translation>
     </message>
     <message>
-        <location filename="../ui/configdialog.py" line="109"/>
+        <location filename="../ui/configdialog.py" line="151"/>
         <source>The path to the Circuit Macros location is not valid. Please enter a valid one.</source>
         <translation>El camí a la ubicació de les Circuit Macros no és correcte. Introduïu-ne un de vàlid.</translation>
     </message>
     <message>
-        <location filename="../ui/configdialog.py" line="113"/>
+        <location filename="../ui/configdialog.py" line="164"/>
         <source>The path to the LaTeX template does not point to a valid file. Please enter a correct one.</source>
         <translation>El camí a la plantilla de LaTeX no apunta a un fitxer vàlid. Introduïu-ne un de correcte.</translation>
     </message>
     <message>
-        <location filename="../ui/configdialog.py" line="110"/>
+        <location filename="../ui/configdialog.py" line="156"/>
         <source>Or, cancel the settings dialog and PyCirkuit will download and install the Circuit Macros when needed.</source>
         <translation>O bé cancel·leu el diàleg d&apos;arranjaments i el PyCirkuit descarregarà i instal·larà les Circuit Macros quan calgui.</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="624"/>
+        <location filename="../ui/mainwindow.py" line="381"/>
+        <location filename="../ui/mainwindow.py" line="465"/>
+        <location filename="../ui/mainwindow.py" line="550"/>
+        <location filename="../ui/mainwindow.py" line="841"/>
+        <location filename="../ui/mainwindow.py" line="867"/>
         <source>PyCirkuit - Error</source>
         <comment>Message Box title</comment>
         <translation>PyCirkuit - Error</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="616"/>
+        <location filename="../ui/mainwindow.py" line="847"/>
         <source>Permission denied writing the file {filename}.</source>
         <comment>Message box text. Don&apos;t translate &apos;{filename}&apos;</comment>
         <translation>S&apos;ha denegat el permís mentre s&apos;escrivia el fitxer {filename}.</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="617"/>
+        <location filename="../ui/mainwindow.py" line="854"/>
         <source>Please try to export again with another name and/or location.</source>
         <comment>Message Box text</comment>
         <translation>Proveu de tornar-lo a exportar amb un altre nom i/o ubicació.</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="626"/>
+        <location filename="../ui/mainwindow.py" line="873"/>
         <source>An error has occurred trying to export the file. The error says:</source>
         <comment>Message Box text</comment>
         <translation>S&apos;ha produït un error mentre s&apos;exportava el fitxer. L&apos;error diu:</translation>
     </message>
     <message>
-        <location filename="../ui/configdialog.py" line="129"/>
+        <location filename="../ui/configdialog.py" line="189"/>
         <source>To be able to export with the new settings you have to process the source again.</source>
         <translation>Per poder exportar amb els nous paràmetres cal que torneu a processar el fitxer font.</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="589"/>
+        <location filename="../ui/mainwindow.py" line="262"/>
+        <location filename="../ui/mainwindow.py" line="430"/>
+        <location filename="../ui/mainwindow.py" line="732"/>
+        <location filename="../ui/mainwindow.py" line="789"/>
         <source>PyCirkuit - Warning</source>
         <comment>Message Box title</comment>
         <translation>PyCirkuit - Avís</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="557"/>
+        <location filename="../ui/mainwindow.py" line="743"/>
         <source>Please save the source file somewhere prior to exporting it.</source>
         <comment>Message Box text</comment>
         <translation>Deseu-lo en algun lloc abans d&apos;exportar-lo.</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="556"/>
+        <location filename="../ui/mainwindow.py" line="736"/>
         <source>The source file isn&apos;t saved yet.</source>
         <comment>Message box text.</comment>
         <translation>El fitxer font encara no s&apos;ha desat.</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="272"/>
+        <location filename="../ui/mainwindow.py" line="385"/>
         <source>The exporting destination directory is not writable.</source>
         <comment>Message box text.</comment>
         <translation>El directori destí de l&apos;exportació no té permisos d&apos;escriptura.</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="273"/>
+        <location filename="../ui/mainwindow.py" line="392"/>
         <source>Please enter a suitable directory to write into.</source>
         <comment>Message Box text</comment>
         <translation>Introduïu un directori amb els permisos adients.</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="391"/>
+        <location filename="../ui/mainwindow.py" line="538"/>
         <source>Error saving source file: Destination is not writable.
 
 </source>
@@ -1251,7 +1503,7 @@ l=elen_
 </translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="392"/>
+        <location filename="../ui/mainwindow.py" line="543"/>
         <source>Please select a suitable destination to save into.</source>
         <comment>Error message</comment>
         <translation>Introduïu un directori amb els permisos adients.</translation>
@@ -1260,19 +1512,19 @@ l=elen_
 <context>
     <name>OutputLog</name>
     <message>
-        <location filename="../ui/mainwindow.py" line="678"/>
+        <location filename="../ui/mainwindow.py" line="956"/>
         <source>&gt;&gt;&gt;&gt;&gt; Start processing</source>
         <comment>Output log info</comment>
         <translation>&gt;&gt;&gt;&gt;&gt; Inici del processament</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="679"/>
+        <location filename="../ui/mainwindow.py" line="894"/>
         <source>Output of {toolLongName}:</source>
         <comment>Output log info. Do NOT modify/translate the &apos;{toolLongName}&apos; variable</comment>
         <translation>Sortida del {toolLongName}:</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="643"/>
+        <location filename="../ui/mainwindow.py" line="905"/>
         <source> + No execution errors</source>
         <comment>Output log info</comment>
         <translation> + Sense errors d&apos;execució</translation>
@@ -1287,37 +1539,37 @@ l=elen_
         <translation>Error del PyCirkuit</translation>
     </message>
     <message>
-        <location filename="../exceptions.py" line="48"/>
+        <location filename="../exceptions.py" line="50"/>
         <source>The generated image could not be loaded.</source>
         <comment>Exception message</comment>
         <translation>No s&apos;ha pogut carregar la imatge generada.</translation>
     </message>
     <message>
-        <location filename="../imageviewer.py" line="127"/>
+        <location filename="../imageviewer.py" line="143"/>
         <source>The converted image could not be loaded.</source>
         <comment>Exception message</comment>
         <translation>No s&apos;ha pogut carregar la imatge convertida.</translation>
     </message>
     <message>
-        <location filename="../imageviewer.py" line="127"/>
+        <location filename="../imageviewer.py" line="148"/>
         <source>PyCirkuit Internal Error</source>
         <comment>Exception title</comment>
         <translation>Error intern del PyCirkuit</translation>
     </message>
     <message>
-        <location filename="../imageviewer.py" line="127"/>
+        <location filename="../imageviewer.py" line="151"/>
         <source>This error should not happen in a normal operation. Please contact the developers.</source>
         <comment>Exception additional info</comment>
         <translation>Aquest error no s&apos;hauria d&apos;esdevenir en l&apos;ús normal. Contacteu els desenvolupadors.</translation>
     </message>
     <message>
-        <location filename="../imageviewer.py" line="133"/>
+        <location filename="../imageviewer.py" line="159"/>
         <source>Internal error: cannot load image</source>
         <comment>Displayed error message</comment>
         <translation>Error intern: no s&apos;ha pogut carregar la imatge</translation>
     </message>
     <message>
-        <location filename="../imageviewer.py" line="198"/>
+        <location filename="../imageviewer.py" line="239"/>
         <source>Error creating zoomed image.</source>
         <comment>Displayed error message</comment>
         <translation>S&apos;ha produït un error en crear la imatge ampliada/reduïda.</translation>
@@ -1326,49 +1578,49 @@ l=elen_
 <context>
     <name>StatusBar</name>
     <message>
-        <location filename="../ui/mainwindow.py" line="682"/>
+        <location filename="../ui/mainwindow.py" line="107"/>
         <source>Converting: Circuit Macros -&gt; PIC</source>
         <comment>Status Bar message</comment>
         <translation>S&apos;està convertint: Circuit Macros -&gt; PIC</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="689"/>
+        <location filename="../ui/mainwindow.py" line="115"/>
         <source>Converting: PIC -&gt; TIKZ</source>
         <comment>Status Bar message</comment>
         <translation>S&apos;està convertint: PIC -&gt; TIKZ</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="705"/>
+        <location filename="../ui/mainwindow.py" line="121"/>
         <source>Converting: TIKZ -&gt; PDF</source>
         <comment>Status Bar message</comment>
         <translation>S&apos;està convertint: TIKZ -&gt; PDF</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="712"/>
+        <location filename="../ui/mainwindow.py" line="131"/>
+        <location filename="../ui/mainwindow.py" line="980"/>
         <source>Converting: PDF -&gt; PNG</source>
         <comment>Status Bar message</comment>
         <translation>S&apos;està convertint: PDF -&gt; PNG</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="120"/>
+        <location filename="../ui/mainwindow.py" line="127"/>
         <source>Converting: PDF -&gt; SVG</source>
         <comment>Status Bar message</comment>
         <translation>S&apos;està convertint: PDF -&gt; SVG</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="306"/>
+        <location filename="../ui/mainwindow.py" line="438"/>
         <source>Downloading and unpacking Circuit Macros</source>
         <comment>Status Bar message</comment>
         <translation>S&apos;estan baixant i desempaquetant les «Circuit Macros»</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="697"/>
         <source>Converting: PIC -&gt; SVG</source>
         <comment>Status Bar message</comment>
-        <translation>S&apos;està convertint: PIC -&gt; SVG</translation>
+        <translation type="vanished">S&apos;està convertint: PIC -&gt; SVG</translation>
     </message>
     <message>
-        <location filename="../ui/mainwindow.py" line="732"/>
+        <location filename="../ui/mainwindow.py" line="135"/>
         <source>Converting: PDF -&gt; JPEG</source>
         <comment>Status Bar message</comment>
         <translation>S&apos;està convertint: PDF -&gt; JPEG</translation>

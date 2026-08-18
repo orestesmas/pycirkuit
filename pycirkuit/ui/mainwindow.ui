@@ -71,6 +71,7 @@
            <font>
             <family>Monospace</family>
             <pointsize>11</pointsize>
+            <kerning>true</kerning>
            </font>
           </property>
           <property name="readOnly">
@@ -80,7 +81,7 @@
            <string notr="true"/>
           </property>
           <property name="textInteractionFlags">
-           <set>Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+           <set>Qt::TextInteractionFlag::TextSelectableByKeyboard|Qt::TextInteractionFlag::TextSelectableByMouse</set>
           </property>
           <property name="placeholderText">
            <string comment="Placeholder text">&lt;Empty output&gt;</string>
@@ -137,10 +138,13 @@
      <x>0</x>
      <y>0</y>
      <width>677</width>
-     <height>30</height>
+     <height>34</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
+    <property name="whatsThis">
+     <string comment="Menu item (top level)"/>
+    </property>
     <property name="title">
      <string>Fi&amp;le</string>
     </property>
@@ -151,6 +155,9 @@
     <addaction name="actionQuit"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
+    <property name="whatsThis">
+     <string comment="Menu item (top level)"/>
+    </property>
     <property name="title">
      <string>Hel&amp;p</string>
     </property>
@@ -161,12 +168,37 @@
     <addaction name="actionAbout"/>
    </widget>
    <widget class="QMenu" name="menuSettings">
+    <property name="whatsThis">
+     <string comment="Menu item (top level)"/>
+    </property>
     <property name="title">
      <string>Setti&amp;ngs</string>
     </property>
     <addaction name="actionPreferences"/>
    </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="whatsThis">
+     <string comment="Menu item (top level)"/>
+    </property>
+    <property name="title">
+     <string>&amp;Edit</string>
+    </property>
+    <addaction name="actionUndo"/>
+    <addaction name="actionRedo"/>
+    <addaction name="separator"/>
+    <addaction name="actionCut"/>
+    <addaction name="actionCopy"/>
+    <addaction name="actionPaste"/>
+    <addaction name="separator"/>
+    <addaction name="actionToggleComment"/>
+    <addaction name="separator"/>
+    <addaction name="actionFind"/>
+    <addaction name="actionReplace"/>
+    <addaction name="actionFindNext"/>
+    <addaction name="actionFindPrevious"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
    <addaction name="menuSettings"/>
    <addaction name="menuHelp"/>
   </widget>
@@ -219,19 +251,19 @@
         <bool>true</bool>
        </property>
        <property name="sizeAdjustPolicy">
-        <enum>QAbstractScrollArea::AdjustToContents</enum>
+        <enum>QAbstractScrollArea::SizeAdjustPolicy::AdjustToContents</enum>
        </property>
        <property name="dragMode">
-        <enum>QGraphicsView::ScrollHandDrag</enum>
+        <enum>QGraphicsView::DragMode::ScrollHandDrag</enum>
        </property>
        <property name="resizeAnchor">
-        <enum>QGraphicsView::AnchorUnderMouse</enum>
+        <enum>QGraphicsView::ViewportAnchor::AnchorUnderMouse</enum>
        </property>
        <property name="viewportUpdateMode">
-        <enum>QGraphicsView::FullViewportUpdate</enum>
+        <enum>QGraphicsView::ViewportUpdateMode::FullViewportUpdate</enum>
        </property>
        <property name="rubberBandSelectionMode">
-        <enum>Qt::IntersectsItemShape</enum>
+        <enum>Qt::ItemSelectionMode::IntersectsItemShape</enum>
        </property>
       </widget>
      </item>
@@ -374,6 +406,110 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+D</string>
+   </property>
+  </action>
+  <action name="actionUndo">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::EditUndo"/>
+   </property>
+   <property name="text">
+    <string>&amp;Undo</string>
+   </property>
+   <property name="shortcut">
+    <string comment="Keyboard Shortcut">Ctrl+Z</string>
+   </property>
+  </action>
+  <action name="actionRedo">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::EditRedo"/>
+   </property>
+   <property name="text">
+    <string>&amp;Redo</string>
+   </property>
+   <property name="shortcut">
+    <string comment="Keyboard Shortcut">Ctrl+Y</string>
+   </property>
+  </action>
+  <action name="actionToggleComment">
+   <property name="text">
+    <string>&amp;Toggle Comment</string>
+   </property>
+   <property name="toolTip">
+    <string comment="Keyboard Shortcut is handled by the editor itself, see texteditor.py, so that Shift is tolerated as incidental on ES/CAT keyboard layouts where '/' is typed as Shift+7">Ctrl+/</string>
+   </property>
+  </action>
+  <action name="actionFind">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::EditFind"/>
+   </property>
+   <property name="text">
+    <string>&amp;Find...</string>
+   </property>
+   <property name="shortcut">
+    <string comment="Keyboard Shortcut">Ctrl+F</string>
+   </property>
+  </action>
+  <action name="actionReplace">
+   <property name="text">
+    <string>&amp;Replace...</string>
+   </property>
+   <property name="shortcut">
+    <string comment="Keyboard Shortcut">Ctrl+H</string>
+   </property>
+  </action>
+  <action name="actionCut">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::EditCut"/>
+   </property>
+   <property name="text">
+    <string>&amp;Cut</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+X</string>
+   </property>
+  </action>
+  <action name="actionPaste">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::EditPaste"/>
+   </property>
+   <property name="text">
+    <string>&amp;Paste</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+V</string>
+   </property>
+  </action>
+  <action name="actionCopy">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::EditCopy"/>
+   </property>
+   <property name="text">
+    <string>C&amp;opy</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
+   </property>
+  </action>
+  <action name="actionFindNext">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::GoNext"/>
+   </property>
+   <property name="text">
+    <string>Find &amp;Next</string>
+   </property>
+   <property name="shortcut">
+    <string>F3</string>
+   </property>
+  </action>
+  <action name="actionFindPrevious">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::GoPrevious"/>
+   </property>
+   <property name="text">
+    <string>Find Pre&amp;vious</string>
+   </property>
+   <property name="shortcut">
+    <string comment="Keyboard Shortcut">Shift+F3</string>
    </property>
   </action>
  </widget>

@@ -29,6 +29,7 @@ from PySide6.QtGui import (
     QKeySequence,
     QPainter,
     QTextCursor,
+    QTextDocument,
     QTextFormat,
 )
 
@@ -82,6 +83,10 @@ class pycktTextEditor(QPlainTextEdit):
         self.blockCountChanged.connect(self._update_line_number_area_width)
         self.updateRequest.connect(self._update_line_number_area)
         self.cursorPositionChanged.connect(self._update_extra_selections)
+        self.textChanged.connect(self._update_extra_selections)
+
+        self._searchTerm = ""
+        self._searchFlags = QTextDocument.FindFlag(0)
 
         self._update_line_number_area_width(0)
         self._update_extra_selections()
@@ -145,7 +150,9 @@ class pycktTextEditor(QPlainTextEdit):
 
     def _update_extra_selections(self):
         self.setExtraSelections(
-            [self._current_line_selection()] + self._bracket_match_selections()
+            [self._current_line_selection()]
+            + self._bracket_match_selections()
+            + self._search_match_selections()
         )
 
     def _current_line_selection(self):
@@ -207,9 +214,87 @@ class pycktTextEditor(QPlainTextEdit):
             pos += direction
         return None
 
+    # --- Find & replace -------------------------------------------------------
+    # QTextDocument.find() does the actual searching; what's added here is
+    # wraparound, "highlight every match" (piggybacking on the extra-selection
+    # mechanism above), and grouping Replace All into a single undo step.
+
+    def find(self, term, *, case_sensitive=False, whole_word=False, backward=False):
+        """
+        Search for `term` starting at the current cursor, wrapping around the
+        document if needed. Also remembers term/flags so every occurrence
+        stays highlighted (via _search_match_selections) until the next
+        find() or clear_search_highlight() call.
+        """
+        self._searchTerm = term
+        self._searchFlags = self._find_flags(case_sensitive, whole_word)
+        self._update_extra_selections()
+        if not term:
+            return False
+
+        flags = self._searchFlags
+        if backward:
+            flags |= QTextDocument.FindFlag.FindBackward
+        found = self.document().find(term, self.textCursor(), flags)
+        if found.isNull():
+            wrapCursor = QTextCursor(self.document())
+            if backward:
+                wrapCursor.movePosition(QTextCursor.End)
+            found = self.document().find(term, wrapCursor, flags)
+        if found.isNull():
+            return False
+        self.setTextCursor(found)
+        self.ensureCursorVisible()
+        return True
+
+    def clear_search_highlight(self):
+        self._searchTerm = ""
+        self._update_extra_selections()
+
+    def replace_all(self, term, replacement, *, case_sensitive=False, whole_word=False):
+        """Replace every occurrence of `term`, as a single undo step. Returns the count replaced."""
+        if not term:
+            return 0
+        flags = self._find_flags(case_sensitive, whole_word)
+        doc = self.document()
+        count = 0
+        cursor = QTextCursor(doc)
+        cursor.beginEditBlock()
+        found = doc.find(term, cursor, flags)
+        while not found.isNull():
+            found.insertText(replacement)
+            count += 1
+            found = doc.find(term, found, flags)
+        cursor.endEditBlock()
+        return count
+
+    @staticmethod
+    def _find_flags(case_sensitive, whole_word):
+        flags = QTextDocument.FindFlag(0)
+        if case_sensitive:
+            flags |= QTextDocument.FindFlag.FindCaseSensitively
+        if whole_word:
+            flags |= QTextDocument.FindFlag.FindWholeWords
+        return flags
+
+    def _search_match_selections(self):
+        if not self._searchTerm:
+            return []
+        selections = []
+        cursor = QTextCursor(self.document())
+        while True:
+            cursor = self.document().find(self._searchTerm, cursor, self._searchFlags)
+            if cursor.isNull():
+                break
+            selection = QTextEdit.ExtraSelection()
+            selection.format.setBackground(QColor("orange").lighter(160))
+            selection.cursor = cursor
+            selections.append(selection)
+        return selections
+
     # --- Comment/uncomment toggle -------------------------------------------
 
-    def _toggle_comment(self):
+    def toggle_comment(self):
         cursor = self.textCursor()
         doc = self.document()
         startBlockNum = doc.findBlock(cursor.selectionStart()).blockNumber()
@@ -263,7 +348,7 @@ class pycktTextEditor(QPlainTextEdit):
             # typed as Shift+7, so Ctrl+/ arrives as Ctrl+Shift+Slash -
             # Shift is incidental to reaching the character, not a
             # distinct shortcut.
-            self._toggle_comment()
+            self.toggle_comment()
         else:
             super().keyPressEvent(event)
 

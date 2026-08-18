@@ -91,7 +91,7 @@ def test_toggle_comment_on_selection_then_back():
     text = e.toPlainText()
     _select(e, text.index("box"), text.index("}") + 1)
 
-    e._toggle_comment()
+    e.toggle_comment()
     commented = e.toPlainText()
     assert "# box(w,h) {" in commented
     assert "#   arrow right" in commented
@@ -100,7 +100,7 @@ def test_toggle_comment_on_selection_then_back():
     assert "# already commented" in commented
 
     _select(e, commented.index("box"), commented.index("}") + 1)
-    e._toggle_comment()
+    e.toggle_comment()
     assert e.toPlainText() == text
 
 
@@ -127,6 +127,91 @@ def test_ctrl_wheel_zoom_changes_font_size():
     before = e.font().pointSize()
     e.wheelEvent(_ctrl_wheel_event(delta=120))
     assert e.font().pointSize() == before + 1
+
+
+def test_find_moves_to_next_match():
+    e = _editor()
+    e.setPlainText("foo bar foo baz foo\n")
+    _place_cursor(e, 0)
+    assert e.find("foo") is True
+    assert e.textCursor().selectedText() == "foo"
+    assert e.textCursor().selectionStart() == 0
+
+    assert e.find("foo") is True
+    assert e.textCursor().selectionStart() == e.toPlainText().index("foo", 1)
+
+
+def test_find_wraps_around():
+    e = _editor()
+    e.setPlainText("foo bar\n")
+    _place_cursor(e, len(e.toPlainText()))
+    assert e.find("foo") is True
+    assert e.textCursor().selectionStart() == 0
+
+
+def test_find_backward_wraps_around():
+    e = _editor()
+    e.setPlainText("foo bar\n")
+    _place_cursor(e, 0)
+    assert e.find("foo", backward=True) is True
+    assert e.textCursor().selectionStart() == 0
+
+
+def test_find_case_sensitive():
+    e = _editor()
+    e.setPlainText("Foo foo\n")
+    _place_cursor(e, 0)
+    assert e.find("foo", case_sensitive=True) is True
+    assert e.textCursor().selectionStart() == e.toPlainText().index("foo")
+
+
+def test_find_whole_word():
+    e = _editor()
+    e.setPlainText("foobar foo\n")
+    _place_cursor(e, 0)
+    assert e.find("foo", whole_word=True) is True
+    assert e.textCursor().selectionStart() == e.toPlainText().index(" foo") + 1
+
+
+def test_find_returns_false_when_not_found():
+    e = _editor()
+    e.setPlainText("nothing to see here\n")
+    assert e.find("missing") is False
+
+
+def test_find_empty_term_returns_false_and_clears_highlight():
+    e = _editor()
+    e.setPlainText("foo\n")
+    e.find("foo")
+    assert e._search_match_selections() != []
+    assert e.find("") is False
+    assert e._search_match_selections() == []
+
+
+def test_replace_all_replaces_every_match_and_returns_count():
+    e = _editor()
+    e.setPlainText("foo bar foo baz foo\n")
+    count = e.replace_all("foo", "X")
+    assert count == 3
+    assert e.toPlainText() == "X bar X baz X\n"
+
+
+def test_replace_all_groups_into_a_single_undo_step():
+    e = _editor()
+    e.setPlainText("foo bar foo\n")
+    e.replace_all("foo", "X")
+    assert e.toPlainText() == "X bar X\n"
+    e.undo()
+    assert e.toPlainText() == "foo bar foo\n"
+
+
+def test_clear_search_highlight_empties_matches():
+    e = _editor()
+    e.setPlainText("foo foo\n")
+    e.find("foo")
+    assert e._search_match_selections() != []
+    e.clear_search_highlight()
+    assert e._search_match_selections() == []
 
 
 def test_highlighter_formats_pic_keyword():

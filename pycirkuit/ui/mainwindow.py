@@ -34,6 +34,7 @@ from PySide6.QtWidgets import QProgressBar, QFileDialog, QDialog
 from pycirkuit.ui.Ui_mainwindow import Ui_MainWindow
 from pycirkuit.ui.configdialog import ConfigDialog
 from pycirkuit.ui.aboutdialog import AboutDialog
+from pycirkuit.findreplacebar import FindReplaceBar
 from pycirkuit.tools.circuitmacrosmanager import CircuitMacrosManager
 from pycirkuit.highlighter import PyCirkuitHighlighter
 from pycirkuit.exceptions import *
@@ -145,6 +146,26 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         font.setPointSize(12)
         self.sourceText.setFont(font)
         self.highlighter = PyCirkuitHighlighter(self.sourceText.document())
+
+        # Find/replace bar: built in code (not Designer) since it's tightly
+        # coupled to sourceText. Slotted above it by flipping tab_source's
+        # existing QHBoxLayout into a vertical stack at runtime, so the .ui
+        # itself doesn't need a placeholder for it.
+        self.findReplaceBar = FindReplaceBar(self.sourceText, self.tab_source)
+        self.horizontalLayout_3.setDirection(QtWidgets.QBoxLayout.Direction.TopToBottom)
+        self.horizontalLayout_3.insertWidget(0, self.findReplaceBar)
+        self.findReplaceBar.hide()
+
+        # Undo/redo/cut/copy availability tracks the editor's own state
+        self.actionUndo.setEnabled(False)
+        self.actionRedo.setEnabled(False)
+        self.actionCut.setEnabled(False)
+        self.actionCopy.setEnabled(False)
+        self.sourceText.undoAvailable.connect(self.actionUndo.setEnabled)
+        self.sourceText.redoAvailable.connect(self.actionRedo.setEnabled)
+        self.sourceText.copyAvailable.connect(self.actionCut.setEnabled)
+        self.sourceText.copyAvailable.connect(self.actionCopy.setEnabled)
+
         # Initialize editor contents with a default drawing template
         self.needSaving = False
         self.on_actionNew_triggered()
@@ -1018,6 +1039,50 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.statusBar.showMessage("")
             self.sbProgressBar.setVisible(False)
             app.restoreOverrideCursor()
+
+    @Slot()
+    def on_actionUndo_triggered(self):
+        self.sourceText.undo()
+
+    @Slot()
+    def on_actionRedo_triggered(self):
+        self.sourceText.redo()
+
+    @Slot()
+    def on_actionCut_triggered(self):
+        self.sourceText.cut()
+
+    @Slot()
+    def on_actionCopy_triggered(self):
+        self.sourceText.copy()
+
+    @Slot()
+    def on_actionPaste_triggered(self):
+        self.sourceText.paste()
+
+    @Slot()
+    def on_actionToggleComment_triggered(self):
+        self.sourceText.toggle_comment()
+
+    @Slot()
+    def on_actionFind_triggered(self):
+        self.findReplaceBar.show_find()
+
+    @Slot()
+    def on_actionReplace_triggered(self):
+        self.findReplaceBar.show_replace()
+
+    @Slot()
+    def on_actionFindNext_triggered(self):
+        if not self.findReplaceBar.isVisible():
+            self.findReplaceBar.show_find()
+        self.findReplaceBar.find_next()
+
+    @Slot()
+    def on_actionFindPrevious_triggered(self):
+        if not self.findReplaceBar.isVisible():
+            self.findReplaceBar.show_find()
+        self.findReplaceBar.find_previous()
 
     @Slot()
     def on_sourceText_textChanged(self):
