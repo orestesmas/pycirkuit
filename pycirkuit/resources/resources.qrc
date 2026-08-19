@@ -10,6 +10,16 @@
     <file alias="Export">document-export.png</file>
     <file alias="Save">document-save.png</file>
     <file alias="SaveAs">document-save-as.png</file>
+    <file alias="Copy">edit-copy.png</file>
+    <file alias="Cut">edit-cut.png</file>
+    <file alias="Find">edit-find.png</file>
+    <file alias="Replace">edit-find-replace.png</file>
+    <file alias="Paste">edit-paste.png</file>
+    <file alias="Redo">edit-redo.png</file>
+    <file alias="ToggleComment">edit-toggle-comment.png</file>
+    <file alias="Undo">edit-undo.png</file>
+    <file alias="Next">go-next.png</file>
+    <file alias="Previous">go-previous.png</file>
     <file alias="Run">run-build.png</file>
     <file alias="AppIcon">hi32-app-cirkuit.png</file>
     <file alias="Settings">preferences-system.png</file>
