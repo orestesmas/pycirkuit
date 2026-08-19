@@ -3,6 +3,7 @@
 Module storing the application version number and the few other bits of
 metadata actually needed at runtime (see pyproject.toml for the rest).
 """
+
 # Copyright (C) 2018-2026 Orestes Mas
 # This file is part of PyCirkuit.
 #
@@ -21,20 +22,18 @@ metadata actually needed at runtime (see pyproject.toml for the rest).
 #
 from enum import Enum
 
-__all__ = ["mainwindow"]
-
 __productname__ = "PyCirkuit"
 # PEP 440 version. Also the single source of truth for pyproject.toml's
 # [project] version (read via `attr = "pycirkuit.__version__"`), so it
 # doesn't need to be updated in two places.
-__version__ = "1.0.0"
+__version__ = "1.1.0"
 # Only kept here because __copyright__ (used by the About dialog) is built
 # from them. Everything else PyPI/Debian-facing (description, author email,
 # license, homepage...) lives solely in pyproject.toml - nothing at runtime
 # reads it back from here, so it isn't duplicated in this module.
 __author__ = "Orestes Mas"
 __license_long__ = "Licensed under the GNU GPL v3 or any later version"
-__copyright__ = "Copyright 2018-2026 {__author__}".format(**locals())
+__copyright__ = f"Copyright 2018-2026 {__author__}"
 
 # The temporary working dir should be globally addressed through the entire application
 __tmpDir__ = None
@@ -42,8 +41,11 @@ __tmpDir__ = None
 # Global variable that indicates if we are being executed on a desktop environment or not
 __haveGUI__ = None
 
+
 # CLI options
 class Option(Enum):
+    """CLI processing options."""
+
     TIKZ = "tikzOption"
     PDF = "pdfOption"
     PNG = "pngOption"
