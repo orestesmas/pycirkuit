@@ -76,20 +76,12 @@ class Ui_MainWindow(object):
         self.actionQuit = QAction(MainWindow)
         self.actionQuit.setObjectName("actionQuit")
         icon1 = QIcon()
-        if QIcon.hasThemeIcon(QIcon.ThemeIcon.ApplicationExit):
-            icon1 = QIcon.fromTheme(QIcon.ThemeIcon.ApplicationExit)
-        else:
-            icon1.addFile(":/icons/Exit", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-
+        icon1.addFile(":/icons/Exit", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.actionQuit.setIcon(icon1)
         self.actionOpen = QAction(MainWindow)
         self.actionOpen.setObjectName("actionOpen")
         icon2 = QIcon()
-        if QIcon.hasThemeIcon(QIcon.ThemeIcon.DocumentOpen):
-            icon2 = QIcon.fromTheme(QIcon.ThemeIcon.DocumentOpen)
-        else:
-            icon2.addFile(":/icons/Open", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-
+        icon2.addFile(":/icons/Open", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.actionOpen.setIcon(icon2)
         self.actionAbout = QAction(MainWindow)
         self.actionAbout.setObjectName("actionAbout")
@@ -108,29 +100,17 @@ class Ui_MainWindow(object):
         self.actionNew = QAction(MainWindow)
         self.actionNew.setObjectName("actionNew")
         icon5 = QIcon()
-        if QIcon.hasThemeIcon(QIcon.ThemeIcon.DocumentNew):
-            icon5 = QIcon.fromTheme(QIcon.ThemeIcon.DocumentNew)
-        else:
-            icon5.addFile(":/icons/New", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-
+        icon5.addFile(":/icons/New", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.actionNew.setIcon(icon5)
         self.actionSave = QAction(MainWindow)
         self.actionSave.setObjectName("actionSave")
         icon6 = QIcon()
-        if QIcon.hasThemeIcon(QIcon.ThemeIcon.DocumentSave):
-            icon6 = QIcon.fromTheme(QIcon.ThemeIcon.DocumentSave)
-        else:
-            icon6.addFile(":/icons/Save", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-
+        icon6.addFile(":/icons/Save", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.actionSave.setIcon(icon6)
         self.actionSaveAs = QAction(MainWindow)
         self.actionSaveAs.setObjectName("actionSaveAs")
         icon7 = QIcon()
-        if QIcon.hasThemeIcon(QIcon.ThemeIcon.DocumentSaveAs):
-            icon7 = QIcon.fromTheme(QIcon.ThemeIcon.DocumentSaveAs)
-        else:
-            icon7.addFile(":/icons/SaveAs", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-
+        icon7.addFile(":/icons/SaveAs", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.actionSaveAs.setIcon(icon7)
         self.actionCMMan = QAction(MainWindow)
         self.actionCMMan.setObjectName("actionCMMan")
@@ -142,40 +122,56 @@ class Ui_MainWindow(object):
         self.actionDpicMan.setIcon(icon8)
         self.actionUndo = QAction(MainWindow)
         self.actionUndo.setObjectName("actionUndo")
-        icon9 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditUndo))
+        icon9 = QIcon()
+        icon9.addFile(":/icons/Undo", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.actionUndo.setIcon(icon9)
         self.actionRedo = QAction(MainWindow)
         self.actionRedo.setObjectName("actionRedo")
-        icon10 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditRedo))
+        icon10 = QIcon()
+        icon10.addFile(":/icons/Redo", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.actionRedo.setIcon(icon10)
         self.actionToggleComment = QAction(MainWindow)
         self.actionToggleComment.setObjectName("actionToggleComment")
+        icon11 = QIcon()
+        icon11.addFile(
+            ":/icons/ToggleComment", QSize(), QIcon.Mode.Normal, QIcon.State.Off
+        )
+        self.actionToggleComment.setIcon(icon11)
         self.actionFind = QAction(MainWindow)
         self.actionFind.setObjectName("actionFind")
-        icon11 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditFind))
-        self.actionFind.setIcon(icon11)
+        icon12 = QIcon()
+        icon12.addFile(":/icons/Find", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.actionFind.setIcon(icon12)
         self.actionReplace = QAction(MainWindow)
         self.actionReplace.setObjectName("actionReplace")
+        icon13 = QIcon()
+        icon13.addFile(":/icons/Replace", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.actionReplace.setIcon(icon13)
         self.actionCut = QAction(MainWindow)
         self.actionCut.setObjectName("actionCut")
-        icon12 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditCut))
-        self.actionCut.setIcon(icon12)
+        icon14 = QIcon()
+        icon14.addFile(":/icons/Cut", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.actionCut.setIcon(icon14)
         self.actionPaste = QAction(MainWindow)
         self.actionPaste.setObjectName("actionPaste")
-        icon13 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditPaste))
-        self.actionPaste.setIcon(icon13)
+        icon15 = QIcon()
+        icon15.addFile(":/icons/Paste", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.actionPaste.setIcon(icon15)
         self.actionCopy = QAction(MainWindow)
         self.actionCopy.setObjectName("actionCopy")
-        icon14 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditCopy))
-        self.actionCopy.setIcon(icon14)
+        icon16 = QIcon()
+        icon16.addFile(":/icons/Copy", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.actionCopy.setIcon(icon16)
         self.actionFindNext = QAction(MainWindow)
         self.actionFindNext.setObjectName("actionFindNext")
-        icon15 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.GoNext))
-        self.actionFindNext.setIcon(icon15)
+        icon17 = QIcon()
+        icon17.addFile(":/icons/Next", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.actionFindNext.setIcon(icon17)
         self.actionFindPrevious = QAction(MainWindow)
         self.actionFindPrevious.setObjectName("actionFindPrevious")
-        icon16 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.GoPrevious))
-        self.actionFindPrevious.setIcon(icon16)
+        icon18 = QIcon()
+        icon18.addFile(":/icons/Previous", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.actionFindPrevious.setIcon(icon18)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout = QVBoxLayout(self.centralwidget)
@@ -201,9 +197,9 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_3.addWidget(self.sourceText)
 
-        icon17 = QIcon()
-        icon17.addFile(":/icons/Text", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.tabWidget.addTab(self.tab_source, icon17, "")
+        icon19 = QIcon()
+        icon19.addFile(":/icons/Text", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.tabWidget.addTab(self.tab_source, icon19, "")
         self.tab_log = QWidget()
         self.tab_log.setObjectName("tab_log")
         self.horizontalLayout_4 = QHBoxLayout(self.tab_log)
@@ -224,9 +220,9 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_4.addWidget(self.outputText)
 
-        icon18 = QIcon()
-        icon18.addFile(":/icons/Output", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.tabWidget.addTab(self.tab_log, icon18, "")
+        icon20 = QIcon()
+        icon20.addFile(":/icons/Output", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.tabWidget.addTab(self.tab_log, icon20, "")
 
         self.verticalLayout.addWidget(self.tabWidget)
 
@@ -235,18 +231,18 @@ class Ui_MainWindow(object):
         self.processButton = QPushButton(self.centralwidget)
         self.processButton.setObjectName("processButton")
         self.processButton.setEnabled(False)
-        icon19 = QIcon()
-        icon19.addFile(":/icons/Run", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.processButton.setIcon(icon19)
+        icon21 = QIcon()
+        icon21.addFile(":/icons/Run", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.processButton.setIcon(icon21)
 
         self.horizontalLayout.addWidget(self.processButton)
 
         self.exportButton = QPushButton(self.centralwidget)
         self.exportButton.setObjectName("exportButton")
         self.exportButton.setEnabled(False)
-        icon20 = QIcon()
-        icon20.addFile(":/icons/Export", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.exportButton.setIcon(icon20)
+        icon22 = QIcon()
+        icon22.addFile(":/icons/Export", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.exportButton.setIcon(icon22)
 
         self.horizontalLayout.addWidget(self.exportButton)
 
@@ -280,11 +276,11 @@ class Ui_MainWindow(object):
         )
         self.previewWidget.setSizePolicy(sizePolicy1)
         self.previewWidget.setMinimumSize(QSize(100, 130))
-        icon21 = QIcon()
-        icon21.addFile(
+        icon23 = QIcon()
+        icon23.addFile(
             ":/icons/view-preview.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off
         )
-        self.previewWidget.setWindowIcon(icon21)
+        self.previewWidget.setWindowIcon(icon23)
         self.dockWidgetContents = QWidget()
         self.dockWidgetContents.setObjectName("dockWidgetContents")
         sizePolicy2 = QSizePolicy(
@@ -508,12 +504,38 @@ class Ui_MainWindow(object):
         )
         # endif // QT_CONFIG(shortcut)
         self.actionUndo.setText(QCoreApplication.translate("MainWindow", "&Undo", None))
+        # if QT_CONFIG(tooltip)
+        self.actionUndo.setToolTip(
+            QCoreApplication.translate("MainWindow", "Undo Last Action", None)
+        )
+        # endif // QT_CONFIG(tooltip)
+        # if QT_CONFIG(statustip)
+        self.actionUndo.setStatusTip(
+            QCoreApplication.translate(
+                "MainWindow", "Undoes the last editing action", "Status Bar Message"
+            )
+        )
+        # endif // QT_CONFIG(statustip)
         # if QT_CONFIG(shortcut)
         self.actionUndo.setShortcut(
             QCoreApplication.translate("MainWindow", "Ctrl+Z", "Keyboard Shortcut")
         )
         # endif // QT_CONFIG(shortcut)
         self.actionRedo.setText(QCoreApplication.translate("MainWindow", "&Redo", None))
+        # if QT_CONFIG(tooltip)
+        self.actionRedo.setToolTip(
+            QCoreApplication.translate("MainWindow", "Redo Last Action", None)
+        )
+        # endif // QT_CONFIG(tooltip)
+        # if QT_CONFIG(statustip)
+        self.actionRedo.setStatusTip(
+            QCoreApplication.translate(
+                "MainWindow",
+                "Redoes the last undone editing action",
+                "Status Bar Message",
+            )
+        )
+        # endif // QT_CONFIG(statustip)
         # if QT_CONFIG(shortcut)
         self.actionRedo.setShortcut(
             QCoreApplication.translate("MainWindow", "Ctrl+Y", "Keyboard Shortcut")
@@ -531,9 +553,37 @@ class Ui_MainWindow(object):
             )
         )
         # endif // QT_CONFIG(tooltip)
+        # if QT_CONFIG(statustip)
+        self.actionToggleComment.setStatusTip(
+            QCoreApplication.translate(
+                "MainWindow",
+                "Comments or uncomments the selected lines",
+                "Status Bar Message",
+            )
+        )
+        # endif // QT_CONFIG(statustip)
+        # if QT_CONFIG(shortcut)
+        self.actionToggleComment.setShortcut(
+            QCoreApplication.translate("MainWindow", "Ctrl+/", None)
+        )
+        # endif // QT_CONFIG(shortcut)
         self.actionFind.setText(
             QCoreApplication.translate("MainWindow", "&Find...", None)
         )
+        # if QT_CONFIG(tooltip)
+        self.actionFind.setToolTip(
+            QCoreApplication.translate("MainWindow", "Find Text", None)
+        )
+        # endif // QT_CONFIG(tooltip)
+        # if QT_CONFIG(statustip)
+        self.actionFind.setStatusTip(
+            QCoreApplication.translate(
+                "MainWindow",
+                "Opens the find bar to search for text",
+                "Status Bar Message",
+            )
+        )
+        # endif // QT_CONFIG(statustip)
         # if QT_CONFIG(shortcut)
         self.actionFind.setShortcut(
             QCoreApplication.translate("MainWindow", "Ctrl+F", "Keyboard Shortcut")
@@ -542,12 +592,40 @@ class Ui_MainWindow(object):
         self.actionReplace.setText(
             QCoreApplication.translate("MainWindow", "&Replace...", None)
         )
+        # if QT_CONFIG(tooltip)
+        self.actionReplace.setToolTip(
+            QCoreApplication.translate("MainWindow", "Find and Replace", None)
+        )
+        # endif // QT_CONFIG(tooltip)
+        # if QT_CONFIG(statustip)
+        self.actionReplace.setStatusTip(
+            QCoreApplication.translate(
+                "MainWindow",
+                "Opens the find bar to search and replace text",
+                "Status Bar Message",
+            )
+        )
+        # endif // QT_CONFIG(statustip)
         # if QT_CONFIG(shortcut)
         self.actionReplace.setShortcut(
             QCoreApplication.translate("MainWindow", "Ctrl+H", "Keyboard Shortcut")
         )
         # endif // QT_CONFIG(shortcut)
         self.actionCut.setText(QCoreApplication.translate("MainWindow", "&Cut", None))
+        # if QT_CONFIG(tooltip)
+        self.actionCut.setToolTip(
+            QCoreApplication.translate("MainWindow", "Cut Selection", None)
+        )
+        # endif // QT_CONFIG(tooltip)
+        # if QT_CONFIG(statustip)
+        self.actionCut.setStatusTip(
+            QCoreApplication.translate(
+                "MainWindow",
+                "Cuts the selected text to the clipboard",
+                "Status Bar Message",
+            )
+        )
+        # endif // QT_CONFIG(statustip)
         # if QT_CONFIG(shortcut)
         self.actionCut.setShortcut(
             QCoreApplication.translate("MainWindow", "Ctrl+X", None)
@@ -556,12 +634,38 @@ class Ui_MainWindow(object):
         self.actionPaste.setText(
             QCoreApplication.translate("MainWindow", "&Paste", None)
         )
+        # if QT_CONFIG(tooltip)
+        self.actionPaste.setToolTip(
+            QCoreApplication.translate("MainWindow", "Paste Text", None)
+        )
+        # endif // QT_CONFIG(tooltip)
+        # if QT_CONFIG(statustip)
+        self.actionPaste.setStatusTip(
+            QCoreApplication.translate(
+                "MainWindow", "Pastes text from the clipboard", "Status Bar Message"
+            )
+        )
+        # endif // QT_CONFIG(statustip)
         # if QT_CONFIG(shortcut)
         self.actionPaste.setShortcut(
             QCoreApplication.translate("MainWindow", "Ctrl+V", None)
         )
         # endif // QT_CONFIG(shortcut)
         self.actionCopy.setText(QCoreApplication.translate("MainWindow", "C&opy", None))
+        # if QT_CONFIG(tooltip)
+        self.actionCopy.setToolTip(
+            QCoreApplication.translate("MainWindow", "Copy Selection", None)
+        )
+        # endif // QT_CONFIG(tooltip)
+        # if QT_CONFIG(statustip)
+        self.actionCopy.setStatusTip(
+            QCoreApplication.translate(
+                "MainWindow",
+                "Copies the selected text to the clipboard",
+                "Status Bar Message",
+            )
+        )
+        # endif // QT_CONFIG(statustip)
         # if QT_CONFIG(shortcut)
         self.actionCopy.setShortcut(
             QCoreApplication.translate("MainWindow", "Ctrl+C", None)
@@ -570,6 +674,18 @@ class Ui_MainWindow(object):
         self.actionFindNext.setText(
             QCoreApplication.translate("MainWindow", "Find &Next", None)
         )
+        # if QT_CONFIG(tooltip)
+        self.actionFindNext.setToolTip(
+            QCoreApplication.translate("MainWindow", "Find Next", None)
+        )
+        # endif // QT_CONFIG(tooltip)
+        # if QT_CONFIG(statustip)
+        self.actionFindNext.setStatusTip(
+            QCoreApplication.translate(
+                "MainWindow", "Finds the next match", "Status Bar Message"
+            )
+        )
+        # endif // QT_CONFIG(statustip)
         # if QT_CONFIG(shortcut)
         self.actionFindNext.setShortcut(
             QCoreApplication.translate("MainWindow", "F3", None)
@@ -578,6 +694,13 @@ class Ui_MainWindow(object):
         self.actionFindPrevious.setText(
             QCoreApplication.translate("MainWindow", "Find Pre&vious", None)
         )
+        # if QT_CONFIG(statustip)
+        self.actionFindPrevious.setStatusTip(
+            QCoreApplication.translate(
+                "MainWindow", "Finds the previous match", "Status Bar Message"
+            )
+        )
+        # endif // QT_CONFIG(statustip)
         # if QT_CONFIG(shortcut)
         self.actionFindPrevious.setShortcut(
             QCoreApplication.translate("MainWindow", "Shift+F3", "Keyboard Shortcut")

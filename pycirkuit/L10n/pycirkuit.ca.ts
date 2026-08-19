@@ -829,215 +829,320 @@ El fitxer de destinació ja existeix.</translation>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="340"/>
+        <location filename="../ui/Ui_mainwindow.py" line="360"/>
         <source>PyCirkuit - by Orestes Mas</source>
         <translation>PyCircuit - per Orestes Mas</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="486"/>
+        <location filename="../ui/Ui_mainwindow.py" line="506"/>
         <source>&amp;Undo</source>
         <translation>&amp;Desfés</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="489"/>
+        <location filename="../ui/Ui_mainwindow.py" line="509"/>
+        <source>Undo Last Action</source>
+        <translation>Desfés la darrera acció</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="514"/>
+        <source>Undoes the last editing action</source>
+        <comment>Status Bar Message</comment>
+        <translation>Desfà la darrera acció d&apos;edició</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="521"/>
         <source>Ctrl+Z</source>
         <comment>Keyboard Shortcut</comment>
         <translation>Ctrl+Z</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="492"/>
+        <location filename="../ui/Ui_mainwindow.py" line="524"/>
         <source>&amp;Redo</source>
         <translation>Re&amp;fés</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="495"/>
+        <location filename="../ui/Ui_mainwindow.py" line="527"/>
+        <source>Redo Last Action</source>
+        <translation>Refés la darrera acció</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="532"/>
+        <source>Redoes the last undone editing action</source>
+        <comment>Status Bar Message</comment>
+        <translation>Refà la darrera acció d&apos;edició</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="541"/>
         <source>Ctrl+Y</source>
         <comment>Keyboard Shortcut</comment>
         <translation>Ctrl+Y</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="499"/>
+        <location filename="../ui/Ui_mainwindow.py" line="545"/>
         <source>&amp;Toggle Comment</source>
         <translation>Co&amp;mmuta el comentari</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="503"/>
+        <location filename="../ui/Ui_mainwindow.py" line="549"/>
         <source>Ctrl+/</source>
         <comment>Keyboard Shortcut is handled by the editor itself, see texteditor.py, so that Shift is tolerated as incidental on ES/CAT keyboard layouts where &apos;/&apos; is typed as Shift+7</comment>
         <translation>Ctrl+/</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="511"/>
+        <location filename="../ui/Ui_mainwindow.py" line="558"/>
+        <source>Comments or uncomments the selected lines</source>
+        <comment>Status Bar Message</comment>
+        <translation>Comenta/descomenta les línies seleccionades</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="567"/>
+        <source>Ctrl+/</source>
+        <translation>Ctrl+/</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="571"/>
         <source>&amp;Find...</source>
         <translation>C&amp;erca...</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="515"/>
+        <location filename="../ui/Ui_mainwindow.py" line="575"/>
+        <source>Find Text</source>
+        <translation>Cerca text</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="580"/>
+        <source>Opens the find bar to search for text</source>
+        <comment>Status Bar Message</comment>
+        <translation>Obre la barra de cerca per cercar text</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="589"/>
         <source>Ctrl+F</source>
         <comment>Keyboard Shortcut</comment>
         <translation>Ctrl+F</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="519"/>
+        <location filename="../ui/Ui_mainwindow.py" line="593"/>
         <source>&amp;Replace...</source>
         <translation>&amp;Reemplaça...</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="523"/>
+        <location filename="../ui/Ui_mainwindow.py" line="597"/>
+        <source>Find and Replace</source>
+        <translation>Cerca i reemplaça</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="602"/>
+        <source>Opens the find bar to search and replace text</source>
+        <comment>Status Bar Message</comment>
+        <translation>Obre la barra de cerca per cercar i reemplaçar text</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="611"/>
         <source>Ctrl+H</source>
         <comment>Keyboard Shortcut</comment>
         <translation>Ctrl+H</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="526"/>
+        <location filename="../ui/Ui_mainwindow.py" line="614"/>
         <source>&amp;Cut</source>
         <translation>&amp;Talla</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="529"/>
+        <location filename="../ui/Ui_mainwindow.py" line="617"/>
+        <source>Cut Selection</source>
+        <translation>Retalla la selecció</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="622"/>
+        <source>Cuts the selected text to the clipboard</source>
+        <comment>Status Bar Message</comment>
+        <translation>Retalla la selecció i la posa al porta-retalls</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="631"/>
         <source>Ctrl+X</source>
         <translation>Ctrl+X</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="533"/>
+        <location filename="../ui/Ui_mainwindow.py" line="635"/>
         <source>&amp;Paste</source>
         <translation>En&amp;ganxa</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="537"/>
+        <location filename="../ui/Ui_mainwindow.py" line="639"/>
+        <source>Paste Text</source>
+        <translation>Enganxa text</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="644"/>
+        <source>Pastes text from the clipboard</source>
+        <comment>Status Bar Message</comment>
+        <translation>Enganxa text del porta-retalls</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="651"/>
         <source>Ctrl+V</source>
         <translation>Ctrl+V</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="540"/>
+        <location filename="../ui/Ui_mainwindow.py" line="654"/>
         <source>C&amp;opy</source>
         <translation>Co&amp;pia</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="543"/>
+        <location filename="../ui/Ui_mainwindow.py" line="657"/>
+        <source>Copy Selection</source>
+        <translation>Copia la selecció</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="662"/>
+        <source>Copies the selected text to the clipboard</source>
+        <comment>Status Bar Message</comment>
+        <translation>Copia el text seleccionat al porta-retalls</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="671"/>
         <source>Ctrl+C</source>
         <translation>Ctrl+C</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="547"/>
+        <location filename="../ui/Ui_mainwindow.py" line="675"/>
         <source>Find &amp;Next</source>
         <translation>Cerca el &amp;següent</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="551"/>
+        <location filename="../ui/Ui_mainwindow.py" line="679"/>
+        <source>Find Next</source>
+        <translation>Cerca el següent</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="684"/>
+        <source>Finds the next match</source>
+        <comment>Status Bar Message</comment>
+        <translation>Cerca la següent coincidència</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="691"/>
         <source>F3</source>
         <translation>F3</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="555"/>
+        <location filename="../ui/Ui_mainwindow.py" line="695"/>
         <source>Find Pre&amp;vious</source>
         <translation>Cerca l&apos;&amp;anterior</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="559"/>
+        <location filename="../ui/Ui_mainwindow.py" line="699"/>
+        <source>Finds the previous match</source>
+        <comment>Status Bar Message</comment>
+        <translation>Cerca la coincidència anterior</translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="706"/>
         <source>Shift+F3</source>
         <comment>Keyboard Shortcut</comment>
         <translation>Shift+F3</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="596"/>
+        <location filename="../ui/Ui_mainwindow.py" line="743"/>
         <source>Fi&amp;le</source>
         <translation>&amp;Fitxer</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="605"/>
+        <location filename="../ui/Ui_mainwindow.py" line="752"/>
         <source>Setti&amp;ngs</source>
         <translation>Arra&amp;njament</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="362"/>
+        <location filename="../ui/Ui_mainwindow.py" line="382"/>
         <source>Open Drawing</source>
         <translation>Obre un dibuix</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="409"/>
+        <location filename="../ui/Ui_mainwindow.py" line="429"/>
         <source>New Drawing</source>
         <translation>Nou dibuix</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="564"/>
+        <location filename="../ui/Ui_mainwindow.py" line="711"/>
         <source>Source Editor</source>
         <comment>Tab title</comment>
         <translation>Editor de la font</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="343"/>
+        <location filename="../ui/Ui_mainwindow.py" line="363"/>
         <source>&amp;Quit</source>
         <comment>Menu item</comment>
         <translation>S&amp;urt</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="358"/>
+        <location filename="../ui/Ui_mainwindow.py" line="378"/>
         <source>&amp;Open...</source>
         <comment>Menu item</comment>
         <translation>&amp;Obre...</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="405"/>
+        <location filename="../ui/Ui_mainwindow.py" line="425"/>
         <source>&amp;New</source>
         <comment>Menu item</comment>
         <translation>&amp;Nou</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="425"/>
+        <location filename="../ui/Ui_mainwindow.py" line="445"/>
         <source>&amp;Save</source>
         <comment>Menu item</comment>
         <translation>&amp;Desa</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="440"/>
+        <location filename="../ui/Ui_mainwindow.py" line="460"/>
         <source>Sa&amp;ve As...</source>
         <comment>Menu item</comment>
         <translation>Desa &amp;com a...</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="468"/>
+        <location filename="../ui/Ui_mainwindow.py" line="488"/>
         <source>Ctrl+M</source>
         <translation>Ctrl+M</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="354"/>
+        <location filename="../ui/Ui_mainwindow.py" line="374"/>
         <source>Ctrl+Q</source>
         <comment>Keyboard Shortcut</comment>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="374"/>
+        <location filename="../ui/Ui_mainwindow.py" line="394"/>
         <source>Ctrl+O</source>
         <comment>Keyboard Shortcut</comment>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="388"/>
+        <location filename="../ui/Ui_mainwindow.py" line="408"/>
         <source>Configure &amp;PyCirkuit...</source>
         <comment>Menu item</comment>
         <translation>Configura el &amp;PyCirkuit...</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="401"/>
+        <location filename="../ui/Ui_mainwindow.py" line="421"/>
         <source>Ctrl+P</source>
         <comment>Keyboard Shortcut</comment>
         <translation>Ctrl+P</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="421"/>
+        <location filename="../ui/Ui_mainwindow.py" line="441"/>
         <source>Ctrl+N</source>
         <comment>Keyboard Shortcut</comment>
         <translation>Ctrl+N</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="436"/>
+        <location filename="../ui/Ui_mainwindow.py" line="456"/>
         <source>Ctrl+S</source>
         <comment>Keyboard Shortcut</comment>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="451"/>
+        <location filename="../ui/Ui_mainwindow.py" line="471"/>
         <source>Ctrl+Shift+S</source>
         <comment>Keyboard Shortcut</comment>
         <translation>Ctrl+Shift+S</translation>
@@ -1086,7 +1191,7 @@ El fitxer de destinació ja existeix.</translation>
         <translation>Qualsevol fitxer (*)</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="378"/>
+        <location filename="../ui/Ui_mainwindow.py" line="398"/>
         <source>&amp;About PyCirkuit</source>
         <comment>Menu item</comment>
         <translation>&amp;Quant al PyCirkuit</translation>
@@ -1124,70 +1229,70 @@ l=elen_
 </translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="457"/>
+        <location filename="../ui/Ui_mainwindow.py" line="477"/>
         <source>&amp;Circuit Macros manual</source>
         <translation>Manual de les &amp;Circuit Macros</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="472"/>
+        <location filename="../ui/Ui_mainwindow.py" line="492"/>
         <source>&amp;Dpic manual</source>
         <translation>Manual del &amp;Dpic</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="483"/>
+        <location filename="../ui/Ui_mainwindow.py" line="503"/>
         <source>Ctrl+D</source>
         <translation>Ctrl+D</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="347"/>
+        <location filename="../ui/Ui_mainwindow.py" line="367"/>
         <source>Close application</source>
         <comment>Status Bar Message</comment>
         <translation>Tanca l&apos;aplicació</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="382"/>
+        <location filename="../ui/Ui_mainwindow.py" line="402"/>
         <source>Application information</source>
         <comment>Status Bar Message</comment>
         <translation>Informació de l&apos;aplicació</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="394"/>
+        <location filename="../ui/Ui_mainwindow.py" line="414"/>
         <source>Opens config dialog</source>
         <comment>Status Bar Message</comment>
         <translation>Obre el diàleg de configuració</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="461"/>
+        <location filename="../ui/Ui_mainwindow.py" line="481"/>
         <source>Opens Circuit Macros manual</source>
         <comment>Status Bar Message</comment>
         <translation>Obre el manual de les Circuit Macros</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="476"/>
+        <location filename="../ui/Ui_mainwindow.py" line="496"/>
         <source>Opens Dpic manual</source>
         <comment>Status Bar Message</comment>
         <translation>Obre el manual del Dpic</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="367"/>
+        <location filename="../ui/Ui_mainwindow.py" line="387"/>
         <source>Opens an existing drawing</source>
         <comment>Status Bar Message</comment>
         <translation>Obre un dibuix existent</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="414"/>
+        <location filename="../ui/Ui_mainwindow.py" line="434"/>
         <source>Creates an empty drawing</source>
         <comment>Status Bar Message</comment>
         <translation>Crea un dibuix buit</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="429"/>
+        <location filename="../ui/Ui_mainwindow.py" line="449"/>
         <source>Saves drawing</source>
         <comment>Status Bar Message</comment>
         <translation>Desa el dibuix</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="444"/>
+        <location filename="../ui/Ui_mainwindow.py" line="464"/>
         <source>Saves drawing with new name</source>
         <comment>Status Bar Message</comment>
         <translation>Desa el dibuix amb un nom nou</translation>
@@ -1205,13 +1310,13 @@ l=elen_
         <translation>Fitxers TikZ (*.tikz)</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="567"/>
+        <location filename="../ui/Ui_mainwindow.py" line="714"/>
         <source>&lt;Empty output&gt;</source>
         <comment>Placeholder text</comment>
         <translation>&lt;Sortida buida&gt;</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="573"/>
+        <location filename="../ui/Ui_mainwindow.py" line="720"/>
         <source>Output Log</source>
         <comment>Tab title</comment>
         <translation>Registre de sortida</translation>
@@ -1224,7 +1329,7 @@ l=elen_
         <translation>Error!</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="618"/>
+        <location filename="../ui/Ui_mainwindow.py" line="765"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Use:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt; Ctrl + Mouse Wheel to Zoom In/Out&lt;/li&gt;
@@ -1239,7 +1344,7 @@ l=elen_
 &lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="600"/>
+        <location filename="../ui/Ui_mainwindow.py" line="747"/>
         <source>Hel&amp;p</source>
         <translation>&amp;Ajuda</translation>
     </message>
@@ -1262,34 +1367,34 @@ l=elen_
         <translation>Fitxers JPEG (*.jpeg *.jpg)</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="576"/>
+        <location filename="../ui/Ui_mainwindow.py" line="723"/>
         <source>&amp;Process and display</source>
         <comment>Button text</comment>
         <translation>&amp;Processa i mostra</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="582"/>
+        <location filename="../ui/Ui_mainwindow.py" line="729"/>
         <source>Alt+P</source>
         <translation>Alt+P</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="586"/>
+        <location filename="../ui/Ui_mainwindow.py" line="733"/>
         <source>E&amp;xport</source>
         <comment>Button text</comment>
         <translation>E&amp;xporta</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="590"/>
+        <location filename="../ui/Ui_mainwindow.py" line="737"/>
         <source>Alt+X</source>
         <translation>Alt+X</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="610"/>
+        <location filename="../ui/Ui_mainwindow.py" line="757"/>
         <source>&amp;Edit</source>
         <translation>&amp;Edita</translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="612"/>
+        <location filename="../ui/Ui_mainwindow.py" line="759"/>
         <source>Preview</source>
         <comment>A window title, NOT an action.</comment>
         <translation>Previsualització</translation>

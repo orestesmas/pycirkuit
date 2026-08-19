@@ -704,303 +704,408 @@ The destination file already exists.</source>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="340"/>
+        <location filename="../ui/Ui_mainwindow.py" line="360"/>
         <source>PyCirkuit - by Orestes Mas</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="486"/>
+        <location filename="../ui/Ui_mainwindow.py" line="506"/>
         <source>&amp;Undo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="489"/>
+        <location filename="../ui/Ui_mainwindow.py" line="509"/>
+        <source>Undo Last Action</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="514"/>
+        <source>Undoes the last editing action</source>
+        <comment>Status Bar Message</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="521"/>
         <source>Ctrl+Z</source>
         <comment>Keyboard Shortcut</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="492"/>
+        <location filename="../ui/Ui_mainwindow.py" line="524"/>
         <source>&amp;Redo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="495"/>
+        <location filename="../ui/Ui_mainwindow.py" line="527"/>
+        <source>Redo Last Action</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="532"/>
+        <source>Redoes the last undone editing action</source>
+        <comment>Status Bar Message</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="541"/>
         <source>Ctrl+Y</source>
         <comment>Keyboard Shortcut</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="499"/>
+        <location filename="../ui/Ui_mainwindow.py" line="545"/>
         <source>&amp;Toggle Comment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="503"/>
+        <location filename="../ui/Ui_mainwindow.py" line="549"/>
         <source>Ctrl+/</source>
         <comment>Keyboard Shortcut is handled by the editor itself, see texteditor.py, so that Shift is tolerated as incidental on ES/CAT keyboard layouts where &apos;/&apos; is typed as Shift+7</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="511"/>
+        <location filename="../ui/Ui_mainwindow.py" line="558"/>
+        <source>Comments or uncomments the selected lines</source>
+        <comment>Status Bar Message</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="567"/>
+        <source>Ctrl+/</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="571"/>
         <source>&amp;Find...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="515"/>
+        <location filename="../ui/Ui_mainwindow.py" line="575"/>
+        <source>Find Text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="580"/>
+        <source>Opens the find bar to search for text</source>
+        <comment>Status Bar Message</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="589"/>
         <source>Ctrl+F</source>
         <comment>Keyboard Shortcut</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="519"/>
+        <location filename="../ui/Ui_mainwindow.py" line="593"/>
         <source>&amp;Replace...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="523"/>
+        <location filename="../ui/Ui_mainwindow.py" line="597"/>
+        <source>Find and Replace</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="602"/>
+        <source>Opens the find bar to search and replace text</source>
+        <comment>Status Bar Message</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="611"/>
         <source>Ctrl+H</source>
         <comment>Keyboard Shortcut</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="526"/>
+        <location filename="../ui/Ui_mainwindow.py" line="614"/>
         <source>&amp;Cut</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="529"/>
+        <location filename="../ui/Ui_mainwindow.py" line="617"/>
+        <source>Cut Selection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="622"/>
+        <source>Cuts the selected text to the clipboard</source>
+        <comment>Status Bar Message</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="631"/>
         <source>Ctrl+X</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="533"/>
+        <location filename="../ui/Ui_mainwindow.py" line="635"/>
         <source>&amp;Paste</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="537"/>
+        <location filename="../ui/Ui_mainwindow.py" line="639"/>
+        <source>Paste Text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="644"/>
+        <source>Pastes text from the clipboard</source>
+        <comment>Status Bar Message</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="651"/>
         <source>Ctrl+V</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="540"/>
+        <location filename="../ui/Ui_mainwindow.py" line="654"/>
         <source>C&amp;opy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="543"/>
+        <location filename="../ui/Ui_mainwindow.py" line="657"/>
+        <source>Copy Selection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="662"/>
+        <source>Copies the selected text to the clipboard</source>
+        <comment>Status Bar Message</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="671"/>
         <source>Ctrl+C</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="547"/>
+        <location filename="../ui/Ui_mainwindow.py" line="675"/>
         <source>Find &amp;Next</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="551"/>
+        <location filename="../ui/Ui_mainwindow.py" line="679"/>
+        <source>Find Next</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="684"/>
+        <source>Finds the next match</source>
+        <comment>Status Bar Message</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="691"/>
         <source>F3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="555"/>
+        <location filename="../ui/Ui_mainwindow.py" line="695"/>
         <source>Find Pre&amp;vious</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="559"/>
+        <location filename="../ui/Ui_mainwindow.py" line="699"/>
+        <source>Finds the previous match</source>
+        <comment>Status Bar Message</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/Ui_mainwindow.py" line="706"/>
         <source>Shift+F3</source>
         <comment>Keyboard Shortcut</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="564"/>
+        <location filename="../ui/Ui_mainwindow.py" line="711"/>
         <source>Source Editor</source>
         <comment>Tab title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="573"/>
+        <location filename="../ui/Ui_mainwindow.py" line="720"/>
         <source>Output Log</source>
         <comment>Tab title</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="567"/>
+        <location filename="../ui/Ui_mainwindow.py" line="714"/>
         <source>&lt;Empty output&gt;</source>
         <comment>Placeholder text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="596"/>
+        <location filename="../ui/Ui_mainwindow.py" line="743"/>
         <source>Fi&amp;le</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="605"/>
+        <location filename="../ui/Ui_mainwindow.py" line="752"/>
         <source>Setti&amp;ngs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="343"/>
+        <location filename="../ui/Ui_mainwindow.py" line="363"/>
         <source>&amp;Quit</source>
         <comment>Menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="347"/>
+        <location filename="../ui/Ui_mainwindow.py" line="367"/>
         <source>Close application</source>
         <comment>Status Bar Message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="354"/>
+        <location filename="../ui/Ui_mainwindow.py" line="374"/>
         <source>Ctrl+Q</source>
         <comment>Keyboard Shortcut</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="358"/>
+        <location filename="../ui/Ui_mainwindow.py" line="378"/>
         <source>&amp;Open...</source>
         <comment>Menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="362"/>
+        <location filename="../ui/Ui_mainwindow.py" line="382"/>
         <source>Open Drawing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="367"/>
+        <location filename="../ui/Ui_mainwindow.py" line="387"/>
         <source>Opens an existing drawing</source>
         <comment>Status Bar Message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="374"/>
+        <location filename="../ui/Ui_mainwindow.py" line="394"/>
         <source>Ctrl+O</source>
         <comment>Keyboard Shortcut</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="378"/>
+        <location filename="../ui/Ui_mainwindow.py" line="398"/>
         <source>&amp;About PyCirkuit</source>
         <comment>Menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="382"/>
+        <location filename="../ui/Ui_mainwindow.py" line="402"/>
         <source>Application information</source>
         <comment>Status Bar Message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="388"/>
+        <location filename="../ui/Ui_mainwindow.py" line="408"/>
         <source>Configure &amp;PyCirkuit...</source>
         <comment>Menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="394"/>
+        <location filename="../ui/Ui_mainwindow.py" line="414"/>
         <source>Opens config dialog</source>
         <comment>Status Bar Message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="401"/>
+        <location filename="../ui/Ui_mainwindow.py" line="421"/>
         <source>Ctrl+P</source>
         <comment>Keyboard Shortcut</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="405"/>
+        <location filename="../ui/Ui_mainwindow.py" line="425"/>
         <source>&amp;New</source>
         <comment>Menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="409"/>
+        <location filename="../ui/Ui_mainwindow.py" line="429"/>
         <source>New Drawing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="414"/>
+        <location filename="../ui/Ui_mainwindow.py" line="434"/>
         <source>Creates an empty drawing</source>
         <comment>Status Bar Message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="421"/>
+        <location filename="../ui/Ui_mainwindow.py" line="441"/>
         <source>Ctrl+N</source>
         <comment>Keyboard Shortcut</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="425"/>
+        <location filename="../ui/Ui_mainwindow.py" line="445"/>
         <source>&amp;Save</source>
         <comment>Menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="429"/>
+        <location filename="../ui/Ui_mainwindow.py" line="449"/>
         <source>Saves drawing</source>
         <comment>Status Bar Message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="436"/>
+        <location filename="../ui/Ui_mainwindow.py" line="456"/>
         <source>Ctrl+S</source>
         <comment>Keyboard Shortcut</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="440"/>
+        <location filename="../ui/Ui_mainwindow.py" line="460"/>
         <source>Sa&amp;ve As...</source>
         <comment>Menu item</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="444"/>
+        <location filename="../ui/Ui_mainwindow.py" line="464"/>
         <source>Saves drawing with new name</source>
         <comment>Status Bar Message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="451"/>
+        <location filename="../ui/Ui_mainwindow.py" line="471"/>
         <source>Ctrl+Shift+S</source>
         <comment>Keyboard Shortcut</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="457"/>
+        <location filename="../ui/Ui_mainwindow.py" line="477"/>
         <source>&amp;Circuit Macros manual</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="461"/>
+        <location filename="../ui/Ui_mainwindow.py" line="481"/>
         <source>Opens Circuit Macros manual</source>
         <comment>Status Bar Message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="468"/>
+        <location filename="../ui/Ui_mainwindow.py" line="488"/>
         <source>Ctrl+M</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="472"/>
+        <location filename="../ui/Ui_mainwindow.py" line="492"/>
         <source>&amp;Dpic manual</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="476"/>
+        <location filename="../ui/Ui_mainwindow.py" line="496"/>
         <source>Opens Dpic manual</source>
         <comment>Status Bar Message</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="483"/>
+        <location filename="../ui/Ui_mainwindow.py" line="503"/>
         <source>Ctrl+D</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1092,7 +1197,7 @@ l=elen_
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="618"/>
+        <location filename="../ui/Ui_mainwindow.py" line="765"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Use:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt; Ctrl + Mouse Wheel to Zoom In/Out&lt;/li&gt;
@@ -1102,7 +1207,7 @@ l=elen_
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="600"/>
+        <location filename="../ui/Ui_mainwindow.py" line="747"/>
         <source>Hel&amp;p</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1125,34 +1230,34 @@ l=elen_
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="576"/>
+        <location filename="../ui/Ui_mainwindow.py" line="723"/>
         <source>&amp;Process and display</source>
         <comment>Button text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="582"/>
+        <location filename="../ui/Ui_mainwindow.py" line="729"/>
         <source>Alt+P</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="586"/>
+        <location filename="../ui/Ui_mainwindow.py" line="733"/>
         <source>E&amp;xport</source>
         <comment>Button text</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="590"/>
+        <location filename="../ui/Ui_mainwindow.py" line="737"/>
         <source>Alt+X</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="610"/>
+        <location filename="../ui/Ui_mainwindow.py" line="757"/>
         <source>&amp;Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/Ui_mainwindow.py" line="612"/>
+        <location filename="../ui/Ui_mainwindow.py" line="759"/>
         <source>Preview</source>
         <comment>A window title, NOT an action.</comment>
         <translation type="unfinished"></translation>

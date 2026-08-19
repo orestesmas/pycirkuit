@@ -272,7 +272,7 @@
   </widget>
   <action name="actionQuit">
    <property name="icon">
-    <iconset theme="QIcon::ThemeIcon::ApplicationExit" resource="../resources/resources.qrc">
+    <iconset resource="../resources/resources.qrc">
      <normaloff>:/icons/Exit</normaloff>:/icons/Exit</iconset>
    </property>
    <property name="text">
@@ -287,7 +287,7 @@
   </action>
   <action name="actionOpen">
    <property name="icon">
-    <iconset theme="QIcon::ThemeIcon::DocumentOpen" resource="../resources/resources.qrc">
+    <iconset resource="../resources/resources.qrc">
      <normaloff>:/icons/Open</normaloff>:/icons/Open</iconset>
    </property>
    <property name="text">
@@ -332,7 +332,7 @@
   </action>
   <action name="actionNew">
    <property name="icon">
-    <iconset theme="QIcon::ThemeIcon::DocumentNew" resource="../resources/resources.qrc">
+    <iconset resource="../resources/resources.qrc">
      <normaloff>:/icons/New</normaloff>:/icons/New</iconset>
    </property>
    <property name="text">
@@ -350,7 +350,7 @@
   </action>
   <action name="actionSave">
    <property name="icon">
-    <iconset theme="QIcon::ThemeIcon::DocumentSave" resource="../resources/resources.qrc">
+    <iconset resource="../resources/resources.qrc">
      <normaloff>:/icons/Save</normaloff>:/icons/Save</iconset>
    </property>
    <property name="text">
@@ -365,7 +365,7 @@
   </action>
   <action name="actionSaveAs">
    <property name="icon">
-    <iconset theme="QIcon::ThemeIcon::DocumentSaveAs" resource="../resources/resources.qrc">
+    <iconset resource="../resources/resources.qrc">
      <normaloff>:/icons/SaveAs</normaloff>:/icons/SaveAs</iconset>
    </property>
    <property name="text">
@@ -410,10 +410,17 @@
   </action>
   <action name="actionUndo">
    <property name="icon">
-    <iconset theme="QIcon::ThemeIcon::EditUndo"/>
+    <iconset resource="../resources/resources.qrc">
+     <normaloff>:/icons/Undo</normaloff>:/icons/Undo</iconset>
    </property>
    <property name="text">
     <string>&amp;Undo</string>
+   </property>
+   <property name="toolTip">
+    <string>Undo Last Action</string>
+   </property>
+   <property name="statusTip">
+    <string comment="Status Bar Message">Undoes the last editing action</string>
    </property>
    <property name="shortcut">
     <string comment="Keyboard Shortcut">Ctrl+Z</string>
@@ -421,37 +428,71 @@
   </action>
   <action name="actionRedo">
    <property name="icon">
-    <iconset theme="QIcon::ThemeIcon::EditRedo"/>
+    <iconset resource="../resources/resources.qrc">
+     <normaloff>:/icons/Redo</normaloff>:/icons/Redo</iconset>
    </property>
    <property name="text">
     <string>&amp;Redo</string>
+   </property>
+   <property name="toolTip">
+    <string>Redo Last Action</string>
+   </property>
+   <property name="statusTip">
+    <string comment="Status Bar Message">Redoes the last undone editing action</string>
    </property>
    <property name="shortcut">
     <string comment="Keyboard Shortcut">Ctrl+Y</string>
    </property>
   </action>
   <action name="actionToggleComment">
+   <property name="icon">
+    <iconset resource="../resources/resources.qrc">
+     <normaloff>:/icons/ToggleComment</normaloff>:/icons/ToggleComment</iconset>
+   </property>
    <property name="text">
     <string>&amp;Toggle Comment</string>
    </property>
    <property name="toolTip">
-    <string comment="Keyboard Shortcut is handled by the editor itself, see texteditor.py, so that Shift is tolerated as incidental on ES/CAT keyboard layouts where '/' is typed as Shift+7">Ctrl+/</string>
+    <string comment="Keyboard Shortcut is handled by the editor itself, see texteditor.py, so that Shift is tolerated as incidental on ES/CAT keyboard layouts where '/' is typed as Shift+7" extracomment="Ctrl+/ is embedded in the text because this action has no real shortcut property - it's handled directly by the editor's keyPressEvent, so Shift is tolerated as incidental on ES/CAT keyboards, where '/' is typed as Shift+7">Ctrl+/</string>
+   </property>
+   <property name="statusTip">
+    <string comment="Status Bar Message">Comments or uncomments the selected lines</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+/</string>
    </property>
   </action>
   <action name="actionFind">
    <property name="icon">
-    <iconset theme="QIcon::ThemeIcon::EditFind"/>
+    <iconset resource="../resources/resources.qrc">
+     <normaloff>:/icons/Find</normaloff>:/icons/Find</iconset>
    </property>
    <property name="text">
     <string>&amp;Find...</string>
+   </property>
+   <property name="toolTip">
+    <string>Find Text</string>
+   </property>
+   <property name="statusTip">
+    <string comment="Status Bar Message">Opens the find bar to search for text</string>
    </property>
    <property name="shortcut">
     <string comment="Keyboard Shortcut">Ctrl+F</string>
    </property>
   </action>
   <action name="actionReplace">
+   <property name="icon">
+    <iconset resource="../resources/resources.qrc">
+     <normaloff>:/icons/Replace</normaloff>:/icons/Replace</iconset>
+   </property>
    <property name="text">
     <string>&amp;Replace...</string>
+   </property>
+   <property name="toolTip">
+    <string>Find and Replace</string>
+   </property>
+   <property name="statusTip">
+    <string comment="Status Bar Message">Opens the find bar to search and replace text</string>
    </property>
    <property name="shortcut">
     <string comment="Keyboard Shortcut">Ctrl+H</string>
@@ -459,10 +500,17 @@
   </action>
   <action name="actionCut">
    <property name="icon">
-    <iconset theme="QIcon::ThemeIcon::EditCut"/>
+    <iconset resource="../resources/resources.qrc">
+     <normaloff>:/icons/Cut</normaloff>:/icons/Cut</iconset>
    </property>
    <property name="text">
     <string>&amp;Cut</string>
+   </property>
+   <property name="toolTip">
+    <string>Cut Selection</string>
+   </property>
+   <property name="statusTip">
+    <string comment="Status Bar Message">Cuts the selected text to the clipboard</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+X</string>
@@ -470,10 +518,17 @@
   </action>
   <action name="actionPaste">
    <property name="icon">
-    <iconset theme="QIcon::ThemeIcon::EditPaste"/>
+    <iconset resource="../resources/resources.qrc">
+     <normaloff>:/icons/Paste</normaloff>:/icons/Paste</iconset>
    </property>
    <property name="text">
     <string>&amp;Paste</string>
+   </property>
+   <property name="toolTip">
+    <string>Paste Text</string>
+   </property>
+   <property name="statusTip">
+    <string comment="Status Bar Message">Pastes text from the clipboard</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+V</string>
@@ -481,10 +536,17 @@
   </action>
   <action name="actionCopy">
    <property name="icon">
-    <iconset theme="QIcon::ThemeIcon::EditCopy"/>
+    <iconset resource="../resources/resources.qrc">
+     <normaloff>:/icons/Copy</normaloff>:/icons/Copy</iconset>
    </property>
    <property name="text">
     <string>C&amp;opy</string>
+   </property>
+   <property name="toolTip">
+    <string>Copy Selection</string>
+   </property>
+   <property name="statusTip">
+    <string comment="Status Bar Message">Copies the selected text to the clipboard</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+C</string>
@@ -492,10 +554,17 @@
   </action>
   <action name="actionFindNext">
    <property name="icon">
-    <iconset theme="QIcon::ThemeIcon::GoNext"/>
+    <iconset resource="../resources/resources.qrc">
+     <normaloff>:/icons/Next</normaloff>:/icons/Next</iconset>
    </property>
    <property name="text">
     <string>Find &amp;Next</string>
+   </property>
+   <property name="toolTip">
+    <string>Find Next</string>
+   </property>
+   <property name="statusTip">
+    <string comment="Status Bar Message">Finds the next match</string>
    </property>
    <property name="shortcut">
     <string>F3</string>
@@ -503,10 +572,14 @@
   </action>
   <action name="actionFindPrevious">
    <property name="icon">
-    <iconset theme="QIcon::ThemeIcon::GoPrevious"/>
+    <iconset resource="../resources/resources.qrc">
+     <normaloff>:/icons/Previous</normaloff>:/icons/Previous</iconset>
    </property>
    <property name="text">
     <string>Find Pre&amp;vious</string>
+   </property>
+   <property name="statusTip">
+    <string comment="Status Bar Message">Finds the previous match</string>
    </property>
    <property name="shortcut">
     <string comment="Keyboard Shortcut">Shift+F3</string>
