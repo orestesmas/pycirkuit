@@ -33,10 +33,11 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
+# Local application imports
+from pycirkuit.ui.theming import invalid_input_style
+
 # Translation function
 _translate = QCoreApplication.translate
-
-_NO_MATCH_STYLE = "background-color: rgb(255, 230, 230);"
 
 
 class FindReplaceBar(QWidget):
@@ -198,7 +199,9 @@ class FindReplaceBar(QWidget):
             whole_word=self.wholeWord.isChecked(),
             backward=backward,
         )
-        self.findField.setStyleSheet("" if found or not term else _NO_MATCH_STYLE)
+        self.findField.setStyleSheet(
+            "" if found or not term else invalid_input_style(self.findField)
+        )
 
     # --- Replacing --------------------------------------------------------
 

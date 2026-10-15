@@ -112,7 +112,7 @@
       <bool>false</bool>
      </property>
      <property name="styleSheet">
-      <string notr="true">padding-left:5; padding-top:10; padding-bottom:10; padding-right:5; background-color: rgb(255, 255, 255);</string>
+      <string notr="true">padding-left:5; padding-top:10; padding-bottom:10; padding-right:5;</string>
      </property>
      <property name="tabShape">
       <enum>QTabWidget::Rounded</enum>
@@ -133,7 +133,7 @@
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">padding-left:5; padding-top:10; padding-bottom:10; padding-right:5; background-color: rgb(255, 255, 255);</string>
+          <string notr="true">padding-left:5; padding-top:10; padding-bottom:10; padding-right:5;</string>
          </property>
          <property name="frameShape">
           <enum>QFrame::NoFrame</enum>
@@ -169,7 +169,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">padding-left:5; padding-top:10; padding-bottom:10; padding-right:5; background-color: rgb(255, 255, 255);</string>
+          <string notr="true">padding-left:5; padding-top:10; padding-bottom:10; padding-right:5;</string>
          </property>
          <property name="frameShape">
           <enum>QFrame::NoFrame</enum>
@@ -269,7 +269,7 @@ p, li { white-space: pre-wrap; }
           <bool>false</bool>
          </property>
          <property name="styleSheet">
-          <string notr="true">padding-left:5; padding-top:10; padding-bottom:10; padding-right:5; background-color: rgb(255, 255, 255);</string>
+          <string notr="true">padding-left:5; padding-top:10; padding-bottom:10; padding-right:5;</string>
          </property>
          <property name="frameShape">
           <enum>QFrame::NoFrame</enum>
@@ -315,7 +315,7 @@ p, li { white-space: pre-wrap; }
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">padding-left:5; padding-top:10; padding-bottom:10; padding-right:5; background-color: rgb(255, 255, 255);</string>
+          <string notr="true">padding-left:5; padding-top:10; padding-bottom:10; padding-right:5;</string>
          </property>
          <property name="frameShape">
           <enum>QFrame::NoFrame</enum>

@@ -104,9 +104,7 @@ class Ui_ConfigDialog(object):
         self.listWidget.setSizePolicy(sizePolicy)
         self.listWidget.setMaximumSize(QSize(128, 16777215))
         self.listWidget.setAutoFillBackground(False)
-        self.listWidget.setStyleSheet(
-            "padding-top: 10px; \n" "background-color: rgb(255, 255, 255);"
-        )
+        self.listWidget.setStyleSheet("padding-top: 10px;")
         self.listWidget.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.listWidget.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.listWidget.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)

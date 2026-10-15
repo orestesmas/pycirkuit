@@ -118,7 +118,7 @@ class Ui_AboutDialog(object):
         self.tabWidget.setFont(font)
         self.tabWidget.setAutoFillBackground(False)
         self.tabWidget.setStyleSheet(
-            "padding-left:5; padding-top:10; padding-bottom:10; padding-right:5; background-color: rgb(255, 255, 255);"
+            "padding-left:5; padding-top:10; padding-bottom:10; padding-right:5;"
         )
         self.tabWidget.setTabShape(QTabWidget.Rounded)
         self.tabAbout = QWidget()
@@ -129,7 +129,7 @@ class Ui_AboutDialog(object):
         self.textAbout.setObjectName("textAbout")
         self.textAbout.setFont(font)
         self.textAbout.setStyleSheet(
-            "padding-left:5; padding-top:10; padding-bottom:10; padding-right:5; background-color: rgb(255, 255, 255);"
+            "padding-left:5; padding-top:10; padding-bottom:10; padding-right:5;"
         )
         self.textAbout.setFrameShape(QFrame.NoFrame)
         self.textAbout.setOpenExternalLinks(True)
@@ -145,7 +145,7 @@ class Ui_AboutDialog(object):
         self.textVersion.setObjectName("textVersion")
         self.textVersion.setFont(font)
         self.textVersion.setStyleSheet(
-            "padding-left:5; padding-top:10; padding-bottom:10; padding-right:5; background-color: rgb(255, 255, 255);"
+            "padding-left:5; padding-top:10; padding-bottom:10; padding-right:5;"
         )
         self.textVersion.setFrameShape(QFrame.NoFrame)
         self.textVersion.setOpenExternalLinks(True)
@@ -185,7 +185,7 @@ class Ui_AboutDialog(object):
         self.textLicense.setFont(font)
         self.textLicense.setAutoFillBackground(False)
         self.textLicense.setStyleSheet(
-            "padding-left:5; padding-top:10; padding-bottom:10; padding-right:5; background-color: rgb(255, 255, 255);"
+            "padding-left:5; padding-top:10; padding-bottom:10; padding-right:5;"
         )
         self.textLicense.setFrameShape(QFrame.NoFrame)
         self.textLicense.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
@@ -206,7 +206,7 @@ class Ui_AboutDialog(object):
         self.textGPL.setObjectName("textGPL")
         self.textGPL.setFont(font)
         self.textGPL.setStyleSheet(
-            "padding-left:5; padding-top:10; padding-bottom:10; padding-right:5; background-color: rgb(255, 255, 255);"
+            "padding-left:5; padding-top:10; padding-bottom:10; padding-right:5;"
         )
         self.textGPL.setFrameShape(QFrame.NoFrame)
         self.textGPL.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)

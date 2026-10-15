@@ -37,6 +37,7 @@ from PySide6.QtWidgets import QDialog, QFileDialog, QMessageBox
 
 # Local application imports
 from pycirkuit.ui.Ui_configdialog import Ui_ConfigDialog
+from pycirkuit.ui.theming import invalid_input_style
 from pycirkuit.exceptions import PyCirkuitError
 from pycirkuit.tools.latex import (
     latex_engine_choices,
@@ -286,22 +287,12 @@ class ConfigDialog(QDialog, Ui_ConfigDialog):
 
     @Slot(str)
     def on_cmPath_textChanged(self, newText):
-        if os.path.isdir(newText):
-            self.cmPath.setStyleSheet(
-                "background-color: {white};".format(white="rgb(255, 255, 255)")
-            )
-        else:
-            self.cmPath.setStyleSheet(
-                "background-color: {reddish};".format(reddish="rgb(255, 230, 230)")
-            )
+        valid = os.path.isdir(newText)
+        self.cmPath.setStyleSheet("" if valid else invalid_input_style(self.cmPath))
 
     @Slot(str)
     def on_templateFile_textChanged(self, newText):
-        if os.path.isfile(newText):
-            self.templateFile.setStyleSheet(
-                "background-color: {white};".format(white="rgb(255, 255, 255)")
-            )
-        else:
-            self.templateFile.setStyleSheet(
-                "background-color: {reddish};".format(reddish="rgb(255, 230, 230)")
-            )
+        valid = os.path.isfile(newText)
+        self.templateFile.setStyleSheet(
+            "" if valid else invalid_input_style(self.templateFile)
+        )
