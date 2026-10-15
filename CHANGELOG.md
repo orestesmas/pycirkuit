@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+#### Changed
+- GitHub Pages site: override the `jekyll-theme-slate` theme's fonts with a native system-font stack. The theme named proprietary, non-web fonts ('Myriad Pro', 'Lucida Grande') with no webfont fallback, so most visitors (especially on Linux) saw a generic substitute that, combined with the theme's hardcoded heading letter-spacing, looked cramped at small sizes.
+
 ## [1.1](https://github.com/orestesmas/pycirkuit/compare/v1.0.0..v1.1.0) series
 <a name="1.1.1"></a>
 ### [1.1.1](https://github.com/orestesmas/pycirkuit/compare/v1.1.0..v1.1.1) :  (2026-10-15) [Bugfix Release]
