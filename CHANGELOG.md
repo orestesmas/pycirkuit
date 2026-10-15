@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.1](https://github.com/orestesmas/pycirkuit/compare/v1.0.0..v1.1.0) series
 <a name="1.1.1"></a>
-### [1.1.1](https://github.com/orestesmas/pycirkuit/compare/v1.1.0..v1.1.1) : [Unreleased]
+### [1.1.1](https://github.com/orestesmas/pycirkuit/compare/v1.1.0..v1.1.1) :  (2026-10-15) [Bugfix Release]
 #### Bug Fixes
 - Fixed several hardcoded light-theme colors (config dialog path validation, sidebar background, find/replace "no match" highlight) that left text unreadable under dark desktop themes such as KDE Breeze Dark; colors are now derived from the active palette instead.
 - Fixed the config dialog's "Exporting" icon and the "About" dialog's logo, both fixed-color artwork that became invisible against a dark theme; they now sit on their own small light backdrop so they stay legible regardless of the theme.

@@ -26,7 +26,7 @@ __productname__ = "PyCirkuit"
 # PEP 440 version. Also the single source of truth for pyproject.toml's
 # [project] version (read via `attr = "pycirkuit.__version__"`), so it
 # doesn't need to be updated in two places.
-__version__ = "1.1.0"
+__version__ = "1.1.1"
 # Only kept here because __copyright__ (used by the About dialog) is built
 # from them. Everything else PyPI/Debian-facing (description, author email,
 # license, homepage...) lives solely in pyproject.toml - nothing at runtime
