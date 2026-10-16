@@ -1,8 +1,8 @@
 # Description #
 
-PyCirkuit is a GUI/CLI front-end for [Circuit Macros] and [Dpic] by Dwight Aplevich, which make up a software chain for drawing high-quality line diagrams to include in LaTeX, web, LibreOffice or similar documents. PyCirkuit GUI builds a live preview of the source code and can export the resulting images in TikZ code, PDF, SVG, PNG and JPEG formats. More export formats are also planned. PyCirkuit CLI mode is useful for batch-processing multiple files.
+PyCirkuit is a GUI/CLI front-end for [Circuit Macros] and [Dpic] by Dwight Aplevich, which make up a software chain for drawing high-quality line diagrams to include in LaTeX, web, LibreOffice or similar documents. PyCirkuit GUI builds a live preview of the source code and can export the resulting images in TikZ code, PDF, SVG, PNG and JPEG formats. PyCirkuit CLI mode is useful for batch-processing multiple files.
 
-PyCirkuit is written in Python 3 using the PySide6 libraries, but is largely inspired (in both ideas and code snippets) on [Cirkuit], a C++ application written by Matteo Agostinelli using KDE4 libraries, which is nowadays increasingly difficult to compile due to the switching, started in 2013, of KDE project from KDE4 platform to the Qt5-based KDE frameworks 5. A port of Cirkuit to KDE frameworks 5 [has begun], but's still not functional and its development appears to be stalled.
+PyCirkuit is written in Python 3 using the PySide6 (Qt6) libraries, but is largely inspired (in both ideas and code snippets) on [Cirkuit], a C++ application written by Matteo Agostinelli using KDE4 libraries, which is nowadays very difficult to build on current systems. Its port to newer KDE platforms [was started] but never reached a usable state.
 
 [Circuit Macros]: <https://ece.uwaterloo.ca/~aplevich/Circuit_macros/>
 (M4 Macros for diagram and circuit drawing)
@@ -13,158 +13,140 @@ PyCirkuit is written in Python 3 using the PySide6 libraries, but is largely ins
 [Cirkuit]: <https://wwwu.uni-klu.ac.at/magostin/cirkuit.html>
 (Cirkuit)
 
-[has begun]: <https://cgit.kde.org/cirkuit.git/>
+[was started]: <https://invent.kde.org/graphics/cirkuit>
 
 
 # Source code #
 
-PyCirkuit source code is now hosted on github.com. The project homepage is [https://github.com/orestesmas/pycirkuit.git](https://github.com/orestesmas/pycirkuit.git).
+PyCirkuit source code is hosted on GitHub: [https://github.com/orestesmas/pycirkuit](https://github.com/orestesmas/pycirkuit). See [CHANGELOG.md](CHANGELOG.md) for the release history.
 
 
 # Requirements #
 
-As PyCirkuit is written in python 3 and uses multiplatform GUI libraries, it loads without problems on GNU/Linux, Windows and macOS. However, its execution relies on using some helper applications whose availability on non-GNU systems is irregular. Version 0.1 has been reported to work on MacOS using external tools provided by [MacPorts](https://www.macports.org/). Works on Windows from version 0.2 onwards, although it's not throughly tested.
+PyCirkuit is written in Python 3 and uses multiplatform GUI libraries, so it should load on GNU/Linux, Windows and macOS. However, it relies on several helper applications whose availability on non-GNU systems is irregular.
 
-**A note on the current development line**: the platform reports above are for the PyQt5-based 0.x releases, which did have real macOS and Windows testers. The version under active development here has since switched to PySide6 and undergone other significant internal changes, and **has only been run on GNU/Linux so far** - the maintainer has no macOS or Windows systems available for testing. Consider Windows/macOS support experimental/untested for this line until someone confirms otherwise. Testers on either platform are very welcome!
+**Platform support**: since version 1.0, PyCirkuit is built on PySide6 and **has only been tested on GNU/Linux**. The older PyQt5-based 0.x releases had been reported to work on macOS and Windows, but the maintainer has no such systems to test the current releases on. Consider Windows/macOS support experimental. Testers on either platform are very welcome!
 
-To install and run this application you need to have the following applications/libraries installed:
+To run PyCirkuit you need:
 
-  * Qt6 libraries
-  * Python 3, with virtual environment support
-  * PySide6 python bindings to Qt libraries
-  * 'libmagic' and its Python bindings
-  * lualatex
-  * m4
-  * dpic
-  * pdftoppm (from poppler project)
-  * pdf2svg
-  * Circuit Macros
+  * Python 3.9 or newer, with virtual environment support
+  * PySide6 (Qt6 bindings for Python) — installed automatically by `pip`
+  * `libmagic` and its Python bindings — the bindings are installed automatically by `pip`
+  * A LaTeX distribution with TikZ, `siunitx` and `preview`, providing **LuaLaTeX** (the default engine) and/or **pdfLaTeX** (selectable in the configuration dialog)
+  * `m4`
+  * `dpic`
+  * `pdftoppm` (from the Poppler project), used for the preview and for PNG/JPEG export
+  * `pdf2svg`, used for SVG export (new dependency since version 1.0)
+  * Circuit Macros — if PyCirkuit doesn't find them at startup, it offers to download and install them automatically
 
 
 # Installation #
 
-## Installing on recent Debian/Ubuntu systems ##
+## Debian and derivatives (Ubuntu, etc.) ##
 
-PyCirkuit will hopefully enter Debian Sid/Bullseye shortly after the 0.5.0 release (September 2019). It will also probably be available on Ubuntu 20.04 onwards. On those systems, you can install it by the usual Debian spell (casted as root):
+PyCirkuit is packaged in Debian, so you can install it together with all its dependencies with:
 
-    apt-get install pycirkuit
+    sudo apt install pycirkuit
 
-Note that if your system is Debian Stable you will probably have to use [*pinning*](https://jaqque.sbih.org/kplug/apt-pinning.html) to install selected packages from Debian Testing, or use the more generic methods described below.
+Check which version your distribution ships before doing so (`apt policy pycirkuit`). As of late 2026, Debian 13 "Trixie" (stable) still ships the old PyQt5-based 0.5.1 release, while Debian testing/unstable ship the 1.x series. If your distribution only offers 0.5.x, you can install the latest release from PyPI as explained in the next section.
 
-## Installing on older Debian/Ubuntu or other GNU/Linux systems ##
+## Other GNU/Linux systems, or the latest release on Debian/Ubuntu ##
 
-To install PyCirkuit in you computer, please follow this steps:
+  1. Install the auxiliary applications. On Debian 11 or newer, Ubuntu and their derivatives, everything is packaged:
 
-  1. Install the auxiliary apps: On Debian-based systems<sup>1</sup> (e.g. Ubuntu/Kubuntu)
-  type the following command to install the required apps and dependencies (tested on Ubuntu
-  18.04 LTS / Debian Stretch): 
+         sudo apt install m4 dpic circuit-macros poppler-utils pdf2svg libmagic1 python3-venv \
+             texlive-latex-recommended texlive-luatex texlive-pictures texlive-science preview-latex-style
 
-         sudo apt-get install texlive-latex-base texlive-latex-recommended \
-         texlive-base-bin texlive-extra-utils texlive-latex-extra texlive-science texlive-pictures preview-latex-style \
-         m4 dpic poppler-utils python3-venv libmagic1
+     The `circuit-macros` package is optional: if it's not installed, PyCirkuit will offer to download the Circuit Macros on its first run.
 
-     <sup>1</sup> Debian Buster and older don't have ```dpic``` packaged, but Ubuntu 18.10 (cosmic) has (in
-     the *universe* repository). If you are trying PyCirkuit in such a Debian system, you'll
-     have to compile and install it yourself. Luckily, this is very easy because it's a
-     little program with few/no dependencies. Download ```dpic``` from
-     [https://ece.uwaterloo.ca/~aplevich/dpic/](https://ece.uwaterloo.ca/~aplevich/dpic/)
-     and follow the instructions in the README file.
+     On other distributions, install the equivalent packages with your package manager. If `dpic` is not packaged, it's a small program with no dependencies which is easy to build: get it from [https://gitlab.com/aplevich/dpic](https://gitlab.com/aplevich/dpic) and follow the instructions in its README.
 
-     There's no Debian package for the Circuit Macros, but if PyCirkuit doesn't find them at
-     startup, it will offer the user to download and install them automatically. They don't
-     require building.
-
-  2. In order to isolate PyCirkuit and its dependencies from other python packages on your system, it's advisable to install it into a Python's Virtual Environment. To do so, choose or create a directory somewhere and __change into it__. Do the following to create the Virtual Environment inside and activate it:
+  2. In order to isolate PyCirkuit and its dependencies from other Python packages on your system, install it into a Python virtual environment. Choose or create a directory somewhere, __change into it__ and create and activate the virtual environment:
 
          python3 -m venv PyCirkuit
          source PyCirkuit/bin/activate
 
-  3. Install PyCirkuit. You have several ways to do so. Choose one of the following:
-  
-     3.1 PyCirkuit is available at the [Python Package Index (PyPI)](https://pypi.org/), so you can install it using PIP. It will download and install alongside the required dependencies (PySide6). After installation, PyCirkuit code and files will be under
-  ```PyCirkuit/lib/python3.X/site-packages/pycirkuit```
+  3. Install PyCirkuit. Choose one of the following:
+
+     3.1 Install the latest stable release from the [Python Package Index (PyPI)](https://pypi.org/project/pycirkuit/). PySide6 and the other Python dependencies are downloaded and installed automatically:
 
          pip install pycirkuit
 
-     3.2 The former will install the lastest stable version on PyPI. If you prefer to install the latest development version, [download it from GitHub as a .ZIP file](https://github.com/orestesmas/pycirkuit/archive/master.zip) and install from it:
-     
-         pip install <path_to_the_downloaded_ZIP_file>
+     3.2 Install the latest development version directly from GitHub:
 
-  4. If all went well, you can execute PyCirkuit by means of an executable script created under ```PyCirkuit/bin```. Test it with:
+         pip install https://github.com/orestesmas/pycirkuit/archive/master.zip
+
+  4. If all went well, the `pycirkuit` executable is now available under `PyCirkuit/bin`. Test it with:
 
          pycirkuit
 
-## Installing on MacOS ##
-(These explanations were provided by some user. I cannot test them personally. They also predate the switch to PySide6 in the current development line and haven't been re-verified since.)
+  Alternatively, if you have [pipx](https://pipx.pypa.io/) installed, `pipx install pycirkuit` performs steps 2 and 3 for you and makes the `pycirkuit` command available without activating any environment.
 
-  1. Prerequisites and dependencies:
-  
-     1.1 You need to have installed Xcode and Xcode command tools. Of course, you will need also Python 3. To install it you can follow [https://www.python.org/downloads/release/python-372/](https://www.python.org/downloads/release/python-372/) or [https://docs.python-guide.org/starting/install3/osx/](https://docs.python-guide.org/starting/install3/osx/).
-     
-     1.2 Then you have to install LaTeX using MacPorts: [https://docs.typo3.org/typo3cms/extensions/sphinx/AdministratorManual/RenderingPdf/InstallingLaTeXLinux.html](https://docs.typo3.org/typo3cms/extensions/sphinx/AdministratorManual/RenderingPdf/InstallingLaTeXLinux.html).
-     
-     1.3 The M4 and DPIC are UNIX apps, so they run without much trouble on macOS. Similar with poppler. Some useful links are [https://ece.uwaterloo.ca/~aplevich/Circuit_macros/](https://ece.uwaterloo.ca/~aplevich/Circuit_macros/) and [https://www.google.es/amp/macappstore.org/poppler/amp/](https://www.google.es/amp/macappstore.org/poppler/amp/).
-     
-  2. Finally, proceed as explained on the steps #2 and #3 of the previous section to create a Python virtual environment and to install PyCirkuit from PyPI there.
+## macOS ##
+(Not tested by the maintainer. These notes are based on reports from users of the older 0.x releases.)
 
-## Installing on MS Windows ##
-(These instructions predate the switch to PySide6 in the current development line and haven't been re-verified since; the maintainer has no Windows system to test on.)
+  1. Install Python 3.9 or newer (e.g. from [python.org](https://www.python.org/downloads/macos/)) and a LaTeX distribution such as [MacTeX](https://www.tug.org/mactex/).
+
+  2. Install `m4`, `dpic`, `poppler` (which provides `pdftoppm`), `pdf2svg` and `libmagic` using a package manager such as [MacPorts](https://www.macports.org/) or [Homebrew](https://brew.sh/). If `dpic` is not available there, build it from [its sources](https://gitlab.com/aplevich/dpic); it's a small program with no dependencies.
+
+  3. Proceed as explained in steps 2 to 4 of the previous section to create a Python virtual environment and install PyCirkuit from PyPI.
+
+## MS Windows ##
+(Not tested by the maintainer. These notes are based on reports from users of the older 0.x releases.)
 
   1. Install the dependencies and auxiliary programs:
 
-     1.1 Choose a LaTeX distribution for windows. I tested PyCirkuit with MikTeX. Download it from https://miktex.org/ and follow the instructions to install it.
+     1.1 A LaTeX distribution, such as [MiKTeX](https://miktex.org/) or [TeX Live](https://www.tug.org/texlive/).
 
-     1.2 Download and install a python 3 interpreter for windows from https://www.python.org/downloads/windows/.
+     1.2 A Python 3 interpreter (3.9 or newer) from [python.org](https://www.python.org/downloads/windows/).
 
-     1.3 Download and install the M4 macro processor and the DPIC executables for windows from https://ece.uwaterloo.ca/~aplevich/dpic/Windows/index.html
+     1.3 The M4 macro processor and the DPIC executables for Windows from [https://ece.uwaterloo.ca/~aplevich/dpic/Windows/](https://ece.uwaterloo.ca/~aplevich/dpic/Windows/index.html).
 
-     1.4 Finally, obtain and install a copy of the "pdftoppm" utility. It usually comes bundled along with other utilities from the "Poppler" library, although it can be found alone on some webs. For instance from http://blog.alivate.com.au/poppler-windows/.
+     1.4 The `pdftoppm` utility, bundled with the Poppler utilities, e.g. from [poppler-windows](https://github.com/oschwartz10612/poppler-windows/releases).
 
-     You have to put this utilities somewhere on your PATH, but alternatively you can put them inside PyCirkuit code. See #4 below.
+     1.5 A Windows build of `pdf2svg` (only needed for SVG export).
 
-  2. Prepare a location where to install PyCircuit. It's advisable to install it inside a so-called python environment to isolate it from other python installations and libraries you may have on your system. To do so, choose a directory where to install PyCirkuit. Open a command line (I assume you have how to do it) and navigate to the chosen location. Then create the Python virtual environment and activate it using the commands below:
+     These programs have to be somewhere on your PATH; alternatively, see step 4 below.
+
+  2. Choose a directory where to install PyCirkuit, open a command prompt there and create and activate a Python virtual environment:
 
          python -m venv PyCirkuit
          PyCirkuit\Scripts\activate
 
-        The console "prompt" should change and show "(PyCirkuit)" at the beginning indicating the environment is active.
+     The prompt should change and show "(PyCirkuit)" at the beginning, indicating that the environment is active.
 
-  3. To install PyCirkuit, proceed like Step 3 in the "Linux Installation" section
-     
-  4. For convenience you can put the m4.exe, dpic.exe and pdftoppm.exe executables downloaded before inside the pycirkuit package you've just installed. Copy them to "PyCirkuit\Lib\site-packages\pycirkuit\lib\". PyCirkuit will add this directory to the executable's PATH when running.
+  3. Install PyCirkuit as in step 3 of the GNU/Linux section.
+
+  4. For convenience, you can copy the `m4.exe`, `dpic.exe`, `pdftoppm.exe` and `pdf2svg.exe` executables (and their DLLs) into `PyCirkuit\Lib\site-packages\pycirkuit\lib\`. PyCirkuit adds this directory to the PATH when running.
 
   5. Test the executable:
 
-         PyCirkuit
+         pycirkuit
 
-     You will find some examples inside "PyCirkuit\Lib\site-packages\pycirkuit\examples\"
-
-  6. When you're done you can deactivate the virtual environment:
-
-         deactivate
-
-     or simply close the command line console.
-
-
+     You will find some examples inside `PyCirkuit\Lib\site-packages\pycirkuit\examples\`.
 
 
 # Usage #
 
-To execute PyCirkuit open a console/terminal window, navigate into the directory where PyCirkuit is installed and activate the virtual environment as in 2:
+If you installed PyCirkuit from your distribution's packages or with `pipx`, just run `pycirkuit` from a terminal or from your desktop's application menu.
+
+If you installed it into a virtual environment, activate it first:
 
 ```shell
-   cd <path-to-Virtual-Environment>
-   source PyCirkuit/bin/activate         (for GNU/Linux systems)
-   PyCirkuit\Scripts\activate            (for Windows systems)
+   cd <directory-containing-the-virtual-environment>
+   source PyCirkuit/bin/activate         (GNU/Linux and macOS)
+   PyCirkuit\Scripts\activate            (Windows)
 ```
 
-Then execute the program as above:
+Then run the program:
 
 ```shell
    pycirkuit
 ```
 
-Upon finished executing PyCirkuit, you should deactivate the virtual environment (and/or close the terminal window):
+Run `pycirkuit --help` to see the options for batch-processing files from the command line.
+
+When you're done, you can deactivate the virtual environment (or simply close the terminal window):
 
 ```shell
    deactivate
