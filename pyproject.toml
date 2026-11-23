@@ -49,7 +49,7 @@ version = {attr = "pycirkuit.__version__"}
 include = ["pycirkuit*"]
 
 [tool.setuptools.package-data]
-pycirkuit = ["doc/*", "lib/*", "templates/*", "examples/*"]
+pycirkuit = ["doc/*", "lib/*", "templates/*", "examples/*", "keys/*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

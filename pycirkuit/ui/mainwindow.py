@@ -448,13 +448,17 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     self.sbProgressBar.setVisible(True)
                     cmMgr.download_latest(self.sbProgressBar)
                     cmMgr.unpack_circuit_macros()
-                    result = True
-                except:
-                    pass
+                    result = cmMgr.check_installed()
+                except PyCirkuitError as error:
+                    failure = error
+                else:
+                    failure = None
                 finally:
                     app.restoreOverrideCursor()
                     self.statusBar.clearMessage()
                     self.sbProgressBar.setVisible(False)
+                if failure is not None:
+                    self._display_error(failure)
             else:
                 txt = _cmNotFound + _translate(
                     "MessageBox",
